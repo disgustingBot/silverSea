@@ -1,0 +1,2 @@
+# silverSea
+WordPress theme
