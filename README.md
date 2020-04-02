@@ -1,2 +1,2 @@
-# silverSea
-WordPress theme
+# blankCanvas
+Empty Wordpress Theme
