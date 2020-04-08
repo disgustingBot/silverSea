@@ -287,4 +287,79 @@ ul,ol{list-style:none}
                           6.99) =footer
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.footer{}
+.footer{
+  display: grid;
+
+
+}
+
+.footerContainer{
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-gap: 2rem;
+  color: white;
+  padding: 1rem;
+  background: #676767;
+  padding: 1rem var(--lateral);
+}
+
+.logoAndContactInfo{
+  grid-column: 2;
+  display: grid;
+}
+
+.contactInfo{
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-column-gap: .5rem;
+  align-items: center;
+}
+
+.footerLogin{
+  display: flex;
+  flex-flow: column;
+  padding: 1rem;
+}
+
+.footerLogin input{
+  height: 1.4rem;
+}
+.footerLogin *{
+  margin:.5rem;
+}
+
+.chatContainer{
+  position: relative;
+  height: 2rem;
+
+
+}
+
+.chatButton{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: -2.5rem;
+  width: 100%;
+  background: #60859E;
+  height: 1.4rem;
+  border: none;
+  color: white;
+}
+
+.chatLogo{
+  height: .7rem;
+}
+
+.footerSocial{
+  height: 3rem;
+  background: #0674BB;
+  padding: 1rem var(--lateral);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.footerSocial svg{
+  margin: 0 .1rem;
+}
