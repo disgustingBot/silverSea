@@ -30,6 +30,8 @@ Version: 0.0
 6) =COMPONENTES:
 6.0) =load:
 6.1) =header:
+6.2) =blueBar:
+6.3) =socalMedia:
 
 6.4) =multiCards:
 
@@ -56,14 +58,14 @@ FIN DE MAPA DE CONTENIDOS */
   /* la idea de esto es que sean como controles con los
   que hacer facilmente diferentes versiones de la pagina */
 
-  --lateral:1rem;
+  --lateral: 1rem;
 
   /* COLORS */
   /* Al editar colores siempre usar HEX y nunca
   dejar espacio entre los dos puntos y el color */
-  --color1:#000;
-  --color2:#FFF;
-  --color3:red;
+  --color1:#0674BB;
+  --color2:#ECC800;
+  --color3:#60859E;
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
   /* --color6:#FFFAE6; */
@@ -86,7 +88,12 @@ FIN DE MAPA DE CONTENIDOS */
   --onlyMobileF:flex;
   --onlyMobileG:grid;
 
+  /* BLUEBAR */
+  --blueBarTelM: auto;
+  --selectLangM: auto var(--lateral) auto auto;
+
   /* ?HEADER */
+  --navBarWidth: 50%;
   /* ?FOOTER */
 }
 /* ---------------------------------------------------------------------------
@@ -136,6 +143,11 @@ FIN DE MAPA DE CONTENIDOS */
     --onlyMobileF:none;
     --onlyMobileG:none;
 
+
+    /* BLUEBAR */
+    --blueBarTelM: auto 1rem auto auto;
+    --selectLangM: auto var(--lateral) auto 4rem;
+
     /* ?HEADER */
     /* ?FOOTER */
   }
@@ -150,6 +162,8 @@ FIN DE MAPA DE CONTENIDOS */
 @media screen and (min-width: 992px) {
   :root {
     /* ?HEADER */
+    --navBarWidth: 40%;
+
     /* ?FOOTER */
   }
 }
@@ -161,7 +175,7 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
   :root {
-    --lateral:4rem;
+    --lateral: 3rem;
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
@@ -189,7 +203,12 @@ FIN DE MAPA DE CONTENIDOS */
                            4) =ETIQUETAS GLOBALES:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family: 'Rambla', sans-serif;
+}
 body{display:grid}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
@@ -268,8 +287,128 @@ ul,ol{list-style:none}
                             6.1) =header:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.header {}
-  
+.header {
+  display: var(--onlyDesktopF);
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 3rem;
+  margin: .5rem auto .5rem var(--lateral);
+  width: auto;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  margin: auto var(--lateral);
+  width: var(--navBarWidth);
+}
+.menu-item {
+}
+
+.menu-item a{
+  color: black;
+  font-size: .75rem;
+  text-decoration: none;
+}
+
+/* MOBILE HEADER */
+.headerMob {
+  display: var(--onlyMobileF);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+}
+
+.upperHeader {
+  width: 100%;
+  display: flex;
+}
+
+.navBarMobile {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: auto 0 auto auto;
+  width: 60vw;
+}
+
+.headerMob .logo {
+  height: 2rem;
+}
+
+.hamburgerMenu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1rem;
+  width: 2rem;
+  margin: auto var(--lateral);
+}
+.hamStripe {
+  background: var(--color1);
+  height: 3px;
+  width: 100%;
+}
+
+  /* ---------------------------------------------------------------------------
+  ------------------------------------------------------------------------------
+                              6.2) =blueBar:
+  ------------------------------------------------------------------------------
+  --------------------------------------------------------------------------- */
+
+.blueBar {
+  color: white;
+  background-color: var(--color1);
+  display: flex;
+  font-size: .5rem;
+  padding: .25rem 0;
+  width: 100%;
+}
+.blueBarTel{
+  color: white;
+  text-decoration: none;
+}
+
+.blueBarTel{margin: var(--blueBarTelM);}
+
+.selectLang{
+  display: flex;
+  margin: var(--selectLangM);
+}.selectLang > *{ margin: auto}
+
+.selectSVG{
+  height: .8rem;
+  margin: .1rem;
+}
+
+  /* ---------------------------------------------------------------------------
+  ------------------------------------------------------------------------------
+                                6.3) =socalMedia:
+  ------------------------------------------------------------------------------
+  --------------------------------------------------------------------------- */
+
+.socialMediaLink {
+  height: 1rem;
+  margin: .1rem;
+  width: auto;
+}
+.socialMediaLink:first-child {
+  margin-left: 0;
+}
+
+.socialMedia{
+  display: flex;
+  margin: auto auto auto var(--lateral);
+}
+
+.socialMSVG{
+  height: 100%;
+  width: auto;
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.4) =multiCards:
