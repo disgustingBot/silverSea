@@ -334,7 +334,7 @@ ul,ol{list-style:none}
 
 .menu-item a{
   color: black;
-  font-size: 1rem;
+  font-size: .75rem;
   text-decoration: none;
 }
 
