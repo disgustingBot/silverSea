@@ -37,7 +37,7 @@
     <?php include('blueBar.php') ?>
     <div class="upperHeader">
       <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
-      <div class="hamburgerMenu">
+      <div class="hamburgerMenu" onclick="altClassFromSelector('alt','#menu-navbarmobile')">
         <div class="hamStripe"></div>
         <div class="hamStripe"></div>
         <div class="hamStripe"></div>
