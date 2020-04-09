@@ -5,18 +5,18 @@ add_action( 'init', 'lattedev_custom_posts' );
 function lattedev_custom_posts() {
     /* Añado las etiquetas que aparecerán en el escritorio de WordPress */
 	$labels = array(
-		'name'               => _x( 'Services', 'post type general name', 'text-domain' ),
-		'singular_name'      => _x( 'Service', 'post type singular name', 'text-domain' ),
-		'menu_name'          => _x( 'Services', 'admin menu', 'text-domain' ),
-		'add_new'            => _x( 'Add new', 'service', 'text-domain' ),
-		'add_new_item'       => __( 'Add new service', 'text-domain' ),
-		'new_item'           => __( 'New service', 'text-domain' ),
-		'edit_item'          => __( 'Edit service', 'text-domain' ),
-		'view_item'          => __( 'See service', 'text-domain' ),
-		'all_items'          => __( 'All services', 'text-domain' ),
-		'search_items'       => __( 'Search services', 'text-domain' ),
-		'not_found'          => __( 'There are no services.', 'text-domain' ),
-		'not_found_in_trash' => __( 'No services in the bin.', 'text-domain' )
+		'name'               => _x( 'Containers', 'post type general name', 'text-domain' ),
+		'singular_name'      => _x( 'Container', 'post type singular name', 'text-domain' ),
+		'menu_name'          => _x( 'Containers', 'admin menu', 'text-domain' ),
+		'add_new'            => _x( 'Add new', 'container', 'text-domain' ),
+		'add_new_item'       => __( 'Add new container', 'text-domain' ),
+		'new_item'           => __( 'New container', 'text-domain' ),
+		'edit_item'          => __( 'Edit container', 'text-domain' ),
+		'view_item'          => __( 'See container', 'text-domain' ),
+		'all_items'          => __( 'All containers', 'text-domain' ),
+		'search_items'       => __( 'Search containers', 'text-domain' ),
+		'not_found'          => __( 'There are no containers.', 'text-domain' ),
+		'not_found_in_trash' => __( 'No containers in the bin.', 'text-domain' )
 	);
     /* Configuro el comportamiento y funcionalidades del nuevo custom post type */
 	$args = array(
