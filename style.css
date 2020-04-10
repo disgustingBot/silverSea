@@ -468,6 +468,56 @@ ul,ol{list-style:none}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
+                          7.1) =page-contact:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+section.contacto{
+  background: url("http://localhost/Silversea/wp-content/uploads/2020/04/pexels-photo-799091-1.jpg");
+  height: 90vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 5rem;
+}
+
+.contacto .subtitle{
+  align-self: flex-start;
+}
+
+.contacto .contactForm{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: .5rem;
+  grid-row-gap: 1rem;
+  align-items: center;
+}
+
+.contactForm input{
+  height: 2rem;
+  padding-left: .5rem;
+}
+
+.contactForm textarea{
+  grid-column: span 2;
+  height: 4rem;
+  padding: .5rem;
+}
+
+.contactForm button{
+  grid-column: span 2;
+  width: min-content;
+  margin: auto;
+  height: 2rem;
+  padding: .5rem 1rem;
+
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
                           6.99) =footer
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
