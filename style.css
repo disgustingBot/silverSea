@@ -66,6 +66,7 @@ FIN DE MAPA DE CONTENIDOS */
   --color1:#0674BB;
   --color2:#ECC800;
   --color3:#60859E;
+  --color4:#676767;
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
   /* --color6:#FFFAE6; */
@@ -428,6 +429,25 @@ ul,ol{list-style:none}
   margin: .1rem;
 }
 
+.blueBarTel{display: none}
+.header .blueBarTel{display: block}
+.latteSignature{
+  display: none;
+  height: min-content;
+  margin: var(--blueBarTelM);
+}
+.footer .latteSignature{display: block}
+
+.latteLink {
+  text-decoration: none;
+  color: white;
+}
+
+.latteHeartSVG {
+  color:var(--color2);
+  height: 12px;
+  width: auto;
+}
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
                                 6.3) =socalMedia:
@@ -471,79 +491,24 @@ ul,ol{list-style:none}
                           6.99) =footer
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.footer{
+
+.footer {
+  background: var(--color4);
   display: grid;
-
-
-}
-
-.footerContainer{
-  display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem;
-  color: white;
-  padding: 1rem;
-  background: #676767;
-  padding: 1rem var(--lateral);
-}
-
-.logoAndContactInfo{
-  grid-column: 2;
-  display: grid;
-}
-
-.contactInfo{
-  display: grid;
-  grid-template-columns: 1fr 8fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-column-gap: .5rem;
-  align-items: center;
-}
-
-.footerLogin{
-  display: flex;
-  flex-flow: column;
-  padding: 1rem;
-}
-
-.footerLogin input{
-  height: 1.4rem;
-}
-.footerLogin *{
-  margin:.5rem;
-}
-
-.chatContainer{
-  position: relative;
-  height: 2rem;
-
-
-}
-
-.chatButton{
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: -2.5rem;
-  width: 100%;
-  background: #60859E;
-  height: 1.4rem;
-  border: none;
+  padding: 1rem 10rem;
   color: white;
 }
-
-.chatLogo{
-  height: .7rem;
+.footWordingTitle {
+  font-size: .75rem;
 }
 
-.footerSocial{
-  height: 3rem;
-  background: #0674BB;
-  padding: 1rem var(--lateral);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.footWordingTxt {
+  font-size: .5rem;
 }
-.footerSocial svg{
-  margin: 0 .1rem;
+
+.footLogo {
+  height: 1rem;
+  width: auto;
 }
