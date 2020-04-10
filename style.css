@@ -31,11 +31,12 @@ Version: 0.0
 6.0) =load:
 6.1) =header:
 6.2) =blueBar:
-6.3) =socalMedia:
+6.3) =ATFS:
+6.4) =socalMedia:
+6.5) =multiCards:
+6.6) =forms:
+6.7) =BUTTONS:
 
-6.4) =multiCards:
-
-6.6) =BUTTONS:
 
 6.99) =footer
 
@@ -113,13 +114,20 @@ FIN DE MAPA DE CONTENIDOS */
   --onlyMobileF:flex;
   --onlyMobileG:grid;
 
+  --txtCenterLeft: center;
+  --TxtLeftCenter: left;
+
   /* BLUEBAR */
   --blueBarTelM: auto;
   --selectLangM: auto var(--lateral) auto auto;
 
   /* ?HEADER */
   --navBarWidth: 50%;
+
   /* ?FOOTER */
+  --footGridTC: 1fr;
+  --footerNavMB: 1rem;
+  --footerPad: 1rem 3rem;
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -152,6 +160,7 @@ FIN DE MAPA DE CONTENIDOS */
   :root {
     /* ?HEADER */
     /* ?FOOTER */
+    --footGridTC: 1fr 1fr;
   }
 }
 
@@ -168,6 +177,11 @@ FIN DE MAPA DE CONTENIDOS */
     --onlyMobileF:none;
     --onlyMobileG:none;
 
+    --txtCenterLeft: left;
+    --TxtLeftCenter: center;
+
+
+
 
     /* BLUEBAR */
     --blueBarTelM: auto 1rem auto auto;
@@ -175,6 +189,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?HEADER */
     /* ?FOOTER */
+    --footGridTC: repeat(4, 1fr);
+    --footerPad: 1rem 5rem;
+    --footerNavMB: .1rem;
+
+
   }
 }
 
@@ -266,6 +285,7 @@ ul,ol{list-style:none}
 .onlyMobileF{display:var(--onlyMobileF)}
 .onlyMobileG{display:var(--onlyMobileG)}
 
+.txtCenterLeft {text-align: var(--txtCenterLeft)}
 
 .flex2,.flex3,.flex4{display:flex;flex-wrap:wrap}
 .flex2>*{flex:2 1 calc(50% - 1rem)}
@@ -346,6 +366,7 @@ ul,ol{list-style:none}
   position: sticky;
   top: 0;
   overflow-x: hidden;
+  display: none;
 }
 
 .upperHeader {
@@ -398,6 +419,7 @@ ul,ol{list-style:none}
   font-size: 1rem;
 }
 
+
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
                               6.2) =blueBar:
@@ -448,9 +470,22 @@ ul,ol{list-style:none}
   height: 12px;
   width: auto;
 }
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.3) =ATFS:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.ATF{
+  width: 100%;
+  height: 70vh;
+}
+
+
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
-                                6.3) =socalMedia:
+                                6.4) =socalMedia:
   ------------------------------------------------------------------------------
   --------------------------------------------------------------------------- */
 
@@ -475,13 +510,46 @@ ul,ol{list-style:none}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.4) =multiCards:
+                          6.5) =multiCards:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.6) =BUTTONS:
+                          6.6) =forms:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.footLog {
+  display: flex;
+  flex-direction: column;
+}
+
+.footLogInput {
+  height: 1.5rem;
+  width: 100%;
+  background: white;
+  color: var(--color4);
+  padding: .5rem;
+  border: none;
+}
+
+.footLogSubmit {
+  background: transparent;
+  color: var(--color2);
+  font-weight: 700;
+  font-size: .75rem;
+  text-align: right;
+  border: none;
+  margin-top: 5px;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.7) =BUTTONS:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
@@ -495,9 +563,9 @@ ul,ol{list-style:none}
 .footer {
   background: var(--color4);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2rem;
-  padding: 1rem 10rem;
+  grid-template-columns: var(--footGridTC);
+  grid-gap: 1rem;
+  padding: var(--footerPad);
   color: white;
 }
 .footWordingTitle {
@@ -506,9 +574,42 @@ ul,ol{list-style:none}
 
 .footWordingTxt {
   font-size: .5rem;
+  text-align: justify;
 }
 
 .footLogo {
-  height: 1rem;
+  height: 1.5rem;
   width: auto;
+  margin: auto;
+  margin-top: 0;
+}
+
+.footerInfoCont {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 10px;
+}
+
+.footerInfoCont svg {
+  margin: auto;
+  height: 15px;
+}
+
+.footLoc,.footerMail,.footTel {
+  font-size: .5rem;
+  text-decoration: none;
+  color: white;
+  margin: auto;
+  margin-left: 10px;
+}
+
+.footerNav li {
+  text-align: var(--TxtLeftCenter);
+  margin-bottom: var(--footerNavMB);
+}
+
+.footerNav a {
+  color: white;
+  font-size: .5rem;
 }
