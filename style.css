@@ -33,6 +33,9 @@ Version: 0.0
 6.2) =blueBar:
 6.3) =socalMedia:
 
+
+6.7) =formContact:
+
 6.4) =multiCards:
 
 6.6) =BUTTONS:
@@ -119,6 +122,12 @@ FIN DE MAPA DE CONTENIDOS */
   /* ?HEADER */
   --navBarWidth: 50%;
   /* ?FOOTER */
+
+
+  /* 6.7) =formContact: */
+  --contactInputWidth: 100%;
+  --contactInputGC: span 2;
+  --contactTextareaHeight: 10rem;
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -174,6 +183,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?HEADER */
     /* ?FOOTER */
+
+    /* 6.7) =formContact: */
+    --contactInputWidth: auto;
+    --contactInputGC: auto;
+    --contactTextareaHeight: 4rem;
   }
 }
 
@@ -468,7 +482,7 @@ ul,ol{list-style:none}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          7.1) =page-contact:
+                          6.7) =formContact:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
@@ -489,7 +503,7 @@ section.contacto{
 
 .contacto .contactForm{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:1fr 1fr;
   grid-column-gap: .5rem;
   grid-row-gap: 1rem;
   align-items: center;
@@ -498,12 +512,15 @@ section.contacto{
 .contactForm input{
   height: 2rem;
   padding-left: .5rem;
+  width: var(--contactInputWidth);
+  grid-column: var(--contactInputGC)
 }
 
 .contactForm textarea{
   grid-column: span 2;
-  height: 4rem;
+  height: var(--contactTextareaHeight) ;
   padding: .5rem;
+  width: var(--contactInputWidth);
 }
 
 .contactForm button{
