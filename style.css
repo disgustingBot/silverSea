@@ -32,10 +32,13 @@ Version: 0.0
 6.1) =header:
 6.2) =blueBar:
 6.3) =ATFS:
+  6.3.1) =Front Page ATF
 6.4) =socalMedia:
 6.5) =multiCards:
 6.6) =forms:
 6.7) =BUTTONS:
+6.8) =sectioNSummarys:
+6.9) =Counts:
 
 
 6.99) =footer
@@ -68,6 +71,7 @@ FIN DE MAPA DE CONTENIDOS */
   --color2:#ECC800;
   --color3:#60859E;
   --color4:#676767;
+  --color5:#F0F0F0;
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
   /* --color6:#FFFAE6; */
@@ -124,6 +128,18 @@ FIN DE MAPA DE CONTENIDOS */
   /* ?HEADER */
   --navBarWidth: 50%;
 
+  /* ATFS */
+
+  /* FRONT PAGE ATF */
+  --featuresWidth: 70%;
+  --featuresGAutoFlow: row;
+
+  --articleAboutUs: "summary"
+                    "media"
+                    "btn";
+
+--frontPageSec1MT: 7rem;
+
   /* ?FOOTER */
   --footGridTC: 1fr;
   --footerNavMB: 1rem;
@@ -159,6 +175,9 @@ FIN DE MAPA DE CONTENIDOS */
 @media screen and (min-width: 576px) {
   :root {
     /* ?HEADER */
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresGAutoFlow: column;
     /* ?FOOTER */
     --footGridTC: 1fr 1fr;
   }
@@ -188,6 +207,14 @@ FIN DE MAPA DE CONTENIDOS */
     --selectLangM: auto var(--lateral) auto 4rem;
 
     /* ?HEADER */
+
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresWidth: 80%;
+
+    --frontPageSec1MT: 4rem;
+
+
     /* ?FOOTER */
     --footGridTC: repeat(4, 1fr);
     --footerPad: 1rem 5rem;
@@ -208,6 +235,11 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
     --navBarWidth: 40%;
 
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --articleAboutUs: "summary media"
+                      "  btn   media";
+
     /* ?FOOTER */
   }
 }
@@ -223,6 +255,32 @@ FIN DE MAPA DE CONTENIDOS */
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
+
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresWidth: 60%;
+
+
+    /* ?FOOTER */
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.5) min-width:  =1500px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media  screen and (min-width: 1500px) {
+  :root {
+
+    /* ?HEADER */
+
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresWidth: 50%;
+
+
     /* ?FOOTER */
   }
 }
@@ -299,6 +357,12 @@ ul,ol{list-style:none}
                               6) =COMPONENTES:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+.brandColorTxt {color: var(--color1)}
+
+.sectionPadding {
+  padding: 2rem var(--lateral);
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -478,10 +542,65 @@ ul,ol{list-style:none}
 --------------------------------------------------------------------------- */
 
 .ATF{
+  display: grid;
   width: 100%;
-  height: 70vh;
 }
 
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.3.1) =Front Page ATF:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+.frontPageATFBg{
+  width: 100%;
+  height: auto;
+}
+
+.features{
+  background: var(--color5);
+  padding: 1rem;
+  display: grid;
+  grid-auto-flow: var(--featuresGAutoFlow);
+  height: min-content;
+  grid-gap: 1rem;
+  width: var(--featuresWidth);
+  margin: auto auto 0 auto;
+  transform: translateY(50%);
+}
+
+.feature {
+  display: flex;
+  padding: .5rem;
+  border: solid 1px #0774BA;
+}
+
+.featureIcon{
+  height: 2rem;
+  margin: auto .5rem auto auto;
+  width: auto;
+}
+
+.featureTitle {
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.featureTxt {
+  font-size: .5rem;
+}
+
+.articleAboutUs {
+  display: grid;
+  grid-template-areas: var(--articleAboutUs);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  width: 100%;
+}
+
+.FrontPageSec1 {margin-top: var(--frontPageSec1MT);}
+.FrontPageSec2 {background: var(--color5)}
 
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
@@ -552,6 +671,121 @@ ul,ol{list-style:none}
                           6.7) =BUTTONS:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+.btn {
+  padding: .5rem;
+  background: var(--color2);
+  text-transform: uppercase;
+  display: flex;
+  border: none;
+  transition: .25s;
+  font-size: .75rem;
+  font-weight: 700;
+  width: max-content;
+  height: min-content;
+}
+
+.btn:hover {
+  color: black;
+  background: var(--color1);
+}
+
+
+
+.btn a
+{margin: auto;
+  text-decoration: none;
+  color: black
+}
+
+.articleAboutUs .btn {
+  margin: auto auto 0 auto;
+  grid-area: btn;
+}
+
+.articleFPCounter .btn {
+  margin: auto;
+  margin-left: 0;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.8) =sectioNSummarys
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.sectionSummary{
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--color1);
+  padding-left: 1rem;
+}
+
+.sectionSummary > *{
+  margin: .25rem 0;
+}
+
+.summaryTitle{
+  color: var(--color4);
+  font-size: 1.7rem;
+}
+
+.summaryTxt {font-size: .7rem; color: var(--color4)}
+
+
+
+/* About us summary */
+
+.articleAboutUs .sectionSummary {grid-area: summary;}
+
+.aboutUsMedia {grid-area: media;}
+
+.articleAboutUs .playBtn {
+  grid-area: media;
+  width: 50px;
+  height: auto;
+  margin: auto;
+}
+
+
+/* Silversea en el mundo article */
+
+.articleFPCounter {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 2rem;
+}
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.9) =Counts:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.count {
+  border-left: solid 2px var(--color2);
+  padding: .5rem;
+  margin: auto;
+  margin-left: 0;
+}
+
+.countNumber {
+  font-size: 2rem;
+  color: var(--color2);
+  font-weight: 700;
+}
+
+.countTxt {
+  font-size: .75rem;
+  color: var(--color4);
+}
 
 
 /* ---------------------------------------------------------------------------
