@@ -34,11 +34,24 @@ Version: 0.0
 6.3) =socalMedia:
 
 
-6.7) =formContact:
+6.7) =forms
+
+6.7.1)=formContact:
+
+6.8) =titleBanner
 
 6.4) =multiCards:
 
 6.6) =BUTTONS:
+
+
+6.7) =forms
+
+6.7.1)=formContact:
+
+
+6.12.1)= containerAtributes
+
 
 6.99) =footer
 
@@ -128,6 +141,20 @@ FIN DE MAPA DE CONTENIDOS */
   --contactInputWidth: 100%;
   --contactInputGC: span 2;
   --contactTextareaHeight: 10rem;
+
+  /* SINGLE CONTAINER */
+  --containerGTA: "imageGallery"
+                  "imageGallery"
+                  "atributo1"
+                  "atributo2"
+                  "atributo3"
+                  "atributo4"
+                  "atributo5"
+                  "atributo6"
+                  "atributo7"
+                  "atributo8";
+
+
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -160,6 +187,13 @@ FIN DE MAPA DE CONTENIDOS */
   :root {
     /* ?HEADER */
     /* ?FOOTER */
+    /* SINGLE CONTAINER */
+    --containerGTA: "imageGallery imageGallery"
+                    "imageGallery imageGallery"
+                    "atributo1 atributo2"
+                    "atributo3 atributo4"
+                    "atributo5 atributo6"
+                    "atributo7 atributo8";
   }
 }
 
@@ -188,6 +222,19 @@ FIN DE MAPA DE CONTENIDOS */
     --contactInputWidth: auto;
     --contactInputGC: auto;
     --contactTextareaHeight: 4rem;
+
+
+    /* SINGLE CONTAINER */
+
+    --containerGTA: "imageGallery imageGallery atributo1 atributo2"
+                    "imageGallery imageGallery atributo3 atributo4"
+                    "imageGallery imageGallery atributo5 atributo6"
+                    "imageGallery imageGallery atributo7 atributo8";
+
+
+
+
+
   }
 }
 
@@ -203,6 +250,8 @@ FIN DE MAPA DE CONTENIDOS */
     --navBarWidth: 40%;
 
     /* ?FOOTER */
+
+
   }
 }
 
@@ -218,6 +267,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?HEADER */
     /* ?FOOTER */
+
+    /* SINGLE CONTAINER */
+    --containerGTA: "imageGallery imageGallery atributo1 atributo2 atributo3 atributo4"
+                    "imageGallery imageGallery atributo5 atributo6 atributo7 atributo8"
+                    ;
   }
 }
 /* ---------------------------------------------------------------------------
@@ -531,6 +585,57 @@ section.contacto{
   padding: .5rem 1rem;
 
 }
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.8) =titleBanner
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.titleBaner{
+  background: url("http://localhost/Silversea/wp-content/uploads/2020/04/portada-1.jpg");
+  height: 15rem;
+  color: white;
+}
+
+.titleBanerCaption{
+  padding: 2rem;
+}
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.12.1) =containerAtributes
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+.singleContainer{
+  display: grid;
+  grid-gap: .75rem;
+  padding: 1rem var(--lateral);
+  grid-template-areas: var(--containerGTA);
+}
+
+.singleContainer .imageGallery{
+  grid-area: imageGallery;
+  margin: auto;
+}
+
+.atributo{
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.singleContainer .atributo:nth-child(1){grid-area:atributo1}
+.singleContainer .atributo:nth-child(2){grid-area:atributo2}
+.singleContainer .atributo:nth-child(3){grid-area:atributo3}
+.singleContainer .atributo:nth-child(4){grid-area:atributo4}
+.singleContainer .atributo:nth-child(5){grid-area:atributo5}
+.singleContainer .atributo:nth-child(6){grid-area:atributo6}
+.singleContainer .atributo:nth-child(7){grid-area:atributo7}
+.singleContainer .atributo:nth-child(8){grid-area:atributo8}
 
 
 /* ---------------------------------------------------------------------------
