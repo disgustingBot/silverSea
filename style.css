@@ -31,7 +31,16 @@ Version: 0.0
 6.0) =load:
 6.1) =header:
 6.2) =blueBar:
-6.3) =socalMedia:
+6.3) =ATFS:
+  6.3.1) =Front Page ATF
+  6.3.2) =About Us ATF
+6.4) =socalMedia:
+6.5) =multiCards:
+6.6) =forms:
+6.7) =BUTTONS:
+6.8) =sectioNSummarys:
+6.9) =Counts:
+
 
 
 6.7) =forms
@@ -43,6 +52,7 @@ Version: 0.0
 6.4) =multiCards:
 
 6.6) =BUTTONS:
+
 
 
 6.7) =forms
@@ -82,6 +92,8 @@ FIN DE MAPA DE CONTENIDOS */
   --color1:#0674BB;
   --color2:#ECC800;
   --color3:#60859E;
+  --color4:#676767;
+  --color5:#F0F0F0;
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
   /* --color6:#FFFAE6; */
@@ -128,13 +140,34 @@ FIN DE MAPA DE CONTENIDOS */
   --onlyMobileF:flex;
   --onlyMobileG:grid;
 
+  --txtCenterLeft: center;
+  --TxtLeftCenter: left;
+
   /* BLUEBAR */
   --blueBarTelM: auto;
   --selectLangM: auto var(--lateral) auto auto;
 
   /* ?HEADER */
   --navBarWidth: 50%;
+
+  /* ATFS */
+
+  /* FRONT PAGE ATF */
+  --featuresWidth: 70%;
+  --featuresGAutoFlow: row;
+
+  --articleAboutUs: "summary"
+                    "media"
+                    "btn";
+
+--frontPageSec1MT: 7rem;
+
   /* ?FOOTER */
+
+  --footGridTC: 1fr;
+  --footerNavMB: 1rem;
+  --footerPad: 1rem 3rem;
+
 
 
   /* 6.7) =formContact: */
@@ -153,7 +186,6 @@ FIN DE MAPA DE CONTENIDOS */
                   "atributo6"
                   "atributo7"
                   "atributo8";
-
 
 }
 /* ---------------------------------------------------------------------------
@@ -186,7 +218,13 @@ FIN DE MAPA DE CONTENIDOS */
 @media screen and (min-width: 576px) {
   :root {
     /* ?HEADER */
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresGAutoFlow: column;
     /* ?FOOTER */
+
+    --footGridTC: 1fr 1fr;
+
     /* SINGLE CONTAINER */
     --containerGTA: "imageGallery imageGallery"
                     "imageGallery imageGallery"
@@ -194,6 +232,7 @@ FIN DE MAPA DE CONTENIDOS */
                     "atributo3 atributo4"
                     "atributo5 atributo6"
                     "atributo7 atributo8";
+
   }
 }
 
@@ -210,13 +249,31 @@ FIN DE MAPA DE CONTENIDOS */
     --onlyMobileF:none;
     --onlyMobileG:none;
 
+    --txtCenterLeft: left;
+    --TxtLeftCenter: center;
+
+
+
 
     /* BLUEBAR */
     --blueBarTelM: auto 1rem auto auto;
     --selectLangM: auto var(--lateral) auto 4rem;
 
     /* ?HEADER */
+
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresWidth: 80%;
+
+    --frontPageSec1MT: 4rem;
+
+
     /* ?FOOTER */
+
+    --footGridTC: repeat(4, 1fr);
+    --footerPad: 1rem 5rem;
+    --footerNavMB: .1rem;
+
 
     /* 6.7) =formContact: */
     --contactInputWidth: auto;
@@ -249,6 +306,11 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
     --navBarWidth: 40%;
 
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --articleAboutUs: "summary media"
+                      "  btn   media";
+
     /* ?FOOTER */
 
 
@@ -266,6 +328,32 @@ FIN DE MAPA DE CONTENIDOS */
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
+
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresWidth: 60%;
+
+
+    /* ?FOOTER */
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.5) min-width:  =1500px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media  screen and (min-width: 1500px) {
+  :root {
+
+    /* ?HEADER */
+
+    /* ATFS */
+    /* FRONT PAGE ATF */
+    --featuresWidth: 50%;
+
+
     /* ?FOOTER */
 
     /* SINGLE CONTAINER */
@@ -301,7 +389,8 @@ FIN DE MAPA DE CONTENIDOS */
   padding:0;
   font-family: 'Rambla', sans-serif;
 }
-body{display:grid}
+body{display:grid;}
+.body{background: white!important;}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
 ul,ol{list-style:none}
@@ -328,11 +417,13 @@ ul,ol{list-style:none}
 --------------------------------------------------------------------------- */
 
 .rowcol1{grid-row:1;grid-column:1}
+.col6{grid-template-columns: repeat(6, 1fr)}
 .onlyDesktopF{display:var(--onlyDesktopF)}
 .onlyDesktopG{display:var(--onlyDesktopG)}
 .onlyMobileF{display:var(--onlyMobileF)}
 .onlyMobileG{display:var(--onlyMobileG)}
 
+.txtCenterLeft {text-align: var(--txtCenterLeft)}
 
 .flex2,.flex3,.flex4{display:flex;flex-wrap:wrap}
 .flex2>*{flex:2 1 calc(50% - 1rem)}
@@ -346,6 +437,12 @@ ul,ol{list-style:none}
                               6) =COMPONENTES:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+.brandColorTxt {color: var(--color1)!important}
+
+.sectionPadding {
+  padding: 2rem var(--lateral);
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -382,6 +479,7 @@ ul,ol{list-style:none}
 .header {
   display: var(--onlyDesktopF);
   flex-wrap: wrap;
+  z-index: 2;
 }
 
 .logo {
@@ -410,9 +508,10 @@ ul,ol{list-style:none}
 .headerMob {
   display: var(--onlyMobileF);
   flex-wrap: wrap;
-  position: sticky;
+  position: fixed;
   top: 0;
   overflow-x: hidden;
+  z-index: 2;
 }
 
 .upperHeader {
@@ -421,6 +520,7 @@ ul,ol{list-style:none}
   position: relative;
   width: 100%;
   z-index: 2;
+  background: white;
 }
 
 .navBarMobile {
@@ -436,10 +536,14 @@ ul,ol{list-style:none}
   background: white;
 }
 
-.navBarMobile.alt {
+.body.mobileNavMenu .navBarMobile {
   transition: .25s;
   margin-right: 0;
+}
 
+.body.mobileNavMenu > *:not(header) {
+  filter: brightness(50%);
+  transition: .25s;
 }
 
 .headerMob .logo {
@@ -463,6 +567,10 @@ ul,ol{list-style:none}
 
 .headerMob .menu-item a{
   font-size: 1rem;
+}
+.hola {
+  width: 100%;
+  height: auto;
 }
 
   /* ---------------------------------------------------------------------------
@@ -496,9 +604,114 @@ ul,ol{list-style:none}
   margin: .1rem;
 }
 
+.blueBarTel{display: none}
+.header .blueBarTel{display: block}
+.latteSignature{
+  display: none;
+  height: min-content;
+  margin: var(--blueBarTelM);
+}
+.footer .latteSignature{display: block}
+
+.latteLink {
+  text-decoration: none;
+  color: white;
+}
+
+.latteHeartSVG {
+  color:var(--color2);
+  height: 12px;
+  width: auto;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.3) =ATFS:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.ATF{
+  display: grid;
+  width: 100%;
+  background: white;
+}
+
+.ATFWording {
+  color: white;
+  margin: 4rem auto auto 20%;
+  width: 50%;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.3.1) =Front Page ATF:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+.frontPageATFBg{
+  width: 100%;
+  height: auto;
+  background: white;
+}
+
+.features{
+  background: var(--color5);
+  padding: 1rem;
+  display: grid;
+  grid-auto-flow: var(--featuresGAutoFlow);
+  height: min-content;
+  grid-gap: 1rem;
+  width: var(--featuresWidth);
+  margin: auto auto 0 auto;
+  transform: translateY(50%);
+}
+
+.feature {
+  display: flex;
+  padding: .5rem;
+  border: solid 1px #0774BA;
+}
+
+.featureIcon{
+  height: 2rem;
+  margin: auto .5rem auto auto;
+  width: auto;
+}
+
+.featureTitle {
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.featureTxt {
+  font-size: .5rem;
+}
+
+.articleAboutUs {
+  display: grid;
+  grid-template-areas: var(--articleAboutUs);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  width: 100%;
+}
+
+.FrontPageSec1 {
+  padding-top: var(--frontPageSec1MT);
+  background: white;
+}
+.FrontPageSec2 {background: var(--color5)}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.3.2) =About us ATF:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
-                                6.3) =socalMedia:
+                                6.4) =socalMedia:
   ------------------------------------------------------------------------------
   --------------------------------------------------------------------------- */
 
@@ -523,19 +736,48 @@ ul,ol{list-style:none}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.4) =multiCards:
+                          6.5) =multiCards:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.6) =BUTTONS:
+                          6.6) =forms:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+.footLog {
+  display: flex;
+  flex-direction: column;
+}
+
+.footLogInput {
+  height: 1.5rem;
+  width: 100%;
+  background: white;
+  color: var(--color4);
+  padding: .5rem;
+  border: none;
+}
+
+.footLogSubmit {
+  background: transparent;
+  color: var(--color2);
+  font-weight: 700;
+  font-size: .75rem;
+  text-align: right;
+  border: none;
+  margin-top: 5px;
+}
+
+
 
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
+
+                          6.7) =BUTTONS:
+
                           6.7) =formContact:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
@@ -641,81 +883,184 @@ section.contacto{
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =footer
+
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.footer{
-  display: grid;
 
-
-}
-
-.footerContainer{
-  display: grid;
-  grid-template-columns: repeat(6,1fr);
-  grid-gap: 2rem;
-  color: white;
-  padding: 1rem;
-  background: #676767;
-  padding: 1rem var(--lateral);
-}
-
-.logoAndContactInfo{
-  grid-column: 2;
-  display: grid;
-}
-
-.contactInfo{
-  display: grid;
-  grid-template-columns: 1fr 8fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-column-gap: .5rem;
-  align-items: center;
-}
-
-.footerLogin{
+.btn {
+  padding: .5rem;
+  background: var(--color2);
+  text-transform: uppercase;
   display: flex;
-  flex-flow: column;
-  padding: 1rem;
-}
-
-.footerLogin input{
-  height: 1.4rem;
-}
-.footerLogin *{
-  margin:.5rem;
-}
-
-.chatContainer{
-  position: relative;
-  height: 2rem;
-
-
-}
-
-.chatButton{
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: -2.5rem;
-  width: 100%;
-  background: #60859E;
-  height: 1.4rem;
   border: none;
+  transition: .25s;
+  font-size: .75rem;
+  font-weight: 700;
+  width: max-content;
+  height: min-content;
+  border: 1px solid var(--color2);
+}
+
+.btn:hover {
+  color: var(--color2);
+  background: white;
+  border: 1px solid var(--color2);
+}
+
+
+
+.btn a
+{margin: auto;
+  text-decoration: none;
+  color: inherit;
+}
+
+.articleAboutUs .btn {
+  margin: auto auto 0 auto;
+  grid-area: btn;
+}
+
+.articleFPCounter .btn {
+  margin: auto;
+  margin-left: 0;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.8) =sectioNSummarys
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.sectionSummary{
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--color1);
+  padding-left: 1rem;
+}
+
+.sectionSummary > *{
+  margin: .25rem 0;
+}
+
+.summaryTitle{
+  color: var(--color4);
+  font-size: 1.7rem;
+}
+
+.summaryTxt {font-size: .7rem; color: var(--color4)}
+
+
+
+/* About us summary */
+
+.articleAboutUs .sectionSummary {grid-area: summary;}
+
+.aboutUsMedia {grid-area: media;}
+
+.articleAboutUs .playBtn {
+  grid-area: media;
+  width: 50px;
+  height: auto;
+  margin: auto;
+}
+
+
+/* Silversea en el mundo article */
+
+.articleFPCounter {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 2rem;
+}
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.9) =Counts:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.count {
+  border-left: solid 2px var(--color2);
+  padding: .5rem;
+  margin: auto;
+  margin-left: 0;
+}
+
+.countNumber {
+  font-size: 2rem;
+  color: var(--color2);
+  font-weight: 700;
+}
+
+.countTxt {
+  font-size: .75rem;
+  color: var(--color4);
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.99) =footer
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.footer {
+  background: var(--color4);
+  display: grid;
+  grid-template-columns: var(--footGridTC);
+  grid-gap: 1rem;
+  padding: var(--footerPad);
   color: white;
 }
-
-.chatLogo{
-  height: .7rem;
+.footWordingTitle {
+  font-size: .75rem;
 }
 
-.footerSocial{
-  height: 3rem;
-  background: #0674BB;
-  padding: 1rem var(--lateral);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.footWordingTxt {
+  font-size: .5rem;
+  text-align: justify;
 }
-.footerSocial svg{
-  margin: 0 .1rem;
+
+.footLogo {
+  height: 1.5rem;
+  width: auto;
+  margin: auto;
+  margin-top: 0;
+}
+
+.footerInfoCont {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 10px;
+}
+
+.footerInfoCont svg {
+  margin: auto;
+  height: 15px;
+}
+
+.footLoc,.footerMail,.footTel {
+  font-size: .5rem;
+  text-decoration: none;
+  color: white;
+  margin: auto;
+  margin-left: 10px;
+}
+
+.footerNav li {
+  text-align: var(--TxtLeftCenter);
+  margin-bottom: var(--footerNavMB);
+}
+
+.footerNav a {
+  color: white;
+  font-size: .5rem;
 }

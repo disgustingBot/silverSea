@@ -10,7 +10,7 @@
 
   <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body class="body" id="body" <?php body_class(); ?>>
 
 	<view id="load" class="load">
 			<div class="circle"></div>
@@ -37,7 +37,7 @@
     <?php include('blueBar.php') ?>
     <div class="upperHeader">
       <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
-      <div class="hamburgerMenu" onclick="altClassFromSelector('alt','#menu-navbarmobile')">
+      <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
         <div class="hamStripe"></div>
         <div class="hamStripe"></div>
         <div class="hamStripe"></div>
