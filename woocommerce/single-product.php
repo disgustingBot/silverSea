@@ -17,7 +17,7 @@
 
   <!-- <?php include('breadCrum'); ?> -->
 
-  <button type="button" name="button"><< Volver a la búsqueda</button>
+  <button class="backToGallery" type="button" name="button"><< Volver a la búsqueda</button>
 <section class="singleContainer">
   <div class="imageGallery">
     <img class="" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
