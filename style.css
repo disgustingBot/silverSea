@@ -311,7 +311,8 @@ FIN DE MAPA DE CONTENIDOS */
   padding:0;
   font-family: 'Rambla', sans-serif;
 }
-body{display:grid}
+body{display:grid;}
+.body{background: white!important;}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
 ul,ol{list-style:none}
@@ -358,7 +359,7 @@ ul,ol{list-style:none}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.brandColorTxt {color: var(--color1)}
+.brandColorTxt {color: var(--color1)!important}
 
 .sectionPadding {
   padding: 2rem var(--lateral);
@@ -399,6 +400,7 @@ ul,ol{list-style:none}
 .header {
   display: var(--onlyDesktopF);
   flex-wrap: wrap;
+  z-index: 2;
 }
 
 .logo {
@@ -427,10 +429,10 @@ ul,ol{list-style:none}
 .headerMob {
   display: var(--onlyMobileF);
   flex-wrap: wrap;
-  position: sticky;
+  position: fixed;
   top: 0;
   overflow-x: hidden;
-  display: none;
+  z-index: 2;
 }
 
 .upperHeader {
@@ -439,6 +441,7 @@ ul,ol{list-style:none}
   position: relative;
   width: 100%;
   z-index: 2;
+  background: white;
 }
 
 .navBarMobile {
@@ -454,11 +457,18 @@ ul,ol{list-style:none}
   background: white;
 }
 
-.navBarMobile.alt {
+.body.mobileNavMenu .navBarMobile {
   transition: .25s;
   margin-right: 0;
-
 }
+
+.body.mobileNavMenu > *:not(header) {
+  filter: brightness(50%);
+  transition: .25s;
+}
+
+
+
 
 .headerMob .logo {
   height: 2rem;
@@ -544,7 +554,10 @@ ul,ol{list-style:none}
 .ATF{
   display: grid;
   width: 100%;
+  background: white;
 }
+
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -556,6 +569,7 @@ ul,ol{list-style:none}
 .frontPageATFBg{
   width: 100%;
   height: auto;
+  background: white;
 }
 
 .features{
@@ -599,7 +613,10 @@ ul,ol{list-style:none}
   width: 100%;
 }
 
-.FrontPageSec1 {margin-top: var(--frontPageSec1MT);}
+.FrontPageSec1 {
+  padding-top: var(--frontPageSec1MT);
+  background: white;
+}
 .FrontPageSec2 {background: var(--color5)}
 
   /* ---------------------------------------------------------------------------
@@ -683,11 +700,13 @@ ul,ol{list-style:none}
   font-weight: 700;
   width: max-content;
   height: min-content;
+  border: 1px solid var(--color2);
 }
 
 .btn:hover {
-  color: black;
-  background: var(--color1);
+  color: var(--color2);
+  background: white;
+  border: 1px solid var(--color2);
 }
 
 
@@ -695,7 +714,7 @@ ul,ol{list-style:none}
 .btn a
 {margin: auto;
   text-decoration: none;
-  color: black
+  color: inherit;
 }
 
 .articleAboutUs .btn {

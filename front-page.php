@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<section class="ATF">
+<section class="ATF frontPageATF">
   <img class="frontPageATFBg rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/ATFExampleImg.jpg" alt="">
   <div class="features rowcol1">
         <figure class="feature">
