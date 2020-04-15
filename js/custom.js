@@ -97,7 +97,7 @@ for (i = 0; i < acc.length; i++) {
     this.classList.toggle("active");
     // TODO: Hacer que se puede elegir el elemento a acordionar
     var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
+    if (panel.style.maxHeight) {d
       panel.style.maxHeight = null;
       panel.style.padding = "0";
     } else {
