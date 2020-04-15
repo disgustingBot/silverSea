@@ -269,6 +269,28 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?FOOTER */
 
     /* SINGLE CONTAINER */
+    --containerGTA: "imageGallery imageGallery imageGallery imageGallery"
+                    "imageGallery imageGallery imageGallery imageGallery"
+                    "atributo1 atributo2 atributo3 atributo4 "
+                    "atributo5 atributo6 atributo7 atributo8"
+                    ;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.5) min-width:  =1200px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media  screen and (min-width: 1500px) {
+  :root {
+    --lateral: 3rem;
+    --sizeR: calc(var(--sizeRd) * 1px);
+
+    /* ?HEADER */
+    /* ?FOOTER */
+
+    /* SINGLE CONTAINER */
     --containerGTA: "imageGallery imageGallery atributo1 atributo2 atributo3 atributo4"
                     "imageGallery imageGallery atributo5 atributo6 atributo7 atributo8"
                     ;
@@ -620,8 +642,19 @@ section.contacto{
   margin: auto;
 }
 
-.backToGallery{
-  grid-column:  1;
+.btn{
+  margin: 1rem var(--lateral);
+  height: 2.4rem;
+  width: 12rem;
+  /* font-size: 24px; */
+  font-size: 1rem;
+  background: #ECC800;
+  color: #676767;
+  border: none;
+}
+.btn.ancho{
+  width: 20rem;
+  margin: 1rem auto 3rem;
 }
 
 .atributo{
@@ -629,6 +662,8 @@ section.contacto{
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
   align-items: center;
+  background: #F0F0F0;
+  padding: .7rem;
   justify-content: center;
 }
 
