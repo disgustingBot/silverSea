@@ -51,13 +51,27 @@
   </article>
 </section>
 
-img.
+<img class="" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsSecImg.jpg" alt="feature Icon">
 
 
 
-
-
-
+<section class="sectionPadding aboutUsSec2 sectionGrey">
+  <article class="article2 ">
+    <hgroup class="sectionSummary">
+      <h2 class="summaryTitle">Que contenedor<br>Necesito?</h2>
+      <h4 class="summaryTxt brandColorTxt">tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
+      <h4 class="summaryTxt">Con una amplia red de agentes a nivel mundial, nos encargamos del movimiento de sus cargas en distintas modalidades, cualquiera sea su origen o destino.</h4>
+    </hgroup>
+    <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImgSec2.png" alt="">
+  </article>
+  <select class="btn">
+    <option>Seleccionar tipo de contenedor<option>
+    <option>Reefer<option>
+    <option>Dry<option>
+    <option>Open Top<option>
+    <option>Flat Back<option>
+  </select>
+</section>
 
 
 

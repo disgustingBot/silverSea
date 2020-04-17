@@ -28,18 +28,18 @@
 </section>
 
 <section class="FrontPageSec1 sectionPadding">
-  <article class="articleAboutUs">
+  <article class="article2">
     <hgroup class="sectionSummary">
       <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
       <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
       <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
     </hgroup>
-    <button class="btn"><a href="">LEER MÁS</a></button>
-    <img class="aboutUsMedia" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImg.jpg" alt="">
+    <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImg.jpg" alt="">
   </article>
+  <button class="btn"><a href="">LEER MÁS</a></button>
 </section>
 
-<section class="FrontPageSec2 sectionPadding">
+<section class="sectionGrey sectionPadding">
   <article class="articleCounter col6">
     <hgroup class="sectionSummary">
       <h2 class="summaryTitle">Silversea <span class="brandColorTxt">en el mundo</span></h2>

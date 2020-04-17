@@ -163,13 +163,17 @@ FIN DE MAPA DE CONTENIDOS */
   --articleCounterGR: 3;
   --articleBtnFPCounterGC: 1/-1;
 
+  /* ARTICLES */
+  --article2ElementsW: 100%;
+  --A2sectionSummaryMB: 2rem;
+  --frontPageSec1BtnM: 1rem auto auto auto;
+  --aboutUsSec2BtnM: 1rem auto 0 auto;
+
   /* FRONT PAGE ATF */
   --featuresWidth: 70%;
   --featuresGAutoFlow: row;
 
-  --articleAboutUsGA: "summary"
-                    "media"
-                    "btn";
+
 
 --frontPageSec1MT: 7rem;
 
@@ -283,6 +287,12 @@ FIN DE MAPA DE CONTENIDOS */
     --countFlexBasis: 25%;
     --countEvenBorder: none;
 
+    /* ARTICLES */
+    --article2ElementsW: 45%;
+    --A2sectionSummaryMB: 0;
+    --frontPageSec1BtnM: 1rem auto auto 20%;
+    --aboutUsSec2BtnM: 1rem auto auto 0;
+
 
 
     /* FRONT PAGE ATF */
@@ -333,8 +343,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ATFS */
     /* FRONT PAGE ATF */
-    --articleAboutUsGA: "summary media"
-                      "  btn   nothing";
+
 
     /* ?FOOTER */
 
@@ -443,6 +452,9 @@ ul,ol{list-style:none}
 .main li{margin:unset;padding:unset}
 .main ul,.main ol{list-style:unset}
 
+section {
+  background-color: white;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                               5) =ESTRUCTURA:
@@ -725,19 +737,12 @@ ul,ol{list-style:none}
   font-size: .5rem;
 }
 
-.articleAboutUs {
-  display: grid;
-  grid-template-areas: var(--articleAboutUsGA);
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
-  width: 100%;
-}
 
 .FrontPageSec1 {
   padding-top: var(--frontPageSec1MT);
   background: white;
 }
-.FrontPageSec2 {background: var(--color5)}
+.sectionGrey {background: var(--color5)}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -937,6 +942,7 @@ section.contacto{
   width: max-content;
   height: min-content;
   border: 1px solid var(--color2);
+  margin: auto;
 }
 
 .btn:hover {
@@ -953,10 +959,7 @@ section.contacto{
   color: inherit;
 }
 
-.articleAboutUs .btn {
-  margin: auto auto 0 auto;
-  grid-area: btn;
-}
+
 
 .articleCounter .btn {
   margin: auto;
@@ -964,11 +967,29 @@ section.contacto{
   grid-column: var(--articleBtnFPCounterGC);
 }
 
+.FrontPageSec1 .btn {margin: var(--frontPageSec1BtnM);}
+.aboutUsSec2 .btn {margin: var(--aboutUsSec2BtnM);}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.8) =sectioNSummarys
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+.article2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.article2 .sectionSummary {
+  margin-bottom: var(--A2sectionSummaryMB);
+}
+.article2 > * {
+  width: var(--article2ElementsW)!important;
+}
+
+
 
 .sectionSummary{
   display: flex;
@@ -996,9 +1017,7 @@ section.contacto{
 
 /* About us summary */
 
-.articleAboutUs .sectionSummary {grid-area: summary;}
 
-.aboutUsMedia {grid-area: media;}
 
 
 
