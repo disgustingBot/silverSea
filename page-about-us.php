@@ -8,8 +8,8 @@
   <?php } wp_reset_query(); ?>
 </section>
 
-<section class="sectionPadding">
-  <article class="articleCounter col6">
+<section class="sectionPadding sectionGrey">
+  <article class="articleCounter col6 ">
     <hgroup class="sectionSummary">
       <h4 class="summaryTxt brandColorTxt">Desde sus comienzos en el año 2016, Silversea nace como una empresa enfocada en el trading y leasing de contenedores marítimos a nivel mundial.</h4>
       <h4 class="summaryTxt">Dado los puntos de contacto con toda la cadena de logística en el 2017 se crea la unidad de Silvercargo. Es bajo la misma compañía que se desarrolla y apoya a toda la gama de clientes que tenemos a nivel mundial, que consideraban importante que podamos darle un soporte más amplio. Teniendo en cuenta nuestra red de agentes en más de 70 países, podemos brindarle soporte local en cada lugar, así atendiéndolos de manera personalizada.
@@ -55,7 +55,7 @@
 
 
 
-<section class="sectionPadding aboutUsSec2 sectionGrey">
+<section class="sectionPadding aboutUsSec2 sectionGreyInverse">
   <article class="article2 ">
     <hgroup class="sectionSummary">
       <h2 class="summaryTitle">Que contenedor<br>Necesito?</h2>

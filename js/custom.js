@@ -106,3 +106,15 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
+
+
+const counters = document.querySelectorAll('.countNumber');
+const speed =200;
+
+counters.forEach(counter => {
+  const updateCont = () => {
+    const target = counters.getAttribute('data-target');
+    console.log(target);
+  }
+})

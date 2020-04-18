@@ -742,7 +742,8 @@ section {
   padding-top: var(--frontPageSec1MT);
   background: white;
 }
-.sectionGrey {background: var(--color5)}
+.sectionGrey {background-image: linear-gradient(to top, #bebebe, #cecece, #dedede, #eeeeee, #ffffff);}
+.sectionGreyInverse {background-image: linear-gradient(to bottom, #bebebe, #cecece, #dedede, #eeeeee, #ffffff);}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
