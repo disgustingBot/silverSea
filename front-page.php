@@ -48,20 +48,20 @@
     </hgroup>
     <button class="btn"><a href="">LEER MÁS</a></button>
     <div class="counter">
-      <div class="count">
-        <p class="countNumber">30K+</p>
+      <div class="count countTitle">
+        <p class="countNumber"><span class="GrowUp" data-target="3000">0</span></p>
         <p class="countTxt">CONTENEDORES VENDIDOS</p>
       </div>
-      <div class="count">
-        <p class="countNumber">3K+</p>
+      <div class="count countTitle">
+        <p class="countNumber"><span class="GrowUp" data-target="3000">0</span></p>
         <p class="countTxt">CLIENTES SATISFECHOS</p>
       </div>
-      <div class="count">
-        <p class="countNumber">200+</p>
+      <div class="count countTitle">
+        <p class="countNumber"><span class="GrowUp" data-target="200">0</span></p>
         <p class="countTxt">CENTROS LOGÍSTICOS</p>
       </div>
-      <div class="count">
-        <p class="countNumber">30+</p>
+      <div class="count countTitle">
+        <p class="countNumber"><span class="GrowUp" data-target="30">0</span></p>
         <p class="countTxt">PAÍSES Y TERRITORIOS</p>
       </div>
     </div>
