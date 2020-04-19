@@ -109,12 +109,31 @@ for (i = 0; i < acc.length; i++) {
 
 
 
-const counters = document.querySelectorAll('.countNumber');
-const speed =200;
 
-counters.forEach(counter => {
-  const updateCont = () => {
-    const target = counters.getAttribute('data-target');
-    console.log(target);
+
+
+
+
+
+
+//Grow Up Handler o algo así, que se sho...
+
+const counters = d.querySelectorAll('.GrowUp');
+
+const sumar1 = (x) => {
+  const target = x.dataset.target,
+        step = 30;
+        timeDuration = 1500;
+  x.innerHTML = parseFloat(x.innerHTML).toFixed() + target / step;
+  if(parseFloat(x.innerHTML) < target ){
+    setTimeout(() =>{
+      sumar1(x);
+    }, timeDuration / step)
+  }else {
+    x.innerHTML = target;
   }
-})
+}
+
+counters.forEach((item, i) => {
+  sumar1(item);
+});
