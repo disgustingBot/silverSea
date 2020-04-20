@@ -17,12 +17,12 @@
 
   <!-- <?php include('breadCrum'); ?> -->
 
-  <button class="btn" type="button" name="button"><< Volver a la búsqueda</button>
+  <button class="btn" id="backToGallery" type="button" name="button"><< Volver a la búsqueda</button>
   <section class="singleContainer">
     <!-- <div class="imageGallery">
       <img class="" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
     </div> -->
-    <div class="imageGallery" id="gallery">
+    <div class="gallery" id="gallery">
 
         <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
 
@@ -117,9 +117,10 @@
         <?php echo get_post_meta( get_the_id(), 'tara' )[0]; ?>
       </figcaption>
     </figure>
+    <button class="btn singleBuy" type="button" name="button">Comprar</button>
+    <button class="btn blue singleRent " type="button" name="button">Alquilar</button>
   </section>
 
-  <button class="btn ancho" type="button" name="button">Solicitar Cotización</button>
 
 
 

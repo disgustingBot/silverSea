@@ -201,7 +201,10 @@ FIN DE MAPA DE CONTENIDOS */
                   "atributo5"
                   "atributo6"
                   "atributo7"
-                  "atributo8";
+                  "atributo8"
+                  "singleBuy"
+                  "singleRent";
+
 
 }
 /* ---------------------------------------------------------------------------
@@ -242,12 +245,15 @@ FIN DE MAPA DE CONTENIDOS */
     --footGridTC: 1fr 1fr;
 
     /* SINGLE CONTAINER */
+    /* SINGLE CONTAINER */
     --containerGTA: "imageGallery imageGallery"
                     "imageGallery imageGallery"
                     "atributo1 atributo2"
                     "atributo3 atributo4"
                     "atributo5 atributo6"
-                    "atributo7 atributo8";
+                    "atributo7 atributo8"
+                    "singleBuy singleRent"
+                    ;
 
   }
 }
@@ -319,9 +325,10 @@ FIN DE MAPA DE CONTENIDOS */
     /* SINGLE CONTAINER */
 
     --containerGTA: "imageGallery imageGallery atributo1 atributo2"
-                    "imageGallery imageGallery atributo3 atributo4"
-                    "imageGallery imageGallery atributo5 atributo6"
-                    "imageGallery imageGallery atributo7 atributo8";
+                "imageGallery imageGallery atributo3 atributo4"
+                "imageGallery imageGallery atributo5 atributo6"
+                "imageGallery imageGallery atributo7 atributo8"
+                "imageGallery imageGallery singleBuy singleRent";
 
 
 
@@ -367,12 +374,6 @@ FIN DE MAPA DE CONTENIDOS */
     /* FRONT PAGE ATF */
     --featuresWidth: 60%;
 
-    /* SINGLE CONTAINER */
-    --containerGTA: "imageGallery imageGallery imageGallery imageGallery"
-                    "imageGallery imageGallery imageGallery imageGallery"
-                    "atributo1 atributo2 atributo3 atributo4 "
-                    "atributo5 atributo6 atributo7 atributo8"
-                    ;
     /* ?FOOTER */
   }
 }
@@ -401,6 +402,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* SINGLE CONTAINER */
     --containerGTA: "imageGallery imageGallery atributo1 atributo2 atributo3 atributo4"
                     "imageGallery imageGallery atributo5 atributo6 atributo7 atributo8"
+                    "imageGallery imageGallery singleBuy singleRent  . ."
                     ;
   }
 }
@@ -893,6 +895,9 @@ section.contacto{
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
+#backToGallery{
+  margin: 1rem var(--lateral);
+}
 
 .singleContainer{
   display: grid;
@@ -901,9 +906,47 @@ section.contacto{
   grid-template-areas: var(--containerGTA);
 }
 
-.singleContainer .imageGallery{
+.singleContainer .gallery{
+  grid-column: span 2;
+  grid-row: span 2;
+  width: 100%;
+  display:grid;
+  order: 2;
+  margin-bottom:auto;
+  position:var(--galleryPosition);
+  top:3rem;
   grid-area: imageGallery;
-  margin: auto;
+}
+.element{
+  opacity:1;
+  transition:.4s;
+}
+.element.inactive{
+  opacity:0;
+}
+
+.singleProductsgalleryBtnsContainer {
+  margin-top: 0;
+  display: flex;
+  justify-content: space-around;
+  width: var(--singleProductsgalleryBtnsContainerWidth);
+}
+.singleProductArrowSVG {color: var(--color1);}
+
+.singleProductsGalleryBtns {
+  /* padding: .5rem; */
+  margin: var(--singleProductGalleryBtnsMargin);
+  border-radius: 50%;
+  box-shadow: var(--DP4);
+  border: none;
+  background-color: white;
+  color: var(--color3);
+  transition: .25s;
+  height: 2rem;
+  width: 2rem;
+}
+.singleProductsGalleryBtns:hover {
+  box-shadow: var(--DP6);
 }
 
 .atributo{
@@ -923,10 +966,108 @@ section.contacto{
 .singleContainer .atributo:nth-child(7){grid-area:atributo7}
 .singleContainer .atributo:nth-child(8){grid-area:atributo8}
 
+.btn.singleBuy{
+  grid-area:singleBuy;
+  width: 100%;
+}
+.btn.singleRent{
+  grid-area:singleRent;
+  width: 100%;
+}
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.99) =archive-product
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.archiveFilter1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem var(--lateral);
+}
+
+.archiveFilter1 .labelSelect{
+  font-size: .7rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.archiveFilter1 .labelSelect select{
+  font-size: 1rem;
+  border: none;
+  border-bottom: solid 1px var(--color1);
+}
+
+.archiveMain{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 1rem;
+  margin: 1rem var(--lateral);
+}
+
+.archiveFilter2{
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.filter{
+  position: relative;
+}
+
+.filterTitle{
+  border-bottom: solid 1px var(--color4);
+  margin-bottom: .5rem;
+  color: var(--color1);
+}
+
+.filter .filterAll{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: .5rem;
+}
+
+.archiveResult{
+  display: grid;
+}
+
+.articleContainer{
+  display: grid;
+  grid-auto-flow: column;
+  height: min-content;
+  align-items: center;
+  border: solid 2px var(--color1);
+  padding: .5rem;
+}
+.articleContainer .articleImg{
+  height: 5rem;
+  width: 5rem;
+}
+.articleContainer .articleIcon{
+  display: grid;
+  height: 100%;
+
+}
+.articleContainer .articleIcon svg{
+  height: 100%;
+  width: 100%;
+    border: solid 1px var(--color4);
+    padding: .3rem;
+}
+.articleContainer .articleTitle{
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: .5rem;
+  margin-left: .5rem;
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.99) =footer
+                          6.99) =btn
 
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
