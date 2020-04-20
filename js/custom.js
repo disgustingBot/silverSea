@@ -57,7 +57,6 @@ carousels.forEach((item, i) => {
 
 
 
-
 // alternates a class from a selector of choice, example:
 // <div class="someButton" onclick="altClassFromSelector('activ', '#navBar')"></div>
 const altClassFromSelector = ( clase, selector, mainClass = false )=>{
