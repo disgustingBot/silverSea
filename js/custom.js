@@ -123,3 +123,34 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+//Grow Up Handler o algo así, que se sho...
+
+const counters = d.querySelectorAll('.GrowUp');
+
+const sumar1 = (x) => {
+  const target = x.dataset.target,
+        step = 30;
+        timeDuration = 1500;
+  x.innerHTML = parseFloat(x.innerHTML).toFixed() + target / step;
+  if(parseFloat(x.innerHTML) < target ){
+    setTimeout(() =>{
+      sumar1(x);
+    }, timeDuration / step)
+  }else {
+    x.innerHTML = target;
+  }
+}
+
+counters.forEach((item, i) => {
+  sumar1(item);
+});
