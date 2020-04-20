@@ -1,4 +1,3 @@
-
 /*
 Theme Name: silverTheme
 Author: Lattedev
@@ -10,7 +9,6 @@ Version: 0.0
 
 
 /* MAPA DE CONTENIDOS:
-
 
 1) =ROOT:
   1.1) =Variables de personalizacion de pagina
@@ -24,31 +22,39 @@ Version: 0.0
   2.5) min-width: 1200px
 
 3) =TIPOGRAFIAS:
+
 4) =ETIQUETAS GLOBALES:
+
 5) =ESTRUCTURA:
 
 6) =COMPONENTES:
 6.0) =load:
 6.1) =header:
 6.2) =blueBar:
-6.3) =ATFS:
-  6.3.1) =Front Page ATF
-  6.3.2) =About Us ATF
-6.4) =socalMedia:
-6.5) =multiCards:
-6.6) =forms:
-6.7) =BUTTONS:
-6.8) =sectioNSummarys:
-6.9) =Counts:
+6.3) =socalMedia:
+
+
 6.7) =forms
+
 6.7.1)=formContact:
+
 6.8) =titleBanner
+
 6.4) =multiCards:
+
 6.6) =BUTTONS:
+
+
 6.7) =forms
+
 6.7.1)=formContact:
+
+
 6.12.1)= containerAtributes
+
+
 6.99) =footer
+
 FIN DE MAPA DE CONTENIDOS */
 
 
@@ -76,8 +82,6 @@ FIN DE MAPA DE CONTENIDOS */
   --color1:#0674BB;
   --color2:#ECC800;
   --color3:#60859E;
-  --color4:#373737;
-  --color5:#F0F0F0;
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
   /* --color6:#FFFAE6; */
@@ -124,49 +128,13 @@ FIN DE MAPA DE CONTENIDOS */
   --onlyMobileF:flex;
   --onlyMobileG:grid;
 
-  --txtCenterLeft: center;
-  --TxtLeftCenter: left;
-
   /* BLUEBAR */
   --blueBarTelM: auto;
   --selectLangM: auto var(--lateral) auto auto;
 
   /* ?HEADER */
   --navBarWidth: 50%;
-
-  /* ATFS */
-
-  /* COUNTERS */
-
-  --articleCounterGC: 1/-1;
-  --countEvenBorder: solid 2px var(--color2);
-
-  --countFlexBasis: 50%;
-
-  --articleCounterGR: 3;
-  --articleBtnFPCounterGC: 1/-1;
-
-  /* ARTICLES */
-  --article2ElementsW: 100%;
-  --A2sectionSummaryMB: 2rem;
-  --frontPageSec1BtnM: 1rem auto auto auto;
-  --aboutUsSec2BtnM: 1rem auto 0 auto;
-
-  /* FRONT PAGE ATF */
-  --featuresWidth: 70%;
-  --featuresGAutoFlow: row;
-
-
-
---frontPageSec1MT: 7rem;
-
   /* ?FOOTER */
-
-  --footGridTC: 1fr;
-  --footLogoHeight: 3rem;
-  --footerNavMB: 1rem;
-  --footerPad: 1rem 3rem;
-
 
 
   /* 6.7) =formContact: */
@@ -184,9 +152,8 @@ FIN DE MAPA DE CONTENIDOS */
                   "atributo5"
                   "atributo6"
                   "atributo7"
-                  "atributo8"
-                  "singleBuy"
-                  "singleRent";
+                  "atributo8";
+
 
 }
 /* ---------------------------------------------------------------------------
@@ -219,23 +186,14 @@ FIN DE MAPA DE CONTENIDOS */
 @media screen and (min-width: 576px) {
   :root {
     /* ?HEADER */
-    /* ATFS */
-    /* FRONT PAGE ATF */
-    --featuresGAutoFlow: column;
     /* ?FOOTER */
-
-    --footGridTC: 1fr 1fr;
-
     /* SINGLE CONTAINER */
     --containerGTA: "imageGallery imageGallery"
                     "imageGallery imageGallery"
                     "atributo1 atributo2"
                     "atributo3 atributo4"
                     "atributo5 atributo6"
-                    "atributo7 atributo8"
-                    "singleBuy singleRent"
-                    ;
-
+                    "atributo7 atributo8";
   }
 }
 
@@ -252,50 +210,13 @@ FIN DE MAPA DE CONTENIDOS */
     --onlyMobileF:none;
     --onlyMobileG:none;
 
-    --txtCenterLeft: left;
-    --TxtLeftCenter: center;
-
-
-
 
     /* BLUEBAR */
     --blueBarTelM: auto 1rem auto auto;
     --selectLangM: auto var(--lateral) auto 4rem;
 
     /* ?HEADER */
-
-    /* ATFS */
-
-    /* COUNTERS */
-    --articleCounterGC: 2/-1;
-    --articleCounterGR: auto;
-    --articleBtnFPCounterGC: auto;
-
-    --countFlexBasis: 25%;
-    --countEvenBorder: none;
-
-    /* ARTICLES */
-    --article2ElementsW: 45%;
-    --A2sectionSummaryMB: 0;
-    --frontPageSec1BtnM: 1rem auto auto 20%;
-    --aboutUsSec2BtnM: 1rem auto auto 0;
-
-
-
-    /* FRONT PAGE ATF */
-    --featuresWidth: 80%;
-
-    --frontPageSec1MT: 4rem;
-
-
     /* ?FOOTER */
-
-    --footGridTC: repeat(4, 1fr);
-    --footLogoHeight: 1.5rem;
-    --footerPad: 1rem 5rem;
-    --footerNavMB: .1rem;
-
-
 
     /* 6.7) =formContact: */
     --contactInputWidth: auto;
@@ -308,8 +229,7 @@ FIN DE MAPA DE CONTENIDOS */
     --containerGTA: "imageGallery imageGallery atributo1 atributo2"
                     "imageGallery imageGallery atributo3 atributo4"
                     "imageGallery imageGallery atributo5 atributo6"
-                    "imageGallery imageGallery atributo7 atributo8"
-                    "imageGallery imageGallery singleBuy singleRent";
+                    "imageGallery imageGallery atributo7 atributo8";
 
 
 
@@ -329,10 +249,6 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
     --navBarWidth: 40%;
 
-    /* ATFS */
-    /* FRONT PAGE ATF */
-
-
     /* ?FOOTER */
 
 
@@ -346,20 +262,20 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
   :root {
-    --lateral: 2rem;
+    --lateral: 3rem;
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
-
-    /* ATFS */
-    /* FRONT PAGE ATF */
-    --featuresWidth: 60%;
-
-
     /* ?FOOTER */
+
+    /* SINGLE CONTAINER */
+    --containerGTA: "imageGallery imageGallery imageGallery imageGallery"
+                    "imageGallery imageGallery imageGallery imageGallery"
+                    "atributo1 atributo2 atributo3 atributo4 "
+                    "atributo5 atributo6 atributo7 atributo8"
+                    ;
   }
 }
-
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -368,23 +284,15 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1500px) {
   :root {
-
-    --lateral: 5rem;
-
+    --lateral: 3rem;
+    --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
-
-    /* ATFS */
-    /* FRONT PAGE ATF */
-    --featuresWidth: 50%;
-
-
     /* ?FOOTER */
 
     /* SINGLE CONTAINER */
     --containerGTA: "imageGallery imageGallery atributo1 atributo2 atributo3 atributo4"
                     "imageGallery imageGallery atributo5 atributo6 atributo7 atributo8"
-                    "imageGallery imageGallery singleBuy singleRent  . ."
                     ;
   }
 }
@@ -415,8 +323,7 @@ FIN DE MAPA DE CONTENIDOS */
   padding:0;
   font-family: 'Rambla', sans-serif;
 }
-body{display:grid;}
-.body{background: white!important;}
+body{display:grid}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
 ul,ol{list-style:none}
@@ -436,9 +343,6 @@ ul,ol{list-style:none}
 .main li{margin:unset;padding:unset}
 .main ul,.main ol{list-style:unset}
 
-section {
-  background-color: white;
-}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                               5) =ESTRUCTURA:
@@ -446,13 +350,11 @@ section {
 --------------------------------------------------------------------------- */
 
 .rowcol1{grid-row:1;grid-column:1}
-.col6{display: grid; grid-template-columns: repeat(6, 1fr)}
 .onlyDesktopF{display:var(--onlyDesktopF)}
 .onlyDesktopG{display:var(--onlyDesktopG)}
 .onlyMobileF{display:var(--onlyMobileF)}
 .onlyMobileG{display:var(--onlyMobileG)}
 
-.txtCenterLeft {text-align: var(--txtCenterLeft)}
 
 .flex2,.flex3,.flex4{display:flex;flex-wrap:wrap}
 .flex2>*{flex:2 1 calc(50% - 1rem)}
@@ -466,12 +368,6 @@ section {
                               6) =COMPONENTES:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-
-.brandColorTxt {color: var(--color1)!important}
-
-.sectionPadding {
-  padding: 2rem var(--lateral);
-}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -506,9 +402,8 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .header {
-  display: var(--onlyDesktopG);
-  grid-template-columns: 1fr 1fr;
-  z-index: 2;
+  display: var(--onlyDesktopF);
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -521,29 +416,25 @@ section {
   display: flex;
   justify-content: space-between;
   margin: auto var(--lateral);
+  width: var(--navBarWidth);
 }
-
 .headerMob .menu-item {
   margin: 1rem 0;
 }
 
 .menu-item a{
-  color: var(--color4);
+  color: black;
   font-size: .75rem;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 /* MOBILE HEADER */
-
 .headerMob {
   display: var(--onlyMobileF);
   flex-wrap: wrap;
-  position: fixed;
+  position: sticky;
   top: 0;
   overflow-x: hidden;
-  z-index: 2;
-  width: 100%;
 }
 
 .upperHeader {
@@ -552,7 +443,6 @@ section {
   position: relative;
   width: 100%;
   z-index: 2;
-  background: white;
 }
 
 .navBarMobile {
@@ -568,14 +458,10 @@ section {
   background: white;
 }
 
-.body.mobileNavMenu .navBarMobile {
+.navBarMobile.alt {
   transition: .25s;
   margin-right: 0;
-}
 
-.body.mobileNavMenu > *:not(header) {
-  filter: brightness(50%);
-  transition: .25s;
 }
 
 .headerMob .logo {
@@ -601,149 +487,60 @@ section {
   font-size: 1rem;
 }
 
-
-  /* ---------------------------------------------------------------------------
-  ------------------------------------------------------------------------------
-                              6.2) =blueBar:
-  ------------------------------------------------------------------------------
-  --------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.2) =blueBar:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
 
 .blueBar {
-  color: white;
-  background-color: var(--color1);
-  display: flex;
-  font-size: .5rem;
-  padding: .25rem 0;
-  width: 100%;
-  grid-column: 1/-1;
+color: white;
+background-color: var(--color1);
+display: flex;
+font-size: .5rem;
+padding: .25rem 0;
+width: 100%;
 }
 .blueBarTel{
-  color: white;
-  text-decoration: none;
+color: white;
+text-decoration: none;
 }
 
 .blueBarTel{margin: var(--blueBarTelM);}
 
 .selectLang{
-  display: flex;
-  margin: var(--selectLangM);
+display: flex;
+margin: var(--selectLangM);
 }.selectLang > *{ margin: auto}
 
 .selectSVG{
-  height: .8rem;
-  margin: .1rem;
+height: .8rem;
+margin: .1rem;
 }
 
 .blueBarTel{display: none}
 .header .blueBarTel{display: block}
 .latteSignature{
-  display: none;
-  height: min-content;
-  margin: var(--blueBarTelM);
+display: none;
+height: min-content;
+margin: var(--blueBarTelM);
 }
 .footer .latteSignature{display: block}
 
 .latteLink {
-  text-decoration: none;
-  color: white;
+text-decoration: none;
+color: white;
 }
 
 .latteHeartSVG {
-  color:var(--color2);
-  height: 12px;
-  width: auto;
+color:var(--color2);
+height: 12px;
+width: auto;
 }
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                            6.3) =ATFS:
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.ATF{
-  display: grid;
-  width: 100%;
-  background: white;
-}
-
-.ATFWording {
-  color: white;
-  margin: 4rem auto auto 20%;
-  width: 50%;
-}
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                            6.3.1) =Front Page ATF:
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-
-.frontPageATFBg{
-  width: 100%;
-  height: auto;
-  background: white;
-}
-
-.features{
-  background: var(--color5);
-  padding: 1rem;
-  display: grid;
-  grid-auto-flow: var(--featuresGAutoFlow);
-  height: min-content;
-  grid-gap: 1rem;
-  width: var(--featuresWidth);
-  margin: auto auto 0 auto;
-  transform: translateY(50%);
-}
-
-.feature {
-  display: flex;
-  padding: .5rem;
-  border: solid 1px #0774BA;
-}
-
-.featureIcon{
-  height: 2rem;
-  margin: auto .5rem auto auto;
-  width: auto;
-}
-
-.featureTitle {
-  font-size: .7rem;
-  font-weight: 700;
-}
-
-.featureTxt {
-  font-size: .5rem;
-}
-
-
-.FrontPageSec1 {
-  padding-top: var(--frontPageSec1MT);
-  background: white;
-}
-.sectionGrey {background-image: linear-gradient(to top, #bebebe, #cecece, #dedede, #eeeeee, #ffffff);}
-.sectionGreyInverse {background-image: linear-gradient(to bottom, #bebebe, #cecece, #dedede, #eeeeee, #ffffff);}
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                            6.3.2) =About us ATF:
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.aboutUsCounter {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-row-gap: 2rem;
-}
-.aboutUsCounter .sectionSummary {grid-column: 1/-1}
-.aboutUsCounter .counter {grid-column: 2/ span 4}
-.aboutUsMediaSec {display: grid}
 
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
-                                6.4) =socalMedia:
+                                6.3) =socalMedia:
   ------------------------------------------------------------------------------
   --------------------------------------------------------------------------- */
 
@@ -768,76 +565,34 @@ section {
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.5) =multiCards:
+                          6.4) =multiCards:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.6) =forms:
+                          6.6) =BUTTONS:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-
-.footLog {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.footLogInput {
-  height: 1.5rem;
-  width: 100%;
-  background: white;
-  color: var(--color4);
-  padding: .5rem;
-  border: none;
-}
-
-.footLogSubmit {
-  background: transparent;
-  color: var(--color2);
-  font-weight: 700;
-  font-size: .75rem;
-  text-align: right;
-  border: none;
-  margin-top: 5px;
-}
-
-
 
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.7) =BUTTONS:
                           6.7) =formContact:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
 section.contacto{
+  background: url("http://localhost/Silversea/wp-content/uploads/2020/04/pexels-photo-799091-1.jpg");
   height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  display: grid;
+  justify-content: center;
   align-items: center;
   color: white;
   text-align: center;
-  position: relative;
+  padding: 5rem;
 }
 
-.contacto .formTitle{
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-section.contacto > *{width: 80%; }
-
-section.contacto img{
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  position: absolute;
-}
 .contacto .subtitle{
   align-self: flex-start;
 }
@@ -851,7 +606,7 @@ section.contacto img{
 }
 
 .contactForm input{
-  height: 2.5rem;
+  height: 2rem;
   padding-left: .5rem;
   width: var(--contactInputWidth);
   grid-column: var(--contactInputGC)
@@ -894,58 +649,32 @@ section.contacto img{
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-#backToGallery{
-  margin: 1rem var(--lateral);
-}
 
 .singleContainer{
   display: grid;
-  grid-gap: .75rem;
+  grid-gap: 1.75rem;
   padding: 1rem var(--lateral);
   grid-template-areas: var(--containerGTA);
 }
 
-.singleContainer .gallery{
-  grid-column: span 2;
-  grid-row: span 2;
-  width: 100%;
-  display:grid;
-  order: 2;
-  margin-bottom:auto;
-  position:var(--galleryPosition);
-  top:3rem;
+.singleContainer .imageGallery{
   grid-area: imageGallery;
-}
-.element{
-  opacity:1;
-  transition:.4s;
-}
-.element.inactive{
-  opacity:0;
+  margin: auto;
 }
 
-.singleProductsgalleryBtnsContainer {
-  margin-top: 0;
-  display: flex;
-  justify-content: space-around;
-  width: var(--singleProductsgalleryBtnsContainerWidth);
-}
-.singleProductArrowSVG {color: var(--color1);}
-
-.singleProductsGalleryBtns {
-  /* padding: .5rem; */
-  margin: var(--singleProductGalleryBtnsMargin);
-  border-radius: 50%;
-  box-shadow: var(--DP4);
+.btn{
+  margin: 1rem var(--lateral);
+  height: 2.4rem;
+  width: 12rem;
+  /* font-size: 24px; */
+  font-size: 1rem;
+  background: #ECC800;
+  color: #676767;
   border: none;
-  background-color: white;
-  color: var(--color3);
-  transition: .25s;
-  height: 2rem;
-  width: 2rem;
 }
-.singleProductsGalleryBtns:hover {
-  box-shadow: var(--DP6);
+.btn.ancho{
+  width: 20rem;
+  margin: 1rem auto 3rem;
 }
 
 .atributo{
@@ -953,121 +682,23 @@ section.contacto img{
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
   align-items: center;
+  background: #F0F0F0;
+  padding: .7rem;
   justify-content: center;
 }
 
-.singleContainer .atributo:nth-child(1){grid-area:atributo1}
-.singleContainer .atributo:nth-child(2){grid-area:atributo2}
-.singleContainer .atributo:nth-child(3){grid-area:atributo3}
-.singleContainer .atributo:nth-child(4){grid-area:atributo4}
-.singleContainer .atributo:nth-child(5){grid-area:atributo5}
-.singleContainer .atributo:nth-child(6){grid-area:atributo6}
-.singleContainer .atributo:nth-child(7){grid-area:atributo7}
-.singleContainer .atributo:nth-child(8){grid-area:atributo8}
-
-.btn.singleBuy{
-  grid-area:singleBuy;
-  width: 100%;
-}
-.btn.singleRent{
-  grid-area:singleRent;
-  width: 100%;
-}
+.singleContainer .atributo:nth-child(2){grid-area:atributo1}
+.singleContainer .atributo:nth-child(3){grid-area:atributo2}
+.singleContainer .atributo:nth-child(4){grid-area:atributo3}
+.singleContainer .atributo:nth-child(5){grid-area:atributo4}
+.singleContainer .atributo:nth-child(6){grid-area:atributo5}
+.singleContainer .atributo:nth-child(7){grid-area:atributo6}
+.singleContainer .atributo:nth-child(8){grid-area:atributo7}
+.singleContainer .atributo:nth-child(9){grid-area:atributo8}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.99) =archive-product
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.archiveFilter1{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem var(--lateral);
-}
-
-.archiveFilter1 .labelSelect{
-  font-size: .7rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.archiveFilter1 .labelSelect select{
-  font-size: 1rem;
-  border: none;
-  border-bottom: solid 1px var(--color1);
-}
-
-.archiveMain{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 1rem;
-  margin: 1rem var(--lateral);
-}
-
-.archiveFilter2{
-  display: grid;
-  grid-gap: 1rem;
-}
-
-.filter{
-  position: relative;
-}
-
-.filterTitle{
-  border-bottom: solid 1px var(--color4);
-  margin-bottom: .5rem;
-  color: var(--color1);
-}
-
-.filter .filterAll{
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: .5rem;
-}
-
-.archiveResult{
-  display: grid;
-}
-
-.articleContainer{
-  display: grid;
-  grid-auto-flow: column;
-  height: min-content;
-  align-items: center;
-  border: solid 2px var(--color1);
-  padding: .5rem;
-}
-.articleContainer .articleImg{
-  height: 5rem;
-  width: 5rem;
-}
-.articleContainer .articleIcon{
-  display: grid;
-  height: 100%;
-
-}
-.articleContainer .articleIcon svg{
-  height: 100%;
-  width: 100%;
-    border: solid 1px var(--color4);
-    padding: .3rem;
-}
-.articleContainer .articleTitle{
-  display: grid;
-  grid-auto-flow: row;
-  grid-gap: .5rem;
-  margin-left: .5rem;
-}
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                          6.99) =buttons
+                          6.99) =footer
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
@@ -1076,7 +707,6 @@ section.contacto img{
   background: var(--color2);
   text-transform: uppercase;
   display: flex;
-  justify-content: center;
   border: none;
   transition: .25s;
   font-size: .75rem;
@@ -1084,7 +714,6 @@ section.contacto img{
   width: max-content;
   height: min-content;
   border: 1px solid var(--color2);
-  margin: auto;
 }
 
 .btn:hover {
@@ -1093,17 +722,6 @@ section.contacto img{
   border: 1px solid var(--color2);
 }
 
-.btn.blue{
-  background: var(--color1);
-  color: white;
-  border: 1px solid var(--color1);
-}
-
-.btn.blue:hover{
-  color: var(--color1);
-  background: white;
-  border: 1px solid var(--color1);
-}
 
 
 .btn a
@@ -1112,37 +730,21 @@ section.contacto img{
   color: inherit;
 }
 
-
-
-.articleCounter .btn {
-  margin: auto;
-  grid-row: var(--articleCounterGR);
-  grid-column: var(--articleBtnFPCounterGC);
+.articleAboutUs .btn {
+  margin: auto auto 0 auto;
+  grid-area: btn;
 }
 
-.FrontPageSec1 .btn {margin: var(--frontPageSec1BtnM);}
-.aboutUsSec2 .btn {margin: var(--aboutUsSec2BtnM);}
+.articleFPCounter .btn {
+  margin: auto;
+  margin-left: 0;
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.8) =sectioNSummarys
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-
-.article2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.article2 .sectionSummary {
-  margin-bottom: var(--A2sectionSummaryMB);
-}
-.article2 > * {
-  width: var(--article2ElementsW)!important;
-}
-
-
 
 .sectionSummary{
   display: flex;
@@ -1160,46 +762,33 @@ section.contacto img{
   font-size: 1.7rem;
 }
 
-.summaryTxt {
-  font-size: .7rem;
-  color: var(--color4);
-  line-height: 1rem;
-}
+.summaryTxt {font-size: .7rem; color: var(--color4)}
 
-.summaryTxt.brandColorTxt { font-size: .9rem;}
+
 
 /* About us summary */
 
+.articleAboutUs .sectionSummary {grid-area: summary;}
 
 .aboutUsMedia {grid-area: media;}
-.playBtn {
-  width: 50px;
-  margin: auto;
-}
+
 .articleAboutUs .playBtn {
   grid-area: media;
+  width: 50px;
   height: auto;
-
+  margin: auto;
 }
-
-
 
 
 /* Silversea en el mundo article */
 
-.articleCounter {
+.articleFPCounter {
   display: grid;
   grid-auto-flow: row;
   grid-row-gap: 2rem;
 }
 
-.articleCounter .sectionSummary {
-  grid-column: 1/-1;
-}
 
-.articleCounter .counter {
-  grid-column: var(--articleCounterGC);
-}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1209,25 +798,15 @@ section.contacto img{
 
 .counter {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .count {
-  margin: 1rem auto;
-  flex-basis: var(--countFlexBasis);
-  min-height: 100%;
-  text-align: var(--txtCenterLeft);
-}
-
-.countTitle {
   border-left: solid 2px var(--color2);
   padding: .5rem;
+  margin: auto;
+  margin-left: 0;
 }
-.countHgroup {
-  border-left: solid 2px var(--color2);
-  padding: 0 .5rem;
-}
-
-.count:nth-child(2n) {border-right: var(--countEvenBorder)}
 
 .countNumber {
   font-size: 2rem;
@@ -1236,15 +815,10 @@ section.contacto img{
 }
 
 .countTxt {
-  font-size: .65rem;
+  font-size: .75rem;
   color: var(--color4);
 }
 
-.countSmallerTxt {
-  font-size: .6rem;
-.countTxt:nth-child(2) {
-  margin-top: .5rem;
-}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1270,10 +844,10 @@ section.contacto img{
 }
 
 .footLogo {
-  height: var(--footLogoHeight);
+  height: 1.5rem;
   width: auto;
   margin: auto;
-  margin-left: 0;
+  margin-top: 0;
 }
 
 .footerInfoCont {
@@ -1296,12 +870,6 @@ section.contacto img{
   margin-left: 10px;
 }
 
-.footerNav {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
 .footerNav li {
   text-align: var(--TxtLeftCenter);
   margin-bottom: var(--footerNavMB);
@@ -1309,5 +877,5 @@ section.contacto img{
 
 .footerNav a {
   color: white;
-  font-size: .75rem;
+  font-size: .5rem;
 }
