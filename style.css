@@ -1244,6 +1244,8 @@ section.contacto img{
 
 .countSmallerTxt {
   font-size: .6rem;
+}
+
 .countTxt:nth-child(2) {
   margin-top: .5rem;
 }
@@ -1262,6 +1264,7 @@ section.contacto img{
   padding: var(--footerPad);
   color: white;
 }
+
 .footWordingTitle {
   font-size: .75rem;
 }

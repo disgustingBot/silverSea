@@ -52,7 +52,6 @@
   <img class="aboutUsMedia rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImg.jpg" alt="">
   <img class="playBtn rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/playBtn.png" alt="">
 </section>
-=======
 <section class="sectionPadding sectionGrey">
   <article class="articleCounter col6 ">
     <hgroup class="sectionSummary">
