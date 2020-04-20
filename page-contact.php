@@ -2,10 +2,13 @@
 
 
 <section class="contacto">
-  <h2 class="formTitle">Contacta</h2>
-  <h4 class="subtitle">
-    En Silversea estamos abiertos a consultas, propuestas y nuevos desafíos.
-  </h4>
+  <img class="rowcol1" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+  <hgroup>
+    <h1 class="formTitle">Contacta</h1>
+    <h4 class="subtitle">
+      En Silversea estamos abiertos a consultas, propuestas y nuevos desafíos.
+    </h4>
+  </hgroup>
   <form action="" class="contactForm">
     <input type="hidden" name="action" value="lt_form_handler">
     <input type="hidden" name="link" value="<?php echo home_url( $wp->request );?>">
