@@ -13,9 +13,17 @@
 
   <!-- <?php include('breadCrum'); ?> -->
 
-<section class="archiveFilter1">
+<section class="transaction">
+  <button class="btn" type="button" name="button">Comprar</button>
+  <button class="btn blue" type="button" name="button">Alquilar</button>
   <button class="btn">CONTENEDORES EN REBAJA</button>
-  <?php
+</section>
+
+
+<section class="archiveFilterComprar">
+
+<!--
+  <//?php
 
 
     $sql = "select * from ventas;";
@@ -33,7 +41,16 @@
     }
 
     $option = $_POST['paises'];
-    echo $option; ?>
+    echo $option; ?> -->
+
+    <label class='labelSelect' for="paises">Pais
+    <select name="paises" id="paises">
+      <option value="1">España</option>
+      <option value="1">Argentina</option>
+      <option value="1">China</option>
+      <option value="1">Vietnam</option>
+    </select>
+    </label>
 
     <label class='labelSelect' for="ciudades">Ciudad
     <select name="ciudades" id="ciudades">
@@ -54,6 +71,60 @@
 
 
 </section>
+
+<section class="archiveFilterAlquilar">
+
+  <label class='labelSelect selectContainer' for="contenedores">Tipo de Contenedor
+  <select name="contenedores" id="contenedores">
+    <option value="1">40 Height Cube</option>
+    <option value="1">Estandard 20 PIES</option>
+    <option value="1">Estandard 40 PIES</option>
+  </select>
+  </label>
+
+  <h3 class="titleFilterOrigen">Origen</h3>
+
+    <label class='labelSelect paisOrigen' for="paises">Pais
+    <select name="paises" id="paises">
+      <option value="1">España</option>
+      <option value="1">Argentina</option>
+      <option value="1">China</option>
+      <option value="1">Vietnam</option>
+    </select>
+    </label>
+
+    <label class='labelSelect ciudadOrigen' for="ciudades">Ciudad
+    <select name="ciudades" id="ciudades">
+      <option value="1">Montevideo</option>
+      <option value="1">Buenos Aires</option>
+      <option value="1">Mendoza</option>
+      <option value="1">Córdoba</option>
+    </select>
+    </label>
+
+    <h3 class="titleFilterDestino">Destino</h3>
+
+      <label class='labelSelect paisDestino' for="paises">Pais
+      <select name="paises" id="paises">
+        <option value="1">España</option>
+        <option value="1">Argentina</option>
+        <option value="1">China</option>
+        <option value="1">Vietnam</option>
+      </select>
+      </label>
+
+      <label class='labelSelect ciudadDestino' for="ciudades">Ciudad
+      <select name="ciudades" id="ciudades">
+        <option value="1">Montevideo</option>
+        <option value="1">Buenos Aires</option>
+        <option value="1">Mendoza</option>
+        <option value="1">Córdoba</option>
+      </select>
+      </label>
+
+
+</section>
+
 
 <section class="archiveMain">
   <div class="archiveFilter2">

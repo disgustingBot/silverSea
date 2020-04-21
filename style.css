@@ -188,6 +188,9 @@ FIN DE MAPA DE CONTENIDOS */
                   "singleBuy"
                   "singleRent";
 
+   /* ARCHIVE-PAGE */
+   --archiveFilter2AutoFlow: column;
+
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -337,7 +340,9 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?FOOTER */
 
-
+    --archiveMainGTR: ;
+    --archiveMainGTC: 1fr 3fr;
+    --archiveFilter2AutoFlow: row;
   }
 }
 
@@ -980,35 +985,73 @@ section.contacto img{
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.archiveFilter1{
+
+.transaction{
   display: flex;
-  justify-content: space-between;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.transaction .btn{
+  width: 8rem;
+}
+
+.archiveFilterComprar{
+  display: flex;
+  justify-content: space-around;
   align-items: center;
   margin: 1rem var(--lateral);
 }
 
-.archiveFilter1 .labelSelect{
+
+.archiveFilterComprar .labelSelect{
   font-size: .7rem;
   display: flex;
   flex-direction: column;
 }
 
-.archiveFilter1 .labelSelect select{
+.archiveFilterComprar .labelSelect select,
+.archiveFilterAlquilar .labelSelect select{
   font-size: 1rem;
   border: none;
   border-bottom: solid 1px var(--color1);
 }
 
+.archiveFilterAlquilar{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 1rem var(--lateral);
+  grid-template-areas: "tipoContenedor origen destino"
+                       "tipoContenedor paisOrigen paisDestino"
+                       "tipoContenedor ciudadOrigen ciudadDestino"
+}
+
+
+.selectContainer{
+ grid-row: span 3;
+ grid-area: tipoContenedor;
+}
+.titleFilterOrigen{grid-area: origen}
+.titleFilterDestino{grid-area: destino}
+.paisOrigen{grid-area: paisOrigen}
+.ciudadOrigen{grid-area: ciudadOrigen}
+.paisDestino{grid-area: paisDestino}
+.ciudadDestino{grid-area: ciudadDestino}
+
 .archiveMain{
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 1rem;
-  margin: 1rem var(--lateral);
+  grid-template-rows: var(--archiveMainGTR);
+  grid-template-columns: var(--archiveMainGTC);
+  grid-gap: 2rem;
+  margin: 2rem var(--lateral);
 }
 
 .archiveFilter2{
   display: grid;
   grid-gap: 1rem;
+  grid-auto-flow: var(--archiveFilter2AutoFlow);
+
 }
 
 .filter{
@@ -1022,8 +1065,9 @@ section.contacto img{
 }
 
 .filter .filterAll{
+  bottom: 0;
   position: absolute;
-  top: 0;
+  transform: translateY(1rem);
   right: 0;
   display: flex;
   flex-direction: column;
@@ -1033,10 +1077,12 @@ section.contacto img{
 
 .archiveResult{
   display: grid;
+  grid-gap: .5rem;
 }
 
 .articleContainer{
   display: grid;
+  grid-gap: .3rem;
   grid-auto-flow: column;
   height: min-content;
   align-items: center;
@@ -1050,19 +1096,34 @@ section.contacto img{
 .articleContainer .articleIcon{
   display: grid;
   height: 100%;
-
 }
+
+
 .articleContainer .articleIcon svg{
   height: 100%;
   width: 100%;
-    border: solid 1px var(--color4);
-    padding: .3rem;
+  border: solid 1px #C4C4C4;
+  padding: .3rem;
+  margin: .3rem;
 }
+
+.articleContainer .articleIcon svg:nth-child(1){
+  border-top: none;
+}
+.articleContainer .articleIcon svg:nth-child(2){
+  border-bottom: none;
+}
+
+
 .articleContainer .articleTitle{
   display: grid;
   grid-auto-flow: row;
   grid-gap: .5rem;
   margin-left: .5rem;
+}
+
+.articleContainer .articlePrice{
+  text-align: right;
 }
 
 
