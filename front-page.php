@@ -68,6 +68,8 @@
   </div>
 </article>
 </section>
-
+<div style="display:inline-block; height:500px; width:100%; overflow:hidden;">
+<iframe style="width: 100%; border:0; position:relative; top:-50px;" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
+</div>
 
 <?php get_footer(); ?>
