@@ -27,7 +27,7 @@
       </div>
 </section>
 
-<section class="FrontPageSec1 sectionPadding">
+<section class="FrontPageSec1 sectionPadding ">
   <article class="article2">
     <hgroup class="sectionSummary">
       <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
@@ -68,8 +68,16 @@
   </div>
 </article>
 </section>
-<div style="display:inline-block; height:500px; width:100%; overflow:hidden;">
-<iframe style="width: 100%; border:0; position:relative; top:-50px;" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
-</div>
+<section class="sectionPadding sectionGreyInverse depotsContainer">
+
+  <div class="depotsMapContainer">
+    <div class="depotsMapBlueBar">
+      <h3 class="depotsMapBlueBarTitle">DEPOTS ALL OVER THE WORLD</h3>
+    </div>
+    <iframe class="depotsMap article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
+  </div>
+  <div class="blueSeparator"></div>
+  <button class="btn"><a href="">FIND YOUR CONTAINER</a></button>
+</section>
 
 <?php get_footer(); ?>
