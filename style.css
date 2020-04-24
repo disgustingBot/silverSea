@@ -189,8 +189,21 @@ FIN DE MAPA DE CONTENIDOS */
                   "singleRent";
 
    /* ARCHIVE-PAGE */
+   --FilterAlquilarGCGap: .5rem;
    --archiveFilter2AutoFlow: column;
+   --articleContainerGTA: "articleImg articleImg  "
+                          "articleIcon articleMeasure  "
+                          "articleTitle articleQuantity  "
+                          " articlePrice articleButton ";
+    --articleImgHeight: 100%;
+    --articleImgwidth: 100%;
 
+
+   --filterAlquilarGTA: "titleFilterContenedor titleFilterContenedor "
+                         "tipoContenedor tipoContenedor "
+                         "origen         destino "
+                         "paisOrigen     paisDestino "
+                         "ciudadOrigen   ciudadDestino ";
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -240,6 +253,12 @@ FIN DE MAPA DE CONTENIDOS */
                     "singleBuy singleRent"
                     ;
 
+    --FilterAlquilarGCGap: 2rem;
+    --articleImgHeight: 5rem;
+    --articleImgwidth: 5rem;
+    --articleContainerGTA: "articleImg articleIcon articleTitle articlePrice "
+                           "articleImg articleIcon articleQuantity articleButton "
+                           "articleImg articleIcon articleMeasure articleButton ";
   }
 }
 
@@ -316,9 +335,12 @@ FIN DE MAPA DE CONTENIDOS */
                 "imageGallery imageGallery singleBuy singleRent";
 
 
+    /* ARCHIVE-PRODUCT */
+    --articleContainerGTA: "articleImg articleMeasure articleIcon articleTitle articlePrice articleButton";
 
-
-
+    --filterAlquilarGTA: "titleFilterContenedor origen destino"
+                         "tipoContenedor paisOrigen paisDestino"
+                         ".              ciudadOrigen ciudadDestino";
 
   }
 }
@@ -998,6 +1020,7 @@ section.contacto img{
 
 .archiveFilterComprar{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   margin: 1rem var(--lateral);
@@ -1008,6 +1031,7 @@ section.contacto img{
   font-size: .7rem;
   display: flex;
   flex-direction: column;
+  margin: .5rem 1rem;
 }
 
 .archiveFilterComprar .labelSelect select,
@@ -1017,21 +1041,31 @@ section.contacto img{
   border-bottom: solid 1px var(--color1);
 }
 
+
+
 .archiveFilterAlquilar{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   margin: 1rem var(--lateral);
-  grid-template-areas: "tipoContenedor origen destino"
-                       "tipoContenedor paisOrigen paisDestino"
-                       "tipoContenedor ciudadOrigen ciudadDestino"
+  grid-template-areas: var(--filterAlquilarGTA);
+   grid-column-gap: var(--FilterAlquilarGCGap);
+   grid-row-gap: .3rem;
 }
 
+.archiveFilterAlquilar h3{color: var(--color1)}
+
+.archiveFilterAlquilar .labelSelect{
+  display: grid;
+  grid-auto-flow: column;
+}
 
 .selectContainer{
  grid-row: span 3;
  grid-area: tipoContenedor;
+ align-items: center;
+ display: flex;
+ flex-direction: column;
 }
+.titleFilterContenedor{grid-area: titleFilterContenedor}
 .titleFilterOrigen{grid-area: origen}
 .titleFilterDestino{grid-area: destino}
 .paisOrigen{grid-area: paisOrigen}
@@ -1088,14 +1122,22 @@ section.contacto img{
   align-items: center;
   border: solid 2px var(--color1);
   padding: .5rem;
+  grid-template-areas: var(--articleContainerGTA);
+
 }
 .articleContainer .articleImg{
-  height: 5rem;
-  width: 5rem;
+  height: var(--articleImgHeight);
+  width: var(--articleImgwidth);
+  grid-area: articleImg;
+  margin: auto;
 }
+
+.articleMeasure{grid-area: articleMeasure;text-align: center;}
+
 .articleContainer .articleIcon{
   display: grid;
   height: 100%;
+  grid-area: articleIcon;
 }
 
 
@@ -1120,11 +1162,15 @@ section.contacto img{
   grid-auto-flow: row;
   grid-gap: .5rem;
   margin-left: .5rem;
+  grid-area: articleTitle;
 }
 
 .articleContainer .articlePrice{
   text-align: right;
+  grid-area: articlePrice;
 }
+
+.articleButton{grid-area: articleButton}
 
 
 
