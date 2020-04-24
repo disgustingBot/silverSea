@@ -16,7 +16,7 @@
 <section class="transaction">
   <button class="btn" type="button" name="button">Comprar</button>
   <button class="btn blue" type="button" name="button">Alquilar</button>
-  <button class="btn">CONTENEDORES EN REBAJA</button>
+
 </section>
 
 
@@ -42,6 +42,13 @@
 
     $option = $_POST['paises'];
     echo $option; ?> -->
+    <label class='labelSelect' for="contenedores">Tipo de Contenedor
+    <select name="contenedores" id="contenedores">
+      <option value="1">40 Height Cube</option>
+      <option value="1">Estandard 20 PIES</option>
+      <option value="1">Estandard 40 PIES</option>
+    </select>
+    </label>
 
     <label class='labelSelect' for="paises">Pais
     <select name="paises" id="paises">
@@ -61,20 +68,14 @@
     </select>
     </label>
 
-    <label class='labelSelect' for="contenedores">Tipo de Contenedor
-    <select name="contenedores" id="contenedores">
-      <option value="1">40 Height Cube</option>
-      <option value="1">Estandard 20 PIES</option>
-      <option value="1">Estandard 40 PIES</option>
-    </select>
-    </label>
+
 
 
 </section>
 
 <section class="archiveFilterAlquilar">
-
-  <label class='labelSelect selectContainer' for="contenedores">Tipo de Contenedor
+  <h3 class="titleFilterContenedor">Contenedor</h3>
+  <label class='labelSelect selectContainer' for="contenedores">Tipo
   <select name="contenedores" id="contenedores">
     <option value="1">40 Height Cube</option>
     <option value="1">Estandard 20 PIES</option>
@@ -264,11 +265,13 @@
       <p class="articlePrice">
         <?php echo $product->get_price_html(); ?>
       </p>
-      <button class="btn" type="button" name="button"><nobr>Agregar al Carrito</nobr></button>
+      <button class="btn articleButton" type="button" name="button"><nobr>Agregar al Carrito</nobr></button>
 
     </article>
     <?php } ?>
   </div>
 </section>
+
+  <button class="btn">CONTENEDORES EN REBAJA</button>
 
 <?php get_footer() ;?>
