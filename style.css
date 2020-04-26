@@ -750,7 +750,7 @@ section {
 .FrontPageSec1 {
   padding-top: var(--frontPageSec1MT);
   background: white;
-}  
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                             6.3.2) =About us ATF:
@@ -1068,8 +1068,11 @@ section.contacto img{
   justify-content: space-around;
   align-items: center;
   margin: 1rem var(--lateral);
+  color: var(--color1);
 }
-
+.archiveFilterComprar.alt{
+  display: none;
+}
 
 .archiveFilterComprar .labelSelect{
   font-size: .7rem;
@@ -1088,11 +1091,14 @@ section.contacto img{
 
 
 .archiveFilterAlquilar{
-  display: grid;
+  display: none;
   margin: 1rem var(--lateral);
   grid-template-areas: var(--filterAlquilarGTA);
    grid-column-gap: var(--FilterAlquilarGCGap);
    grid-row-gap: .3rem;
+}
+.archiveFilterAlquilar.alt{
+  display: grid;
 }
 
 .archiveFilterAlquilar h3{color: var(--color1)}
@@ -1215,6 +1221,13 @@ section.contacto img{
 }
 
 .articleButton{grid-area: articleButton}
+
+.finalbuttons{
+  display: grid;
+  align-items: flex-end;
+  grid-auto-flow: column;
+  margin: 1rem;
+}
 
 
 

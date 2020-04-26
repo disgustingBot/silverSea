@@ -14,8 +14,8 @@
   <!-- <?php include('breadCrum'); ?> -->
 
 <section class="transaction">
-  <button class="btn" type="button" name="button">Comprar</button>
-  <button class="btn blue" type="button" name="button">Alquilar</button>
+  <button class="btn" type="button" name="button" onclick="altClassFromSelector('alt','.archiveFilterAlquilar');altClassFromSelector('alt','.archiveFilterComprar')">Comprar</button>
+  <button class="btn blue" type="button" name="button"onclick="altClassFromSelector('alt','.archiveFilterComprar');altClassFromSelector('alt','.archiveFilterAlquilar')">Alquilar</button>
 
 </section>
 
@@ -272,6 +272,9 @@
   </div>
 </section>
 
+<div class="finalbuttons">
   <button class="btn">CONTENEDORES EN REBAJA</button>
+  <button class="btn">Finalizar Compra</button>
+</div>
 
 <?php get_footer() ;?>
