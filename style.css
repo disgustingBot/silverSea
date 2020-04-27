@@ -48,6 +48,7 @@ Version: 0.0
 6.7) =forms
 6.7.1)=formContact:
 6.12.1)= containerAtributes
+6.15) =cotizador:
 6.16) =coprAlqui:
 6.17) =sladRadio:
 6.18) =selectBox:
@@ -1404,6 +1405,19 @@ section.contacto img{
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
+                          6.15) =cotizador:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.cotizador{
+  grid-column:1;
+  grid-row:1;
+  margin:auto var(--lateral);
+  background:white;
+  width:calc(100% - var(--lateral) * 2);
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
                           6.16) =coprAlqui:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
@@ -1420,6 +1434,7 @@ section.contacto img{
 .coprAlquiLocation{
   display: grid;
   grid-auto-flow:column;
+  /* grid-template-columns:auto; */
   grid-auto-columns:1fr;
   grid-gap:1rem;
   transition:.3s;
@@ -1428,6 +1443,7 @@ section.contacto img{
 .coprAlquiLocation:nth-child(3){grid-column:2;grid-row:2;}
 .coprAlquiLocationTitle{
   margin:auto 0;
+  text-align: right;
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1537,7 +1553,7 @@ section.contacto img{
 }
 .selectBox:focus .selectBoxCurrent::after,
 .selectBox.alt .selectBoxCurrent::after{
-  background:#F78D15;
+  background:var(--color1);
   transform:scaleX(1);
 }
 .selectBox:focus .selectBoxPlaceholder,

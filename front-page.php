@@ -2,6 +2,13 @@
 
 <section class="ATF frontPageATF">
   <img class="frontPageATFBg rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/ATFExampleImg.jpg" alt="">
+
+
+  <div class="cotizador">
+  <?php include get_template_directory().'/copralqui.php' ?>
+  </div>
+
+
   <div class="features rowcol1">
         <figure class="feature">
           <img class="featureIcon" src="<?php echo get_template_directory_uri(); ?>/img/costePreciso.png" alt="feature Icon">
