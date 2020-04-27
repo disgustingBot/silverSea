@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<?php include_once 'dataBaseHandler.php' ?>
+<!-- <?php include_once 'dataBaseHandler.php' ?> -->
 
 <figure class="titleBaner">
   <!-- <img class="" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt=""> -->
