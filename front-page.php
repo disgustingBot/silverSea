@@ -27,7 +27,7 @@
       </div>
 </section>
 
-<section class="FrontPageSec1 sectionPadding ">
+<section class="FrontPageSec1 sectionPadding">
   <article class="article2">
     <hgroup class="sectionSummary">
       <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
@@ -40,44 +40,35 @@
 </section>
 
 <section class="sectionGrey sectionPadding">
-  <article class="articleCounter col6">
+  <article class="articleCounter">
+    <div class="counter">
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp" data-target="3000">0</span></p>
+        <p class="countTxt">CONTENEDORES VENDIDOS</p>
+      </div>
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp" data-target="3000">0</span></p>
+        <p class="countTxt">CLIENTES SATISFECHOS</p>
+      </div>
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp" data-target="200">0</span></p>
+        <p class="countTxt">CENTROS LOGÍSTICOS</p>
+      </div>
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp" data-target="30">0</span></p>
+        <p class="countTxt">PAÍSES Y TERRITORIOS</p>
+      </div>
+    </div>
     <hgroup class="sectionSummary">
       <h2 class="summaryTitle">Silversea <span class="brandColorTxt">en el mundo</span></h2>
       <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
       <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
     </hgroup>
     <button class="btn"><a href="">LEER MÁS</a></button>
-    <div class="counter">
-      <div class="count countTitle">
-        <p class="countNumber"><span class="GrowUp" data-target="3000">0</span></p>
-        <p class="countTxt">CONTENEDORES VENDIDOS</p>
-      </div>
-      <div class="count countTitle">
-        <p class="countNumber"><span class="GrowUp" data-target="3000">0</span></p>
-        <p class="countTxt">CLIENTES SATISFECHOS</p>
-      </div>
-      <div class="count countTitle">
-        <p class="countNumber"><span class="GrowUp" data-target="200">0</span></p>
-        <p class="countTxt">CENTROS LOGÍSTICOS</p>
-      </div>
-      <div class="count countTitle">
-        <p class="countNumber"><span class="GrowUp" data-target="30">0</span></p>
-        <p class="countTxt">PAÍSES Y TERRITORIOS</p>
-      </div>
-    </div>
-  </div>
-</article>
+  </article>
 </section>
-<section class="sectionPadding sectionGreyInverse depotsContainer">
-
-  <div class="depotsMapContainer">
-    <div class="depotsMapBlueBar">
-      <h3 class="depotsMapBlueBarTitle">DEPOTS ALL OVER THE WORLD</h3>
-    </div>
-    <iframe class="depotsMap article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
-  </div>
-  <div class="blueSeparator"></div>
-  <button class="btn"><a href="">FIND YOUR CONTAINER</a></button>
+<section class="sectionPadding depotsContainer">
+  <iframe class="depotsMap article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
 </section>
 
 <?php get_footer(); ?>
