@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 
 <?php include_once 'dataBaseHandler.php' ?>
-
+<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( wc_get_page_id( 'shop' ) ), 'full' );?>
 <figure class="titleBaner">
-  <!-- <img class="" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt=""> -->
+  <img class="titleBanerImg lazy" data-url="<?php echo $thumb['0']; ?>" alt="">
   <figcaption class="titleBanerCaption">
     <h2><?php the_title();?></h2>
     <h3><?php echo get_the_excerpt(); ?></h3>
@@ -11,120 +11,236 @@
 </figure>
 
 
-  <!-- <?php include('breadCrum'); ?> -->
-
-<section class="transaction">
-  <button class="btn" type="button" name="button" onclick="altClassFromSelector('alt','.archiveFilterAlquilar');altClassFromSelector('alt','.archiveFilterComprar')">Comprar</button>
-  <button class="btn blue" type="button" name="button"onclick="altClassFromSelector('alt','.archiveFilterComprar');altClassFromSelector('alt','.archiveFilterAlquilar')">Alquilar</button>
-
-</section>
-
-
-<section class="archiveFilterComprar">
-
-<!--
-  <//?php
-
-
-    $sql = "select * from ventas;";
-    $sqlPais = "select distinct pais from ventas;";
-    $resultPais = mysqli_query($conn, $sqlPais);
-    $resultCheckPais = mysqli_num_rows($resultPais);
-    // echo $resultCheck;
-
-    if($resultCheckPais > 0){
-      echo " <label class='labelSelect' for='paises'> Pais <select id='paises' name='paises2'>";
-      while($row = mysqli_fetch_assoc($resultPais)){
-          echo "<option value='pais'>" . $row['pais'] . " </option>";
-      }
-      echo "</select></label>";
-    }
-
-    $option = $_POST['paises'];
-    echo $option; ?> -->
-    <label class='labelSelect' for="contenedores">Tipo de Contenedor
-    <select name="contenedores" id="contenedores">
-      <option value="1">40 Height Cube</option>
-      <option value="1">Estandard 20 PIES</option>
-      <option value="1">Estandard 40 PIES</option>
-    </select>
-    </label>
-
-    <label class='labelSelect' for="paises">Pais
-    <select name="paises" id="paises">
-      <option value="1">España</option>
-      <option value="1">Argentina</option>
-      <option value="1">China</option>
-      <option value="1">Vietnam</option>
-    </select>
-    </label>
-
-    <label class='labelSelect' for="ciudades">Ciudad
-    <select name="ciudades" id="ciudades">
-      <option value="1">Montevideo</option>
-      <option value="1">Buenos Aires</option>
-      <option value="1">Mendoza</option>
-      <option value="1">Córdoba</option>
-    </select>
-    </label>
+  <?php // include('breadCrum'); ?>
 
 
 
 
-</section>
-
-<section class="archiveFilterAlquilar">
-  <h3 class="titleFilterContenedor">Contenedor</h3>
-  <label class='labelSelect selectContainer' for="contenedores">Tipo
-  <select name="contenedores" id="contenedores">
-    <option value="1">40 Height Cube</option>
-    <option value="1">Estandard 20 PIES</option>
-    <option value="1">Estandard 40 PIES</option>
-  </select>
-  </label>
-
-  <h3 class="titleFilterOrigen">Origen</h3>
-
-    <label class='labelSelect paisOrigen' for="paises">Pais
-    <select name="paises" id="paises">
-      <option value="1">España</option>
-      <option value="1">Argentina</option>
-      <option value="1">China</option>
-      <option value="1">Vietnam</option>
-    </select>
-    </label>
-
-    <label class='labelSelect ciudadOrigen' for="ciudades">Ciudad
-    <select name="ciudades" id="ciudades">
-      <option value="1">Montevideo</option>
-      <option value="1">Buenos Aires</option>
-      <option value="1">Mendoza</option>
-      <option value="1">Córdoba</option>
-    </select>
-    </label>
-
-    <h3 class="titleFilterDestino">Destino</h3>
-
-      <label class='labelSelect paisDestino' for="paises">Pais
-      <select name="paises" id="paises">
-        <option value="1">España</option>
-        <option value="1">Argentina</option>
-        <option value="1">China</option>
-        <option value="1">Vietnam</option>
-      </select>
-      </label>
-
-      <label class='labelSelect ciudadDestino' for="ciudades">Ciudad
-      <select name="ciudades" id="ciudades">
-        <option value="1">Montevideo</option>
-        <option value="1">Buenos Aires</option>
-        <option value="1">Mendoza</option>
-        <option value="1">Córdoba</option>
-      </select>
-      </label>
 
 
-</section>
+
+<div class="coprAlqui">
+  <div class="sladRadio">
+    <input class="sladRadioInput" onchange="accordionSelector('#destino')" type="radio" id="euro" name="a10" value="euro" checked>
+    <label class="sladRadioLabel" for="euro">COMPRAR</label>
+    <input class="sladRadioInput" onchange="accordionSelector('#destino')" type="radio" id="dollar" name="a10" value="dollar">
+    <div class="sladRadioSignal"></div>
+    <label class="sladRadioLabel" for="dollar">ALQUILAR</label><br>
+  </div>
+
+    <div class="coprAlquiLocation">
+      <h4 class="coprAlquiLocationTitle">Origen</h4>
+
+
+              <div class="selectBox" tabindex="1" id="selectBoxOrigenCountry">
+                <div class="selectBoxButton">
+                  <p class="selectBoxPlaceholder">Pais</p>
+                  <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCountry"></p>
+                </div>
+                <div class="selectBoxList">
+                  <label for="nulOrigenCountry" class="selectBoxOption">
+                    <input
+                      class="selectBoxInput"
+                      id="nulOrigenCountry"
+                      type="radio"
+                      data-slug="0"
+                      data-parent="city"
+                      name="filter_city"
+                      onclick="selectBoxControler('','#selectBoxOrigenCountry','#selectBoxCurrentOrigenCountry')"
+                      value="0"
+                    >
+                    <!-- <span class="checkmark"></span> -->
+                    <p class="colrOptP"></p>
+                  </label>
+                  <label for="barcelona" class="selectBoxOption">
+                    <input
+                      class="selectBoxInput"
+                      id="barcelona"
+                      data-slug="barcelona"
+                      data-parent="city"
+                      type="radio"
+                      name="filter_city"
+                      onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCountry', '#selectBoxCurrentOrigenCountry')"
+                      value="barcelona"
+                    >
+                    <!-- <span class="checkmark"></span> -->
+                    <p class="colrOptP">España</p>
+                  </label>
+                </div>
+              </div>
+
+
+              <div class="selectBox" tabindex="1" id="selectBoxOrigenCity">
+                <div class="selectBoxButton">
+                  <p class="selectBoxPlaceholder">Ciudad</p>
+                  <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
+                </div>
+                <div class="selectBoxList">
+                  <label for="nulOrigenCity" class="selectBoxOption">
+                    <input
+                      class="selectBoxInput"
+                      id="nulOrigenCity"
+                      type="radio"
+                      data-slug="0"
+                      data-parent="city"
+                      name="filter_city"
+                      onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
+                      value="0"
+                    >
+                    <!-- <span class="checkmark"></span> -->
+                    <p class="colrOptP"></p>
+                  </label>
+                  <label for="barcelona" class="selectBoxOption">
+                    <input
+                      class="selectBoxInput"
+                      id="barcelona"
+                      data-slug="barcelona"
+                      data-parent="city"
+                      type="radio"
+                      name="filter_city"
+                      onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+                      value="barcelona"
+                    >
+                    <!-- <span class="checkmark"></span> -->
+                    <p class="colrOptP">Barcelona</p>
+                  </label>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+    </div>
+      <div class="coprAlquiLocation Accordion" id="destino">
+        <h4 class="coprAlquiLocationTitle">Destino</h4>
+
+
+                <div class="selectBox" tabindex="1" id="selectBoxOrigenCountry">
+                  <div class="selectBoxButton">
+                    <p class="selectBoxPlaceholder">Pais</p>
+                    <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCountry"></p>
+                  </div>
+                  <div class="selectBoxList">
+                    <label for="nulOrigenCountry" class="selectBoxOption">
+                      <input
+                        class="selectBoxInput"
+                        id="nulOrigenCountry"
+                        type="radio"
+                        data-slug="0"
+                        data-parent="city"
+                        name="filter_city"
+                        onclick="selectBoxControler('','#selectBoxOrigenCountry','#selectBoxCurrentOrigenCountry')"
+                        value="0"
+                      >
+                      <!-- <span class="checkmark"></span> -->
+                      <p class="colrOptP"></p>
+                    </label>
+                    <label for="barcelona" class="selectBoxOption">
+                      <input
+                        class="selectBoxInput"
+                        id="barcelona"
+                        data-slug="barcelona"
+                        data-parent="city"
+                        type="radio"
+                        name="filter_city"
+                        onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCountry', '#selectBoxCurrentOrigenCountry')"
+                        value="barcelona"
+                      >
+                      <!-- <span class="checkmark"></span> -->
+                      <p class="colrOptP">España</p>
+                    </label>
+                  </div>
+                </div>
+
+
+                <div class="selectBox" tabindex="1" id="selectBoxOrigenCity">
+                  <div class="selectBoxButton">
+                    <p class="selectBoxPlaceholder">Ciudad</p>
+                    <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
+                  </div>
+                  <div class="selectBoxList">
+                    <label for="nulOrigenCity" class="selectBoxOption">
+                      <input
+                        class="selectBoxInput"
+                        id="nulOrigenCity"
+                        type="radio"
+                        data-slug="0"
+                        data-parent="city"
+                        name="filter_city"
+                        onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
+                        value="0"
+                      >
+                      <!-- <span class="checkmark"></span> -->
+                      <p class="colrOptP"></p>
+                    </label>
+                    <label for="barcelona" class="selectBoxOption">
+                      <input
+                        class="selectBoxInput"
+                        id="barcelona"
+                        data-slug="barcelona"
+                        data-parent="city"
+                        type="radio"
+                        name="filter_city"
+                        onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+                        value="barcelona"
+                      >
+                      <!-- <span class="checkmark"></span> -->
+                      <p class="colrOptP">Barcelona</p>
+                    </label>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+      </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <section class="archiveMain">
