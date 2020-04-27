@@ -88,6 +88,29 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
+// SELECT BOX CONTROLER
+const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
+  if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
+  else   {d.querySelector(selectBoxId).classList.remove('alt')}
+
+  d.querySelector(current).innerHTML=a;
+  d.activeElement.blur();
+}
+
+const accordionSelector = (selector) => {
+	var acc = d.querySelectorAll(selector);
+
+	acc.forEach((item, i) => {
+		item.classList.toggle("active");
+		// var panel = this.nextElementSibling;
+		if (item.style.maxHeight!=0) {
+			item.style.maxHeight = null;
+			// item.style.maxHeight = null;
+		} else {
+			item.style.maxHeight = item.scrollHeight + 20 + "px";
+		}
+	});
+}
 
 // GO BACK BUTTONS
 function goBack(){w.history.back()}
