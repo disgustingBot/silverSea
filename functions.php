@@ -71,8 +71,8 @@ function excerpt($charNumber){
 
  function register_menus() {
     register_nav_menu('header',__( 'Header' ));
-    register_nav_menu('footerNav',__( 'Footer' ));
     register_nav_menu('navBarMobile',__( 'Mobile Header Menu' ));
+    register_nav_menu('footerNav',__( 'Footer' ));
     // add_post_type_support( 'page', 'excerpt' );
   }
   add_action( 'init', 'register_menus' );
@@ -297,4 +297,63 @@ function lt_new_pass(){
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 function load_admin_styles() {
   // wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
+}
+
+
+
+add_action(        'admin_post_lt_upload_file', 'lt_upload_file');
+add_action( 'admin_post_nopriv_lt_upload_file', 'lt_upload_file');
+
+function lt_upload_file(){
+
+  if(isset($_POST['submit'])){
+    $file = $_FILES['file'];
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+
+
+    $fileExt= explode('.' , $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array( 'csv', 'xls', 'xlsx' );
+    // console_log($fileName);
+    // console_log($fileTmpName);
+    // console_log($fileSize);
+    // console_log($fileError);
+    // console_log($fileType);
+    print_r($file);
+    echo $fileName."<br >";
+    echo $fileTmpName."<br >";
+    echo $fileSize."<br >";
+    echo $fileError."<br >";
+    echo $fileType."<br >";
+    print_r($allowed);
+    echo $fileActualExt."<br >";
+
+
+    if(in_array($fileActualExt, $allowed)){
+      if($fileError=== 0 ){
+        if ($fileSize < 7000000) {
+          $fileNameNew = uniqid('',true).'.'.$fileActualExt;
+          echo $_SERVER['DOCUMENT_ROOT'];
+          $fileDestination = $_SERVER['DOCUMENT_ROOT'].'Silversea/wp-content/themes/silverSea/uploads/'.$fileNameNew;
+          echo $fileDestination;
+          move_uploaded_file($fileTmpName,$fileDestination);
+          // header("Location:index.php?uploadSucess");
+        }
+        else {
+            echo "Your File is too big";
+        }
+      }
+      else {
+        echo "Error uploading File";
+      }
+    }
+    else{
+      echo "You cannot upload Files of this type";
+    }
+  }
 }
