@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 
-<?php include_once 'dataBaseHandler.php' ?>
+<!-- <?php include_once 'dataBaseHandler.php' ?> -->
 <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( wc_get_page_id( 'shop' ) ), 'full' );?>
 
 <figure class="titleBaner">
