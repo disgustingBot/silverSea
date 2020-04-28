@@ -542,10 +542,10 @@ section {
   box-shadow: var(--DP4);
   display: var(--onlyDesktopG);
   grid-template-columns: 1fr 1fr;
-  z-index: 2;
   position: sticky;
   top: 0;
   background: white;
+  z-index: 6;
 }
 
 .logo {
@@ -799,6 +799,21 @@ section {
 .FrontPageSec1 {
   padding-top: var(--frontPageSec1MT);
   background: white;
+}
+
+.frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
+  display: inline-block;
+}
+
+.frontPageATF .cotizador {
+  border-radius: 4px;
+  box-shadow: var(--DP8);
+  background: var(--color5);
+}
+
+.frontPageATF .coprAlqui  {
+  margin: auto!important;
+  padding: 1rem!important;
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1453,14 +1468,18 @@ section.contacto img{
   display:grid;
   grid-gap:.5rem;
   grid-template-columns:auto 1fr;
-  /* grid-auto-rows:2rem; */
 }
+
+.cotizadorTitle, .cotizadorTxt {
+  grid-column: 1/-1;
+  display: none;
+}
+
 .coprAlqui .sladRadio{margin-left:0;}
 
 .coprAlquiLocation{
   display: grid;
   grid-auto-flow:column;
-  /* grid-template-columns:auto; */
   grid-auto-columns:1fr;
   grid-gap:1rem;
   transition:.3s;
