@@ -559,16 +559,51 @@ section {
   justify-content: space-between;
   margin: auto var(--lateral);
 }
+.menu-item {
+  color: var(--color4);
+}
+
+.header .menu-item {
+  padding: 8px;
+  position: relative;
+  border-radius: 4px;
+  line-height: 18px;
+}
+
+.header .menu-item::after {
+  content: '';
+  width: 0%;
+  height: 0%;
+  border-radius: 50%;
+  background: white;
+  bottom: 0;
+  left: 40%;
+  transition: .25s;
+  z-index: -1;
+}
+
+.header .menu-item:hover::after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: var(--color1);
+  border-radius: 4px;
+  left:0;
+}
+.header .menu-item:hover {
+  color: white;
+  box-shadow: var(--DP2);
+}
 
 .headerMob .menu-item {
   margin: 1rem 0;
 }
 
 .menu-item a{
-  color: var(--color4);
   font-size: .75rem;
   text-decoration: none;
   text-transform: uppercase;
+  color: inherit;
 }
 
 /* MOBILE HEADER */
@@ -809,23 +844,13 @@ section {
 
 /* MAPA DE UBICACIONES */
 
-.depotsContainer {
-  display: flex;
-  height: 500px;
-  flex-wrap: wrap;
-}
-
-
-.depotsMap {
-  width: 100%;
-  height: 100%;
-  border:none;
+.article2 iframe {
+  height: 350px;
   border-radius: 4px;
+  box-shadow: var(--DP4);
+  border: none;
 }
 
-.i4ewOd-pzNkMb-tJHJj {
-  background: var(--color1)!important;
-}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1307,6 +1332,7 @@ section.contacto img{
   flex-direction: column;
   border-left: 2px solid var(--color1);
   padding-left: 1rem;
+  justify-content: center;
 }
 
 .sectionSummary > *{
