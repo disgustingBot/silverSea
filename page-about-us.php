@@ -50,8 +50,14 @@
   </article>
 </section>
 
-<img class="" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsSecImg.jpg" alt="feature Icon">
-
+  <div class="fullWidthMapContainer">
+    <iframe class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8"></iframe>
+    <div class="fullWidthMapOverlay" id="mapOverlay"></div>
+    <div class="fullWidthMapBarOverlay">
+      <h2 class="mapSecTitle">Almacenes con stock disponible <span class="brandColorTxt">en el mundo</span></h2>
+      <p class="mapInterTxt"><span class="mapInterActive" onclick="altClassFromSelector('activateMap','#mapOverlay')">Pincha aquí</span> para interactuar con el mapa</p>
+    </div>
+  </div>
 
 
 <section class="sectionPadding aboutUsSec2 sectionGreyInverse">
@@ -64,11 +70,11 @@
     <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImgSec2.png" alt="">
   </article>
   <select class="btn">
-    <option>Seleccionar tipo de contenedor<option>
-    <option>Reefer<option>
-    <option>Dry<option>
-    <option>Open Top<option>
-    <option>Flat Back<option>
+    <option>Seleccionar tipo de contenedor</option>
+    <option>Reefer</option>
+    <option>Dry</option>
+    <option>Open Top</option>
+    <option>Flat Back</option>
   </select>
 </section>
 
