@@ -139,7 +139,8 @@ FIN DE MAPA DE CONTENIDOS */
   --navBarWidth: 50%;
 
   /* ATFS */
-
+  /* FRONT PAGE ATF */
+  --featureIconMargin: auto;
   /* COUNTERS */
 
   --countEvenBorder: solid 2px var(--color2);
@@ -154,7 +155,6 @@ FIN DE MAPA DE CONTENIDOS */
   --aboutUsSec2BtnM: 1rem auto 0 auto;
 
   /* FRONT PAGE ATF */
-  --featuresWidth: 70%;
   --featuresGAutoFlow: row;
 
 
@@ -236,9 +236,9 @@ FIN DE MAPA DE CONTENIDOS */
 @media screen and (min-width: 576px) {
   :root {
     /* ?HEADER */
+
     /* ATFS */
-    /* FRONT PAGE ATF */
-    --featuresGAutoFlow: column;
+
     /* ?FOOTER */
 
     --footGridTC: 1fr 1fr;
@@ -290,6 +290,10 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ATFS */
 
+    /* FRONT PAGE ATF */
+    --featuresGAutoFlow: column;
+    --featureIconMargin: auto .5rem auto auto;
+
     /* COUNTERS */
     --articleCounterGR: auto;
 
@@ -304,7 +308,6 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* FRONT PAGE ATF */
-    --featuresWidth: 80%;
 
     --frontPageSec1MT: 4rem;
 
@@ -380,7 +383,6 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ATFS */
     /* FRONT PAGE ATF */
-    --featuresWidth: 60%;
 
     /* ?FOOTER */
   }
@@ -402,7 +404,6 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ATFS */
     /* FRONT PAGE ATF */
-    --featuresWidth: 50%;
 
 
     /* ?FOOTER */
@@ -764,8 +765,7 @@ section {
   grid-auto-flow: var(--featuresGAutoFlow);
   height: min-content;
   grid-gap: 1rem;
-  width: var(--featuresWidth);
-  margin: auto auto 0 auto;
+  margin: auto var(--lateral) 0 var(--lateral);
   transform: translateY(50%);
 }
 
@@ -781,24 +781,27 @@ section {
 }
 
 .featureIcon{
-  height: 2rem;
-  margin: auto .5rem auto auto;
+  height: 3rem;
+  margin: var(--featureIconMargin);
   width: auto;
+  object-fit: contain;
 }
 
 .featureTitle {
-  font-size: .7rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .featureTxt {
-  font-size: .5rem;
+  font-size: .8rem;
+  margin: auto;
 }
 
 
 .FrontPageSec1 {
   padding-top: var(--frontPageSec1MT);
   background: white;
+  margin: 2rem auto auto auto;
 }
 
 .frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
