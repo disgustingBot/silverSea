@@ -48,6 +48,7 @@ Version: 0.0
 6.7) =forms
 6.7.1)=formContact:
 6.12.1)= containerAtributes
+6.15) =cotizador:
 6.16) =coprAlqui:
 6.17) =sladRadio:
 6.18) =selectBox:
@@ -80,7 +81,10 @@ FIN DE MAPA DE CONTENIDOS */
   --color2:#ECC800;
   --color3:#60859E;
   --color4:#373737;
-  --color5:#F0F0F0;
+  --color5:#f1f3f4;
+  --color6:#dae2e5;
+  --color7:#3e4a4f;
+  --color8:#2D3538;
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
   /* --color6:#FFFAE6; */
@@ -138,25 +142,22 @@ FIN DE MAPA DE CONTENIDOS */
   --navBarWidth: 50%;
 
   /* ATFS */
-
+  /* FRONT PAGE ATF */
+  --featureIconMargin: auto;
   /* COUNTERS */
 
-  --articleCounterGC: 1/-1;
   --countEvenBorder: solid 2px var(--color2);
 
   --countFlexBasis: 50%;
 
   --articleCounterGR: 3;
-  --articleBtnFPCounterGC: 1/-1;
 
   /* ARTICLES */
   --article2ElementsW: 100%;
   --A2sectionSummaryMB: 2rem;
-  --frontPageSec1BtnM: 1rem auto auto auto;
   --aboutUsSec2BtnM: 1rem auto 0 auto;
 
   /* FRONT PAGE ATF */
-  --featuresWidth: 70%;
   --featuresGAutoFlow: row;
 
 
@@ -192,21 +193,21 @@ FIN DE MAPA DE CONTENIDOS */
                   "singleRent";
 
    /* ARCHIVE-PAGE */
-   --FilterAlquilarGCGap: .5rem;
-   --archiveFilter2AutoFlow: column;
-   --articleContainerGTA: "articleImg articleImg  "
+   /* --FilterAlquilarGCGap: .5rem; */
+   /* --archiveFilter2AutoFlow: column; */
+   /* --articleContainerGTA: "articleImg articleImg  "
                           "articleIcon articleMeasure  "
                           "articleTitle articleQuantity  "
                           " articlePrice articleButton ";
     --articleImgHeight: 100%;
-    --articleImgwidth: 100%;
+    --articleImgwidth: 100%; */
 
 
-   --filterAlquilarGTA: "titleFilterContenedor titleFilterContenedor "
+   /* --filterAlquilarGTA: "titleFilterContenedor titleFilterContenedor "
                          "tipoContenedor tipoContenedor "
                          "origen         destino "
                          "paisOrigen     paisDestino "
-                         "ciudadOrigen   ciudadDestino ";
+                         "ciudadOrigen   ciudadDestino "; */
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -238,9 +239,9 @@ FIN DE MAPA DE CONTENIDOS */
 @media screen and (min-width: 576px) {
   :root {
     /* ?HEADER */
+
     /* ATFS */
-    /* FRONT PAGE ATF */
-    --featuresGAutoFlow: column;
+
     /* ?FOOTER */
 
     --footGridTC: 1fr 1fr;
@@ -256,12 +257,12 @@ FIN DE MAPA DE CONTENIDOS */
                     "singleBuy singleRent"
                     ;
 
-    --FilterAlquilarGCGap: 2rem;
+    /* --FilterAlquilarGCGap: 2rem;
     --articleImgHeight: 5rem;
     --articleImgwidth: 5rem;
     --articleContainerGTA: "articleImg articleIcon articleTitle articlePrice "
                            "articleImg articleIcon articleQuantity articleButton "
-                           "articleImg articleIcon articleMeasure articleButton ";
+                           "articleImg articleIcon articleMeasure articleButton "; */
   }
 }
 
@@ -292,10 +293,12 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ATFS */
 
+    /* FRONT PAGE ATF */
+    --featuresGAutoFlow: column;
+    --featureIconMargin: auto .5rem auto auto;
+
     /* COUNTERS */
-    --articleCounterGC: 2/-1;
     --articleCounterGR: auto;
-    --articleBtnFPCounterGC: auto;
 
     --countFlexBasis: 25%;
     --countEvenBorder: none;
@@ -303,13 +306,11 @@ FIN DE MAPA DE CONTENIDOS */
     /* ARTICLES */
     --article2ElementsW: 45%;
     --A2sectionSummaryMB: 0;
-    --frontPageSec1BtnM: 1rem auto auto 20%;
     --aboutUsSec2BtnM: 1rem auto auto 0;
 
 
 
     /* FRONT PAGE ATF */
-    --featuresWidth: 80%;
 
     --frontPageSec1MT: 4rem;
 
@@ -339,11 +340,11 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* ARCHIVE-PRODUCT */
-    --articleContainerGTA: "articleImg articleMeasure articleIcon articleTitle articlePrice articleButton";
+    /* --articleContainerGTA: "articleImg articleMeasure articleIcon articleTitle articlePrice articleButton";
 
     --filterAlquilarGTA: "titleFilterContenedor origen destino"
                          "tipoContenedor paisOrigen paisDestino"
-                         ".              ciudadOrigen ciudadDestino";
+                         ".              ciudadOrigen ciudadDestino"; */
 
   }
 }
@@ -365,9 +366,9 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?FOOTER */
 
-    --archiveMainGTR: ;
-    --archiveMainGTC: 1fr 3fr;
-    --archiveFilter2AutoFlow: row;
+    /* --archiveMainGTR: ; */
+    /* --archiveMainGTC: 1fr 3fr; */
+    /* --archiveFilter2AutoFlow: row; */
   }
 }
 
@@ -378,14 +379,13 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
   :root {
-    --lateral: 3rem;
+    --lateral: 5rem;
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
 
     /* ATFS */
     /* FRONT PAGE ATF */
-    --featuresWidth: 60%;
 
     /* ?FOOTER */
   }
@@ -407,7 +407,6 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ATFS */
     /* FRONT PAGE ATF */
-    --featuresWidth: 50%;
 
 
     /* ?FOOTER */
@@ -447,7 +446,7 @@ FIN DE MAPA DE CONTENIDOS */
   font-family: 'Rambla', sans-serif;
 }
 body{display:grid;}
-.body{background: white!important;}
+.body{background: var(--color5)}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
 ul,ol{list-style:none}
@@ -470,8 +469,14 @@ ul,ol{list-style:none}
 section {
   background-color: white;
 }
+
+
+.sectionGrey {background:var(--color5)}
+.sectionIntenseGrey {background: var(--color6)}
+
 .Accordion{max-height:0;overflow:hidden;}
 .Accordion.active{overflow:unset;}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                               5) =ESTRUCTURA:
@@ -503,7 +508,7 @@ section {
 .brandColorTxt {color: var(--color1)!important}
 
 .sectionPadding {
-  padding: 1rem var(--lateral);
+  padding: 2rem var(--lateral);
 }
 
 /* ---------------------------------------------------------------------------
@@ -539,9 +544,13 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .header {
+  box-shadow: var(--DP4);
   display: var(--onlyDesktopG);
   grid-template-columns: 1fr 1fr;
-  z-index: 2;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 6;
 }
 
 .logo {
@@ -555,16 +564,51 @@ section {
   justify-content: space-between;
   margin: auto var(--lateral);
 }
+.menu-item {
+  color: var(--color4);
+}
+
+.header .menu-item {
+  padding: 8px;
+  position: relative;
+  border-radius: 4px;
+  line-height: 18px;
+}
+
+.header .menu-item::after {
+  content: '';
+  width: 0%;
+  height: 0%;
+  border-radius: 50%;
+  background: white;
+  bottom: 0;
+  left: 40%;
+  transition: .25s;
+  z-index: -1;
+}
+
+.header .menu-item:hover::after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: var(--color1);
+  border-radius: 4px;
+  left:0;
+}
+.header .menu-item:hover {
+  color: white;
+  box-shadow: var(--DP2);
+}
 
 .headerMob .menu-item {
   margin: 1rem 0;
 }
 
 .menu-item a{
-  color: var(--color4);
   font-size: .75rem;
   text-decoration: none;
   text-transform: uppercase;
+  color: inherit;
 }
 
 /* MOBILE HEADER */
@@ -718,43 +762,65 @@ section {
   background: white;
 }
 
-.features{
-  background: var(--color5);
+.features {
+  background: white;
   padding: 1rem;
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
   height: min-content;
   grid-gap: 1rem;
-  width: var(--featuresWidth);
-  margin: auto auto 0 auto;
+  margin: auto var(--lateral) 0 var(--lateral);
   transform: translateY(50%);
 }
 
 .feature {
+  box-shadow: var(--DP1);
   display: flex;
   padding: .5rem;
-  border: solid 1px #0774BA;
+  transition: .25s;
+  border-radius: 4px;
+}
+.feature:hover {
+  box-shadow: var(--DP4);
 }
 
 .featureIcon{
-  height: 2rem;
-  margin: auto .5rem auto auto;
+  height: 3rem;
+  margin: var(--featureIconMargin);
   width: auto;
+  object-fit: contain;
 }
 
 .featureTitle {
-  font-size: .7rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .featureTxt {
-  font-size: .5rem;
+  font-size: .8rem;
+  margin: auto;
 }
 
 
 .FrontPageSec1 {
   padding-top: var(--frontPageSec1MT);
   background: white;
+  margin: 2rem auto auto auto;
+}
+
+.frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
+  display: inline-block;
+}
+
+.frontPageATF .cotizador {
+  border-radius: 4px;
+  box-shadow: var(--DP8);
+  background: var(--color5);
+}
+
+.frontPageATF .coprAlqui  {
+  margin: auto!important;
+  padding: 1rem!important;
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -762,15 +828,124 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.aboutUsCounter {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-row-gap: 2rem;
+.aboutUsCounter .count .countTxt:nth-child(2) {
+  padding: 0 20px;
 }
-.aboutUsCounter .sectionSummary {grid-column: 1/-1}
-.aboutUsCounter .counter {grid-column: 2/ span 4}
-.aboutUsMediaSec {display: grid}
 
+
+/* FULL WIDTH MAP AND IT'S FIXES */
+
+
+
+.fullWidthMapContainer {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  margin: 2rem 0;
+  background: var(--color5);
+
+}
+
+.fullWidthMap {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.fullWidthMapOverlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background: rgba(6, 116, 187, .2);
+}
+
+.fullWidthMapBarOverlay {
+  position: absolute;
+  width: 100%;
+  min-height: 60px;
+  padding: .5rem calc(var(--lateral) / 4 );
+  background: var(--color5);
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mapSecTitle {
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.mapInterTxt {
+  font-size: .7rem;
+  align-self: flex-end;
+}
+
+.mapInterActive {
+  color: var(--color2);
+  cursor: pointer;
+  font-style: italic;
+}
+
+#mapOverlay.activateMap {
+  display: none;
+}
+
+.testimonial.inactive {
+  display: none;
+}
+
+
+/* TESTIMONIALS */
+
+
+
+.testimonialsContainer {
+  display: flex;
+}
+
+.testimonialCarusel {
+  padding: 0 20px;
+}
+
+.testimonialBtn {
+  border: none;
+  height: max-content;
+  border-radius: 50%;
+  padding: 1rem;
+  margin: auto;
+  background: transparent;
+  font-size: 2rem;
+  color: var(--color8);
+}
+
+
+.testimonialTxt {
+  text-align: center;
+}
+
+.testimonialAuthor {
+  color: var(--color7);
+}
+
+.testimonialQuote {
+  color: var(--color8);
+}
+
+.starsContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: .5rem;
+}
+.star {
+  margin: 0 1rem;
+  color: var(--color2);
+}
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
                                 6.4) =socalMedia:
@@ -800,47 +975,12 @@ section {
 
 /* MAPA DE UBICACIONES */
 
-.depotsContainer {
-  display: flex;
-  height: 500px;
-  position: relative;
-}
-
-.depotsMapContainer {
-  height: 80%;
-  width:80%;
-  position: relative;
-  margin: 0 auto auto auto;
-}
-
-.depotsMapBlueBar {
-  position: absolute;
-  width: 100%;
-  height: 54px;
-  background: var(--color1);
-  display: flex;
-}
-.depotsMapBlueBarTitle {
-  margin: auto;
-  text-align: center;
-  color: white;
-}
-
-.depotsMap {
-  width: 100%;
-  height: 100%;
-  border:none;
+.article2 iframe {
+  height: 350px;
   border-radius: 4px;
+  box-shadow: var(--DP4);
+  border: none;
 }
-
-
-.blueSeparator {
-  height: 80%;
-  width: 2px;
-  background: var(--color1);
-  margin: 0 auto auto auto;
-}
-
 
 
 /* ---------------------------------------------------------------------------
@@ -1049,6 +1189,7 @@ section.contacto img{
   grid-area:singleBuy;
   width: 100%;
 }
+
 .btn.singleRent{
   grid-area:singleRent;
   width: 100%;
@@ -1059,8 +1200,84 @@ section.contacto img{
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
+.searchResultsCont {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-radius: 4px;
+  padding: 2rem var(--lateral);
+}
 
-.transaction{
+.containerCard {
+  display: grid;
+  grid-auto-flow: row;
+  box-shadow: var(--DP1);
+  transition: .25s;
+}
+
+.containerCard:hover {
+  box-shadow: var(--DP6);
+}
+
+.cardTitle {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: .5rem;
+}
+
+.cardImgCont {
+  width: 100%;
+  padding: .5rem;
+}
+
+.cardImg {
+  width: 100%;
+  height: auto;
+}
+
+.cardFeaturesCont {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
+.cardFeature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardFeatureTxt {
+  color: #676767;
+  font-size: .5rem;
+}
+
+.cardFeatureSVG {
+  width: 25px;
+  margin-right: 5px;
+}
+
+.cardInfoDiv {
+  width: 100%;
+  background: #676767;
+}
+
+.cardQuant {
+  width: max-content;
+  margin: .5rem;
+}
+
+.cardInteractionCont {
+  display: flex;
+}
+
+.cardInteractionCont .btn {
+  font-size: .6rem;
+  margin: .5rem;
+}
+/* .transaction{
   display: flex;
   margin: 1rem 0;
   justify-content: center;
@@ -1129,34 +1346,34 @@ section.contacto img{
 .paisOrigen{grid-area: paisOrigen}
 .ciudadOrigen{grid-area: ciudadOrigen}
 .paisDestino{grid-area: paisDestino}
-.ciudadDestino{grid-area: ciudadDestino}
+.ciudadDestino{grid-area: ciudadDestino} */
 
-.archiveMain{
+/* .archiveMain{
   display: grid;
   grid-template-rows: var(--archiveMainGTR);
   grid-template-columns: var(--archiveMainGTC);
   grid-gap: 2rem;
   margin: 2rem var(--lateral);
-}
+} */
 
-.archiveFilter2{
+/* .archiveFilter2{
   display: grid;
   grid-gap: 1rem;
   grid-auto-flow: var(--archiveFilter2AutoFlow);
 
-}
+} */
 
-.filter{
+/* .filter{
   position: relative;
-}
+} */
 
-.filterTitle{
+/* .filterTitle{
   border-bottom: solid 1px var(--color4);
   margin-bottom: .5rem;
   color: var(--color1);
-}
+} */
 
-.filter .filterAll{
+/* .filter .filterAll{
   bottom: 0;
   position: absolute;
   transform: translateY(1rem);
@@ -1165,14 +1382,14 @@ section.contacto img{
   flex-direction: column;
   align-items: flex-end;
   font-size: .5rem;
-}
+} */
 
-.archiveResult{
+/* .archiveResult{
   display: grid;
   grid-gap: .5rem;
-}
+} */
 
-.articleContainer{
+/* .articleContainer{
   display: grid;
   grid-gap: .3rem;
   grid-auto-flow: column;
@@ -1182,8 +1399,8 @@ section.contacto img{
   padding: .5rem;
   grid-template-areas: var(--articleContainerGTA);
 
-}
-.articleContainer .articleImg{
+} */
+/* .articleContainer .articleImg{
   height: var(--articleImgHeight);
   width: var(--articleImgwidth);
   grid-area: articleImg;
@@ -1196,10 +1413,10 @@ section.contacto img{
   display: grid;
   height: 100%;
   grid-area: articleIcon;
-}
+} */
 
 
-.articleContainer .articleIcon svg{
+/* .articleContainer .articleIcon svg{
   height: 100%;
   width: 100%;
   border: solid 1px #C4C4C4;
@@ -1230,7 +1447,7 @@ section.contacto img{
 
 .articleContainer .articleButton{grid-area: articleButton}
 
-
+*/
 
 .finalbuttons{
   display: grid;
@@ -1248,7 +1465,7 @@ section.contacto img{
 --------------------------------------------------------------------------- */
 
 .btn {
-  padding: .5rem;
+  padding: .5rem .75rem;
   background: var(--color2);
   text-transform: uppercase;
   display: flex;
@@ -1259,14 +1476,13 @@ section.contacto img{
   font-weight: 700;
   width: max-content;
   height: min-content;
-  border: 1px solid var(--color2);
   margin: auto;
+  border-radius: 4px;
+  box-shadow: var(--DP2);
 }
 
 .btn:hover {
-  color: var(--color2);
-  background: white;
-  border: 1px solid var(--color2);
+  box-shadow: var(--DP8);
 }
 
 .btn.blue{
@@ -1291,12 +1507,11 @@ section.contacto img{
 
 
 .articleCounter .btn {
-  margin: auto;
-  grid-row: var(--articleCounterGR);
-  grid-column: var(--articleBtnFPCounterGC);
+  margin: auto 0 auto auto;
 }
 
-.FrontPageSec1 .btn {margin: var(--frontPageSec1BtnM);}
+.FrontPageSec1 .btn {margin: 1rem auto 0 0;}
+
 .aboutUsSec2 .btn {margin: var(--aboutUsSec2BtnM);}
 
 /* ---------------------------------------------------------------------------
@@ -1325,6 +1540,7 @@ section.contacto img{
   flex-direction: column;
   border-left: 2px solid var(--color1);
   padding-left: 1rem;
+  justify-content: center;
 }
 
 .sectionSummary > *{
@@ -1372,9 +1588,6 @@ section.contacto img{
   grid-column: 1/-1;
 }
 
-.articleCounter .counter {
-  grid-column: var(--articleCounterGC);
-}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1384,17 +1597,18 @@ section.contacto img{
 
 .counter {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .count {
   margin: 1rem auto;
   flex-basis: var(--countFlexBasis);
   min-height: 100%;
-  text-align: var(--txtCenterLeft);
+  text-align: center;
 }
 
 .countTitle {
-  border-left: solid 2px var(--color2);
+  border-right: solid 2px var(--color2);
   padding: .5rem;
 }
 .countHgroup {
@@ -1402,7 +1616,7 @@ section.contacto img{
   padding: 0 .5rem;
 }
 
-.count:nth-child(2n) {border-right: var(--countEvenBorder)}
+.count:nth-child(odd) {border-left: var(--countEvenBorder)}
 
 .countNumber {
   font-size: 2rem;
@@ -1425,6 +1639,19 @@ section.contacto img{
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
+                          6.15) =cotizador:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.cotizador{
+  grid-column:1;
+  grid-row:1;
+  margin:auto var(--lateral);
+  background:white;
+  width:calc(100% - var(--lateral) * 2);
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
                           6.16) =coprAlqui:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
@@ -1432,11 +1659,17 @@ section.contacto img{
   margin:0 var(--lateral);
   padding:1rem 0;
   display:grid;
-  grid-gap:.5rem;
+  grid-gap:1rem;
   grid-template-columns:auto 1fr;
   max-width: 40rem;
   /* grid-auto-rows:2rem; */
 }
+
+.cotizadorTitle, .cotizadorTxt {
+  grid-column: 1/-1;
+  display: none;
+}
+
 .coprAlqui .sladRadio{margin-left:0;}
 
 .coprAlquiLocation{
@@ -1445,6 +1678,7 @@ section.contacto img{
   grid-auto-columns:1fr;
   grid-gap:1rem;
   transition:.3s;
+  grid-column: 2;
 }
 .coprAlquiLocation:nth-child(2){grid-column:2;grid-row:1;}
 .coprAlquiLocation:nth-child(3){grid-column:2;grid-row:2;}
@@ -1561,7 +1795,7 @@ section.contacto img{
 }
 .selectBox:focus .selectBoxCurrent::after,
 .selectBox.alt .selectBoxCurrent::after{
-  background:#F78D15;
+  background:var(--color1);
   transform:scaleX(1);
 }
 .selectBox:focus .selectBoxPlaceholder,
@@ -1590,6 +1824,29 @@ section.contacto img{
   width:100%;
   z-index: 10;
 }
+
+
+
+.selectBoxList::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	background-color: white;
+}
+
+.selectBoxList::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: white;
+}
+
+.selectBoxList::-webkit-scrollbar-thumb
+{
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: var(--color1);
+}
+
 .selectBox:focus .selectBoxList{
   opacity:1;
   top:40px;
