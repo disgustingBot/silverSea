@@ -82,6 +82,9 @@ FIN DE MAPA DE CONTENIDOS */
   --color3:#60859E;
   --color4:#373737;
   --color5:#f1f3f4;
+  --color6:#dae2e5;
+  --color7:#3e4a4f;
+  --color8:#2D3538;
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
   /* --color6:#FFFAE6; */
@@ -443,7 +446,7 @@ FIN DE MAPA DE CONTENIDOS */
   font-family: 'Rambla', sans-serif;
 }
 body{display:grid;}
-.body{background: white!important;}
+.body{background: var(--color5)}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
 ul,ol{list-style:none}
@@ -469,6 +472,7 @@ section {
 
 
 .sectionGrey {background:var(--color5)}
+.sectionIntenseGrey {background: var(--color6)}
 
 .Accordion{max-height:0;overflow:hidden;}
 .Accordion.active{overflow:unset;}
@@ -824,14 +828,9 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.aboutUsCounter {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-row-gap: 2rem;
+.aboutUsCounter .count .countTxt:nth-child(2) {
+  padding: 0 20px;
 }
-.aboutUsCounter .sectionSummary {grid-column: 1/-1}
-.aboutUsCounter .counter {grid-column: 2/ span 4}
-.aboutUsMediaSec {display: grid}
 
 
 /* FULL WIDTH MAP AND IT'S FIXES */
@@ -842,6 +841,9 @@ section {
   width: 100%;
   height: 500px;
   position: relative;
+  margin: 2rem 0;
+  background: var(--color5);
+
 }
 
 .fullWidthMap {
@@ -863,7 +865,7 @@ section {
 .fullWidthMapBarOverlay {
   position: absolute;
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   padding: .5rem calc(var(--lateral) / 4 );
   background: var(--color5);
   top: 0;
@@ -878,6 +880,11 @@ section {
   text-transform: uppercase;
 }
 
+.mapInterTxt {
+  font-size: .7rem;
+  align-self: flex-end;
+}
+
 .mapInterActive {
   color: var(--color2);
   cursor: pointer;
@@ -888,6 +895,57 @@ section {
   display: none;
 }
 
+.testimonial.inactive {
+  display: none;
+}
+
+
+/* TESTIMONIALS */
+
+
+
+.testimonialsContainer {
+  display: flex;
+}
+
+.testimonialCarusel {
+  padding: 0 20px;
+}
+
+.testimonialBtn {
+  border: none;
+  height: max-content;
+  border-radius: 50%;
+  padding: 1rem;
+  margin: auto;
+  background: transparent;
+  font-size: 2rem;
+  color: var(--color8);
+}
+
+
+.testimonialTxt {
+  text-align: center;
+}
+
+.testimonialAuthor {
+  color: var(--color7);
+}
+
+.testimonialQuote {
+  color: var(--color8);
+}
+
+.starsContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: .5rem;
+}
+.star {
+  margin: 0 1rem;
+  color: var(--color2);
+}
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
                                 6.4) =socalMedia:
@@ -1685,6 +1743,29 @@ section.contacto img{
   width:100%;
   z-index: 10;
 }
+
+
+
+.selectBoxList::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	background-color: white;
+}
+
+.selectBoxList::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: white;
+}
+
+.selectBoxList::-webkit-scrollbar-thumb
+{
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: var(--color1);
+}
+
 .selectBox:focus .selectBoxList{
   opacity:1;
   top:40px;
