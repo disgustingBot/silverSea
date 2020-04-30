@@ -906,13 +906,12 @@ section.contacto{
   font-size: 2rem;
 }
 
-section.contacto > *{width: 80%; }
+section.contacto > *{width: 80%; z-index: 1;}
 
 section.contacto img{
   object-fit: cover;
   width: 100%;
   height: 100%;
-  z-index: -1;
   position: absolute;
 }
 .contacto .subtitle{
@@ -1229,7 +1228,9 @@ section.contacto img{
   grid-area: articlePrice;
 }
 
-.articleButton{grid-area: articleButton}
+.articleContainer .articleButton{grid-area: articleButton}
+
+
 
 .finalbuttons{
   display: grid;
@@ -1433,6 +1434,7 @@ section.contacto img{
   display:grid;
   grid-gap:.5rem;
   grid-template-columns:auto 1fr;
+  max-width: 40rem;
   /* grid-auto-rows:2rem; */
 }
 .coprAlqui .sladRadio{margin-left:0;}
@@ -1448,6 +1450,8 @@ section.contacto img{
 .coprAlquiLocation:nth-child(3){grid-column:2;grid-row:2;}
 .coprAlquiLocationTitle{
   margin:auto 0;
+  text-align: right;
+  color: var(--color1);
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1538,7 +1542,7 @@ section.contacto img{
   padding:16px 52px 2px 16px;
   font-size: .8rem!important;
   position: relative;
-  border-bottom:2px solid #666;
+  border-bottom:2px solid var(--color1);
 }
 .selectBoxCurrent::after{
   content:'';
@@ -1612,6 +1616,30 @@ section.contacto img{
   transition: .7s;
 
 }
+
+.containerFilters{
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+  margin: 1rem var(--lateral);
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.containerFilters .labelSelect{
+  font-size: .7rem;
+  display: flex;
+  flex-direction: column;
+  margin: .5rem 1rem;
+}
+
+.containerFilters .labelSelect select{
+  font-size: 1rem;
+  border: none;
+  border-bottom: solid 1px var(--color1);
+}
+
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =footer

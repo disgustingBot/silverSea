@@ -28,6 +28,8 @@ if(isset($_POST['submit'])){
   print_r($allowed);
   echo $fileActualExt."<br >";
 
+  // move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)
+
 
   if(in_array($fileActualExt, $allowed)){
     if($fileError=== 0 ){

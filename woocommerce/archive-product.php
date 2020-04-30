@@ -208,7 +208,36 @@
 
 
 
-
+<div class="containerFilters">
+  <h4>Filtrar Contenedor</h4>
+  <label for="" class="labelSelect">Tamaño
+    <select class="" name="" placeholder="Tamño">
+      <option value=""></option>
+      <option value="">8 PIES</option>
+      <option value="">12 PIES</option>
+      <option value="">20 PIES</option>
+      <option value="">40 PIES</option>
+      <option value="">45 PIES</option>
+    </select>
+  </label>
+  <label for="" class="labelSelect">Tipo
+    <select class="" name="" placeholder="Tamño">
+      <option value=""></option>
+      <option value="">Refeer</option>
+      <option value="">Dry</option>
+      <option value="">Open Top</option>
+      <option value="">Flat Rack</option>
+    </select>
+  </label>
+  <label for="" class="labelSelect">Condicion
+    <select class="" name="" placeholder="Tamño">
+      <option value=""></option>
+      <option value="">Nuevo</option>
+      <option value="">Para almacenaje</option>
+      <option value="">Apto para carga</option>
+    </select>
+  </label>
+</div>
 
 
 
@@ -383,6 +412,12 @@
       </p>
       <button class="btn articleButton" type="button" name="button"><nobr>Agregar al Carrito</nobr></button>
 
+    </article>
+    <article class="materialContainer">
+      <h5 class="articleTitle">
+        <?php echo get_the_title(); ?>
+        <?php echo get_the_excerpt(); ?>
+      </h5>
     </article>
     <?php } ?>
   </div>

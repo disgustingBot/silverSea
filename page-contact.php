@@ -2,7 +2,7 @@
 
 
 <section class="contacto">
-  <img class="rowcol1" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+  <img class="rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
   <hgroup>
     <h1 class="formTitle">Contacta</h1>
     <h4 class="subtitle">
