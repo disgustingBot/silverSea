@@ -338,8 +338,9 @@ function lt_upload_file(){
       if($fileError=== 0 ){
         if ($fileSize < 7000000) {
           $fileNameNew = uniqid('',true).'.'.$fileActualExt;
-          echo $_SERVER['DOCUMENT_ROOT'];
-          $fileDestination = $_SERVER['DOCUMENT_ROOT'].'Silversea/wp-content/themes/silverSea/uploads/'.$fileNameNew;
+          echo $_SERVER['DOCUMENT_ROOT']."<br />";
+          echo "get_template_directory_uri: ".get_template_directory_uri()."/uploads"."<br />";
+          $fileDestination = get_template_directory_uri()."/uploads".$fileNameNew;
           echo $fileDestination;
           move_uploaded_file($fileTmpName,$fileDestination);
           // header("Location:index.php?uploadSucess");
