@@ -1225,12 +1225,12 @@ section.contacto img{
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-  padding: 1rem;
+  padding: .5rem;
 }
 
 .cardImgCont {
   width: 100%;
-  padding: 1rem;
+  padding: .5rem;
 }
 
 .cardImg {
@@ -1265,14 +1265,18 @@ section.contacto img{
   background: #676767;
 }
 
+.cardQuant {
+  width: max-content;
+  margin: .5rem;
+}
+
 .cardInteractionCont {
   display: flex;
-  justify-content: space-around;
-  padding: 1rem 0;
 }
 
 .cardInteractionCont .btn {
   font-size: .6rem;
+  margin: .5rem;
 }
 /* .transaction{
   display: flex;
@@ -1654,7 +1658,7 @@ section.contacto img{
   margin:0 var(--lateral);
   padding:1rem 0;
   display:grid;
-  grid-gap:.5rem;
+  grid-gap:1rem;
   grid-template-columns:auto 1fr;
 }
 
@@ -1671,6 +1675,7 @@ section.contacto img{
   grid-auto-columns:1fr;
   grid-gap:1rem;
   transition:.3s;
+  grid-column: 2;
 }
 .coprAlquiLocation:nth-child(2){grid-column:2;grid-row:1;}
 .coprAlquiLocation:nth-child(3){grid-column:2;grid-row:2;}
