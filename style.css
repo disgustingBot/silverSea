@@ -1261,7 +1261,8 @@ section.contacto img{
 }
 
 .cardInfoDiv {
-  width: 100%;
+  width: 90%;
+  margin: auto;
   background: #676767;
 }
 
@@ -1667,7 +1668,11 @@ section.contacto img{
   display: none;
 }
 
-.coprAlqui .sladRadio{margin-left:0;}
+.coprAlqui .sladRadio{
+  margin-left:0;
+  border-radius: 16px;
+  border: solid 2px var(--color1);
+}
 
 .coprAlquiLocation{
   display: grid;
@@ -1716,6 +1721,7 @@ section.contacto img{
   text-align:center;
   /* width:50%; */
   z-index:5;
+  border-radius: 16px;
 }
 .sladRadioSignal{
   background:var(--color1);
@@ -1726,8 +1732,11 @@ section.contacto img{
   position:absolute;
   transition:.3s;
   width:50%;
+  border-radius: 12px;
 }
-.sladRadioInput:checked + .sladRadioSignal{left:50%}
+.sladRadioInput:checked + .sladRadioSignal {
+  left:50%;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.18) =selectBox:
