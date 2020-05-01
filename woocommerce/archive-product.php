@@ -11,7 +11,7 @@
     <h2><//?php the_title();?></h2>
     <h3><//?php echo get_the_excerpt(); ?></h3>
   </figcaption> -->
-<!-- </figure> --> 
+<!-- </figure> -->
 
 
 
@@ -336,6 +336,13 @@
         <label for="selectAll">Seleccionar todo</label>
       </div>
     </div>
+
+    <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.searchResultsCont');altClassFromSelector('alt','.hideFilter')">
+      <svg width="31" height="56" viewBox="0 0 31 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2L28 28L2 54" stroke="black" stroke-width="4"/>
+      </svg>
+    </button>
+
 
   </div>
 
