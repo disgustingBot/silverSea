@@ -366,9 +366,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?FOOTER */
 
-    /* --archiveMainGTR: ; */
-    /* --archiveMainGTC: 1fr 3fr; */
-    --archiveFilter2AutoFlow: column;
+    --archiveFilter2AutoFlow: row;
   }
 }
 
@@ -1219,6 +1217,11 @@ section.contacto img{
   box-shadow: var(--DP6);
 }
 
+.archiveMain{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
 .cardTitle {
   text-align: center;
   font-size: 1rem;
@@ -1280,6 +1283,7 @@ section.contacto img{
   display: grid;
   grid-auto-flow: column;
   width: min-content;
+  height: min-content;
   margin: .3rem;
   border-bottom:2px solid #666;
   /* border-right :2px solid #666; */
@@ -1315,91 +1319,14 @@ section.contacto img{
   width: auto;
 }
 
-/* .transaction{
-  display: flex;
-  margin: 1rem 0;
-  justify-content: center;
-}
 
-.transaction .btn{
-  width: 8rem;
-}
-
-.archiveFilterComprar{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  margin: 1rem var(--lateral);
-  color: var(--color1);
-}
-.archiveFilterComprar.alt{
-  display: none;
-}
-
-.archiveFilterComprar .labelSelect{
-  font-size: .7rem;
-  display: flex;
-  flex-direction: column;
-  margin: .5rem 1rem;
-}
-
-.archiveFilterComprar .labelSelect select,
-.archiveFilterAlquilar .labelSelect select{
-  font-size: 1rem;
-  border: none;
-  border-bottom: solid 1px var(--color1);
-}
-
-
-
-.archiveFilterAlquilar{
-  display: none;
-  margin: 1rem var(--lateral);
-  grid-template-areas: var(--filterAlquilarGTA);
-   grid-column-gap: var(--FilterAlquilarGCGap);
-   grid-row-gap: .3rem;
-}
-.archiveFilterAlquilar.alt{
-  display: grid;
-}
-
-.archiveFilterAlquilar h3{color: var(--color1)}
-
-.archiveFilterAlquilar .labelSelect{
-  display: grid;
-  grid-auto-flow: column;
-}
-
-.selectContainer{
- grid-row: span 3;
- grid-area: tipoContenedor;
- align-items: center;
- display: flex;
- flex-direction: column;
-}
-.titleFilterContenedor{grid-area: titleFilterContenedor}
-.titleFilterOrigen{grid-area: origen}
-.titleFilterDestino{grid-area: destino}
-.paisOrigen{grid-area: paisOrigen}
-.ciudadOrigen{grid-area: ciudadOrigen}
-.paisDestino{grid-area: paisDestino}
-.ciudadDestino{grid-area: ciudadDestino} */
-
-/* .archiveMain{
-  display: grid;
-  grid-template-rows: var(--archiveMainGTR);
-  grid-template-columns: var(--archiveMainGTC);
-  grid-gap: 2rem;
-  margin: 2rem var(--lateral);
-} */
 
 .archiveFilter2{
   display: grid;
   grid-gap: 1rem;
-  grid-auto-flow: var(--archiveFilter2AutoFlow);
-  margin: 2rem var(--lateral);
-  grid-template-columns: repeat(3,1fr);
+  width: min-content;
+  /* grid-auto-flow: var(--archiveFilter2AutoFlow); */
+  margin: 2rem;
 }
 
 .filter{
@@ -1425,81 +1352,22 @@ section.contacto img{
 
 .filterItem{
   display: grid;
-align-items: center;
-grid-auto-flow: column;
-width: max-content;
-grid-gap: .3rem;
-margin: .3rem;
+  align-items: center;
+  grid-auto-flow: column;
+  width: max-content;
+  grid-gap: .3rem;
+  margin: .5rem;
 }
+
+.filterItem input{width: .75rem;height: .75rem;}
 
 .flatRack,.openTop{
   margin-left: 2rem;
 }
 
-.archiveResult{
-  display: grid;
-  grid-gap: .5rem;
-}
-
-/* .articleContainer{
-  display: grid;
-  grid-gap: .3rem;
-  grid-auto-flow: column;
-  height: min-content;
-  align-items: center;
-  border: solid 2px var(--color1);
-  padding: .5rem;
-  grid-template-areas: var(--articleContainerGTA);
-
-} */
-/* .articleContainer .articleImg{
-  height: var(--articleImgHeight);
-  width: var(--articleImgwidth);
-  grid-area: articleImg;
-  margin: auto;
-}
-
-.articleMeasure{grid-area: articleMeasure;text-align: center;}
-
-.articleContainer .articleIcon{
-  display: grid;
-  height: 100%;
-  grid-area: articleIcon;
-} */
 
 
-/* .articleContainer .articleIcon svg{
-  height: 100%;
-  width: 100%;
-  border: solid 1px #C4C4C4;
-  padding: .3rem;
-  margin: .3rem;
-}
 
-.articleContainer .articleIcon svg:nth-child(1){
-  border-top: none;
-}
-.articleContainer .articleIcon svg:nth-child(2){
-  border-bottom: none;
-}
-
-
-.articleContainer .articleTitle{
-  display: grid;
-  grid-auto-flow: row;
-  grid-gap: .5rem;
-  margin-left: .5rem;
-  grid-area: articleTitle;
-}
-
-.articleContainer .articlePrice{
-  text-align: right;
-  grid-area: articlePrice;
-}
-
-.articleContainer .articleButton{grid-area: articleButton}
-
-*/
 
 .finalbuttons{
   display: grid;
