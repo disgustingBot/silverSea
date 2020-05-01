@@ -665,6 +665,7 @@
             <button class="addToCartQntBtn" onclick="changeQuantity(+1)">+</button>
           </div>
       <button class="btn">AGREGAR AL PEDIDO</button>
+      
       <!-- <button class="btn">DETALLES</button> -->
     </div>
 
