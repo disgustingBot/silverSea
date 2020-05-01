@@ -568,12 +568,32 @@ section {
   color: var(--color4);
 }
 
+.menu-item:nth-child(1)  {
+  box-shadow: var(--DP1);
+  background: var(--color2);
+  transition: .25s;
+}
+
+.header .menu-item:nth-child(1):hover {
+  background: var(--color1);
+}
+
+.header .menu-item:nth-child(1)::after {
+  content: '';
+}
+.header .menu-item:nth-child(1):hover::after {
+  width: 0;
+  height: 0;
+}
+
 .header .menu-item {
   padding: 8px;
   position: relative;
   border-radius: 4px;
   line-height: 18px;
 }
+
+
 
 .header .menu-item::after {
   content: '';
@@ -591,13 +611,13 @@ section {
   width: 100%;
   height: 100%;
   position: absolute;
-  background: var(--color1);
+  background: var(--color1)!important;
   border-radius: 4px;
   left:0;
 }
 .header .menu-item:hover {
   color: white;
-  box-shadow: var(--DP2);
+  box-shadow: var(--DP2)!important;
 }
 
 .headerMob .menu-item {
@@ -755,6 +775,9 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
+.featuresSection {
+  padding-bottom: 0 var(--lateral);
+}
 
 .frontPageATFBg{
   width: 100%;
@@ -764,13 +787,14 @@ section {
 
 .features {
   background: white;
-  padding: 1rem;
+  padding: 1rem var(--lateral);
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
   height: min-content;
   grid-gap: 1rem;
-  margin: auto var(--lateral) 0 var(--lateral);
-  transform: translateY(50%);
+  width: 90%;
+  margin: auto;
+  margin-top: -75px;
 }
 
 .feature {
@@ -805,7 +829,6 @@ section {
 .FrontPageSec1 {
   padding-top: var(--frontPageSec1MT);
   background: white;
-  margin: 2rem auto auto auto;
 }
 
 .frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
