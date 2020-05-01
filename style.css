@@ -1314,6 +1314,7 @@ section.contacto img{
   margin: .5rem;
   width: auto;
 }
+
 /* .transaction{
   display: flex;
   margin: 1rem 0;
@@ -1398,7 +1399,7 @@ section.contacto img{
   grid-gap: 1rem;
   grid-auto-flow: var(--archiveFilter2AutoFlow);
   margin: 2rem var(--lateral);
-
+  grid-template-columns: repeat(3,1fr);
 }
 
 .filter{
@@ -1429,6 +1430,10 @@ grid-auto-flow: column;
 width: max-content;
 grid-gap: .3rem;
 margin: .3rem;
+}
+
+.flatRack,.openTop{
+  margin-left: 2rem;
 }
 
 .archiveResult{
