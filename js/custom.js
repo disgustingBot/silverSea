@@ -88,6 +88,29 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
+
+// quantity selector on the thing
+const changeQuantity = (value) => {
+  let quantity = parseInt(d.querySelector('#addToCartQantity').value);
+  quantity += value;
+  if (quantity<=1) {
+    quantity = 1;
+  }
+  d.querySelector('#addToCartQantity').value       = quantity;
+  d.querySelector('#myAddToCart').dataset.quantity = quantity;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 // SELECT BOX CONTROLER
 const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
   if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
