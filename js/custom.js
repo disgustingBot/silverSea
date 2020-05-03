@@ -97,7 +97,7 @@ const changeQuantity = (value) => {
     quantity = 1;
   }
   d.querySelector('#addToCartQantity').value       = quantity;
-  d.querySelector('#myAddToCart').dataset.quantity = quantity;
+  // d.querySelector('#myAddToCart').dataset.quantity = quantity;
 }
 
 
@@ -219,3 +219,70 @@ const testi=()=>{t++;
 }
 const plusTesti=n=>{showTesti(t+=n)}
 if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// CART CONTROLLER
+cartController = {
+  cart: [1,2],
+  add: (x) => {
+    cartController.cart.unshift(new CartItem(x));
+    var a = d.importNode(d.querySelector("#cartItemTemplate").content, true);
+    d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
+    c.log(cartController.cart)
+  },
+	listUI: (v) => {
+		// Test to see if the browser supports the HTML template element by checking
+		// for the presence of the template element's content attribute.
+		if ('content' in d.createElement('template')) {
+
+			// Instantiate the template
+			// and the nodes you will control
+			var a = d.importNode(d.querySelector("#cartItemTemplate").content, true);
+			// element = a.querySelector(".element"),
+			// eColor  = a.querySelector(".eColor"),
+			// eChild  = a.querySelector(".eChild"),
+			// eTxt    = a.querySelector(".eTxt"),
+			// eNav    = a.querySelector(".eNavigate");
+			// Make your changes
+			// if(v.tck==1){element.classList.add("ticked")}
+			// element.setAttribute('id', 'listElement'+this.ord);
+			// element.setAttribute('tck', this.tck);
+			// element.setAttribute("onclick", "box.selectElement("+this.ord+")");
+			// element.setAttribute("ondblclick", "box.loadElements("+JSON.stringify(v)+")");
+			// eColor.style.background = "var(--clrPty" + this.pty + ")";
+			// eChild.style.color = "var(--clrPty" + this.pty + ")";
+			// eTxt.textContent = v.txt;
+			// eNav.setAttribute("onclick", "box.loadElements("+JSON.stringify(this)+")");
+			// Insert it into the document in the right place
+			d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
+		}
+		else { // Find another way to add the rows to the table because the HTML template element is not supported.
+			c.log("ERROR: your browser does not support required features for the app");
+		}
+	},
+}
+
+class CartItem {
+	constructor(v){
+		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
+		this.values = v;
+		// Esta parte define las propiedades del elemento como vienen del objeto v
+		for(var k in v){Object.defineProperty(this,k,{enumerable: true,value:v[k]})}
+	}
+
+}
