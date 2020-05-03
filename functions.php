@@ -305,6 +305,7 @@ add_action(        'admin_post_lt_upload_file', 'lt_upload_file');
 add_action( 'admin_post_nopriv_lt_upload_file', 'lt_upload_file');
 
 function lt_upload_file(){
+  $link=$_POST['link'];
 
   if(isset($_POST['submit'])){
     $file = $_FILES['file'];
@@ -324,36 +325,44 @@ function lt_upload_file(){
     // console_log($fileSize);
     // console_log($fileError);
     // console_log($fileType);
-    print_r($file);
-    echo $fileName."<br >";
-    echo $fileTmpName."<br >";
-    echo $fileSize."<br >";
-    echo $fileError."<br >";
-    echo $fileType."<br >";
-    print_r($allowed);
-    echo $fileActualExt."<br >";
+    // print_r($file);
+    // echo $fileName."<br >";
+    // echo $fileTmpName."<br >";
+    // echo $fileSize."<br >";
+    // echo $fileError."<br >";
+    // echo $fileType."<br >";
+    // print_r($allowed);
+    // echo $fileActualExt."<br >";
 
 
     if(in_array($fileActualExt, $allowed)){
       if($fileError=== 0 ){
         if ($fileSize < 7000000) {
           $fileNameNew = uniqid('',true).'.'.$fileActualExt;
-          echo $_SERVER['DOCUMENT_ROOT'];
-          $fileDestination = $_SERVER['DOCUMENT_ROOT'].'Silversea/wp-content/themes/silverSea/uploads/'.$fileNameNew;
-          echo $fileDestination;
+          // echo $_SERVER['DOCUMENT_ROOT'];
+          // $fileDestination = $_SERVER['DOCUMENT_ROOT'].'Silversea/wp-content/themes/silverSea/uploads/'.$fileNameNew;
+          $fileDestination = get_template_directory_uri().'/uploads/'.$fileNameNew;
+          $link = add_query_arg( array( 'url'  => get_template_directory_uri().'/uploads/'.$fileNameNew, ), $link );
+          // echo $fileDestination;
           move_uploaded_file($fileTmpName,$fileDestination);
           // header("Location:index.php?uploadSucess");
+          $link = add_query_arg( array( 'status'  => 'success', ), $link );
         }
         else {
-            echo "Your File is too big";
+            // echo "Your File is too big";
+            $link = add_query_arg( array( 'error'  => 'tooBig', ), $link );
         }
       }
       else {
-        echo "Error uploading File";
+        // echo "Error uploading File";
+        $link = add_query_arg( array( 'error'  => 'uploading', ), $link );
       }
     }
     else{
-      echo "You cannot upload Files of this type";
+      // echo "You cannot upload Files of this type";
+      $link = add_query_arg( array( 'error'  => 'wrongType', ), $link );
     }
   }
+  // $link = add_query_arg( array( 'success'  => true, ), $link );
+  wp_redirect($link);
 }
