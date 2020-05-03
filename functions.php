@@ -270,6 +270,58 @@ function lt_new_pass(){
 
 
 
+    function selectBox($placeholder){ ?>
+      <div class="selectBox" tabindex="1" id="selectBox<? $placeholder; ?>">
+        <div class="selectBoxButton">
+          <p class="selectBoxPlaceholder"><?php echo $placeholder; ?></p>
+          <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
+        </div>
+        <div class="selectBoxList">
+          <label for="nulOrigenCity" class="selectBoxOption">
+            <input
+              class="selectBoxInput"
+              id="nulOrigenCity"
+              type="radio"
+              data-slug="0"
+              data-parent="city"
+              name="filter_city"
+              onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
+              value="0"
+            >
+            <!-- <span class="checkmark"></span> -->
+            <p class="colrOptP"></p>
+          </label>
+          <label for="barcelona" class="selectBoxOption">
+            <input
+              class="selectBoxInput"
+              id="barcelona"
+              data-slug="barcelona"
+              data-parent="city"
+              type="radio"
+              name="filter_city"
+              onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+              value="barcelona"
+            >
+            <!-- <span class="checkmark"></span> -->
+            <p class="colrOptP">Barcelona</p>
+          </label>
+          <label for="buenos-aires" class="selectBoxOption">
+            <input
+              class="selectBoxInput"
+              id="buenos-aires"
+              data-slug="buenos-aires"
+              data-parent="city"
+              type="radio"
+              name="filter_city"
+              onclick="selectBoxControler('Buenos Aires', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+              value="Buenos Aires"
+            >
+            <!-- <span class="checkmark"></span> -->
+            <p class="colrOptP">Buenos Aires</p>
+          </label>
+        </div>
+      </div>
+    <?php }
 
 
 

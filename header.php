@@ -9,6 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Rambla:wght@400;700&display=swap" rel="stylesheet">
 
   <?php wp_head(); ?>
+
+  <template id="cartItemTemplate">
+    <?php include get_template_directory().'/dYnamicContList.php' ?>
+
+  </template>
 </head>
 <body class="body" id="body" <?php body_class(); ?>>
 
