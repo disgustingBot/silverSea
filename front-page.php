@@ -5,7 +5,7 @@
 
 
   <div class="cotizador">
-  <?php include get_template_directory().'/copralqui.php' ?>
+  <?php include get_template_directory().'/coprAlqui.php' ?>
   </div>
 </section>
 
