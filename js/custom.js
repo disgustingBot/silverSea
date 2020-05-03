@@ -88,6 +88,29 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
+
+// quantity selector on the thing
+const changeQuantity = (value) => {
+  let quantity = parseInt(d.querySelector('#addToCartQantity').value);
+  quantity += value;
+  if (quantity<=1) {
+    quantity = 1;
+  }
+  d.querySelector('#addToCartQantity').value       = quantity;
+  d.querySelector('#myAddToCart').dataset.quantity = quantity;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 // SELECT BOX CONTROLER
 const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
   if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
@@ -177,3 +200,22 @@ const sumar1 = (x) => {
 counters.forEach((item, i) => {
   sumar1(item);
 });
+
+
+
+// SLIDER TESTIMONIALS
+var t=1,e=d.getElementsByClassName("testimonialCarusel");
+const showTesti=n=>{
+  if(n>e.length){t=1}
+  if(n<1){t=e.length}
+  for(i=0;i<e.length;i++){e[i].classList.add("inactive");}
+  e[t-1].classList.remove("inactive");
+}
+const testi=()=>{t++;
+  for(i=0;i<e.length;i++){e[i].classList.add("inactive");}
+  if(t>e.length){t=1}
+  e[t-1].classList.remove("inactive");
+  setTimeout(testi, 5000); // Change image every N/1000 seconds
+}
+const plusTesti=n=>{showTesti(t+=n)}
+if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
