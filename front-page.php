@@ -41,13 +41,13 @@
 <section class="FrontPageSec1 sectionPadding">
   <article class="article2">
     <hgroup class="sectionSummary">
-      <h2 class="summaryTitle">Silversea <span class="brandColorTxt">en el mundo</span></h2>
+      <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
       <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
       <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
-      <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
     </hgroup>
-    <iframe class="article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
+    <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImg.jpg" alt="">
   </article>
+  <button class="btn"><a href="">LEER MÁS</a></button>
 </section>
 
 <section class="sectionGrey sectionPadding">
@@ -75,16 +75,34 @@
 
 <section class="FrontPageSec1 sectionPadding">
   <article class="article2">
+    <iframe class="article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
     <hgroup class="sectionSummary">
-      <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
+      <h2 class="summaryTitle">Silversea <span class="brandColorTxt">en el mundo</span></h2>
       <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
       <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
+      <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
     </hgroup>
-    <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImg.jpg" alt="">
   </article>
-  <button class="btn"><a href="">LEER MÁS</a></button>
 </section>
 
+
+<section class="sectionPadding aboutUsSec2">
+  <article class="article2 ">
+    <hgroup class="sectionSummary">
+      <h2 class="summaryTitle">Que contenedor<br>Necesito?</h2>
+      <h4 class="summaryTxt brandColorTxt">tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
+      <h4 class="summaryTxt">Con una amplia red de agentes a nivel mundial, nos encargamos del movimiento de sus cargas en distintas modalidades, cualquiera sea su origen o destino.</h4>
+    </hgroup>
+    <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImgSec2.png" alt="">
+  </article>
+  <select class="btn">
+    <option>Seleccionar tipo de contenedor</option>
+    <option>Reefer</option>
+    <option>Dry</option>
+    <option>Open Top</option>
+    <option>Flat Back</option>
+  </select>
+</section>
 
 
 
