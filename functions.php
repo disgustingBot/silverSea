@@ -370,32 +370,23 @@ function lt_upload_file(){
 
     $fileExt= explode('.' , $fileName);
     $fileActualExt = strtolower(end($fileExt));
+    $fileName2 = strtolower(($fileExt[0]));
 
     $allowed = array( 'csv', 'xls', 'xlsx' );
-    // console_log($fileName);
-    // console_log($fileTmpName);
-    // console_log($fileSize);
-    // console_log($fileError);
-    // console_log($fileType);
-    // print_r($file);
-    // echo $fileName."<br >";
-    // echo $fileTmpName."<br >";
-    // echo $fileSize."<br >";
-    // echo $fileError."<br >";
-    // echo $fileType."<br >";
-    // print_r($allowed);
-    // echo $fileActualExt."<br >";
+
 
 
     if(in_array($fileActualExt, $allowed)){
       if($fileError=== 0 ){
         if ($fileSize < 7000000) {
-          $fileNameNew = uniqid('',true).'.'.$fileActualExt;
-          echo $_SERVER['DOCUMENT_ROOT']."<br />";
-          echo "get_template_directory_uri: ".get_template_directory_uri()."/uploads"."<br />";
-          $fileDestination = get_template_directory_uri()."/uploads".$fileNameNew;
-          echo $fileDestination;
-          move_uploaded_file($fileTmpName,$fileDestination);
+          $fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
+          $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
+          if(move_uploaded_file($fileTmpName,$fileDestination)){
+            echo "Your file uploaded correctly";
+          }
+          else{
+            echo "Error inesperado: " . $fileError;
+          }
           // header("Location:index.php?uploadSucess");
           $link = add_query_arg( array( 'status'  => 'success', ), $link );
         }
