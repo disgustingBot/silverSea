@@ -343,12 +343,12 @@
       <ul class="filterList size">
         <li class="filterItem">
           <input type="checkbox" class="css-checkbox">
-          <!-- <?php include $svgPath . 'size.php'; ?> -->
+          <?php include $svgPath . 'highCube.php'; ?>
           <label for="">HIGH CUBE</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <!-- <?php include $svgPath . 'size.php'; ?> -->
+          <?php include $svgPath . 'doubleDoor.php'; ?>
           <label for="">Double Door</label>
         </li>
 
