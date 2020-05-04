@@ -782,7 +782,7 @@ section {
 }
 
 .features {
-  background: white;
+  background: transparent;
   padding: 1rem var(--lateral);
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
@@ -799,6 +799,7 @@ section {
   padding: .5rem;
   transition: .25s;
   border-radius: 4px;
+  background: white;
 }
 .feature:hover {
   box-shadow: var(--DP4);
