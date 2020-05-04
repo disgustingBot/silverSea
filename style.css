@@ -254,7 +254,7 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveMainDisplay: grid;
     --archiveFilterWidth: min-content;
     --archiveFilterPosition: sticky;
-    --archiveFilterTop: 8rem;
+    --archiveFilterTop: 4rem;
     --coprAlquiGTC: auto 1fr;
     --coprAlquiLocationGC: 2;
     --sladRadioMarginLeft: 0;
@@ -1262,7 +1262,7 @@ section.contacto img{
 
 .archiveMain{
   display: var(--archiveMainDisplay);
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: min-content 4fr;
   position: relative;
   transition: .5s;
 }
