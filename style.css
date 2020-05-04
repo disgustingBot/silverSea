@@ -52,6 +52,7 @@ Version: 0.0
 6.16) =coprAlqui:
 6.17) =sladRadio:
 6.18) =selectBox:
+6.19) =dynamicCont:
 6.99) =footer
 FIN DE MAPA DE CONTENIDOS */
 
@@ -777,21 +778,28 @@ section {
   width: 100%;
   height: auto;
   background: white;
+  position:relative;
+  z-index:1;
 }
 
 .features {
-  background: white;
-  padding: 1rem var(--lateral);
+  /* background: white; */
+  /* padding: 1rem var(--lateral); */
+  padding: 1rem 0;
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
   height: min-content;
   grid-gap: 1rem;
-  width: 90%;
-  margin: auto;
+  /* margin: auto; */
+  margin:0 var(--lateral);
   margin-top: -75px;
+  /* width: 90%; */
+  position:relative;
+  z-index:2;
 }
 
 .feature {
+  background: white;
   box-shadow: var(--DP1);
   display: flex;
   padding: .5rem;
@@ -836,8 +844,8 @@ section {
 }
 
 .frontPageATF .coprAlqui  {
-  margin: auto!important;
-  padding: 1rem!important;
+  /* margin: auto!important; */
+  /* padding: 1rem!important; */
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1335,17 +1343,21 @@ a:visited{
 }
 
 .addToCartQntContainer{
+  background:white;
   position:relative;
   display: grid;
-  grid-auto-flow: column;
+  /* grid-auto-flow: column; */
+  grid-template-columns:2rem 2rem 2rem;
   width: min-content;
   height: min-content;
-  margin: .3rem;
+  /* margin: .3rem; */
   border-bottom:2px solid #666;
   /* border-right :2px solid #666; */
 }
 .addToCartQnt{
   margin:.5rem 0;
+  background:inherit;
+  height: 39px;
   /* padding:0 16px; */
   /* border:1px solid var(--color1); */
   border:none;
@@ -1355,10 +1367,13 @@ a:visited{
   pointer-events:none;
 }
 .addToCartQntBtn{
+  background:inherit;
   align-items:center;
   background:none;
   border:none;
   color:black;
+  cursor:pointer;
+  text-align: center;
   display: grid;
   transition:.4s;
   min-width:2rem;
@@ -1496,18 +1511,19 @@ a:visited{
 .btn {
   padding: .5rem .75rem;
   background: var(--color2);
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
   border: none;
-  transition: .25s;
-  font-size: .75rem;
-  font-weight: 700;
-  width: max-content;
-  height: min-content;
-  margin: auto;
   border-radius: 4px;
   box-shadow: var(--DP2);
+  cursor:pointer;
+  display: flex;
+  font-size: .75rem;
+  font-weight: 700;
+  height: min-content;
+  justify-content: center;
+  margin: auto;
+  text-transform: uppercase;
+  transition: .25s;
+  width: max-content;
 }
 
 .btn:hover {
@@ -1675,8 +1691,12 @@ a:visited{
   grid-column:1;
   grid-row:1;
   margin:auto var(--lateral);
+  margin:auto;
   background:white;
   width:calc(100% - var(--lateral) * 2);
+  max-width:40rem;
+  position:relative;
+  z-index:3;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1685,10 +1705,11 @@ a:visited{
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .coprAlqui{
-  margin:0 var(--lateral);
-  padding:1rem 0;
+  /* margin:0 var(--lateral); */
+  padding:1rem;
+  padding-bottom:0;
   display:grid;
-  grid-gap:1rem;
+  grid-gap:.5rem;
   grid-template-columns: var(--coprAlquiGTC);
   max-width: 40rem;
   /* grid-auto-rows:2rem; */
@@ -1912,7 +1933,29 @@ a:visited{
 }
 
 
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.19) =dynamicCont:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.dynamicContList{
+  display:grid;
+  grid-gap:.5rem;
+  padding:.5rem 0;
+}
+.dynamicCont{
+  align-items:center;
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:auto;
+  grid-template-columns:2rem 1fr 1fr 1fr 6rem auto;
+  grid-gap:1rem;
+  padding: 0 1rem;
+}
+.dynamicContLogo{
+  width:2rem;
 
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =footer

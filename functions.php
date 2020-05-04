@@ -270,6 +270,58 @@ function lt_new_pass(){
 
 
 
+    function selectBox($placeholder){ ?>
+      <div class="selectBox" tabindex="1" id="selectBox<? $placeholder; ?>">
+        <div class="selectBoxButton">
+          <p class="selectBoxPlaceholder"><?php echo $placeholder; ?></p>
+          <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
+        </div>
+        <div class="selectBoxList">
+          <label for="nulOrigenCity" class="selectBoxOption">
+            <input
+              class="selectBoxInput"
+              id="nulOrigenCity"
+              type="radio"
+              data-slug="0"
+              data-parent="city"
+              name="filter_city"
+              onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
+              value="0"
+            >
+            <!-- <span class="checkmark"></span> -->
+            <p class="colrOptP"></p>
+          </label>
+          <label for="barcelona" class="selectBoxOption">
+            <input
+              class="selectBoxInput"
+              id="barcelona"
+              data-slug="barcelona"
+              data-parent="city"
+              type="radio"
+              name="filter_city"
+              onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+              value="barcelona"
+            >
+            <!-- <span class="checkmark"></span> -->
+            <p class="colrOptP">Barcelona</p>
+          </label>
+          <label for="buenos-aires" class="selectBoxOption">
+            <input
+              class="selectBoxInput"
+              id="buenos-aires"
+              data-slug="buenos-aires"
+              data-parent="city"
+              type="radio"
+              name="filter_city"
+              onclick="selectBoxControler('Buenos Aires', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+              value="Buenos Aires"
+            >
+            <!-- <span class="checkmark"></span> -->
+            <p class="colrOptP">Buenos Aires</p>
+          </label>
+        </div>
+      </div>
+    <?php }
 
 
 
@@ -305,6 +357,7 @@ add_action(        'admin_post_lt_upload_file', 'lt_upload_file');
 add_action( 'admin_post_nopriv_lt_upload_file', 'lt_upload_file');
 
 function lt_upload_file(){
+  $link=$_POST['link'];
 
   if(isset($_POST['submit'])){
     $file = $_FILES['file'];
@@ -322,6 +375,7 @@ function lt_upload_file(){
     $allowed = array( 'csv', 'xls', 'xlsx' );
 
 
+
     if(in_array($fileActualExt, $allowed)){
       if($fileError=== 0 ){
         if ($fileSize < 7000000) {
@@ -334,17 +388,23 @@ function lt_upload_file(){
             echo "Error inesperado: " . $fileError;
           }
           // header("Location:index.php?uploadSucess");
+          $link = add_query_arg( array( 'status'  => 'success', ), $link );
         }
         else {
-            echo "Your File is too big";
+            // echo "Your File is too big";
+            $link = add_query_arg( array( 'error'  => 'tooBig', ), $link );
         }
       }
       else {
-        echo "Error uploading File: " . $fileError;
+        // echo "Error uploading File";
+        $link = add_query_arg( array( 'error'  => 'uploading', ), $link );
       }
     }
     else{
-      echo "You cannot upload Files of this type";
+      // echo "You cannot upload Files of this type";
+      $link = add_query_arg( array( 'error'  => 'wrongType', ), $link );
     }
   }
+  // $link = add_query_arg( array( 'success'  => true, ), $link );
+  wp_redirect($link);
 }
