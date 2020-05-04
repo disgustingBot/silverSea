@@ -1045,7 +1045,22 @@ section {
   margin-top: 5px;
 }
 
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.6) =uploadForm:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
 
+.uploadForm{
+  display: grid;
+  margin: 4rem auto;
+  height: 35vh;
+  grid-gap: 1rem;
+  background: white;
+  padding: 2rem;
+  box-shadow: var(--DP6);
+  border-radius: 8px;
+}
 
 
 /* ---------------------------------------------------------------------------
@@ -1234,10 +1249,10 @@ section.contacto img{
   padding: 2rem;
   transition: 1s;
 }
-.searchResultsCont.alt{
+/* .searchResultsCont.alt{
   grid-column: 1/ 3;
   grid-row: 1;
-}
+} */
 
 .containerCard {
   display: grid;
@@ -1255,6 +1270,11 @@ section.contacto img{
   display: var(--archiveMainDisplay);
   grid-template-columns: 1fr 4fr;
   position: relative;
+  transition: .5s;
+}
+
+.archiveMain.alt{
+  grid-template-columns: 1px 4fr;
 }
 
 .cardTitle {
@@ -1279,7 +1299,9 @@ a:visited{
 }
 
 .cardFeaturesCont {
-  display: flex;
+  display: grid;
+
+  grid-template-columns: repeat(3,1fr);
   justify-content: space-around;
   padding: 1rem 0;
 }
@@ -1293,6 +1315,8 @@ a:visited{
 .cardFeatureTxt {
   color: #676767;
   font-size: .5rem;
+  grid-column: 3;
+  text-align: center;
 }
 
 .cardFeatureSVG {
@@ -1312,7 +1336,9 @@ a:visited{
 }
 
 .cardInteractionCont {
-  display: flex;
+  display: grid;
+  padding: .3rem;
+  grid-auto-flow: column;
   justify-content: space-evenly;
 }
 
@@ -1329,10 +1355,9 @@ a:visited{
   /* border-right :2px solid #666; */
 }
 .addToCartQnt{
+  margin:.5rem 0;
   background:inherit;
-  /* margin:.5rem 0 .5rem .5rem; */
   height: 39px;
-  /* grid-column:1/-1; */
   /* padding:0 16px; */
   /* border:1px solid var(--color1); */
   border:none;
@@ -1379,11 +1404,13 @@ a:visited{
   /* grid-auto-flow: var(--archiveFilter2AutoFlow); */
   padding: 1rem;
   font-size: .7rem;
-  transition: .5  s;
+  transition: .5s;
+  z-index: 4;
+  /* box-shadow: 28px 1px 30px -28px rgba(0,0,0,0.75); */
 }
 .archiveFilter2.alt{
   /* display: none; */
-  transform: translateX(-95%);
+  transform: translateX(-92%);
   grid-column: 1;
   grid-row: 1;
 }
@@ -1392,15 +1419,30 @@ a:visited{
   position: absolute;
   right: -1.25rem;
   align-self: center;
-  transform: rotate(180deg);
   border: none;
   transition: .5s;
   background: var(--color5);
-  box-shadow: var(--DP6);
+  color: var(--color1);
+  margin: .5rem;
+  padding: .5rem;
+  border-radius: 8px;
+  border-right: solid var(--color1) 2px;
+
 }
-.hideFilter.alt{
+.hideFilter svg{
+  transform: rotate(180deg);
+  transition: .5s;
+}
+.hideFilter.alt svg{
+  transform-origin: center;
   transform: rotate(0deg);
+
 }
+
+.hideFilter:focus{outline: none}
+
+.hideFilter svg{height: 1.7rem}
+
 
 .filter{
   position: relative;
@@ -1409,6 +1451,11 @@ a:visited{
 }
 
 .filterTitle{
+  display: grid;
+  grid-template-columns: min-content;
+  grid-auto-flow: column;
+  grid-gap: .5rem;
+  padding: .3rem;
   border-bottom: solid 1px var(--color4);
   margin-bottom: .5rem;
   color: var(--color1);
@@ -1440,7 +1487,9 @@ a:visited{
   margin-left: 2rem;
 }
 
-
+.filterList.size{
+  margin-left: 1rem;
+}
 
 
 
