@@ -243,7 +243,7 @@
 
 
     <div class="filter">
-      <h3 class="filterTitle">Tipo de Contenedor</h3>
+      <h3 class="filterTitle"><nobr>Tipo de Contenedor</nobr></h3>
       <ul class="filterList">
         <li class="filterItem">
           <input type="checkbox">
@@ -308,26 +308,27 @@
       </div>
     </div>
     <div class="filter">
-      <h3 class="filterTitle">Tamaño</h3>
-      <ul class="filterList">
+
+      <h3 class="filterTitle"><?php include $svgPath . 'size.php'; ?>Tamaño</h3>
+      <ul class="filterList size">
         <li class="filterItem">
           <input type="checkbox" class="css-checkbox">
-          <?php include $svgPath . 'size.php'; ?>
+          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">12 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'size.php'; ?>
+          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">20 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'size.php'; ?>
+          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">40 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'size.php'; ?>
+          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">45 PIES</label>
         </li>
       </ul>
@@ -337,7 +338,7 @@
       </div>
     </div>
 
-    <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.searchResultsCont');altClassFromSelector('alt','.hideFilter')">
+    <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
       <svg width="31" height="56" viewBox="0 0 31 56" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 2L28 28L2 54" stroke="black" stroke-width="4"/>
       </svg>
@@ -369,8 +370,8 @@
           </figure>
           <figure class="cardFeature">
             <?php include $svgPath . 'size.php'; ?>
-            <p class="cardFeatureTxt">5 x 20</p>
           </figure>
+          <p class="cardFeatureTxt">5 x 20</p>
         </div>
         <hr class="cardInfoDiv">
         <div class="cardInteractionCont">
