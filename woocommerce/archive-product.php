@@ -339,7 +339,7 @@
     </div>
     <div class="filter">
 
-      <h3 class="filterTitle">More</h3>
+      <h3 class="filterTitle">Filtros Avanzados</h3>
       <ul class="filterList size">
         <li class="filterItem">
           <input type="checkbox" class="css-checkbox">
@@ -401,7 +401,7 @@
             <button class="addToCartQntBtn" onclick="changeQuantity(-1)">-</button>
             <button class="addToCartQntBtn" onclick="changeQuantity(+1)">+</button>
           </div>
-          <button class="btn">AGREGAR AL PEDIDO</button>
+          <button class="btn">AGREGAR</button>
         </div>
       </article>
     <?php } ?>
