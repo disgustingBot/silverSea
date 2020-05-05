@@ -371,7 +371,9 @@
 
 
   <section class="searchResultsCont">
-    <?php while(have_posts()){the_post(); ?>
+    <?php while(have_posts()){the_post();
+      $categories = get_the_terms( get_the_ID(), 'product_cat' );
+      ?>
       <?php global $product; ?>
       <article class="containerCard">
         <a href="<?php echo get_permalink(); ?>" class="cardTitle">
@@ -382,11 +384,33 @@
         </a>
         <div class="cardFeaturesCont">
           <figure class="cardFeature">
-            <?php include $svgPath . 'dry.php'; ?>
+            <?php
+            if ($categories) {
+              // for each category
+              foreach ($categories as $cat) {
+                // var_dump($cat->slug);
+                $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
+                if ($parent=="type") {
+                  include $svgPath . $cat->slug.'.php';
+                }
+              }
+            }
+            ?>
             <!-- <p class="cardFeatureTxt">Apto para carga /<br>Cargo wothy</p> -->
           </figure>
           <figure class="cardFeature">
-            <?php include $svgPath . 'reefer.php'; ?>
+            <?php
+            if ($categories) {
+              // for each category
+              foreach ($categories as $cat) {
+                // var_dump($cat->slug);
+                $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
+                if ($parent=="condition") {
+                  include $svgPath . $cat->slug.'.php';
+                }
+              }
+            }
+            ?>
             <!-- <p class="cardFeatureTxt">Refrigerado</p> -->
           </figure>
           <figure class="cardFeature">
