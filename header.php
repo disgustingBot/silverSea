@@ -11,7 +11,7 @@
   <?php wp_head(); ?>
 
   <template id="cartItemTemplate">
-    <?php include get_template_directory().'/dYnamicContList.php' ?>
+    <?php include get_template_directory().'/dynamicCont.php' ?>
 
   </template>
 </head>

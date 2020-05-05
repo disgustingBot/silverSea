@@ -7,7 +7,7 @@
   <form class="cotizador">
     <?php include get_template_directory().'/coprAlqui.php' ?>
     <div class="dynamicContList" id="dynamicContList">
-      <?php include get_template_directory().'/dYnamicContList.php' ?>
+      <?php include get_template_directory().'/dynamicCont.php' ?>
     </div>
 
   </form>
