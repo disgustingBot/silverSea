@@ -1407,7 +1407,7 @@ a:visited{
   width: var(--archiveFilterWidth);
   background: var(--color5);
   /* grid-auto-flow: var(--archiveFilter2AutoFlow); */
-  padding: 1rem .5rem;
+  padding: 1rem;
   font-size: .7rem;
   transition: .5s;
   z-index: 2;
