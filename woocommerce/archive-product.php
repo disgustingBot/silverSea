@@ -235,7 +235,7 @@
 
 
 
-<//?php include get_template_directory().'/copralqui.php' ?>
+<?php // include get_template_directory().'/copralqui.php' ?>
 
 <div class="archiveMain">
   <div class="archiveFilter2">
