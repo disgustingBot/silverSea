@@ -20,9 +20,9 @@
 
     <input type="hidden" name="action" value="lt_form_handler">
     <input type="hidden" name="link" value="<?php echo home_url( $wp->request );?>">
-    <input type="text" id="name" name="Nombre" placeholder="Nombre">
-    <input type="text" id="phone" name="Telefono" placeholder="Telefono">
-    <input type="text" id="email" name="Email" placeholder="Email">
+    <input type="text" id="last_name" name="last_name" placeholder="Nombre">
+    <input type="text" id="phone" name="phone" placeholder="Telefono">
+    <input type="text" id="email" name="email" placeholder="Email">
     <input type="text" id="country" name="Pais" placeholder="Pais">
     <textarea type="text" id="comment" name="Comentarios" placeholder="Comentarios"> </textarea>
     <button type="submit" name="a06" class="btn" value="Submit">Enviar</button>
