@@ -4,7 +4,27 @@ require_once 'customPosts.php';
 
 function lattte_setup(){
   wp_enqueue_style('style', get_stylesheet_uri(), NULL, microtime(), 'all');
-  wp_enqueue_script('main', get_theme_file_uri('/js/custom.js'), NULL, microtime(), true);
+  // wp_enqueue_script('main', get_theme_file_uri('/js/custom.js'), NULL, microtime(), true);
+
+      // TOOOODO ESTO ES PARA AJAX
+    	// In most cases it is already included on the page and this line can be removed
+    	wp_enqueue_script('jquery');
+    	// register our main script but do not enqueue it yet
+    	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery') );
+
+    	// now the most interesting part
+    	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
+    	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
+    	wp_localize_script( 'main', 'lt_data', array(
+    		'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
+    	) );
+
+     	wp_enqueue_script( 'main' );
+      // FIN DE PARA AJAX
+
+
+
+
 }
 add_action('wp_enqueue_scripts', 'lattte_setup');
 
@@ -467,3 +487,41 @@ function lt_upload_file(){
   // $link = add_query_arg( array( 'success'  => true, ), $link );
   wp_redirect($link);
 }
+
+
+
+
+
+
+
+// Receive the Request post that came from AJAX
+add_action( 'wp_ajax_ajaxTest', 'ajaxTest' );
+// We allow non-logged in users to access our pagination
+add_action( 'wp_ajax_nopriv_ajaxTest', 'ajaxTest' );
+
+function ajaxTest () { ?>
+
+    <?php
+    $args = array(
+      'post_type'=>$_POST['post_type'],
+      'posts_per_page'=>4,
+    );
+    $blogPosts=new WP_Query($args); ?>
+
+    <h3 class="sliderTitle title">Chupame la pija</h3>
+    <div class="sliderCards">
+      <?php while($blogPosts->have_posts()){$blogPosts->the_post(); ?>
+        <?php global $product; ?>
+
+
+        <figure class="card"  id="card<?php echo get_the_id();?>">
+          <a class="cardImg" href="<?php echo get_permalink(); ?>">
+            <img class="cardImg lazy" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+          </a>
+          <figcaption class="cardCaption">
+            <p class="cardTitle"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></p>
+            <p class="productCardPrice"><a href="<?php echo get_permalink(); ?>"> <?php echo $product->get_price_html(); ?> </a></p>
+          </figcaption>
+        </figure>
+      <?php } ?>
+<?php }

@@ -4,13 +4,14 @@
   <img class="frontPageATFBg rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/ATFExampleImg.jpg" alt="">
 
 
-  <form class="cotizador">
+  <form class="cotizador" id="cotizador">
     <?php include get_template_directory().'/coprAlqui.php' ?>
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
     </div>
 
   </form>
+
 
 
   <div class="features">
@@ -37,6 +38,9 @@
         </figure>
       </div>
 </section>
+
+<div class="btn" onclick="ajaxTest('post')">AJAX</div>
+<div class="btn" onclick="ajaxTest('product')">AJAX</div>
 
 <section class="FrontPageSec1 sectionPadding">
   <article class="article2">

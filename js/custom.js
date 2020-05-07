@@ -14,6 +14,25 @@ w.onload=()=>{
 }
 
 
+
+function postAjaxCall(url,dataNames,dataValues){// return a new promise.
+	return new Promise((resolve,reject)=>{// do the usual XHR stuff
+		var req=new XMLHttpRequest();
+		req.open('post',url);
+		//NOW WE TELL THE SERVER WHAT FORMAT OF POST REQUEST WE ARE MAKING
+		req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		req.onload =()=>{if(req.status>=200&&req.status<300){resolve(req.response)}else{reject(Error(req.statusText));console.log("ERROR")}}
+		req.onerror=()=>{reject(Error("Network Error"))}// handle network errors
+		// prepare the data to be sent
+		let data;
+		for(var i=0;i<dataNames.length;i++){data=data+"&"+dataNames[i]+"="+dataValues[i]}
+		// make the request
+    req.send(data)
+	})
+}
+
+
+
 // SLIDER:
 // TODO: mejorar modulo para poder reutilizarlo sin duplicar codigo
 var j=1;
@@ -284,5 +303,29 @@ class CartItem {
 		// Esta parte define las propiedades del elemento como vienen del objeto v
 		for(var k in v){Object.defineProperty(this,k,{enumerable: true,value:v[k]})}
 	}
+}
 
+
+
+
+
+
+
+
+
+
+const ajaxTest = (x) => {
+  let dataNames = ['action', 'post_type'],
+  dataValues = ['ajaxTest', x];
+
+  postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{
+    try{
+
+			d.querySelector("#cotizador").innerHTML = v;
+      console.log(v);
+    } catch(err) {
+      console.log(err);
+      console.log(v);
+    }
+  })
 }
