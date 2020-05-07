@@ -42,7 +42,7 @@
 
   <header class="headerMob" id="headerMob">
     <?php include('blueBar.php') ?>
-    <div class="upperHeader">
+    <div class="upperHeader" id="cosaTest">
       <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
       <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
         <div class="hamStripe"></div>
@@ -50,14 +50,14 @@
         <div class="hamStripe"></div>
       </div>
     </div>
-    <?php
-      $args = array(
-        'theme_location' => 'navBarMobile',
-        'depth' => 0,
-        'container'	=> false,
-        'fallback_cb' => false,
-        'menu_class' => 'navBarMobile',
-      );
-      wp_nav_menu($args);
-      ?>
   </header>
+  <?php
+  $args = array(
+    'theme_location' => 'navBarMobile',
+    'depth' => 0,
+    'container'	=> false,
+    'fallback_cb' => false,
+    'menu_class' => 'navBarMobile',
+  );
+  wp_nav_menu($args);
+  ?>
