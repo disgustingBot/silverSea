@@ -87,24 +87,36 @@
 
 
 <section class="sectionPadding aboutUsSec2">
-  <article class="article2 ">
+
+
+<?php
+$args=array(
+  'post_type'=>'container',
+);
+$container=new WP_Query($args);
+while($container->have_posts()){$container->the_post(); ?>
+  <article class="article2 containerNeeded" id="card<?php echo get_the_id();?>">
     <hgroup class="sectionSummary">
-      <h2 class="summaryTitle">Que contenedor<br>Necesito?</h2>
-      <h4 class="summaryTxt brandColorTxt">tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
-      <h4 class="summaryTxt">Con una amplia red de agentes a nivel mundial, nos encargamos del movimiento de sus cargas en distintas modalidades, cualquiera sea su origen o destino.</h4>
+      <h2 class="summaryTitle"><?php the_title(); ?></h2>
+      <h4 class="summaryTxt"><?php the_content(); ?></h4>
     </hgroup>
-    <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImgSec2.png" alt="">
-  </article>
-  <select class="btn">
-    <option>Seleccionar tipo de contenedor</option>
-    <option>Reefer</option>
-    <option>Dry</option>
-    <option>Open Top</option>
-    <option>Flat Back</option>
-  </select>
+    <img class="article2Media" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+</article>
+<?php } wp_reset_query(); ?>
+
+<?php
+$args=array(
+  'post_type'=>'container',
+);
+$container=new WP_Query($args);
+?>
+<select name="cont_selector" class="btn" id="contSelector">
+  <?php while($container->have_posts()){$container->the_post(); ?>
+  <option class="contOption" value="" onchange="altClassFromSelector('contVisible', 'card<?php echo get_the_id();?>')"><?php the_title(); ?></option>
+<?php } wp_reset_query(); ?>
+</select>
+
+
+
 </section>
-
-
-
-
 <?php get_footer(); ?>

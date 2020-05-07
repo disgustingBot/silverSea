@@ -1622,7 +1622,6 @@ a:visited{
 .articleAboutUs .playBtn {
   grid-area: media;
   height: auto;
-
 }
 
 
@@ -1640,6 +1639,13 @@ a:visited{
   grid-column: 1/-1;
 }
 
+.containerNeeded {
+  display: none;
+}
+
+.containerNeeded.contVisible {
+  display: flex;
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------

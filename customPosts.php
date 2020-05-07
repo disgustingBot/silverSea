@@ -30,7 +30,7 @@ function lattedev_custom_posts() {
 		'show_in_nav_menus'  => true,
     'show_in_rest'       => true,
 		'query_var'          => true,
-		'rewrite'            => array( 'slug' => 'service' ),
+		'rewrite'            => array( 'slug' => 'container' ),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => true,
@@ -38,7 +38,7 @@ function lattedev_custom_posts() {
 		'menu_position'      => 5,
 		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'page-attributes', 'revisions', 'custom-fields' )
 	);
-	register_post_type( 'service', $args );
+	register_post_type( 'container', $args );
 
 
 

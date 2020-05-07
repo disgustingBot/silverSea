@@ -39,7 +39,6 @@ if (!$user_ID) {
   get_footer();
   }
 
-
 ?>
 
 
