@@ -397,7 +397,7 @@ function lt_upload_file(){
 
               $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
-              /// trunco tabla para cargar la info del file
+              /// truncate table
 
               if ($conn -> query("truncate table $dbName.$fileName2;")) {
                 echo "Se trunco la tabla correctamente.\n" . "<br><br>";
@@ -406,7 +406,7 @@ function lt_upload_file(){
                 echo $conn -> error;
               }
 
-              /// inserto file en tabla
+              /// insert file in table
               $fileRead = "C:/xampp/htdocs/Silversea/wp-content/themes/silverSea/uploads/".$fileNameNew;
 
               if ($conn -> query("LOAD DATA INFILE '" . $fileRead . "'
@@ -425,7 +425,13 @@ function lt_upload_file(){
               if ($conn -> query($sqlDelete)) {
                 $sqlDelete = "delete from $dbName.gastos_adicionales where pais = 'pais';";
                 if ($conn -> query($sqlDelete)) {
-                  $link = add_query_arg( array( 'status'  => 'AllSetAndDone', ), $link );
+                  $sqlDelete = "delete from $dbName.ventas where pais = 'pais';";
+                  if($conn -> query($sqlDelete)){
+                    $sqlDelete = "delete from $dbName.trenes where proveedor = 'empresa';";
+                    if($conn -> query($sqlDelete)){
+                      $link = add_query_arg( array( 'status'  => 'AllSetAndDone', ), $link );
+                    }
+                  }
                 }
                 else {
                   $link = add_query_arg( array( 'status'  => 'errorDeleteGastos' ), $link );
@@ -434,15 +440,10 @@ function lt_upload_file(){
               else {
                 $link = add_query_arg( array( 'status'  => 'errorDeleteContenedores' ), $link );
               }
-
-
-
             }
             else{
               $link = add_query_arg( array( 'status'  => 'errorUploadFile' ), $link );
             }
-            // header("Location:index.php?uploadSucess");
-            // $link = add_query_arg( array( 'status'  => 'success', ), $link );
           }
           else {
             // echo "Your File is too big";
