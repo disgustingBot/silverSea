@@ -1716,7 +1716,6 @@ a:visited{
 .coprAlqui{
   /* margin:0 var(--lateral); */
   padding:1rem;
-  padding-bottom:0;
   display:grid;
   grid-gap:.5rem;
   grid-template-columns: var(--coprAlquiGTC);
