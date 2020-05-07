@@ -235,7 +235,7 @@
 
 
 
-<?php // include get_template_directory().'/copralqui.php' ?>
+<//?php include get_template_directory().'/copralqui.php' ?>
 
 <div class="archiveMain">
   <div class="archiveFilter2">
@@ -405,7 +405,7 @@
               foreach ($categories as $cat) {
                 // var_dump($cat->slug);
                 $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
-                if ($parent=="condition") {
+                if ($parent=="type") {
                   include $svgPath . $cat->slug.'.php';
                 }
               }

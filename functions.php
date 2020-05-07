@@ -372,37 +372,90 @@ function lt_upload_file(){
     $fileActualExt = strtolower(end($fileExt));
     $fileName2 = strtolower(($fileExt[0]));
 
-    $allowed = array( 'csv', 'xls', 'xlsx' );
+    $allowedExt = array( 'csv');
+    $fileNamesAllowed = array('ventas','gastos_adicionales','trenes','contenedores');
+
+
+    if(in_array($fileName2,$fileNamesAllowed)){
+      if(in_array($fileActualExt, $allowedExt)){
+        if($fileError=== 0 ){
+          if ($fileSize < 7000000) {
+            $fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
+            $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
+            if(move_uploaded_file($fileTmpName,$fileDestination)){ //muevo el archivo
+              echo "Your file uploaded correctly" . "<br><br>";
+
+              $dbServerName = "localhost";
+              $dbUsername = "contraseñaDificil";
+              $dbPassword = ";$6qha)2L*KU)6nq";
+              $dbName = "lattedev_silver";
+
+              $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+
+              /// trunco tabla para cargar la info del file
+
+              if ($conn -> query("truncate table $dbName.$fileName2;")) {
+                echo "Se trunco la tabla correctamente.\n" . "<br><br>";
+              }
+              else {
+                echo $conn -> error;
+              }
+
+              /// inserto file en tabla
+              $fileRead = "C:/xampp/htdocs/Silversea/wp-content/themes/silverSea/uploads/".$fileNameNew;
+
+              if ($conn -> query("LOAD DATA INFILE '" . $fileRead . "'
+              INTO TABLE $dbName.$fileName2
+              FIELDS TERMINATED BY ',';")) {
+                echo "Great! filed turned into a table" ."<br /><br />";
+              }
+              else {
+                $link = add_query_arg( array( 'status'  => 'InsertOnTableError' ), $link );
+              }
+
+
+              /// delete the first row with the name of columns
+              $sqlDelete = "delete from $dbName.contenedores where tamaño = 'tamaño';";
+
+              if ($conn -> query($sqlDelete)) {
+                $sqlDelete = "delete from $dbName.gastos_adicionales where pais = 'pais';";
+                if ($conn -> query($sqlDelete)) {
+                  $link = add_query_arg( array( 'status'  => 'AllSetAndDone', ), $link );
+                }
+                else {
+                  $link = add_query_arg( array( 'status'  => 'errorDeleteGastos' ), $link );
+                }
+              }
+              else {
+                $link = add_query_arg( array( 'status'  => 'errorDeleteContenedores' ), $link );
+              }
 
 
 
-    if(in_array($fileActualExt, $allowed)){
-      if($fileError=== 0 ){
-        if ($fileSize < 7000000) {
-          $fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
-          $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
-          if(move_uploaded_file($fileTmpName,$fileDestination)){
-            echo "Your file uploaded correctly";
+            }
+            else{
+              $link = add_query_arg( array( 'status'  => 'errorUploadFile' ), $link );
+            }
+            // header("Location:index.php?uploadSucess");
+            // $link = add_query_arg( array( 'status'  => 'success', ), $link );
           }
-          else{
-            echo "Error inesperado: " . $fileError;
-          }
-          // header("Location:index.php?uploadSucess");
-          $link = add_query_arg( array( 'status'  => 'success', ), $link );
-        }
-        else {
+          else {
             // echo "Your File is too big";
             $link = add_query_arg( array( 'error'  => 'tooBig', ), $link );
+          }
+        }
+        else {
+          // echo "Error uploading File";
+          $link = add_query_arg( array( 'error'  => 'uploading', ), $link );
         }
       }
-      else {
-        // echo "Error uploading File";
-        $link = add_query_arg( array( 'error'  => 'uploading', ), $link );
+      else{
+        // echo "You cannot upload Files of this type";
+        $link = add_query_arg( array( 'error'  => 'wrongType', ), $link );
       }
     }
     else{
-      // echo "You cannot upload Files of this type";
-      $link = add_query_arg( array( 'error'  => 'wrongType', ), $link );
+      $link = add_query_arg( array( 'error'  => 'wrongFileName', ), $link );
     }
   }
   // $link = add_query_arg( array( 'success'  => true, ), $link );
