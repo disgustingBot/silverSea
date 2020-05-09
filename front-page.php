@@ -4,14 +4,14 @@
   <img class="frontPageATFBg rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/ATFExampleImg.jpg" alt="">
 
 
-  <form class="cotizador" id="cotizador">
+  <div class="cotizador" id="cotizador">
     <?php include get_template_directory().'/coprAlqui.php' ?>
 
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
     </div>
 
-  </form>
+  </div>
 
 
 
