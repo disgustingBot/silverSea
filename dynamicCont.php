@@ -18,5 +18,5 @@
     <div class="addToCartQntBtn" onclick="changeQuantity(+1)">+</div>
   </div>
 
-  <div class="btn" onclick="cartController.add('holas')">AGREGAR</div>
+  <button class="btn" onclick="cartController.add('holas')">AGREGAR</button>
 </div>
