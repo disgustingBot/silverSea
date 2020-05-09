@@ -1,4 +1,9 @@
 d=document;w=window;c=console;
+// color console
+c.lof = (message, farbe = false)=>{
+	if(farbe){c.log("%c" + message, "color:" + farbe);}
+	else{c.log(message)}
+};
 
 
 w.onload=()=>{
@@ -11,7 +16,9 @@ w.onload=()=>{
   }
 
   cartController.getCol('Size');
-  d.getElementById("load").style.top="-100vh";
+  if (d.getElementById("load")) {
+    d.getElementById("load").style.top="-100vh";
+  }
 }
 
 
@@ -265,7 +272,14 @@ cartController = {
     cartController.cart.unshift(new CartItem(x));
     var a = d.importNode(d.querySelector("#cartItemTemplate").content, true);
     d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
-    c.log(cartController.cart)
+    console.log(cartController.cart)
+  },
+  ready:(ready = true)=>{
+    if (ready) {
+      d.querySelector('#dynamicCont1').classList.add('ready')
+    } else {
+      d.querySelector('#dynamicCont1').classList.remove('ready')
+    }
   },
 
   selectBoxOption:(key, value = '')=>{
@@ -314,18 +328,21 @@ cartController = {
     // PRIMERO VACIAR EL/LOS SELECT
     cartController.selectBoxWipe('Tipo');
     cartController.selectBoxWipe('Condicion');
+    cartController.ready(false);
     cartController.currentSemiSelection.size = value;
     cartController.getCol('tipo', value);
   },
   tipoController: (value)=>{
     // PRIMERO VACIAR EL SELECT
     cartController.selectBoxWipe('Condicion');
+    cartController.ready(false);
     cartController.currentSemiSelection.tipo = value;
     cartController.getCol('condicion', cartController.currentSemiSelection.size, value);
   },
   condicionController: (value)=>{
     // PRIMERO VACIAR EL SELECT
     cartController.currentSemiSelection.condicion = value;
+    cartController.ready();
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
 
@@ -346,6 +363,7 @@ cartController = {
         // d.querySelector('#cotizador').innerHTML = v;
         //borrar el nul
         if (JSON.parse(v).length == 1) {
+          console.log()
           let nombre = col[0].toUpperCase() + col.slice(1);
           cartController.selectBoxWipe(nombre, true);
           // TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
@@ -366,7 +384,7 @@ cartController = {
               functionExecute = 'cartController.tipoController("'+value+'")';
             }
             if(tipo){
-              functionExecute = 'console.log("EL NENE ESTA BIEN")';
+              functionExecute = 'cartController.condicionController("'+value+'")';
             }
             input.setAttribute("onchange", functionExecute);
 
@@ -381,15 +399,12 @@ cartController = {
               console.log(current.innerHTML = value);
 
               selectBox.classList.add('alt');
-              current.innerHTML = value;
+              current.innerText = value;
 
 
               if(size){
                 cartController.tipoController(value);
               }
-
-
-
             }
             // Insert it into the document in the right place
             d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
@@ -402,11 +417,10 @@ cartController = {
       }
     })
   },
-
-
-
-
 }
+
+
+
 
 class CartItem {
 	constructor(v){
