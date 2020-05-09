@@ -377,7 +377,24 @@
       <?php global $product; ?>
       <article class="containerCard">
         <a href="<?php echo get_permalink(); ?>" class="cardTitle">
-          <?php echo get_the_excerpt(); ?> , <?php echo get_the_title(); ?>
+          <?php
+          if ($categories) {
+            // for each category
+            foreach ($categories as $cat) {
+              // var_dump($cat->slug);
+              $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
+              if ($parent=="size") {
+                echo  $cat->slug.', ';
+              }
+              if ($parent=="condition") {
+                echo  $cat->slug;
+              }
+              if ($parent=="type") {
+                echo  $cat->slug . ', ';
+              }
+            }
+          }
+          ?>
         </a>
         <a class="cardImgCont sectionGrey" href="<?php echo get_permalink(); ?>">
           <img class="cardImg lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
