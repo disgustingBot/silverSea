@@ -4,6 +4,7 @@
 
 <?php while(have_posts()){the_post(); ?>
   <?php global $woocommerce, $product, $post; ?>
+  <?php $categories = get_the_terms( get_the_ID(), 'product_cat' ); ?>
 
   <!-- <?php include('../titleBaner.php'); ?> -->
 
@@ -119,6 +120,24 @@
     </figure>
     <button class="btn singleBuy" type="button" name="button">Comprar</button>
     <button class="btn blue singleRent " type="button" name="button">Alquilar</button>
+  </section>
+
+  <section class="categoryDescriptions">
+    <?php
+    if ($categories) {
+      $parent = array();
+      foreach ($categories as $cat) {
+        $parent[] = get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
+
+      }
+      foreach ($parent as $clave => $valor ) {
+        if($valor != 'size'){
+          echo $categories->description ;
+
+        }
+      }
+    }
+    ?>
   </section>
 
 
