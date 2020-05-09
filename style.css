@@ -1355,6 +1355,7 @@ a:visited{
   display: grid;
   grid-auto-flow: column;
   width: min-content;
+  margin: auto;
   /* height: min-content; */
   /* margin: .5rem; */
   border-bottom:2px solid #666;
