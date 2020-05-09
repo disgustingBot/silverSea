@@ -12,14 +12,44 @@
 
   <template id="cartItemTemplate">
     <?php include get_template_directory().'/dynamicCont.php' ?>
-
   </template>
+
+
+  <!-- data-slug="barcelona" -->
+  <!-- data-parent="city" -->
+  <!-- onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')" -->
+
+  <template id="selectBoxOptionTemplate">
+    <label for="" class="selectBoxOption">
+      <input class="selectBoxInput" id="" type="radio" name="" value="">
+      <!-- <span class="checkmark"></span> -->
+      <p class="selectBoxOptionLabel"></p>
+    </label>
+  </template>
+
+  <template>
+    <label for="nul<?php echo $placeholder; ?>" class="selectBoxOption" id="selectBoxOptionNul">
+      <input
+        class="selectBoxInput"
+        id="nul<?php echo $placeholder; ?>"
+        type="radio"
+        name="filter_city"
+        onclick="selectBoxControler('','#selectBox<?php echo $placeholder; ?>','#selectBoxCurrent<?php echo $placeholder; ?>')"
+        value="0"
+        checked
+      >
+      <!-- <span class="checkmark"></span> -->
+      <p class="colrOptP"></p>
+    </label>
+  </template>
+
+
 </head>
 <body class="body" id="body" <?php body_class(); ?>>
 
-	<view id="load" class="load">
+	<!-- <view id="load" class="load">
 			<div class="circle"></div>
-	</view>
+	</view> -->
 
   <?php include('blueBar.php') ?>
   <header class="header" id="header">

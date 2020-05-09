@@ -10,6 +10,7 @@ w.onload=()=>{
     lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
   }
 
+  cartController.getCol('Size');
   d.getElementById("load").style.top="-100vh";
 }
 
@@ -136,9 +137,11 @@ const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
   else   {d.querySelector(selectBoxId).classList.remove('alt')}
 
   d.querySelector(current).innerHTML=a;
+  d.querySelector(selectBoxId).classList.remove('focus')
   d.activeElement.blur();
 }
 
+// ACCORDION SELECTOR CONTROLLER
 const accordionSelector = (selector) => {
 	var acc = d.querySelectorAll(selector);
 
@@ -253,10 +256,11 @@ if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
 
 
 
-
+// console.log('hola mundo')
 
 // CART CONTROLLER
 cartController = {
+  currentSemiSelection: {size: false, tipo: false, condicion: false,},
   cart: [1,2],
   add: (x) => {
     cartController.cart.unshift(new CartItem(x));
@@ -264,36 +268,133 @@ cartController = {
     d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
     c.log(cartController.cart)
   },
-	listUI: (v) => {
-		// Test to see if the browser supports the HTML template element by checking
-		// for the presence of the template element's content attribute.
-		if ('content' in d.createElement('template')) {
+  selectBoxOption:(key, value)=>{
 
-			// Instantiate the template
-			// and the nodes you will control
-			var a = d.importNode(d.querySelector("#cartItemTemplate").content, true);
-			// element = a.querySelector(".element"),
-			// eColor  = a.querySelector(".eColor"),
-			// eChild  = a.querySelector(".eChild"),
-			// eTxt    = a.querySelector(".eTxt"),
-			// eNav    = a.querySelector(".eNavigate");
-			// Make your changes
-			// if(v.tck==1){element.classList.add("ticked")}
-			// element.setAttribute('id', 'listElement'+this.ord);
-			// element.setAttribute('tck', this.tck);
-			// element.setAttribute("onclick", "box.selectElement("+this.ord+")");
-			// element.setAttribute("ondblclick", "box.loadElements("+JSON.stringify(v)+")");
-			// eColor.style.background = "var(--clrPty" + this.pty + ")";
-			// eChild.style.color = "var(--clrPty" + this.pty + ")";
-			// eTxt.textContent = v.txt;
-			// eNav.setAttribute("onclick", "box.loadElements("+JSON.stringify(this)+")");
-			// Insert it into the document in the right place
-			d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
-		}
-		else { // Find another way to add the rows to the table because the HTML template element is not supported.
-			c.log("ERROR: your browser does not support required features for the app");
-		}
-	},
+    let a  = d.importNode(d.querySelector("#selectBoxOptionTemplate").content, true),
+    option = a.querySelector(".selectBoxOption"),
+    label  = a.querySelector(".selectBoxOptionLabel"),
+    input  = a.querySelector(".selectBoxInput");
+    // eTxt    = a.querySelector(".eTxt"),
+    // eNav    = a.querySelector(".eNavigate");
+    // Make your changes
+    // if(v.tck==1){element.classList.add("ticked")}
+    option.setAttribute('for', key+value);
+    label.textContent = value;
+    input.setAttribute ('id' , key+value);
+    input.setAttribute('name', key);
+    input.setAttribute('value', value);
+    input.setAttribute("onclick", 'selectBoxControler("'+value+'", "#selectBox'+key+'", "#selectBoxCurrent'+key+'")');
+
+    functionExecute = 'cartController.sizeController("'+value+'")';
+    // if(size){
+    //   functionExecute = 'cartController.tipoController("'+value+'")';
+    //   // console.log(functionExecute);
+    // }
+    // if(tipo){
+    //   functionExecute = 'console.log("EL NENE ESTA BIEN")';
+    // }
+    // let functionExecute = 'cartController.sizeController("Tipo", '+value+')';
+
+    input.setAttribute("onchange", functionExecute);
+    return a;
+  },
+  selectBoxWipe:(nombre, comptleteWipe = false)=>{
+    let nul  = d.querySelector('#selectBox'+nombre+' #selectBoxOptionNul'),
+        list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    if(!comptleteWipe){
+      list.appendChild(nul);
+    }
+  },
+
+  sizeController: (value)=>{
+    // var matched = d.querySelector('#selectBoxTipo #selectBoxOptionNul'); //the matched node if found
+    cartController.selectBoxWipe('Tipo');
+    cartController.selectBoxWipe('Condicion');
+    // while (list.firstChild) {
+        // list.removeChild(list.firstChild);
+    // }
+    // list.appendChild(matched);
+
+    // console.log(d.querySelector('#selectBoxTipo #selectBoxOptionNul'));
+    // console.log(d.querySelector('#selectBoxTipo .selectBoxList'));
+    // PRIMERO VACIAR EL SELECT
+    cartController.currentSemiSelection.size = value;
+    cartController.getCol('tipo', value);
+  },
+  tipoController: (value)=>{
+    // var matched = d.querySelector('#selectBoxTipo #selectBoxOptionNul'); //the matched node if found
+    cartController.selectBoxWipe('Condicion');
+    // while (list.firstChild) {
+        // list.removeChild(list.firstChild);
+    // }
+    // list.appendChild(matched);
+    // PRIMERO VACIAR EL SELECT
+    cartController.currentSemiSelection.tipo = value;
+    cartController.getCol('condicion', cartController.currentSemiSelection.size, value);
+  },
+  condicionController: (value)=>{
+    // PRIMERO VACIAR EL SELECT
+    cartController.currentSemiSelection.condicion = value;
+    // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
+  },
+
+  getCol: (col, size = false, tipo = false) => {
+    let dataNames = ['action', 'col'],
+    dataValues = ['gatCol', col];
+    if(size){
+      dataNames.push('size');
+      dataValues.push(size);
+    }
+    if(tipo){
+      dataNames.push('tipo');
+      dataValues.push(tipo);
+    }
+    // console.log(dataNames);
+    // console.log(dataValues);
+
+    postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
+      try{
+        // d.querySelector('#cotizador').innerHTML = v;
+        //borrar el nul
+        if (JSON.parse(v).length == 1) {
+          console.log(JSON.parse(v).length);
+          console.log('borrar el nul!!!');
+          cartController.selectBoxWipe(col);
+        }
+
+
+        JSON.parse(v).forEach(e=>{
+          for(var key in e) {
+            var value = e[key],
+            key = key[0].toUpperCase() + key.slice(1);
+            // console.log(key);
+            // console.log('#selectBox'+key+' .selectBoxList');
+            let a = cartController.selectBoxOption(key,value);
+            // console.log(size);
+            // element.setAttribute("ondblclick", "box.loadElements("+JSON.stringify(v)+")");
+            // eColor.style.background = "var(--clrPty" + this.pty + ")";
+            // eChild.style.color = "var(--clrPty" + this.pty + ")";
+            // eTxt.textContent = v.txt;
+            // eNav.setAttribute("onclick", "box.loadElements("+JSON.stringify(this)+")");
+            // Insert it into the document in the right place
+            // c.log(d.querySelector('#selectBox'+x+' .selectBoxList'));
+            d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
+
+          }
+        }); // aqui mete todos los elementos en el vector list
+      } catch(err) {
+        console.log(err);
+        console.log(v);
+      }
+    })
+  },
+
+
+
+
 }
 
 class CartItem {
@@ -303,29 +404,4 @@ class CartItem {
 		// Esta parte define las propiedades del elemento como vienen del objeto v
 		for(var k in v){Object.defineProperty(this,k,{enumerable: true,value:v[k]})}
 	}
-}
-
-
-
-
-
-
-
-
-
-
-const ajaxTest = (x) => {
-  let dataNames = ['action', 'post_type'],
-  dataValues = ['ajaxTest', x];
-
-  postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{
-    try{
-
-			d.querySelector("#cotizador").innerHTML = v;
-      console.log(v);
-    } catch(err) {
-      console.log(err);
-      console.log(v);
-    }
-  })
 }
