@@ -1704,11 +1704,13 @@ a:visited{
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .cotizador{
+  background:white;
   grid-column:1;
   grid-row:1;
   margin:auto var(--lateral);
-  background:white;
+  position: relative;
   width:calc(100% - var(--lateral) * 2);
+  z-index: 2;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1954,6 +1956,8 @@ a:visited{
   grid-gap:.5rem;
   padding:.5rem 0;
 }
+.dynamicCont .btn{background:#ddd}
+.dynamicCont.ready .btn{background:var(--color2)}
 .dynamicCont{
   align-items:center;
   display:grid;

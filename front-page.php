@@ -40,9 +40,6 @@
       </div>
 </section>
 
-<div class="btn" onclick="ajaxTest('post')">AJAX</div>
-<div class="btn" onclick="ajaxTest('product')">AJAX</div>
-
 <section class="FrontPageSec1 sectionPadding">
   <article class="article2">
     <hgroup class="sectionSummary">
