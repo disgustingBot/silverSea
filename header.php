@@ -15,31 +15,11 @@
   </template>
 
 
-  <!-- data-slug="barcelona" -->
-  <!-- data-parent="city" -->
-  <!-- onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')" -->
-
   <template id="selectBoxOptionTemplate">
     <label for="" class="selectBoxOption">
       <input class="selectBoxInput" id="" type="radio" name="" value="">
       <!-- <span class="checkmark"></span> -->
       <p class="selectBoxOptionLabel"></p>
-    </label>
-  </template>
-
-  <template>
-    <label for="nul<?php echo $placeholder; ?>" class="selectBoxOption" id="selectBoxOptionNul">
-      <input
-        class="selectBoxInput"
-        id="nul<?php echo $placeholder; ?>"
-        type="radio"
-        name="filter_city"
-        onclick="selectBoxControler('','#selectBox<?php echo $placeholder; ?>','#selectBoxCurrent<?php echo $placeholder; ?>')"
-        value="0"
-        checked
-      >
-      <!-- <span class="checkmark"></span> -->
-      <p class="colrOptP"></p>
     </label>
   </template>
 

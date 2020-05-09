@@ -7,7 +7,6 @@
   <form class="cotizador" id="cotizador">
     <?php include get_template_directory().'/coprAlqui.php' ?>
 
-    <div class="btn" onclick="cartController.getCol('Tipo', 2)">TESTEAR!!!</div>
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
     </div>

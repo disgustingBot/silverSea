@@ -256,7 +256,6 @@ if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
 
 
 
-// console.log('hola mundo')
 
 // CART CONTROLLER
 cartController = {
@@ -268,70 +267,59 @@ cartController = {
     d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
     c.log(cartController.cart)
   },
-  selectBoxOption:(key, value)=>{
+
+  selectBoxOption:(key, value = '')=>{
 
     let a  = d.importNode(d.querySelector("#selectBoxOptionTemplate").content, true),
     option = a.querySelector(".selectBoxOption"),
-    label  = a.querySelector(".selectBoxOptionLabel"),
-    input  = a.querySelector(".selectBoxInput");
-    // eTxt    = a.querySelector(".eTxt"),
-    // eNav    = a.querySelector(".eNavigate");
+    input  = a.querySelector(".selectBoxInput"),
+    label  = a.querySelector(".selectBoxOptionLabel");
     // Make your changes
     // if(v.tck==1){element.classList.add("ticked")}
-    option.setAttribute('for', key+value);
+    if(value == 'nul'){
+      option.setAttribute('for', 'nul'+key);
+      input.setAttribute ('id' , 'nul'+key);
+      input.setAttribute('value', 0);
+    } else {
+      option.setAttribute('for', key+value);
+      input.setAttribute ('id' , key+value);
+      input.setAttribute('value', value);
+    }
     label.textContent = value;
-    input.setAttribute ('id' , key+value);
     input.setAttribute('name', key);
-    input.setAttribute('value', value);
     input.setAttribute("onclick", 'selectBoxControler("'+value+'", "#selectBox'+key+'", "#selectBoxCurrent'+key+'")');
 
-    functionExecute = 'cartController.sizeController("'+value+'")';
-    // if(size){
-    //   functionExecute = 'cartController.tipoController("'+value+'")';
-    //   // console.log(functionExecute);
-    // }
-    // if(tipo){
-    //   functionExecute = 'console.log("EL NENE ESTA BIEN")';
-    // }
-    // let functionExecute = 'cartController.sizeController("Tipo", '+value+')';
-
-    input.setAttribute("onchange", functionExecute);
     return a;
   },
+
   selectBoxWipe:(nombre, comptleteWipe = false)=>{
-    let nul  = d.querySelector('#selectBox'+nombre+' #selectBoxOptionNul'),
-        list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
-    while (list.firstChild) {
+    selectBox = d.querySelector('#selectBox'+nombre);
+    list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
+    current = d.querySelector('#selectBox'+nombre+' #selectBoxCurrent'+nombre);
+
+    selectBox.classList.remove('alt');
+    current.innerHTML = '';
+    // TODO: falta quitar la seleccion actual
+    if (list.firstChild) {
+      while (list.firstChild) {
         list.removeChild(list.firstChild);
+      }
     }
     if(!comptleteWipe){
-      list.appendChild(nul);
+      list.appendChild(cartController.selectBoxOption(nombre));
     }
   },
 
   sizeController: (value)=>{
-    // var matched = d.querySelector('#selectBoxTipo #selectBoxOptionNul'); //the matched node if found
+    // PRIMERO VACIAR EL/LOS SELECT
     cartController.selectBoxWipe('Tipo');
     cartController.selectBoxWipe('Condicion');
-    // while (list.firstChild) {
-        // list.removeChild(list.firstChild);
-    // }
-    // list.appendChild(matched);
-
-    // console.log(d.querySelector('#selectBoxTipo #selectBoxOptionNul'));
-    // console.log(d.querySelector('#selectBoxTipo .selectBoxList'));
-    // PRIMERO VACIAR EL SELECT
     cartController.currentSemiSelection.size = value;
     cartController.getCol('tipo', value);
   },
   tipoController: (value)=>{
-    // var matched = d.querySelector('#selectBoxTipo #selectBoxOptionNul'); //the matched node if found
-    cartController.selectBoxWipe('Condicion');
-    // while (list.firstChild) {
-        // list.removeChild(list.firstChild);
-    // }
-    // list.appendChild(matched);
     // PRIMERO VACIAR EL SELECT
+    cartController.selectBoxWipe('Condicion');
     cartController.currentSemiSelection.tipo = value;
     cartController.getCol('condicion', cartController.currentSemiSelection.size, value);
   },
@@ -352,17 +340,15 @@ cartController = {
       dataNames.push('tipo');
       dataValues.push(tipo);
     }
-    // console.log(dataNames);
-    // console.log(dataValues);
 
     postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
       try{
         // d.querySelector('#cotizador').innerHTML = v;
         //borrar el nul
         if (JSON.parse(v).length == 1) {
-          console.log(JSON.parse(v).length);
-          console.log('borrar el nul!!!');
-          cartController.selectBoxWipe(col);
+          let nombre = col[0].toUpperCase() + col.slice(1);
+          cartController.selectBoxWipe(nombre, true);
+          // TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
         }
 
 
@@ -372,15 +358,40 @@ cartController = {
             key = key[0].toUpperCase() + key.slice(1);
             // console.log(key);
             // console.log('#selectBox'+key+' .selectBoxList');
-            let a = cartController.selectBoxOption(key,value);
-            // console.log(size);
-            // element.setAttribute("ondblclick", "box.loadElements("+JSON.stringify(v)+")");
-            // eColor.style.background = "var(--clrPty" + this.pty + ")";
-            // eChild.style.color = "var(--clrPty" + this.pty + ")";
-            // eTxt.textContent = v.txt;
-            // eNav.setAttribute("onclick", "box.loadElements("+JSON.stringify(this)+")");
+            let a = cartController.selectBoxOption(key,value),
+                input = a.querySelector(".selectBoxInput");
+
+            functionExecute = 'cartController.sizeController("'+value+'")';
+            if(size){
+              functionExecute = 'cartController.tipoController("'+value+'")';
+            }
+            if(tipo){
+              functionExecute = 'console.log("EL NENE ESTA BIEN")';
+            }
+            input.setAttribute("onchange", functionExecute);
+
+
+            if (JSON.parse(v).length == 1) {
+              // TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
+              input.setAttribute("checked", true);
+              selectBox = d.querySelector('#selectBox'+key);
+              current = d.querySelector('#selectBox'+key+' #selectBoxCurrent'+key);
+              console.log(current);
+              console.log(value);
+              console.log(current.innerHTML = value);
+
+              selectBox.classList.add('alt');
+              current.innerHTML = value;
+
+
+              if(size){
+                cartController.tipoController(value);
+              }
+
+
+
+            }
             // Insert it into the document in the right place
-            // c.log(d.querySelector('#selectBox'+x+' .selectBoxList'));
             d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
 
           }
