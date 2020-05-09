@@ -289,55 +289,28 @@ function lt_new_pass(){
 
 
 
+// data-slug="0"
+// data-parent="city"
 
     function selectBox($placeholder){ ?>
-      <div class="selectBox" tabindex="1" id="selectBox<? $placeholder; ?>">
-        <div class="selectBoxButton">
+      <div class="selectBox" tabindex="1" id="selectBox<?php echo $placeholder; ?>">
+        <div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $placeholder; ?>')">
           <p class="selectBoxPlaceholder"><?php echo $placeholder; ?></p>
-          <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
+          <p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $placeholder; ?>"></p>
         </div>
         <div class="selectBoxList">
-          <label for="nulOrigenCity" class="selectBoxOption">
+          <label for="nul<?php echo $placeholder; ?>" class="selectBoxOption" id="selectBoxOptionNul">
             <input
               class="selectBoxInput"
-              id="nulOrigenCity"
+              id="nul<?php echo $placeholder; ?>"
               type="radio"
-              data-slug="0"
-              data-parent="city"
               name="filter_city"
-              onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
+              onclick="selectBoxControler('','#selectBox<?php echo $placeholder; ?>','#selectBoxCurrent<?php echo $placeholder; ?>')"
               value="0"
+              checked
             >
             <!-- <span class="checkmark"></span> -->
             <p class="colrOptP"></p>
-          </label>
-          <label for="barcelona" class="selectBoxOption">
-            <input
-              class="selectBoxInput"
-              id="barcelona"
-              data-slug="barcelona"
-              data-parent="city"
-              type="radio"
-              name="filter_city"
-              onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
-              value="barcelona"
-            >
-            <!-- <span class="checkmark"></span> -->
-            <p class="colrOptP">Barcelona</p>
-          </label>
-          <label for="buenos-aires" class="selectBoxOption">
-            <input
-              class="selectBoxInput"
-              id="buenos-aires"
-              data-slug="buenos-aires"
-              data-parent="city"
-              type="radio"
-              name="filter_city"
-              onclick="selectBoxControler('Buenos Aires', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
-              value="Buenos Aires"
-            >
-            <!-- <span class="checkmark"></span> -->
-            <p class="colrOptP">Buenos Aires</p>
           </label>
         </div>
       </div>
@@ -409,14 +382,7 @@ function lt_upload_file(){
             $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
             if(move_uploaded_file($fileTmpName,$fileDestination)){ //muevo el archivo
               echo "Your file uploaded correctly" . "<br><br>";
-
-              $dbServerName = "localhost";
-              $dbUsername = "contraseñaDificil";
-              $dbPassword = ";$6qha)2L*KU)6nq";
-              $dbName = "lattedev_silver";
-
-              $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-
+              include get_template_directory().'/inc/dbh.inc.php';
               /// truncate table
 
               if ($conn -> query("truncate table $dbName.$fileName2;")) {
@@ -427,55 +393,53 @@ function lt_upload_file(){
               }
 
               /// insert file in table
+
+              // $fileRead = "http://silverSea.wave-host.net/wp-content/themes/silverSea/uploads/contenedores-05-07-2020.csv/uploads/".$fileNameNew;
+              // $fileRead = get_template_directory_uri()."/uploads/".$fileNameNew;
+              // $link = add_query_arg( array( 'fileRead'  => $fileRead ), $link );
               $fileRead = "C:/xampp/htdocs/Silversea/wp-content/themes/silverSea/uploads/".$fileNameNew;
 
               if ($conn -> query("LOAD DATA INFILE '" . $fileRead . "'
-              INTO TABLE $dbName.$fileName2
-              FIELDS TERMINATED BY ',';")) {
-                echo "Great! filed turned into a table" ."<br /><br />";
-              }
-              else {
+                                  INTO TABLE $dbName.$fileName2
+                                  FIELDS TERMINATED BY ',';")) {
+                // echo "Great! filed turned into a table" ."<br /><br />";
+                $link = add_query_arg( array( 'status'  => 'fileIntoTable' ), $link );
+              } else {
                 $link = add_query_arg( array( 'status'  => 'InsertOnTableError' ), $link );
               }
 
 
               /// delete the first row with the name of columns
-              $sqlDelete = "delete from $dbName.contenedores where tamaño = 'tamaño';";
-
-              if ($conn -> query($sqlDelete)) {
-                $sqlDelete = "delete from $dbName.gastos_adicionales where pais = 'pais';";
-                if ($conn -> query($sqlDelete)) {
-                  $sqlDelete = "delete from $dbName.ventas where pais = 'pais';";
-                  if($conn -> query($sqlDelete)){
-                    $sqlDelete = "delete from $dbName.trenes where proveedor = 'empresa';";
-                    if($conn -> query($sqlDelete)){
-                      $link = add_query_arg( array( 'status'  => 'AllSetAndDone', ), $link );
-                    }
-                  }
-                }
-                else {
-                  $link = add_query_arg( array( 'status'  => 'errorDeleteGastos' ), $link );
-                }
-              }
-              else {
-                $link = add_query_arg( array( 'status'  => 'errorDeleteContenedores' ), $link );
-              }
-            }
-            else{
+              // $sqlDelete = "delete from $dbName.contenedores where tamaño = 'tamaño';";
+              //
+              // if ($conn -> query($sqlDelete)) {
+              //   $sqlDelete = "delete from $dbName.gastos_adicionales where pais = 'pais';";
+              //   if ($conn -> query($sqlDelete)) {
+              //     $sqlDelete = "delete from $dbName.ventas where pais = 'pais';";
+              //     if($conn -> query($sqlDelete)){
+              //       $sqlDelete = "delete from $dbName.trenes where proveedor = 'empresa';";
+              //       if($conn -> query($sqlDelete)){
+              //         $link = add_query_arg( array( 'status'  => 'AllSetAndDone', ), $link );
+              //       }
+              //     }
+              //   } else {
+              //     $link = add_query_arg( array( 'status'  => 'errorDeleteGastos' ), $link );
+              //   }
+              // } else {
+              //   $link = add_query_arg( array( 'status'  => 'errorDeleteContenedores' ), $link );
+              // }
+            } else {
               $link = add_query_arg( array( 'status'  => 'errorUploadFile' ), $link );
             }
-          }
-          else {
+          } else {
             // echo "Your File is too big";
             $link = add_query_arg( array( 'error'  => 'tooBig', ), $link );
           }
-        }
-        else {
+        } else {
           // echo "Error uploading File";
           $link = add_query_arg( array( 'error'  => 'uploading', ), $link );
         }
-      }
-      else{
+      } else{
         // echo "You cannot upload Files of this type";
         $link = add_query_arg( array( 'error'  => 'wrongType', ), $link );
       }
@@ -495,33 +459,68 @@ function lt_upload_file(){
 
 
 // Receive the Request post that came from AJAX
-add_action( 'wp_ajax_ajaxTest', 'ajaxTest' );
+add_action( 'wp_ajax_gatCol', 'gatCol' );
 // We allow non-logged in users to access our pagination
-add_action( 'wp_ajax_nopriv_ajaxTest', 'ajaxTest' );
+add_action( 'wp_ajax_nopriv_gatCol', 'gatCol' );
 
-function ajaxTest () { ?>
+function gatCol () {
+  $col = $_POST['col'];
+  $size = false;
+  $tipo = false;
+  if(isset($_POST['size'])){$size=$_POST['size'];}
+  if(isset($_POST['tipo'])){$tipo=$_POST['tipo'];}
+  // echo get_template_directory();
+  // include get_template_directory_uri().'/dbh.inc.php';
+  $dbServerName = "localhost";
+  $dbUsername = "root";
+  $dbPassword = "";
+  // $dbUsername = "contraseñaDificil";
+  // $dbPassword = ";$6qha)2L*KU)6nq";
+  $dbName = "lattedev_silver";
 
-    <?php
-    $args = array(
-      'post_type'=>$_POST['post_type'],
-      'posts_per_page'=>4,
-    );
-    $blogPosts=new WP_Query($args); ?>
-
-    <h3 class="sliderTitle title">Chupame la pija</h3>
-    <div class="sliderCards">
-      <?php while($blogPosts->have_posts()){$blogPosts->the_post(); ?>
-        <?php global $product; ?>
+  $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
 
-        <figure class="card"  id="card<?php echo get_the_id();?>">
-          <a class="cardImg" href="<?php echo get_permalink(); ?>">
-            <img class="cardImg lazy" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
-          </a>
-          <figcaption class="cardCaption">
-            <p class="cardTitle"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></p>
-            <p class="productCardPrice"><a href="<?php echo get_permalink(); ?>"> <?php echo $product->get_price_html(); ?> </a></p>
-          </figcaption>
-        </figure>
-      <?php } ?>
-<?php }
+  // global $wpdb;
+  // $results = $wpdb->get_results( "SELECT distinct tamaño FROM contenedores WHERE tamaño = 20");
+  // if(!empty($results))                        // Checking if $results have some values or not
+  // {
+  //     foreach($results as $row){
+  //       echo $row;
+  //     }
+  // }
+
+  $qry = "SELECT distinct $col FROM contenedores";
+  if($size){
+    $qry = $qry . " WHERE size = '$size'";
+    // $qry = "SELECT distinct $col FROM contenedores WHERE  size = '$size'";
+  }
+  if($size && $tipo){
+    $qry = $qry . " AND tipo = '$tipo'";
+    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo')";
+  }
+
+  // echo $qry;
+  // "SELECT distinct tipo FROM contenedores WHERE size = '$algunTamaño'"
+  // "SELECT distinct condicion FROM contenedores WHERE size = '$algunTamaño' and tipo = '$algunTipo'"
+
+  $ress = $conn->query($qry);
+  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+  echo wp_json_encode( $resp );
+
+
+
+
+  // $ress = $conn -> query("SELECT * FROM contenedores where id = 1");
+  // echo json_encode($resp);
+  // var_dump($resp);
+  // if ($resp) {
+  //   echo "ahi tene";
+  //   echo "<br>";
+  // } else {
+  //   echo "error";
+  //   echo "<br>";
+  //   echo $conn -> error;
+  // }
+  exit();
+}

@@ -4,9 +4,10 @@
 
 
 
+  <?php selectBox('Size'); ?>
   <?php selectBox('Tipo'); ?>
   <?php selectBox('Condicion'); ?>
-  <?php selectBox('Tamaño'); ?>
+  <?php // selectBox('Tamaño'); ?>
 
 
 
