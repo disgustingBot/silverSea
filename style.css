@@ -1272,11 +1272,10 @@ section.contacto img{
   /* flex-wrap: wrap; */
   /* grid-template-columns: min-content 1fr; */
   /* grid-template-rows: min-content 1fr; */
-  margin: 1rem;
+  /* margin: 1rem .3rem; */
   border-radius: 8px;
-  grid-gap: 1rem;
-  box-shadow: var(--DP6);
-  padding: 1rem;
+  grid-gap: .5rem;
+  padding: .5rem .3rem;
 }
 
 .categoryCardImg{
@@ -1368,9 +1367,9 @@ a:visited{
 }
 
 .cardFeaturesCont {
-  display: grid;
+  display: flex;
 
-  grid-template-columns: repeat(3,1fr);
+  /* grid-template-columns: repeat(3,1fr); */
   justify-content: space-around;
   padding: 1rem 0;
 }
@@ -1378,7 +1377,8 @@ a:visited{
 .cardFeature {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .cardFeatureTxt {

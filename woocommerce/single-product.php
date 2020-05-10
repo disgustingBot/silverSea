@@ -128,9 +128,16 @@
       //$parent = array();
       // var_dump($categories);
       foreach ($categories as $cat) {  ?>
+        <?php $svgPath = get_template_directory()  . "/img/svg/"; ?>
         <figure class="categoryCard">
-          <img class="pageBannerImg rowcol1 categoryCardImg"
-          src="<?php echo wp_get_attachment_url(get_woocommerce_term_meta($cat->term_id, 'thumbnail_id', true )); ?>" alt="">
+          <?php if(strpos($cat->slug, 'pies') === false ){
+            include $svgPath . $cat->slug . '.php';
+          }else {
+              include $svgPath  . 'size.php';
+          } ?>
+
+          <!-- <img class="pageBannerImg rowcol1 categoryCardImg"
+          src="<//?php echo wp_get_attachment_url(get_woocommerce_term_meta($cat->term_id, 'thumbnail_id', true )); ?>" alt=""> -->
           <h5 class="cateforyCardTitle">
             <?php echo $cat->name; ?>
           </h5>

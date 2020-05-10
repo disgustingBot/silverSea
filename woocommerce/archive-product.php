@@ -343,12 +343,12 @@
       <ul class="filterList size">
         <li class="filterItem">
           <input type="checkbox" class="css-checkbox">
-          <?php include $svgPath . 'highCube.php'; ?>
+          <?php include $svgPath . 'high-cube.php'; ?>
           <label for="">HIGH CUBE</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'doubleDoor.php'; ?>
+          <?php include $svgPath . 'double-door.php'; ?>
           <label for="">Double Door</label>
         </li>
 
@@ -384,13 +384,13 @@
               // var_dump($cat->slug);
               $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
               if ($parent=="size") {
-                echo  $cat->slug.', ';
+                echo  $cat->name;
               }
               if ($parent=="condition") {
-                echo  $cat->slug;
+                echo  ', ' . $cat->name;
               }
               if ($parent=="type") {
-                echo  $cat->slug . ', ';
+                echo  ', ' . $cat->name ;
               }
             }
           }
@@ -400,40 +400,28 @@
           <img class="cardImg lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
         </a>
         <div class="cardFeaturesCont">
+
           <figure class="cardFeature">
             <?php
             if ($categories) {
               // for each category
-              foreach ($categories as $cat) {
-                // var_dump($cat->slug);
-                $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
-                if ($parent=="type") {
-                  include $svgPath . $cat->slug.'.php';
+              foreach ($categories as $cat) {  ?>
+                <?php $svgPath = get_template_directory()  . "/img/svg/"; ?>
+                <figure class="categoryCard">
+                  <?php if(strpos($cat->slug, 'pies') === false ){
+                    include $svgPath . $cat->slug . '.php';
+                  }else {
+                    include $svgPath  . 'size.php';
+                  }?>
+                  </figure>
+                  <?php
                 }
               }
-            }
-            ?>
-            <!-- <p class="cardFeatureTxt">Apto para carga /<br>Cargo wothy</p> -->
-          </figure>
-          <figure class="cardFeature">
-            <?php
-            if ($categories) {
-              // for each category
-              foreach ($categories as $cat) {
-                // var_dump($cat->slug);
-                $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
-                if ($parent=="condition") {
-                  include $svgPath . $cat->slug.'.php';
-                }
-              }
-            }
-            ?>
-            <!-- <p class="cardFeatureTxt">Refrigerado</p> -->
-          </figure>
-          <figure class="cardFeature">
-            <?php include $svgPath . 'size.php'; ?>
-          </figure>
-          <p class="cardFeatureTxt">5 x 20</p>
+              ?>
+              <!-- <p class="cardFeatureTxt">Refrigerado</p> -->
+            </figure>
+
+          <!-- <p class="cardFeatureTxt">5 x 20</p> -->
         </div>
         <hr class="cardInfoDiv">
         <div class="cardInteractionCont">
