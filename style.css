@@ -143,6 +143,8 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* ATFS */
   /* FRONT PAGE ATF */
+  --dynamicContSelector:1fr;
+  --featuresMarginTop: auto;
   --featureIconMargin: auto;
   /* COUNTERS */
 
@@ -238,6 +240,10 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
 
     /* ATFS */
+    /* HOME ATF */
+    --dynamicContSelector:1fr 1fr;
+    --featuresMarginTop: auto;
+
 
     /* ?FOOTER */
 
@@ -291,6 +297,9 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
 
     /* ATFS */
+    /* HOME ATF */
+    --featuresMarginTop: -50px;
+
 
     /* FRONT PAGE ATF */
     --featuresGAutoFlow: column;
@@ -357,6 +366,8 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ATFS */
     /* FRONT PAGE ATF */
+    --dynamicContSelector:1fr 1fr 1fr 1fr;
+    --featuresMarginTop: -75px;
 
 
     /* ?FOOTER */
@@ -793,14 +804,15 @@ section {
 
 .features {
   background: transparent;
-  padding: 1rem var(--lateral);
+  padding: 1rem 0;
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
   height: min-content;
   grid-gap: 1rem;
-  width: 90%;
-  margin: auto;
-  margin-top: -75px;
+  width: calc(100% - var(--lateral) * 2);
+  margin: 0 var(--lateral);
+  /* margin-top: -75px; */
+  margin-top:var(--featuresMarginTop);
 }
 
 .feature {
@@ -1920,6 +1932,7 @@ a:visited{
 }
 
 .selectBox.focus:focus .selectBoxList{
+/* .selectBox.focus .selectBoxList{ */
   opacity:1;
   top:40px;
   pointer-events: unset;
@@ -1931,7 +1944,10 @@ a:visited{
   height: 1.5rem;
   line-height: 1.8rem;
   transition:.3s;
-  padding:0 16px;
+  /* padding:0 16px; */
+  position:relative;
+  display:flex;
+  align-items:center;
 }
 .selectBoxOption:hover{
   background:#BBB;
@@ -1939,6 +1955,72 @@ a:visited{
 .selectBoxInput{
   display: none;
 }
+.selectBoxInput[type*="checkbox"]{display:grid;}
+
+
+
+
+
+
+
+.selectBoxInput[type*="checkbox"] {
+  /* position: relative; */
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+  left : 0.2rem;
+}
+
+.selectBoxInput[type*="checkbox"]:before {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition:    all 0.3s ease-in-out;
+  transition:         all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top:  0.2rem;
+  left: 0.1rem;
+  width:  .9rem;
+  height: .9rem;
+  border: 2px solid white;
+}
+.selectBoxInput[type*="checkbox"]:checked:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform:    rotate(-45deg);
+  -ms-transform:     rotate(-45deg);
+  -o-transform:      rotate(-45deg);
+  transform:         rotate(-45deg);
+  height: .5rem;
+  border-color: var(--color2);
+  border-top-style: none;
+  border-right-style: none;
+  top: .3rem;
+  left:.12rem;
+}
+.selectBoxInput[type*="checkbox"]:after {
+  content: "";
+  position: absolute;
+  /* top:  -0.15rem; */
+  top:0;
+  bottom:0;
+  margin:auto;
+  left : 0;
+  width:  1.3rem;
+  height: 1.3rem;
+  background: var(--color4);
+  cursor: pointer;
+  border-radius: calc(var(--borderRadiusEstandar) / 4 * 1px);
+}
+
+
+.selectBoxOptionLabel{
+  padding-left:.5rem;
+}
+
+
+
+
+
+
 .selectBoxCurrent:focus + .selectBoxList{
   transform: translateY(calc(-20px - 50%));
   background: red;
@@ -1964,14 +2046,18 @@ a:visited{
   display:grid;
   grid-auto-flow:column;
   grid-auto-columns:auto;
-  grid-template-columns:2rem 1fr 1fr 1fr 6rem auto;
+  grid-template-columns:2rem 1fr 4.5rem auto;
   grid-gap:1rem;
   padding: 0 1rem;
 }
 .dynamicContLogo{
   width:2rem;
 }
-
+.dynamicContSelector{
+  display:grid;
+  grid-gap:inherit;
+  grid-template-columns:var(--dynamicContSelector);
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =footer

@@ -16,8 +16,13 @@
 
 
   <template id="selectBoxOptionTemplate">
-    <label for="" class="selectBoxOption">
-      <input class="selectBoxInput" id="" type="radio" name="" value="">
+    <!-- <label class="label--checkbox ">
+      <input type="checkbox" name="adwords"   class="checkbox my-auto">
+      <p class="selectBoxOptionLabel"></p>
+    </label> -->
+
+    <label for="" class="selectBoxOption" data-test="red">
+      <input class="selectBoxInput" id="" type="" name="" value="">
       <!-- <span class="checkmark"></span> -->
       <p class="selectBoxOptionLabel"></p>
     </label>

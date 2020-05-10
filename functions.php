@@ -298,13 +298,12 @@ function lt_new_pass(){
           <p class="selectBoxPlaceholder"><?php echo $placeholder; ?></p>
           <p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $placeholder; ?>"></p>
         </div>
-        <div class="selectBoxList">
+        <div class="selectBoxList focus">
           <label for="nul<?php echo $placeholder; ?>" class="selectBoxOption" id="selectBoxOptionNul">
             <input
               class="selectBoxInput"
               id="nul<?php echo $placeholder; ?>"
               type="radio"
-              name="filter_city"
               onclick="selectBoxControler('','#selectBox<?php echo $placeholder; ?>','#selectBoxCurrent<?php echo $placeholder; ?>')"
               value="0"
               checked
@@ -382,8 +381,18 @@ function lt_upload_file(){
             $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
             if(move_uploaded_file($fileTmpName,$fileDestination)){ //muevo el archivo
               echo "Your file uploaded correctly" . "<br><br>";
-              include get_template_directory().'/inc/dbh.inc.php';
+              // include get_template_directory().'/inc/dbh.inc.php';
               /// truncate table
+
+              $dbServerName = "localhost";
+              $dbUsername = "root";
+              $dbPassword = "";
+              // $dbUsername = "contraseñaDificil";
+              // $dbPassword = ";$6qha)2L*KU)6nq";
+              $dbName = "lattedev_silver";
+
+              $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+
 
               if ($conn -> query("truncate table $dbName.$fileName2;")) {
                 echo "Se trunco la tabla correctamente.\n" . "<br><br>";
@@ -469,6 +478,7 @@ function gatCol () {
   $tipo = false;
   if(isset($_POST['size'])){$size=$_POST['size'];}
   if(isset($_POST['tipo'])){$tipo=$_POST['tipo'];}
+  if(isset($_POST['cond'])){$cond=$_POST['cond'];}
   // echo get_template_directory();
   // include get_template_directory_uri().'/dbh.inc.php';
   $dbServerName = "localhost";
@@ -498,6 +508,11 @@ function gatCol () {
   if($size && $tipo){
     $qry = $qry . " AND tipo = '$tipo'";
     // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo')";
+  }
+  if($size && $tipo && $cond){
+    $qry = $qry . " AND condicion = '$cond'";
+    // echo $qry;
+    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo' AND condicion = '$cond')";
   }
 
   // echo $qry;
