@@ -279,11 +279,9 @@ cartController = {
     let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
     if (ready) {
       btn.disabled = false;
-      console.log(btn);
       selector.classList.add('ready')
     } else {
       btn.disabled = true;
-      console.log(btn);
       selector.classList.remove('ready')
     }
   },
@@ -368,68 +366,73 @@ cartController = {
     }
     // PRIMERO VACIAR EL SELECT
     cartController.currentSemiSelection.condicion = value;
-    cartController.ready();
+    cartController.ready(false);
+		cartController.getCol('avanzado', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
 
-  getCol: (col, size = false, tipo = false) => {
+  getCol: (col, size = false, tipo = false, cond = false) => {
     let dataNames = ['action', 'col'],
     dataValues = ['gatCol', col];
-    if(size){
-      dataNames.push('size');
-      dataValues.push(size);
-    }
-    if(tipo){
-      dataNames.push('tipo');
-      dataValues.push(tipo);
-    }
+    if(size){dataNames.push('size');dataValues.push(size);}
+    if(tipo){dataNames.push('tipo');dataValues.push(tipo);}
+    if(cond){dataNames.push('cond');dataValues.push(cond);}
 
     postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
+			if (cond) {
+				console.log(v)
+			}
       try{
-        // d.querySelector('#cotizador').innerHTML = v;
-        //borrar el nul
-        // if (JSON.parse(v).length == 1) {
-        //   console.log('Largo = 1')
-        //   let nombre = col[0].toUpperCase() + col.slice(1);
-        //   cartController.selectBoxWipe(nombre, true);
-        //   // TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
-        // }
-
-
         JSON.parse(v).forEach(e=>{
           for(var key in e) {
             var value = e[key],
             key = key[0].toUpperCase() + key.slice(1);
-            // console.log(key);
-            // console.log('#selectBox'+key+' .selectBoxList');
             var a = cartController.selectBoxOption(key,value),
                 input = a.querySelector(".selectBoxInput");
 
+						if(size &&  tipo &&  cond){
+							input.setAttribute('type', 'checkbox');
+						} else {
+							input.setAttribute('type', 'radio');
+						}
 
             if (JSON.parse(v).length == 1) {
               // TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
               cartController.selectBoxWipe(key, true);
-              input.setAttribute("checked", true);
+
+							if(size &&  tipo &&  cond){
+							} else {
+								input.setAttribute("checked", true);
+							}
               selectBox = d.querySelector('#selectBox'+key);
               current = d.querySelector('#selectBox'+key+' #selectBoxCurrent'+key);
-              console.log(key);
+              // console.log(key);
               // console.log(current.innerHTML = value);
 
               // selectBox.classList.add('alt');
               // current.innerText = value;
-              console.log(input);
+              // console.log(input);
               d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-              value = value[0].toUpperCase() + value.slice(1);
-              selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
+							if (value != '') {
+								value = value[0].toUpperCase() + value.slice(1);
+							}
 
-              if(size){
-                console.log(value);
+              if(size && !tipo && !cond){
+								selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
+                // console.log(value);
                 cartController.tipoController(value);
               }
-              if(size && tipo){
+              if(size &&  tipo && !cond){
+								selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
                 // value = value[0].toUpperCase() + value.slice(1);
                 cartController.condicionController(value, true);
               }
+							if(size &&  tipo &&  cond){
+								if (value=='') {
+									cartController.selectBoxWipe('Avanzado',true)
+								}
+								cartController.ready();
+							}
 
             } else {
 
@@ -439,6 +442,9 @@ cartController = {
               }
               if(tipo){
                 functionExecute = 'cartController.condicionController("'+value+'")';
+              }
+              if(cond){
+                functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';
               }
               input.setAttribute("onchange", functionExecute);
 
