@@ -1176,7 +1176,7 @@ section.contacto img{
   width: 100%;
   display:grid;
   order: 2;
-  margin-bottom:auto;
+  margin:auto;
   position:var(--galleryPosition);
   top:3rem;
   grid-area: imageGallery;
@@ -1219,6 +1219,8 @@ section.contacto img{
   grid-template-columns: 1fr 2fr;
   align-items: center;
   justify-content: center;
+  background: #F0F0F0;
+  padding: .2rem;
 }
 
 .singleContainer .atributo:nth-child(1){grid-area:atributo1}
@@ -1239,6 +1241,51 @@ section.contacto img{
   grid-area:singleRent;
   width: 100%;
 }
+
+
+/*---------------------------------------------------------------------------
+            section= categoryDescriptions
+---------------------------------------------------------------------------*/
+
+
+.categoryDescriptions{
+  display: grid;
+  grid-auto-flow: column;
+  padding: 1rem var(--lateral);
+  grid-gap: 1rem;
+}
+
+.categoryCard{
+  display: grid;
+  /* flex-wrap: wrap; */
+  /* grid-template-columns: min-content 1fr; */
+  /* grid-template-rows: min-content 1fr; */
+  margin: 1rem;
+  border-radius: 8px;
+  grid-gap: 1rem;
+  box-shadow: var(--DP6);
+  padding: 1rem;
+}
+
+.categoryCardImg{
+  /* height: 2rem; */
+  /* width: 100%; */
+  grid-column: span 2;
+  /* border-radius: 50%; */
+  /* width: 30%; */
+  box-shadow: var(--dp6);
+  /* border: solid var(--color6) 2px; */
+  padding: .23rem;
+}
+
+.cateforyCardTitle{
+  margin: auto .5rem;
+}
+
+.categoryCardCaption{
+  grid-column: span 2;
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =archive-product

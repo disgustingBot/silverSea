@@ -28,7 +28,7 @@
         <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
 
 
-          <img class="element rowcol1 lazy" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+          <img class="element rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
           <?php $count=0; foreach( $attachment_ids as $attachment_id ) { ?>
             <img class="element rowcol1 lazy" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="">
           <?php $count++; } ?>
@@ -41,7 +41,7 @@
 
 
       <div class="singleProductsgalleryBtnsContainer">
-        <button class="singleProductsGalleryBtns" id="nextButton">
+        <button class="singleProductsGalleryBtns" id="nextButton" onclick="altClassFromSelector('alt','#gallery')" >
           <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
           </svg>
@@ -125,17 +125,28 @@
   <section class="categoryDescriptions">
     <?php
     if ($categories) {
-      $parent = array();
-      foreach ($categories as $cat) {
-        $parent[] = get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
+      //$parent = array();
+      // var_dump($categories);
+      foreach ($categories as $cat) {  ?>
+        <figure class="categoryCard">
+          <img class="pageBannerImg rowcol1 categoryCardImg"
+          src="<?php echo wp_get_attachment_url(get_woocommerce_term_meta($cat->term_id, 'thumbnail_id', true )); ?>" alt="">
+          <h5 class="cateforyCardTitle">
+            <?php echo $cat->name; ?>
+          </h5>
+          <figcaption class="categoryCardCaption">
+            <h5 class="categoryCardDescription">
+              <?php echo  $cat->description."<br />"; ?>
+            </h5>
+          </figcaption>
+        </figure>
+
+
+        <?php
+      //  $parent[] = get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
 
       }
-      foreach ($parent as $clave => $valor ) {
-        if($valor != 'size'){
-          echo $categories->description ;
 
-        }
-      }
     }
     ?>
   </section>

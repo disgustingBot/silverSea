@@ -401,7 +401,8 @@ function lt_upload_file(){
 
               if ($conn -> query("LOAD DATA INFILE '" . $fileRead . "'
                                   INTO TABLE $dbName.$fileName2
-                                  FIELDS TERMINATED BY ',';")) {
+                                  FIELDS TERMINATED BY ','
+                                  IGNORE 1 LINES;")) {
                 // echo "Great! filed turned into a table" ."<br /><br />";
                 $link = add_query_arg( array( 'status'  => 'fileIntoTable' ), $link );
               } else {
@@ -472,10 +473,10 @@ function gatCol () {
   // echo get_template_directory();
   // include get_template_directory_uri().'/dbh.inc.php';
   $dbServerName = "localhost";
-  $dbUsername = "root";
-  $dbPassword = "";
-  // $dbUsername = "contraseñaDificil";
-  // $dbPassword = ";$6qha)2L*KU)6nq";
+  // $dbUsername = "root";
+  // $dbPassword = "";
+  $dbUsername = "contraseñaDificil";
+  $dbPassword = ";$6qha)2L*KU)6nq";
   $dbName = "lattedev_silver";
 
   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
