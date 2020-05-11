@@ -88,7 +88,7 @@
 </section>
 
 
-<section class="sectionPadding aboutUsSec2">
+<section class="sectionPadding card256" id="queContainerINeed">
 
 
 <?php
@@ -97,6 +97,11 @@ $args=array(
 );
 $container=new WP_Query($args);
 while($container->have_posts()){$container->the_post(); ?>
+  <style>
+  #queContainerINeed.card<?php echo get_the_id().' #card'.get_the_id() ; ?>{
+    display: flex;
+  }
+  </style>
   <article class="article2 containerNeeded" id="card<?php echo get_the_id();?>">
     <hgroup class="sectionSummary">
       <h2 class="summaryTitle"><?php the_title(); ?></h2>
@@ -109,13 +114,16 @@ while($container->have_posts()){$container->the_post(); ?>
 <?php
 $args=array(
   'post_type'=>'container',
+  'order' => 'ASC',
 );
 $container=new WP_Query($args);
 ?>
-<select name="cont_selector" class="btn" id="contSelector">
-  <?php while($container->have_posts()){$container->the_post(); ?>
-  <option class="contOption" value="" onchange="altClassFromSelector('contVisible', 'card<?php echo get_the_id();?>')"><?php the_title(); ?></option>
-<?php } wp_reset_query(); ?>
+<select name="cont_selector" class="btn" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
+  <?php
+  $i=0;
+  while($container->have_posts()){$container->the_post(); ?>
+  <option class="contOption" name="option" <?php if ($i==0){ echo 'checked'; } ?>  value="card<?php echo get_the_id();?>"><?php the_title(); ?></option>
+<?php $i++; } wp_reset_query(); ?>
 </select>
 
 
