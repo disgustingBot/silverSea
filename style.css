@@ -464,10 +464,12 @@ body{display:grid;}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
 ul,ol{list-style:none}
+
 .main {
   /* display: flex; */
   /* flex-direction: column; */
 }
+
 .main p,
 .main a,
 .main h1,
