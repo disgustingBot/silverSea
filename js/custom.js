@@ -267,7 +267,7 @@ if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
 
 // CART CONTROLLER
 cartController = {
-  currentSemiSelection: {size: false, tipo: false, condicion: false,},
+  currentSemiSelection: {size: false, tipo: false, condicion: false, avanzado: false},
   cart: [1,2],
   add: (x) => {
     cartController.cart.unshift(new CartItem(x));
@@ -350,28 +350,15 @@ cartController = {
     cartController.getCol('condicion', cartController.currentSemiSelection.size, value);
   },
   condicionController: (value, oneOption = false)=>{
-    if(oneOption){
-      let key = 'Condicion';
-      cartController.selectBoxWipe(key, true);
-      var a = cartController.selectBoxOption(key,value),
-          input = a.querySelector(".selectBoxInput");
-
-      input.setAttribute("checked", true);
-      selectBox = d.querySelector('#selectBox'+key);
-      current = d.querySelector('#selectBox'+key+' #selectBoxCurrent'+key);
-      d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-
-
-      selectBoxControler(value, '#selectBoxCondicion', '#selectBoxCurrentCondicion')
-    }
     // PRIMERO VACIAR EL SELECT
+		cartController.ready(false);
     cartController.currentSemiSelection.condicion = value;
-    cartController.ready(false);
 		cartController.getCol('avanzado', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
 
   getCol: (col, size = false, tipo = false, cond = false) => {
+		let lastCase = (size &&  tipo &&  cond) ? true : false;
     let dataNames = ['action', 'col'],
     dataValues = ['gatCol', col];
     if(size){dataNames.push('size');dataValues.push(size);}
@@ -379,80 +366,111 @@ cartController = {
     if(cond){dataNames.push('cond');dataValues.push(cond);}
 
     postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
-			if (cond) {
-				console.log(v)
-			}
       try{
-        JSON.parse(v).forEach(e=>{
-          for(var key in e) {
-            var value = e[key],
-            key = key[0].toUpperCase() + key.slice(1);
-            var a = cartController.selectBoxOption(key,value),
-                input = a.querySelector(".selectBoxInput");
+				if (!lastCase) {
+		      JSON.parse(v).forEach(e=>{
+						for(var key in e) {
+							var value = e[key],
+							key = key[0].toUpperCase() + key.slice(1);
+							// console.log(key);
+							// console.log(value);
+							var a = cartController.selectBoxOption(key,value),
+							input = a.querySelector(".selectBoxInput");
 
-						if(size &&  tipo &&  cond){
-							input.setAttribute('type', 'checkbox');
-						} else {
+							// if(lastCase){
+							// 	input.setAttribute('type', 'checkbox');
+							// } else {
+							// }
 							input.setAttribute('type', 'radio');
+
+							if (JSON.parse(v).length == 1) {
+								// TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
+								cartController.selectBoxWipe(key, true);
+
+								input.setAttribute("checked", true);
+								selectBox = d.querySelector('#selectBox'+key);
+								current = d.querySelector('#selectBox'+key+' #selectBoxCurrent'+key);
+
+								d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
+								if (value != '') {value = value[0].toUpperCase() + value.slice(1);}
+
+								if(size && !tipo && !cond){
+									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
+									cartController.tipoController(value);
+								}
+								if(size &&  tipo && !cond){
+									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
+									cartController.condicionController(value, true);
+								}
+								// if(lastCase){
+								// 	if (value=='') {
+								// 		cartController.selectBoxWipe('Avanzado',true)
+								// 	}
+								// 	cartController.ready();
+								// }
+
+							} else {
+
+								functionExecute = 'cartController.sizeController("'+value+'")';
+								if(size){functionExecute = 'cartController.tipoController("'+value+'")';}
+								if(tipo){functionExecute = 'cartController.condicionController("'+value+'")';}
+								if(cond){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
+								input.setAttribute("onchange", functionExecute);
+
+								// Insert it into the document in the right place
+								d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
+							}
+						}
+					});
+				} else {
+					cartController.currentSemiSelection.avanzado = new Array();
+					JSON.parse(v).forEach(e=>{
+
+
+						// if(lastCase){
+						// 	input.setAttribute('type', 'checkbox');
+						// console.log(e)
+						let found = 0;
+						for(var key in e) {
+							var value = e[key];
+							// key = key[0].toUpperCase() + key.slice(1);
+							if(key != 'id'){
+								if (value != ''){
+									console.log('comienza el test');
+									console.log('value = ', value)
+									if (found == 1) {
+										console.log('d');
+										found = 0;
+									} else {
+										console.log('e');
+										// cartController.currentSemiSelection.avanzado.push(e);
+										found = 1;
+									}
+									console.log('found: ', found)
+									console.log('end of element')
+								}
+							}
 						}
 
-            if (JSON.parse(v).length == 1) {
-              // TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
-              cartController.selectBoxWipe(key, true);
 
-							if(size &&  tipo &&  cond){
-							} else {
-								input.setAttribute("checked", true);
-							}
-              selectBox = d.querySelector('#selectBox'+key);
-              current = d.querySelector('#selectBox'+key+' #selectBoxCurrent'+key);
-              // console.log(key);
-              // console.log(current.innerHTML = value);
+									var a = cartController.selectBoxOption('Avanzado',e.avanzado),
+									input = a.querySelector(".selectBoxInput");
+									input.setAttribute('type', 'checkbox');
 
-              // selectBox.classList.add('alt');
-              // current.innerText = value;
-              // console.log(input);
-              d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-							if (value != '') {
-								value = value[0].toUpperCase() + value.slice(1);
-							}
 
-              if(size && !tipo && !cond){
-								selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
-                // console.log(value);
-                cartController.tipoController(value);
-              }
-              if(size &&  tipo && !cond){
-								selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
-                // value = value[0].toUpperCase() + value.slice(1);
-                cartController.condicionController(value, true);
-              }
-							if(size &&  tipo &&  cond){
-								if (value=='') {
-									cartController.selectBoxWipe('Avanzado',true)
-								}
-								cartController.ready();
-							}
+						// a los found los tendria que mostrar en la UI
+						if (found) {
+							cartController.currentSemiSelection.avanzado.push(e);
+							d.querySelector('#selectBoxAvanzado .selectBoxList').insertBefore(a, null);
+						} else {
+							// cartController.currentSemiSelection.avanzado.push(e);
+							console.log('chequear por elemento vacio');
+						}
+						// console.log(e.length)
 
-            } else {
-
-              functionExecute = 'cartController.sizeController("'+value+'")';
-              if(size){
-                functionExecute = 'cartController.tipoController("'+value+'")';
-              }
-              if(tipo){
-                functionExecute = 'cartController.condicionController("'+value+'")';
-              }
-              if(cond){
-                functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';
-              }
-              input.setAttribute("onchange", functionExecute);
-
-              // Insert it into the document in the right place
-              d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-            }
-          }
-        });
+					});
+					console.log(cartController.currentSemiSelection.avanzado)
+				}
       } catch(err) {
         console.log(err);
         console.log(v);
