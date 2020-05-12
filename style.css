@@ -1156,6 +1156,7 @@ section.contacto img{
   /* height: 15rem; */
   height:10rem;
   color: white;
+  position: relative;
 }
 .titleBanerImg{
   width:100%;
@@ -1164,7 +1165,15 @@ section.contacto img{
 
 .titleBanerCaption{
   padding: 2rem;
+  position: absolute;
+  top: 20%;
 }
+
+.bannerImg{
+  object-fit: fill;
+  height: 100%;
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.12.1) =containerAtributes
@@ -1270,8 +1279,8 @@ section.contacto img{
 .categoryCard{
   display: grid;
   /* flex-wrap: wrap; */
-  /* grid-template-columns: min-content 1fr; */
-  /* grid-template-rows: min-content 1fr; */
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
   /* margin: 1rem .3rem; */
   border-radius: 8px;
   grid-gap: .5rem;

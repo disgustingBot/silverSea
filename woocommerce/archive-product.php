@@ -285,6 +285,12 @@
       <ul class="filterList">
         <li class="filterItem">
           <input type="checkbox">
+          <?php include $svgPath . 'new.php'; ?>
+          <label for="">Nuevo | New</label>
+          <?php include $svgPath . 'question.php'; ?>
+        </li>
+        <li class="filterItem">
+          <input type="checkbox">
           <?php include $svgPath . 'cargoWorthy.php'; ?>
           <label for="">Carga | Cargo Worthy</label>
           <?php include $svgPath . 'question.php'; ?>
@@ -350,6 +356,16 @@
           <input type="checkbox">
           <?php include $svgPath . 'double-door.php'; ?>
           <label for="">Double Door</label>
+        </li>
+        <li class="filterItem">
+          <input type="checkbox">
+          <?php include $svgPath . 'palet-wide.php'; ?>
+          <label for="">Palet Wide</label>
+        </li>
+        <li class="filterItem">
+          <input type="checkbox">
+          <?php include $svgPath . 'open-side.php'; ?>
+          <label for="">Open Side</label>
         </li>
 
       </ul>
