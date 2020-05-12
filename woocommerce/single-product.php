@@ -9,7 +9,7 @@
   <!-- <?php include('../titleBaner.php'); ?> -->
 
   <figure class="titleBaner">
-    <!-- <img class="" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt=""> -->
+    <img class="bannerImg lazy" data-url="http://localhost/Silversea/wp-content/uploads/2020/04/portada-1.jpg" alt="">
     <figcaption class="titleBanerCaption">
       <h2><?php the_title();?></h2>
       <h3><?php echo get_the_excerpt(); ?></h3>
