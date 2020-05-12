@@ -34,6 +34,7 @@ Version: 0.0
 6.3) =ATFS:
   6.3.1) =Front Page ATF
   6.3.2) =About Us ATF
+  6.3.3) =Team ATF
 6.4) =socalMedia:
 6.5) =multiCards:
 6.6) =forms:
@@ -990,6 +991,44 @@ section {
   margin: 0 1rem;
   color: var(--color2);
 }
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              6.3.3) =Team ATF
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+
+.teamSection {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.teamHandler {
+  position: sticky;
+  top: 20%;
+  height: 70vh;
+}
+
+.teamCardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 1rem;
+}
+
+.flippingCardContainer {
+  position: relative;
+}
+.teamCardImg2 {
+  position: absolute;
+  top: 0;
+
+}
+
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
                                 6.4) =socalMedia:
@@ -1032,6 +1071,32 @@ section {
                           6.5) =multiCards:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+/* GENERAL CARD */
+
+.card {
+  display: grid;
+  box-shadow: var(--DP1);
+  transition: .25s;
+  height: min-content;
+  border-radius: 4px;
+}
+
+.card:hover {
+  box-shadow: var(--DP6);
+}
+
+/* TEAM CARD */
+
+.teamCardContainer {
+  position: relative;
+}
+
+.teamCard {
+
+}
+
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1315,19 +1380,6 @@ section.contacto img{
   /* justify-content: space-evenly; */
   transition: 1s;
   transform-origin: center;
-}
-
-.containerCard {
-  display: grid;
-  grid-auto-flow: row;
-  box-shadow: var(--DP1);
-  transition: .25s;
-  /* width: min-content; */
-  height: min-content;
-}
-
-.containerCard:hover {
-  box-shadow: var(--DP6);
 }
 
 .archiveMain{
