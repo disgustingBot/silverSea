@@ -477,6 +477,7 @@ function gatCol () {
   $col = $_POST['col'];
   $size = false;
   $tipo = false;
+  $cond = false;
   if(isset($_POST['size'])){$size=$_POST['size'];}
   if(isset($_POST['tipo'])){$tipo=$_POST['tipo'];}
   if(isset($_POST['cond'])){$cond=$_POST['cond'];}
@@ -511,7 +512,8 @@ function gatCol () {
     // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo')";
   }
   if($size && $tipo && $cond){
-    $qry = $qry . " AND condicion = '$cond'";
+    // $qry = $qry . " AND condicion = '$cond'";
+    $qry = "SELECT id, avanzado, avanzado_2, avanzado_3, avanzado_4 FROM contenedores WHERE size = '$size' and tipo = '$tipo' and condicion = '$cond'";
     // echo $qry;
     // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo' AND condicion = '$cond')";
   }
