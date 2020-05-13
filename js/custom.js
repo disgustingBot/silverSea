@@ -15,8 +15,13 @@ w.onload=()=>{
     lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
   }
 
-  cartController.ready(false);
-  cartController.getCol('Size');
+	if(d.querySelector('#cotizador')){
+		cartController.ready(false);
+		cartController.getCol('Size');
+	}
+
+	// galleryController.setup()
+
   if (d.getElementById("load")) {
     d.getElementById("load").style.top="-100vh";
   }
@@ -45,11 +50,12 @@ function postAjaxCall(url,dataNames,dataValues){// return a new promise.
 // SLIDER:
 // TODO: mejorar modulo para poder reutilizarlo sin duplicar codigo
 var j=1;
-var x=d.getElementsByClassName("carouselItem");
+// var x=carousels.querySelectorAll('.carouselItem');
 var carousels = d.querySelectorAll('.gallery');
 carousels.forEach((item, i) => {
+	console.log('el nene')
   // c.log(item.querySelectorAll('.element'));
-  let j=1,x=item.getElementsByClassName("element");
+  let j=1,x=item.querySelectorAll('.element');
 
 
   const showDivs=n=>{
@@ -73,11 +79,66 @@ carousels.forEach((item, i) => {
 
   if(x.length>0){showDivs(j);setTimeout(carousel, 8000);}
 
+	// item.querySelector('#nextButton').onclick = () =>{c.log('NEXT')}
   item.querySelector('#nextButton').onclick = () =>{plusDivs(+1)}
   item.querySelector('#prevButton').onclick = () =>{plusDivs(-1)}
 
 });
 
+
+
+
+galleryController = {
+	galleries:[],
+	setup:()=>{
+
+		var carousels = d.querySelectorAll('.gallery');
+		carousels.forEach( (item, i) => {
+			galleryController.galleries.unshift(new Gallery(item))
+		});
+
+		console.log(galleryController.galleries);
+	}
+}
+
+class Gallery {
+	constructor(gallery){
+		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
+		this.j = 1;
+		this.elements = gallery.querySelectorAll('.element');
+		this.title = gallery.id;
+	}
+
+
+
+	  showDivs(n){
+
+	    if(n>x.length){j=1}
+	    if(n<1){j=x.length}
+	    for(i=0;i<x.length;i++){x[i].classList.add("inactive")}
+	    x[j-1].classList.remove("inactive");
+
+	  }
+	  // const carousel=()=>{j++;
+		//
+	  //   for(i=0;i<x.length;i++){x[i].classList.add("inactive")}
+	  //   if(j>x.length){j=1}
+	  //   x[j-1].classList.remove("inactive");
+	  //   setTimeout(carousel, 8000); // Change image every N/1000 seconds
+		//
+	  // }
+		//
+	  // const plusDivs=n=>{showDivs(j+=n)}
+		//
+	  // if(x.length>0){showDivs(j);setTimeout(carousel, 8000);}
+		//
+		// // item.querySelector('#nextButton').onclick = () =>{c.log('NEXT')}
+	  // item.querySelector('#nextButton').onclick = () =>{plusDivs(+1)}
+	  // item.querySelector('#prevButton').onclick = () =>{plusDivs(-1)}
+
+
+
+}
 
 
 
@@ -268,7 +329,8 @@ if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
 // CART CONTROLLER
 cartController = {
   currentSemiSelection: {size: false, tipo: false, condicion: false, avanzado: false},
-  cart: [1,2],
+	containerToAdd:false,
+  cart: [],
   add: (x) => {
     cartController.cart.unshift(new CartItem(x));
     var a = d.importNode(d.querySelector("#cartItemTemplate").content, true);
@@ -312,13 +374,7 @@ cartController = {
 
   selectBoxWipe:(nombre, comptleteWipe = false)=>{
     list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
-    // selectBox = d.querySelector('#selectBox'+nombre);
-    // current = d.querySelector('#selectBox'+nombre+' #selectBoxCurrent'+nombre);
-
-    // selectBox.classList.remove('alt');
-    // current.innerHTML = '';
     selectBoxControler('', '#selectBox'+nombre, '#selectBoxCurrent'+nombre);
-    // TODO: falta quitar la seleccion actual
     if (list.firstChild) {
       while (list.firstChild) {
         list.removeChild(list.firstChild);
@@ -332,9 +388,11 @@ cartController = {
   sizeController: (value)=>{
     // PRIMERO VACIAR EL/LOS SELECT
     cartController.selectBoxWipe('Tipo');
-    cartController.selectBoxWipe('Condicion');
+		cartController.selectBoxWipe('Condicion');
+    cartController.selectBoxWipe('Avanzado');
     cartController.currentSemiSelection.tipo = false;
     cartController.currentSemiSelection.condicion = false;
+		cartController.currentSemiSelection.avanzado = false;
 
     cartController.ready(false);
     cartController.currentSemiSelection.size = value;
@@ -343,17 +401,34 @@ cartController = {
   tipoController: (value)=>{
     // PRIMERO VACIAR EL SELECT
     cartController.selectBoxWipe('Condicion');
+		cartController.selectBoxWipe('Avanzado');
     cartController.currentSemiSelection.condicion = false;
+		cartController.currentSemiSelection.avanzado = false;
 
     cartController.ready(false);
     cartController.currentSemiSelection.tipo = value;
     cartController.getCol('condicion', cartController.currentSemiSelection.size, value);
   },
-  condicionController: (value, oneOption = false)=>{
+  condicionController: (value)=>{
     // PRIMERO VACIAR EL SELECT
+		cartController.selectBoxWipe('Avanzado');
+		cartController.currentSemiSelection.avanzado = false;
+
 		cartController.ready(false);
     cartController.currentSemiSelection.condicion = value;
 		cartController.getCol('avanzado', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
+    // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
+  },
+  avanzadoController: (value)=>{
+		console.log(document.getElementsByName('Avanzado')[0].value)
+		// if (cartController.currentSemiSelection.avanzado) {
+		//
+		// }
+    // PRIMERO VACIAR EL SELECT
+		console.log('value: ', value);
+		console.log('container To Add: ', cartController.containerToAdd)
+
+		cartController.ready();
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
 
@@ -414,7 +489,7 @@ cartController = {
 								functionExecute = 'cartController.sizeController("'+value+'")';
 								if(size){functionExecute = 'cartController.tipoController("'+value+'")';}
 								if(tipo){functionExecute = 'cartController.condicionController("'+value+'")';}
-								if(cond){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
+								// if(cond){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
 								input.setAttribute("onchange", functionExecute);
 
 								// Insert it into the document in the right place
@@ -424,47 +499,34 @@ cartController = {
 					});
 				} else {
 					cartController.currentSemiSelection.avanzado = new Array();
+					cartController.selectBoxWipe('Avanzado', true);
+					console.log('comienza el ultimo caso')
 					JSON.parse(v).forEach(e=>{
+						cartController.currentSemiSelection.avanzado.push(e);
 
 
-						// if(lastCase){
-						// 	input.setAttribute('type', 'checkbox');
-						// console.log(e)
-						let found = 0;
-						for(var key in e) {
-							var value = e[key];
-							// key = key[0].toUpperCase() + key.slice(1);
-							if(key != 'id'){
-								if (value != ''){
-									console.log('comienza el test');
-									console.log('value = ', value)
-									if (found == 1) {
-										console.log('d');
-										found = 0;
-									} else {
-										console.log('e');
-										// cartController.currentSemiSelection.avanzado.push(e);
-										found = 1;
-									}
-									console.log('found: ', found)
-									console.log('end of element')
-								}
-							}
-						}
 
 
-									var a = cartController.selectBoxOption('Avanzado',e.avanzado),
-									input = a.querySelector(".selectBoxInput");
-									input.setAttribute('type', 'checkbox');
+						// var a = cartController.selectBoxOption('Avanzado',e.avanzado),
+						var a = cartController.selectBoxOption('Avanzado',e.avanzado),
+						input = a.querySelector(".selectBoxInput");
+						input.setAttribute('type', 'checkbox');
+						// input.setAttribute('onclick', 'console.log("EL NENENEEEE");cartController.ready()');
+						// input.setAttribute('onclick', 'cartController.avanzadoController("'+value+'")');
+						input.setAttribute('onclick', 'cartController.avanzadoController(this.value)');
 
+						// if (JSON.parse(v).length == 1) {
+						// 	// input.setAttribute("checked", true);
+						// 	cartController.cart.unshift(e.id)
+						// }
 
 						// a los found los tendria que mostrar en la UI
-						if (found) {
-							cartController.currentSemiSelection.avanzado.push(e);
+						if (e.avanzado == '') {
+							cartController.ready()
+							cartController.containerToAdd = e.id;
+						}
+						if (e.avanzado!='' && e.avanzado_2 == '') {
 							d.querySelector('#selectBoxAvanzado .selectBoxList').insertBefore(a, null);
-						} else {
-							// cartController.currentSemiSelection.avanzado.push(e);
-							console.log('chequear por elemento vacio');
 						}
 						// console.log(e.length)
 
