@@ -417,7 +417,7 @@
       $categories = get_the_terms( get_the_ID(), 'product_cat' );
       ?>
       <?php global $product; ?>
-      <article class="containerCard">
+      <article class="card">
         <a href="<?php echo get_permalink(); ?>" class="cardTitle">
           <?php
           if ($categories) {
