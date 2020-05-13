@@ -513,7 +513,7 @@ function gatCol () {
   }
   if($size && $tipo && $cond){
     // $qry = $qry . " AND condicion = '$cond'";
-    $qry = "SELECT id, avanzado, avanzado_2, avanzado_3, avanzado_4 FROM contenedores WHERE size = '$size' and tipo = '$tipo' and condicion = '$cond'";
+    $qry = "SELECT id, avanzado_1, avanzado_2, avanzado_3, avanzado_4 FROM contenedores WHERE size = '$size' and tipo = '$tipo' and condicion = '$cond'";
     // echo $qry;
     // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo' AND condicion = '$cond')";
   }
