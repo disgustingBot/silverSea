@@ -416,16 +416,61 @@ cartController = {
 
 		cartController.ready(false);
     cartController.currentSemiSelection.condicion = value;
-		cartController.getCol('avanzado', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
+		cartController.getCol('avanzado_1', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
   avanzadoController: (value)=>{
-		console.log(document.getElementsByName('Avanzado')[0].value)
+		let seleccion = document.querySelectorAll('[name*="Avanzado"]:checked'),
+		opciones = cartController.currentSemiSelection.avanzado;
+		// console.log(document.getElementsByName('Avanzado')[0].value)
+		console.log('LENGTH: ',seleccion.length)
+		if(seleccion.length==0){
+			opciones.forEach((item, i) => {
+				if(item.avanzado_1==''){cartController.containerToAdd=item.id}
+			})
+		} else {
+			// let success = array_a.every((val) => array_b.includes(val))
+
+
+
+			var x = seleccion.map( e => e.value );
+			console.log(x)
+
+			let success = seleccion.every((val) => opciones.includes(val))
+
+
+
+			let posibleOptions = [];
+
+			seleccion.forEach((item, i) => {
+				opciones.forEach((opcion, i) => {
+					if (Object.values(opcion).includes(item.value)) {
+						console.log('item: ', item);
+						console.log('opcion: ', opcion.id);
+						// cartController.containerToAdd=opcion.id
+						posibleOptions.push(opcion.id);
+						// posibleOptions[opcion.id] = opcion.id;
+					}
+				})
+			});
+			if (posibleOptions.length==1) {
+				cartController.containerToAdd=posibleOptions[0]
+			}
+
+			// cartController.containerToAdd='Encontrar el ID'
+
+		}
+		// seleccion.forEach((item, i) => {
+		// 	console.log(item.value)
+		// });
+
+
+
 		// if (cartController.currentSemiSelection.avanzado) {
 		//
 		// }
     // PRIMERO VACIAR EL SELECT
-		console.log('value: ', value);
+		// console.log('value: ', value);
 		console.log('container To Add: ', cartController.containerToAdd)
 
 		cartController.ready();
@@ -502,13 +547,14 @@ cartController = {
 					cartController.selectBoxWipe('Avanzado', true);
 					console.log('comienza el ultimo caso')
 					JSON.parse(v).forEach(e=>{
-						cartController.currentSemiSelection.avanzado.push(e);
+						// cartController.currentSemiSelection.avanzado.push(e);
+						cartController.currentSemiSelection.avanzado[e.id] = e;
 
 
 
 
 						// var a = cartController.selectBoxOption('Avanzado',e.avanzado),
-						var a = cartController.selectBoxOption('Avanzado',e.avanzado),
+						var a = cartController.selectBoxOption('Avanzado',e.avanzado_1),
 						input = a.querySelector(".selectBoxInput");
 						input.setAttribute('type', 'checkbox');
 						// input.setAttribute('onclick', 'console.log("EL NENENEEEE");cartController.ready()');
@@ -521,11 +567,11 @@ cartController = {
 						// }
 
 						// a los found los tendria que mostrar en la UI
-						if (e.avanzado == '') {
+						if (e.avanzado_1 == '') {
 							cartController.ready()
 							cartController.containerToAdd = e.id;
 						}
-						if (e.avanzado!='' && e.avanzado_2 == '') {
+						if (e.avanzado_1!='' && e.avanzado_2 == '') {
 							d.querySelector('#selectBoxAvanzado .selectBoxList').insertBefore(a, null);
 						}
 						// console.log(e.length)
