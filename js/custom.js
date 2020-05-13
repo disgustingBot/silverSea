@@ -20,7 +20,7 @@ w.onload=()=>{
 		cartController.getCol('Size');
 	}
 
-	// galleryController.setup()
+	galleryController.setup()
 
   if (d.getElementById("load")) {
     d.getElementById("load").style.top="-100vh";
@@ -48,56 +48,15 @@ function postAjaxCall(url,dataNames,dataValues){// return a new promise.
 
 
 // SLIDER:
-// TODO: mejorar modulo para poder reutilizarlo sin duplicar codigo
-var j=1;
-// var x=carousels.querySelectorAll('.carouselItem');
-var carousels = d.querySelectorAll('.gallery');
-carousels.forEach((item, i) => {
-	console.log('el nene')
-  // c.log(item.querySelectorAll('.element'));
-  let j=1,x=item.querySelectorAll('.element');
-
-
-  const showDivs=n=>{
-
-    if(n>x.length){j=1}
-    if(n<1){j=x.length}
-    for(i=0;i<x.length;i++){x[i].classList.add("inactive")}
-    x[j-1].classList.remove("inactive");
-
-  }
-  const carousel=()=>{j++;
-
-    for(i=0;i<x.length;i++){x[i].classList.add("inactive")}
-    if(j>x.length){j=1}
-    x[j-1].classList.remove("inactive");
-    setTimeout(carousel, 8000); // Change image every N/1000 seconds
-
-  }
-
-  const plusDivs=n=>{showDivs(j+=n)}
-
-  if(x.length>0){showDivs(j);setTimeout(carousel, 8000);}
-
-	// item.querySelector('#nextButton').onclick = () =>{c.log('NEXT')}
-  item.querySelector('#nextButton').onclick = () =>{plusDivs(+1)}
-  item.querySelector('#prevButton').onclick = () =>{plusDivs(-1)}
-
-});
-
-
-
-
 galleryController = {
 	galleries:[],
 	setup:()=>{
-
-		var carousels = d.querySelectorAll('.gallery');
-		carousels.forEach( (item, i) => {
-			galleryController.galleries.unshift(new Gallery(item))
-		});
-
-		console.log(galleryController.galleries);
+		if (d.querySelectorAll('.gallery')) {
+			var carousels = d.querySelectorAll('.gallery');
+			carousels.forEach( (item, i) => {
+				galleryController.galleries.unshift(new Gallery(item))
+			});
+		}
 	}
 }
 
@@ -107,37 +66,31 @@ class Gallery {
 		this.j = 1;
 		this.elements = gallery.querySelectorAll('.element');
 		this.title = gallery.id;
+
+	  gallery.querySelector('#nextButton').onclick = () =>{this.plusDivs(+1)}
+	  gallery.querySelector('#prevButton').onclick = () =>{this.plusDivs(-1)}
+		if(this.elements.length>0){this.showDivs(this.j);setTimeout(this.carousel, 8000);}
+
 	}
 
+  showDivs(n){
 
+    if(n>this.elements.length){this.j=1}
+    if(n<1){this.j=this.elements.length}
+    for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
+    this.elements[this.j-1].classList.remove("inactive");
 
-	  showDivs(n){
+  }
+  carousel(){j++;
 
-	    if(n>x.length){j=1}
-	    if(n<1){j=x.length}
-	    for(i=0;i<x.length;i++){x[i].classList.add("inactive")}
-	    x[j-1].classList.remove("inactive");
+    for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
+    if(this.j>this.elements.length){this.j=1}
+    this.elements[this.j-1].classList.remove("inactive");
+    setTimeout(carousel, 8000); // Change image every N/1000 seconds
 
-	  }
-	  // const carousel=()=>{j++;
-		//
-	  //   for(i=0;i<x.length;i++){x[i].classList.add("inactive")}
-	  //   if(j>x.length){j=1}
-	  //   x[j-1].classList.remove("inactive");
-	  //   setTimeout(carousel, 8000); // Change image every N/1000 seconds
-		//
-	  // }
-		//
-	  // const plusDivs=n=>{showDivs(j+=n)}
-		//
-	  // if(x.length>0){showDivs(j);setTimeout(carousel, 8000);}
-		//
-		// // item.querySelector('#nextButton').onclick = () =>{c.log('NEXT')}
-	  // item.querySelector('#nextButton').onclick = () =>{plusDivs(+1)}
-	  // item.querySelector('#prevButton').onclick = () =>{plusDivs(-1)}
+  }
 
-
-
+  plusDivs(n){this.showDivs(this.j+=n)}
 }
 
 

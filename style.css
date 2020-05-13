@@ -1480,32 +1480,30 @@ section.contacto img{
 
 .categoryCard{
   display: grid;
-  /* flex-wrap: wrap; */
-  grid-template-columns: min-content 1fr;
-  grid-template-rows: min-content 1fr;
-  /* margin: 1rem .3rem; */
+  /* grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr; */
   border-radius: 8px;
   grid-gap: .5rem;
   padding: .5rem .3rem;
+  height: min-content;
 }
 
 .categoryCardImg{
-  /* height: 2rem; */
-  /* width: 100%; */
-  grid-column: span 2;
-  /* border-radius: 50%; */
-  /* width: 30%; */
   box-shadow: var(--dp6);
-  /* border: solid var(--color6) 2px; */
   padding: .23rem;
 }
 
 .cateforyCardTitle{
-  margin: auto .5rem;
+  margin: auto ;
+}
+
+.categoryCard .svgIcon{
+  width: 100px;
+  height: 100px;
+  margin: auto;
 }
 
 .categoryCardCaption{
-  grid-column: span 2;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1520,10 +1518,20 @@ section.contacto img{
   grid-template-columns: var(--searchResultsGTC);
   border-radius: 4px;
   padding: 1rem;
-  /* padding-right: 0; */
-  /* justify-content: space-evenly; */
   transition: 1s;
   transform-origin: center;
+}
+
+.containerCard {
+  display: grid;
+  grid-auto-flow: row;
+  box-shadow: var(--DP1);
+  transition: .25s;
+  height: min-content;
+}
+
+.containerCard:hover {
+  box-shadow: var(--DP6);
 }
 
 .archiveMain{
@@ -1566,10 +1574,12 @@ a:visited{
 
 .cardFeaturesCont {
   display: flex;
-
-  /* grid-template-columns: repeat(3,1fr); */
-  justify-content: space-around;
+  width: 100%;
+  justify-content: space-evenly;
   padding: 1rem 0;
+}
+.cardFeaturesCont figure:nth-child(1){
+  display: none;
 }
 
 .cardFeature {
@@ -1767,6 +1777,22 @@ a:visited{
   grid-auto-flow: column;
   margin: 1rem;
 }
+
+/*
+
+SVG STYLES
+
+
+*/
+
+
+.svgIcon{
+  width: 30px;
+  height: 30px;
+}
+
+
+
 
 
 
