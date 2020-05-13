@@ -297,6 +297,12 @@
         </li>
         <li class="filterItem">
           <input type="checkbox">
+          <?php include $svgPath . 'cargoWorthyIICL.php'; ?>
+          <label for="">Carga | Cargo Worthy IICL</label>
+          <?php include $svgPath . 'question.php'; ?>
+        </li>
+        <li class="filterItem">
+          <input type="checkbox">
           <?php include $svgPath . 'storage.php'; ?>
           <label for="">Almacenaje | Modificación </label>
           <?php include $svgPath . 'question.php'; ?>
@@ -380,9 +386,29 @@
         <path d="M2 2L28 28L2 54" stroke="black" stroke-width="4"/>
       </svg>
     </button>
-
-
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -417,13 +443,13 @@
         </a>
         <div class="cardFeaturesCont">
 
-          <figure class="cardFeature">
+          <!-- <figure class="cardFeature"> -->
             <?php
             if ($categories) {
               // for each category
               foreach ($categories as $cat) {  ?>
                 <?php $svgPath = get_template_directory()  . "/img/svg/"; ?>
-                <figure class="categoryCard">
+                <figure class="cardCategories">
                   <?php if(strpos($cat->slug, 'pies') === false ){
                     include $svgPath . $cat->slug . '.php';
                   }else {
@@ -435,7 +461,7 @@
               }
               ?>
               <!-- <p class="cardFeatureTxt">Refrigerado</p> -->
-            </figure>
+            <!-- </figure> -->
 
           <!-- <p class="cardFeatureTxt">5 x 20</p> -->
         </div>
