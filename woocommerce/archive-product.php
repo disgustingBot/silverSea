@@ -263,13 +263,13 @@
         </li>
         <li class="filterItem openTop">
           <input type="checkbox">
-          <?php include $svgPath . 'openTop.php'; ?>
+          <?php include $svgPath . 'open-top.php'; ?>
           <label for="">Open Top</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem flatRack">
           <input type="checkbox">
-          <?php include $svgPath . 'flatRack.php'; ?>
+          <?php include $svgPath . 'flat-rack.php'; ?>
           <label for="">Flat Rack</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
