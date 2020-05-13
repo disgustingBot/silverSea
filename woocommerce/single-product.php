@@ -9,7 +9,7 @@
   <!-- <?php include('../titleBaner.php'); ?> -->
 
   <figure class="titleBaner">
-    <img class="bannerImg lazy" data-url="http://localhost/Silversea/wp-content/uploads/2020/04/portada-1.jpg" alt="">
+    <!-- <img class="bannerImg lazy" data-url="http://localhost/Silversea/wp-content/uploads/2020/04/portada-1.jpg" alt=""> -->
     <figcaption class="titleBanerCaption">
       <h2><?php the_title();?></h2>
       <h3><?php echo get_the_excerpt(); ?></h3>
@@ -23,7 +23,7 @@
     <!-- <div class="imageGallery">
       <img class="" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
     </div> -->
-    <div class="gallery" id="gallery">
+    <div class="gallery" id="galleryProduct">
 
         <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
 
@@ -41,7 +41,7 @@
 
 
       <div class="singleProductsgalleryBtnsContainer">
-        <button class="singleProductsGalleryBtns" id="nextButton" onclick="altClassFromSelector('alt','#gallery')" >
+        <button class="singleProductsGalleryBtns" id="nextButton">
           <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
           </svg>
@@ -55,7 +55,7 @@
     </div>
     <figure class="atributo">
 
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/cargaMax.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/cargaMax.png" alt=""> -->
       <figcaption>
         <h4>Carga Max</h4>
         <?php echo get_post_meta( get_the_id(), 'cargaMax' )[0]; ?>
@@ -64,7 +64,7 @@
     </figure>
 
     <figure class="atributo">
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/aperturaPuerta.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/aperturaPuerta.png" alt=""> -->
       <figcaption>
         <h4>Apertura de puerta</h4>
         <?php echo get_post_meta( get_the_id(), 'aperturaPuerta' )[0]; ?>
@@ -72,7 +72,7 @@
     </figure>
 
     <figure class="atributo">
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/medidasInternas.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/medidasInternas.png" alt=""> -->
       <figcaption>
         <h4>Medidas Internas</h4>
         <?php echo get_post_meta( get_the_id(), 'medidasInternas' )[0]; ?>
@@ -80,7 +80,7 @@
     </figure>
 
     <figure class="atributo">
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/medidasExternas.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/medidasExternas.png" alt=""> -->
       <figcaption>
         <h4>Medidas Externas</h4>
         <?php echo get_post_meta( get_the_id(), 'medidasExternas' )[0]; ?>
@@ -88,7 +88,7 @@
     </figure>
 
     <figure class="atributo">
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/capacidadCubica.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/capacidadCubica.png" alt=""> -->
       <figcaption>
         <h4>Capacidad Cúbica</h4>
         <?php echo get_post_meta( get_the_id(), 'capacidadCubica' )[0]; ?>
@@ -96,7 +96,7 @@
     </figure>
 
     <figure class="atributo">
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/area.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/area.png" alt=""> -->
       <figcaption>
         <h4>Área</h4>
         <?php echo get_post_meta( get_the_id(), 'area' )[0]; ?>
@@ -104,7 +104,7 @@
     </figure>
 
     <figure class="atributo">
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/aperturaTecho.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/aperturaTecho.png" alt=""> -->
       <figcaption>
         <h4>Apertura de techo</h4>
         <?php echo get_post_meta( get_the_id(), 'aperturaTecho' )[0]; ?>
@@ -112,7 +112,7 @@
     </figure>
 
     <figure class="atributo">
-      <img src="http://localhost/Silversea/wp-content/uploads/2020/04/tara.png" alt="">
+      <!-- <img src="http://localhost/Silversea/wp-content/uploads/2020/04/tara.png" alt=""> -->
       <figcaption>
         <h4>Tara</h4>
         <?php echo get_post_meta( get_the_id(), 'tara' )[0]; ?>

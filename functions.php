@@ -484,10 +484,10 @@ function gatCol () {
   // echo get_template_directory();
   // include get_template_directory_uri().'/dbh.inc.php';
   $dbServerName = "localhost";
-  // $dbUsername = "root";
-  // $dbPassword = "";
-  $dbUsername = "contraseñaDificil";
-  $dbPassword = ";$6qha)2L*KU)6nq";
+  $dbUsername = "root";
+  $dbPassword = "";
+  // $dbUsername = "contraseñaDificil";
+  // $dbPassword = ";$6qha)2L*KU)6nq";
   $dbName = "lattedev_silver";
 
   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);

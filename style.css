@@ -1987,12 +1987,13 @@ a:visited{
 	background-color: var(--color1);
 }
 
+.selectBoxList:focus,
 .selectBox.focus:focus .selectBoxList{
 /* .selectBox.focus .selectBoxList{ */
   opacity:1;
-  top:40px;
+  /* top:40px; */
+  top:var(--selectBoxHeight);
   pointer-events: unset;
-
 }
 .selectBoxOption{
   cursor:pointer;
@@ -2083,7 +2084,6 @@ a:visited{
   transform: translateY(calc(-20px - 50%));
   background: red;
   transition: .7s;
-
 }
 
 
