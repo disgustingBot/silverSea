@@ -10,9 +10,7 @@
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
     </div>
-
   </div>
-
 
 
   <div class="features">
