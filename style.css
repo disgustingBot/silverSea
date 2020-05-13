@@ -1051,10 +1051,6 @@ section {
   box-shadow: var(--DP4);
 }
 
-.teamATF {
-  grid-column: 1;
-  grid-row: 1;
-}
 .teamATFTitle {
   margin: auto;
 }
@@ -1126,34 +1122,23 @@ section {
   transition: .5s;
   grid-template-rows: max-content auto;
 }
+.teamCard:hover .teamCardImg1 {opacity: 1;}
 
-.teamCardImg {}
-
-.teamCardImg1 {
-  opacity: 0;
+.teamCardImg {
   transition: .5s;
   border-radius: 4px 4px 0 0;
+  width: 100%;
 }
 
-.teamCard:hover .teamCardImg1 {
-  opacity: 1;
-}
+.teamCardImg1 {opacity: 0;}
 
 .teamCardsContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
   padding: 1rem;
 }
 
-.flippingCardContainer {
-  position: relative;
-}
-
-.teamCardImg2 {
-  top: 0;
-  border-radius: 4px 4px 0 0;
-}
 
 .teamCardTxt {
   color: var(--color7);
