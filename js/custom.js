@@ -51,8 +51,8 @@ function postAjaxCall(url,dataNames,dataValues){// return a new promise.
 galleryController = {
 	galleries:[],
 	setup:()=>{
-		if (d.querySelectorAll('.Gallery')) {
-			var carousels = d.querySelectorAll('.Gallery');
+		if (d.querySelectorAll('.gallery')) {
+			var carousels = d.querySelectorAll('.gallery');
 			carousels.forEach( (item, i) => {
 				galleryController.galleries.unshift(new Gallery(item))
 			});
@@ -64,7 +64,7 @@ class Gallery {
 	constructor(gallery){
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
 		this.j = 1;
-		this.elements = gallery.querySelectorAll('.Element');
+		this.elements = gallery.querySelectorAll('.element');
 		this.title = gallery.id;
 
 	  gallery.querySelector('#nextButton').onclick = () =>{this.plusDivs(+1)}
@@ -271,24 +271,7 @@ if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
 
 
 
-function arraysEqual(_arr1, _arr2) {
 
-    if (!Array.isArray(_arr1) || ! Array.isArray(_arr2) || _arr1.length !== _arr2.length)
-      return false;
-
-    var arr1 = _arr1.concat().sort();
-    var arr2 = _arr2.concat().sort();
-
-    for (var i = 0; i < arr1.length; i++) {
-
-        if (arr1[i] != arr2[i])
-            return false;
-
-    }
-
-    return true;
-
-}
 
 
 
@@ -386,65 +369,17 @@ cartController = {
 
 		cartController.ready(false);
     cartController.currentSemiSelection.condicion = value;
-		cartController.getCol('avanzado_1', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
+		cartController.getCol('avanzado', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
   avanzadoController: (value)=>{
-		let seleccion = document.querySelectorAll('[name*="Avanzado"]:checked'),
-		opciones = cartController.currentSemiSelection.avanzado;
-		seleccion = Array.prototype.slice.call(seleccion);
-		var x = seleccion.map( e => e.value );
-		// console.log(document.getElementsByName('Avanzado')[0].value)
-		// console.log('LENGTH: ',seleccion.length)
-		if(seleccion.length==0){
-			opciones.forEach((item, i) => {
-				if(item.avanzado_1==''){cartController.containerToAdd=item.id}
-			})
-		} else {
-			// let success = array_a.every((val) => array_b.includes(val))
-
-			let nuevasOpciones = [];
-			// console.log(x)
-			opciones.forEach((opcion, i) => {
-				let temp = Object.values(opcion)
-				temp.shift();
-
-				cleanArray = temp.filter( a => a == '' ? false : true );
-
-				cleanArray.splice(cleanArray.length - 1, 1);
-				nuevasOpciones.push(cleanArray)
-
-			});
-			// console.log('seleccion: ', x)
-			// console.log('nuevasOpciones: ',nuevasOpciones)
-
-
-
-
-			let posibleOptions = [];
-
-			nuevasOpciones.forEach((opcion, i) => {
-				let success = x.every((val) => Object.values(opcion).includes(val))
-				let sameLength = (x.length == Object.values(opcion).length) ? true : false;
-				// console.log(Object.values(opcion).length);
-				// console.log(x.length)
-				// console.log('found: ', success, 'same LENGTH: ', sameLength, 'opcion: ',  opcion)
-				// if (Object.values(opcion).includes(item.value)) {
-				// console.log(x.length)
-				// var arr1 = _arr1.concat().sort();
-				// console.log('SORTED', x.concat().sort())
-				// console.log('SORTED', opcion.concat().sort())
-				// if (arraysEqual(x, opcion)) {
-				if (success && sameLength) {
-					// console.log('item: ', item);
-					// console.log('opcion: ', opcion.id);
-					cartController.containerToAdd=cartController.currentSemiSelection.avanzado[i].id
-					// posibleOptions.push(opcion.id);
-					// posibleOptions[opcion.id] = opcion.id;
-				}
-			})
-		}
-		// console.log('container To Add: ', cartController.containerToAdd)
+		console.log(document.getElementsByName('Avanzado')[0].value)
+		// if (cartController.currentSemiSelection.avanzado) {
+		//
+		// }
+    // PRIMERO VACIAR EL SELECT
+		console.log('value: ', value);
+		console.log('container To Add: ', cartController.containerToAdd)
 
 		cartController.ready();
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
@@ -465,11 +400,19 @@ cartController = {
 						for(var key in e) {
 							var value = e[key],
 							key = key[0].toUpperCase() + key.slice(1);
+							// console.log(key);
+							// console.log(value);
 							var a = cartController.selectBoxOption(key,value),
 							input = a.querySelector(".selectBoxInput");
+
+							// if(lastCase){
+							// 	input.setAttribute('type', 'checkbox');
+							// } else {
+							// }
 							input.setAttribute('type', 'radio');
 
 							if (JSON.parse(v).length == 1) {
+								// TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
 								cartController.selectBoxWipe(key, true);
 
 								input.setAttribute("checked", true);
@@ -479,20 +422,27 @@ cartController = {
 								d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
 								if (value != '') {value = value[0].toUpperCase() + value.slice(1);}
 
-								if(size && !tipo){
+								if(size && !tipo && !cond){
 									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
 									cartController.tipoController(value);
 								}
-								if(size &&  tipo){
+								if(size &&  tipo && !cond){
 									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
 									cartController.condicionController(value, true);
 								}
+								// if(lastCase){
+								// 	if (value=='') {
+								// 		cartController.selectBoxWipe('Avanzado',true)
+								// 	}
+								// 	cartController.ready();
+								// }
 
 							} else {
 
 								functionExecute = 'cartController.sizeController("'+value+'")';
 								if(size){functionExecute = 'cartController.tipoController("'+value+'")';}
 								if(tipo){functionExecute = 'cartController.condicionController("'+value+'")';}
+								// if(cond){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
 								input.setAttribute("onchange", functionExecute);
 
 								// Insert it into the document in the right place
@@ -503,26 +453,38 @@ cartController = {
 				} else {
 					cartController.currentSemiSelection.avanzado = new Array();
 					cartController.selectBoxWipe('Avanzado', true);
+					console.log('comienza el ultimo caso')
 					JSON.parse(v).forEach(e=>{
-						cartController.currentSemiSelection.avanzado[e.id] = e;
+						cartController.currentSemiSelection.avanzado.push(e);
 
-						var a = cartController.selectBoxOption('Avanzado',e.avanzado_1),
+
+
+
+						// var a = cartController.selectBoxOption('Avanzado',e.avanzado),
+						var a = cartController.selectBoxOption('Avanzado',e.avanzado),
 						input = a.querySelector(".selectBoxInput");
 						input.setAttribute('type', 'checkbox');
+						// input.setAttribute('onclick', 'console.log("EL NENENEEEE");cartController.ready()');
+						// input.setAttribute('onclick', 'cartController.avanzadoController("'+value+'")');
 						input.setAttribute('onclick', 'cartController.avanzadoController(this.value)');
 
+						// if (JSON.parse(v).length == 1) {
+						// 	// input.setAttribute("checked", true);
+						// 	cartController.cart.unshift(e.id)
+						// }
+
 						// a los found los tendria que mostrar en la UI
-						if (e.avanzado_1 == '') {
+						if (e.avanzado == '') {
 							cartController.ready()
 							cartController.containerToAdd = e.id;
 						}
-						if (e.avanzado_1!='' && e.avanzado_2 == '') {
+						if (e.avanzado!='' && e.avanzado_2 == '') {
 							d.querySelector('#selectBoxAvanzado .selectBoxList').insertBefore(a, null);
 						}
+						// console.log(e.length)
 
 					});
-					cartController.currentSemiSelection.avanzado = cartController.currentSemiSelection.avanzado.filter( x => {return x != null;} );
-					// console.log('container To Add: ', cartController.containerToAdd)
+					console.log(cartController.currentSemiSelection.avanzado)
 				}
       } catch(err) {
         console.log(err);

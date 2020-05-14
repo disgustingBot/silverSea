@@ -1,22 +1,7 @@
 <?php get_header(); ?>
 
 
-<!-- <?php include_once 'dataBaseHandler.php' ?> -->
 <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( wc_get_page_id( 'shop' ) ), 'full' );?>
-
-<!-- <figure class="titleBaner">
-  <img class="rowcol1 lazy" data-url="<?php echo wp_get_attachment_url(get_woocommerce_term_meta(get_queried_object()->term_id, 'thumbnail_id', true )); ?>">
-  <!-- <img class="titleBanerImg lazy" data-url="<?php echo $thumb['0']; ?>" alt=""> -->
-  <!-- <figcaption class="titleBanerCaption">
-    <h2><//?php the_title();?></h2>
-    <h3><//?php echo get_the_excerpt(); ?></h3>
-  </figcaption> -->
-<!-- </figure> -->
-
-
-
-
-
 
 
 <div class="coprAlqui">
@@ -28,182 +13,168 @@
     <label class="sladRadioLabel" for="dollar">ALQUILAR</label><br>
   </div>
 
-    <div class="coprAlquiLocation">
-      <h4 class="coprAlquiLocationTitle">Origen</h4>
+  <div class="coprAlquiLocation">
+    <h4 class="coprAlquiLocationTitle">Origen</h4>
 
 
-              <div class="selectBox" tabindex="1" id="selectBoxOrigenCountry">
-                <div class="selectBoxButton">
-                  <p class="selectBoxPlaceholder">Pais</p>
-                  <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCountry"></p>
-                </div>
-                <div class="selectBoxList">
-                  <label for="nulOrigenCountry" class="selectBoxOption">
-                    <input
-                      class="selectBoxInput"
-                      id="nulOrigenCountry"
-                      type="radio"
-                      data-slug="0"
-                      data-parent="city"
-                      name="filter_city"
-                      onclick="selectBoxControler('','#selectBoxOrigenCountry','#selectBoxCurrentOrigenCountry')"
-                      value="0"
-                    >
-                    <!-- <span class="checkmark"></span> -->
-                    <p class="colrOptP"></p>
-                  </label>
-                  <label for="barcelona" class="selectBoxOption">
-                    <input
-                      class="selectBoxInput"
-                      id="barcelona"
-                      data-slug="barcelona"
-                      data-parent="city"
-                      type="radio"
-                      name="filter_city"
-                      onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCountry', '#selectBoxCurrentOrigenCountry')"
-                      value="barcelona"
-                    >
-                    <!-- <span class="checkmark"></span> -->
-                    <p class="colrOptP">España</p>
-                  </label>
-                </div>
-              </div>
-
-
-              <div class="selectBox" tabindex="1" id="selectBoxOrigenCity">
-                <div class="selectBoxButton">
-                  <p class="selectBoxPlaceholder">Ciudad</p>
-                  <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
-                </div>
-                <div class="selectBoxList">
-                  <label for="nulOrigenCity" class="selectBoxOption">
-                    <input
-                      class="selectBoxInput"
-                      id="nulOrigenCity"
-                      type="radio"
-                      data-slug="0"
-                      data-parent="city"
-                      name="filter_city"
-                      onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
-                      value="0"
-                    >
-                    <!-- <span class="checkmark"></span> -->
-                    <p class="colrOptP"></p>
-                  </label>
-                  <label for="barcelona" class="selectBoxOption">
-                    <input
-                      class="selectBoxInput"
-                      id="barcelona"
-                      data-slug="barcelona"
-                      data-parent="city"
-                      type="radio"
-                      name="filter_city"
-                      onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
-                      value="barcelona"
-                    >
-                    <!-- <span class="checkmark"></span> -->
-                    <p class="colrOptP">Barcelona</p>
-                  </label>
-                </div>
-              </div>
-
-
-
-
-
-
-
-
-
-    </div>
-      <div class="coprAlquiLocation Accordion" id="destino">
-        <h4 class="coprAlquiLocationTitle">Destino</h4>
-
-
-                <div class="selectBox" tabindex="1" id="selectBoxOrigenCountry">
-                  <div class="selectBoxButton">
-                    <p class="selectBoxPlaceholder">Pais</p>
-                    <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCountry"></p>
-                  </div>
-                  <div class="selectBoxList">
-                    <label for="nulOrigenCountry" class="selectBoxOption">
-                      <input
-                        class="selectBoxInput"
-                        id="nulOrigenCountry"
-                        type="radio"
-                        data-slug="0"
-                        data-parent="city"
-                        name="filter_city"
-                        onclick="selectBoxControler('','#selectBoxOrigenCountry','#selectBoxCurrentOrigenCountry')"
-                        value="0"
-                      >
-                      <!-- <span class="checkmark"></span> -->
-                      <p class="colrOptP"></p>
-                    </label>
-                    <label for="barcelona" class="selectBoxOption">
-                      <input
-                        class="selectBoxInput"
-                        id="barcelona"
-                        data-slug="barcelona"
-                        data-parent="city"
-                        type="radio"
-                        name="filter_city"
-                        onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCountry', '#selectBoxCurrentOrigenCountry')"
-                        value="barcelona"
-                      >
-                      <!-- <span class="checkmark"></span> -->
-                      <p class="colrOptP">España</p>
-                    </label>
-                  </div>
-                </div>
-
-
-                <div class="selectBox" tabindex="1" id="selectBoxOrigenCity">
-                  <div class="selectBoxButton">
-                    <p class="selectBoxPlaceholder">Ciudad</p>
-                    <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
-                  </div>
-                  <div class="selectBoxList">
-                    <label for="nulOrigenCity" class="selectBoxOption">
-                      <input
-                        class="selectBoxInput"
-                        id="nulOrigenCity"
-                        type="radio"
-                        data-slug="0"
-                        data-parent="city"
-                        name="filter_city"
-                        onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
-                        value="0"
-                      >
-                      <!-- <span class="checkmark"></span> -->
-                      <p class="colrOptP"></p>
-                    </label>
-                    <label for="barcelona" class="selectBoxOption">
-                      <input
-                        class="selectBoxInput"
-                        id="barcelona"
-                        data-slug="barcelona"
-                        data-parent="city"
-                        type="radio"
-                        name="filter_city"
-                        onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
-                        value="barcelona"
-                      >
-                      <!-- <span class="checkmark"></span> -->
-                      <p class="colrOptP">Barcelona</p>
-                    </label>
-                  </div>
-                </div>
-
-
-
-
-
-
-
-
-
+    <div class="selectBox" tabindex="1" id="selectBoxOrigenCountry">
+      <div class="selectBoxButton">
+        <p class="selectBoxPlaceholder">Pais</p>
+        <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCountry"></p>
       </div>
+      <div class="selectBoxList">
+        <label for="nulOrigenCountry" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="nulOrigenCountry"
+          type="radio"
+          data-slug="0"
+          data-parent="city"
+          name="filter_city"
+          onclick="selectBoxControler('','#selectBoxOrigenCountry','#selectBoxCurrentOrigenCountry')"
+          value="0"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP"></p>
+        </label>
+        <label for="barcelona" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="barcelona"
+          data-slug="barcelona"
+          data-parent="city"
+          type="radio"
+          name="filter_city"
+          onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCountry', '#selectBoxCurrentOrigenCountry')"
+          value="barcelona"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP">España</p>
+        </label>
+      </div>
+    </div>
+
+
+    <div class="selectBox" tabindex="1" id="selectBoxOrigenCity">
+      <div class="selectBoxButton">
+        <p class="selectBoxPlaceholder">Ciudad</p>
+        <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
+      </div>
+      <div class="selectBoxList">
+        <label for="nulOrigenCity" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="nulOrigenCity"
+          type="radio"
+          data-slug="0"
+          data-parent="city"
+          name="filter_city"
+          onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
+          value="0"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP"></p>
+        </label>
+        <label for="barcelona" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="barcelona"
+          data-slug="barcelona"
+          data-parent="city"
+          type="radio"
+          name="filter_city"
+          onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+          value="barcelona"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP">Barcelona</p>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="coprAlquiLocation Accordion" id="destino">
+    <h4 class="coprAlquiLocationTitle">Destino</h4>
+
+
+    <div class="selectBox" tabindex="1" id="selectBoxOrigenCountry">
+      <div class="selectBoxButton">
+        <p class="selectBoxPlaceholder">Pais</p>
+        <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCountry"></p>
+      </div>
+      <div class="selectBoxList">
+        <label for="nulOrigenCountry" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="nulOrigenCountry"
+          type="radio"
+          data-slug="0"
+          data-parent="city"
+          name="filter_city"
+          onclick="selectBoxControler('','#selectBoxOrigenCountry','#selectBoxCurrentOrigenCountry')"
+          value="0"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP"></p>
+        </label>
+        <label for="barcelona" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="barcelona"
+          data-slug="barcelona"
+          data-parent="city"
+          type="radio"
+          name="filter_city"
+          onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCountry', '#selectBoxCurrentOrigenCountry')"
+          value="barcelona"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP">España</p>
+        </label>
+      </div>
+    </div>
+
+
+    <div class="selectBox" tabindex="1" id="selectBoxOrigenCity">
+      <div class="selectBoxButton">
+        <p class="selectBoxPlaceholder">Ciudad</p>
+        <p class="selectBoxCurrent" id="selectBoxCurrentOrigenCity"></p>
+      </div>
+      <div class="selectBoxList">
+        <label for="nulOrigenCity" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="nulOrigenCity"
+          type="radio"
+          data-slug="0"
+          data-parent="city"
+          name="filter_city"
+          onclick="selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')"
+          value="0"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP"></p>
+        </label>
+        <label for="barcelona" class="selectBoxOption">
+          <input
+          class="selectBoxInput"
+          id="barcelona"
+          data-slug="barcelona"
+          data-parent="city"
+          type="radio"
+          name="filter_city"
+          onclick="selectBoxControler('Barcelona', '#selectBoxOrigenCity', '#selectBoxCurrentOrigenCity')"
+          value="barcelona"
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP">Barcelona</p>
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -217,25 +188,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<//?php include get_template_directory().'/copralqui.php' ?>
 
 <div class="archiveMain">
   <div class="archiveFilter2">
@@ -325,22 +277,18 @@
       <ul class="filterList size">
         <li class="filterItem">
           <input type="checkbox" class="css-checkbox">
-          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">12 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">20 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">40 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <!-- <?php include $svgPath . 'size.php'; ?> -->
           <label for="">45 PIES</label>
         </li>
       </ul>
@@ -397,21 +345,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <section class="searchResultsCont">
     <?php while(have_posts()){the_post();
       $categories = get_the_terms( get_the_ID(), 'product_cat' );
@@ -442,28 +375,22 @@
           <img class="cardImg lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
         </a>
         <div class="cardFeaturesCont">
-
-          <!-- <figure class="cardFeature"> -->
-            <?php
-            if ($categories) {
-              // for each category
-              foreach ($categories as $cat) {  ?>
-                <?php $svgPath = get_template_directory()  . "/img/svg/"; ?>
-                <figure class="cardCategories">
-                  <?php if(strpos($cat->slug, 'pies') === false ){
-                    include $svgPath . $cat->slug . '.php';
-                  }else {
-                    include $svgPath  . 'size.php';
-                  }?>
-                  </figure>
-                  <?php
-                }
-              }
-              ?>
-              <!-- <p class="cardFeatureTxt">Refrigerado</p> -->
-            <!-- </figure> -->
-
-          <!-- <p class="cardFeatureTxt">5 x 20</p> -->
+          <?php
+          if ($categories) {
+            // for each category
+            foreach ($categories as $cat) {  ?>
+              <?php $svgPath = get_template_directory()  . "/img/svg/"; ?>
+              <figure class="cardCategories">
+                <?php if(strpos($cat->slug, 'pies') === false ){
+                  include $svgPath . $cat->slug . '.php';
+                }else {
+                  include $svgPath  . 'size.php';
+                }?>
+              </figure>
+              <?php
+            }
+          }
+          ?>
         </div>
         <hr class="cardInfoDiv">
         <div class="cardInteractionCont">
