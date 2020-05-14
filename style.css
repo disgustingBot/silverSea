@@ -86,9 +86,9 @@ FIN DE MAPA DE CONTENIDOS */
   --color6:#dae2e5;
   --color7:#3e4a4f;
   --color8:#2D3538;
-  /* --color4:#EBE1C8; */
-  /* --color5:#F5F0DC; */
-  /* --color6:#FFFAE6; */
+  --color9:#c1cfd5;
+
+
 
   /* SIZES */
   /* Al editar los tamaños, hacerlo siempre sin unidades
@@ -165,7 +165,6 @@ FIN DE MAPA DE CONTENIDOS */
 
 
 
---frontPageSec1MT: 7rem;
 
   /* ?FOOTER */
 
@@ -325,7 +324,6 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* FRONT PAGE ATF */
 
-    --frontPageSec1MT: 4rem;
 
 
     /* ?FOOTER */
@@ -491,9 +489,12 @@ section {
   background-color: white;
 }
 
-
-.sectionGrey {background:var(--color5)}
-.sectionIntenseGrey {background: var(--color6)}
+.sectionColor2 {background: var(--color2);}
+.sectionColor5 {background: var(--color5);}
+.sectionColor6 {background: var(--color6);}
+.sectionColor7 {background: var(--color7);}
+.sectionColor8 {background: var(--color8);}
+.sectionColor9 {background: var(--color9);}
 
 .Accordion{max-height:0;overflow:hidden;}
 .Accordion.active{overflow:unset;}
@@ -539,7 +540,7 @@ section {
 --------------------------------------------------------------------------- */
 
 .load{
-  background: var(--color2);
+  background: var(--color1);
   display: grid;
   height: 100vh;
   width:  100vw;
@@ -553,7 +554,7 @@ section {
   width:  50px;
   height: 50px;
   border-radius: 50%;
-  border-top: 2px solid var(--color1);
+  border-top: 2px solid var(--color2);
   margin: auto;
   animation: wheel 1s infinite;
 }
@@ -743,7 +744,9 @@ section {
   padding: .25rem 0;
   width: 100%;
   grid-column: 1/-1;
+  z-index: 3;
 }
+
 .blueBarTel{
   color: white;
   text-decoration: none;
@@ -790,7 +793,6 @@ section {
 .ATF{
   display: grid;
   width: 100%;
-  background: white;
 }
 
 .ATFWording {
@@ -817,14 +819,12 @@ section {
 
 .features {
   background: transparent;
-  padding: 1rem 0;
+  padding: 1rem var(--lateral);
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
   height: min-content;
   grid-gap: 1rem;
-  width: calc(100% - var(--lateral) * 2);
-  margin: 0 var(--lateral);
-  /* margin-top: -75px; */
+  width: 100%;
   margin-top:var(--featuresMarginTop);
 }
 
@@ -858,10 +858,7 @@ section {
 }
 
 
-.FrontPageSec1 {
-  padding-top: var(--frontPageSec1MT);
-  background: white;
-}
+
 
 .frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
   display: inline-block;
@@ -896,9 +893,7 @@ section {
   width: 100%;
   height: 500px;
   position: relative;
-  margin: 2rem 0;
-  background: var(--color5);
-
+  padding: 2rem 0 0 0;
 }
 
 .fullWidthMap {
@@ -920,24 +915,39 @@ section {
 .fullWidthMapBarOverlay {
   position: absolute;
   width: 100%;
-  min-height: 60px;
+  min-height: 100px;
   padding: .5rem calc(var(--lateral) / 4 );
-  background: var(--color5);
+  background: var(--color9);
   top: 0;
   left: 0;
   z-index: 3;
   display: flex;
   justify-content: space-between;
+  box-shadow: var(--DP2);
+  z-index: 4;
 }
 
 .mapSecTitle {
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
+  margin: auto;
 }
 
 .mapInterTxt {
   font-size: .7rem;
   align-self: flex-end;
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 45px;
+  background: var(--color9);
+  top: 19%;
+  right: 0;
+  box-shadow: var(--DP1);
+  border-radius: 0 0 0 4px;
 }
 
 .mapInterActive {
@@ -950,9 +960,17 @@ section {
   display: none;
 }
 
-.testimonial.inactive {
-  display: none;
+.testimonial {
+  transition: 1s;
+  grid-column: 2;
+  grid-row: 1;
 }
+
+.testimonial.inactive {
+  opacity: 0;
+}
+
+.testimonial.active {opacity: 1}
 
 
 /* TESTIMONIALS */
@@ -960,12 +978,14 @@ section {
 
 
 .testimonialsContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
 }
 
 .testimonialCarusel {
   padding: 0 20px;
 }
+
 
 .testimonialBtn {
   border: none;
@@ -1004,12 +1024,13 @@ section {
 
 
 
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                               6.3.3) =Team ATF
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-
+/*
 .teamATF {
   display: grid;
 }
@@ -1044,20 +1065,69 @@ section {
 
 .teamATFSec2 .btn {
   margin: auto;
-  margin-top: 1rem;
 }
 
 .teamATFTitle {
   margin: auto;
 }
 
+.teamATFImg {
+  height: 400px;
+  padding: 16px 16px 16px 0;
+  border-radius: 4px 0 0 4px;
+  background: var(--color1);
+  box-shadow: var(--DP4);
+}*/
+
+.teamATF {
+  display: grid;
+}
+
+.teamATF .sectionSummary {
+  z-index: 3;
+  border: none;
+  box-shadow: var(--DP1);
+}
+
+.teamATFImgCont {
+  display: grid;
+  width: 100%;
+  height: 500px;
+}
+
+
+.teamATFImg {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+}
+
+.teamCTA {
+  width: 50%;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--DP4);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.7);
+  margin: auto;
+  z-index: 3;
+}
+
+.teamATFSummary {
+  padding: 2rem var(--lateral);
+  text-align: center;
+}
+
 
 .teamSection {
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: min-content auto;
   grid-auto-rows: auto;
   padding: 1rem var(--lateral);
+  z-index: 2;
 }
 
 .teamSectionTitle {
@@ -1067,13 +1137,7 @@ section {
   padding: 1rem 0;
 }
 
-.teamATFImg {
-  height: 400px;
-  padding: 16px 16px 16px 0;
-  border-radius: 4px 0 0 4px;
-  background: var(--color1);
-  box-shadow: var(--DP4);
-}
+
 
 
 .areaSelectorCont {
@@ -1166,6 +1230,7 @@ section {
   height: auto;
   transition: .5s;
   grid-template-rows: max-content auto;
+  margin-bottom: auto;
 }
 .teamCard:hover .teamCardImg1 {opacity: 1;}
 
@@ -1177,11 +1242,14 @@ section {
 
 .teamCardImg1 {opacity: 0;}
 
+
 .teamCardsContainer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 20vw;
   grid-gap: 1rem;
   padding: 1rem;
+  overflow-x: scroll;
 }
 
 
@@ -1194,55 +1262,55 @@ section {
   justify-content: space-evenly;
   height: 80px;
 }
+.teamCardMail {font-size: .5rem;}
+.teamCardName {font-size: .8rem;}
 
-.teamCardName {
-  display: block;
-  font-size: .8rem;
-}
+.teamCardBlock {display: block;}
+.teamCardNone {display: none;}
 
-.teamCardPosition {
-  display: block;
-}
+.teamCard:hover .teamCardBlock {display: none;}
+.teamCard:hover .teamCardNone{display: block;}
 
-.teamCardMail {
-  display: none;
-  font-size: .5rem;
-}
-.teamCardLinkedin {
-  display: none;
-}
 
-.teamCardPhone {
-  display: none;
-}
-
-.teamCard:hover .teamCardName{
-  display: none;
-}
-
-.teamCard:hover .teamCardPosition{
-  display: none;
-}
-
-.teamCard:hover .teamCardMail{
-  display: block;
-}
-
-.teamCard:hover .teamCardLinkedin{
-  display: block;
-}
-
-.teamCard:hover .teamCardPhone{
-  display: block;
-}
 
 .areaSelector {
   cursor: pointer;
 }
 
+.teamCardsContainer.logistic       .sales,
+.teamCardsContainer.administration .sales,
+.teamCardsContainer.management     .sales,
+.teamCardsContainer.ceo            .sales {
+  display: none;
+}
 
+.teamCardsContainer.sales          .logistic,
+.teamCardsContainer.administration .logistic,
+.teamCardsContainer.management     .logistic,
+.teamCardsContainer.ceo            .logistic {
+  display: none;
+}
 
+.teamCardsContainer.logistic       .management,
+.teamCardsContainer.administration .management,
+.teamCardsContainer.sales          .management,
+.teamCardsContainer.ceo            .management {
+  display: none;
+}
 
+.teamCardsContainer.logistic       .ceo,
+.teamCardsContainer.administration .ceo,
+.teamCardsContainer.management     .ceo,
+.teamCardsContainer.sales          .ceo {
+  display: none;
+}
+
+.teamCardsContainer.logistic       .administration,
+.teamCardsContainer.sales          .administration,
+.teamCardsContainer.management     .administration,
+.teamCardsContainer.ceo            .administration {
+  display: none;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.6) =forms:
@@ -1828,6 +1896,7 @@ SVG STYLES
   margin: auto;
   border-radius: 4px;
   box-shadow: var(--DP2);
+  margin-top: 1rem;
 }
 
 .btn:hover {
@@ -1859,7 +1928,6 @@ SVG STYLES
   margin: auto 0 auto auto;
 }
 
-.FrontPageSec1 .btn {margin: 1rem auto 0 0;}
 
 #contSelector {margin: var(--aboutUsSec2BtnM);}
 
@@ -2354,6 +2422,7 @@ SVG STYLES
   grid-gap: 1rem;
   padding: var(--footerPad);
   color: white;
+  z-index: 3;
 }
 
 .footWordingTitle {
