@@ -32,9 +32,9 @@
 </head>
 <body class="body" id="body" <?php body_class(); ?>>
 
-	<!-- <view id="load" class="load">
+	<view id="load" class="load">
 			<div class="circle"></div>
-	</view> -->
+	</view>
 
   <?php include('blueBar.php') ?>
   <header class="header" id="header">
