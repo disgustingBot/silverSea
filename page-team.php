@@ -26,9 +26,8 @@
 
 
 <section class="teamSection">
-  <h3 class="teamSectionTitle">CONOCE A NUESTRO <span class="brandColorTxt">EQUIPO</span>.</h3>
   <div class="areaSelectorCont">
-    <h3 class="areaSelector"><strong>Áreas de Silversea</strong></h3>
+    <h3 class="areaSelector"><strong>Conoce nuestro equipo</strong></h3>
     <div class="areaSelector">
       <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamCardsContainer', 'teamCardsContainer')">Sales</p>
     </div>
@@ -45,6 +44,8 @@
       <p class="areaSelectorTxt" onclick="altClassFromSelector('ceo', '#teamCardsContainer', 'teamCardsContainer')" >C.E.O.</p>
     </div>
   </div>
+
+
   <div id="teamCardsContainer" class="teamCardsContainer">
 
     <?php
@@ -82,6 +83,6 @@
     <button class="btn">Contáctanos</button>
   </div>
 </section>
-<img class="teamATFImg" src="<?php echo get_post_meta( get_the_id(), 'Imagen_Cabecera' )[0]; ?>" alt="">
+<img class="teamATFImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
 
 <?php get_footer(); ?>
