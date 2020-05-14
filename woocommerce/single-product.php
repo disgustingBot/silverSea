@@ -22,10 +22,10 @@
     <div class="gallery" id="gallery">
         <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
           <img class="element rowcol1 lazy Obse" data-observe="#obseTest" data-unobserve="false" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Gallery left Handler">
-          <?php $count=0; foreach( $attachment_ids as $attachment_id ) { ?>
+          <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
             <img class="element rowcol1 lazy" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="Gallery right Handler">
 
-          <?php $count++; } ?>
+          <?php $count++; }} ?>
       <div class="singleProductsgalleryBtnsContainer">
         <button class="singleProductsGalleryBtns" id="nextButton" >
           <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
