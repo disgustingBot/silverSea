@@ -23,14 +23,14 @@
     <!-- <div class="imageGallery">
       <img class="" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
     </div> -->
-    <div class="gallery" id="galleryProduct">
+    <div class="Gallery" id="galleryProduct">
 
         <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
 
 
-          <img class="element rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+          <img class="Element rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
           <?php $count=0; foreach( $attachment_ids as $attachment_id ) { ?>
-            <img class="element rowcol1 lazy" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="">
+            <img class="Element rowcol1 lazy" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="">
           <?php $count++; } ?>
 
 
