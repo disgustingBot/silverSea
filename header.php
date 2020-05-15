@@ -58,7 +58,9 @@
   <header class="headerMob" id="headerMob">
     <?php include('blueBar.php') ?>
     <div class="upperHeader" id="cosaTest">
-      <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
+      <a href="<?php echo site_url('');  ?>" class="logoLink">
+        <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
+      </a>
       <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
         <div class="hamStripe"></div>
         <div class="hamStripe"></div>
