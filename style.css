@@ -598,9 +598,10 @@ p, a, button, li {color: var(--color9)}
 
 .navBar {
   display: flex;
-  justify-content: space-between;
-  margin: auto var(--lateral);
+  justify-content: space-around;
+  margin: auto var(--lateral) auto auto;
 }
+
 .menu-item {
 }
 
