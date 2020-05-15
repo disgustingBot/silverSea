@@ -20,7 +20,7 @@ w.onload=()=>{
 		cartController.getCol('Size');
 	}
 
-	galleryController.setup()
+	carouselController.setup()
 
   if (d.getElementById("load")) {
     d.getElementById("load").style.top="-100vh";
@@ -47,24 +47,24 @@ function postAjaxCall(url,dataNames,dataValues){// return a new promise.
 
 
 
-// SLIDER:
-galleryController = {
-	galleries:[],
+// CAROUSEL:
+carouselController = {
+	carousels:[],
 	setup:()=>{
-		if (d.querySelectorAll('.gallery')) {
-			var carousels = d.querySelectorAll('.gallery');
-			carousels.forEach( (item, i) => {
-				galleryController.galleries.unshift(new Gallery(item))
+		if (d.querySelectorAll('.Carousel')) {
+			var carousels = d.querySelectorAll('.Carousel');
+			carousels.forEach( carousel => {
+				carouselController.carousels.unshift(new Carousel(carousel))
 			});
 		}
 	}
 }
 
-class Gallery {
+class Carousel {
 	constructor(gallery){
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
 		this.j = 1;
-		this.elements = gallery.querySelectorAll('.element');
+		this.elements = gallery.querySelectorAll('.Element');
 		this.title = gallery.id;
 
 	  gallery.querySelector('#nextButton').onclick = () =>{this.plusDivs(+1)}

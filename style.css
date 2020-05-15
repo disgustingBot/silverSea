@@ -1471,7 +1471,7 @@ section.contacto img{
   grid-template-areas: var(--containerGTA);
 }
 
-.singleContainer .gallery{
+.singleContainer .Carousel{
   grid-column: span 2;
   grid-row: span 2;
   width: 100%;
@@ -1482,11 +1482,11 @@ section.contacto img{
   top:3rem;
   grid-area: imageGallery;
 }
-.element{
+.Element{
   opacity:1;
   transition:.4s;
 }
-.element.inactive{
+.Element.inactive{
   opacity:0;
 }
 

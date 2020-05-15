@@ -55,7 +55,7 @@
 
 
 <section class="testimonialsSec sectionPadding">
-  <div class="testimonialsContainer gallery">
+  <div class="testimonialsContainer Carousel">
     <button class="testimonialBtn" id="nextButton" >
       <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
@@ -67,7 +67,7 @@
     );
     $testimonials=new WP_Query($args);
     while($testimonials->have_posts()){$testimonials->the_post();?>
-      <quote class="testimonial testimonialCarusel element">
+      <quote class="testimonial testimonialCarusel Element">
         <div class="testimonialTxt mainTxtType1">
           <h4 class="testimonialAuthor"><?php the_title(); ?></h4>
           <div class="testimonialQuote"><?php the_content(); ?></div>
