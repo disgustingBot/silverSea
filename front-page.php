@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<section class="ATF frontPageATF sectionColor5">
+<section class="ATF frontPageATF sectionWhite">
   <img class="frontPageATFBg rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/ATFExampleImg.jpg" alt="">
 
 
@@ -14,21 +14,21 @@
 
 
   <div class="features">
-    <figure class="feature">
+    <figure class="feature sectionWhite">
       <img class="featureIcon" src="<?php echo get_template_directory_uri(); ?>/img/costePreciso.png" alt="feature Icon">
       <figcaption class="featureTxt">
         <h3 class="featureTitle brandColorTxt">CALCULO DE COSTE PRECISO</h3>
         <p class="featureP">eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
       </figcaption>
     </figure>
-    <figure class="feature">
+    <figure class="feature sectionWhite">
       <img class="featureIcon" src="<?php echo get_template_directory_uri(); ?>/img/enviosTracking.png" alt="feature Icon">
       <figcaption class="featureTxt">
         <h3 class="featureTitle brandColorTxt">ENVÍOS Y TRACKING LOGíSTICO</h3>
         <p class="featureP">eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
       </figcaption>
     </figure>
-    <figure class="feature">
+    <figure class="feature sectionWhite">
       <img class="featureIcon" src="<?php echo get_template_directory_uri(); ?>/img/compraRecompra.png" alt="feature Icon">
       <figcaption class="featureTxt">
         <h3 class="featureTitle brandColorTxt">COMPRA, RECOMPRA Y ALQUILER</h3>
@@ -75,7 +75,7 @@
     </select>
 </section>
 
-<section class="sectionPadding sectionColor5">
+<section class="sectionColor3 sectionPadding">
   <article class="articleCounter">
     <div class="counter">
       <div class="count countTitle">
@@ -110,7 +110,7 @@
   <button class="btn"><a href="">LEER MÁS</a></button>
 </section>
 
-<section class="sectionPadding sectionColor5">
+<section class="sectionPadding sectionColor3">
   <article class="article2">
     <iframe class="article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
     <hgroup class="sectionSummary">
