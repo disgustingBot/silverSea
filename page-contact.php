@@ -3,9 +3,9 @@
 
 <section class="contacto">
   <img class="rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
-  <hgroup>
+  <hgroup class="formTxt">
     <h1 class="formTitle">Contacta</h1>
-    <h4 class="subtitle">
+    <h4 class="formSubtitle">
       En Silversea estamos abiertos a consultas, propuestas y nuevos desafíos.
     </h4>
   </hgroup>
