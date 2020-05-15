@@ -25,7 +25,7 @@
           <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
             <img class="Element rowcol1 lazy" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="Gallery right Handler">
 
-          <?php }} ?>
+          <?php $count++; }} ?>
       <div class="singleProductsgalleryBtnsContainer">
         <button class="singleProductsGalleryBtns" id="nextButton" >
           <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
