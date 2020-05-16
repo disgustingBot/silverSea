@@ -197,21 +197,26 @@ class Obse {
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
 		this.j = 1;
 		this.id = element.id;
-		this.observe = element.dataset.observe;
+		this.observe = d.querySelector(element.dataset.observe);
 		this.unobserve = element.dataset.unobserve;
+		console.log(this.observe);
+		console.log(this.unobserve);
 
 		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
 		this.observer = new IntersectionObserver(function(entries, observer){
 			entries.forEach(entry => {
 				// const x = d.querySelector('#'+this.id);
+				console.log('testttt');
 				if(entry.isIntersecting){
+					console.log('intersecting');
 					// if(!reverse){
 					element.classList.add('observed')
 					// } else {
 						// x.classList.remove('observed')
 						// }
-					if(this.unobserve){observer.unobserve(entry.target)}
+					if(this.unobserve=='true'){observer.unobserve(entry.target);console.log('UNOVBSERVE');}
 				} else {
+					console.log('NOT intersecting');
 				// if(!reverse){
 					element.classList.remove('observed')
 					// } else {
@@ -228,7 +233,7 @@ class Obse {
 	activate(){
 		// console.log()
 		// d.querySelectorAll(observado).forEach(e => {
-			this.observer.observe(d.querySelector(this.observe));
+			this.observer.observe(this.observe);
 		// })
 	}
 }
