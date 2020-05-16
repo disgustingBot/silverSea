@@ -100,8 +100,8 @@
 
 <section class="sectionPadding">
   <article class="article2">
-    <div class="redDot test" id="sectioNSummaryActivator"></div>
-    <hgroup class="sectionSummary Obse" data-observe="#sectioNSummaryActivator" data-unobserve="true">
+    <div class="redDot" id="sectioNSummaryAboutUsActivator"></div>
+    <hgroup class="sectionSummary Obse" data-observe="#sectioNSummaryAboutUsActivator" data-unobserve="false">
       <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
       <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
       <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
@@ -114,7 +114,8 @@
 <section class="sectionPadding sectionColor3">
   <article class="article2">
     <iframe class="article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
-    <hgroup class="sectionSummary">
+    <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
+    <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
       <h2 class="summaryTitle">Silversea <span class="brandColorTxt">en el mundo</span></h2>
       <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
       <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
