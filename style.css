@@ -24,7 +24,8 @@ Version: 0.0
   2.5) min-width: 1200px
 
 3) =TIPOGRAFIAS:
-4) =ETIQUETAS GLOBALES:
+4.1) =ETIQUETAS GLOBALES:
+4.2) =COLORES:
 5) =ESTRUCTURA:
 
 6) =COMPONENTES:
@@ -81,13 +82,14 @@ FIN DE MAPA DE CONTENIDOS */
   dejar espacio entre los dos puntos y el color */
   --color1:#0674BB;
   --color2:#ECC800;
-  --color3:#60859E;
-  --color4:#373737;
-  --color5:#f1f3f4;
-  --color6:#dae2e5;
-  --color7:#3e4a4f;
-  --color8:#2D3538;
-  --color9:#c1cfd5;
+  --color3:#eceff1;
+  --color4:#babdbe;
+  --color5:#cfd8dc;
+  --color6:#9ea7aa;
+  --color7:#4f5b62;
+  --color8:#263238;
+  --color9:#000a12;
+  --colorWhite: white;
 
 
 
@@ -182,8 +184,8 @@ FIN DE MAPA DE CONTENIDOS */
   --contactTextareaHeight: 10rem;
 
   /* SINGLE CONTAINER */
-  --containerGTA: "imageGallery"
-                  "imageGallery"
+  --containerGTA: "productGallery"
+                  "productGallery"
                   "atributo1"
                   "atributo2"
                   "atributo3"
@@ -254,8 +256,8 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
     /* SINGLE CONTAINER */
-    --containerGTA: "imageGallery imageGallery"
-                    "imageGallery imageGallery"
+    --containerGTA: "productGallery productGallery"
+                    "productGallery productGallery"
                     "atributo1 atributo2"
                     "atributo3 atributo4"
                     "atributo5 atributo6"
@@ -344,11 +346,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
 
-    --containerGTA: "imageGallery imageGallery atributo1 atributo2"
-                "imageGallery imageGallery atributo3 atributo4"
-                "imageGallery imageGallery atributo5 atributo6"
-                "imageGallery imageGallery atributo7 atributo8"
-                "imageGallery imageGallery singleBuy singleRent";
+    --containerGTA: "productGallery productGallery atributo1 atributo2"
+                "productGallery productGallery atributo3 atributo4"
+                "productGallery productGallery atributo5 atributo6"
+                "productGallery productGallery atributo7 atributo8"
+                "productGallery productGallery singleBuy singleRent";
 
 
     --searchResultsGTC: repeat(2,1fr);
@@ -427,9 +429,9 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?FOOTER */
 
     /* SINGLE CONTAINER */
-    --containerGTA: "imageGallery imageGallery atributo1 atributo2 atributo3 atributo4"
-                    "imageGallery imageGallery atributo5 atributo6 atributo7 atributo8"
-                    "imageGallery imageGallery singleBuy singleRent  . ."
+    --containerGTA: "productGallery productGallery atributo1 atributo2 atributo3 atributo4"
+                    "productGallery productGallery atributo5 atributo6 atributo7 atributo8"
+                    "productGallery productGallery singleBuy singleRent  . ."
                     ;
     /* ARCHIVE-PRODUCT */
     --searchResultsGTC: repeat(4,1fr);
@@ -490,12 +492,27 @@ section {
   background-color: white;
 }
 
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                           4.2) =COLORES:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.sectionColor1 {background: var(--color1);}
 .sectionColor2 {background: var(--color2);}
+.sectionColor3 {background: var(--color3);}
+.sectionColor4 {background: var(--color4);}
 .sectionColor5 {background: var(--color5);}
 .sectionColor6 {background: var(--color6);}
 .sectionColor7 {background: var(--color7);}
 .sectionColor8 {background: var(--color8);}
 .sectionColor9 {background: var(--color9);}
+.sectionWhite  {background: white}
+
+h1, h2, h3, h4, h5 {color: var(--color9)}
+p, a, button, li {color: var(--color9)}
+
+.brandColorTxt {color: var(--color1)!important}
 
 .Accordion{max-height:0;overflow:hidden;}
 .Accordion.active{overflow:unset;}
@@ -528,11 +545,9 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.brandColorTxt {color: var(--color1)!important}
 
-.sectionPadding {
-  padding: 2rem var(--lateral);
-}
+
+.sectionPadding {padding: 2rem var(--lateral);}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -584,11 +599,11 @@ section {
 
 .navBar {
   display: flex;
-  justify-content: space-between;
-  margin: auto var(--lateral);
+  justify-content: space-around;
+  margin: auto var(--lateral) auto auto;
 }
+
 .menu-item {
-  color: var(--color4);
 }
 
 .header .menu-item:nth-child(1)  {
@@ -738,7 +753,6 @@ section {
 
 
 .blueBar {
-  color: white;
   background-color: var(--color1);
   display: flex;
   font-size: .5rem;
@@ -748,8 +762,9 @@ section {
   z-index: 3;
 }
 
+.blueBar * {color: white;}
+
 .blueBarTel{
-  color: white;
   text-decoration: none;
 }
 
@@ -776,11 +791,10 @@ section {
 
 .latteLink {
   text-decoration: none;
-  color: white;
 }
 
 .latteHeartSVG {
-  color:var(--color2);
+  color:var(--color2)!important;
   height: 12px;
   width: auto;
 }
@@ -801,6 +815,8 @@ section {
   margin: 4rem auto auto 20%;
   width: 50%;
 }
+
+.ATFWording * {color: var(--colorWhite);}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -836,8 +852,8 @@ section {
   padding: .5rem;
   transition: .25s;
   border-radius: 4px;
-  background: white;
 }
+
 .feature:hover {
   box-shadow: var(--DP4);
 }
@@ -869,7 +885,7 @@ section {
 .frontPageATF .cotizador {
   border-radius: 4px;
   box-shadow: var(--DP8);
-  background: var(--color5);
+  background: rgba(236, 200, 0, 0.9);
 }
 
 .frontPageATF .coprAlqui  {
@@ -919,7 +935,6 @@ section {
   width: 100%;
   min-height: 100px;
   padding: .5rem calc(var(--lateral) / 4 );
-  background: var(--color9);
   top: 0;
   left: 0;
   z-index: 3;
@@ -945,7 +960,6 @@ section {
   align-items: center;
   width: 350px;
   height: 45px;
-  background: var(--color9);
   top: 19%;
   right: 0;
   box-shadow: var(--DP1);
@@ -977,7 +991,18 @@ section {
 
 /* TESTIMONIALS */
 
+.testimonialSecTitle {text-align: center;}
 
+.starsContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: .5rem;
+}
+.star {
+  margin: .5rem 1rem;
+  color: var(--color2);
+}
 
 .testimonialsContainer {
   display: grid;
@@ -1006,23 +1031,12 @@ section {
 }
 
 .testimonialAuthor {
-  color: var(--color7);
 }
 
 .testimonialQuote {
-  color: var(--color8);
 }
 
-.starsContainer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: .5rem;
-}
-.star {
-  margin: 0 1rem;
-  color: var(--color2);
-}
+
 
 
 
@@ -1094,7 +1108,7 @@ section {
 .teamATFImgCont {
   display: grid;
   width: 100%;
-  height: 500px;
+  height: 100vh;
 }
 
 
@@ -1256,7 +1270,6 @@ section {
 
 
 .teamCardTxt {
-  color: var(--color7);
   font-size: .7rem;
   padding: .5rem;
   display: flex;
@@ -1330,7 +1343,6 @@ section {
   height: 1.5rem;
   width: 100%;
   background: white;
-  color: var(--color4);
   padding: .5rem;
   border: none;
 }
@@ -1381,6 +1393,8 @@ section.contacto{
   position: relative;
 }
 
+.formTxt * {color: white};
+
 .contacto .formTitle{
   margin-bottom: 1rem;
   font-size: 2rem;
@@ -1394,7 +1408,7 @@ section.contacto img{
   height: 100%;
   position: absolute;
 }
-.contacto .subtitle{
+.contacto .formSubtitle{
   align-self: flex-start;
 }
 
@@ -1483,13 +1497,13 @@ section.contacto img{
   margin:auto;
   position:var(--galleryPosition);
   top:3rem;
-  grid-area: imageGallery;
+  grid-area: productGallery;
 }
-.Element{
+.productGalleryImg{
   opacity:1;
   transition:.4s;
 }
-.Element.inactive{
+.productGalleryImg.inactive{
   opacity:0;
 }
 
@@ -1641,7 +1655,7 @@ section.contacto img{
   font-size: .7rem;
 }
 a:visited{
-  color: black;
+  color: var(--color8);
 }
 
 .cardImgCont {
@@ -1710,7 +1724,7 @@ a:visited{
   margin: auto;
   /* height: min-content; */
   /* margin: .5rem; */
-  border-bottom:2px solid #666;
+  border-bottom:2px solid var(--color9);
   /* border-right :2px solid #666; */
 }
 .addToCartQnt{
@@ -1985,13 +1999,11 @@ SVG STYLES
 }
 
 .summaryTitle{
-  color: var(--color4);
   font-size: 1.7rem;
 }
 
 .summaryTxt {
   font-size: .7rem;
-  color: var(--color4);
   line-height: 1rem;
 }
 
@@ -2069,7 +2081,6 @@ SVG STYLES
 
 .countTxt {
   font-size: .65rem;
-  color: var(--color4);
 }
 
 .countSmallerTxt {
@@ -2086,7 +2097,7 @@ SVG STYLES
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .cotizador{
-  background:white;
+  background: ;
   grid-column:1;
   grid-row:1;
   margin:auto var(--lateral);
@@ -2118,7 +2129,7 @@ SVG STYLES
 .coprAlqui .sladRadio{
   margin-left: var(--sladRadioMarginLeft);
   border-radius: 16px;
-  border: solid 2px var(--color1);
+  border: solid 2px black;
 }
 
 .coprAlquiLocation{
@@ -2134,7 +2145,6 @@ SVG STYLES
 .coprAlquiLocationTitle{
   margin:auto 0;
   text-align: right;
-  color: var(--color1);
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2154,7 +2164,7 @@ SVG STYLES
   transition:.3s;
   width:min-content;
 }
-.sladRadio:hover{background:#ddd}
+.sladRadio:hover{background: var(--color8)}
 .sladRadioInput{
   position:absolute;
   left:-2000vw;
@@ -2170,9 +2180,10 @@ SVG STYLES
   /* width:50%; */
   z-index:5;
   border-radius: 16px;
+  color: white;
 }
 .sladRadioSignal{
-  background:var(--color1);
+  background: var(--color9);
   height:100%;
   left:0;
   top:0;
@@ -2229,7 +2240,7 @@ SVG STYLES
   padding:16px 52px 2px 16px;
   font-size: .8rem!important;
   position: relative;
-  border-bottom:2px solid var(--color1);
+  border-bottom:2px solid var(--color9);
 }
 .selectBoxCurrent::after{
   content:'';
@@ -2455,13 +2466,16 @@ SVG STYLES
 --------------------------------------------------------------------------- */
 
 .footer {
-  background: var(--color4);
+  background: var(--color8);
   display: grid;
   grid-template-columns: var(--footGridTC);
   grid-gap: 1rem;
   padding: var(--footerPad);
-  color: white;
   z-index: 3;
+}
+
+.footer * {
+  color: white!important;
 }
 
 .footWordingTitle {
@@ -2495,7 +2509,6 @@ SVG STYLES
 .footLoc,.footerMail,.footTel {
   font-size: .5rem;
   text-decoration: none;
-  color: white;
   margin: auto;
   margin-left: 10px;
 }
@@ -2512,6 +2525,5 @@ SVG STYLES
 }
 
 .footerNav a {
-  color: white;
   font-size: .75rem;
 }
