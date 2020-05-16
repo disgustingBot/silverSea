@@ -53,6 +53,7 @@ Version: 0.0
 6.16) =coprAlqui:
 6.17) =sladRadio:
 6.18) =selectBox:
+6.69) =redDot:
 6.99) =footer
 FIN DE MAPA DE CONTENIDOS */
 
@@ -818,13 +819,14 @@ section {
 }
 
 .features {
-  background: transparent;
+  /* algunas propiedades que encontre con valores por defecto, but please, correct me if i'm wrong */
+  /* background: transparent; */
+  /* height: min-content; */
+  /* width: 100%; */
   padding: 1rem var(--lateral);
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
-  height: min-content;
   grid-gap: 1rem;
-  width: 100%;
   margin-top:var(--featuresMarginTop);
 }
 
@@ -1472,7 +1474,7 @@ section.contacto img{
   grid-template-areas: var(--containerGTA);
 }
 
-.singleContainer .Carousel{
+.singleContainer .productGallery{
   grid-column: span 2;
   grid-row: span 2;
   width: 100%;
@@ -1943,6 +1945,7 @@ SVG STYLES
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  position: relative;
 }
 
 .article2 .sectionSummary {
@@ -1952,14 +1955,29 @@ SVG STYLES
   width: var(--article2ElementsW)!important;
 }
 
+#sectioNSummaryActivator{
 
-
+}
 .sectionSummary{
   display: flex;
   flex-direction: column;
-  border-left: 2px solid var(--color1);
+  /* border-left: 2px solid var(--color1); */
   padding-left: 1rem;
+  position: relative;
   justify-content: center;
+}
+.sectionSummary::before{
+  content: '';
+  background:var(--color1);
+  height:0;
+  left:0;
+  position:absolute;
+  top:0;
+  transition:.8s;
+  width:4px;
+}
+.sectionSummary.observed::before{
+  height:100%;
 }
 
 .sectionSummary > *{
@@ -2411,6 +2429,25 @@ SVG STYLES
   grid-gap:inherit;
   grid-template-columns:var(--dynamicContSelector);
 }
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.69) =redDot:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+#sectioNSummaryActivator{bottom:0}
+.redDot {
+  border-radius: 50%;
+  height: 3rem;
+  position: absolute;
+  right: 10vw;
+  top: 45vh;
+  width: 3rem!important;
+}
+
+.redDot.test{
+  background: red;
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =footer

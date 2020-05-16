@@ -21,6 +21,7 @@ w.onload=()=>{
 	}
 
 	carouselController.setup()
+	obseController.setup()
 
   if (d.getElementById("load")) {
     d.getElementById("load").style.top="-100vh";
@@ -120,6 +121,119 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
     x.classList.add(clase)
   }
 }
+
+
+
+
+
+
+
+
+
+
+// const altClassOnScroll_v2 = (
+// 	observado,
+// 	unobserve = true,
+// 	reverse = false,
+// 	options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" }
+// ) => {
+//
+//   const observer = new IntersectionObserver(function(entries, observer){
+//     entries.forEach(entry => {
+//       const x = d.querySelectorAll('.Obse');
+//       if(entry.isIntersecting){
+//         x.forEach( y => {
+//           if(!reverse){
+//             y.classList.add('observed')
+//           } else {
+//             y.classList.remove('observed')
+//           }
+//         });
+//         if(unobserve){observer.unobserve(entry.target)}
+//       } else {
+//         x.forEach( y => {
+//           if(!reverse){
+//             y.classList.remove('observed')
+//           } else {
+//             y.classList.add('observed')
+//           }
+//         });
+//       }
+//     })
+//   }, options);
+//
+//   d.querySelectorAll(observado).forEach(e => {
+//     observer.observe(e);
+//   })
+// }
+//
+// if(d.querySelectorAll('.Obse')){
+// 	c.log('hola mundo');
+//   d.querySelectorAll('.Obse').forEach((item, i) => {
+//     let observe   = item.dataset.observe ? item.dataset.observe : '#'+item.id;
+//     let reverse   = item.dataset.reverse ? item.dataset.reverse : false;
+//     let unobserve = item.dataset.unobserve == 'false' ? false : true;
+//     // c.log(unobserve);
+//     altClassOnScroll_v2(observe, unobserve, reverse)
+//   })
+// }
+
+
+// OBSE:
+obseController = {
+	obses:[],
+	setup:()=>{
+		if (d.querySelectorAll('.Obse')) {
+			var obses = d.querySelectorAll('.Obse');
+			obses.forEach( obse => {
+				obseController.obses.unshift(new Obse(obse))
+			});
+		}
+	}
+}
+
+class Obse {
+	constructor(element){
+		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
+		this.j = 1;
+		this.id = element.id;
+		this.observe = element.dataset.observe;
+		this.unobserve = element.dataset.unobserve;
+
+		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
+		this.observer = new IntersectionObserver(function(entries, observer){
+			entries.forEach(entry => {
+				// const x = d.querySelector('#'+this.id);
+				if(entry.isIntersecting){
+					// if(!reverse){
+					element.classList.add('observed')
+					// } else {
+						// x.classList.remove('observed')
+						// }
+					if(this.unobserve){observer.unobserve(entry.target)}
+				} else {
+				// if(!reverse){
+					element.classList.remove('observed')
+					// } else {
+						// x.classList.add('observed')
+						// }
+				}
+			})
+		}, this.options);
+
+		this.activate();
+
+	}
+
+	activate(){
+		// console.log()
+		// d.querySelectorAll(observado).forEach(e => {
+			this.observer.observe(d.querySelector(this.observe));
+		// })
+	}
+}
+
+
 
 
 
