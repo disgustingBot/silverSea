@@ -19,11 +19,11 @@
   <a href=<?php echo site_url('shop'); ?> class="btn" id="backToGallery" type="button" name="button"><< Volver a la búsqueda</a>
 
   <section class="singleContainer">
-    <div class="Carousel" id="gallery">
+    <div class="Carousel productGallery" >
         <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
-          <img class="Element rowcol1 lazy Obse" data-observe="#obseTest" data-unobserve="false" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Gallery left Handler">
+          <img class="Element productGalleryImg rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
           <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
-            <img class="Element rowcol1 lazy" onclick="altClassFromSelector('alt','#gallery')" data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="Gallery right Handler">
+            <img class="Element productGalleryImg rowcol1 lazy"  data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
 
           <?php $count++; }} ?>
       <div class="singleProductsgalleryBtnsContainer">

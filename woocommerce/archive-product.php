@@ -213,18 +213,18 @@
           <?php include $svgPath . 'special.php'; ?>
           <label for="">Especiales</label>
         </li>
-        <li class="filterItem openTop">
+        <!-- <li class="filterItem openTop">
           <input type="checkbox">
-          <?php include $svgPath . 'open-top.php'; ?>
+          <//?php include $svgPath . 'open-top.php'; ?>
           <label for="">Open Top</label>
-          <?php include $svgPath . 'question.php'; ?>
+          <//?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem flatRack">
           <input type="checkbox">
-          <?php include $svgPath . 'flat-rack.php'; ?>
+          <//?php include $svgPath . 'flat-rack.php'; ?>
           <label for="">Flat Rack</label>
-          <?php include $svgPath . 'question.php'; ?>
-        </li>
+          <//?php include $svgPath . 'question.php'; ?>
+        </li> -->
       </ul>
       <div class="filterAll">
         <input type="checkbox" name="selectAll" value="">
