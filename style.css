@@ -584,7 +584,7 @@ p, a, button, li {color: var(--color9)}
 .header {
   box-shadow: var(--DP4);
   display: var(--onlyDesktopG);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: max-content 1fr;;
   position: sticky;
   top: 0;
   background: white;
@@ -600,7 +600,7 @@ p, a, button, li {color: var(--color9)}
 .navBar {
   display: flex;
   justify-content: space-around;
-  margin: auto var(--lateral) auto auto;
+  margin: auto var(--lateral);
 }
 
 .menu-item {
@@ -885,7 +885,7 @@ p, a, button, li {color: var(--color9)}
 .frontPageATF .cotizador {
   border-radius: 4px;
   box-shadow: var(--DP8);
-  background: rgba(236, 200, 0, 0.9);
+  background: rgba(236,239,241, 0.8);
 }
 
 .frontPageATF .coprAlqui  {
@@ -1722,11 +1722,9 @@ a:visited{
   grid-auto-flow: column;
   width: min-content;
   margin: auto;
-  /* height: min-content; */
-  /* margin: .5rem; */
-  border-bottom:2px solid var(--color9);
-  /* border-right :2px solid #666; */
+  border-bottom:2px solid var(--color2);
 }
+
 .addToCartQnt{
   /* margin:.5rem 0; */
   background:inherit;
@@ -2097,7 +2095,6 @@ SVG STYLES
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .cotizador{
-  background: ;
   grid-column:1;
   grid-row:1;
   margin:auto var(--lateral);
@@ -2129,7 +2126,7 @@ SVG STYLES
 .coprAlqui .sladRadio{
   margin-left: var(--sladRadioMarginLeft);
   border-radius: 16px;
-  border: solid 2px black;
+  border: solid 2px var(--color2);
 }
 
 .coprAlquiLocation{
@@ -2164,11 +2161,13 @@ SVG STYLES
   transition:.3s;
   width:min-content;
 }
-.sladRadio:hover{background: var(--color8)}
+
+.sladRadio:hover{background: rgba(236,200,0, 0.5)}
 .sladRadioInput{
   position:absolute;
   left:-2000vw;
 }
+
 .sladRadioLabel{
   align-items:center;
   cursor:pointer;
@@ -2177,13 +2176,12 @@ SVG STYLES
   position:relative;
   padding:0 1rem;
   text-align:center;
-  /* width:50%; */
   z-index:5;
   border-radius: 16px;
-  color: white;
 }
+
 .sladRadioSignal{
-  background: var(--color9);
+  background: var(--color2);
   height:100%;
   left:0;
   top:0;
@@ -2193,6 +2191,7 @@ SVG STYLES
   width:50%;
   border-radius: 12px;
 }
+
 .sladRadioInput:checked + .sladRadioSignal {
   left:50%;
 }
@@ -2236,12 +2235,14 @@ SVG STYLES
   transition:.3s;
   transform-origin:left;
 }
+
 .selectBoxCurrent{
   padding:16px 52px 2px 16px;
   font-size: .8rem!important;
   position: relative;
-  border-bottom:2px solid var(--color9);
+  border-bottom:2px solid var(--color2);
 }
+
 .selectBoxCurrent::after{
   content:'';
   position:absolute;
