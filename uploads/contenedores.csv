@@ -147,3 +147,4 @@ SIZE,TIPO 1,TIPO 1 - Description,TIPO 2,TIPO 2 - Description,Condicion,Condition
 45,Reefer,Refrigerado | Reefer,RF,Reefer Standard,ASIS,Almacenaje / Modificacion | Storage,45RF ASIS,146,size > 45PIES; Condition > ASIS; general > Reefer > RF
 45,Reefer,Refrigerado | Reefer,RF,Reefer Standard,NEW,Nuevo | NEW,45RF NEW,147,size > 45PIES; Condition > NEW; general > Reefer > RF
 45,Reefer,Refrigerado | Reefer,RF,Reefer Standard,1st Voyage,1er viaje | 1st voyage,45RF 1st Voyage,148,size > 45PIES; Condition > 1st Voyage; general > Reefer > RF
+

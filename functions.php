@@ -419,6 +419,114 @@ function lt_upload_file(){
               }
 
 
+              // $query = new WC_Product_Query();
+              // $products = $query->get_products();
+              // foreach ($products as $key => $value) {
+              //   // code...
+              //   var_dump($key);
+              //   echo '<br>';
+              //   var_dump($value->id);
+              //   echo '<br>';
+              //   echo '<br>';
+              //   if (wh_deleteProduct($value->id)) {
+              //     echo '<h3>product: ' . $value->id . ' DELETED</h3>';
+              //   }
+              //   echo '<br>';
+              //   echo '<br>';
+              // }
+
+
+              if ($conn -> query("create table WCProduct
+                                  Select
+                                  ID  ,
+                                  'simple' as Type,
+                                  salesforce_id as SKU,
+                                  CONCAT( size, ' PIES' ) as Name  ,
+                                  '1' as Published  ,
+                                  '0' as 'Is featured?'  ,
+                                  'visible' as 'Visibility in catalog',
+                                  null as 'Short description',
+                                  null as Description  ,
+                                  null as 'Date sale price starts',
+                                  null as 'Date sale price ends',
+                                  'taxable' as 'Tax status',
+                                  null as 'Tax class',
+                                  1 as 'In stock?',
+                                  1 as Stock  ,
+                                  null as 'Low stock amount',
+                                  0 as 'Backorders allowed?',
+                                  0 as 'Sold individually?',
+                                  null as 'Weight (kg)',
+                                  null as 'Length (cm)',
+                                  null as 'Width (cm)',
+                                  null as 'Height (cm)',
+                                  1 as 'Allow customer reviews?',
+                                  null as 'Purchase note',
+                                  null as 'Sale price'  ,
+                                  0 as 'Regular price'  ,
+                                  REPLACE(categoria,';',',') Categoria  ,
+                                  null as Tags  ,
+                                  null as 'Shipping class',
+                                  'http://localhost/Silversea/wp-content/uploads/2020/04/CIMG0468.png' Images  ,
+                                  null as 'Download limit'  ,
+                                  null as 'Download expiry days'  ,
+                                  null as Parent  ,
+                                  null as 'Grouped products',
+                                  null as 'Upsells',
+                                  null as 'Cross-sells'  ,
+                                  null as 'External URL'  ,
+                                  null as 'Button text',
+                                  null as 'Position'
+                                  from contenedores")) {
+                echo 'TABLA CREADAAAAA';
+              }
+
+
+
+              // // siguiendo directrices de este post:
+              // // https://dominykasgel.com/woocommerce-rest-api-import-products-json/
+              // require __DIR__ . '/vendor/autoload.php';
+              //
+              // use Automattic\WooCommerce\Client;
+              // $woocommerce = new Client(
+              //     'http://example.com',
+              //     'ck_ed4bf437c339742c7e1c52f470c34f24d2d1c8f5',
+              //     'cs_acb386012f49a7720d7f1dda8d4b2667d123f55c',
+              //     [
+              //         'wp_api' => true,
+              //         'version' => 'wc/v2',
+              //     ]
+              // );
+              //
+              // $sql = 'SELECT * FROM WCProduct';
+              //
+              // $result = $conn -> query($sql);
+              // $json_array = array();
+              //
+              // while ($row = mysqli_fetch_assoc($result)) {
+              //   // code...
+              //   $json_array[] = $row;
+              // }
+              //
+              // echo '<pre>';
+              // print_r($json_array);
+              // echo '</pre>';
+
+
+
+              // $importer = new WC_Product_CSV_Importer;
+
+              // var_dump($importer);
+
+
+
+
+
+
+
+
+
+
               /// delete the first row with the name of columns
               // $sqlDelete = "delete from $dbName.contenedores where tamaño = 'tamaño';";
               //
@@ -459,7 +567,7 @@ function lt_upload_file(){
     }
   }
   // $link = add_query_arg( array( 'success'  => true, ), $link );
-  wp_redirect($link);
+  // wp_redirect($link);
 }
 
 
@@ -541,4 +649,68 @@ function gatCol () {
   //   echo $conn -> error;
   // }
   exit();
+}
+
+
+
+
+
+
+
+
+/**
+ * Method to delete Woo Product
+ *
+ * @param int $id the product ID.
+ * @param bool $force true to permanently delete product, false to move to trash.
+ * @return \WP_Error|boolean
+ */
+function wh_deleteProduct($id, $force = FALSE)
+{
+    $product = wc_get_product($id);
+
+    if(empty($product))
+        return new WP_Error(999, sprintf(__('No %s is associated with #%d', 'woocommerce'), 'product', $id));
+
+    // If we're forcing, then delete permanently.
+    if ($force)
+    {
+        if ($product->is_type('variable'))
+        {
+            foreach ($product->get_children() as $child_id)
+            {
+                $child = wc_get_product($child_id);
+                $child->delete(true);
+            }
+        }
+        elseif ($product->is_type('grouped'))
+        {
+            foreach ($product->get_children() as $child_id)
+            {
+                $child = wc_get_product($child_id);
+                $child->set_parent_id(0);
+                $child->save();
+            }
+        }
+
+        $product->delete(true);
+        $result = $product->get_id() > 0 ? false : true;
+    }
+    else
+    {
+        $product->delete();
+        $result = 'trash' === $product->get_status();
+    }
+
+    if (!$result)
+    {
+        return new WP_Error(999, sprintf(__('This %s cannot be deleted', 'woocommerce'), 'product'));
+    }
+
+    // Delete parent product transients.
+    if ($parent_id = wp_get_post_parent_id($id))
+    {
+        wc_delete_product_transients($parent_id);
+    }
+    return true;
 }

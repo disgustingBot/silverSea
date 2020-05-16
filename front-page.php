@@ -100,7 +100,8 @@
 
 <section class="sectionPadding">
   <article class="article2">
-    <hgroup class="sectionSummary">
+    <div class="redDot test" id="sectioNSummaryActivator"></div>
+    <hgroup class="sectionSummary Obse" data-observe="#sectioNSummaryActivator" data-unobserve="true">
       <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
       <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
       <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
