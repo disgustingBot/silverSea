@@ -183,8 +183,8 @@ FIN DE MAPA DE CONTENIDOS */
   --contactTextareaHeight: 10rem;
 
   /* SINGLE CONTAINER */
-  --containerGTA: "imageGallery"
-                  "imageGallery"
+  --containerGTA: "productGallery"
+                  "productGallery"
                   "atributo1"
                   "atributo2"
                   "atributo3"
@@ -255,8 +255,8 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
     /* SINGLE CONTAINER */
-    --containerGTA: "imageGallery imageGallery"
-                    "imageGallery imageGallery"
+    --containerGTA: "productGallery productGallery"
+                    "productGallery productGallery"
                     "atributo1 atributo2"
                     "atributo3 atributo4"
                     "atributo5 atributo6"
@@ -345,11 +345,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
 
-    --containerGTA: "imageGallery imageGallery atributo1 atributo2"
-                "imageGallery imageGallery atributo3 atributo4"
-                "imageGallery imageGallery atributo5 atributo6"
-                "imageGallery imageGallery atributo7 atributo8"
-                "imageGallery imageGallery singleBuy singleRent";
+    --containerGTA: "productGallery productGallery atributo1 atributo2"
+                "productGallery productGallery atributo3 atributo4"
+                "productGallery productGallery atributo5 atributo6"
+                "productGallery productGallery atributo7 atributo8"
+                "productGallery productGallery singleBuy singleRent";
 
 
     --searchResultsGTC: repeat(2,1fr);
@@ -428,9 +428,9 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?FOOTER */
 
     /* SINGLE CONTAINER */
-    --containerGTA: "imageGallery imageGallery atributo1 atributo2 atributo3 atributo4"
-                    "imageGallery imageGallery atributo5 atributo6 atributo7 atributo8"
-                    "imageGallery imageGallery singleBuy singleRent  . ."
+    --containerGTA: "productGallery productGallery atributo1 atributo2 atributo3 atributo4"
+                    "productGallery productGallery atributo5 atributo6 atributo7 atributo8"
+                    "productGallery productGallery singleBuy singleRent  . ."
                     ;
     /* ARCHIVE-PRODUCT */
     --searchResultsGTC: repeat(4,1fr);
@@ -1485,7 +1485,7 @@ section.contacto img{
   grid-template-areas: var(--containerGTA);
 }
 
-.singleContainer .Carousel{
+.singleContainer .productGallery{
   grid-column: span 2;
   grid-row: span 2;
   width: 100%;
@@ -1494,13 +1494,13 @@ section.contacto img{
   margin:auto;
   position:var(--galleryPosition);
   top:3rem;
-  grid-area: imageGallery;
+  grid-area: productGallery;
 }
-.Element{
+.productGalleryImg{
   opacity:1;
   transition:.4s;
 }
-.Element.inactive{
+.productGalleryImg.inactive{
   opacity:0;
 }
 
