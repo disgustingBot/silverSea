@@ -831,19 +831,19 @@ p, a, button, li {color: var(--color9)}
 .frontPageATFBg{
   width: 100%;
   height: auto;
+  max-height: 100vh;
+  object-fit: cover;
   background: white;
+  z-index: 1;
 }
 
 .features {
-  /* algunas propiedades que encontre con valores por defecto, but please, correct me if i'm wrong */
-  /* background: transparent; */
-  /* height: min-content; */
-  /* width: 100%; */
   padding: 1rem var(--lateral);
   display: grid;
   grid-auto-flow: var(--featuresGAutoFlow);
   grid-gap: 1rem;
   margin-top:var(--featuresMarginTop);
+  z-index: 2;
 }
 
 .feature {
@@ -2103,7 +2103,7 @@ SVG STYLES
   margin:auto var(--lateral);
   position: relative;
   width:calc(100% - var(--lateral) * 2);
-  z-index: 0;
+  z-index: 2;
 }
 
 /* ---------------------------------------------------------------------------
@@ -2527,4 +2527,17 @@ SVG STYLES
 
 .footerNav a {
   font-size: .75rem;
+}
+
+/* FIXES */
+
+.wp-block-separator {
+  border: none;
+  padding: .5rem 0;
+}
+
+.wp-block-quote {
+  border-left: 2px solid var(--color1);
+  padding-left: 1rem;
+  font-size: .8rem;
 }

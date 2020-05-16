@@ -2,19 +2,15 @@
 <?php while(have_posts()){the_post(); ?>
   <section class="ATF aboutUsATF">
     <img class="lazy rowcol1" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
-    <div class="ATFWording rowcol1">
-      <?php echo the_content(); ?>
-    </div>
+    <hgroup class="ATFWording rowcol1">
+      <h1 class="AboutUsTitle"><?php echo get_post_meta($post->ID, '1-about-titulo-portada', true); ?></h1>
+      <h4 class="aboutUsSubtitle"><?php echo get_post_meta($post->ID, '2-about-texto-portada', true); ?></h4>
+    </hgroup>
   <?php } wp_reset_query(); ?>
 </section>
 
 <section class="sectionPadding AboutSec1">
-  <hgroup class="sectionSummary">
-    <h4 class="summaryTxt brandColorTxt">Desde sus comienzos en el año 2016, Silversea nace como una empresa enfocada en el trading y leasing de contenedores marítimos a nivel mundial.</h4>
-    <h4 class="summaryTxt">Dado los puntos de contacto con toda la cadena de logística en el 2017 se crea la unidad de Silvercargo. Es bajo la misma compañía que se desarrolla y apoya a toda la gama de clientes que tenemos a nivel mundial, que consideraban importante que podamos darle un soporte más amplio. Teniendo en cuenta nuestra red de agentes en más de 70 países, podemos brindarle soporte local en cada lugar, así atendiéndolos de manera personalizada.
-      En setiembre de 2017, abrimos nuestra oficina en Barcelona, siendo hoy nuestro head office y base de operaciones globales para todas las áreas de negocio que atiende SILVERSEA
-      Hoy podemos decir que Silversea es una empresa dedicada al comercio exterior y logística internacional, con oficinas propias en Europa y Sudamérica. La empresa se encuentra en pleno crecimiento, que año tras año se consolida en el mercado y es identificada por la confianza, la transparencia el dinamismo y por sobre todas las cosas los grandes profesionales y la calidad humana.</h4>
-    </hgroup>
+  <?php echo the_content(); ?>
 </section>
 
 <section class="sectionPadding aboutUsSec2 sectionColor3">

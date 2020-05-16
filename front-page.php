@@ -1,7 +1,8 @@
 <?php get_header(); ?>
 
 <section class="ATF frontPageATF sectionWhite">
-  <img class="frontPageATFBg rowcol1" src="<?php echo get_template_directory_uri(); ?>/img/ATFExampleImg.jpg" alt="">
+  <video loop autoplay muted class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, '1-video-portada', true); ?>" alt="">
+  </video>
 
 
   <div class="cotizador" id="cotizador">
@@ -14,27 +15,31 @@
 
 
   <div class="features">
+
     <figure class="feature sectionWhite">
       <img class="featureIcon" src="<?php echo get_template_directory_uri(); ?>/img/costePreciso.png" alt="feature Icon">
       <figcaption class="featureTxt">
-        <h3 class="featureTitle brandColorTxt">CALCULO DE COSTE PRECISO</h3>
-        <p class="featureP">eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, '2-titulo-beneficio-1', true); ?></h3>
+        <p class="featureP"><?php echo get_post_meta($post->ID, '3-texto-beneficio-1', true); ?></p>
       </figcaption>
     </figure>
+
     <figure class="feature sectionWhite">
       <img class="featureIcon" src="<?php echo get_template_directory_uri(); ?>/img/enviosTracking.png" alt="feature Icon">
       <figcaption class="featureTxt">
-        <h3 class="featureTitle brandColorTxt">ENVÍOS Y TRACKING LOGíSTICO</h3>
-        <p class="featureP">eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, '4-titulo-beneficio-2', true); ?></h3>
+        <p class="featureP"><?php echo get_post_meta($post->ID, '5-texto-beneficio-2', true); ?></p>
       </figcaption>
     </figure>
+
     <figure class="feature sectionWhite">
       <img class="featureIcon" src="<?php echo get_template_directory_uri(); ?>/img/compraRecompra.png" alt="feature Icon">
       <figcaption class="featureTxt">
-        <h3 class="featureTitle brandColorTxt">COMPRA, RECOMPRA Y ALQUILER</h3>
-        <p class="featureP">eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, '6-titulo-beneficio-3', true); ?></h3>
+        <p class="featureP"><?php echo get_post_meta($post->ID, '7-texto-beneficio-3', true); ?></p>
       </figcaption>
     </figure>
+
   </div>
 </section>
 
@@ -102,13 +107,13 @@
   <article class="article2">
     <div class="redDot" id="sectioNSummaryAboutUsActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummaryAboutUsActivator" data-unobserve="false">
-      <h2 class="summaryTitle">About <span class="brandColorTxt">us</span></h2>
-      <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
-      <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
+      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, '8-titulo-bloque-1', true); ?></h2>
+      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, '9-texto-azul-bloque-1', true); ?></h4>
+      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, '10-texto-negro-bloque-1', true); ?></h4>
     </hgroup>
-    <img class="article2Media" src="<?php echo get_template_directory_uri(); ?>/img/aboutUsImg.jpg" alt="">
+    <img class="article2Media" src="<?php echo get_post_meta($post->ID, '13-foto-bloque-1', true); ?>" alt="">
   </article>
-  <button class="btn"><a href="">LEER MÁS</a></button>
+  <button class="btn"><a href="<?php echo get_post_meta($post->ID, '12-link-boton-bloque-1', true); ?>"><?php echo get_post_meta($post->ID, '11-texto-boton-bloque-1', true); ?></a></button>
 </section>
 
 <section class="sectionPadding sectionColor3">
@@ -116,10 +121,10 @@
     <iframe class="article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
     <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
-      <h2 class="summaryTitle">Silversea <span class="brandColorTxt">en el mundo</span></h2>
-      <h4 class="summaryTxt brandColorTxt">Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip SUBTITULO</h4>
-      <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
-      <h4 class="summaryTxt">Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven iam, quis nostrud exer citation ullamco laboris nisi ut perspiciatis unde omnis iste natus error sit voluptate.</h4>
+      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, '14-titulo-bloque-2', true); ?></span></h2>
+      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, '15-texto-azul-bloque-2', true); ?></h4>
+      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, '16-texto-negro1-bloque-2', true); ?></h4>
+      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, '17-texto-negro2-bloque-2', true); ?></h4>
     </hgroup>
   </article>
 </section>
