@@ -18,8 +18,8 @@
 
 <section class="teamATF">
   <hgroup class="sectionSummary teamATFSummary sectionColor2">
-    <h1 class="tamATFTitle">SOMOS <span class="brandColorTxt">SILVERSEA</span></h1>
-    <h5 class="summaryTxt">Dado los puntos de contacto con toda la cadena de logística en el 2017 se crea la unidad de Silvercargo. Es bajo la misma compañía que se desarrolla y apoya a toda la gama de clientes que tenemos a nivel mundial, que consideraban importante que podamos darle un soporte más amplio. Teniendo en cuenta nuestra red de agentes en más de 70 países, podemos brindarle soporte local en cada lugar, así atendiéndolos de manera personalizada.Dado los puntos de contacto con toda la cadena de logística en el 2017 se crea la unidad de Silvercargo. </h5>
+    <h1 class="tamATFTitle"><?php echo get_post_meta($post->ID, '1-equipo-titulo-negro', true); ?> <span class="brandColorTxt"><?php echo get_post_meta($post->ID, '2-equipo-titulo-azul', true); ?></span></h1>
+    <h5 class="summaryTxt"><?php echo get_post_meta($post->ID, '2-equipo-texto', true); ?></h5>
   </hgroup>
 </section>
 
