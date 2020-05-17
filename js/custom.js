@@ -15,12 +15,13 @@ w.onload=()=>{
     lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
   }
 
-	if(d.querySelector('#cotizador')){
-		cartController.ready(false);
-		cartController.getCol('Size');
-	}
+	// if(d.querySelector('#cotizador')){
+	// 	cartController.ready(false);
+	// 	cartController.getCol('Size');
+	// }
 
 	carouselController.setup()
+	growUpController.setup()
 	obseController.setup()
 
   if (d.getElementById("load")) {
@@ -97,6 +98,184 @@ class Carousel {
 
 
 
+// OBSE:
+obseController = {
+	obses:[],
+	setup:()=>{
+		if (d.querySelectorAll('.Obse')) {
+			var obses = d.querySelectorAll('.Obse');
+			obses.forEach( obse => {
+				obseController.obses.unshift(new Obse(obse))
+			});
+		}
+	}
+}
+
+class Obse {
+	constructor(element){
+		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
+		this.j = 1;
+		this.id = element.id;
+		this.observe = d.querySelector(element.dataset.observe);
+		this.unobserve = element.dataset.unobserve;
+		// console.log(this.observe);
+		// console.log(this.unobserve);
+
+		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
+		this.observer = new IntersectionObserver(function(entries, observer){
+			entries.forEach(entry => {
+				// const x = d.querySelector('#'+this.id);
+				if(entry.isIntersecting){
+					// if(!reverse){
+					element.classList.add('observed')
+					// } else {
+						// x.classList.remove('observed')
+						// }
+					if(this.unobserve=='true'){observer.unobserve(entry.target)}
+				} else {
+				// if(!reverse){
+					element.classList.remove('observed')
+					// } else {
+						// x.classList.add('observed')
+						// }
+				}
+			})
+		}, this.options);
+
+		this.activate();
+
+	}
+
+	activate(){
+		// console.log()
+		// d.querySelectorAll(observado).forEach(e => {
+			this.observer.observe(this.observe);
+		// })
+	}
+}
+
+
+
+
+
+
+
+
+
+// OBSE:
+//Grow Up Handler o algo así, que se sho...
+growUpController = {
+	growUps:[],
+	setup:()=>{
+		if (d.querySelectorAll('.GrowUp')) {
+			var growUps = d.querySelectorAll('.GrowUp');
+			growUps.forEach( growUp => {
+				growUpController.growUps.unshift(new GrowUp(growUp))
+			});
+		}
+	},
+	again:()=>{
+		growUpController.growUps.forEach( growUp => {
+			growUp.again();
+		});
+	}
+}
+class GrowUp {
+	constructor(element){
+		console.log(element);
+		this.element = element;
+		this.target = element.dataset.target;
+		this.step = 50;
+		this.timeDuration = 1500;
+		this.current = parseFloat(element.innerHTML);
+
+		this.config = { attributes: true, childList: true, characterData: true }
+
+
+		this.observer = new MutationObserver(function(mutations) {
+		    mutations.forEach(function(mutation) {
+		        console.log(mutation.type);
+		    });
+		});
+
+		console.log(this.element);
+		// this.observer.observe(this.element);
+		this.observer.observe(d.querySelector('#header'), this.config);
+			this.grow()
+
+			altClassFromSelector('alt', '#header')
+
+	}
+	grow(){
+		this.current = this.current + this.target / this.step;
+		// console.log('number of ' + this.element.id + ', is: ', this.current);
+		this.element.innerHTML = parseInt(this.current);
+		if (parseFloat(this.element.innerHTML) < this.target ) {
+			setTimeout(() =>{
+				this.grow();
+			}, this.timeDuration / this.step)
+		} else {
+			this.element.innerHTML = this.target;
+		}
+	}
+	again(){
+		this.element.innerHTML = 0;
+		this.current = 0;
+		// this.grow();
+		setTimeout(() =>{
+			this.grow();
+		}, 1000)
+	}
+}
+
+
+
+// select the target node
+var target = d.querySelectorAll('#header');
+
+// create an observer instance
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        console.log(mutation.type);
+    });
+});
+
+// configuration of the observer:
+var config = { attributes: true, childList: true, characterData: true }
+
+// pass in the target node, as well as the observer options
+// observer.observe(target, config);
+
+// later, you can stop observing
+// observer.disconnect();
+
+
+
+// Start observing the target node for configured mutations
+// myObserver.observe(targetNode, config);
+
+// const counters = d.querySelectorAll('.GrowUp');
+
+// const sumar1 = (x) => {
+//   const target = x.dataset.target,
+//         step = 30;
+//         timeDuration = 1500;
+//   x.innerHTML = parseFloat(x.innerHTML).toFixed() + target / step;
+//   if(parseFloat(x.innerHTML) < target ){
+//     setTimeout(() =>{
+//       sumar1(x);
+//     }, timeDuration / step)
+//   }else {
+//     x.innerHTML = target;
+//   }
+// }
+//
+// counters.forEach((item, i) => {
+//   sumar1(item);
+// });
+
+
+
 
 
 
@@ -127,116 +306,6 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
-
-
-
-
-// const altClassOnScroll_v2 = (
-// 	observado,
-// 	unobserve = true,
-// 	reverse = false,
-// 	options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" }
-// ) => {
-//
-//   const observer = new IntersectionObserver(function(entries, observer){
-//     entries.forEach(entry => {
-//       const x = d.querySelectorAll('.Obse');
-//       if(entry.isIntersecting){
-//         x.forEach( y => {
-//           if(!reverse){
-//             y.classList.add('observed')
-//           } else {
-//             y.classList.remove('observed')
-//           }
-//         });
-//         if(unobserve){observer.unobserve(entry.target)}
-//       } else {
-//         x.forEach( y => {
-//           if(!reverse){
-//             y.classList.remove('observed')
-//           } else {
-//             y.classList.add('observed')
-//           }
-//         });
-//       }
-//     })
-//   }, options);
-//
-//   d.querySelectorAll(observado).forEach(e => {
-//     observer.observe(e);
-//   })
-// }
-//
-// if(d.querySelectorAll('.Obse')){
-// 	c.log('hola mundo');
-//   d.querySelectorAll('.Obse').forEach((item, i) => {
-//     let observe   = item.dataset.observe ? item.dataset.observe : '#'+item.id;
-//     let reverse   = item.dataset.reverse ? item.dataset.reverse : false;
-//     let unobserve = item.dataset.unobserve == 'false' ? false : true;
-//     // c.log(unobserve);
-//     altClassOnScroll_v2(observe, unobserve, reverse)
-//   })
-// }
-
-
-// OBSE:
-obseController = {
-	obses:[],
-	setup:()=>{
-		if (d.querySelectorAll('.Obse')) {
-			var obses = d.querySelectorAll('.Obse');
-			obses.forEach( obse => {
-				obseController.obses.unshift(new Obse(obse))
-			});
-		}
-	}
-}
-
-class Obse {
-	constructor(element){
-		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
-		this.j = 1;
-		this.id = element.id;
-		this.observe = d.querySelector(element.dataset.observe);
-		this.unobserve = element.dataset.unobserve;
-		console.log(this.observe);
-		console.log(this.unobserve);
-
-		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
-		this.observer = new IntersectionObserver(function(entries, observer){
-			entries.forEach(entry => {
-				// const x = d.querySelector('#'+this.id);
-				console.log('testttt');
-				if(entry.isIntersecting){
-					console.log('intersecting');
-					// if(!reverse){
-					element.classList.add('observed')
-					// } else {
-						// x.classList.remove('observed')
-						// }
-					if(this.unobserve=='true'){observer.unobserve(entry.target);console.log('UNOVBSERVE');}
-				} else {
-					console.log('NOT intersecting');
-				// if(!reverse){
-					element.classList.remove('observed')
-					// } else {
-						// x.classList.add('observed')
-						// }
-				}
-			})
-		}, this.options);
-
-		this.activate();
-
-	}
-
-	activate(){
-		// console.log()
-		// d.querySelectorAll(observado).forEach(e => {
-			this.observer.observe(this.observe);
-		// })
-	}
-}
 
 
 
@@ -342,27 +411,6 @@ for (i = 0; i < acc.length; i++) {
 
 
 
-//Grow Up Handler o algo así, que se sho...
-
-const counters = d.querySelectorAll('.GrowUp');
-
-const sumar1 = (x) => {
-  const target = x.dataset.target,
-        step = 30;
-        timeDuration = 1500;
-  x.innerHTML = parseFloat(x.innerHTML).toFixed() + target / step;
-  if(parseFloat(x.innerHTML) < target ){
-    setTimeout(() =>{
-      sumar1(x);
-    }, timeDuration / step)
-  }else {
-    x.innerHTML = target;
-  }
-}
-
-counters.forEach((item, i) => {
-  sumar1(item);
-});
 
 
 
