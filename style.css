@@ -655,7 +655,6 @@ p, a, button, li {color: var(--color9)}
   background: white;
   bottom: 0;
   left: 40%;
-  transition: .25s;
   z-index: -1;
 }
 
@@ -666,10 +665,11 @@ p, a, button, li {color: var(--color9)}
   background: var(--color1)!important;
   border-radius: 4px;
   left:0;
+  transition: .25s;
 }
 .header .menu-item:hover {
-  color: white;
   box-shadow: var(--DP2)!important;
+  color: white;
 }
 
 .headerMob .menu-item {
@@ -682,6 +682,7 @@ p, a, button, li {color: var(--color9)}
   text-transform: uppercase;
   color: inherit;
 }
+
 
 /* MOBILE HEADER */
 
@@ -1138,6 +1139,10 @@ p, a, button, li {color: var(--color9)}
   border-bottom: 1px solid var(--color6);
   display: flex;
   height: 100%;
+}
+
+.areaSelectorTitle {
+  text-align: center;
 }
 
 .areaSelectorTxt {
@@ -1622,7 +1627,7 @@ section.contacto img{
   font-size: .7rem;
 }
 a:visited{
-  color: var(--color8);
+  color: inherit;
 }
 
 .cardImgCont {
@@ -2509,3 +2514,5 @@ SVG STYLES
   padding-left: 1rem;
   font-size: .8rem;
 }
+
+/* LOGIN */

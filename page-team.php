@@ -27,7 +27,7 @@
 
 <section class="teamSection">
   <div class="areaSelectorCont">
-    <h3 class="areaSelector"><strong>Conoce nuestro equipo</strong></h3>
+    <h3 class="areaSelectorTitle"><strong>Conoce nuestro <span class="brandColorTxt">Equipo</span></strong></h3>
     <div class="areaSelector">
       <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamCardsContainer', 'teamCardsContainer')">Sales</p>
     </div>
