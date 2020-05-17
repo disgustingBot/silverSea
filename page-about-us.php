@@ -22,28 +22,28 @@
       <div class="counter">
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">30K+</p>
+            <p class="countNumber">+<span class="GrowUp" id="testMutation" data-target="30000">0</span></p>
             <p class="countTxt">CONTENEDORES VENDIDOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">3K+</p>
+            <p class="countNumber">+<span class="GrowUp" data-target="3000">0</span></p>
             <p class="countTxt">CLIENTES SATISFECHOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">200+</p>
+            <p class="countNumber">+<span class="GrowUp" data-target="200">0</span></p>
             <p class="countTxt">CENTROS LOGÍSTICOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">30+</p>
+            <p class="countNumber">+<span class="GrowUp" data-target="30">0</span></p>
             <p class="countTxt">PAÍSES Y TERRITORIOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
