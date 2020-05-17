@@ -1763,7 +1763,8 @@ a:visited{
 
 
 .archiveFilter2{
-  position: var(--archiveFilterPosition);
+  position: relative;
+  /* position: var(--archiveFilterPosition); */
   top: var(--archiveFilterTop);
   display: flex;
   flex-wrap: wrap;

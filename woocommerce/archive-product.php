@@ -205,7 +205,7 @@
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'dry.php'; ?>
+          <?php include $svgPath . 'dc.php'; ?>
           <label for="">Seco</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
@@ -213,18 +213,18 @@
           <?php include $svgPath . 'special.php'; ?>
           <label for="">Especiales</label>
         </li>
-        <!-- <li class="filterItem openTop">
+        <li class="filterItem openTop">
           <input type="checkbox">
-          <//?php include $svgPath . 'open-top.php'; ?>
+          <?php include $svgPath . 'ot.php'; ?>
           <label for="">Open Top</label>
-          <//?php include $svgPath . 'question.php'; ?>
+          <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem flatRack">
           <input type="checkbox">
-          <//?php include $svgPath . 'flat-rack.php'; ?>
+          <?php include $svgPath . 'fr.php'; ?>
           <label for="">Flat Rack</label>
-          <//?php include $svgPath . 'question.php'; ?>
-        </li> -->
+          <?php include $svgPath . 'question.php'; ?>
+        </li>
       </ul>
       <div class="filterAll">
         <input type="checkbox" name="selectAll" value="">
@@ -243,13 +243,13 @@
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'cargoWorthy.php'; ?>
+          <?php include $svgPath . 'cw.php'; ?>
           <label for="">Carga | Cargo Worthy</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'cargoWorthyIICL.php'; ?>
+          <?php include $svgPath . 'IICL.php'; ?>
           <label for="">Carga | Cargo Worthy IICL</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
@@ -303,22 +303,22 @@
       <ul class="filterList size">
         <li class="filterItem">
           <input type="checkbox" class="css-checkbox">
-          <?php include $svgPath . 'high-cube.php'; ?>
+          <?php include $svgPath . 'hc.php'; ?>
           <label for="">HIGH CUBE</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'double-door.php'; ?>
+          <?php include $svgPath . 'dd.php'; ?>
           <label for="">Double Door</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'palet-wide.php'; ?>
+          <?php include $svgPath . 'hc-pw.php'; ?>
           <label for="">Palet Wide</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'open-side.php'; ?>
+          <?php include $svgPath . 'os.php'; ?>
           <label for="">Open Side</label>
         </li>
 
