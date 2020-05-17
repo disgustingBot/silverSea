@@ -417,7 +417,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media  screen and (min-width: 1500px) {
   :root {
 
-    --lateral: 5rem;
+    --lateral: 10rem;
 
 
     /* ?HEADER */
@@ -436,6 +436,20 @@ FIN DE MAPA DE CONTENIDOS */
     /* ARCHIVE-PRODUCT */
     --searchResultsGTC: repeat(4,1fr);
     --searchResultsAltGTC: repeat(5,1fr);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.5) min-width:  =1800px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media  screen and (min-width: 1800px) {
+  :root {
+
+    --lateral: 15rem;
+
+
   }
 }
 /* ---------------------------------------------------------------------------
@@ -641,7 +655,6 @@ p, a, button, li {color: var(--color9)}
   background: white;
   bottom: 0;
   left: 40%;
-  transition: .25s;
   z-index: -1;
 }
 
@@ -652,10 +665,11 @@ p, a, button, li {color: var(--color9)}
   background: var(--color1)!important;
   border-radius: 4px;
   left:0;
+  transition: .25s;
 }
 .header .menu-item:hover {
-  color: white;
   box-shadow: var(--DP2)!important;
+  color: white;
 }
 
 .headerMob .menu-item {
@@ -668,6 +682,7 @@ p, a, button, li {color: var(--color9)}
   text-transform: uppercase;
   color: inherit;
 }
+
 
 /* MOBILE HEADER */
 
@@ -831,7 +846,7 @@ p, a, button, li {color: var(--color9)}
 .frontPageATFBg{
   width: 100%;
   height: auto;
-  max-height: 100vh;
+  max-height: 90vh;
   object-fit: cover;
   background: white;
   z-index: 1;
@@ -1046,54 +1061,7 @@ p, a, button, li {color: var(--color9)}
                               6.3.3) =Team ATF
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-/*
-.teamATF {
-  display: grid;
-}
 
-.teamATF .sectionSummary {
-  margin: auto var(--lateral);
-  text-align: center;
-}
-
-.teamATFSec2 {
-  display: grid;
-  grid-column-gap: 2rem;
-  grid-template-columns: 2fr 1fr;
-}
-
-.teamATFSec2 .sectionSummary {
-  margin: auto;
-  text-align: justify;
-  padding-right: 2rem;
-  border: none;
-}
-
-.teamATFSummary {
-  column-count: 2;
-  column-gap: 1rem;
-  padding: 2rem 0;
-  margin: auto;
-  border: none!important;
-}
-
-
-
-.teamATFSec2 .btn {
-  margin: auto;
-}
-
-.teamATFTitle {
-  margin: auto;
-}
-
-.teamATFImg {
-  height: 400px;
-  padding: 16px 16px 16px 0;
-  border-radius: 4px 0 0 4px;
-  background: var(--color1);
-  box-shadow: var(--DP4);
-}*/
 
 .teamATF {
   display: grid;
@@ -1117,7 +1085,7 @@ p, a, button, li {color: var(--color9)}
   top: 0;
   z-index: 1;
   width: 100%;
-  height: auto;
+  height: 100vh;
 }
 
 .teamCTA {
@@ -1171,6 +1139,10 @@ p, a, button, li {color: var(--color9)}
   border-bottom: 1px solid var(--color6);
   display: flex;
   height: 100%;
+}
+
+.areaSelectorTitle {
+  text-align: center;
 }
 
 .areaSelectorTxt {
@@ -1655,7 +1627,7 @@ section.contacto img{
   font-size: .7rem;
 }
 a:visited{
-  color: var(--color8);
+  color: inherit;
 }
 
 .cardImgCont {
@@ -2543,3 +2515,5 @@ SVG STYLES
   padding-left: 1rem;
   font-size: .8rem;
 }
+
+/* LOGIN */
