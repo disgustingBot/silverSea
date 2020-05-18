@@ -83,20 +83,21 @@
 <section class="sectionColor3 sectionPadding">
   <article class="articleCounter">
     <div class="counter">
+      <div class="redDot" id="growUpActivator"></div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp" data-target="3000">0</span></p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="30000">0</span></p>
         <p class="countTxt">CONTENEDORES VENDIDOS</p>
       </div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp" data-target="3000">0</span></p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="3000">0</span></p>
         <p class="countTxt">CLIENTES SATISFECHOS</p>
       </div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp" data-target="200">0</span></p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="200">0</span></p>
         <p class="countTxt">CENTROS LOGÍSTICOS</p>
       </div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp" data-target="30">0</span></p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="30">0</span></p>
         <p class="countTxt">PAÍSES Y TERRITORIOS</p>
       </div>
     </div>

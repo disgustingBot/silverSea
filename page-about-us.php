@@ -16,30 +16,31 @@
 <section class="sectionPadding aboutUsSec2 sectionColor3">
   <article class="articleCounter aboutUsCounter">
       <div class="counter">
+        <div class="redDot test" id="growUpActivator"></div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp" id="testMutation" data-target="30000">0</span></p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="30000">0</span></p>
             <p class="countTxt">CONTENEDORES VENDIDOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp" data-target="3000">0</span></p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="3000">0</span></p>
             <p class="countTxt">CLIENTES SATISFECHOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp" data-target="200">0</span></p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="200">0</span></p>
             <p class="countTxt">CENTROS LOGÍSTICOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp" data-target="30">0</span></p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="30">0</span></p>
             <p class="countTxt">PAÍSES Y TERRITORIOS</p>
           </div>
           <p class="countTxt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur libero metus, suscipit vel accumsan eget, viverra condimentum nibh. Nullam porttitor varius commodo.</p>
@@ -86,6 +87,7 @@
   </div>
 
 </section>
+
 
 <section class="fullWidthMapContainer">
   <iframe class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8"></iframe>
