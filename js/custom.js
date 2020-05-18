@@ -83,7 +83,7 @@ class Carousel {
     this.elements[this.j-1].classList.remove("inactive");
 
   }
-  carousel(){j++;
+  carousel(){this.j++;
 
     for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
     if(this.j>this.elements.length){this.j=1}

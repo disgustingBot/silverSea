@@ -16,7 +16,7 @@
 <section class="sectionPadding aboutUsSec2 sectionColor3">
   <article class="articleCounter aboutUsCounter">
       <div class="counter">
-        <div class="redDot test" id="growUpActivator"></div>
+        <div class="redDot" id="growUpActivator"></div>
         <div class="count">
           <div class="countTitle">
             <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="30000">0</span></p>
