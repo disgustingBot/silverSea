@@ -197,28 +197,96 @@
     <div class="filter">
       <h3 class="filterTitle"><nobr>Categoría</nobr></h3>
       <div class="filterList">
-        <div class="filterItem">ç
-          <li>
+        <div class="filterTipo">
+          <li class="filterTipoItem">
           <?php include $svgPath . 'rf.php'; ?>
           <label for="">Refrigerado</label>
-          <?php include $svgPath . 'question.php'; ?>
           </li>
-          <li>
+          <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
             <?php include $svgPath . 'rf.php'; ?>
-            <label for="">Refrigerado Standard</label>
+            <label for="">Standard</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'rh.php'; ?>
+            <label for="">HighCube</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+        </div>
+        <div class="filterTipo">
+          <li class="filterTipoItem">
+          <?php include $svgPath . 'dc.php'; ?>
+          <label for="">Seco</label>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'dc.php'; ?>
+            <label for="">Standard</label>
             <?php include $svgPath . 'question.php'; ?>
 
           </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'hc.php'; ?>
+            <label for="">HighCube</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'hc-pw.php'; ?>
+            <label for="">HighCube PaletWide</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
         </div>
-        <div class="filterItem">
-          <?php include $svgPath . 'dc.php'; ?>
-          <label for="">Seco</label>
-          <?php include $svgPath . 'question.php'; ?>
-        </div>
-        <div class="filterItem">
+        <div class="filterTipo">
+          <li class="filterTipoItem">
           <?php include $svgPath . 'special.php'; ?>
-          <label for="">Especiales</label>
+          <label for="">Especial</label>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'fr.php'; ?>
+            <label for="">Flat Rack</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'ot.php'; ?>
+            <label for="">Open Top</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'os.php'; ?>
+            <label for="">Open Side</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'dd.php'; ?>
+            <label for="">Double Door</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'hc-dd.php'; ?>
+            <label for="">HighCube Double Door</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'os.php'; ?>
+            <label for="">Open Side</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
+          <li class="filterTipoItem">
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'tk.php'; ?>
+            <label for="">Tank</label>
+            <?php include $svgPath . 'question.php'; ?>
+          </li>
         </div>
 
       </div>
