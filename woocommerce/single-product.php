@@ -4,14 +4,19 @@
 
 <?php while(have_posts()){the_post(); ?>
   <?php global $woocommerce, $product, $post; ?>
-  <?php $categories = get_the_terms( get_the_ID(), 'product_cat' ); ?>
+  <?php
+  $categories = get_the_terms( get_the_ID(), 'product_cat' );
+  $parent=get_term_by('id', $categories->parent, $taxonomy = 'slug', 'ARRAY_A');
+  var_dump( $parent);
+  ?>
+
 
   <?php $singleImgPath = get_template_directory_uri() . "/img/single-product/"; ?>
 
   <figure class="titleBaner">
     <img class="bannerImg lazy" data-url="<?php echo  $singleImgPath  . "portada-1.jpg" ;?>"  alt="">
-    <figcaption class="titleBanerCaption">
-      <h2><?php the_title();?></h2>
+    <figcaption >
+      <h2 class="titleBanerCaption"><?php the_title() ;?></h2>
     </figcaption>
   </figure>
 
@@ -134,6 +139,42 @@
     ?>
   </section>
 
+  <section class="testimonialsSec sectionPadding">
+    <h3 class="testimonialSecTitle brandColorTxt">CLIENTES SATISFECHOS</h3>
+    <div class="starsContainer">
+      <svg fill="currentColor" class="star" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+      <svg fill="currentColor" class="star" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+      <svg fill="currentColor" class="star" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+      <svg fill="currentColor" class="star" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+      <svg fill="currentColor" class="star" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+    </div>
+    <div class="testimonialsContainer Carousel">
+      <button class="testimonialBtn" id="nextButton" >
+        <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
+        </svg>
+      </button>
+      <?php
+      $args = array(
+        'post_type'=>'testimonials',
+      );
+      $testimonials=new WP_Query($args);
+      while($testimonials->have_posts()){$testimonials->the_post();?>
+        <quote class="testimonial testimonialCarusel Element">
+          <div class="testimonialTxt mainTxtType1">
+            <h4 class="testimonialAuthor"><?php the_title(); ?></h4>
+            <div class="testimonialQuote"><?php the_content(); ?></div>
+          </div>
+        </quote>
+      <?php } ?>
+      <button class="testimonialBtn" id="prevButton">
+        <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+  </section>
 
 
 <?php } wp_reset_query(); ?>

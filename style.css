@@ -1464,6 +1464,7 @@ section.contacto img{
   padding: 2rem;
   position: absolute;
   top: 20%;
+  color: white;
 }
 
 .bannerImg{
@@ -1513,12 +1514,12 @@ section.contacto img{
   justify-content: space-around;
   width: var(--singleProductsgalleryBtnsContainerWidth);
 }
-.singleProductArrowSVG {color: var(--color1);}
+.singleProductArrowSVG {color: black;}
 
 .singleProductsGalleryBtns {
   /* padding: .5rem; */
   margin: var(--singleProductGalleryBtnsMargin);
-  border-radius: 50%;
+  border-radius: 20%;
   box-shadow: var(--DP4);
   border: none;
   background-color: white;

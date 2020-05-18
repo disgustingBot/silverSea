@@ -195,37 +195,33 @@
 
 
     <div class="filter">
-      <h3 class="filterTitle"><nobr>Tipo de Contenedor</nobr></h3>
-      <ul class="filterList">
-        <li class="filterItem">
-          <input type="checkbox">
-          <?php include $svgPath . 'reefer.php'; ?>
+      <h3 class="filterTitle"><nobr>Categoría</nobr></h3>
+      <div class="filterList">
+        <div class="filterItem">ç
+          <li>
+          <?php include $svgPath . 'rf.php'; ?>
           <label for="">Refrigerado</label>
           <?php include $svgPath . 'question.php'; ?>
-        </li>
-        <li class="filterItem">
-          <input type="checkbox">
+          </li>
+          <li>
+            <input type="checkbox" name="" value="">
+            <?php include $svgPath . 'rf.php'; ?>
+            <label for="">Refrigerado Standard</label>
+            <?php include $svgPath . 'question.php'; ?>
+
+          </li>
+        </div>
+        <div class="filterItem">
           <?php include $svgPath . 'dc.php'; ?>
           <label for="">Seco</label>
           <?php include $svgPath . 'question.php'; ?>
-        </li>
-        <li class="filterItem">
+        </div>
+        <div class="filterItem">
           <?php include $svgPath . 'special.php'; ?>
           <label for="">Especiales</label>
-        </li>
-        <li class="filterItem openTop">
-          <input type="checkbox">
-          <?php include $svgPath . 'ot.php'; ?>
-          <label for="">Open Top</label>
-          <?php include $svgPath . 'question.php'; ?>
-        </li>
-        <li class="filterItem flatRack">
-          <input type="checkbox">
-          <?php include $svgPath . 'fr.php'; ?>
-          <label for="">Flat Rack</label>
-          <?php include $svgPath . 'question.php'; ?>
-        </li>
-      </ul>
+        </div>
+
+      </div>
       <div class="filterAll">
         <input type="checkbox" name="selectAll" value="">
         <label for="selectAll">Seleccionar todo</label>
