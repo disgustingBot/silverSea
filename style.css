@@ -1833,6 +1833,20 @@ a:visited{
   margin: .5rem;
 }
 
+.filterTipo{
+  display: grid;
+  align-items: center;
+  width: max-content;
+  grid-gap: .3rem;
+  margin: .5rem;
+}
+
+.filterTipoItem{
+  list-style-type: none;
+  margin-left: 2rem;
+}
+.filterTipo input{width: .75rem;height: .75rem;}
+
 .filterItem input{width: .75rem;height: .75rem;}
 
 .flatRack,.openTop{
