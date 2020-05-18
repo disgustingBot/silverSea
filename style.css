@@ -144,6 +144,7 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* ?HEADER */
   --navBarWidth: 50%;
+  --navBarGG: .7rem;
 
   /* ATFS */
   /* FRONT PAGE ATF */
@@ -303,6 +304,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?HEADER */
 
+
     /* ATFS */
     /* HOME ATF */
     --featuresMarginTop: -50px;
@@ -369,6 +371,8 @@ FIN DE MAPA DE CONTENIDOS */
   :root {
     /* ?HEADER */
     --navBarWidth: 40%;
+    --navBarGG: 1rem;
+
 
     /* ATFS */
     /* FRONT PAGE ATF */
@@ -607,14 +611,15 @@ p, a, button, li {color: var(--color9)}
 
 .logo {
   height: 3rem;
-  margin: .5rem auto .5rem var(--lateral);
+  margin: auto auto auto var(--lateral);
   width: auto;
 }
 
 .navBar {
-  display: flex;
-  justify-content: space-around;
-  margin: auto var(--lateral);
+  display: grid;
+  grid-auto-flow: column;
+  margin: auto var(--lateral) auto auto;
+  grid-gap: var(--navBarGG);
 }
 
 .menu-item {
