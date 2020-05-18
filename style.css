@@ -1021,6 +1021,7 @@ p, a, button, li {color: var(--color9)}
 
 .testimonialsContainer {
   display: grid;
+  position: relative;
   grid-template-columns: min-content 1fr min-content;
 }
 
@@ -2024,6 +2025,7 @@ SVG STYLES
 .counter {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .count {
@@ -2419,6 +2421,7 @@ SVG STYLES
                           6.69) =redDot:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+#growUpActivator,
 #sectioNSummarySilverSeaMundoActivator,
 #sectioNSummaryAboutUsActivator{bottom:0}
 .redDot {
@@ -2426,13 +2429,11 @@ SVG STYLES
   height: 3rem;
   position: absolute;
   right: 10vw;
-  top: 45vh;
+  /* top: 45vh; */
   width: 3rem!important;
+  z-index:12;
 }
-
-.redDot.test{
-  background: red;
-}
+.redDot.test{background:red}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------

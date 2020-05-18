@@ -182,8 +182,9 @@ growUpController = {
 }
 class GrowUp {
 	constructor(element){
-		console.log(element);
+		// console.log(element);
 		this.element = element;
+		this.className = element.className;
 		this.target = element.dataset.target;
 		this.step = 50;
 		this.timeDuration = 1500;
@@ -191,22 +192,25 @@ class GrowUp {
 
 		this.config = { attributes: true, childList: true, characterData: true }
 
-
-		this.observer = new MutationObserver(function(mutations) {
-		    mutations.forEach(function(mutation) {
-		        console.log(mutation.type);
-		    });
-		});
-
-		console.log(this.element);
-		// this.observer.observe(this.element);
-		this.observer.observe(d.querySelector('#header'), this.config);
-			this.grow()
-
-			altClassFromSelector('alt', '#header')
-
+		this.init();
 	}
+
+	init(){
+		this.observer = new MutationObserver( (mutations) => {
+	    mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes') {
+					if (mutation.target.className.includes('observed')) {
+						console.log(mutation.target.className)
+						this.grow();
+					}
+        }
+	    });
+		});
+		this.observer.observe(this.element, this.config);
+	}
+
 	grow(){
+		this.observer.disconnect();
 		this.current = this.current + this.target / this.step;
 		// console.log('number of ' + this.element.id + ', is: ', this.current);
 		this.element.innerHTML = parseInt(this.current);
@@ -230,49 +234,6 @@ class GrowUp {
 
 
 
-// select the target node
-var target = d.querySelectorAll('#header');
-
-// create an observer instance
-var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-        console.log(mutation.type);
-    });
-});
-
-// configuration of the observer:
-var config = { attributes: true, childList: true, characterData: true }
-
-// pass in the target node, as well as the observer options
-// observer.observe(target, config);
-
-// later, you can stop observing
-// observer.disconnect();
-
-
-
-// Start observing the target node for configured mutations
-// myObserver.observe(targetNode, config);
-
-// const counters = d.querySelectorAll('.GrowUp');
-
-// const sumar1 = (x) => {
-//   const target = x.dataset.target,
-//         step = 30;
-//         timeDuration = 1500;
-//   x.innerHTML = parseFloat(x.innerHTML).toFixed() + target / step;
-//   if(parseFloat(x.innerHTML) < target ){
-//     setTimeout(() =>{
-//       sumar1(x);
-//     }, timeDuration / step)
-//   }else {
-//     x.innerHTML = target;
-//   }
-// }
-//
-// counters.forEach((item, i) => {
-//   sumar1(item);
-// });
 
 
 
