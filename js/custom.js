@@ -24,9 +24,11 @@ w.onload=()=>{
 	growUpController.setup()
 	obseController.setup()
 
+
   if (d.getElementById("load")) {
     d.getElementById("load").style.top="-100vh";
   }
+	scrollAlter();
 }
 
 
@@ -88,7 +90,7 @@ class Carousel {
     for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
     if(this.j>this.elements.length){this.j=1}
     this.elements[this.j-1].classList.remove("inactive");
-    setTimeout(carousel, 8000); // Change image every N/1000 seconds
+    setTimeout(this.carousel, 8000); // Change image every N/1000 seconds
 
   }
 
@@ -393,6 +395,15 @@ const plusTesti=n=>{showTesti(t+=n)}
 if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
 
 
+
+function scrollAlter(){
+	if (d.querySelector('#teamCardsContainer')) {
+		d.querySelector('#teamCardsContainer').onwheel = (e) => {
+			d.querySelector('#teamCardsContainer').scrollLeft += e.deltaY;
+			e.preventDefault();
+		};
+	}
+}
 
 
 
