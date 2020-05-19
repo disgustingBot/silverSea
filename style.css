@@ -837,8 +837,9 @@ p, a, button, li {color: var(--color9)}
 
 .ATFWording {
   color: white;
-  margin: 4rem auto auto 20%;
+  margin: auto;
   width: 50%;
+  text-align: center;
 }
 
 .ATFWording * {color: var(--colorWhite);}
@@ -922,6 +923,22 @@ p, a, button, li {color: var(--color9)}
                             6.3.2) =About us ATF:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+.AboutSec1 ul {
+  padding-left: 16px;
+}
+
+.AboutSec1 ul li {
+  margin: 32px 0;
+}
+
+.AboutSec1 ul li::before {
+  content: "\2022";
+  color: var(--color2);
+  font-weight: bold;
+  display: inline-block;
+  font-size: 32px;
+  margin-right: 16px;
+}
 
 .aboutUsCounter .count .countTxt:nth-child(2) {
   padding: 0 20px;
