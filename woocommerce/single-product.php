@@ -7,7 +7,7 @@
   <?php
   $categories = get_the_terms( get_the_ID(), 'product_cat' );
   $parent=get_term_by('id', $categories->parent, $taxonomy = 'slug', 'ARRAY_A');
-  var_dump( $parent);
+  var_dump( $categories);
   ?>
 
 
@@ -22,6 +22,34 @@
 
 
   <a href=<?php echo site_url('shop'); ?> class="btn" id="backToGallery" type="button" name="button"><< Volver a la búsqueda</a>
+
+  <section class="categoryDescriptions">
+    <?php
+    if ($categories) {
+      foreach ($categories as $cat) {
+        $svgPath = get_template_directory()  . "/img/svg/"; ?>
+        <figure class="categoryCard">
+          <h5 class="cateforyCardTitle">
+            <?php echo $cat->name; ?>
+          </h5>
+          <?php
+          if(strpos($cat->slug, 'pies') === false ){
+            include $svgPath . $cat->slug . '.php';
+          }else {
+            include $svgPath  . 'size.php';
+          }
+          ?>
+          <figcaption class="categoryCardCaption">
+            <h5 class="categoryCardDescription">
+              <?php echo  $cat->description."<br />"; ?>
+            </h5>
+          </figcaption>
+        </figure>
+        <?php
+      }
+    }
+    ?>
+  </section>
 
   <section class="singleContainer">
     <div class="Carousel productGallery" >
@@ -111,33 +139,7 @@
     <button class="btn blue singleRent " type="button" name="button">Alquilar</button>
   </section>
 
-  <section class="categoryDescriptions">
-    <?php
-    if ($categories) {
-      foreach ($categories as $cat) {
-        $svgPath = get_template_directory()  . "/img/svg/"; ?>
-        <figure class="categoryCard">
-          <h5 class="cateforyCardTitle">
-            <?php echo $cat->name; ?>
-          </h5>
-          <?php
-          if(strpos($cat->slug, 'pies') === false ){
-            include $svgPath . $cat->slug . '.php';
-          }else {
-            include $svgPath  . 'size.php';
-          }
-          ?>
-          <figcaption class="categoryCardCaption">
-            <h5 class="categoryCardDescription">
-              <?php echo  $cat->description."<br />"; ?>
-            </h5>
-          </figcaption>
-        </figure>
-        <?php
-      }
-    }
-    ?>
-  </section>
+
 
   <section class="testimonialsSec sectionPadding">
     <h3 class="testimonialSecTitle brandColorTxt">CLIENTES SATISFECHOS</h3>

@@ -6,9 +6,12 @@
   <form action="" class="loginForm">
     <input type="text" name="" value="" placeholder="User">
     <input type="text" name="" valudd="" placeholder="Password">
-    <input type="checkbox" name="" value="">Remember me
-    <a href="">Forget Password?</a>
-    <button class="btn blue" type="button" name="button">Entrar</button>
+    <div class="remember">
+      <label for="remember"><nobr>Remember me</nobr></label>
+      <input type="checkbox" name="remember" value="">
+    </div>
+    <a class="forgot" href="">Forget Password?</a>
+    <button class="btn" type="button" name="button">Entrar</button>
   </form>
 
 </div>

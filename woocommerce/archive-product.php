@@ -361,37 +361,7 @@
         <label for="selectAll">Seleccionar todo</label>
       </div>
     </div>
-    <div class="filter">
-
-      <h3 class="filterTitle">Filtros Avanzados</h3>
-      <ul class="filterList size">
-        <li class="filterItem">
-          <input type="checkbox" class="css-checkbox">
-          <?php include $svgPath . 'hc.php'; ?>
-          <label for="">HIGH CUBE</label>
-        </li>
-        <li class="filterItem">
-          <input type="checkbox">
-          <?php include $svgPath . 'dd.php'; ?>
-          <label for="">Double Door</label>
-        </li>
-        <li class="filterItem">
-          <input type="checkbox">
-          <?php include $svgPath . 'hc-pw.php'; ?>
-          <label for="">Palet Wide</label>
-        </li>
-        <li class="filterItem">
-          <input type="checkbox">
-          <?php include $svgPath . 'os.php'; ?>
-          <label for="">Open Side</label>
-        </li>
-
-      </ul>
-      <div class="filterAll">
-        <input type="checkbox" name="selectAll" value="">
-        <label for="selectAll">Seleccionar todo</label>
-      </div>
-    </div>
+  
 
     <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
       <svg width="31" height="56" viewBox="0 0 31 56" fill="none" xmlns="http://www.w3.org/2000/svg">
