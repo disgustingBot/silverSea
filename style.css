@@ -33,29 +33,29 @@ Version: 0.0
 6.1) =header:
 6.2) =blueBar:
 6.3) =ATFS:
-  6.3.1) =Front Page ATF
-  6.3.2) =About Us ATF
-  6.3.3) =Team ATF
+6.3.0) =Front Page ATF:
+6.3.1) =About Us ATF:
+6.3.2) =Team ATF:
 6.4) =socalMedia:
 6.5) =multiCards:
 6.6) =forms:
 6.7) =BUTTONS:
-6.8) =sectioNSummarys:
+6.7.0) =btn:
+6.8) =titleBanner:
 6.9) =Counts:
-6.7) =forms
-6.7.1)=formContact:
-6.8) =titleBanner
-6.4) =multiCards:
-6.6) =BUTTONS:
-6.7) =forms
-6.7.1)=formContact:
-6.12.1)= containerAtributes
+6.10) =sectionSummarys:
+6.12) =containerAtributes:
 6.15) =cotizador:
 6.16) =coprAlqui:
 6.17) =sladRadio:
 6.18) =selectBox:
+6.19) =dynamicCont:
+6.42) =archive-product:
+6.62) =forms:login:
+6.65) =uploadForm:
 6.69) =redDot:
-6.99) =footer
+6.71) =formContact:
+6.99) =footer:
 FIN DE MAPA DE CONTENIDOS */
 
 
@@ -529,6 +529,7 @@ section {
 .sectionColor9 {background: var(--color9);}
 .sectionWhite  {background: white}
 
+
 h1, h2, h3, h4, h5 {color: var(--color9)}
 p, a, button, li {color: var(--color9)}
 
@@ -848,7 +849,7 @@ p, a, button, li {color: var(--color9)}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                            6.3.1) =Front Page ATF:
+                            6.3.0) =Front Page ATF:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
@@ -922,7 +923,7 @@ p, a, button, li {color: var(--color9)}
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                            6.3.2) =About us ATF:
+                            6.3.1) =About Us ATF:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .AboutSec1 ul {
@@ -1097,7 +1098,7 @@ p, a, button, li {color: var(--color9)}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                              6.3.3) =Team ATF
+                              6.3.2) =Team ATF:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
@@ -1396,157 +1397,79 @@ p, a, button, li {color: var(--color9)}
   margin-top: 5px;
 }
 
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
-              6.62) =forms:login
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-
-.loginContainer{
-  height: min-content;
-  margin: 3rem auto;
-  background: white;
-  border-radius: 8px;
-  width: 50%;
-  padding: 0 2rem;
-  box-shadow: var(--DP6);
-}
-
-.loginTitle{
-  padding-top: 1rem;
-  color: var(--color1);
-}
-
-.loginForm{
-  display: grid;
-  margin: 2rem;
-  grid-gap: 1rem;
-}
-
-.loginForm input{
-  height: 1.4rem;
-  font-size: 1rem;
-  padding: .5rem;
-  border-radius: 6px;
-}
-
-.remember{
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: min-content;
-  /* width: min-content; */
-  grid-gap: .5rem;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.remember input{
-  width: 20px;
-  height: 20px;
-}
-
-.forgot{
-  font-size: .7rem;
-  text-align: right;
-  color: var(--color2);
-}
-.forgot:visited{color:var(--color2)}
-
-.loginForm button{
-  margin: 0 0 0 auto;
-}
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                          6.6) =uploadForm:
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.uploadForm{
-  display: grid;
-  margin: 4rem auto;
-  height: 35vh;
-  grid-gap: 1rem;
-  background: white;
-  padding: 2rem;
-  box-shadow: var(--DP6);
-  border-radius: 8px;
-}
-
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.7) =BUTTONS:
-                          6.7) =formContact:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-section.contacto{
-  height: 90vh;
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.7.0) =btn:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.btn {
+  background: var(--color2);
+  /* border: solid 1px var(--color2); */
+  border:none;
+  border-radius: 4px;
+  box-shadow: var(--DP2);
+  color:var(--color8);
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  color: white;
-  text-align: center;
-  position: relative;
-}
-
-.formTxt * {color: white};
-
-.contacto .formTitle{
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-section.contacto > *{width: 80%; z-index: 1;}
-
-section.contacto img{
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-.contacto .formSubtitle{
-  align-self: flex-start;
-}
-
-.contacto .contactForm{
-  display: grid;
-  grid-template-columns:1fr 1fr;
-  grid-column-gap: .5rem;
-  grid-row-gap: 1rem;
-  align-items: center;
-}
-
-.contactForm input{
-  height: 2.5rem;
-  padding-left: .5rem;
-  width: var(--contactInputWidth);
-  grid-column: var(--contactInputGC)
-}
-
-.contactForm textarea{
-  grid-column: span 2;
-  height: var(--contactTextareaHeight) ;
-  padding: .5rem;
-  width: var(--contactInputWidth);
-}
-
-.contactForm button{
-  grid-column: span 2;
-  width: min-content;
+  font-size: .75rem;
+  font-weight: 700;
+  height: min-content;
+  justify-content: center;
   margin: auto;
-  height: 2rem;
-  padding: .5rem 1rem;
-
+  /* margin-top: 1rem; */
+  padding: .5rem .75rem;
+  text-transform: uppercase;
+  transition: .35s;
+  width: max-content;
 }
+
+.btn:hover {
+  box-shadow: var(--DP8);
+  background: white;
+  /* border: solid 1px var(--color2); */
+  /* color: var(--color2); */
+}
+
+.btn.blue{
+  background: var(--color1);
+  color: white;
+  border: 1px solid var(--color1);
+}
+
+.btn.blue:hover{
+  color: var(--color1);
+  background: white;
+  border: 1px solid var(--color1);
+}
+
+
+.btn a
+{margin: auto;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+.articleCounter .btn {
+  margin: auto 0 auto auto;
+}
+
+
+#contSelector {margin: var(--aboutUsSec2BtnM);}
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.8) =titleBanner
+                          6.8) =titleBanner:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
@@ -1568,9 +1491,156 @@ section.contacto img{
   height: 100%;
 }
 
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.12.1) =containerAtributes
+                          6.9) =Counts:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.count {
+  margin: 1rem auto;
+  flex-basis: var(--countFlexBasis);
+  min-height: 100%;
+  text-align: center;
+}
+
+.countTitle {
+  border-right: solid 2px var(--color2);
+  padding: .5rem;
+}
+.countHgroup {
+  border-left: solid 2px var(--color2);
+  padding: 0 .5rem;
+}
+
+.count:nth-child(odd) {border-left: var(--countEvenBorder)}
+
+.countNumber {
+  font-size: 2rem;
+  color: var(--color2);
+  font-weight: 700;
+}
+
+.countTxt {
+  font-size: .65rem;
+}
+
+.countSmallerTxt {
+  font-size: .6rem;
+}
+
+.countTxt:nth-child(2) {
+  margin-top: .5rem;
+}
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.10) =sectionSummarys:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.article2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+}
+
+.article2 .sectionSummary {
+  margin-bottom: var(--A2sectionSummaryMB);
+}
+.article2 > * {
+  width: var(--article2ElementsW)!important;
+}
+
+
+.sectionSummary{
+  display: flex;
+  flex-direction: column;
+  /* border-left: 2px solid var(--color1); */
+  padding-left: 1rem;
+  position: relative;
+  justify-content: center;
+}
+.sectionSummary::before{
+  content: '';
+  background:var(--color1);
+  height:0;
+  left:0;
+  position:absolute;
+  top:0;
+  transition:.8s;
+  width:4px;
+}
+.sectionSummary.observed::before{
+  height:100%;
+}
+
+.sectionSummary > *{
+  margin: .25rem 0;
+}
+
+.summaryTitle{
+  font-size: 1.7rem;
+}
+
+.summaryTxt {
+  font-size: .7rem;
+  line-height: 1rem;
+}
+
+.summaryTxt.brandColorTxt { font-size: .9rem;}
+
+/* About us summary */
+
+
+.playBtn {
+  width: 50px;
+  margin: auto;
+}
+.articleAboutUs .playBtn {
+  grid-area: media;
+  height: auto;
+}
+
+
+
+
+/* Silversea en el mundo article */
+
+.articleCounter {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 2rem;
+}
+
+.articleCounter .sectionSummary {
+  grid-column: 1/-1;
+}
+
+.containerNeeded {
+  display: none;
+}
+
+.containerNeeded.contVisible {
+  display: flex;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.12) =containerAtributes:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
@@ -1717,516 +1787,6 @@ section.contacto img{
 }
 
 .categoryCardCaption{
-}
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                          6.99) =archive-product
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.searchResultsCont {
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: var(--searchResultsGTC);
-  border-radius: 4px;
-  padding: 1rem;
-  transition: 1s;
-  transform-origin: center;
-}
-
-.containerCard {
-  display: grid;
-  grid-auto-flow: row;
-  box-shadow: var(--DP1);
-  transition: .25s;
-  height: min-content;
-}
-
-.containerCard:hover {
-  box-shadow: var(--DP6);
-}
-
-.archiveMain{
-  display: var(--archiveMainDisplay);
-  grid-template-columns: min-content 4fr;
-  position: relative;
-  transition: .5s;
-}
-
-.archiveMain.alt{
-  grid-template-columns: 1px 4fr;
-}
-
-.archiveMain.alt .searchResultsCont{
-  --searchResultsGTC : var(--searchResultsAltGTC);
-  margin: 1rem;
-}
-
-.cardTitle {
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: .5rem;
-  font-size: .7rem;
-}
-a:visited{
-  color: inherit;
-}
-
-.cardImgCont {
-  width: 100%;
-  padding: .5rem;
-}
-
-.cardImg {
-  width: 100%;
-  height: auto;
-}
-
-.cardFeaturesCont {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  padding: 1rem 0;
-}
-.cardFeaturesCont figure:nth-child(1){
-  display: none;
-}
-
-.cardFeature {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
-.cardFeatureTxt {
-  color: #676767;
-  font-size: .5rem;
-  grid-column: 3;
-  text-align: center;
-}
-
-.cardFeatureSVG {
-  width: 25px;
-  margin-right: 5px;
-}
-
-.cardInfoDiv {
-  width: 90%;
-  margin: auto;
-  background: #676767;
-}
-
-.cardQuant {
-  width: max-content;
-  margin: .5rem;
-}
-
-.cardInteractionCont {
-  display: grid;
-  padding: .3rem;
-  grid-auto-flow: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.addToCartQntContainer{
-  position:relative;
-  display: grid;
-  grid-auto-flow: column;
-  width: min-content;
-  margin: auto;
-  border-bottom:2px solid var(--color2);
-}
-
-.addToCartQnt{
-  /* margin:.5rem 0; */
-  background:inherit;
-  height: 39px;
-  /* padding:0 16px; */
-  /* border:1px solid var(--color1); */
-  border:none;
-  min-width: 1.5rem;
-  text-align: right;
-  font-size:var(--fontSize3);
-  pointer-events:none;
-}
-.addToCartQntBtn{
-  align-items:center;
-  background:none;
-  text-align: center;
-  cursor:pointer;
-  border:none;
-  color:black;
-  display: grid;
-  transition:.4s;
-  min-width:1.5rem;
-  /* transform:scale(1.5); */
-}
-.addToCartQntBtn:focus{
-  outline:1px solid #666;
-  /* transform:rotate(90deg); */
-}
-
-.cardInteractionCont .btn {
-  font-size: .6rem;
-  margin: .5rem;
-  width: auto;
-}
-
-
-
-.archiveFilter2{
-  position: relative;
-  /* position: var(--archiveFilterPosition); */
-  top: var(--archiveFilterTop);
-  display: flex;
-  flex-wrap: wrap;
-  height: min-content;
-  grid-gap: 1rem;
-  width: var(--archiveFilterWidth);
-  background: var(--color5);
-  /* grid-auto-flow: var(--archiveFilter2AutoFlow); */
-  padding: 1rem;
-  font-size: var(--archiveFilterFontSize);
-  transition: .5s;
-  z-index: 2;
-  /* box-shadow: 28px 1px 30px -28px rgba(0,0,0,0.75); */
-}
-.archiveFilter2.alt{
-  /* display: none; */
-  transform: translateX(-92%);
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.archiveFilter2 .hideFilter{
-  display: var(--hideFilterDisplay);
-  position: absolute;
-  right: -1.25rem;
-  align-self: center;
-  border: none;
-  transition: .5s;
-  background: var(--color5);
-  color: var(--color1);
-  z-index: -1;
-  margin: .5rem;
-  padding: .5rem;
-  border-radius: 8px;
-  border-right: solid var(--color1) 2px;
-
-}
-.hideFilter svg{
-  transform: rotate(180deg);
-  transition: .5s;
-}
-.hideFilter.alt svg{
-  transform-origin: center;
-  transform: rotate(0deg);
-
-}
-
-.hideFilter:focus{outline: none}
-
-.hideFilter svg{height: 1.7rem}
-
-
-.filter{
-  position: relative;
-  width: 100%;
-  margin: .7rem 0;
-}
-
-.filterTitle{
-  display: grid;
-  grid-template-columns: min-content;
-  grid-auto-flow: column;
-  grid-gap: .5rem;
-  padding: .3rem;
-  border-bottom: solid 1px var(--color4);
-  margin-bottom: .5rem;
-  color: var(--color1);
-}
-
-.filter .filterAll{
-  bottom: 0;
-  position: absolute;
-  transform: translateY(1rem);
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: var(--filterAllFontSize);
-}
-
-.filterItem{
-  display: grid;
-  align-items: center;
-  grid-auto-flow: column;
-  width: max-content;
-  grid-gap: .3rem;
-  margin: .5rem;
-}
-
-.filterTipo{
-  display: grid;
-  align-items: center;
-  width: max-content;
-  grid-gap: .3rem;
-  margin: .5rem;
-}
-
-.filterTipoItem{
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: min-content;
-  grid-gap: .4rem;
-  align-items: center;
-  list-style-type: none;
-  /* margin-left: 2rem; */
-}
-.filterTipo input{width: .75rem;height: .75rem;}
-
-.filterItem input{width: .75rem;height: .75rem;}
-
-.flatRack,.openTop{
-  margin-left: 2rem;
-}
-
-.filterList.size{
-  margin-left: 1rem;
-}
-
-
-
-.finalbuttons{
-  display: grid;
-  align-items: flex-end;
-  grid-auto-flow: column;
-  margin: 1rem;
-}
-
-/*
-
-SVG STYLES
-
-
-*/
-
-
-.svgIcon{
-  width: 30px;
-  height: 30px;
-}
-
-
-
-
-
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                          6.99) =buttons
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.btn {
-  cursor: pointer;
-  padding: .5rem .75rem;
-  background: var(--color2);
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  border: solid 1px var(--color2);
-  font-size: .75rem;
-  font-weight: 700;
-  width: max-content;
-  height: min-content;
-  margin: auto;
-  border-radius: 4px;
-  box-shadow: var(--DP2);
-  margin-top: 1rem;
-  transition: .35s;
-  color:white;
-}
-
-.btn:hover {
-  box-shadow: var(--DP8);
-  background: white;
-  border: solid 1px var(--color2);
-  color: var(--color2);
-}
-
-.btn.blue{
-  background: var(--color1);
-  color: white;
-  border: 1px solid var(--color1);
-}
-
-.btn.blue:hover{
-  color: var(--color1);
-  background: white;
-  border: 1px solid var(--color1);
-}
-
-
-.btn a
-{margin: auto;
-  text-decoration: none;
-  color: inherit;
-}
-
-
-
-.articleCounter .btn {
-  margin: auto 0 auto auto;
-}
-
-
-#contSelector {margin: var(--aboutUsSec2BtnM);}
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                          6.8) =sectioNSummarys
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.article2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  position: relative;
-}
-
-.article2 .sectionSummary {
-  margin-bottom: var(--A2sectionSummaryMB);
-}
-.article2 > * {
-  width: var(--article2ElementsW)!important;
-}
-
-
-.sectionSummary{
-  display: flex;
-  flex-direction: column;
-  /* border-left: 2px solid var(--color1); */
-  padding-left: 1rem;
-  position: relative;
-  justify-content: center;
-}
-.sectionSummary::before{
-  content: '';
-  background:var(--color1);
-  height:0;
-  left:0;
-  position:absolute;
-  top:0;
-  transition:.8s;
-  width:4px;
-}
-.sectionSummary.observed::before{
-  height:100%;
-}
-
-.sectionSummary > *{
-  margin: .25rem 0;
-}
-
-.summaryTitle{
-  font-size: 1.7rem;
-}
-
-.summaryTxt {
-  font-size: .7rem;
-  line-height: 1rem;
-}
-
-.summaryTxt.brandColorTxt { font-size: .9rem;}
-
-/* About us summary */
-
-
-.playBtn {
-  width: 50px;
-  margin: auto;
-}
-.articleAboutUs .playBtn {
-  grid-area: media;
-  height: auto;
-}
-
-
-
-
-/* Silversea en el mundo article */
-
-.articleCounter {
-  display: grid;
-  grid-auto-flow: row;
-  grid-row-gap: 2rem;
-}
-
-.articleCounter .sectionSummary {
-  grid-column: 1/-1;
-}
-
-.containerNeeded {
-  display: none;
-}
-
-.containerNeeded.contVisible {
-  display: flex;
-}
-
-/* ---------------------------------------------------------------------------
-------------------------------------------------------------------------------
-                          6.9) =Counts:
-------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
-
-.counter {
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-.count {
-  margin: 1rem auto;
-  flex-basis: var(--countFlexBasis);
-  min-height: 100%;
-  text-align: center;
-}
-
-.countTitle {
-  border-right: solid 2px var(--color2);
-  padding: .5rem;
-}
-.countHgroup {
-  border-left: solid 2px var(--color2);
-  padding: 0 .5rem;
-}
-
-.count:nth-child(odd) {border-left: var(--countEvenBorder)}
-
-.countNumber {
-  font-size: 2rem;
-  color: var(--color2);
-  font-weight: 700;
-}
-
-.countTxt {
-  font-size: .65rem;
-}
-
-.countSmallerTxt {
-  font-size: .6rem;
-}
-
-.countTxt:nth-child(2) {
-  margin-top: .5rem;
 }
 
 /* ---------------------------------------------------------------------------
@@ -2562,14 +2122,16 @@ SVG STYLES
   grid-gap:.5rem;
   padding:.5rem 0;
 }
-.dynamicCont .btn{background:#ddd}
+.dynamicCont .btn{background:#ddd; color:var(--color8);}
 .dynamicCont.ready .btn{background:var(--color2)}
 .dynamicCont{
   align-items:center;
   display:grid;
   grid-auto-flow:column;
   grid-auto-columns:auto;
-  grid-template-columns:2rem 1fr 4.5rem auto;
+  /* grid-template-columns:2rem 1fr 4.5rem auto; */
+  --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto;
+  grid-template-columns:var(--dynamicContGTC);
   grid-gap:1rem;
   padding: 0 1rem;
 }
@@ -2581,6 +2143,396 @@ SVG STYLES
   grid-gap:inherit;
   grid-template-columns:var(--dynamicContSelector);
 }
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.42) =archive-product:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.searchResultsCont {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: var(--searchResultsGTC);
+  border-radius: 4px;
+  padding: 1rem;
+  transition: 1s;
+  transform-origin: center;
+}
+
+.containerCard {
+  display: grid;
+  grid-auto-flow: row;
+  box-shadow: var(--DP1);
+  transition: .25s;
+  height: min-content;
+}
+
+.containerCard:hover {
+  box-shadow: var(--DP6);
+}
+
+.archiveMain{
+  display: var(--archiveMainDisplay);
+  grid-template-columns: min-content 4fr;
+  position: relative;
+  transition: .5s;
+}
+
+.archiveMain.alt{
+  grid-template-columns: 1px 4fr;
+}
+
+.archiveMain.alt .searchResultsCont{
+  --searchResultsGTC : var(--searchResultsAltGTC);
+  margin: 1rem;
+}
+
+.cardTitle {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: .5rem;
+  font-size: .7rem;
+}
+a:visited{
+  color: inherit;
+}
+
+.cardImgCont {
+  width: 100%;
+  padding: .5rem;
+}
+
+.cardImg {
+  width: 100%;
+  height: auto;
+}
+
+.cardFeaturesCont {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 1rem 0;
+}
+.cardFeaturesCont figure:nth-child(1){
+  display: none;
+}
+
+.cardFeature {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.cardFeatureTxt {
+  color: #676767;
+  font-size: .5rem;
+  grid-column: 3;
+  text-align: center;
+}
+
+.cardFeatureSVG {
+  width: 25px;
+  margin-right: 5px;
+}
+
+.cardInfoDiv {
+  width: 90%;
+  margin: auto;
+  background: #676767;
+}
+
+.cardQuant {
+  width: max-content;
+  margin: .5rem;
+}
+
+.cardInteractionCont {
+  display: grid;
+  padding: .3rem;
+  grid-auto-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.addToCartQntContainer{
+  position:relative;
+  display: grid;
+  grid-auto-flow: column;
+  width: min-content;
+  margin: auto;
+  border-bottom:2px solid var(--color2);
+}
+
+.addToCartQnt{
+  /* margin:.5rem 0; */
+  background:inherit;
+  height: 39px;
+  /* padding:0 16px; */
+  /* border:1px solid var(--color1); */
+  border:none;
+  min-width: 1.5rem;
+  text-align: right;
+  font-size:var(--fontSize3);
+  pointer-events:none;
+}
+.addToCartQntBtn{
+  align-items:center;
+  background:none;
+  text-align: center;
+  cursor:pointer;
+  border:none;
+  color:black;
+  display: grid;
+  transition:.4s;
+  min-width:1.5rem;
+  /* transform:scale(1.5); */
+}
+.addToCartQntBtn:focus{
+  outline:1px solid #666;
+  /* transform:rotate(90deg); */
+}
+
+.cardInteractionCont .btn {
+  font-size: .6rem;
+  margin: .5rem;
+  width: auto;
+}
+
+
+
+.archiveFilter2{
+  position: relative;
+  /* position: var(--archiveFilterPosition); */
+  top: var(--archiveFilterTop);
+  display: flex;
+  flex-wrap: wrap;
+  height: min-content;
+  grid-gap: 1rem;
+  width: var(--archiveFilterWidth);
+  background: var(--color5);
+  /* grid-auto-flow: var(--archiveFilter2AutoFlow); */
+  padding: 1rem;
+  font-size: var(--archiveFilterFontSize);
+  transition: .5s;
+  z-index: 2;
+  /* box-shadow: 28px 1px 30px -28px rgba(0,0,0,0.75); */
+}
+.archiveFilter2.alt{
+  /* display: none; */
+  transform: translateX(-92%);
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.archiveFilter2 .hideFilter{
+  display: var(--hideFilterDisplay);
+  position: absolute;
+  right: -1.25rem;
+  align-self: center;
+  border: none;
+  transition: .5s;
+  background: var(--color5);
+  color: var(--color1);
+  z-index: -1;
+  margin: .5rem;
+  padding: .5rem;
+  border-radius: 8px;
+  border-right: solid var(--color1) 2px;
+
+}
+.hideFilter svg{
+  transform: rotate(180deg);
+  transition: .5s;
+}
+.hideFilter.alt svg{
+  transform-origin: center;
+  transform: rotate(0deg);
+
+}
+
+.hideFilter:focus{outline: none}
+
+.hideFilter svg{height: 1.7rem}
+
+
+.filter{
+  position: relative;
+  width: 100%;
+  margin: .7rem 0;
+}
+
+.filterTitle{
+  display: grid;
+  grid-template-columns: min-content;
+  grid-auto-flow: column;
+  grid-gap: .5rem;
+  padding: .3rem;
+  border-bottom: solid 1px var(--color4);
+  margin-bottom: .5rem;
+  color: var(--color1);
+}
+
+.filter .filterAll{
+  bottom: 0;
+  position: absolute;
+  transform: translateY(1rem);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--filterAllFontSize);
+}
+
+.filterItem{
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  width: max-content;
+  grid-gap: .3rem;
+  margin: .5rem;
+}
+
+.filterTipo{
+  display: grid;
+  align-items: center;
+  width: max-content;
+  grid-gap: .3rem;
+  margin: .5rem;
+}
+
+.filterTipoItem{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: min-content;
+  grid-gap: .4rem;
+  align-items: center;
+  list-style-type: none;
+  /* margin-left: 2rem; */
+}
+.filterTipo input{width: .75rem;height: .75rem;}
+
+.filterItem input{width: .75rem;height: .75rem;}
+
+.flatRack,.openTop{
+  margin-left: 2rem;
+}
+
+.filterList.size{
+  margin-left: 1rem;
+}
+
+
+
+.finalbuttons{
+  display: grid;
+  align-items: flex-end;
+  grid-auto-flow: column;
+  margin: 1rem;
+}
+
+/*
+
+SVG STYLES
+
+
+*/
+
+
+.svgIcon{
+  width: 30px;
+  height: 30px;
+}
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+              6.62) =forms:login:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+.loginContainer{
+  height: min-content;
+  margin: 3rem auto;
+  background: white;
+  border-radius: 8px;
+  width: 50%;
+  padding: 0 2rem;
+  box-shadow: var(--DP6);
+}
+
+.loginTitle{
+  padding-top: 1rem;
+  color: var(--color1);
+}
+
+.loginForm{
+  display: grid;
+  margin: 2rem;
+  grid-gap: 1rem;
+}
+
+.loginForm input{
+  height: 1.4rem;
+  font-size: 1rem;
+  padding: .5rem;
+  border-radius: 6px;
+}
+
+.remember{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: min-content;
+  /* width: min-content; */
+  grid-gap: .5rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.remember input{
+  width: 20px;
+  height: 20px;
+}
+
+.forgot{
+  font-size: .7rem;
+  text-align: right;
+  color: var(--color2);
+}
+.forgot:visited{color:var(--color2)}
+
+.loginForm button{
+  margin: 0 0 0 auto;
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.65) =uploadForm:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.uploadForm{
+  display: grid;
+  margin: 4rem auto;
+  height: 35vh;
+  grid-gap: 1rem;
+  background: white;
+  padding: 2rem;
+  box-shadow: var(--DP6);
+  border-radius: 8px;
+}
+
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.69) =redDot:
@@ -2601,9 +2553,78 @@ SVG STYLES
 }
 .redDot.test{background:red}
 
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.99) =footer
+                          6.71) =formContact:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+section.contacto{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.formTxt * {color: white};
+
+.contacto .formTitle{
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+section.contacto > *{width: 80%; z-index: 1;}
+
+section.contacto img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.contacto .formSubtitle{
+  align-self: flex-start;
+}
+
+.contacto .contactForm{
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  grid-column-gap: .5rem;
+  grid-row-gap: 1rem;
+  align-items: center;
+}
+
+.contactForm input{
+  height: 2.5rem;
+  padding-left: .5rem;
+  width: var(--contactInputWidth);
+  grid-column: var(--contactInputGC)
+}
+
+.contactForm textarea{
+  grid-column: span 2;
+  height: var(--contactTextareaHeight) ;
+  padding: .5rem;
+  width: var(--contactInputWidth);
+}
+
+.contactForm button{
+  grid-column: span 2;
+  width: min-content;
+  margin: auto;
+  height: 2rem;
+  padding: .5rem 1rem;
+
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.99) =footer:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
