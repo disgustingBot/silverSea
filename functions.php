@@ -626,11 +626,11 @@ add_action( 'wp_ajax_nopriv_gatCol', 'gatCol' );
 function gatCol () {
   $col = $_POST['col'];
   $size = false;
-  $tipo = false;
-  $cond = false;
+  $tipo_1 = false;
+  $tipo_2 = false;
   if(isset($_POST['size'])){$size=$_POST['size'];}
-  if(isset($_POST['tipo'])){$tipo=$_POST['tipo'];}
-  if(isset($_POST['cond'])){$cond=$_POST['cond'];}
+  if(isset($_POST['tipo_1'])){$tipo_1=$_POST['tipo_1'];}
+  if(isset($_POST['tipo_2'])){$tipo_2=$_POST['tipo_2'];}
   // echo get_template_directory();
   // include get_template_directory_uri().'/dbh.inc.php';
   $dbServerName = "localhost";
@@ -657,20 +657,21 @@ function gatCol () {
     $qry = $qry . " WHERE size = '$size'";
     // $qry = "SELECT distinct $col FROM contenedores WHERE  size = '$size'";
   }
-  if($size && $tipo){
-    $qry = $qry . " AND tipo = '$tipo'";
-    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo')";
+  if($size && $tipo_1){
+    $qry = $qry . " AND tipo_1 = '$tipo_1'";
+    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo_1 = '$tipo_1')";
   }
-  if($size && $tipo && $cond){
-    // $qry = $qry . " AND condicion = '$cond'";
-    $qry = "SELECT id, avanzado_1, avanzado_2, avanzado_3, avanzado_4 FROM contenedores WHERE size = '$size' and tipo = '$tipo' and condicion = '$cond'";
+  if($size && $tipo_1 && $tipo_2){
+    // echo 'soy el nene';
+    // $qry = $qry . " AND condicion = '$tipo_2'";
+    $qry = "SELECT salesforce_id, condicion FROM contenedores WHERE size = '$size' and tipo_1 = '$tipo_1' and tipo_2 = '$tipo_2'";
     // echo $qry;
-    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo = '$tipo' AND condicion = '$cond')";
+    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo_1 = '$tipo_1' AND condicion = '$tipo_2')";
   }
 
   // echo $qry;
-  // "SELECT distinct tipo FROM contenedores WHERE size = '$algunTamaño'"
-  // "SELECT distinct condicion FROM contenedores WHERE size = '$algunTamaño' and tipo = '$algunTipo'"
+  // "SELECT distinct tipo_1 FROM contenedores WHERE size = '$algunTamaño'"
+  // "SELECT distinct condicion FROM contenedores WHERE size = '$algunTamaño' and tipo_1 = '$algunTipo'"
 
   $ress = $conn->query($qry);
   $resp = $ress->fetch_all(MYSQLI_ASSOC);
