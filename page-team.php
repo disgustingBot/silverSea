@@ -1,23 +1,8 @@
 <?php get_header(); ?>
 
-<!-- <div class="teamATF">
-  <hgroup class="sectionSummary teamATFSummary">
-    <h1 class="tamATFTitle">SOMOS <span class="brandColorTxt">SILVERSEA</span></h1>
-    <h5 class="summaryTxt">Dado los puntos de contacto con toda la cadena de logística en el 2017 se crea la unidad de Silvercargo. Es bajo la misma compañía que se desarrolla y apoya a toda la gama de clientes que tenemos a nivel mundial, que consideraban importante que podamos darle un soporte más amplio. Teniendo en cuenta nuestra red de agentes en más de 70 países, podemos brindarle soporte local en cada lugar, así atendiéndolos de manera personalizada.Dado los puntos de contacto con toda la cadena de logística en el 2017 se crea la unidad de Silvercargo. </h5>
-  </hgroup>
-</div>
-<div class="teamATFSec2">
-  <img class="teamATFImg" src="<?php echo get_post_meta( get_the_id(), 'Imagen_Cabecera' )[0]; ?>" alt="">
-  <div class="sectionSummary">
-    <p class="summaryTxt brandColorTxt">Desde sus comienzos en el año 2016, Silversea nace como una empresa enfocada en el trading y leasing de contenedores marítimos a nivel mundial.</p>
-    <p class="summaryTxt">Dado los puntos de contacto con toda la cadena de logística en el 2017 se crea la unidad de Silvercargo. Es bajo la misma compañía que se desarrolla y apoya a toda la gama de clientes que tenemos a nivel mundial.
-    </p>
-    <button class="btn"><a href="">CONTÁCTANOS</a></button>
-  </div>
-</div> -->
 
 <section class="teamATF">
-  <hgroup class="sectionSummary teamATFSummary sectionColor2">
+  <hgroup class="sectionSummary teamATFSummary sectionColor3">
     <h1 class="tamATFTitle"><?php echo get_post_meta($post->ID, '1-equipo-titulo-negro', true); ?> <span class="brandColorTxt"><?php echo get_post_meta($post->ID, '2-equipo-titulo-azul', true); ?></span></h1>
     <h5 class="summaryTxt"><?php echo get_post_meta($post->ID, '2-equipo-texto', true); ?></h5>
   </hgroup>
@@ -29,16 +14,16 @@
   <div class="areaSelectorCont">
     <h3 class="areaSelectorTitle"><strong>Conoce nuestro <span class="brandColorTxt">Equipo</span></strong></h3>
     <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamCardsContainer', 'teamCardsContainer')">Sales</p>
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamCardsContainer', 'teamCardsContainer');">Sales</p>
     </div>
     <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('logistic', '#teamCardsContainer', 'teamCardsContainer')" >Logistics</p>
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('logistic', '#teamCardsContainer', 'teamCardsContainer');" >Logistics</p>
     </div>
     <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('administration', '#teamCardsContainer', 'teamCardsContainer')" >Administration</p>
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('administration', '#teamCardsContainer', 'teamCardsContainer');" >Administration</p>
     </div>
     <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('management', '#teamCardsContainer', 'teamCardsContainer')" >Management</p>
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('management', '#teamCardsContainer', 'teamCardsContainer');" >Management</p>
     </div>
     <div class="areaSelector">
       <p class="areaSelectorTxt" onclick="altClassFromSelector('ceo', '#teamCardsContainer', 'teamCardsContainer')" >C.E.O.</p>

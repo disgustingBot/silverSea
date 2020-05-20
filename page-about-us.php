@@ -93,9 +93,10 @@
   <iframe class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8"></iframe>
   <div class="fullWidthMapOverlay" id="mapOverlay"></div>
   <div class="fullWidthMapBarOverlay sectionWhite">
-    <h2 class="mapSecTitle">Almacenes con stock disponible <span class="brandColorTxt">en el mundo</span></h2>
+    <h2 class="mapSecTitle">Centros logísticos <span class="brandColorTxt">en el mundo</span></h2>
   </div>
-  <p class="mapInterTxt sectionWhite"><span class="mapInterActive" onclick="altClassFromSelector('activateMap','#mapOverlay')">Pincha aquí&nbsp;&nbsp;</span> para interactuar con el mapa</p>
+  <p class="mapInterTxt sectionWhite Obse" data-observe="#mapInteractionActivation"><span class="mapInterActive" onclick="altClassFromSelector('activateMap','#mapOverlay')">Pincha aquí&nbsp;&nbsp;</span> para interactuar con el mapa</p>
+  <div class="redDot" id="mapInteractionActivation"></div>
 </section>
 
 
