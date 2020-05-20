@@ -477,21 +477,21 @@ function lt_upload_file(){
               }
 
 
-              // $query = new WC_Product_Query();
-              // $products = $query->get_products();
-              // foreach ($products as $key => $value) {
-              //   // code...
-              //   var_dump($key);
-              //   echo '<br>';
-              //   var_dump($value->id);
-              //   echo '<br>';
-              //   echo '<br>';
-              //   if (wh_deleteProduct($value->id)) {
-              //     echo '<h3>product: ' . $value->id . ' DELETED</h3>';
-              //   }
-              //   echo '<br>';
-              //   echo '<br>';
-              // }
+              $query = new WC_Product_Query();
+              $products = $query->get_products();
+              foreach ($products as $key => $value) {
+                // code...
+                var_dump($key);
+                echo '<br>';
+                var_dump($value->id);
+                echo '<br>';
+                echo '<br>';
+                if (wh_deleteProduct($value->id)) {
+                  echo '<h3>product: ' . $value->id . ' DELETED</h3>';
+                }
+                echo '<br>';
+                echo '<br>';
+              }
 
 
               if ($conn -> query("create table WCProduct
@@ -534,9 +534,14 @@ function lt_upload_file(){
                                   null as 'Cross-sells'  ,
                                   null as 'External URL'  ,
                                   null as 'Button text',
-                                  null as 'Position'
+                                  null as 'Position',
+                                  ancho as 'Meta: ancho',
+                                  alto as 'Meta: alto',
+                                  largo as 'Meta: largo',
+                                  peso as 'Meta: peso',
+                                  tara as 'Meta: tara'
                                   from contenedores")) {
-                echo 'TABLA CREADAAAAA';
+                                    echo 'TABLA CREADAAAAA';
               }
 
 

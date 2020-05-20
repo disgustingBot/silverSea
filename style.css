@@ -346,12 +346,12 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
 
-    --containerGTA: "productGallery productGallery atributo1 "
+    --containerGTA: "productGallery productGallery . "
+                    "productGallery productGallery atributo1 "
                     "productGallery productGallery atributo2 "
                     "productGallery productGallery atributo3 "
                     "productGallery productGallery atributo4 "
                     "productGallery productGallery atributo5 "
-                    "productGallery productGallery atributo6 "
                     "productGallery productGallery singleBuy ";
 
 
@@ -549,6 +549,10 @@ p, a, button, li {color: var(--color9)}
 .onlyDesktopG{display:var(--onlyDesktopG)}
 .onlyMobileF{display:var(--onlyMobileF)}
 .onlyMobileG{display:var(--onlyMobileG)}
+
+
+.opacity1{opacity: 1}
+.opacity0{opacity: 0}
 
 .txtCenterLeft {text-align: var(--txtCenterLeft)}
 
@@ -1261,6 +1265,7 @@ p, a, button, li {color: var(--color9)}
   transition: .25s;
   height: min-content;
   border-radius: 4px;
+  background: white;
 }
 
 .card:hover {
@@ -1584,6 +1589,10 @@ section.contacto img{
   /* grid-column: span 2; */
   /* color: white; */
 }
+.productGallery{
+  display:grid;
+  position: relative;
+}
 
 .singleContainer .productGallery{
   grid-column: span 2;
@@ -1623,16 +1632,17 @@ section.contacto img{
   /* padding: .5rem; */
   margin: var(--singleProductGalleryBtnsMargin);
   border-radius: 20%;
-  box-shadow: var(--DP4);
+  /* box-shadow: var(--DP4); */
   border: none;
-  background-color: white;
+  background-color: rgba(255,255,255,0);
   color: var(--color3);
   transition: .25s;
   height: 2rem;
   width: 2rem;
 }
 .singleProductsGalleryBtns:hover {
-  box-shadow: var(--DP6);
+  /* box-shadow: var(--DP6); */
+  cursor: pointer;
 }
 
 .atributo{
@@ -1647,12 +1657,16 @@ section.contacto img{
   box-shadow: var(--DP1);
 }
 
+.atributo img{
+  width: auto;
+}
+
 .singleContainer .atributo:nth-child(1){grid-area:atributo1}
 .singleContainer .atributo:nth-child(2){grid-area:atributo2}
 .singleContainer .atributo:nth-child(3){grid-area:atributo3}
 .singleContainer .atributo:nth-child(4){grid-area:atributo4}
 .singleContainer .atributo:nth-child(5){grid-area:atributo5}
-.singleContainer .atributo:nth-child(6){grid-area:atributo6}
+/* .singleContainer .atributo:nth-child(6){grid-area:atributo6} */
 /* .singleContainer .atributo:nth-child(7){grid-area:atributo7} */
 /* .singleContainer .atributo:nth-child(8){grid-area:atributo8} */
 
@@ -1688,7 +1702,8 @@ section.contacto img{
   grid-gap: .5rem;
   padding: .5rem .3rem;
   height: min-content;
-  border: solid 3px var(--color4);
+  /* border: solid 3px var(--color4); */
+  box-shadow: var(--DP1);
   border-radius:12px;
 }
 
@@ -1711,6 +1726,12 @@ section.contacto img{
 .categoryCardCaption{
 }
 
+.theContent{
+  margin: 1rem var(--lateral);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =archive-product
@@ -1727,17 +1748,6 @@ section.contacto img{
   transform-origin: center;
 }
 
-.containerCard {
-  display: grid;
-  grid-auto-flow: row;
-  box-shadow: var(--DP1);
-  transition: .25s;
-  height: min-content;
-}
-
-.containerCard:hover {
-  box-shadow: var(--DP6);
-}
 
 .archiveMain{
   display: var(--archiveMainDisplay);
@@ -1767,15 +1777,22 @@ a:visited{
   color: inherit;
 }
 
-.cardImgCont {
-  width: 100%;
-  padding: .5rem;
+.card .productGallery .singleProductsgalleryBtnsContainer{
+  justify-content: space-between;
+  margin: auto 0;
+  z-index: 2;
+  height: min-content;
 }
 
+/* .cardImgCont {
+  width: 100%;
+  padding: .5rem;
+} */
+/*
 .cardImg {
   width: 100%;
   height: auto;
-}
+} */
 
 .cardFeaturesCont {
   display: flex;
@@ -1783,9 +1800,9 @@ a:visited{
   justify-content: space-evenly;
   padding: 1rem 0;
 }
-.cardFeaturesCont figure:nth-child(1){
+/* .cardFeaturesCont figure:nth-child(1){
   display: none;
-}
+} */
 
 .cardFeature {
   display: flex;
@@ -1807,7 +1824,7 @@ a:visited{
 }
 
 .cardInfoDiv {
-  width: 90%;
+  width: 100%;
   margin: auto;
   background: #676767;
 }
@@ -2042,14 +2059,13 @@ SVG STYLES
   box-shadow: var(--DP2);
   margin-top: 1rem;
   transition: .35s;
-  color:white;
 }
 
 .btn:hover {
   box-shadow: var(--DP8);
   background: white;
   border: solid 1px var(--color2);
-  color: var(--color2);
+  /* color: var(--color2); */
 }
 
 .btn.blue{
