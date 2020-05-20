@@ -565,7 +565,7 @@ p, a, button, li {color: var(--color9)}
 
 
 
-.sectionPadding {padding: 2rem var(--lateral);}
+.sectionPadding {padding: 2rem var(--lateral);position:relative}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2056,9 +2056,7 @@ SVG STYLES
   width: var(--article2ElementsW)!important;
 }
 
-#sectioNSummaryActivator{
 
-}
 .sectionSummary{
   display: flex;
   flex-direction: column;
@@ -2536,6 +2534,7 @@ SVG STYLES
                           6.69) =redDot:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+#sectioNSummaryCardActivator,
 #growUpActivator,
 #sectioNSummarySilverSeaMundoActivator,
 #sectioNSummaryAboutUsActivator{bottom:0}
