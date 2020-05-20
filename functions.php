@@ -113,64 +113,48 @@ function excerpt($charNumber){
 
 
   //Product Cat Create page
-  function wh_taxonomy_add_new_meta_field() {
+  function lt_taxonomy_add_new_meta_field() {
       ?>
-
       <div class="form-field">
-          <label for="wh_meta_title"><?php _e('Meta Title', 'wh'); ?></label>
-          <input type="text" name="wh_meta_title" id="wh_meta_title">
-          <p class="description"><?php _e('Enter a meta title, <= 60 character', 'wh'); ?></p>
-      </div>
-      <div class="form-field">
-          <label for="wh_meta_desc"><?php _e('Meta Description', 'wh'); ?></label>
-          <textarea name="wh_meta_desc" id="wh_meta_desc"></textarea>
-          <p class="description"><?php _e('Enter a meta description, <= 160 character', 'wh'); ?></p>
+          <label for="lt_meta_desc"><?php _e('Featured', 'lt'); ?></label>
+          <input type="checkbox" name="lt_meta_desc" id="lt_meta_desc">
+          <p class="description"><?php _e('Mostrar categoria en "Que Contenedor Necesito"', 'lt'); ?></p>
       </div>
       <?php
   }
 
   //Product Cat Edit page
-  function wh_taxonomy_edit_meta_field($term) {
+  function lt_taxonomy_edit_meta_field($term) {
 
       //getting term ID
       $term_id = $term->term_id;
 
       // retrieve the existing value(s) for this meta field.
-      $wh_meta_title = get_term_meta($term_id, 'wh_meta_title', true);
-      $wh_meta_desc = get_term_meta($term_id, 'wh_meta_desc', true);
+      $lt_meta_desc = get_term_meta($term_id, 'lt_meta_desc', true);
       ?>
       <tr class="form-field">
-          <th scope="row" valign="top"><label for="wh_meta_title"><?php _e('Meta Title', 'wh'); ?></label></th>
+          <th scope="row" valign="top"><label for="lt_meta_desc"><?php _e('Featured', 'lt'); ?></label></th>
           <td>
-              <input type="text" name="wh_meta_title" id="wh_meta_title" value="<?php echo esc_attr($wh_meta_title) ? esc_attr($wh_meta_title) : ''; ?>">
-              <p class="description"><?php _e('Enter a meta title, <= 60 character', 'wh'); ?></p>
-          </td>
-      </tr>
-      <tr class="form-field">
-          <th scope="row" valign="top"><label for="wh_meta_desc"><?php _e('Meta Description', 'wh'); ?></label></th>
-          <td>
-              <textarea name="wh_meta_desc" id="wh_meta_desc"><?php echo esc_attr($wh_meta_desc) ? esc_attr($wh_meta_desc) : ''; ?></textarea>
-              <p class="description"><?php _e('Enter a meta description', 'wh'); ?></p>
+            <input type="checkbox" name="lt_meta_desc" id="lt_meta_desc" <?php if(esc_attr($lt_meta_desc) == 'on'){echo 'checked';} ?>>
+              <p class="description"><?php _e('Mostrar categoria en "Que Contenedor Necesito"', 'lt'); ?></p>
           </td>
       </tr>
       <?php
   }
 
-  add_action('product_cat_add_form_fields', 'wh_taxonomy_add_new_meta_field', 10, 1);
-  add_action('product_cat_edit_form_fields', 'wh_taxonomy_edit_meta_field', 10, 1);
+  add_action('product_cat_add_form_fields', 'lt_taxonomy_add_new_meta_field', 10, 1);
+  add_action('product_cat_edit_form_fields', 'lt_taxonomy_edit_meta_field', 10, 1);
 
   // Save extra taxonomy fields callback function.
-  function wh_save_taxonomy_custom_meta($term_id) {
+  function lt_save_taxonomy_custom_meta($term_id) {
 
-      $wh_meta_title = filter_input(INPUT_POST, 'wh_meta_title');
-      $wh_meta_desc = filter_input(INPUT_POST, 'wh_meta_desc');
+      $lt_meta_desc = filter_input(INPUT_POST, 'lt_meta_desc');
 
-      update_term_meta($term_id, 'wh_meta_title', $wh_meta_title);
-      update_term_meta($term_id, 'wh_meta_desc', $wh_meta_desc);
+      update_term_meta($term_id, 'lt_meta_desc', $lt_meta_desc);
   }
 
-  add_action('edited_product_cat', 'wh_save_taxonomy_custom_meta', 10, 1);
-  add_action('create_product_cat', 'wh_save_taxonomy_custom_meta', 10, 1);
+  add_action('edited_product_cat', 'lt_save_taxonomy_custom_meta', 10, 1);
+  add_action('create_product_cat', 'lt_save_taxonomy_custom_meta', 10, 1);
 
 
 
