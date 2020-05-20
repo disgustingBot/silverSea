@@ -1174,7 +1174,6 @@ p, a, button, li {color: var(--color9)}
 }
 
 .areaSelector {
-  padding: 0 2rem;
   border-bottom: 1px solid var(--color6);
   display: flex;
   height: 100%;
@@ -1191,6 +1190,7 @@ p, a, button, li {color: var(--color9)}
 
 .areaSelectorTitle {
   text-align: center;
+  padding: 1rem;
 }
 
 .areaSelectorTxt {
@@ -1198,7 +1198,8 @@ p, a, button, li {color: var(--color9)}
   margin-left: 0;
   position: relative;
   display: flex;
-  align-items: center
+  align-items: center;
+  width: 100%;
 }
 
 .areaSelectorTxt::before
@@ -1324,40 +1325,47 @@ p, a, button, li {color: var(--color9)}
 
 }
 
-.teamCardsContainer.logistic       .sales,
-.teamCardsContainer.administration .sales,
-.teamCardsContainer.management     .sales,
-.teamCardsContainer.ceo            .sales {
+.teamSection.logistic       .teamCard.sales,
+.teamSection.administration .teamCard.sales,
+.teamSection.management     .teamCard.sales,
+.teamSection.ceo            .teamCard.sales {
   display: none;
 }
 
-.teamCardsContainer.sales          .logistic,
-.teamCardsContainer.administration .logistic,
-.teamCardsContainer.management     .logistic,
-.teamCardsContainer.ceo            .logistic {
+.teamSection.sales          .teamCard.logistic,
+.teamSection.administration .teamCard.logistic,
+.teamSection.management     .teamCard.logistic,
+.teamSection.ceo            .teamCard.logistic {
   display: none;
 }
 
-.teamCardsContainer.logistic       .management,
-.teamCardsContainer.administration .management,
-.teamCardsContainer.sales          .management,
-.teamCardsContainer.ceo            .management {
+.teamSection.logistic       .teamCard.management,
+.teamSection.administration .teamCard.management,
+.teamSection.sales          .teamCard.management,
+.teamSection.ceo            .teamCard.management {
   display: none;
 }
 
-.teamCardsContainer.logistic       .ceo,
-.teamCardsContainer.administration .ceo,
-.teamCardsContainer.management     .ceo,
-.teamCardsContainer.sales          .ceo {
+.teamSection.logistic       .teamCard.ceo,
+.teamSection.administration .teamCard.ceo,
+.teamSection.management     .teamCard.ceo,
+.teamSection.sales          .teamCard.ceo {
   display: none;
 }
 
-.teamCardsContainer.logistic       .administration,
-.teamCardsContainer.sales          .administration,
-.teamCardsContainer.management     .administration,
-.teamCardsContainer.ceo            .administration {
+.teamSection.logistic       .teamCard.administration,
+.teamSection.sales          .teamCard.administration,
+.teamSection.management     .teamCard.administration,
+.teamSection.ceo            .teamCard.administration {
   display: none;
 }
+
+.teamSection.logistic       .areaSelector.logistic       {background: var(--color4)!important}
+.teamSection.sales          .areaSelector.sales          {background: var(--color4)!important}
+.teamSection.management     .areaSelector.management     {background: var(--color4)!important}
+.teamSection.ceo            .areaSelector.ceo            {background: var(--color4)!important}
+.teamSection.administration .areaSelector.administration {background: var(--color4)!important}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.6) =forms:
