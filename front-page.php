@@ -45,7 +45,7 @@
 
 
 <section class="sectionPadding card256" id="queContainerINeed">
-  <div class="redDot test" id="sectioNSummaryCardActivator"></div>
+  <div class="redDot" id="sectioNSummaryCardActivator"></div>
   <?php
 
   $taxonomy     = 'product_cat';

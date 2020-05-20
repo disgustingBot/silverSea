@@ -2232,7 +2232,7 @@ SVG STYLES
   margin:auto var(--lateral);
   position: relative;
   width:calc(100% - var(--lateral) * 2);
-  z-index: 2;
+  z-index: 3;
 }
 
 /* ---------------------------------------------------------------------------

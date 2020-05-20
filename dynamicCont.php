@@ -5,9 +5,9 @@
 
   <div class="dynamicContSelector">
     <?php selectBox('Size'); ?>
-    <?php selectBox('Tipo'); ?>
+    <?php selectBox('Tipo_1'); ?>
+    <?php selectBox('Tipo_2'); ?>
     <?php selectBox('Condicion'); ?>
-    <?php selectBox('Avanzado'); ?>
   </div>
 
 

@@ -420,7 +420,7 @@ function scrollAlter(){
 
 // CART CONTROLLER
 cartController = {
-  currentSemiSelection: {size: false, tipo_1: false, tipo_2: false, condicion: false},
+  currentSemiSelection: {size: false, tipo: false, condicion: false, avanzado: false},
 	containerToAdd:false,
   cart: [],
   add: (x) => {
@@ -481,10 +481,10 @@ cartController = {
     // PRIMERO VACIAR EL/LOS SELECT
     cartController.selectBoxWipe('Tipo_1');
 		cartController.selectBoxWipe('Tipo_2');
-    cartController.selectBoxWipe('Condicion');
-    cartController.currentSemiSelection.tipo_1 = false;
-    cartController.currentSemiSelection.tipo_2 = false;
-		cartController.currentSemiSelection.condicion = false;
+    cartController.selectBoxWipe('Avanzado');
+    cartController.currentSemiSelection.tipo = false;
+    cartController.currentSemiSelection.condicion = false;
+		cartController.currentSemiSelection.avanzado = false;
 
     cartController.ready(false);
     cartController.currentSemiSelection.size = value;
@@ -493,49 +493,44 @@ cartController = {
   tipo1Controller: (value)=>{
     // PRIMERO VACIAR EL SELECT
     cartController.selectBoxWipe('Tipo_2');
-		cartController.selectBoxWipe('Condicion');
-    cartController.currentSemiSelection.tipo_2 = false;
-		cartController.currentSemiSelection.condicion = false;
+		cartController.selectBoxWipe('Avanzado');
+    cartController.currentSemiSelection.condicion = false;
+		cartController.currentSemiSelection.avanzado = false;
 
     cartController.ready(false);
-    cartController.currentSemiSelection.tipo_1 = value;
+    cartController.currentSemiSelection.tipo = value;
     cartController.getCol('tipo_2', cartController.currentSemiSelection.size, value);
   },
-  tipo2Controller: (value)=>{
+  condicionController: (value)=>{
     // PRIMERO VACIAR EL SELECT
-		cartController.selectBoxWipe('Condicion');
-		cartController.currentSemiSelection.condicion = false;
+		cartController.selectBoxWipe('Avanzado');
+		cartController.currentSemiSelection.avanzado = false;
 
 		cartController.ready(false);
-    cartController.currentSemiSelection.tipo_2 = value;
-		cartController.getCol('condicion', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo_1, value);
-    // cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
+    cartController.currentSemiSelection.condicion = value;
+		cartController.getCol('avanzado', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo, value);
+    // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
-  condicionController: (value)=>{
-		// console.log(value)
-		// console.log(document.getElementsByName('Condicion')[0].value)
-		// if (cartController.currentSemiSelection.condicion) {
+  avanzadoController: (value)=>{
+		console.log(document.getElementsByName('Avanzado')[0].value)
+		// if (cartController.currentSemiSelection.avanzado) {
 		//
 		// }
     // PRIMERO VACIAR EL SELECT
-		// console.log('value: ', value);
-		const check = (element) => {
-			return element.condicion == value;
-		}
-		cartController.containerToAdd = cartController.currentSemiSelection.condicion.find(check).salesforce_id;
-		// console.log('container To Add: ', cartController.containerToAdd)
+		console.log('value: ', value);
+		console.log('container To Add: ', cartController.containerToAdd)
 
 		cartController.ready();
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
 
-  getCol: (col, size = false, tipo_1 = false, tipo_2 = false) => {
-		let lastCase = (size &&  tipo_1 &&  tipo_2) ? true : false;
+  getCol: (col, size = false, tipo_1 = false, cond = false) => {
+		let lastCase = (size &&  tipo_1 &&  cond) ? true : false;
     let dataNames = ['action', 'col'],
     dataValues = ['gatCol', col];
     if(size){dataNames.push('size');dataValues.push(size);}
     if(tipo_1){dataNames.push('tipo_1');dataValues.push(tipo_1);}
-    if(tipo_2){dataNames.push('tipo_2');dataValues.push(tipo_2);}
+    if(cond){dataNames.push('cond');dataValues.push(cond);}
 
     postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
       try{
@@ -566,18 +561,17 @@ cartController = {
 								d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
 								if (value != '') {value = value[0].toUpperCase() + value.slice(1);}
 
-								if(size && !tipo_1 && !tipo_2){
+								if(size && !tipo_1 && !cond){
 									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
 									cartController.tipo1Controller(value);
 								}
-								if(size &&  tipo_1 && !tipo_2){
-									// console.log(key);
+								if(size &&  tipo_1 && !cond){
 									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
-									cartController.tipo2Controller(value, true);
+									cartController.condicionController(value, true);
 								}
 								// if(lastCase){
 								// 	if (value=='') {
-								// 		cartController.selectBoxWipe('Condicion',true)
+								// 		cartController.selectBoxWipe('Avanzado',true)
 								// 	}
 								// 	cartController.ready();
 								// }
@@ -586,8 +580,8 @@ cartController = {
 
 								functionExecute = 'cartController.sizeController("'+value+'")';
 								if(size){functionExecute = 'cartController.tipo1Controller("'+value+'")';}
-								if(tipo_1){functionExecute = 'cartController.tipo2Controller("'+value+'")';}
-								// if(tipo_2){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
+								if(tipo_1){functionExecute = 'cartController.condicionController("'+value+'")';}
+								// if(cond){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
 								input.setAttribute("onchange", functionExecute);
 
 								// Insert it into the document in the right place
@@ -596,36 +590,40 @@ cartController = {
 						}
 					});
 				} else {
-					cartController.currentSemiSelection.condicion = new Array();
-					// cartController.currentSemiSelection.condicion = new Array();
-					cartController.selectBoxWipe('Condicion', true);
-					// console.log('comienza el ultimo caso')
+					cartController.currentSemiSelection.avanzado = new Array();
+					cartController.selectBoxWipe('Avanzado', true);
+					console.log('comienza el ultimo caso')
 					JSON.parse(v).forEach(e=>{
-						cartController.currentSemiSelection.condicion.push(e);
+						cartController.currentSemiSelection.avanzado.push(e);
 
-						var a = cartController.selectBoxOption('Condicion', e.condicion),
+
+
+
+						// var a = cartController.selectBoxOption('Avanzado',e.avanzado),
+						var a = cartController.selectBoxOption('Avanzado',e.avanzado),
 						input = a.querySelector(".selectBoxInput");
-						input.setAttribute('type', 'radio');
-						input.setAttribute('onchange', 'cartController.condicionController("' + e.condicion + '")');
+						input.setAttribute('type', 'checkbox');
+						// input.setAttribute('onclick', 'console.log("EL NENENEEEE");cartController.ready()');
+						// input.setAttribute('onclick', 'cartController.avanzadoController("'+value+'")');
+						input.setAttribute('onclick', 'cartController.avanzadoController(this.value)');
 
-						if (JSON.parse(v).length == 1) {
-							input.setAttribute("checked", true);
-							// cartController.cart.unshift(e.id)
-						}
+						// if (JSON.parse(v).length == 1) {
+						// 	// input.setAttribute("checked", true);
+						// 	cartController.cart.unshift(e.id)
+						// }
 
 						// a los found los tendria que mostrar en la UI
-						if (e.condicion == '') {
+						if (e.avanzado == '') {
 							cartController.ready()
 							cartController.containerToAdd = e.id;
 						}
-						else {
-						// if (e.condicion!='' && e.avanzado_2 == '') {
-							d.querySelector('#selectBoxCondicion .selectBoxList').insertBefore(a, null);
+						if (e.avanzado!='' && e.avanzado_2 == '') {
+							d.querySelector('#selectBoxAvanzado .selectBoxList').insertBefore(a, null);
 						}
 						// console.log(e.length)
 
 					});
-					// console.log(cartController.currentSemiSelection.condicion)
+					console.log(cartController.currentSemiSelection.avanzado)
 				}
       } catch(err) {
         console.log(err);
