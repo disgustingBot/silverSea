@@ -18,81 +18,51 @@
 
 
   <?php $singleImgPath = get_template_directory_uri() . "/img/single-product/"; ?>
-
-  <figure class="titleBaner">
-    <img class="bannerImg lazy" data-url="<?php echo  $singleImgPath  . "portada-1.jpg" ;?>"  alt="">
-    <figcaption >
-      <h2 class="titleBanerCaption"><?php echo the_title() . ', '  . $tipo ;?> </h2>
-    </figcaption>
-  </figure>
-
-
   <a href=<?php echo site_url('shop'); ?> class="btn" id="backToGallery" type="button" name="button"><< Volver a la búsqueda</a>
 
-  <section class="categoryDescriptions">
-    <?php
-    if ($categories) {
-      foreach ($categories as $cat) {
-        $svgPath = get_template_directory()  . "/img/svg/"; ?>
-        <figure class="categoryCard">
-          <h5 class="cateforyCardTitle">
-            <?php echo $cat->name; ?>
-          </h5>
-          <?php
-          if(strpos($cat->slug, 'pies') === false ){
-            include $svgPath . $cat->slug . '.php';
-          }else {
-            include $svgPath  . 'size.php';
-          }
-          ?>
-          <figcaption class="categoryCardCaption">
-            <h5 class="categoryCardDescription">
-              <?php echo  $cat->description."<br />"; ?>
-            </h5>
-          </figcaption>
-        </figure>
-        <?php
-      }
-    }
-    ?>
-  </section>
+
+
+
+
 
   <section class="singleContainer">
     <div class="Carousel productGallery" >
-        <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
-          <img class="Element productGalleryImg rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
-          <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
-            <img class="Element productGalleryImg rowcol1 lazy"  data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+      <h2 class="titleBanerCaption rowcol1"><?php echo the_title() . ', '  . $tipo ;?> </h2>
+      <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
 
-          <?php $count++; }} ?>
-      <div class="singleProductsgalleryBtnsContainer">
-        <button class="singleProductsGalleryBtns" id="nextButton" >
-          <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
-          </svg>
-        </button>
-        <button class="singleProductsGalleryBtns" id="prevButton">
-          <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
-          </svg>
-        </button>
+      <img class="Element productGalleryImg row2col1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
+      <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
+        <img class="Element productGalleryImg row2col1 lazy"  data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+
+        <?php $count++; }} ?>
+        <div class="singleProductsgalleryBtnsContainer">
+          <button class="singleProductsGalleryBtns" id="nextButton" >
+            <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="singleProductsGalleryBtns" id="prevButton">
+            <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <figure class="atributo">
-      <img class="" src="<?php echo  $singleImgPath . "cargaMax.png"; ?>" alt="">
-      <figcaption>
-        <h4>Carga Max</h4>
-        <?php echo get_post_meta( get_the_id(), 'cargaMax' )[0]; ?>
-      </figcaption>
-    </figure>
+      <figure class="atributo">
+        <img class="" src="<?php echo  $singleImgPath . "cargaMax.png"; ?>" alt="">
+        <figcaption>
+          <h4>Carga Max</h4>
+          <?php echo get_post_meta( get_the_id(), 'cargaMax' )[0]; ?>
+        </figcaption>
+      </figure>
 
-    <figure class="atributo">
-      <img src="<?php echo $singleImgPath . "aperturaPuerta.png"; ?>" alt="">
-      <figcaption>
-        <h4>Apertura de puerta</h4>
-        <?php echo get_post_meta( get_the_id(), 'aperturaPuerta' )[0]; ?>
-      </figcaption>
-    </figure>
+      <figure class="atributo">
+        <img src="<?php echo $singleImgPath . "aperturaPuerta.png"; ?>" alt="">
+        <figcaption>
+          <h4>Apertura de puerta</h4>
+          <?php echo get_post_meta( get_the_id(), 'aperturaPuerta' )[0]; ?>
+        </figcaption>
+      </figure>
 
 
     <figure class="atributo">
@@ -131,7 +101,33 @@
     <!-- <button class="btn blue singleRent " type="button" name="button">Alquilar</button> -->
   </section>
 
-
+  <section class="categoryDescriptions">
+    <?php
+    if ($categories) {
+      foreach ($categories as $cat) {
+        $svgPath = get_template_directory()  . "/img/svg/"; ?>
+        <figure class="categoryCard">
+          <h5 class="cateforyCardTitle">
+            <?php echo $cat->name; ?>
+          </h5>
+          <?php
+          if(strpos($cat->slug, 'pies') === false ){
+            include $svgPath . $cat->slug . '.php';
+          }else {
+            include $svgPath  . 'size.php';
+          }
+          ?>
+          <figcaption class="categoryCardCaption">
+            <h5 class="categoryCardDescription">
+              <?php echo  $cat->description."<br />"; ?>
+            </h5>
+          </figcaption>
+        </figure>
+        <?php
+      }
+    }
+    ?>
+  </section>
 
   <section class="testimonialsSec sectionPadding">
     <h3 class="testimonialSecTitle brandColorTxt">CLIENTES SATISFECHOS</h3>
