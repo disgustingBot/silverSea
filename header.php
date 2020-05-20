@@ -76,3 +76,8 @@
   );
   wp_nav_menu($args);
   ?>
+
+
+  <div class="carrito">
+    <p>soy un carrito</p>
+  </div>

@@ -6,7 +6,7 @@
 
 
   <div class="cotizador" id="cotizador">
-    <?php include get_template_directory().'/coprAlqui.php' ?>
+    <?php // include get_template_directory().'/coprAlqui.php' ?>
 
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
