@@ -348,11 +348,13 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
 
-    --containerGTA: "productGallery productGallery atributo1 atributo2"
-                "productGallery productGallery atributo3 atributo4"
-                "productGallery productGallery atributo5 atributo6"
-                "productGallery productGallery atributo7 atributo8"
-                "productGallery productGallery singleBuy singleRent";
+    --containerGTA: "productGallery productGallery atributo1 "
+                "productGallery productGallery atributo2 "
+                "productGallery productGallery atributo3 "
+                "productGallery productGallery atributo4 "
+                "productGallery productGallery atributo5 "
+                "productGallery productGallery atributo6 "
+                "productGallery productGallery singleBuy ";
 
 
     --searchResultsGTC: repeat(2,1fr);
@@ -433,10 +435,10 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?FOOTER */
 
     /* SINGLE CONTAINER */
-    --containerGTA: "productGallery productGallery atributo1 atributo2 atributo3 atributo4"
+    /* --containerGTA: "productGallery productGallery atributo1 atributo2 atributo3 atributo4"
                     "productGallery productGallery atributo5 atributo6 atributo7 atributo8"
                     "productGallery productGallery singleBuy singleRent  . ."
-                    ;
+                    ; */
     /* ARCHIVE-PRODUCT */
     --searchResultsGTC: repeat(4,1fr);
     --searchResultsAltGTC: repeat(5,1fr);
@@ -1575,6 +1577,7 @@ section.contacto img{
 
 .singleContainer{
   display: grid;
+  position: relative;
   grid-gap: .75rem;
   padding: 1rem var(--lateral);
   grid-template-areas: var(--containerGTA);
@@ -1587,8 +1590,8 @@ section.contacto img{
   display:grid;
   order: 2;
   margin:auto;
-  position:var(--galleryPosition);
-  top:3rem;
+  position: sticky;
+  top:1rem;
   grid-area: productGallery;
 }
 .productGalleryImg{
@@ -1639,8 +1642,8 @@ section.contacto img{
 .singleContainer .atributo:nth-child(4){grid-area:atributo4}
 .singleContainer .atributo:nth-child(5){grid-area:atributo5}
 .singleContainer .atributo:nth-child(6){grid-area:atributo6}
-.singleContainer .atributo:nth-child(7){grid-area:atributo7}
-.singleContainer .atributo:nth-child(8){grid-area:atributo8}
+/* .singleContainer .atributo:nth-child(7){grid-area:atributo7} */
+/* .singleContainer .atributo:nth-child(8){grid-area:atributo8} */
 
 .btn.singleBuy{
   grid-area:singleBuy;
@@ -1648,7 +1651,7 @@ section.contacto img{
 }
 
 .btn.singleRent{
-  grid-area:singleRent;
+  /* grid-area:singleRent; */
   width: 100%;
 }
 
@@ -1661,6 +1664,7 @@ section.contacto img{
 .categoryDescriptions{
   display: grid;
   grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   padding: 1rem var(--lateral);
   grid-gap: 1rem;
 }
