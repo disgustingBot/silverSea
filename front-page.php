@@ -43,41 +43,97 @@
   </div>
 </section>
 
+
 <section class="sectionPadding card256" id="queContainerINeed">
+  <div class="redDot test" id="sectioNSummaryCardActivator"></div>
   <?php
-  $args=array(
-    'post_type'=>'container',
+
+  $taxonomy     = 'product_cat';
+  // $orderby      = 'name';
+  $show_count   = 0;      // 1 for yes, 0 for no
+  $pad_counts   = 0;      // 1 for yes, 0 for no
+  $hierarchical = 1;      // 1 for yes, 0 for no
+  $title        = '';
+  $empty        = 0;
+
+  $args = array(
+    'taxonomy'     => $taxonomy,
+    // 'orderby'      => $orderby,
+    'show_count'   => $show_count,
+    'pad_counts'   => $pad_counts,
+    'hierarchical' => $hierarchical,
+    'title_li'     => $title,
+    'hide_empty'   => $empty
   );
-  $container=new WP_Query($args);
-  while($container->have_posts()){$container->the_post(); ?>
-    <style>
+
+
+
+
+  $categories = get_categories( $args );
+  if($categories) {
+    foreach($categories as $category) { ?>
+      <!-- echo  $category->name ; -->
+      <style>
+        #queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{
+          display: flex;
+        }
+      </style>
+      <article class="article2 containerNeeded" id="card<?php echo $category->term_id; ?>">
+        <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
+          <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
+          <p class="summaryTxt"><?php echo $category->description; ?></p>
+        </div>
+        <img class="article2Media" src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
+      </article>
+    <?php } ?>
+
+
+      <select name="cont_selector" class="btn" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
+        <?php $i=0;
+        // while($container->have_posts()){$container->the_post();
+        foreach($categories as $category) { ?>
+          <option class="contOption" name="option" <?php if ($i==0){ echo 'checked'; } ?>  value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
+        <?php $i++; } ?>
+      </select>
+
+  <?php } ?>
+  <?php
+  // $args=array(
+  //   'post_type'=>'container',
+  // );
+  // $container=new WP_Query($args);
+
+
+
+  // while($container->have_posts()){$container->the_post(); ?>
+    <!-- <style>
     #queContainerINeed.card<?php echo get_the_id().' #card'.get_the_id() ; ?>{
       display: flex;
     }
-    </style>
-    <article class="article2 containerNeeded" id="card<?php echo get_the_id();?>">
+    </style> -->
+    <!-- <article class="article2 containerNeeded" id="card<?php echo get_the_id();?>">
       <hgroup class="sectionSummary">
         <h2 class="summaryTitle"><?php the_title(); ?></h2>
         <h4 class="summaryTxt"><?php the_content(); ?></h4>
       </hgroup>
       <img class="article2Media" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
-    </article>
-  <?php } wp_reset_query(); ?>
+    </article> -->
+  <?php // } wp_reset_query(); ?>
 
   <?php
-  $args=array(
-    'post_type'=>'container',
-    'order' => 'ASC',
-  );
-  $container=new WP_Query($args);
+  // $args=array(
+  //   'post_type'=>'container',
+  //   'order' => 'ASC',
+  // );
+  // $container=new WP_Query($args);
   ?>
-  <select name="cont_selector" class="btn" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
+  <!-- <select name="cont_selector" class="btn" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')"> -->
     <?php
     $i=0;
-    while($container->have_posts()){$container->the_post(); ?>
-      <option class="contOption" name="option" <?php if ($i==0){ echo 'checked'; } ?>  value="card<?php echo get_the_id();?>"><?php the_title(); ?></option>
-      <?php $i++; } wp_reset_query(); ?>
-    </select>
+    // while($container->have_posts()){$container->the_post(); ?>
+      <!-- <option class="contOption" name="option" <?php if ($i==0){ echo 'checked'; } ?>  value="card<?php echo get_the_id();?>"><?php the_title(); ?></option> -->
+      <?php // $i++; } wp_reset_query(); ?>
+    <!-- </select> -->
 </section>
 
 <section class="sectionColor3 sectionPadding">
