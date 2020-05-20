@@ -6,8 +6,14 @@
   <?php global $woocommerce, $product, $post; ?>
   <?php
   $categories = get_the_terms( get_the_ID(), 'product_cat' );
-  $parent=get_term_by('id', $categories->parent, $taxonomy = 'slug', 'ARRAY_A');
-  var_dump( $categories);
+  if ($categories) {
+    foreach ($categories as $cat) {
+      $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A');
+      if($parent['parent']){
+        $tipo = $parent['name'];
+      }
+    }
+  }
   ?>
 
 
@@ -16,7 +22,7 @@
   <figure class="titleBaner">
     <img class="bannerImg lazy" data-url="<?php echo  $singleImgPath  . "portada-1.jpg" ;?>"  alt="">
     <figcaption >
-      <h2 class="titleBanerCaption"><?php the_title() ;?></h2>
+      <h2 class="titleBanerCaption"><?php echo the_title() . ', '  . $tipo ;?> </h2>
     </figcaption>
   </figure>
 
@@ -88,13 +94,6 @@
       </figcaption>
     </figure>
 
-    <figure class="atributo">
-      <img src="<?php echo  $singleImgPath . "medidasInternas.png"; ?>" alt="">
-      <figcaption>
-        <h4>Medidas Internas</h4>
-        <?php echo get_post_meta( get_the_id(), 'medidasInternas' )[0]; ?>
-      </figcaption>
-    </figure>
 
     <figure class="atributo">
       <img src="<?php echo  $singleImgPath . "medidasExternas.png"; ?>" alt="">
@@ -120,13 +119,6 @@
       </figcaption>
     </figure>
 
-    <figure class="atributo">
-      <img src="<?php echo  $singleImgPath . "aperturaTecho.png"; ?>" alt="">
-      <figcaption>
-        <h4>Apertura de techo</h4>
-        <?php echo get_post_meta( get_the_id(), 'aperturaTecho' )[0]; ?>
-      </figcaption>
-    </figure>
 
     <figure class="atributo">
       <img src="<?php echo  $singleImgPath . "tara.png"; ?>" alt="">
@@ -136,7 +128,7 @@
       </figcaption>
     </figure>
     <button class="btn singleBuy" type="button" name="button">Comprar</button>
-    <button class="btn blue singleRent " type="button" name="button">Alquilar</button>
+    <!-- <button class="btn blue singleRent " type="button" name="button">Alquilar</button> -->
   </section>
 
 
