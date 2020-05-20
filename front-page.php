@@ -43,7 +43,6 @@
   </div>
 </section>
 
-
 <section class="sectionPadding card256" id="queContainerINeed">
   <div class="redDot test" id="sectioNSummaryCardActivator"></div>
   <?php
