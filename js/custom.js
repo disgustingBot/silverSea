@@ -31,7 +31,6 @@ w.onload=()=>{
 	scrollAlter();
 
 
-	d.querySelector('#svgTryStuff').setAttribute('xlink:href', '#fr');
 
 }
 
@@ -489,6 +488,9 @@ cartController = {
     cartController.currentSemiSelection.tipo_1 = false;
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
+
+		d.querySelector('#svgTryStuff').setAttribute('xlink:href', '#pies' + value);
+		console.log('value: ', value);
 
     cartController.ready(false);
     cartController.currentSemiSelection.size = value;
