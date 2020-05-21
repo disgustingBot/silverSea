@@ -46,8 +46,21 @@
 </section>
 
 
-<section class="sectionPadding card256" id="queContainerINeed">
-  <div class="redDot" id="sectioNSummaryCardActivator"></div>
+
+<section class="sectionPadding card0" id="queContainerINeed">
+  <div class="redDot test" id="sectioNSummaryCardActivator"></div>
+  <style>#queContainerINeed.card0 #card0 {display:flex}</style>
+
+  <!-- TODO Seguir este bloque -->
+  <article class="article2 containerNeeded" id="card0">
+    <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
+      <h2 class="summaryTitle">¿Que Contenedor necesito?</h2>
+      <p class="summaryTxt"><?php echo $category->description; ?></p>
+    </div>
+    <img class="article2Media" src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
+  </article>
+
+
   <?php
 
   $taxonomy     = 'product_cat';
