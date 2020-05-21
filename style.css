@@ -1192,8 +1192,6 @@ p, a, button, li {color: var(--color9)}
 }
 
 
-
-
 .areaSelectorCont {
   position: sticky;
   top: 20%;
@@ -1374,6 +1372,15 @@ p, a, button, li {color: var(--color9)}
   cursor: pointer;
 
 }
+
+
+/* .teamSection:not(.ceo)            .teamCard.ceo,
+.teamSection:not(.management)     .teamCard.management,
+.teamSection:not(.administration) .teamCard.administration,
+.teamSection:not(.logistic)       .teamCard.logistic,
+.teamSection:not(.sales)          .teamCard.sales{
+  display: none;
+} */
 
 
 .teamSection.logistic       .teamCard.sales,
