@@ -151,6 +151,14 @@ FIN DE MAPA DE CONTENIDOS */
   --dynamicContSelector:1fr;
   --featuresMarginTop: auto;
   --featureIconMargin: auto;
+
+  /* ?dynamicCont */
+  /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
+  --dynamicContGAF:row;
+  --dynamicContGTC: 2rem 1fr;
+  --dynamicContGTR: repeat(6, 1fr);
+
+
   /* COUNTERS */
 
   --countEvenBorder: solid 2px var(--color2);
@@ -249,6 +257,12 @@ FIN DE MAPA DE CONTENIDOS */
     --dynamicContSelector:1fr 1fr;
     --featuresMarginTop: auto;
 
+    /* ?dynamicCont */
+    /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
+    --dynamicContGAF:row;
+    --dynamicContGTC: 2rem 1fr 1fr;
+    --dynamicContGTR: 1fr 1fr 1fr;
+
 
     /* ?FOOTER */
 
@@ -327,6 +341,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* FRONT PAGE ATF */
 
+    /* ?dynamicCont */
+    /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
+    --dynamicContGAF:column;
+    --dynamicContGTC: 2rem 1fr 1fr 4.5rem;
+    --dynamicContGTR: 1fr 1fr;
 
 
     /* ?FOOTER */
@@ -380,6 +399,11 @@ FIN DE MAPA DE CONTENIDOS */
     /* FRONT PAGE ATF */
     --dynamicContSelector:1fr 1fr 1fr 1fr;
     --featuresMarginTop: -75px;
+
+    /* ?dynamicCont */
+    --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto;
+    --dynamicContGTR: 1fr;
+
 
 
     /* ?FOOTER */
@@ -1863,6 +1887,12 @@ p, a, button, li {color: var(--color9)}
   z-index: 3;
 }
 
+.cotizadorTitle, .cotizadorTxt {
+  grid-column: 1/-1;
+  display: none;
+  padding:.5rem 1rem;
+}
+  
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.16) =coprAlqui:
@@ -1878,10 +1908,6 @@ p, a, button, li {color: var(--color9)}
   /* grid-auto-rows:2rem; */
 }
 
-.cotizadorTitle, .cotizadorTxt {
-  grid-column: 1/-1;
-  display: none;
-}
 .coprAlqui .sladRadio{
   margin-left: var(--sladRadioMarginLeft);
   border-radius: 16px;
@@ -2186,16 +2212,18 @@ p, a, button, li {color: var(--color9)}
 .dynamicCont{
   align-items:center;
   display:grid;
-  grid-auto-flow:column;
+  /* grid-auto-flow:column; */
+  grid-auto-flow:var(--dynamicContGAF);
   grid-auto-columns:auto;
   /* grid-template-columns:2rem 1fr 4.5rem auto; */
-  --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto;
   grid-template-columns:var(--dynamicContGTC);
+  grid-template-rows:var(--dynamicContGTR);
   grid-gap:1rem;
   padding: 0 1rem;
 }
 .dynamicContLogo{
   width:2rem;
+  grid-row:1/-1;
 }
 .dynamicContSelector{
   display:grid;
