@@ -14,6 +14,12 @@
   include 'os.php';
   include 'ot.php';
   include 'palet-wide.php';
+  include 'pies6.php';
+  include 'pies10.php';
+  include 'pies12.php';
+  include 'pies20.php';
+  include 'pies40.php';
+  include 'pies45.php';
   include 'question.php';
   include 'rebuilt.php';
   include 'rf.php';
