@@ -10,23 +10,23 @@
 
 
 
-<section class="teamSection">
+<section class="teamSection" id="teamSection">
   <div class="areaSelectorCont">
     <h3 class="areaSelectorTitle"><strong>Conoce nuestro <span class="brandColorTxt">Equipo</span></strong></h3>
-    <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamCardsContainer', 'teamCardsContainer');">Sales</p>
+    <div class="areaSelector sales">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamSection', 'teamSection');">Sales</p>
     </div>
-    <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('logistic', '#teamCardsContainer', 'teamCardsContainer');" >Logistics</p>
+    <div class="areaSelector logistic">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('logistic', '#teamSection', 'teamSection');" >Logistics</p>
     </div>
-    <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('administration', '#teamCardsContainer', 'teamCardsContainer');" >Administration</p>
+    <div class="areaSelector administration">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('administration', '#teamSection', 'teamSection');" >Administration</p>
     </div>
-    <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('management', '#teamCardsContainer', 'teamCardsContainer');" >Management</p>
+    <div class="areaSelector management">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('management', '#teamSection', 'teamSection');" >Management</p>
     </div>
-    <div class="areaSelector">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('ceo', '#teamCardsContainer', 'teamCardsContainer')" >C.E.O.</p>
+    <div class="areaSelector ceo">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('ceo', '#teamSection', 'teamSection')" >C.E.O.</p>
     </div>
   </div>
 
