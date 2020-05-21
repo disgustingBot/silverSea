@@ -1,6 +1,7 @@
 <div class="dynamicCont" id="dynamicCont1">
 
-  <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+  <!-- <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"> -->
+  <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
     <use xlink:href="#test" id="svgTryStuff"></use>
   </svg>
   <?php
