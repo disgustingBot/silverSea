@@ -1210,7 +1210,6 @@ p, a, button, li {color: var(--color9)}
 }
 .areaSelector:nth-child(2) {
   border-top: 1px solid var(--color6);
-
 }
 
 .areaSelector:hover {
@@ -1231,8 +1230,7 @@ p, a, button, li {color: var(--color9)}
   width: 100%;
 }
 
-.areaSelectorTxt::before
-{
+.areaSelectorTxt::before{
   content: '→';
   color: var(--color2);
   font-size: 2rem;
@@ -1310,7 +1308,7 @@ p, a, button, li {color: var(--color9)}
   width: 100%;
   margin: auto;
   background: #676767;
- }
+}
 
 /* TEAM CARD */
 
@@ -1495,8 +1493,8 @@ p, a, button, li {color: var(--color9)}
 }
 
 
-.btn a
-{margin: auto;
+.btn a {
+  margin: auto;
   text-decoration: none;
   color: inherit;
 }
@@ -1754,7 +1752,7 @@ p, a, button, li {color: var(--color9)}
 }
 .singleProductArrowSVG {color: black;}
 
-  .singleProductsGalleryBtns {
+.singleProductsGalleryBtns {
   margin: var(--singleProductGalleryBtnsMargin);
   border-radius: 20%;
   border: none;
@@ -1767,9 +1765,8 @@ p, a, button, li {color: var(--color9)}
 }
 .singleProductsGalleryBtns:hover {
   color: var(--color1);
-  
 }
-  
+
 .atributo{
   display: grid;
   grid-template-rows: 1fr;
@@ -1782,10 +1779,10 @@ p, a, button, li {color: var(--color9)}
   box-shadow: var(--DP1);
 }
 
- .atributo img{
+.atributo img{
   width: auto;
-} 
-  .singleProductsGalleryBtns {
+}
+.singleProductsGalleryBtns {
   /* padding: .5rem; */
   margin: var(--singleProductGalleryBtnsMargin);
   border-radius: 20%;
@@ -1797,10 +1794,11 @@ p, a, button, li {color: var(--color9)}
   height: 2rem;
   width: 2rem;
 }
+
 .singleProductsGalleryBtns:hover {
-  /* box-shadow: var(--DP6); */
   cursor: pointer;
-  
+}
+
 .singleContainer .atributo:nth-child(1){grid-area:atributo1}
 .singleContainer .atributo:nth-child(2){grid-area:atributo2}
 .singleContainer .atributo:nth-child(3){grid-area:atributo3}
@@ -1863,8 +1861,6 @@ p, a, button, li {color: var(--color9)}
   margin: auto;
 }
 
-.categoryCardCaption{
-}
 
 .theContent{
   margin: 1rem var(--lateral);
@@ -1887,12 +1883,13 @@ p, a, button, li {color: var(--color9)}
   z-index: 3;
 }
 
-.cotizadorTitle, .cotizadorTxt {
+.cotizadorTitle,
+.cotizadorTxt {
   grid-column: 1/-1;
   display: none;
   padding:.5rem 1rem;
 }
-  
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.16) =coprAlqui:
@@ -2238,8 +2235,8 @@ p, a, button, li {color: var(--color9)}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-  
-  
+
+
 .searchResultsCont {
   display: grid;
   grid-gap: 1rem;
@@ -2248,10 +2245,10 @@ p, a, button, li {color: var(--color9)}
   padding: 1rem;
   background: inherit;
   transform-origin: center;
-}  
-  
+}
 
- 
+
+
 
 .containerCard {
   display: grid;
@@ -2423,8 +2420,8 @@ a:visited{
   grid-column: 1;
   grid-row: 1;
 }
-  
- 
+
+
 
 .archiveFilter2 .hideFilter{
   display: var(--hideFilterDisplay);
