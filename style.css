@@ -193,15 +193,9 @@ FIN DE MAPA DE CONTENIDOS */
   --contactTextareaHeight: 10rem;
 
   /* SINGLE CONTAINER */
-  --containerGTA: "productGallery"
-                  "productGallery"
-                  "atributo1"
-                  "atributo2"
-                  "atributo3"
-                  "atributo4"
-                  "atributo5"
-                  "atributo6"
-                  "singleBuy";
+  --singleContainerGTC: 1fr;
+  --singleContainerGTR: 1fr min-content;
+  --singleAtributesMarginTop: 1rem;
 
    /* ARCHIVE-PAGE */
    --archiveFilter2AutoFlow: row;
@@ -269,14 +263,6 @@ FIN DE MAPA DE CONTENIDOS */
     --footGridTC: 1fr 1fr;
 
     /* SINGLE CONTAINER */
-    /* SINGLE CONTAINER */
-    --containerGTA: "productGallery productGallery"
-                    "productGallery productGallery"
-                    "atributo1 atributo2"
-                    "atributo3 atributo4"
-                    "atributo5 atributo6"
-                    "singleBuy singleBuy"
-                    ;
     /* ARCHIVE-PAGE                 */
     --archiveMainDisplay: grid;
     --archiveFilterWidth: min-content;
@@ -364,14 +350,9 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* SINGLE CONTAINER */
-
-    --containerGTA: "productGallery productGallery . "
-                    "productGallery productGallery atributo1 "
-                    "productGallery productGallery atributo2 "
-                    "productGallery productGallery atributo3 "
-                    "productGallery productGallery atributo4 "
-                    "productGallery productGallery atributo5 "
-                    "productGallery productGallery singleBuy ";
+    --singleContainerGTR: 1fr;
+    --singleContainerGTC: 1fr min-content;
+    --singleAtributesMarginTop: 6rem;
 
 
     --searchResultsGTC: repeat(2,1fr);
@@ -1697,7 +1678,9 @@ p, a, button, li {color: var(--color9)}
   position: relative;
   grid-gap: .75rem;
   padding: 1rem var(--lateral);
-  grid-template-areas: var(--containerGTA);
+  /* grid-template-areas: var(--containerGTA); */
+  grid-template-columns: var(--singleContainerGTC);
+  grid-template-rows: var(--singleContainerGTR);
 }
 
 .titleBanerCaption{
@@ -1708,25 +1691,25 @@ p, a, button, li {color: var(--color9)}
 }
 
 .singleContainer .productGallery{
-  grid-column: span 2;
-  grid-row: span 2;
-  width: 100%;
+  /* grid-column: span 2;
+  grid-row: span 2; */
+  /* width: 100%; */
   display:grid;
-  order: 2;
   margin:auto;
   margin-top: 1rem;
   position: var(--productGalleryPosition);
   top: var(--productGalleryTop);
-  grid-area: productGallery;
+  /* grid-area: productGallery; */
 }
-.productGalleryImg{
-  opacity:1;
-  transition:.4s;
-}
+
 
 .productGallery{
   display:grid;
   position: relative;
+}
+.productGalleryImg{
+  opacity:1;
+  transition:.4s;
 }
 .card .productGallery .singleProductsgalleryBtnsContainer{
   justify-content: space-between;
@@ -1750,7 +1733,7 @@ p, a, button, li {color: var(--color9)}
   justify-content: space-around;
   width: var(--singleProductsgalleryBtnsContainerWidth);
 }
-.singleProductArrowSVG {color: black;}
+.singleProductArrowSVG {color: var(--color1);}
 
 .singleProductsGalleryBtns {
   margin: var(--singleProductGalleryBtnsMargin);
@@ -1767,6 +1750,14 @@ p, a, button, li {color: var(--color9)}
   color: var(--color1);
 }
 
+.singleAtributes{
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 1rem;
+  margin-top: var(--singleAtributesMarginTop);
+  justify-content: center;
+
+}
 .atributo{
   display: grid;
   grid-template-rows: 1fr;
@@ -1774,7 +1765,8 @@ p, a, button, li {color: var(--color9)}
   align-items: center;
   justify-content: center;
   /* background: #F0F0F0; */
-  padding: .2rem;
+  padding: 1rem;
+  margin:  1rem .5rem;
   border-radius: 4px;
   box-shadow: var(--DP1);
 }
@@ -1799,11 +1791,11 @@ p, a, button, li {color: var(--color9)}
   cursor: pointer;
 }
 
-.singleContainer .atributo:nth-child(1){grid-area:atributo1}
+/* .singleContainer .atributo:nth-child(1){grid-area:atributo1}
 .singleContainer .atributo:nth-child(2){grid-area:atributo2}
 .singleContainer .atributo:nth-child(3){grid-area:atributo3}
 .singleContainer .atributo:nth-child(4){grid-area:atributo4}
-.singleContainer .atributo:nth-child(5){grid-area:atributo5}
+.singleContainer .atributo:nth-child(5){grid-area:atributo5} */
 /* .singleContainer .atributo:nth-child(6){grid-area:atributo6} */
 /* .singleContainer .atributo:nth-child(7){grid-area:atributo7} */
 /* .singleContainer .atributo:nth-child(8){grid-area:atributo8} */
@@ -2306,9 +2298,6 @@ a:visited{
   justify-content: space-evenly;
   padding: 1rem 0;
 }
-.cardFeaturesCont figure:nth-child(1){
-  display: none;
-}
 
 .cardFeature {
   display: flex;
@@ -2430,7 +2419,7 @@ a:visited{
   align-self: center;
   border: none;
   transition: .5s;
-  background: var(--color5);
+  background: white;
   color: var(--color1);
   z-index: -1;
   margin: .5rem;

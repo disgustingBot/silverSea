@@ -48,51 +48,53 @@
           </button>
         </div>
       </div>
-      <figure class="atributo">
-        <img class="" src="<?php echo  $singleImgPath . "medidasExternas.png"; ?>" alt="">
-        <figcaption>
-          <h4>Alto</h4>
-          <?php echo get_post_meta( get_the_id(), 'alto' )[0]; ?>
-        </figcaption>
-      </figure>
 
-      <figure class="atributo">
-        <img src="<?php echo $singleImgPath . "medidasInternas.png"; ?>" alt="">
-        <figcaption>
-          <h4>Ancho</h4>
-          <?php echo get_post_meta( get_the_id(), 'ancho' )[0]; ?>
-        </figcaption>
-      </figure>
+      <div class="singleAtributes">
+        <figure class="atributo">
+          <img class="" src="<?php echo  $singleImgPath . "medidasExternas.png"; ?>" alt="">
+          <figcaption>
+            <h4>Alto</h4>
+            <?php echo get_post_meta( get_the_id(), 'alto' )[0]; ?>
+          </figcaption>
+        </figure>
+
+        <figure class="atributo">
+          <img src="<?php echo $singleImgPath . "medidasInternas.png"; ?>" alt="">
+          <figcaption>
+            <h4>Ancho</h4>
+            <?php echo get_post_meta( get_the_id(), 'ancho' )[0]; ?>
+          </figcaption>
+        </figure>
+
+        <figure class="atributo">
+          <img src="<?php echo  $singleImgPath . "capacidadCubica.png"; ?>" alt="">
+          <figcaption>
+            <h4>Largo</h4>
+            <?php echo get_post_meta( get_the_id(), 'largo' )[0]; ?>
+          </figcaption>
+        </figure>
+
+        <figure class="atributo">
+          <img src="<?php echo  $singleImgPath . "cargaMax.png"; ?>" alt="">
+          <figcaption>
+            <h4>Peso</h4>
+            <?php echo get_post_meta( get_the_id(), 'peso' )[0]; ?>
+          </figcaption>
+        </figure>
+
+        <figure class="atributo">
+          <img src="<?php echo  $singleImgPath . "tara.png"; ?>" alt="">
+          <figcaption>
+            <h4>Tara</h4>
+            <?php echo get_post_meta( get_the_id(), 'tara' )[0]; ?>
+          </figcaption>
+        </figure>
 
 
-    <figure class="atributo">
-      <img src="<?php echo  $singleImgPath . "capacidadCubica.png"; ?>" alt="">
-      <figcaption>
-        <h4>Largo</h4>
-        <?php echo get_post_meta( get_the_id(), 'largo' )[0]; ?>
-      </figcaption>
-    </figure>
-
-    <figure class="atributo">
-      <img src="<?php echo  $singleImgPath . "cargaMax.png"; ?>" alt="">
-      <figcaption>
-        <h4>Peso</h4>
-        <?php echo get_post_meta( get_the_id(), 'peso' )[0]; ?>
-      </figcaption>
-    </figure>
-
-    <figure class="atributo">
-      <img src="<?php echo  $singleImgPath . "tara.png"; ?>" alt="">
-      <figcaption>
-        <h4>Tara</h4>
-        <?php echo get_post_meta( get_the_id(), 'tara' )[0]; ?>
-      </figcaption>
-    </figure>
-
-
-    <button class="btn singleBuy" type="button" name="button">Adquirir</button>
-    <!-- <button class="btn blue singleRent " type="button" name="button">Alquilar</button> -->
-  </section>
+        <button class="btn singleBuy" type="button" name="button">Adquirir</button>
+        <!-- <button class="btn blue singleRent " type="button" name="button">Alquilar</button> -->
+      </div>
+    </section>
 
   <section class="categoryDescriptions">
     <?php
