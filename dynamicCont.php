@@ -2,7 +2,7 @@
 
   <!-- <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"> -->
   <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <use xlink:href="#test" id="svgTryStuff"></use>
+    <use xlink:href="#test" id="dynamicContLogo"></use>
   </svg>
   <?php
   // include 'img/svg/allIcons.php';
@@ -28,5 +28,5 @@
     <div class="addToCartQntBtn" onclick="changeQuantity(+1)">+</div>
   </div>
 
-  <button class="btn" onclick="console.log(cartController.containerToAdd)" disabled>AGREGAR</button>
+  <button class="btn" onclick="console.log(cartController.currentSemiSelection)" disabled>AGREGAR</button>
 </div>

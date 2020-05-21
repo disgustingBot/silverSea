@@ -430,7 +430,8 @@ cartController = {
     cartController.cart.unshift(new CartItem(x));
     var a = d.importNode(d.querySelector("#cartItemTemplate").content, true);
     d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
-    console.log(cartController.cart)
+		console.log(cartController.cart)
+    console.log(cartController.currentSemiSelection)
   },
   ready:(ready = true)=>{
     let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
@@ -489,8 +490,8 @@ cartController = {
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
-		d.querySelector('#svgTryStuff').setAttribute('xlink:href', '#pies' + value);
-		console.log('value: ', value);
+		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#pies' + value);
+		// console.log('value: ', value);
 
     cartController.ready(false);
     cartController.currentSemiSelection.size = value;
@@ -503,6 +504,9 @@ cartController = {
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
+		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		console.log('value: ', value);
+
     cartController.ready(false);
     cartController.currentSemiSelection.tipo_1 = value;
     cartController.getCol('tipo_2', cartController.currentSemiSelection.size, value);
@@ -512,10 +516,14 @@ cartController = {
 		cartController.selectBoxWipe('Condicion');
 		cartController.currentSemiSelection.condicion = false;
 
+
 		cartController.ready(false);
     cartController.currentSemiSelection.tipo_2 = value;
 		cartController.getCol('condicion', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo_1, value);
     // cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
+		value = value.replace(/\s/g, '');
+		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		console.log('value: ', value);
   },
   condicionController: (value)=>{
 		// console.log(value)
@@ -532,6 +540,11 @@ cartController = {
 		// console.log('container To Add: ', cartController.containerToAdd)
 
 		cartController.ready();
+
+
+		value = value.replace(/\s/g, '');
+		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		console.log('value: ', value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
 
