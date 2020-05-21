@@ -6,7 +6,9 @@
 
 
   <div class="cotizador" id="cotizador">
-    <?php include get_template_directory().'/coprAlqui.php' ?>
+    <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
+    <!-- <h5 class="cotizadorTxt">Cotiza tu contenedor online y recibe el precio en instantes</h5> -->
+    <?php // include get_template_directory().'/coprAlqui.php' ?>
 
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
@@ -44,6 +46,7 @@
 </section>
 
 
+
 <section class="sectionPadding card0" id="queContainerINeed">
   <div class="redDot test" id="sectioNSummaryCardActivator"></div>
   <style>#queContainerINeed.card0 #card0 {display:flex}</style>
@@ -56,6 +59,8 @@
     </div>
     <img class="article2Media" src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
   </article>
+
+
   <?php
 
   $taxonomy     = 'product_cat';

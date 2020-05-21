@@ -49,46 +49,37 @@
         </div>
       </div>
       <figure class="atributo">
-        <img class="" src="<?php echo  $singleImgPath . "cargaMax.png"; ?>" alt="">
+        <img class="" src="<?php echo  $singleImgPath . "medidasExternas.png"; ?>" alt="">
         <figcaption>
-          <h4>Carga Max</h4>
-          <?php echo get_post_meta( get_the_id(), 'cargaMax' )[0]; ?>
+          <h4>Alto</h4>
+          <?php echo get_post_meta( get_the_id(), 'alto' )[0]; ?>
         </figcaption>
       </figure>
 
       <figure class="atributo">
-        <img src="<?php echo $singleImgPath . "aperturaPuerta.png"; ?>" alt="">
+        <img src="<?php echo $singleImgPath . "medidasInternas.png"; ?>" alt="">
         <figcaption>
-          <h4>Apertura de puerta</h4>
-          <?php echo get_post_meta( get_the_id(), 'aperturaPuerta' )[0]; ?>
+          <h4>Ancho</h4>
+          <?php echo get_post_meta( get_the_id(), 'ancho' )[0]; ?>
         </figcaption>
       </figure>
 
 
     <figure class="atributo">
-      <img src="<?php echo  $singleImgPath . "medidasExternas.png"; ?>" alt="">
-      <figcaption>
-        <h4>Medidas Externas</h4>
-        <?php echo get_post_meta( get_the_id(), 'medidasExternas' )[0]; ?>
-      </figcaption>
-    </figure>
-
-    <figure class="atributo">
       <img src="<?php echo  $singleImgPath . "capacidadCubica.png"; ?>" alt="">
       <figcaption>
-        <h4>Capacidad Cúbica</h4>
-        <?php echo get_post_meta( get_the_id(), 'capacidadCubica' )[0]; ?>
+        <h4>Largo</h4>
+        <?php echo get_post_meta( get_the_id(), 'largo' )[0]; ?>
       </figcaption>
     </figure>
 
     <figure class="atributo">
-      <img src="<?php echo  $singleImgPath . "area.png"; ?>" alt="">
+      <img src="<?php echo  $singleImgPath . "cargaMax.png"; ?>" alt="">
       <figcaption>
-        <h4>Área</h4>
-        <?php echo get_post_meta( get_the_id(), 'area' )[0]; ?>
+        <h4>Peso</h4>
+        <?php echo get_post_meta( get_the_id(), 'peso' )[0]; ?>
       </figcaption>
     </figure>
-
 
     <figure class="atributo">
       <img src="<?php echo  $singleImgPath . "tara.png"; ?>" alt="">
@@ -97,7 +88,9 @@
         <?php echo get_post_meta( get_the_id(), 'tara' )[0]; ?>
       </figcaption>
     </figure>
-    <button class="btn singleBuy" type="button" name="button">Comprar</button>
+
+
+    <button class="btn singleBuy" type="button" name="button">Adquirir</button>
     <!-- <button class="btn blue singleRent " type="button" name="button">Alquilar</button> -->
   </section>
 
@@ -127,6 +120,11 @@
       }
     }
     ?>
+  </section>
+  <section class="theContent">
+    <p class="content">
+      <?php echo get_the_content(); ?>
+    </p>
   </section>
 
   <section class="testimonialsSec sectionPadding">
