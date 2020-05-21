@@ -1163,6 +1163,7 @@ p, a, button, li {color: var(--color9)}
   grid-auto-rows: auto;
   padding: 1rem var(--lateral);
   z-index: 2;
+  position: relative;
 }
 
 .teamSectionTitle {
@@ -1180,7 +1181,7 @@ p, a, button, li {color: var(--color9)}
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 1rem 0;
+  padding: 20px;
 }
 
 .areaSelector {
@@ -1209,6 +1210,7 @@ p, a, button, li {color: var(--color9)}
   display: flex;
   align-items: center;
   width: 100%;
+  font-size: .8rem;
 }
 
 .areaSelectorTxt::before{
@@ -1327,8 +1329,18 @@ p, a, button, li {color: var(--color9)}
   grid-gap: 1rem;
   padding: 1rem;
   overflow-x: scroll;
+  position: relative;
 }
 
+.teamCardsContGradient {
+  position: absolute;
+  top: 0;
+  right: var(--lateral);
+  width: 160px;
+  height: 100%;
+  background-image: linear-gradient(to right, transparent, white);
+  z-index: 2;
+}
 
 .teamCardTxt {
   font-size: .7rem;
@@ -1336,8 +1348,9 @@ p, a, button, li {color: var(--color9)}
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 80px;
+  height: 100px;
 }
+
 .teamCardMail {font-size: .5rem;}
 .teamCardName {font-size: .8rem;}
 
@@ -1347,63 +1360,28 @@ p, a, button, li {color: var(--color9)}
 .teamCard:hover .teamCardBlock {display: none;}
 .teamCard:hover .teamCardNone{display: block;}
 
+.areaSelector {cursor: pointer;}
 
+.teamSection:not(.direccion):not(.finance-administration):not(.sales-department-cis-region):not(.sales-department-europe):not(.sales-department-latam):not(.supply-operations) .teamCard {display: grid!important;}
 
-.areaSelector {
-  cursor: pointer;
-
-}
-
-
-/* .teamSection:not(.ceo)            .teamCard.ceo,
-.teamSection:not(.management)     .teamCard.management,
-.teamSection:not(.administration) .teamCard.administration,
-.teamSection:not(.logistic)       .teamCard.logistic,
-.teamSection:not(.sales)          .teamCard.sales{
-  display: none;
-} */
-
-
-.teamSection.logistic       .teamCard.sales,
-.teamSection.administration .teamCard.sales,
-.teamSection.management     .teamCard.sales,
-.teamSection.ceo            .teamCard.sales {
+.teamSection:not(.direccion)                   .teamCard.direccion,
+.teamSection:not(.finance-administration)      .teamCard.finance-administration,
+.teamSection:not(.sales-department-cis-region) .teamCard.sales-department-cis-region,
+.teamSection:not(.sales-department-europe)     .teamCard.sales-department-europe,
+.teamSection:not(.sales-department-latam)      .teamCard.sales-department-latam,
+.teamSection:not(.supply-operations)           .teamCard.supply-operations {
   display: none;
 }
 
-.teamSection.sales          .teamCard.logistic,
-.teamSection.administration .teamCard.logistic,
-.teamSection.management     .teamCard.logistic,
-.teamSection.ceo            .teamCard.logistic {
-  display: none;
-}
 
-.teamSection.logistic       .teamCard.management,
-.teamSection.administration .teamCard.management,
-.teamSection.sales          .teamCard.management,
-.teamSection.ceo            .teamCard.management {
-  display: none;
+.teamSection.direccion                   .areaSelector.direccion,
+.teamSection.finance-administration      .areaSelector.finance-administration,
+.teamSection.sales-department-cis-region .areaSelector.sales-department-cis-region,
+.teamSection.sales-department-europe     .areaSelector.sales-department-europe,
+.teamSection.sales-department-latam      .areaSelector.sales-department-latam,
+.teamSection.supply-operations           .areaSelector.supply-operations {
+  background: var(--color4)!important
 }
-
-.teamSection.logistic       .teamCard.ceo,
-.teamSection.administration .teamCard.ceo,
-.teamSection.management     .teamCard.ceo,
-.teamSection.sales          .teamCard.ceo {
-  display: none;
-}
-
-.teamSection.logistic       .teamCard.administration,
-.teamSection.sales          .teamCard.administration,
-.teamSection.management     .teamCard.administration,
-.teamSection.ceo            .teamCard.administration {
-  display: none;
-}
-
-.teamSection.logistic       .areaSelector.logistic       {background: var(--color4)!important}
-.teamSection.sales          .areaSelector.sales          {background: var(--color4)!important}
-.teamSection.management     .areaSelector.management     {background: var(--color4)!important}
-.teamSection.ceo            .areaSelector.ceo            {background: var(--color4)!important}
-.teamSection.administration .areaSelector.administration {background: var(--color4)!important}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------

@@ -13,29 +13,40 @@
 <section class="teamSection" id="teamSection">
   <div class="areaSelectorCont">
     <h3 class="areaSelectorTitle"><strong>Conoce nuestro <span class="brandColorTxt">Equipo</span></strong></h3>
-    <div class="areaSelector sales">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamSection', 'teamSection');">Sales</p>
+
+    <div class="areaSelector direccion">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('direccion', '#teamSection', 'teamSection');">Dirección</p>
     </div>
-    <div class="areaSelector logistic">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('logistic', '#teamSection', 'teamSection');" >Logistics</p>
+
+    <div class="areaSelector finance-administration">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('finance-administration', '#teamSection', 'teamSection');" >Finance & Administration</p>
     </div>
-    <div class="areaSelector administration">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('administration', '#teamSection', 'teamSection');" >Administration</p>
+
+    <div class="areaSelector sales-department-cis-region">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-cis-region', '#teamSection', 'teamSection');" >Sales Department CIS Region</p>
     </div>
-    <div class="areaSelector management">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('management', '#teamSection', 'teamSection');" >Management</p>
+
+    <div class="areaSelector sales-department-europe">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-europe', '#teamSection', 'teamSection');" >Sales Department Europe</p>
     </div>
-    <div class="areaSelector ceo">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('ceo', '#teamSection', 'teamSection')" >C.E.O.</p>
+
+    <div class="areaSelector sales-department-latam">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-latam', '#teamSection', 'teamSection')" >Sales Department LATAM</p>
     </div>
+
+    <div class="areaSelector supply-operations">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('supply-operations', '#teamSection', 'teamSection')" >Supply & Operations</p>
+    </div>
+
   </div>
 
 
+  <div class="teamCardsContGradient"></div>
   <div id="teamCardsContainer" class="teamCardsContainer">
-
     <?php
     $args=array(
       'post_type'=>'equipo',
+      'posts_per_page'=> 100,
     );
     $equipo=new WP_Query();
     $equipo->query($args);
@@ -53,7 +64,7 @@
           <p class="teamCardPosition teamCardBlock"><?php echo get_post_meta($post->ID, 'Cargo', true); ?></p>
           <a class="teamCardLinkedin teamCardNone brandColorTxt" href="<?php echo get_post_meta( get_the_id(), 'Linkedin' )[0]; ?>" >LinkedIn</a>
           <p class="teamCardPhone teamCardNone"><?php echo get_post_meta( get_the_id(), 'Telefono' )[0]; ?></p>
-          <p class="teamCardMail teamCardNone"><?php echo get_post_meta( get_the_id(), 'Correo' )[0]; ?></p>
+          <!-- <p class="teamCardMail teamCardNone"><?php echo get_post_meta( get_the_id(), 'Correo' )[0]; ?></p> -->
         </div>
       </article>
 
