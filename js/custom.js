@@ -29,6 +29,10 @@ w.onload=()=>{
     d.getElementById("load").style.top="-100vh";
   }
 	scrollAlter();
+
+
+	d.querySelector('#svgTryStuff').setAttribute('xlink:href', '#fr');
+
 }
 
 

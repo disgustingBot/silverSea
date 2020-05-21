@@ -6,6 +6,8 @@
 
 
   <div class="cotizador" id="cotizador">
+    <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
+    <!-- <h5 class="cotizadorTxt">Cotiza tu contenedor online y recibe el precio en instantes</h5> -->
     <?php // include get_template_directory().'/coprAlqui.php' ?>
 
     <div class="dynamicContList" id="dynamicContList">
