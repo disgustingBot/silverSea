@@ -10,9 +10,9 @@
 
   <?php wp_head(); ?>
 
-  <template id="cartItemTemplate">
-    <?php include get_template_directory().'/dynamicCont.php' ?>
-  </template>
+  <!-- <template id="cartItemTemplate"> -->
+    <?php //include get_template_directory().'/dynamicCont.php' ?>
+  <!-- </template> -->
 
 
   <template id="selectBoxOptionTemplate">
@@ -26,6 +26,24 @@
       <!-- <span class="checkmark"></span> -->
       <p class="selectBoxOptionLabel"></p>
     </label>
+  </template>
+
+
+  <template id="svgTemplate">
+    <svg class="svg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <use class="use" xlink:href=""></use>
+    </svg>
+  </template>
+
+
+  <template id="cartItemTemplate">
+    <div class="cartItem">
+      <p class="cartItemQty">1</p>
+      <svg class="cartItemSize" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use class="use" xlink:href=""></use></svg>
+      <svg class="cartItemTip1" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use class="use" xlink:href=""></use></svg>
+      <svg class="cartItemTip2" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use class="use" xlink:href=""></use></svg>
+      <svg class="cartItemCond" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use class="use" xlink:href=""></use></svg>
+    </div>
   </template>
 
 
@@ -94,6 +112,13 @@
   ?>
 
 
-  <div class="carrito">
+  <div class="cart" id="cart">
     <p>soy un carrito</p>
+    <div class="cartItem">
+      <p>1</p>
+      <?php newSvg('pies20'); ?>
+      <?php newSvg('Dry'); ?>
+      <?php newSvg('DC'); ?>
+      <?php newSvg('NEW'); ?>
+    </div>
   </div>
