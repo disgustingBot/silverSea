@@ -1,13 +1,11 @@
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g id="TK">
-    <rect x="24" y="23.1113" width="24" height="2.07407" rx="1.03704" transform="rotate(-180 24 23.1113)" fill="black"/>
-    <rect x="24" y="2.07397" width="24" height="2.07407" rx="1.03704" transform="rotate(-180 24 2.07397)" fill="black"/>
-    <rect x="0.783691" y="23.1113" width="23.1111" height="1.82609" rx="0.913044" transform="rotate(-90 0.783691 23.1113)" fill="black"/>
-    <rect x="21.3647" y="23.1113" width="23.1111" height="1.82609" rx="0.913044" transform="rotate(-90 21.3647 23.1113)" fill="black"/>
-    <circle cx="12.0003" cy="11.5557" r="9.33333" fill="#0674BB"/>
-    <rect x="11.835" y="1.51733" width="13.3333" height="0.888888" rx="0.444444" transform="rotate(135 11.835 1.51733)" fill="black"/>
-    <rect width="13.3333" height="0.888888" rx="0.444444" transform="matrix(0.707107 0.707107 0.707107 -0.707107 12 1.51733)" fill="black"/>
-    <rect width="13.3333" height="0.888888" rx="0.444444" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 11.835 21.428)" fill="black"/>
-    <rect x="12" y="21.428" width="13.3333" height="0.888888" rx="0.444444" transform="rotate(-45 12 21.428)" fill="black"/>
-  </g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="22" y="21.2595" width="20" height="1.72839" rx="0.864197" transform="rotate(-180 22 21.2595)" fill="black"/>
+<rect x="22" y="3.72827" width="20" height="1.72839" rx="0.864197" transform="rotate(-180 22 3.72827)" fill="black"/>
+<rect x="2.65332" y="21.2595" width="19.2593" height="1.52174" rx="0.76087" transform="rotate(-90 2.65332 21.2595)" fill="black"/>
+<rect x="19.8037" y="21.2595" width="19.2593" height="1.52174" rx="0.76087" transform="rotate(-90 19.8037 21.2595)" fill="black"/>
+<circle cx="12.0004" cy="11.6298" r="7.77778" fill="#0674BB"/>
+<rect x="11.8623" y="3.2644" width="11.1111" height="0.74074" rx="0.37037" transform="rotate(135 11.8623 3.2644)" fill="black"/>
+<rect width="11.1111" height="0.74074" rx="0.37037" transform="matrix(0.707107 0.707107 0.707107 -0.707107 12 3.2644)" fill="black"/>
+<rect width="11.1111" height="0.74074" rx="0.37037" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 11.8623 19.8567)" fill="black"/>
+<rect x="12" y="19.8567" width="11.1111" height="0.74074" rx="0.37037" transform="rotate(-45 12 19.8567)" fill="black"/>
 </svg>
