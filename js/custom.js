@@ -674,13 +674,14 @@ class CartItem {
 		let cartItemTemplate = d.importNode(d.querySelector("#cartItemTemplate").content, true);
 		console.log(cartItemTemplate);
 		// let cartItem = cartItemTemplate.querySelector(".cartItem");
+		let cartItemQty = cartItemTemplate.querySelector(".cartItemQty");
 
 		let cartItemSize = cartItemTemplate.querySelector(".cartItemSize .use");
 		let cartItemTip1 = cartItemTemplate.querySelector(".cartItemTip1 .use");
 		let cartItemTip2 = cartItemTemplate.querySelector(".cartItemTip2 .use");
 		let cartItemCond = cartItemTemplate.querySelector(".cartItemCond .use");
 
-
+		cartItemQty.innerText = this.qty;
 		cartItemSize.setAttribute('xlink:href', '#pies' + this.size);
 		cartItemTip1.setAttribute('xlink:href', '#' + this.tipo_1);
 		cartItemTip2.setAttribute('xlink:href', '#' + this.tipo_2);

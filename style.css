@@ -2231,14 +2231,15 @@ p, a, button, li {color: var(--color9)}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .cart{
+  background:white;
   display:grid;
+  grid-gap:.5rem;
+  margin:auto;
   padding: 1rem 2rem;
   position:fixed;
   top: 100px;
-  background:white;
-  z-index: 5;
-  margin:auto;
   /* width: min-content; */
+  z-index: 5;
 }
 .cartItem{
   display:grid;
@@ -2248,6 +2249,9 @@ p, a, button, li {color: var(--color9)}
   align-items:center;
   justify-content: center;
   text-align: center;
+}
+.cartItemSvg{
+  height:1.5rem;
 }
 
 
