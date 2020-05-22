@@ -360,7 +360,7 @@ function lt_new_pass(){
 
     function newSvg($id){ ?>
 
-      <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <svg class="cartItemSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <use xlink:href="#<?php echo $id; ?>"></use>
       </svg>
 
