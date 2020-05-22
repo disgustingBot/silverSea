@@ -181,8 +181,8 @@
 
 
 
-<section class="questionary">
-  <h3 class="questionaryTitle">Need Help?</h3>
+<section class="questionaryFilter">
+  <h3 class="questionaryTitle"><nobr>Need Help?</nobr></h3>
   <button class="questionaryButton">
     <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
@@ -196,7 +196,7 @@
 
 <div class="archiveMain">
   <div class="archiveFilter2">
-    <?php $svgPath = get_template_directory()  . "/img/svg/"; ?>
+    <?php $svgPath = get_template_directory()  . "/assets/"; ?>
 
 
     <div class="filter">
@@ -204,91 +204,121 @@
       <div class="filterList">
         <div class="filterTipo">
           <li class="filterTipoItem">
-          <?php include $svgPath . 'rf.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#Reefer" id="dynamicContLogo"></use>
+            </svg>
           <label for="">Refrigerado</label>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'rf.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#RF" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Standard</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'rh.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#RH" id="dynamicContLogo"></use>
+            </svg>
             <label for="">HighCube</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
         </div>
         <div class="filterTipo">
           <li class="filterTipoItem">
-          <?php include $svgPath . 'dc.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#Dry" id="dynamicContLogo"></use>
+            </svg>
           <label for="">Seco</label>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'dc.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#DC" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Standard</label>
             <?php include $svgPath . 'question.php'; ?>
 
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'hc.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#HC" id="dynamicContLogo"></use>
+            </svg>
             <label for="">HighCube</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'hc-pw.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#HCPW" id="dynamicContLogo"></use>
+            </svg>
             <label for="">HighCube PaletWide</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
         </div>
         <div class="filterTipo">
           <li class="filterTipoItem">
-          <?php include $svgPath . 'special.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#Special" id="dynamicContLogo"></use>
+            </svg>
           <label for="">Especial</label>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'fr.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#FR" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Flat Rack</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'ot.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#OT" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Open Top</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'os.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#OS" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Open Side</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'dd.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#DCDD" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Double Door</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'hc-dd.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#HCDD" id="dynamicContLogo"></use>
+            </svg>
             <label for="">HighCube Double Door</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'os.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#OS" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Open Side</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
-            <?php include $svgPath . 'tk.php'; ?>
+            <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="#TK" id="dynamicContLogo"></use>
+            </svg>
             <label for="">Tank</label>
             <?php include $svgPath . 'question.php'; ?>
           </li>
@@ -306,31 +336,41 @@
       <ul class="filterList">
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'new.php'; ?>
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#NEW" id="dynamicContLogo"></use>
+          </svg>
           <label for="">Nuevo | New</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'cw.php'; ?>
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#CW" id="dynamicContLogo"></use>
+          </svg>
           <label for="">Carga | Cargo Worthy</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'IICL.php'; ?>
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#IICL" id="dynamicContLogo"></use>
+          </svg>
           <label for="">Carga | Cargo Worthy IICL</label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'storage.php'; ?>
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#RH" id="dynamicContLogo"></use>
+          </svg>
           <label for="">Almacenaje | Modificación </label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
-          <?php include $svgPath . 'scrap.php'; ?>
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#SCRAP" id="dynamicContLogo"></use>
+          </svg>
           <label for="">Chatarra | Scrap </label>
           <?php include $svgPath . 'question.php'; ?>
         </li>
@@ -342,22 +382,48 @@
     </div>
     <div class="filter">
 
-      <h3 class="filterTitle"><?php include $svgPath . 'size.php'; ?>Tamaño</h3>
+      <h3 class="filterTitle">Tamaño</h3>
       <ul class="filterList size">
         <li class="filterItem">
           <input type="checkbox" class="css-checkbox">
-          <label for="">12 PIES</label>
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#pies6" id="dynamicContLogo"></use>
+          </svg>
+          <label for="">6 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#pies8" id="dynamicContLogo"></use>
+          </svg>
+          <label for="">8 PIES</label>
+        </li>
+        <li class="filterItem">
+          <input type="checkbox">
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#pies10" id="dynamicContLogo"></use>
+          </svg>
+          <label for="">10 PIES</label>
+        </li>
+        <li class="filterItem">
+          <input type="checkbox">
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#pies20" id="dynamicContLogo"></use>
+          </svg>
           <label for="">20 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#pies40" id="dynamicContLogo"></use>
+          </svg>
           <label for="">40 PIES</label>
         </li>
         <li class="filterItem">
           <input type="checkbox">
+          <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <use xlink:href="#pies45" id="dynamicContLogo"></use>
+          </svg>
           <label for="">45 PIES</label>
         </li>
       </ul>
