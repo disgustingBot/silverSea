@@ -423,13 +423,12 @@ function scrollAlter(){
 
 // CART CONTROLLER
 cartController = {
-  currentSemiSelection: {size: false, tipo_1: false, tipo_2: false, condicion: false},
+  currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
 	containerToAdd:false,
   cart: [],
   add: (x) => {
     cartController.cart.unshift(new CartItem(x));
-    var a = d.importNode(d.querySelector("#cartItemTemplate").content, true);
-    d.querySelector("#dynamicContList").insertBefore(a, d.getElementById("dynamicCont1"));
+		cartController.cart[0].cartUI();
 		console.log(cartController.cart)
     console.log(cartController.currentSemiSelection)
   },
@@ -443,6 +442,16 @@ cartController = {
       selector.classList.remove('ready')
     }
   },
+
+	changeQuantity:(value)=>{
+	  let quantity = parseInt(d.querySelector('#addToCartQantity').value);
+	  quantity += value;
+	  if (quantity<=1) {
+	    quantity = 1;
+	  }
+		cartController.currentSemiSelection.qty = quantity;
+	  d.querySelector('#addToCartQantity').value   = quantity;
+	},
 
   selectBoxOption:(key, value = '')=>{
 
@@ -536,7 +545,9 @@ cartController = {
 		const check = (element) => {
 			return element.condicion == value;
 		}
+		cartController.currentSemiSelection.code = cartController.currentSemiSelection.condicion.find(check).salesforce_id;
 		cartController.containerToAdd = cartController.currentSemiSelection.condicion.find(check).salesforce_id;
+		cartController.currentSemiSelection.condicion = value;
 		// console.log('container To Add: ', cartController.containerToAdd)
 
 		cartController.ready();
@@ -590,16 +601,9 @@ cartController = {
 									cartController.tipo1Controller(value);
 								}
 								if(size &&  tipo_1 && !tipo_2){
-									// console.log(key);
 									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
 									cartController.tipo2Controller(value, true);
 								}
-								// if(lastCase){
-								// 	if (value=='') {
-								// 		cartController.selectBoxWipe('Condicion',true)
-								// 	}
-								// 	cartController.ready();
-								// }
 
 							} else {
 
@@ -627,20 +631,20 @@ cartController = {
 						input.setAttribute('type', 'radio');
 						input.setAttribute('onchange', 'cartController.condicionController("' + e.condicion + '")');
 
-						if (JSON.parse(v).length == 1) {
-							input.setAttribute("checked", true);
+						// if (JSON.parse(v).length == 1) {
+							// input.setAttribute("checked", true);
 							// cartController.cart.unshift(e.id)
-						}
+						// }
 
 						// a los found los tendria que mostrar en la UI
-						if (e.condicion == '') {
-							cartController.ready()
-							cartController.containerToAdd = e.id;
-						}
-						else {
+						// if (e.condicion == '') {
+						// 	cartController.ready()
+						// 	cartController.containerToAdd = e.id;
+						// }
+						// else {
 						// if (e.condicion!='' && e.avanzado_2 == '') {
 							d.querySelector('#selectBoxCondicion .selectBoxList').insertBefore(a, null);
-						}
+						// }
 						// console.log(e.length)
 
 					});
@@ -663,5 +667,27 @@ class CartItem {
 		this.values = v;
 		// Esta parte define las propiedades del elemento como vienen del objeto v
 		for(var k in v){Object.defineProperty(this,k,{enumerable: true,value:v[k]})}
+	}
+
+
+	cartUI(){
+		let cartItemTemplate = d.importNode(d.querySelector("#cartItemTemplate").content, true);
+		console.log(cartItemTemplate);
+		// let cartItem = cartItemTemplate.querySelector(".cartItem");
+		let cartItemQty = cartItemTemplate.querySelector(".cartItemQty");
+
+		let cartItemSize = cartItemTemplate.querySelector(".cartItemSize .use");
+		let cartItemTip1 = cartItemTemplate.querySelector(".cartItemTip1 .use");
+		let cartItemTip2 = cartItemTemplate.querySelector(".cartItemTip2 .use");
+		let cartItemCond = cartItemTemplate.querySelector(".cartItemCond .use");
+
+		cartItemQty.innerText = this.qty;
+		cartItemSize.setAttribute('xlink:href', '#pies' + this.size);
+		cartItemTip1.setAttribute('xlink:href', '#' + this.tipo_1);
+		cartItemTip2.setAttribute('xlink:href', '#' + this.tipo_2);
+		cartItemCond.setAttribute('xlink:href', '#' + this.condicion);
+
+
+    d.querySelector("#cart").insertBefore(cartItemTemplate, null);
 	}
 }

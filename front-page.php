@@ -48,7 +48,7 @@
 
 
 <section class="sectionPadding card0" id="queContainerINeed">
-  <div class="redDot test" id="sectioNSummaryCardActivator"></div>
+  <div class="redDot" id="sectioNSummaryCardActivator"></div>
   <style>#queContainerINeed.card0 #card0 {display:flex}</style>
 
   <!-- TODO Seguir este bloque -->
