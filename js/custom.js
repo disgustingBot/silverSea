@@ -426,12 +426,41 @@ cartController = {
   currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
 	containerToAdd:false,
   cart: [],
+	send:()=>{
+		console.log(cartController.cart)
+	},
   add: (x) => {
+		x.ord = cartController.cart.length;
     cartController.cart.unshift(new CartItem(x));
 		cartController.cart[0].cartUI();
 		console.log(cartController.cart)
-    console.log(cartController.currentSemiSelection)
+    // console.log(cartController.currentSemiSelection)
   },
+	remove:(code)=>{
+		console.log(code)
+    list = d.querySelector('.cartList');
+		// console.log(list)
+		// console.log(list.childNodes[code])
+		console.log(list.querySelector('.cartItem[data-code="'+code+'"]'))
+		list.removeChild(list.querySelector('.cartItem[data-code="'+code+'"]'));
+
+
+	  // cartController.cart.splice(code, 1);
+    // if (list.firstChild) {
+    //   while (list.firstChild) {
+    //     list.removeChild(list.firstChild);
+    //   }
+    // }
+
+		const check = (element) => {
+			return element.code == code;
+		}
+		console.log(cartController.cart.find(check))
+		console.log(cartController.cart.findIndex(check))
+		cartController.cart.splice(cartController.cart.findIndex(check), 1)
+		// cartController.currentSemiSelection.code = cartController.cart.find(check).salesforce_id;
+
+	},
   ready:(ready = true)=>{
     let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
     if (ready) {
@@ -546,8 +575,9 @@ cartController = {
 			return element.condicion == value;
 		}
 		cartController.currentSemiSelection.code = cartController.currentSemiSelection.condicion.find(check).salesforce_id;
-		cartController.containerToAdd = cartController.currentSemiSelection.condicion.find(check).salesforce_id;
-		cartController.currentSemiSelection.condicion = value;
+		cartController.containerToAdd = cartController.currentSemiSelection;
+		cartController.containerToAdd.condicion = value;
+		// cartController.currentSemiSelection.condicion = value;
 		// console.log('container To Add: ', cartController.containerToAdd)
 
 		cartController.ready();
@@ -673,7 +703,9 @@ class CartItem {
 	cartUI(){
 		let cartItemTemplate = d.importNode(d.querySelector("#cartItemTemplate").content, true);
 		console.log(cartItemTemplate);
-		// let cartItem = cartItemTemplate.querySelector(".cartItem");
+		let cartItem = cartItemTemplate.querySelector(".cartItem");
+		cartItem.setAttribute('data-code', this.code);
+
 		let cartItemQty = cartItemTemplate.querySelector(".cartItemQty");
 
 		let cartItemSize = cartItemTemplate.querySelector(".cartItemSize .use");
@@ -681,13 +713,18 @@ class CartItem {
 		let cartItemTip2 = cartItemTemplate.querySelector(".cartItemTip2 .use");
 		let cartItemCond = cartItemTemplate.querySelector(".cartItemCond .use");
 
+		let close = cartItemTemplate.querySelector(".close");
+
 		cartItemQty.innerText = this.qty;
+		// cartItemQty.innerText = this.ord;
 		cartItemSize.setAttribute('xlink:href', '#pies' + this.size);
 		cartItemTip1.setAttribute('xlink:href', '#' + this.tipo_1);
 		cartItemTip2.setAttribute('xlink:href', '#' + this.tipo_2);
 		cartItemCond.setAttribute('xlink:href', '#' + this.condicion);
 
+		close.setAttribute('onclick', 'cartController.remove("' + this.code + '")');
 
-    d.querySelector("#cart").insertBefore(cartItemTemplate, null);
+
+    d.querySelector('.cartList').insertBefore(cartItemTemplate, null);
 	}
 }
