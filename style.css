@@ -1401,7 +1401,7 @@ p, a, button, li {color: var(--color9)}
 .teamSection.logistic       .teamCard.management,
 .teamSection.administration .teamCard.management,
 .teamSection.sales          .teamCard.management,
-.teamSection.ceo            .teamCard.management {
+.teamSection.ceo            .teamCard.management {}
 
 .teamSection:not(.direccion)                   .teamCard.direccion,
 .teamSection:not(.finance-administration)      .teamCard.finance-administration,
