@@ -47,18 +47,18 @@
 
 
 
-<section class="sectionPadding card0" id="queContainerINeed">
+<section class="sectionPadding card60" id="queContainerINeed">
   <div class="redDot" id="sectioNSummaryCardActivator"></div>
   <style>#queContainerINeed.card0 #card0 {display:flex}</style>
 
   <!-- TODO Seguir este bloque -->
-  <article class="article2 containerNeeded" id="card0">
+  <!-- <article class="article2 containerNeeded" id="card0">
     <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
       <h2 class="summaryTitle">¿Que Contenedor necesito?</h2>
       <p class="summaryTxt"><?php echo $category->description; ?></p>
     </div>
     <img class="article2Media" src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
-  </article>
+  </article> -->
 
 
   <?php
@@ -90,19 +90,18 @@
       <?php $lt_meta_desc = get_term_meta($category->term_id, 'lt_meta_desc', true); ?>
       <?php if ($lt_meta_desc == 'on'){ ?>
         <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:flex}</style>
-        <article class="article2 containerNeeded" id="card<?php echo $category->term_id; ?>">
+        <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
           <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
             <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
             <p class="summaryTxt"><?php echo $category->description; ?></p>
           </div>
-          <img class="article2Media" src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
+          <img class="article2Media" src="<?php echo wp_get_attachment_url( get_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
         </article>
       <?php } ?>
     <?php } ?>
 
 
     <select name="cont_selector" class="btn" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
-      <option class="contOption" name="option" value="card0">Que Contenedor Necesito</option>
       <?php $i=0;
       foreach($categories as $category) { ?>
         <?php $lt_meta_desc = get_term_meta($category->term_id, 'lt_meta_desc', true); ?>
