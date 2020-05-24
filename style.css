@@ -2327,7 +2327,8 @@ p, a, button, li {color: var(--color9)}
 --------------------------------------------------------------------------- */
 .cart{
   background:white;
-  display:grid;
+  /* display:grid; */
+  display: none;
   grid-gap:.5rem;
   margin:auto;
   padding: 1rem 2rem;

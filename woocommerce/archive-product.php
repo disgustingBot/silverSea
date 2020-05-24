@@ -456,7 +456,7 @@
       ?>
       <?php global $product; ?>
       <article class="card">
-        <a href="<?php echo get_permalink(); ?>" class="cardTitle">
+        <a href="<?php echo get_permalink(); ?>" class="cardTitle"> h4.card
           <?php
           if ($categories) {
             // for each category
