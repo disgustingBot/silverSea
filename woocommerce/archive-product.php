@@ -180,10 +180,28 @@
 
 
 
-
+<!--
 <section class="questionaryFilter">
   <h3 class="questionaryTitle"><nobr>Need Help?</nobr></h3>
   <button class="questionaryButton">
+    <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
+    </svg>
+  </button>
+</section> -->
+
+<section class="archiveTopInteraction">
+
+  <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
+    <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M25.7646 11.126L25.7646 24L23.2354 24L23.2354 11.126L25.7646 11.126Z" fill="#0674BB"/>
+    <path d="M28 11.126L21 11.126L24.5 7L28 11.126Z" fill="#0674BB"/>
+    <path d="M21.7478 0H2.25267C0.254014 0 -0.754408 2.44158 0.661686 3.86742L8.25 11.5107V19.6342V24H15.75V21.9311V11.5107L23.3387 3.86742C24.752 2.44446 23.7504 0 21.7478 0ZM13.5 10.5723V21.8997L10.5 21.9311V10.5723L2.25 2.26549H21.75L13.5 10.5723Z" fill="black"/>
+    </svg>
+ </button>
+
+  <p class="archiveTopInteractTitle"><nobr>Need Help?</nobr></p>
+  <button class="archiveTopInteractBtn">
     <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
     </svg>
@@ -380,8 +398,8 @@
         <label for="selectAll">Seleccionar todo</label>
       </div>
     </div>
-    <div class="filter">
 
+    <div class="filter">
       <h3 class="filterTitle">Tamaño</h3>
       <ul class="filterList size">
         <li class="filterItem">
@@ -434,11 +452,11 @@
     </div>
 
 
-    <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
+    <!-- <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
       <svg width="31" height="56" viewBox="0 0 31 56" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 2L28 28L2 54" stroke="black" stroke-width="4"/>
       </svg>
-    </button>
+    </button> -->
   </div>
 
 
@@ -450,7 +468,7 @@
 
 
 
-  <section class="searchResultsCont">
+<section class="searchResultsCont">
     <?php while(have_posts()){the_post();
       $categories = get_the_terms( get_the_ID(), 'product_cat' );
       ?>
