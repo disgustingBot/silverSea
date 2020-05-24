@@ -192,20 +192,18 @@
 
 <section class="archiveTopInteraction">
 
-  <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
-    <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M25.7646 11.126L25.7646 24L23.2354 24L23.2354 11.126L25.7646 11.126Z" fill="#0674BB"/>
-    <path d="M28 11.126L21 11.126L24.5 7L28 11.126Z" fill="#0674BB"/>
-    <path d="M21.7478 0H2.25267C0.254014 0 -0.754408 2.44158 0.661686 3.86742L8.25 11.5107V19.6342V24H15.75V21.9311V11.5107L23.3387 3.86742C24.752 2.44446 23.7504 0 21.7478 0ZM13.5 10.5723V21.8997L10.5 21.9311V10.5723L2.25 2.26549H21.75L13.5 10.5723Z" fill="black"/>
-    </svg>
- </button>
+  <button class="hideFilter btn" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
 
-  <p class="archiveTopInteractTitle"><nobr>Need Help?</nobr></p>
-  <button class="archiveTopInteractBtn">
-    <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
+    <svg width="40" height="62" viewBox="0 0 40 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32.0908 16H6.9097C4.3281 16 3.02556 19.1537 4.85468 20.9954L14.6562 30.8679V41.3609V47H24.3438V44.3277V30.8679L34.1459 20.9954C35.9713 19.1574 34.6776 16 32.0908 16ZM21.4375 29.6559V44.2871L17.5625 44.3277V29.6559L6.90625 18.9263H32.0938L21.4375 29.6559Z" fill="black"/>
+      <path class="arrowTopStick" d="M32.8335 9.875L7.00016 9.875L7.00016 6L32.8335 6L32.8335 9.875Z" fill="#0674BB"/>
+            <g class="filterArrow">
+      <path class="arrowBotStick" d="M9.625 56.875L35.4583 56.875L35.4583 53L9.625 53L9.625 56.875Z" fill="#0674BB"/>
+      <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
+            </g>
     </svg>
   </button>
+  <p class="archiveTopInteractTitle">FILTER</p>
 </section>
 
 

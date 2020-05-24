@@ -1506,7 +1506,7 @@ p, a, button, li {color: var(--color9)}
  display: grid;
  grid-auto-flow: column;
  width: min-content;
- grid-gap: 1rem;
+ grid-gap: 5px;
  padding: .6rem;
  border-radius: 8px;
  margin-left: auto;
@@ -1515,6 +1515,10 @@ p, a, button, li {color: var(--color9)}
  top: 4rem;
  z-index: 1;
  box-shadow: var(--DP1);
+}
+
+.archiveTopInteraction .btn {
+  padding: 5px;
 }
 
 .archiveTopInteractBtn{
@@ -2605,15 +2609,35 @@ a:visited{
   border-right: solid var(--color1) 2px;
 
 }
-.hideFilter svg{
-  transform: rotate(180deg);
-  transition: .5s;
-}
-.hideFilter.alt svg{
-  transform-origin: center;
-  transform: rotate(0deg);
 
+.filterIcon {}
+
+.filterArrow {
+  position: relative;
 }
+
+.pointerArrow {
+  position: relative;
+  transform-origin: center;
+  transform: rotateY(0) translateX(0);
+  transition: .5s ease-out;
+}
+
+.archiveTopInteractTitle {
+  margin: auto;
+}
+
+
+.hideFilter.alt .pointerArrow {
+  position: relative;
+  transform-origin: center;
+  transform: rotate(180deg);
+}
+
+.arrowTopStick { opacity: 0; }
+.arrowBotStick { opacity: 1; }
+.hideFilter.alt  .arrowTopStick {opacity: 1;}
+.hideFilter.alt  .arrowBotStick {opacity: 0;}
 
 .hideFilter:focus{outline: none}
 
