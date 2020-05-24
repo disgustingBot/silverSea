@@ -153,7 +153,6 @@ FIN DE MAPA DE CONTENIDOS */
   /* FRONT PAGE ATF */
   --dynamicContSelector:1fr;
   --featuresMarginTop: auto;
-  --featureIconMargin: auto;
 
   /* ?dynamicCont */
   /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
@@ -176,7 +175,7 @@ FIN DE MAPA DE CONTENIDOS */
   --aboutUsSec2BtnM: 1rem auto 0 auto;
 
   /* FRONT PAGE ATF */
-  --featuresGAutoFlow: row;
+  --featuresGTR: 1fr;
 
 
 
@@ -327,8 +326,7 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* FRONT PAGE ATF */
-    --featuresGAutoFlow: column;
-    --featureIconMargin: auto .5rem auto auto;
+    --featuresGTR: 1fr 1fr 1fr;
 
     /* COUNTERS */
     --articleCounterGR: auto;
@@ -903,7 +901,7 @@ p, a, button, li {color: var(--color9)}
 .features {
   padding: 1rem var(--lateral);
   display: grid;
-  grid-auto-flow: var(--featuresGAutoFlow);
+  grid-template-columns: var(--featuresGTR);
   grid-gap: 1rem;
   margin-top:var(--featuresMarginTop);
   z-index: 2;
@@ -911,7 +909,9 @@ p, a, button, li {color: var(--color9)}
 
 .feature {
   box-shadow: var(--DP1);
-  display: flex;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: .5rem;
   padding: .5rem;
   transition: .25s;
   border-radius: 4px;
@@ -922,21 +922,23 @@ p, a, button, li {color: var(--color9)}
 }
 
 .featureIcon{
-  height: 3rem;
-  margin: var(--featureIconMargin);
-  width: auto;
-  object-fit: contain;
-}
-
-.featureTitle {
-  font-size: 1rem;
-  font-weight: 700;
+  margin:auto;
+  height: 80px;
 }
 
 .featureTxt {
-  font-size: .8rem;
+  font-size: .9rem;
   margin: auto;
+  margin-top: 0;
+  text-align: center;
 }
+
+
+.featureTitle {
+  font-size: .9rem;
+  font-weight: 700;
+}
+
 
 
 
@@ -1556,6 +1558,10 @@ p, a, button, li {color: var(--color9)}
 
 .articleCounter .btn {
   margin: auto 0 auto auto;
+}
+
+.article2 + .btn {
+  margin-top: 2rem;
 }
 
 
