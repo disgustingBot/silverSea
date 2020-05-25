@@ -1530,6 +1530,7 @@ p, a, button, li {color: var(--color9)}
   border: 1px solid var(--color4);
   box-sizing: border-box;
   background: var(--color3);
+  transition: .35s;
 }
 
 .hideFilterBtn.alt {
@@ -1567,14 +1568,17 @@ p, a, button, li {color: var(--color9)}
 .filterIcon {}
 
 .filterArrow {
-  position: relative;
+
 }
 
-.pointerArrow {
-  position: relative;
+.filterArrow {
   transform-origin: center;
   transform: rotateY(0) translateX(0);
   transition: .5s ease-out;
+}
+
+@keyframes animateArrow {
+  
 }
 
 .archiveTopInteractTitle {
@@ -1583,16 +1587,15 @@ p, a, button, li {color: var(--color9)}
 }
 
 
-.hideFilter.alt .pointerArrow {
+.hideFilter.alt .filterArrow {
   position: relative;
-  transform-origin: center;
   transform: rotate(180deg);
 }
 
-.arrowTopStick { opacity: 0; }
-.arrowBotStick { opacity: 1; }
-.hideFilter.alt  .arrowTopStick {opacity: 1;}
-.hideFilter.alt  .arrowBotStick {opacity: 0;}
+.arrowTopStick { opacity: 0; transition: .25s;}
+/* .arrowBotStick { opacity: 1; transition: .25s;} */
+/* .hideFilter.alt  .arrowTopStick {opacity: 1;} */
+/* .hideFilter.alt  .arrowBotStick {opacity: 0;} */
 
 .hideFilter:focus{outline: none}
 
