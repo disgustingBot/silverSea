@@ -430,10 +430,22 @@ cartController = {
 		console.log(cartController.cart)
 	},
   add: (x) => {
-		x.ord = cartController.cart.length;
-    cartController.cart.unshift(new CartItem(x));
-		cartController.cart[0].cartUI();
-		console.log(cartController.cart)
+		const check = (element) => {
+			return element.code == x.code;
+		}
+		// console.log(cartController.cart.find(check))
+		if (cartController.cart.find(check)) {
+			// console.log('aqui deberia actualizar el numero')
+			cartController.cart.find(check).qty += x.qty
+			d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + x.qty;
+			// console.log(list.querySelector('.cartItem[data-code="'+code+'"]'))
+			// d.querySelector('')
+		} else {
+			cartController.cart.unshift(new CartItem(x));
+			cartController.cart[0].cartUI();
+			console.log(cartController.cart)
+		}
+
     // console.log(cartController.currentSemiSelection)
   },
 	remove:(code)=>{
@@ -441,7 +453,7 @@ cartController = {
     list = d.querySelector('.cartList');
 		// console.log(list)
 		// console.log(list.childNodes[code])
-		console.log(list.querySelector('.cartItem[data-code="'+code+'"]'))
+		// console.log(list.querySelector('.cartItem[data-code="'+code+'"]'))
 		list.removeChild(list.querySelector('.cartItem[data-code="'+code+'"]'));
 
 
@@ -455,8 +467,8 @@ cartController = {
 		const check = (element) => {
 			return element.code == code;
 		}
-		console.log(cartController.cart.find(check))
-		console.log(cartController.cart.findIndex(check))
+		// console.log(cartController.cart.find(check))
+		// console.log(cartController.cart.findIndex(check))
 		cartController.cart.splice(cartController.cart.findIndex(check), 1)
 		// cartController.currentSemiSelection.code = cartController.cart.find(check).salesforce_id;
 
@@ -543,7 +555,6 @@ cartController = {
 		cartController.currentSemiSelection.condicion = false;
 
 		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-		console.log('value: ', value);
 
     cartController.ready(false);
     cartController.currentSemiSelection.tipo_1 = value;
@@ -561,7 +572,6 @@ cartController = {
     // cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
 		value = value.replace(/\s/g, '');
 		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-		console.log('value: ', value);
   },
   condicionController: (value)=>{
 		// console.log(value)
@@ -585,7 +595,7 @@ cartController = {
 
 		value = value.replace(/\s/g, '');
 		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-		console.log('value: ', value);
+		// console.log('value: ', value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
 
@@ -702,7 +712,7 @@ class CartItem {
 
 	cartUI(){
 		let cartItemTemplate = d.importNode(d.querySelector("#cartItemTemplate").content, true);
-		console.log(cartItemTemplate);
+		// console.log(cartItemTemplate);
 		let cartItem = cartItemTemplate.querySelector(".cartItem");
 		cartItem.setAttribute('data-code', this.code);
 
