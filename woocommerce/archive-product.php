@@ -191,24 +191,22 @@
 </section> -->
 
 <section class="archiveTopInteraction">
-
-  <button class="hideFilter btn" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
-
+  <button class="hideFilter hideFilterBtn" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
     <svg width="40" height="62" viewBox="0 0 40 62" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M32.0908 16H6.9097C4.3281 16 3.02556 19.1537 4.85468 20.9954L14.6562 30.8679V41.3609V47H24.3438V44.3277V30.8679L34.1459 20.9954C35.9713 19.1574 34.6776 16 32.0908 16ZM21.4375 29.6559V44.2871L17.5625 44.3277V29.6559L6.90625 18.9263H32.0938L21.4375 29.6559Z" fill="black"/>
       <path class="arrowTopStick" d="M32.8335 9.875L7.00016 9.875L7.00016 6L32.8335 6L32.8335 9.875Z" fill="#0674BB"/>
-            <g class="filterArrow">
-      <path class="arrowBotStick" d="M9.625 56.875L35.4583 56.875L35.4583 53L9.625 53L9.625 56.875Z" fill="#0674BB"/>
-      <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
-            </g>
+      <g class="filterArrow">
+        <path class="arrowBotStick" d="M9.625 56.875L35.4583 56.875L35.4583 53L9.625 53L9.625 56.875Z" fill="#0674BB"/>
+        <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
+      </g>
     </svg>
+    <p class="archiveTopInteractTitle">Filter</p>
   </button>
-  <p class="archiveTopInteractTitle">FILTER</p>
+  <div class="finalbuttons">
+    <button class="btn">CONTENEDORES EN REBAJA</button>
+    <button class="btn">Finalizar Compra</button>
+  </div>
 </section>
-
-
-
-
 
 <div class="archiveMain">
   <div class="archiveFilter2">
@@ -545,9 +543,6 @@
   </section>
 </div>
 
-<div class="finalbuttons">
-  <button class="btn">CONTENEDORES EN REBAJA</button>
-  <button class="btn">Finalizar Compra</button>
-</div>
+
 
 <?php get_footer() ;?>

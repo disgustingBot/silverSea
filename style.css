@@ -1505,20 +1505,27 @@ p, a, button, li {color: var(--color9)}
 .archiveTopInteraction{
  display: grid;
  grid-auto-flow: column;
- width: min-content;
+ width: 100%;
  grid-gap: 5px;
  padding: .6rem;
- border-radius: 8px;
- margin-left: auto;
- margin-right: var(--lateral);
- position: sticky;
  top: 4rem;
  z-index: 1;
  box-shadow: var(--DP1);
 }
 
-.archiveTopInteraction .btn {
-  padding: 5px;
+.hideFilterBtn {
+  padding: 10px;
+  display: flex;
+  width: max-content;
+  border: 1px solid var(--color4);
+  box-sizing: border-box;
+  background: var(--color3);
+}
+
+.hideFilterBtn.alt {
+  background: var(--color2);
+  box-shadow: var(--DP2);
+  border: 1px solid var(--color2);
 }
 
 .archiveTopInteractBtn{
@@ -1528,6 +1535,58 @@ p, a, button, li {color: var(--color9)}
  transform: rotate(270deg);
 }
 
+
+
+
+.archiveFilter2 .hideFilter{
+  display: var(--hideFilterDisplay);
+  position: absolute;
+  right: -1.25rem;
+  align-self: center;
+  border: none;
+  transition: .5s;
+  background: var(--color5);
+  color: var(--color1);
+  z-index: -1;
+  margin: .5rem;
+  padding: .5rem;
+  border-radius: 8px;
+  border-right: solid var(--color1) 2px;
+}
+
+.filterIcon {}
+
+.filterArrow {
+  position: relative;
+}
+
+.pointerArrow {
+  position: relative;
+  transform-origin: center;
+  transform: rotateY(0) translateX(0);
+  transition: .5s ease-out;
+}
+
+.archiveTopInteractTitle {
+  margin: auto;
+  font-size: .9rem;
+}
+
+
+.hideFilter.alt .pointerArrow {
+  position: relative;
+  transform-origin: center;
+  transform: rotate(180deg);
+}
+
+.arrowTopStick { opacity: 0; }
+.arrowBotStick { opacity: 1; }
+.hideFilter.alt  .arrowTopStick {opacity: 1;}
+.hideFilter.alt  .arrowBotStick {opacity: 0;}
+
+.hideFilter:focus{outline: none}
+
+.hideFilter svg{height: 1.7rem}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2577,71 +2636,24 @@ a:visited{
   grid-gap: 1rem;
   width: var(--archiveFilterWidth);
   background: white;
-  /* grid-auto-flow: var(--archiveFilter2AutoFlow); */
   padding: 1rem;
   font-size: var(--archiveFilterFontSize);
   transition: .5s;
   z-index: 2;
-  /* box-shadow: 28px 1px 30px -28px rgba(0,0,0,0.75); */
+  top: 0;
+  border-top: solid var(--color5) 1px;
+  border-right: solid var(--color5) 1px;
+
 }
+
 .archiveFilter2.alt{
-  /* display: none; */
-  transform: translateX(-92%);
+  transform: translateX(calc(-100% + 15px));
   grid-column: 1;
   grid-row: 1;
+  border-right: solid var(--color2) 15px;
 }
 
 
-
-.archiveFilter2 .hideFilter{
-  display: var(--hideFilterDisplay);
-  position: absolute;
-  right: -1.25rem;
-  align-self: center;
-  border: none;
-  transition: .5s;
-  background: var(--color5);
-  color: var(--color1);
-  z-index: -1;
-  margin: .5rem;
-  padding: .5rem;
-  border-radius: 8px;
-  border-right: solid var(--color1) 2px;
-
-}
-
-.filterIcon {}
-
-.filterArrow {
-  position: relative;
-}
-
-.pointerArrow {
-  position: relative;
-  transform-origin: center;
-  transform: rotateY(0) translateX(0);
-  transition: .5s ease-out;
-}
-
-.archiveTopInteractTitle {
-  margin: auto;
-}
-
-
-.hideFilter.alt .pointerArrow {
-  position: relative;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
-
-.arrowTopStick { opacity: 0; }
-.arrowBotStick { opacity: 1; }
-.hideFilter.alt  .arrowTopStick {opacity: 1;}
-.hideFilter.alt  .arrowBotStick {opacity: 0;}
-
-.hideFilter:focus{outline: none}
-
-.hideFilter svg{height: 1.7rem}
 
 
 .filter{
@@ -2716,7 +2728,6 @@ a:visited{
   display: grid;
   align-items: flex-end;
   grid-auto-flow: column;
-  margin: 1rem;
 }
 
 /*
