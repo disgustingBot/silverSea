@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <?php while(have_posts()){the_post(); ?>
   <section class="ATF aboutUsATF">
-    <img class="lazy rowcol1" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+    <img class="aboutUsATFIMG lazy rowcol1" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
     <hgroup class="ATFWording rowcol1">
       <h1 class="AboutUsTitle"><?php echo get_post_meta($post->ID, '1-about-titulo-portada', true); ?></h1>
       <h4 class="aboutUsSubtitle"><?php echo get_post_meta($post->ID, '2-about-texto-portada', true); ?></h4>
