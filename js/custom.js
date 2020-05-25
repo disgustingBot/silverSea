@@ -89,11 +89,12 @@ class Carousel {
 
   }
   carousel(){this.j++;
-
-    for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
-    if(this.j>this.elements.length){this.j=1}
-    this.elements[this.j-1].classList.remove("inactive");
-    setTimeout(this.carousel, 8000); // Change image every N/1000 seconds
+		if (this.elements) {
+			for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
+			if(this.j>this.elements.length){this.j=1}
+			this.elements[this.j-1].classList.remove("inactive");
+			setTimeout(this.carousel, 8000); // Change image every N/1000 seconds
+		}
 
   }
 
