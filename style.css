@@ -38,12 +38,16 @@ Version: 0.0
 6.3.2) =Team ATF:
 6.4) =socalMedia:
 6.5) =multiCards:
+6.5.0) =card:
+6.5.1) =teamCard:
 6.6) =forms:
 6.6.2) =forms: questionaryFilter
 6.7) =BUTTONS:
 6.7.0) =btn:
+6.7.0.0) =btnSimple:
 6.7.1) =close:
 6.7.2) =cartButton:
+6.7.3) =arrowButton:
 6.8) =titleBanner:
 6.9) =Counts:
 6.10) =sectionSummarys:
@@ -55,6 +59,7 @@ Version: 0.0
 6.19) =dynamicCont:
 6.20) =cart:
 6.21) =finalizarConsulta:
+6.22) =cuantos:
 6.42) =archive-product:
 6.62) =forms:login:
 6.65) =uploadForm:
@@ -517,10 +522,11 @@ FIN DE MAPA DE CONTENIDOS */
   padding:0;
   font-family: 'Rambla', sans-serif;
 }
-body{display:grid;}
-.body{background: var(--color5)}
+.body{display:grid;background: var(--color5)}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
+/* a:visited{color:inherit} */
+
 ul,ol{list-style:none}
 
 .main {
@@ -577,6 +583,8 @@ p, a, button, li {color: var(--color9)}
 --------------------------------------------------------------------------- */
 
 .rowcol1{grid-row:1;grid-column:1}
+.row2col1{grid-row:2;grid-column:1}
+
 .col6{display: grid; grid-template-columns: repeat(6, 1fr)}
 .onlyDesktopF{display:var(--onlyDesktopF)}
 .onlyDesktopG{display:var(--onlyDesktopG)}
@@ -584,11 +592,13 @@ p, a, button, li {color: var(--color9)}
 .onlyMobileG{display:var(--onlyMobileG)}
 
 
-.opacity1{opacity: 1}
-.opacity0{opacity: 0}
+.opacity1{opacity:1}
+.opacity0{opacity:0}
 
 .txtCenterLeft {text-align: var(--txtCenterLeft)}
 
+.grid{display:grid}
+.flex{display:flex}
 .flex2,.flex3,.flex4{display:flex;flex-wrap:wrap}
 .flex2>*{flex:2 1 calc(50% - 1rem)}
 .flex3>*{flex:3 1 calc(33% - 1rem)}
@@ -993,6 +1003,7 @@ p, a, button, li {color: var(--color9)}
   padding: 0 20px;
 }
 
+#contSelector {margin: var(--aboutUsSec2BtnM);}
 
 /* FULL WIDTH MAP AND IT'S FIXES */
 
@@ -1305,57 +1316,124 @@ p, a, button, li {color: var(--color9)}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-/* GENERAL CARD */
-
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.5.0) =card:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+/* .card>:not(.cardMedia){padding:0 1rem} */
+.card .cuantosQnt{height: unset}
+.card .btn{padding: unset}
+.cardFeatures svg{width:2rem;height:2rem}
 .card {
-  display: grid;
-  box-shadow: var(--DP1);
-  transition: .25s;
-  height: min-content;
-  border-radius: 4px;
   background: white;
+  border-radius: 4px;
+  box-shadow: var(--DP1);
+  display: grid;
+  height: min-content;
+  position:relative;
+  transition: .25s;
+}
+.card:hover{box-shadow:var(--DP6)}
+
+.cardHead{
+  align-items:center;
+  display:grid;
+  grid-auto-flow:column;
+  grid-template-columns:2rem 1fr;
+  grid-template-rows:1fr 1fr;
+  grid-column-gap:.5rem;
+  padding:.5rem;
+}
+.cardThumbnail{
+  grid-row:1/3;
+  grid-column:1;
+  background:#ddd;
+  border-radius:50%;
+  width:2rem;
+  margin:auto;
+  height:2rem;
+  display:grid;
+  align-items:center;
+  justify-content:center;
+}
+.cardTitle{
+  grid-column:2;
+  grid-row:1;
+}
+.cardSubTitle{
+  grid-column:2;
+  grid-row:2;
 }
 
-.card:hover {
-  box-shadow: var(--DP6);
+.cardMedia{
+  display:grid;
+  position: relative;
+  /* border-radius:4px 4px 0 0; */
+  z-index:0;
+}
+.cardImgA img{border-radius:inherit}
+.cardImgA.inactive{opacity:0}
+.cardImgA{
+  border-radius:inherit;
+  display:flex;
+  grid-column:1;
+  grid-row:1;
+  opacity:1;
+  position:relative;
+  transition:.4s;
+  z-index:0;
 }
 
-
-.cardFeaturesCont {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  padding: 1rem 0;
+.cardCaption{
+  display:grid;
+  grid-gap:.5rem;
+  padding:.5rem 1rem;
 }
 
-.cardInfoDiv {
-  width: 100%;
+.cardFeatures{
+  background:white;
+  border-radius:4px 0 0 0;
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:1fr;
+  grid-gap:.5rem;
+
+  /* opcion: lame */
+  justify-content: center;
+
+  /* opcion overlap de imagen */
+  /* padding:.2rem .5rem;
+  padding-bottom:0;
+  position: absolute;
+  bottom:0;
+  right:0;
+  z-index:1; */
+}
+.cardFeatures *{
+  margin: auto;
+}
+.cardSeparator {
+  width:calc(100% - 1rem);
   margin: auto;
   background: #676767;
 }
 
-/* TEAM CARD */
-
-.teamCardContainer {
-  position: relative;
+.cardActions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns:auto 4.5rem auto;
+  /* width:min-content; */
+  /* margin-right: auto; */
+  grid-gap:.5rem;
 }
 
-.teamCard {
-  height: auto;
-  transition: .5s;
-  grid-template-rows: max-content auto;
-  margin-bottom: auto;
-}
-.teamCard:hover .teamCardImg1 {opacity: 1;}
 
-.teamCardImg {
-  transition: .5s;
-  border-radius: 4px 4px 0 0;
-  width: 100%;
-}
-
-.teamCardImg1 {opacity: 0;}
-
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.5.1) =teamCard:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
 
 .teamCardsContainer {
   display: grid;
@@ -1376,6 +1454,21 @@ p, a, button, li {color: var(--color9)}
   background-image: linear-gradient(to right, transparent, white);
   z-index: 2;
 }
+
+.teamCard {
+  height: auto;
+  transition: .5s;
+  grid-template-rows: max-content auto;
+  margin-bottom: auto;
+}
+
+.teamCardImg {
+  transition: .5s;
+  border-radius: 4px 4px 0 0;
+  width: 100%;
+}
+.teamCardImg1{opacity:0}
+.teamCard:hover .teamCardImg1{opacity:1}
 
 .teamCardTxt {
   font-size: .7rem;
@@ -1582,7 +1675,7 @@ p, a, button, li {color: var(--color9)}
 }
 
 @keyframes animateArrow {
-  
+
 }
 
 .archiveTopInteractTitle {
@@ -1626,13 +1719,14 @@ p, a, button, li {color: var(--color9)}
   color:var(--color8);
   cursor: pointer;
   display: flex;
-  font-size: .75rem;
+  /* font-size: .75rem; */
+  font-size: 16px;
   font-weight: 700;
   height: min-content;
   justify-content: center;
   margin: auto;
   /* margin-top: 1rem; */
-  padding: .5rem .75rem;
+  padding: .4rem .75rem;
   text-transform: uppercase;
   transition: .35s;
   width: max-content;
@@ -1676,7 +1770,22 @@ p, a, button, li {color: var(--color9)}
 }
 
 
-#contSelector {margin: var(--aboutUsSec2BtnM);}
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.7.0.0) =btnSimple:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.btnSimple{
+  background:none;
+  box-shadow: none;
+  color:var(--color1);
+}
+.btnSimple:hover{
+  box-shadow: none;
+  color:var(--color8);
+}
+
+
 
 
 /* ---------------------------------------------------------------------------
@@ -1741,6 +1850,35 @@ p, a, button, li {color: var(--color9)}
   width: 1rem;
 }
 
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.7.3) =arrowButton:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.arrowButton{
+  background:transparent;
+  border:none;
+  border-radius: 20%;
+  color:black;
+  cursor: pointer;
+  height:1.5rem;
+  margin:auto 0;
+  position:relative;
+  transition: .25s;
+  width:1.5rem;
+  z-index: 2;
+}
+.arrowButtonNext{margin-left:auto}
+.arrowButton:hover {
+  color: var(--color1);
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.8) =titleBanner:
@@ -1762,7 +1900,6 @@ p, a, button, li {color: var(--color9)}
 
 .bannerImg{
   object-fit: fill;
-  height: 100%;
 }
 
 
@@ -1939,6 +2076,10 @@ p, a, button, li {color: var(--color9)}
   /* color: white; */
 }
 
+.productGallery{
+  display:grid;
+  position: relative;
+}
 .singleContainer .productGallery{
   grid-column: span 2;
   grid-row: span 2;
@@ -1955,26 +2096,9 @@ p, a, button, li {color: var(--color9)}
   opacity:1;
   transition:.4s;
 }
+.productGalleryImg.inactive{opacity:0;}
 
-.productGallery{
-  display:grid;
-  position: relative;
-}
-.card .productGallery .singleProductsgalleryBtnsContainer{
-  justify-content: space-between;
-  margin: auto 0;
-  z-index: 2;
-  height: min-content;
-}
 
-.row2col1{
-  grid-row: 2;
-  grid-column: 1;
-}
-
-.productGalleryImg.inactive{
-  opacity:0;
-}
 
 .singleProductsgalleryBtnsContainer {
   margin-top: 0;
@@ -1982,14 +2106,14 @@ p, a, button, li {color: var(--color9)}
   justify-content: space-around;
   width: var(--singleProductsgalleryBtnsContainerWidth);
 }
-.singleProductArrowSVG {color: black;}
 
 .singleProductsGalleryBtns {
   margin: var(--singleProductGalleryBtnsMargin);
   border-radius: 20%;
   border: none;
   background: transparent;
-  color: var(--color3);
+  /* color: var(--color3); */
+  color:black;
   transition: .25s;
   height: 2rem;
   cursor: pointer;
@@ -1998,6 +2122,11 @@ p, a, button, li {color: var(--color9)}
 .singleProductsGalleryBtns:hover {
   color: var(--color1);
 }
+
+
+
+
+
 
 .atributo{
   display: grid;
@@ -2014,22 +2143,7 @@ p, a, button, li {color: var(--color9)}
 .atributo img{
   width: auto;
 }
-.singleProductsGalleryBtns {
-  /* padding: .5rem; */
-  margin: var(--singleProductGalleryBtnsMargin);
-  border-radius: 20%;
-  /* box-shadow: var(--DP4); */
-  border: none;
-  background-color: rgba(255,255,255,0);
-  color: var(--color3);
-  transition: .25s;
-  height: 2rem;
-  width: 2rem;
-}
 
-.singleProductsGalleryBtns:hover {
-  cursor: pointer;
-}
 
 .singleContainer .atributo:nth-child(1){grid-area:atributo1}
 .singleContainer .atributo:nth-child(2){grid-area:atributo2}
@@ -2042,11 +2156,6 @@ p, a, button, li {color: var(--color9)}
 
 .btn.singleBuy{
   grid-area:singleBuy;
-  width: 100%;
-}
-
-.btn.singleRent{
-  /* grid-area:singleRent; */
   width: 100%;
 }
 
@@ -2083,7 +2192,7 @@ p, a, button, li {color: var(--color9)}
 }
 
 .cateforyCardTitle{
-  margin: auto ;
+  margin: auto;
   font-size: 1.2rem;
 }
 
@@ -2531,6 +2640,53 @@ p, a, button, li {color: var(--color9)}
 }
 
 
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.22) =cuantos:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.cuantos{
+  position:relative;
+  display: grid;
+  grid-auto-flow: column;
+  width: min-content;
+  /* margin: auto; */
+  border-bottom:2px solid var(--color2);
+}
+
+.cuantosQnt{
+  background:inherit;
+  height: 39px;
+  border:none;
+  min-width: 1.5rem;
+  text-align: right;
+  font-size:var(--fontSize3);
+  pointer-events:none;
+}
+.cuantosBtn{
+  /* align-items:center; */
+  background:none;
+  /* text-align: center; */
+  cursor:pointer;
+  border:none;
+  font-size:var(--fontSize3);
+  /* color:black; */
+  /* display: grid; */
+  transition:.4s;
+  min-width:1.5rem;
+}
+.cuantosBtn:hover{color:var(--color1)}
+.cuantosBtn:focus{
+  outline:1px solid var(--color2);
+}
+
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.42) =archive-product:
@@ -2549,7 +2705,7 @@ p, a, button, li {color: var(--color9)}
   transform-origin: center;
 }
 
-.searchResultsCont .card {display: none}
+/* .searchResultsCont .card {display: none} */
 
 
 .containerCard {
@@ -2580,119 +2736,7 @@ p, a, button, li {color: var(--color9)}
   margin: 1rem;
 }
 
-.cardTitle {
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: .5rem;
-  font-size: .7rem;
-}
-a:visited{
-  color: inherit;
-}
 
-.cardImgCont {
-  width: 100%;
-  padding: .5rem;
-}
-
-.cardImg {
-  width: 100%;
-  height: auto;
-}
-
-.cardFeaturesCont {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  padding: 1rem 0;
-}
-.cardFeaturesCont figure:nth-child(1){
-  display: none;
-}
-
-.cardFeature {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
-.cardFeatureTxt {
-  color: #676767;
-  font-size: .5rem;
-  grid-column: 3;
-  text-align: center;
-}
-
-.cardFeatureSVG {
-  width: 25px;
-  margin-right: 5px;
-}
-
-.cardInfoDiv {
-  width: 90%;
-  margin: auto;
-  background: #676767;
-}
-
-.cardQuant {
-  width: max-content;
-  margin: .5rem;
-}
-
-.cardInteractionCont {
-  display: grid;
-  padding: .3rem;
-  grid-auto-flow: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.addToCartQntContainer{
-  position:relative;
-  display: grid;
-  grid-auto-flow: column;
-  width: min-content;
-  margin: auto;
-  border-bottom:2px solid var(--color2);
-}
-
-.addToCartQnt{
-  /* margin:.5rem 0; */
-  background:inherit;
-  height: 39px;
-  /* padding:0 16px; */
-  /* border:1px solid var(--color1); */
-  border:none;
-  min-width: 1.5rem;
-  text-align: right;
-  font-size:var(--fontSize3);
-  pointer-events:none;
-}
-.addToCartQntBtn{
-  align-items:center;
-  background:none;
-  text-align: center;
-  cursor:pointer;
-  border:none;
-  color:black;
-  display: grid;
-  transition:.4s;
-  min-width:1.5rem;
-  /* transform:scale(1.5); */
-}
-.addToCartQntBtn:focus{
-  outline:1px solid #666;
-  /* transform:rotate(90deg); */
-}
-
-.cardInteractionCont .btn {
-  font-size: .6rem;
-  margin: .5rem;
-  width: auto;
-}
 
 
 
@@ -2701,6 +2745,7 @@ a:visited{
 
  .archiveFilter2{
   position: relative;
+  min-height: 60vh;
   /* position: var(--archiveFilterPosition); */
   top: var(--archiveFilterTop);
   display: flex;
