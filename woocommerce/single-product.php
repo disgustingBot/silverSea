@@ -35,7 +35,7 @@
         <img class="Element productGalleryImg row2col1 lazy"  data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
 
         <?php $count++; }} ?>
-        <div class="singleProductsgalleryBtnsContainer">
+        <div class="singleProductsgalleryBtnsContainer <?php if(!$attachment_ids){ echo "opacity0";} ?>">
           <button class="singleProductsGalleryBtns" id="nextButton" >
             <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
