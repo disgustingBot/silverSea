@@ -144,6 +144,7 @@ FIN DE MAPA DE CONTENIDOS */
   /* BLUEBAR */
   --blueBarTelM: auto;
   --selectLangM: auto var(--lateral) auto auto;
+  --headerBluebarDisplay: none;
 
   /* ?HEADER */
   --navBarWidth: 50%;
@@ -316,6 +317,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* BLUEBAR */
     --blueBarTelM: auto 1rem auto auto;
     --selectLangM: auto var(--lateral) auto 4rem;
+    --headerBluebarDisplay: flex;
 
     /* ?HEADER */
 
@@ -753,7 +755,7 @@ p, a, button, li {color: var(--color9)}
 
 .navBarMobile {
   position:fixed;
-  top:75px;
+  top:60px;
   right:0;
   display: flex;
   flex-direction: column;
@@ -823,6 +825,10 @@ p, a, button, li {color: var(--color9)}
 }
 
 .blueBar * {color: white;}
+
+.load + .blueBar {
+  display: var(--headerBluebarDisplay);
+}
 
 .blueBarTel{
   text-decoration: none;
@@ -1271,7 +1277,11 @@ p, a, button, li {color: var(--color9)}
 .socialMSVG{
   height: 100%;
   width: auto;
+  transition: .25s;
+  color: white;
 }
+
+.socialMSVG:hover {color: black;!important}
 
 
 
