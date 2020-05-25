@@ -148,6 +148,9 @@ FIN DE MAPA DE CONTENIDOS */
   --selectLangM: auto var(--lateral) auto auto;
   --headerBluebarDisplay: none;
 
+  /* RED DOTS */
+  --redDotTop: 45vh;
+
   /* ?HEADER */
   --navBarWidth: 50%;
   --navBarGG: .7rem;
@@ -169,6 +172,7 @@ FIN DE MAPA DE CONTENIDOS */
   --countEvenBorder: solid 2px var(--color2);
 
   --countFlexBasis: 50%;
+  --countTitleBorderR: none;
 
   --articleCounterGR: 3;
 
@@ -321,6 +325,9 @@ FIN DE MAPA DE CONTENIDOS */
     --selectLangM: auto var(--lateral) auto 4rem;
     --headerBluebarDisplay: flex;
 
+    /* RED DOTS */
+    --redDotTop: unset;
+
     /* ?HEADER */
 
 
@@ -336,6 +343,7 @@ FIN DE MAPA DE CONTENIDOS */
     --articleCounterGR: auto;
 
     --countFlexBasis: 25%;
+    --countTitleBorderR: solid 2px var(--color2);
     --countEvenBorder: none;
 
     /* ARTICLES */
@@ -1093,16 +1101,29 @@ p, a, button, li {color: var(--color9)}
 
 .testimonialSecTitle {text-align: center;}
 
-.starsContainer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: .5rem;
+ .starsContainer {
+   width: 50%;
+   margin: auto;
+   margin-top: 1rem;
+   flex-direction: row!important;
+   flex-wrap: nowrap!important;
 }
-.star {
+
+.wp-block-column {
+  margin: auto!important;
+}
+
+.testimonialQuote .wp-block-image img {
+  width: auto;
+  max-width: unset;
+}
+
+/*.star {
   margin: .5rem 1rem;
   color: var(--color2);
-}
+} */
+
+
 
 .testimonialsContainer {
   display: grid;
@@ -1582,7 +1603,7 @@ p, a, button, li {color: var(--color9)}
 }
 
 @keyframes animateArrow {
-  
+
 }
 
 .archiveTopInteractTitle {
@@ -1787,7 +1808,7 @@ p, a, button, li {color: var(--color9)}
 
 
 .countTitle {
-  border-right: solid 2px var(--color2);
+  border-right: var(--countTitleBorderR);
   padding: .5rem;
 }
 .countHgroup {
@@ -1835,12 +1856,17 @@ p, a, button, li {color: var(--color9)}
 }
 
 .article2 .sectionSummary {
-  margin-bottom: var(--A2sectionSummaryMB);
+
 }
 .article2 > * {
   width: var(--article2ElementsW)!important;
 }
 
+/* ARTICLE SILVERSEA EN EL MUNDO */
+
+.silverseaEnElMundo .sectionSummary{
+  margin-top: var(--A2sectionSummaryMB);
+}
 
 .sectionSummary{
   display: flex;
@@ -1849,6 +1875,7 @@ p, a, button, li {color: var(--color9)}
   padding-left: 1rem;
   position: relative;
   justify-content: center;
+  margin-bottom: var(--A2sectionSummaryMB);
 }
 .sectionSummary::before{
   content: '';
@@ -2915,7 +2942,7 @@ SVG STYLES
   height: 3rem;
   position: absolute;
   right: 10vw;
-  /* top: 45vh; */
+  top: var(--redDotTop);
   width: 3rem!important;
   z-index:12;
 }
