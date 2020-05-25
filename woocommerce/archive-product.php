@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 
+<?php global $product; ?>
 
 <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( wc_get_page_id( 'shop' ) ), 'full' );?>
 
@@ -454,7 +455,6 @@
     <?php while(have_posts()){the_post();
       $categories = get_the_terms( get_the_ID(), 'product_cat' );
       ?>
-      <?php global $product; ?>
       <article class="card">
         <a href="<?php echo get_permalink(); ?>" class="cardTitle"> h4.card
           <?php
