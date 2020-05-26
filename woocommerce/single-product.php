@@ -99,17 +99,14 @@
     <?php
     if ($categories) {
       foreach ($categories as $cat) {
-        $svgPath = get_template_directory()  . "/img/svg/"; ?>
+        $svgPath = get_template_directory()  . "/assets/"; ?>
         <figure class="categoryCard">
           <h5 class="cateforyCardTitle">
             <?php echo $cat->name; ?>
           </h5>
           <?php
-          if(strpos($cat->slug, 'pies') === false ){
-            include $svgPath . $cat->slug . '.php';
-          }else {
-            include $svgPath  . 'size.php';
-          }
+            include $svgPath . $cat->slug . '.svg';
+
           ?>
           <figcaption class="categoryCardCaption">
             <h5 class="categoryCardDescription">
