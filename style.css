@@ -198,15 +198,12 @@ FIN DE MAPA DE CONTENIDOS */
   --contactTextareaHeight: 10rem;
 
   /* SINGLE CONTAINER */
-  --containerGTA: "productGallery"
-                  "productGallery"
-                  "atributo1"
-                  "atributo2"
-                  "atributo3"
-                  "atributo4"
-                  "atributo5"
-                  "atributo6"
-                  "singleBuy";
+  --singleContainerDisplay: block;
+  --singleAtributesMarginTop: 0;
+  --singleAtributesAutoFlow: column;
+  --singleBuyGR: 4;
+  --singleBuyGC: 1 / 3;
+
 
    /* ARCHIVE-PAGE */
    --archiveFilter2AutoFlow: row;
@@ -276,13 +273,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
     /* SINGLE CONTAINER */
-    --containerGTA: "productGallery productGallery"
-                    "productGallery productGallery"
-                    "atributo1 atributo2"
-                    "atributo3 atributo4"
-                    "atributo5 atributo6"
-                    "singleBuy singleBuy"
-                    ;
+
     /* ARCHIVE-PAGE                 */
     --archiveMainDisplay: grid;
     --archiveFilterWidth: min-content;
@@ -370,16 +361,14 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* SINGLE CONTAINER */
+    --singleContainerDisplay: grid;
+    --singleAtributesMarginTop: 6rem;
+    --singleAtributesDisplay: grid;
+    --singleAtributesAutoFlow: row;
+    --singleBuyGR: auto;
+    --singleBuyGC: auto;
 
-    --containerGTA: "productGallery productGallery . "
-                    "productGallery productGallery atributo1 "
-                    "productGallery productGallery atributo2 "
-                    "productGallery productGallery atributo3 "
-                    "productGallery productGallery atributo4 "
-                    "productGallery productGallery atributo5 "
-                    "productGallery productGallery singleBuy ";
-
-
+    /* ARCHIVE-PRODUCT */
     --searchResultsGTC: repeat(2,1fr);
     --searchResultsAltGTC:  repeat(3,1fr);
     --productGalleryPosition: sticky;
@@ -1582,7 +1571,7 @@ p, a, button, li {color: var(--color9)}
 }
 
 @keyframes animateArrow {
-  
+
 }
 
 .archiveTopInteractTitle {
@@ -1920,50 +1909,34 @@ p, a, button, li {color: var(--color9)}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-#backToGallery{
-  margin: 1rem var(--lateral);
+.backToGallery{
+  margin: 1rem var(--lateral) 1rem auto;
 }
 
 .singleContainer{
-  display: grid;
+  display: var(--singleContainerDisplay);
   position: relative;
   grid-gap: .75rem;
   padding: 1rem var(--lateral);
-  grid-template-areas: var(--containerGTA);
+  grid-template-columns: 1fr min-content;
 }
 
-.titleBanerCaption{
-  padding: 2rem;
-  top: 20%;
-  /* grid-column: span 2; */
-  /* color: white; */
-}
-
-.singleContainer .productGallery{
-  grid-column: span 2;
-  grid-row: span 2;
+.productGallery{
   width: 100%;
   display:grid;
-  order: 2;
   margin:auto;
   margin-top: 1rem;
   position: var(--productGalleryPosition);
   top: var(--productGalleryTop);
-  grid-area: productGallery;
 }
 .productGalleryImg{
   opacity:1;
   transition:.4s;
 }
 
-.productGallery{
-  display:grid;
-  position: relative;
-}
 .card .productGallery .singleProductsgalleryBtnsContainer{
-  justify-content: space-between;
+  justify-content: space-around;
   margin: auto 0;
-  z-index: 2;
   height: min-content;
 }
 
@@ -1972,17 +1945,24 @@ p, a, button, li {color: var(--color9)}
   grid-column: 1;
 }
 
-.productGalleryImg.inactive{
-  opacity:0;
-}
+.productGalleryImg.inactive{ opacity:0;}
 
 .singleProductsgalleryBtnsContainer {
   margin-top: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: var(--singleProductsgalleryBtnsContainerWidth);
+  position: absolute;
+  top: 50%;
+  width: 100%;
 }
-.singleProductArrowSVG {color: black;}
+.singleProductArrowSVG {}
+
+.singleProductsgalleryBtnsContainer .singleProductArrowSVG{
+  height: 2rem;
+  width: 2rem;
+  color: var(--color1);
+}
 
 .singleProductsGalleryBtns {
   margin: var(--singleProductGalleryBtnsMargin);
@@ -1995,8 +1975,16 @@ p, a, button, li {color: var(--color9)}
   cursor: pointer;
   width: 2rem;
 }
-.singleProductsGalleryBtns:hover {
-  color: var(--color1);
+
+.singleAtributes{
+  display: grid;
+  grid-gap: 1rem;
+  margin-top: var(--singleAtributesMarginTop);
+  justify-content: center;
+  align-items: center;
+  grid-auto-flow: var(--singleAtributesAutoFlow);
+  /* grid-template-rows: var(--singleAtributesGTC);
+  grid-template-rows: 1fr 1fr 1fr 1fr; */
 }
 
 .atributo{
@@ -2005,8 +1993,8 @@ p, a, button, li {color: var(--color9)}
   grid-template-columns: 1fr 2fr;
   align-items: center;
   justify-content: center;
-  /* background: #F0F0F0; */
-  padding: .2rem;
+  padding: .5rem;
+  margin: .5rem;
   border-radius: 4px;
   box-shadow: var(--DP1);
 }
@@ -2031,24 +2019,12 @@ p, a, button, li {color: var(--color9)}
   cursor: pointer;
 }
 
-.singleContainer .atributo:nth-child(1){grid-area:atributo1}
-.singleContainer .atributo:nth-child(2){grid-area:atributo2}
-.singleContainer .atributo:nth-child(3){grid-area:atributo3}
-.singleContainer .atributo:nth-child(4){grid-area:atributo4}
-.singleContainer .atributo:nth-child(5){grid-area:atributo5}
-/* .singleContainer .atributo:nth-child(6){grid-area:atributo6} */
-/* .singleContainer .atributo:nth-child(7){grid-area:atributo7} */
-/* .singleContainer .atributo:nth-child(8){grid-area:atributo8} */
-
 .btn.singleBuy{
-  grid-area:singleBuy;
   width: 100%;
+  grid-row: var(--singleBuyGR) ;
+  grid-column: var(--singleBuyGC);
 }
 
-.btn.singleRent{
-  /* grid-area:singleRent; */
-  width: 100%;
-}
 
 
 /*---------------------------------------------------------------------------
