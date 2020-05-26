@@ -92,7 +92,6 @@
 
 
         <button class="btn singleBuy" type="button" name="button">Adquirir</button>
-        <!-- <button class="btn blue singleRent " type="button" name="button">Alquilar</button> -->
       </div>
     </section>
 

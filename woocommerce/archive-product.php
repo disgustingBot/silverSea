@@ -214,7 +214,7 @@
     <?php $svgPath = get_template_directory()  . "/assets/"; ?>
 
 
-    <div class="filter">
+    <!-- <div class="filter">
       <h3 class="filterTitle"><nobr>Categoría</nobr></h3>
       <div class="filterList">
         <div class="filterTipo">
@@ -344,9 +344,9 @@
         <input type="checkbox" name="selectAll" value="">
         <label for="selectAll">Seleccionar todo</label>
       </div>
-    </div>
+    </div> -->
 
-    <div class="filter">
+    <!-- <div class="filter">
       <h3 class="filterTitle">Condición</h3>
       <ul class="filterList">
         <li class="filterItem">
@@ -394,9 +394,9 @@
         <input type="checkbox" name="selectAll" value="">
         <label for="selectAll">Seleccionar todo</label>
       </div>
-    </div>
+    </div> -->
 
-    <div class="filter">
+    <!-- <div class="filter">
       <h3 class="filterTitle">Tamaño</h3>
       <ul class="filterList size">
         <li class="filterItem">
@@ -446,7 +446,7 @@
         <input type="checkbox" name="selectAll" value="">
         <label for="selectAll">Seleccionar todo</label>
       </div>
-    </div>
+    </div> -->
 
 
     <!-- <button class="hideFilter" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
@@ -468,76 +468,98 @@
 <section class="searchResultsCont">
     <?php while(have_posts()){the_post();
       $categories = get_the_terms( get_the_ID(), 'product_cat' );
+      // Rafa: este codigo antes estaba en el titulo y en vez de guardar los valores les hacía echo directamente
+      // lo que hice fue quitarlo del titulo, guardar los 4 valores correspondientes a las 4 categorias/iconos/columnasEnLaTabla
+      // y luego voy a utilizar el que corresponda en donde corresponda
+
+      // FIND OUT WHICH CARACTERISTICS
+      if ($categories) {
+        // for each category
+        foreach ($categories as $cat) {
+          $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A');
+          $grandParent=get_term_by('id', $parent['parent'], 'product_cat', 'ARRAY_A');
+
+          if ($parent['slug']=="size") {
+            $size = $cat->name;
+            $sizeSlug = $cat->slug;
+          }
+          if ($grandParent['slug']=="general") {
+            $tipo_1 = $parent['name'];
+            $tipo_1Slug = $parent['slug'];
+            $tipo_2 = $cat->name;
+            $tipo_2Slug = $cat->slug;
+          }
+          if ($parent['slug']=="condition") {
+            $condition = $cat->name;
+            $conditionSlug = $cat->slug;
+          }
+        }
+      }
+      // fin de comentario
       ?>
       <article class="card">
-        <a href="<?php echo get_permalink(); ?>" class="cardTitle"> h4.card
-          <?php
-          if ($categories) {
-            // for each category
-            foreach ($categories as $cat) {
-              // var_dump($cat->slug);
-              $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A')['slug'];
-              if ($parent=="size") {
-                echo  $cat->name;
-              }
-              if ($parent=="condition") {
-                echo  ', ' . $cat->name;
-              }
-              if ($parent=="type") {
-                echo  ', ' . $cat->name ;
-              }
-            }
-          }
-          ?>
-        </a>
-        <div class="Carousel productGallery" href="<?php echo get_permalink(); ?>" >
-          <!-- <h2 class="titleBanerCaption rowcol1"><//?php echo the_title() . ', '  . $tipo ;?> </h2> -->
+
+        <div class="cardHead">
+          <div class="cardThumbnail">
+            <?php newSvg(ucwords($tipo_1Slug)); ?>
+          </div>
+          <h4 class="cardTitle"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h4>
+          <p class="cardSubTitle"><?php echo $tipo_2 . ', ' . $condition ?></p>
+        </div>
+
+        <div class="cardMedia Carousel" href="<?php echo get_permalink(); ?>" >
+
+        <!-- <div class="Carousel productGallery" href="<?php echo get_permalink(); ?>" > -->
           <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
+          <a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
+            <img class="productGalleryImg lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
+          </a>
 
-          <img class="Element productGalleryImg rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
           <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
-            <img class="Element productGalleryImg rowcol1 lazy"  data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+            <a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
+              <img class="productGalleryImg lazy"  data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+            </a>
+          <?php $count++; }} ?>
 
-            <?php $count++; }} ?>
-            <div class="singleProductsgalleryBtnsContainer rowcol1 <?php if($attachment_ids){ echo "opacity1";} else{ echo "opacity0";} ?>">
-              <button class="singleProductsGalleryBtns" id="nextButton" >
-                <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
-                </svg>
-              </button>
-              <button class="singleProductsGalleryBtns" id="prevButton">
-                <svg class="singleProductArrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
-                </svg>
-              </button>
+          <!-- <div class="singleProductsgalleryBtnsContainer rowcol1"> -->
+            <button class="arrowButton arrowButtonNext rowcol1" id="nextButton" >
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="arrowButton arrowButtonPrev rowcol1" id="prevButton">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
+              </svg>
+            </button>
+          <!-- </div> -->
+        </div>
+
+        <div class="cardCaption">
+
+
+          <div class="cardFeatures">
+            <?php if ($categories) {
+              newSvg($sizeSlug);
+              newSvg(ucwords($tipo_1Slug));
+              newSvg(strtoupper($tipo_2Slug));
+              newSvg(strtoupper($conditionSlug));
+            } ?>
+          </div>
+
+          <!-- <hr class="cardSeparator"> -->
+
+          <div class="cardActions">
+            <a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
+            <div class="cuantos">
+              <input class="cuantosQnt" id="cuantosQantity" type="number" value="1" min="1">
+              <button class="cuantosBtn" onclick="changeQuantity(-1)">-</button>
+              <button class="cuantosBtn" onclick="changeQuantity(+1)">+</button>
             </div>
+            <button class="btn btnSimple">AGREGAR</button>
           </div>
-        <!-- <a class="cardImgCont sectionGrey" href="<//?php echo get_permalink(); ?>">
-          <img class="cardImg lazy" data-url="<//?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
-        </a> -->
-        <div class="cardFeaturesCont">
-          <?php
-          if ($categories) {
-            // for each category
-            foreach ($categories as $cat) {  ?>
-              <?php $svgPath = get_template_directory()  . "/img/svg/"; ?>
-              <figure class="cardCategories">
-                <?php include $svgPath . $cat->slug . '.php'; ?>
-              </figure>
-              <?php
-            }
-          }
-          ?>
         </div>
-        <hr class="cardInfoDiv">
-        <div class="cardInteractionCont">
-          <div class="addToCartQntContainer">
-            <input class="addToCartQnt" id="addToCartQantity" type="number" value="1" min="1">
-            <button class="addToCartQntBtn" onclick="changeQuantity(-1)">-</button>
-            <button class="addToCartQntBtn" onclick="changeQuantity(+1)">+</button>
-          </div>
-          <button class="btn">AGREGAR</button>
-        </div>
+
       </article>
     <?php } ?>
   </section>
