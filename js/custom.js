@@ -381,24 +381,6 @@ for (i = 0; i < acc.length; i++) {
 
 
 
-// SLIDER TESTIMONIALS
-var t=1,e=d.getElementsByClassName("testimonialCarusel");
-const showTesti=n=>{
-  if(n>e.length){t=1}
-  if(n<1){t=e.length}
-  for(i=0;i<e.length;i++){e[i].classList.add("inactive");}
-  e[t-1].classList.remove("inactive");
-}
-const testi=()=>{t++;
-  for(i=0;i<e.length;i++){e[i].classList.add("inactive");}
-  if(t>e.length){t=1}
-  e[t-1].classList.remove("inactive");
-  setTimeout(testi, 5000); // Change image every N/1000 seconds
-}
-const plusTesti=n=>{showTesti(t+=n)}
-if(e.length>0){showTesti(t);setTimeout(testi, 10000);}
-
-
 
 function scrollAlter(){
 	if (d.querySelector('#teamCardsContainer')) {
@@ -409,6 +391,55 @@ function scrollAlter(){
 	}
 }
 
+
+// URL HANDLING
+const setUrlVar = ( variable, value = '' ) => {
+  var filterQueries = new Array();
+	// urlVirg es la url sin variables
+  var urlVirg = w.location.href.split('?')[0];
+	// urlVars será el vector de variables en la url
+  // var urlVars = w.location.href.split('?');
+  // urlVars.shift();
+  // urlVars = !urlVars[0] ? [] : urlVars.join().split('&');
+
+  var urlVars = getUrlVars();
+
+	var variables = urlVars.map( x => x.split('=')[0] );
+  var values  = urlVars.map( x => x.split('=')[1] );
+
+  // c.log(page)
+
+
+	if(variable){
+		if(variables.includes(variable)){
+			let j=0;
+			urlVars.forEach((item, i) => {
+				if ( variables[i] == variable ) {
+					// si la categoria es 0 quita el filtro
+					if (value != '') { filterQueries[j] = variable + '=' + value; j+=1; }
+				} else { filterQueries[j] = item; j+=1; }
+			});
+		} else if (value != '') {
+			urlVars.forEach((item, i) => {
+				filterQueries[i] = item;
+			});
+			filterQueries.push(variable + '=' + value);
+		}
+	}
+  let conector = filterQueries.length != 0 ? '?' : '';
+  w.history.replaceState('', 'Title', urlVirg + conector + filterQueries.join('&'));
+  // c.log(filterQueries)
+  return filterQueries;
+}
+
+const getUrlVars = () => {
+  var urlVars = w.location.href.split('?');
+  urlVars.shift();
+  urlVars = !urlVars[0] ? [] : urlVars.join().split('&');
+
+  return urlVars;
+}
+// END OF URL HANDLING
 
 
 
