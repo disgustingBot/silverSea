@@ -848,7 +848,7 @@ p, a, button, li {color: var(--color9)}
   z-index: 3;
 }
 
-.blueBar * {color: white;}
+.blueBar p {color: white;}
 
 .load + .blueBar {
   display: var(--headerBluebarDisplay);
@@ -1326,8 +1326,9 @@ p, a, button, li {color: var(--color9)}
   color: white;
 }
 
-.socialMSVG:hover {color: black;!important}
-
+.socialMSVG:hover {
+  color: var(--color2);
+}
 
 
 /* MAPA DE UBICACIONES */
