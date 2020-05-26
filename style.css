@@ -2106,7 +2106,7 @@ p, a, button, li {color: var(--color9)}
   grid-template-columns: 1fr min-content;
 }
 
-.productGallery{.productGallery{
+.productGallery{
   width: 100%;
   display:grid;
   margin:auto;
@@ -2143,7 +2143,6 @@ p, a, button, li {color: var(--color9)}
   top: 50%;
   width: 100%;
 }
-.singleProductArrowSVG {}
 
 .singleProductsgalleryBtnsContainer .singleProductArrowSVG{
   height: 2rem;
