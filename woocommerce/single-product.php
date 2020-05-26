@@ -18,7 +18,7 @@
 
 
   <?php $singleImgPath = get_template_directory_uri() . "/img/single-product/"; ?>
-  <a href=<?php echo site_url('shop'); ?> class="btn" id="backToGallery" type="button" name="button"><< Volver a la búsqueda</a>
+  <a href=<?php echo site_url('shop'); ?> class="btn backToGallery" type="button" name="button"><< Volver a la búsqueda</a>
 
 
 
@@ -28,7 +28,7 @@
   <section class="singleContainer">
     <div class="Carousel productGallery" >
       <h2 class="titleBanerCaption rowcol1"><?php echo the_title() . ', '  . $tipo ;?> </h2>
-      <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
+      <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
 
       <img class="Element productGalleryImg row2col1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
       <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
@@ -92,7 +92,6 @@
 
 
         <button class="btn singleBuy" type="button" name="button">Adquirir</button>
-        <!-- <button class="btn blue singleRent " type="button" name="button">Alquilar</button> -->
       </div>
     </section>
 
