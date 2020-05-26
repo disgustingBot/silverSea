@@ -416,7 +416,7 @@ function lt_upload_file(){
     $fileActualExt = strtolower(end($fileExt));
     $fileName2 = strtolower(($fileExt[0]));
 
-    $allowedExt = array( 'csv');
+    $allowedExt = array( 'csv','tsv');
     $fileNamesAllowed = array('ventas','gastos_adicionales','trenes','contenedores');
 
 
@@ -454,10 +454,14 @@ function lt_upload_file(){
               // $fileRead = get_template_directory_uri()."/uploads/".$fileNameNew;
               // $link = add_query_arg( array( 'fileRead'  => $fileRead ), $link );
               $fileRead = "C:/xampp/htdocs/Silversea/wp-content/themes/silverSea/uploads/".$fileNameNew;
-
+              if($fileActualExt=='csv'){
+                $saltoDeLinea = ',';
+              } else if($fileActualExt=='tsv'){
+                $saltoDeLinea = "\\t";
+              }
               if ($conn -> query("LOAD DATA INFILE '" . $fileRead . "'
                                   INTO TABLE $dbName.$fileName2
-                                  FIELDS TERMINATED BY ','
+                                  FIELDS TERMINATED BY '" . $saltoDeLinea . "'
                                   IGNORE 1 LINES;")) {
                 // echo "Great! filed turned into a table" ."<br /><br />";
                 $link = add_query_arg( array( 'status'  => 'fileIntoTable' ), $link );
@@ -619,7 +623,7 @@ function lt_upload_file(){
     }
   }
   // $link = add_query_arg( array( 'success'  => true, ), $link );
-  // wp_redirect($link);
+  wp_redirect($link);
 }
 
 
