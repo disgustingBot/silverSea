@@ -21,11 +21,8 @@ function lattte_setup(){
 
      	wp_enqueue_script( 'main' );
       // FIN DE PARA AJAX
-
-
-
-
 }
+
 add_action('wp_enqueue_scripts', 'lattte_setup');
 
 // Adding Theme Support
@@ -155,26 +152,6 @@ function excerpt($charNumber){
 
   add_action('edited_product_cat', 'lt_save_taxonomy_custom_meta', 10, 1);
   add_action('create_product_cat', 'lt_save_taxonomy_custom_meta', 10, 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
