@@ -220,9 +220,6 @@ FIN DE MAPA DE CONTENIDOS */
    /* ARCHIVE-PAGE */
    --archiveFilter2AutoFlow: row;
    --archiveMainDisplay: block;
-   --archiveFilterWidth: auto;
-   --archiveFilterPosition: relative;
-   --archiveFilterTop: ;
    --coprAlquiGTC: auto;
    --coprAlquiLocationGC: auto;
    --sladRadioMarginLeft: auto;
@@ -230,7 +227,6 @@ FIN DE MAPA DE CONTENIDOS */
    --searchResultsGTC: repeat(1,1fr);
    --searchResultsAltGTC: repeat(2,1fr);
    --filterAllFontSize: .7rem;
-   --archiveFilterFontSize: 1rem;
    --productGalleryPosition: relative;
    --productGalleryTop: 0;
 
@@ -288,15 +284,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ARCHIVE-PAGE                 */
     --archiveMainDisplay: grid;
-    --archiveFilterWidth: min-content;
-    --archiveFilterPosition: sticky;
-    --archiveFilterTop: 1rem;
     --coprAlquiGTC: auto 1fr;
     --coprAlquiLocationGC: 2;
     --sladRadioMarginLeft: 0;
     --hideFilterDisplay: block;
     --filterAllFontSize: .5rem;
-    --archiveFilterFontSize: .7rem;
   }
 }
 
@@ -2756,21 +2748,6 @@ p, a, button, li {color: var(--color9)}
   transform-origin: center;
 }
 
-/* .searchResultsCont .card {display: none} */
-
-
-.containerCard {
-  display: grid;
-  grid-auto-flow: row;
-  box-shadow: var(--DP1);
-  transition: .25s;
-  height: min-content;
-}
-
-.containerCard:hover {
-  box-shadow: var(--DP6);
-}
-
 .archiveMain{
   display: var(--archiveMainDisplay);
   grid-template-columns: min-content 4fr;
@@ -2778,14 +2755,14 @@ p, a, button, li {color: var(--color9)}
   transition: .5s;
 }
 
-.archiveMain.alt{
+/* .archiveMain.alt{
   grid-template-columns: 1px 4fr;
 }
 
 .archiveMain.alt .searchResultsCont{
   --searchResultsGTC : var(--searchResultsAltGTC);
   margin: 1rem;
-}
+} */
 
 
 
@@ -2793,32 +2770,27 @@ p, a, button, li {color: var(--color9)}
 
 
 
-
- .archiveFilter2{
+.archiveFilter2{
   position: relative;
   min-height: 60vh;
-  /* position: var(--archiveFilterPosition); */
-  top: var(--archiveFilterTop);
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   height: min-content;
-  grid-gap: 1rem;
-  width: var(--archiveFilterWidth);
-  background: white;
+  grid-gap:.5rem;
+  grid-auto-rows:40px;
+  /* background: white; */
   padding: 1rem;
-  font-size: var(--archiveFilterFontSize);
   transition: .5s;
   z-index: 2;
-  top: 0;
-  border-top: solid var(--color5) 1px;
-  border-right: solid var(--color5) 1px;
+  /* top: 0; */
+  /* border-top: solid var(--color5) 1px; */
+  /* border-right: solid var(--color5) 1px; */
 
 }
 
 .archiveFilter2.alt{
   transform: translateX(calc(-100% + 15px));
-  grid-column: 1;
-  grid-row: 1;
+  /* grid-column: 1; */
+  /* grid-row: 1; */
   border-right: solid var(--color2) 15px;
 }
 

@@ -1,5 +1,6 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g id="HCPW">
+  <!-- <g id="HCPW"> -->
+  <g id="HC-PW">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5967 8.43833L17 8.43833L19.5 5L22 8.43833L20.4033 8.43833L20.4033 19.1667L18.5967 19.1667L18.5967 8.43833Z" fill="#0674BB"/>
     <rect x="17.4551" y="7.39697" width="15.4553" height="1.17595" rx="0.587973" transform="rotate(-180 17.4551 7.39697)" fill="black"/>
     <rect x="17.4551" y="19.3247" width="15.4553" height="1.17595" rx="0.587973" transform="rotate(-180 17.4551 19.3247)" fill="black"/>

@@ -4,6 +4,93 @@
 
 <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( wc_get_page_id( 'shop' ) ), 'full' );?>
 
+
+
+  <?php function woocommerce_subcats_from_parentcat($category){
+    if (is_numeric($category)) {$term = get_term(           $category, 'product_cat');}
+    else                       {$term = get_term_by('slug', $category, 'product_cat');}
+
+
+
+    	if (isset($_GET[$category])) {
+        // var_dump($_GET[$category]);
+    		$parentArray = $_GET[$category];
+    	  // foreach ($parentArray as $key => $value) {
+  			$wp_query['query']['tax_query'][$key] = array(
+  				'taxonomy' => 'product_cat',
+  				'field'    => 'slug',
+  				'terms'    => $parentArray,
+  			);
+    	  // }
+    	}
+
+
+    $args = array(
+     'hierarchical' => 1,
+     'show_option_none' => '',
+     'hide_empty' => 0,
+     'parent' => $term->term_id,
+     'taxonomy' => 'product_cat'
+    );
+    $subcats = get_categories($args); ?>
+
+
+    <div class="selectBox<?php if(isset($_GET[$term->slug])){ echo ' alt'; } ?>" tabindex="1" id="selectBox<?php echo $term->term_id; ?>">
+      <div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $term->term_id; ?>')">
+        <p class="selectBoxPlaceholder"><?php echo $term->name; ?></p>
+        <p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $term->term_id; ?>">
+          <?php if(isset($_GET[$term->slug])){ echo $_GET[$term->slug]; } ?>
+        </p>
+      </div>
+      <div class="selectBoxList">
+        <label for="nul<?php echo $term->term_id; ?>" class="selectBoxOption">
+          <input
+            class="selectBoxInput"
+            id="nul<?php echo $term->term_id; ?>"
+            type="radio"
+            data-slug="0"
+            data-parent="<?php echo $term->slug; ?>"
+            name="filter_<?php echo $term->slug; ?>"
+            onclick="selectBoxControler('','#selectBox<?php echo $term->term_id; ?>','#selectBoxCurrent<?php echo $term->term_id; ?>')"
+            value="0"
+            <?php if(!isset($_GET[$term->slug])){ ?>
+              checked
+            <?php } ?>
+          >
+          <!-- <span class="checkmark"></span> -->
+          <p class="colrOptP"></p>
+        </label>
+        <?php foreach ($subcats as $sc) { ?>
+
+              <!-- <div class="absolute" style="position:absolute">
+                <?php
+                var_dump($sc);
+                ?>
+              </div> -->
+          <label for="<?php echo $sc->slug; ?>" class="selectBoxOption">
+            <input
+              class="selectBoxInput"
+              id="<?php echo $sc->slug; ?>"
+              data-slug="<?php echo $sc->slug; ?>"
+              data-parent="<?php echo $term->slug; ?>"
+              type="radio"
+              name="filter_<?php echo $term->slug; ?>"
+              onclick="selectBoxControler('<?php echo $sc->name ?>', '#selectBox<?php echo $term->term_id; ?>', '#selectBoxCurrent<?php echo $term->term_id; ?>')"
+              value="<?php echo $sc->slug; ?>"
+              <?php if(isset($_GET[$term->slug]) && $_GET[$term->slug] == $sc->slug){ ?>
+                checked
+              <?php } ?>
+            >
+            <!-- <span class="checkmark"></span> -->
+            <p class="colrOptP"><?php echo $sc->name ?></p>
+          </label>
+        <?php } ?>
+      </div>
+    </div>
+  <?php } ?>
+
+
+
 <!--
 <div class="coprAlqui">
   <div class="sladRadio">
@@ -212,6 +299,15 @@
 <div class="archiveMain">
   <div class="archiveFilter2">
     <?php $svgPath = get_template_directory()  . "/assets/"; ?>
+
+    <?php woocommerce_subcats_from_parentcat('size'); ?>
+
+
+    <?php woocommerce_subcats_from_parentcat('dry'); ?>
+    <?php woocommerce_subcats_from_parentcat('reefer'); ?>
+    <?php woocommerce_subcats_from_parentcat('special'); ?>
+
+    <?php woocommerce_subcats_from_parentcat('condition'); ?>
 
 
     <!-- <div class="filter">
@@ -465,13 +561,9 @@
 
 
 
-<section class="searchResultsCont">
+<section class="searchResultsCont" id="slider">
     <?php while(have_posts()){the_post();
       $categories = get_the_terms( get_the_ID(), 'product_cat' );
-      // Rafa: este codigo antes estaba en el titulo y en vez de guardar los valores les hacía echo directamente
-      // lo que hice fue quitarlo del titulo, guardar los 4 valores correspondientes a las 4 categorias/iconos/columnasEnLaTabla
-      // y luego voy a utilizar el que corresponda en donde corresponda
-
       // FIND OUT WHICH CARACTERISTICS
       if ($categories) {
         // for each category
@@ -509,7 +601,6 @@
 
         <div class="cardMedia Carousel" href="<?php echo get_permalink(); ?>" >
 
-        <!-- <div class="Carousel productGallery" href="<?php echo get_permalink(); ?>" > -->
           <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
           <a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
             <img class="productGalleryImg lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
@@ -521,7 +612,6 @@
             </a>
           <?php $count++; }} ?>
 
-          <!-- <div class="singleProductsgalleryBtnsContainer rowcol1"> -->
             <button class="arrowButton arrowButtonNext rowcol1" id="nextButton" >
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
@@ -532,11 +622,9 @@
                 <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
               </svg>
             </button>
-          <!-- </div> -->
         </div>
 
         <div class="cardCaption">
-
 
           <div class="cardFeatures">
             <?php if ($categories) {
@@ -546,8 +634,6 @@
               newSvg(strtoupper($conditionSlug));
             } ?>
           </div>
-
-          <!-- <hr class="cardSeparator"> -->
 
           <div class="cardActions">
             <a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
