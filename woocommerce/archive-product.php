@@ -298,7 +298,6 @@
 
 <div class="archiveMain">
   <div class="archiveFilter2">
-    <?php $svgPath = get_template_directory()  . "/assets/"; ?>
 
     <?php woocommerce_subcats_from_parentcat('size'); ?>
 
@@ -306,6 +305,7 @@
     <?php woocommerce_subcats_from_parentcat('dry'); ?>
     <?php woocommerce_subcats_from_parentcat('reefer'); ?>
     <?php woocommerce_subcats_from_parentcat('special'); ?>
+
 
     <?php woocommerce_subcats_from_parentcat('condition'); ?>
 
@@ -326,7 +326,6 @@
               <use xlink:href="#RF" id="dynamicContLogo"></use>
             </svg>
             <label for="">Standard</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -334,7 +333,6 @@
               <use xlink:href="#RH" id="dynamicContLogo"></use>
             </svg>
             <label for="">HighCube</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
         </div>
         <div class="filterTipo">
@@ -350,7 +348,6 @@
               <use xlink:href="#DC" id="dynamicContLogo"></use>
             </svg>
             <label for="">Standard</label>
-            <?php include $svgPath . 'question.php'; ?>
 
           </li>
           <li class="filterTipoItem">
@@ -359,7 +356,6 @@
               <use xlink:href="#HC" id="dynamicContLogo"></use>
             </svg>
             <label for="">HighCube</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -367,7 +363,6 @@
               <use xlink:href="#HCPW" id="dynamicContLogo"></use>
             </svg>
             <label for="">HighCube PaletWide</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
         </div>
         <div class="filterTipo">
@@ -383,7 +378,6 @@
               <use xlink:href="#FR" id="dynamicContLogo"></use>
             </svg>
             <label for="">Flat Rack</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -391,7 +385,6 @@
               <use xlink:href="#OT" id="dynamicContLogo"></use>
             </svg>
             <label for="">Open Top</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -399,7 +392,6 @@
               <use xlink:href="#OS" id="dynamicContLogo"></use>
             </svg>
             <label for="">Open Side</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -407,7 +399,6 @@
               <use xlink:href="#DCDD" id="dynamicContLogo"></use>
             </svg>
             <label for="">Double Door</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -415,7 +406,6 @@
               <use xlink:href="#HCDD" id="dynamicContLogo"></use>
             </svg>
             <label for="">HighCube Double Door</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -423,7 +413,6 @@
               <use xlink:href="#OS" id="dynamicContLogo"></use>
             </svg>
             <label for="">Open Side</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
           <li class="filterTipoItem">
             <input type="checkbox" name="" value="">
@@ -431,7 +420,6 @@
               <use xlink:href="#TK" id="dynamicContLogo"></use>
             </svg>
             <label for="">Tank</label>
-            <?php include $svgPath . 'question.php'; ?>
           </li>
         </div>
 
@@ -451,7 +439,6 @@
             <use xlink:href="#NEW" id="dynamicContLogo"></use>
           </svg>
           <label for="">Nuevo | New</label>
-          <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
@@ -459,7 +446,6 @@
             <use xlink:href="#CW" id="dynamicContLogo"></use>
           </svg>
           <label for="">Carga | Cargo Worthy</label>
-          <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
@@ -467,7 +453,6 @@
             <use xlink:href="#IICL" id="dynamicContLogo"></use>
           </svg>
           <label for="">Carga | Cargo Worthy IICL</label>
-          <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
@@ -475,7 +460,6 @@
             <use xlink:href="#RH" id="dynamicContLogo"></use>
           </svg>
           <label for="">Almacenaje | Modificación </label>
-          <?php include $svgPath . 'question.php'; ?>
         </li>
         <li class="filterItem">
           <input type="checkbox">
@@ -483,7 +467,6 @@
             <use xlink:href="#SCRAP" id="dynamicContLogo"></use>
           </svg>
           <label for="">Chatarra | Scrap </label>
-          <?php include $svgPath . 'question.php'; ?>
         </li>
       </ul>
       <div class="filterAll">
@@ -561,7 +544,7 @@
 
 
 
-<section class="searchResultsCont" id="slider">
+<section class="searchResultsCont" id="postCont">
     <?php while(have_posts()){the_post();
       $categories = get_the_terms( get_the_ID(), 'product_cat' );
       // FIND OUT WHICH CARACTERISTICS

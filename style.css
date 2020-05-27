@@ -2754,10 +2754,8 @@ p, a, button, li {color: var(--color9)}
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: var(--searchResultsGTC);
-  border-radius: 4px;
   padding: 1rem;
   background: inherit;
-  transform-origin: center;
 }
 
 .archiveMain{
@@ -2863,9 +2861,11 @@ p, a, button, li {color: var(--color9)}
   list-style-type: none;
   /* margin-left: 2rem; */
 }
-.filterTipo input{width: .75rem;height: .75rem;}
 
-.filterItem input{width: .75rem;height: .75rem;}
+
+.filterTipo input,
+.filterItem input{width:.75rem;height:.75rem}
+
 
 .flatRack,.openTop{
   margin-left: 2rem;
