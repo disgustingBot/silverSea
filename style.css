@@ -474,7 +474,7 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveFilter2AutoFlow: row;
 
     /* ARCHIVE-PAGE */
-   --archiveFilterPosition: sticky;
+   --archiveFilterPosition: fixed;
    --archiveFilter2Z-Index: 1;
    --archiveFilterJustifyC: flex-start;
    --archiveTopInteractionPosition: sticky;
@@ -2855,7 +2855,6 @@ p, a, button, li {color: var(--color9)}
   transition: .25s;
   min-height: 65vh;
   position: relative;
-  top: var(--searchResultContTop);
   z-index: 0;
 }
 
@@ -2882,7 +2881,7 @@ p, a, button, li {color: var(--color9)}
   transition: .5s;
   z-index: var(--archiveFilter2Z-Index);
   width: var(--archiveFilter2Width);
-  top: 110px;
+  top: 150px;
   border-radius: 0 0 4px 0;
   justify-content: var(--archiveFilterJustifyC);
   background: white;
