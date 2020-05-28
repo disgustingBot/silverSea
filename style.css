@@ -220,20 +220,47 @@ FIN DE MAPA DE CONTENIDOS */
   --singleAtributesDisplay: flex;
 
 
-   /* ARCHIVE-PAGE */
-   --archiveFilter2AutoFlow: row;
-   --archiveMainDisplay: block;
-   --coprAlquiGTC: auto;
-   --coprAlquiLocationGC: auto;
-   --sladRadioMarginLeft: auto;
-   --hideFilterDisplay: none;
-   --searchResultsGTC: repeat(1,1fr);
-   --searchResultsAltGTC: repeat(2,1fr);
-   --filterAllFontSize: 16px;
-   --productGalleryPosition: static;
-   --productGalleryTop: 0;
-   --archiveFilterPosition: static;
-   --archiveFilterJustifyC: space-around;
+  /* ARCHIVE-PAGE */
+  --archiveFilter2AutoFlow: row;
+  --archiveMainDisplay: block;
+  --coprAlquiGTC: auto;
+  --coprAlquiLocationGC: auto;
+  --sladRadioMarginLeft: auto;
+  --hideFilterDisplay: none;
+  --searchResultsGTC: repeat(1,1fr);
+  --searchResultContTop: 0;
+  --searchResultsAltGTC: repeat(2,1fr);
+  --filterAllFontSize: 16px;
+  --productGalleryPosition: static;
+  --productGalleryTop: 0;
+  --archiveFilterPosition: static;
+  --archiveFilter2Z-Index: 2;
+  --archiveFilterJustifyC: space-evenly;
+  --archiveTopInteractionPosition: static;
+  --archiveTopInteractionDisplay: none;
+  --hideFilterBtnPosition: static;
+  --archiveFilter2Width: 100%;
+  --archiveFilter2MH: unset;
+  --archiveFilter2FD: row;
+  --archiveFilter2SelectBoxW: 40%;
+  --archiveFilterAltTransform: translateY(calc(-100% + 15px));
+  --archiveFilter2BR: none;
+  --archiveFilter2BB: solid var(--color2) 15px;
+  --hideFilterBtnM: .5rem auto;
+  --hideFIlterBtnPadding: 5px 10px;
+  --searchResultsContW: 100%;
+  --cardActionsGG: 1rem;
+  --cardActionsGGGTR: 1fr 1fr;
+  --cardActionsGGGTC: 1fr 1fr;
+  --cardActinsCuantityGC: span 2;
+  --cardActinsCuantityM: auto;
+  --archiveTopInteractionFD: column;
+  --archiveTopInteractionH: auto;
+  --hideFilterBtnOrder: 2;
+  --hideFilterBtnBR: 4px;
+  --byeByeBtnD: flex;
+  --byeByeBtnsM: 10px auto;
+  --archive2TxtAlign: center;
 
 }
 /* ---------------------------------------------------------------------------
@@ -298,6 +325,19 @@ FIN DE MAPA DE CONTENIDOS */
     --sladRadioMarginLeft: 0;
     --hideFilterDisplay: block;
     --filterAllFontSize: 16px;
+    --cardActionsGG: .5rem;
+    --cardActionsGGGTR: unset;
+    --cardActionsGGGTC: unset;
+    --cardActinsCuantityGC: unset;
+    --cardActinsCuantityM: unset;
+    --hideFilterBtnM: auto auto auto var(--lateral);
+    --archiveTopInteractionFD: row;
+    --archiveTopInteractionH: 70px;
+    --hideFilterBtnOrder: unset;
+    --hideFilterBtnBR: 0 0 4px 0;
+    --byeByeBtnD: grid;
+    --byeByeBtnsM: auto 20px;
+
 
     /* SINGLE */
     --containerAttributeW: 12rem;
@@ -434,8 +474,24 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveFilter2AutoFlow: row;
 
     /* ARCHIVE-PAGE */
-    --archiveFilterPosition: fixed;
-   --archiveFilterJustifyC: center;
+   --archiveFilterPosition: sticky;
+   --archiveFilter2Z-Index: 1;
+   --archiveFilterJustifyC: flex-start;
+   --archiveTopInteractionPosition: sticky;
+   --archiveTopInteractionDisplay: flex;
+   --hideFilterBtnPosition: absolute;
+   --archiveFilter2Width: 25%;
+   --archiveFilter2MH: 70vh;
+   --archiveFilter2FD: column;
+   --archiveFilter2SelectBoxW: 100%;
+   --archiveFilterAltTransform: translateX(calc(-100% + 15px));
+   --archiveFilter2BR: solid var(--color2) 15px;
+   --archiveFilter2BB: none;
+   --hideFilterBtnM: unset;
+   --hideFIlterBtnPadding: 10px;
+   --searchResultsContW: 75%;
+   --archive2TxtAlign: left;
+   --searchResultContTop: -18rem;
   }
 }
 
@@ -533,8 +589,8 @@ FIN DE MAPA DE CONTENIDOS */
   margin:0;
   padding:0;
   font-family: 'Rambla', sans-serif;
-  transition: .25s;
 }
+
 .body{display:grid;background: white}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
@@ -770,8 +826,9 @@ p, a, button, li {color: var(--color9)}
   position: sticky;
   top: 0;
   overflow-x: hidden;
-  z-index: 2;
+  z-index: 5;
   width: 100%;
+  box-shadow: var(--DP4);
 }
 
 .upperHeader {
@@ -800,7 +857,7 @@ p, a, button, li {color: var(--color9)}
   background: white;
   filter: brightness(100%)!important;
   font-size: 2rem;
-  z-index: 1;
+  z-index: 3;
 }
 
 .body.mobileNavMenu .navBarMobile {
@@ -1462,10 +1519,14 @@ p, a, button, li {color: var(--color9)}
 .cardActions {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns:auto 4.5rem auto;
-  /* width:min-content; */
-  /* margin-right: auto; */
-  grid-gap:.5rem;
+  grid-gap: 1rem;
+  grid-template-rows: var(--cardActionsGGGTR);
+  grid-template-columns: var(--cardActionsGGGTC);
+}
+
+.cardActions .cuantos {
+  grid-column: var(--cardActinsCuantityGC);
+  margin: var(--cardActinsCuantityM);
 }
 
 
@@ -1533,11 +1594,8 @@ p, a, button, li {color: var(--color9)}
 .teamSection:not(.direccion):not(.finance-administration):not(.sales-department-cis-region):not(.sales-department-europe):not(.sales-department-latam):not(.supply-operations) .teamCard {display: grid!important;}
 
 
-.areaSelector {
-  cursor: pointer;
-
-}
-
+.areaSelector {cursor: pointer;}
+/*
 .teamSection.logistic       .teamCard.sales,
 .teamSection.administration .teamCard.sales,
 .teamSection.management     .teamCard.sales,
@@ -1557,7 +1615,7 @@ p, a, button, li {color: var(--color9)}
 .teamSection.sales          .teamCard.management,
 .teamSection.ceo            .teamCard.management {
   display: none;
-}
+} */
 
 .teamSection:not(.direccion)                   .teamCard.direccion,
 .teamSection:not(.finance-administration)      .teamCard.finance-administration,
@@ -1628,34 +1686,35 @@ p, a, button, li {color: var(--color9)}
 */
 
 .archiveTopInteraction{
- display: flex;
- grid-auto-flow: column;
+ display: var(--archiveTopInteractionDisplay);
  width: 100%;
  grid-gap: 5px;
  padding: .6rem;
- top: 4rem;
- z-index: 1;
- height:70px;
+ z-index: 2;
+ height:var(--archiveTopInteractionH);
  position: var(--archiveTopInteractionPosition);
  top: 80px;
  justify-content: flex-end;
  box-shadow: var(--DP4);
+ flex-direction: var(--archiveTopInteractionFD);
 }
 
 .hideFilterBtn {
-  padding: 10px;
+  padding: var(--hideFIlterBtnPadding);
   display: flex;
   width: max-content;
   border: 1px solid var(--color4);
   box-sizing: border-box;
   background: var(--color3);
   transition: .35s;
-  position: absolute;
+  position: var(--hideFilterBtnPosition);
   bottom: 0;
   height: 100%;
   left: 0;
   border: none;
-  border-radius: 0 0 4px 0;
+  border-radius: var(--hideFilterBtnBR);
+  margin: var(--hideFilterBtnM);
+  order: var(--hideFilterBtnOrder);
 }
 
 .hideFilterBtn.alt {
@@ -1711,10 +1770,19 @@ p, a, button, li {color: var(--color9)}
   font-weight: 18px;
 }
 
-.advancedSearchTitle {
-  text-align: center;
+.encuentraContenedorTitle {
+  width: 100%;
   font-size: 1.2rem;
-  font-size: bold;
+}
+
+.encuentraContenedorTitle, .advancedSearchTitle {
+  text-align: var(--archive2TxtAlign)
+}
+
+.advancedSearchTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: 100%;
 }
 .hideFilter.alt .filterArrow {
   position: relative;
@@ -1811,11 +1879,15 @@ p, a, button, li {color: var(--color9)}
   background:none;
   box-shadow: none;
   color:var(--color1);
+  grid-row: 2;
+  margin: 0;
 }
 .btnSimple:hover{
   box-shadow: none;
   color:var(--color8);
 }
+
+
 
 
 
@@ -2122,7 +2194,7 @@ p, a, button, li {color: var(--color9)}
 
 .productGalleryImg.inactive{opacity:0;}
 
-.card .productGallery .singleProductsgalleryBtnsContainer{
+.card .productGallery .arrowBtnContainer{
   justify-content: space-around;
   margin: auto 0;
   height: min-content;
@@ -2131,32 +2203,46 @@ p, a, button, li {color: var(--color9)}
 .productGalleryImg.inactive{ opacity:0;}
 
 
-.singleProductsgalleryBtnsContainer {
+.arrowBtnContainer {
   margin-top: 0;
   display: flex;
   justify-content: space-between;
-  width: var(--singleProductsgalleryBtnsContainerWidth);
-  /* position: absolute; */
   top: 50%;
   width: 100%;
 }
 
-.singleProductsgalleryBtnsContainer .singleProductArrowSVG{
+.arrowSVG {
   height: 2rem;
   width: 2rem;
   color: var(--color1);
+  box-shadow: var(--DP4);
+  border-radius: 50%;
+  transition: .25s;
 }
 
-.singleProductsGalleryBtns {
-  margin: var(--singleProductGalleryBtnsMargin);
+.arrowSVG:hover {
+}
+
+.arrowBtn {
   border-radius: 20%;
   border: none;
-  background: transparent;
   color:black;
   transition: .25s;
   height: 2rem;
   cursor: pointer;
   width: 2rem;
+  background: var(--color1);
+  border-radius: 50%;
+}
+
+.arrowBtn:focus {
+  box-shadow: 0px 0px 0px 10px rgba(6,116,187,1);
+  outline: none;
+}
+
+.arrowBtn:hover .arrowSVG {
+  color: #03a4f2;
+  box-shadow: var(--DP8);
 }
 
 .galleryTitleContainer {
@@ -2764,11 +2850,13 @@ p, a, button, li {color: var(--color9)}
   grid-gap: 1rem;
   grid-template-columns: var(--searchResultsGTC);
   padding: 1rem;
-  background: inherit;
-  width: 75%;
+  width: var(--searchResultsContW);
   margin: auto 0 auto auto;
   transition: .25s;
-  min-height: 55vh;
+  min-height: 65vh;
+  position: relative;
+  top: var(--searchResultContTop);
+  z-index: 0;
 }
 
 .archiveMain.alt .searchResultsCont {
@@ -2784,36 +2872,41 @@ p, a, button, li {color: var(--color9)}
 
 .archiveFilter2 {
   position: var(--archiveFilterPosition);
-  min-height: 70vh;
+  min-height: var(--archiveFilter2MH);
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: var(--archiveFilter2FD);
   grid-gap:.5rem;
   grid-auto-rows:40px;
-  padding: 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   transition: .5s;
-  z-index: 0;
-  width: 25%;
-  top: 150px;
+  z-index: var(--archiveFilter2Z-Index);
+  width: var(--archiveFilter2Width);
+  top: 110px;
   border-radius: 0 0 4px 0;
   justify-content: var(--archiveFilterJustifyC);
+  background: white;
 }
 
 .archiveFilter2.alt{
-  transform: translateX(calc(-100% + 15px));
-  border-right: solid var(--color2) 15px;
+  transform: var(--archiveFilterAltTransform);
+  border-right: var(--archiveFilter2BR);
+  border-bottom: var(--archiveFilter2BB);
   box-shadow: var(--DP4);
 }
 
-
+.archiveFilter2 .selectBox {
+  width: var(--archiveFilter2SelectBoxW);
+}
 
 .byeByeBtn{
-  display: grid;
+  display: var(--byeByeBtnD);
   grid-auto-flow: column;
+  flex-direction: column;
+  align-items: center;
 }
 
-.byeByeBtn .btn {
-  margin: auto 20px;
-}
+.byeByeBtn .btn {margin: var(--byeByeBtnsM);}
 
 /*
 
