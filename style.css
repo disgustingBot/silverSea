@@ -228,13 +228,16 @@ FIN DE MAPA DE CONTENIDOS */
   --sladRadioMarginLeft: auto;
   --hideFilterDisplay: none;
   --searchResultsGTC: repeat(1,1fr);
+  --searchResultContTop: 0;
   --searchResultsAltGTC: repeat(2,1fr);
   --filterAllFontSize: 16px;
   --productGalleryPosition: static;
   --productGalleryTop: 0;
   --archiveFilterPosition: static;
+  --archiveFilter2Z-Index: 2;
   --archiveFilterJustifyC: space-evenly;
   --archiveTopInteractionPosition: static;
+  --archiveTopInteractionDisplay: none;
   --hideFilterBtnPosition: static;
   --archiveFilter2Width: 100%;
   --archiveFilter2MH: unset;
@@ -257,6 +260,7 @@ FIN DE MAPA DE CONTENIDOS */
   --hideFilterBtnBR: 4px;
   --byeByeBtnD: flex;
   --byeByeBtnsM: 10px auto;
+  --archive2TxtAlign: center;
 
 }
 /* ---------------------------------------------------------------------------
@@ -470,9 +474,11 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveFilter2AutoFlow: row;
 
     /* ARCHIVE-PAGE */
-   --archiveFilterPosition: fixed;
-   --archiveFilterJustifyC: center;
+   --archiveFilterPosition: sticky;
+   --archiveFilter2Z-Index: 1;
+   --archiveFilterJustifyC: flex-start;
    --archiveTopInteractionPosition: sticky;
+   --archiveTopInteractionDisplay: flex;
    --hideFilterBtnPosition: absolute;
    --archiveFilter2Width: 25%;
    --archiveFilter2MH: 70vh;
@@ -484,6 +490,8 @@ FIN DE MAPA DE CONTENIDOS */
    --hideFilterBtnM: unset;
    --hideFIlterBtnPadding: 10px;
    --searchResultsContW: 75%;
+   --archive2TxtAlign: left;
+   --searchResultContTop: -18rem;
   }
 }
 
@@ -1678,11 +1686,11 @@ p, a, button, li {color: var(--color9)}
 */
 
 .archiveTopInteraction{
- display: flex;
+ display: var(--archiveTopInteractionDisplay);
  width: 100%;
  grid-gap: 5px;
  padding: .6rem;
- z-index: 1;
+ z-index: 2;
  height:var(--archiveTopInteractionH);
  position: var(--archiveTopInteractionPosition);
  top: 80px;
@@ -1763,14 +1771,16 @@ p, a, button, li {color: var(--color9)}
 }
 
 .encuentraContenedorTitle {
-  margin: 1rem auto;
-  text-align: center;
   width: 100%;
+  font-size: 1.2rem;
+}
+
+.encuentraContenedorTitle, .advancedSearchTitle {
+  text-align: var(--archive2TxtAlign)
 }
 
 .advancedSearchTitle {
-  text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   width: 100%;
 }
@@ -2184,7 +2194,7 @@ p, a, button, li {color: var(--color9)}
 
 .productGalleryImg.inactive{opacity:0;}
 
-.card .productGallery .singleProductsgalleryBtnsContainer{
+.card .productGallery .arrowBtnContainer{
   justify-content: space-around;
   margin: auto 0;
   height: min-content;
@@ -2193,32 +2203,46 @@ p, a, button, li {color: var(--color9)}
 .productGalleryImg.inactive{ opacity:0;}
 
 
-.singleProductsgalleryBtnsContainer {
+.arrowBtnContainer {
   margin-top: 0;
   display: flex;
   justify-content: space-between;
-  width: var(--singleProductsgalleryBtnsContainerWidth);
-  /* position: absolute; */
   top: 50%;
   width: 100%;
 }
 
-.singleProductsgalleryBtnsContainer .singleProductArrowSVG{
+.arrowSVG {
   height: 2rem;
   width: 2rem;
   color: var(--color1);
+  box-shadow: var(--DP4);
+  border-radius: 50%;
+  transition: .25s;
 }
 
-.singleProductsGalleryBtns {
-  margin: var(--singleProductGalleryBtnsMargin);
+.arrowSVG:hover {
+}
+
+.arrowBtn {
   border-radius: 20%;
   border: none;
-  background: transparent;
   color:black;
   transition: .25s;
   height: 2rem;
   cursor: pointer;
   width: 2rem;
+  background: var(--color1);
+  border-radius: 50%;
+}
+
+.arrowBtn:focus {
+  box-shadow: 0px 0px 0px 10px rgba(6,116,187,1);
+  outline: none;
+}
+
+.arrowBtn:hover .arrowSVG {
+  color: #03a4f2;
+  box-shadow: var(--DP8);
 }
 
 .galleryTitleContainer {
@@ -2829,7 +2853,10 @@ p, a, button, li {color: var(--color9)}
   width: var(--searchResultsContW);
   margin: auto 0 auto auto;
   transition: .25s;
-  min-height: 55vh;
+  min-height: 65vh;
+  position: relative;
+  top: var(--searchResultContTop);
+  z-index: 0;
 }
 
 .archiveMain.alt .searchResultsCont {
@@ -2851,11 +2878,11 @@ p, a, button, li {color: var(--color9)}
   flex-direction: var(--archiveFilter2FD);
   grid-gap:.5rem;
   grid-auto-rows:40px;
-  padding: 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   transition: .5s;
-  z-index: 0;
+  z-index: var(--archiveFilter2Z-Index);
   width: var(--archiveFilter2Width);
-  top: 150px;
+  top: 110px;
   border-radius: 0 0 4px 0;
   justify-content: var(--archiveFilterJustifyC);
   background: white;
@@ -2866,7 +2893,6 @@ p, a, button, li {color: var(--color9)}
   border-right: var(--archiveFilter2BR);
   border-bottom: var(--archiveFilter2BB);
   box-shadow: var(--DP4);
-
 }
 
 .archiveFilter2 .selectBox {
