@@ -215,6 +215,7 @@ FIN DE MAPA DE CONTENIDOS */
   /* SINGLE CONTAINER */
   --singleContainerDisplay: block;
   --singleAtributesMarginTop: 0;
+  --containerAttributeW: 15rem;
 
   --singleAtributesDisplay: flex;
 
@@ -228,9 +229,11 @@ FIN DE MAPA DE CONTENIDOS */
    --hideFilterDisplay: none;
    --searchResultsGTC: repeat(1,1fr);
    --searchResultsAltGTC: repeat(2,1fr);
-   --filterAllFontSize: .7rem;
-   --productGalleryPosition: relative;
+   --filterAllFontSize: 16px;
+   --productGalleryPosition: static;
    --productGalleryTop: 0;
+   --archiveFilterPosition: static;
+   --archiveFilterJustifyC: space-around;
 
 }
 /* ---------------------------------------------------------------------------
@@ -250,8 +253,12 @@ FIN DE MAPA DE CONTENIDOS */
   /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - 400px) / (1024 - 400))); */
   --sizeR: calc(calc(var(--sizeRa) * 1px) + (var(--sizeRb) - var(--sizeRa)) * ((100vw - 360px) / (768 - 360)));
 
+    /* SINGLE */
+  --containerAttributeW: 9rem;
     /* ?HEADER */
     /* ?FOOTER */
+
+
   }
 }
 
@@ -284,13 +291,16 @@ FIN DE MAPA DE CONTENIDOS */
     /* SINGLE CONTAINER */
     /* SINGLE CONTAINER */
 
-    /* ARCHIVE-PAGE                 */
+    /* ARCHIVE-PAGE */
     --archiveMainDisplay: grid;
     --coprAlquiGTC: auto 1fr;
     --coprAlquiLocationGC: 2;
     --sladRadioMarginLeft: 0;
     --hideFilterDisplay: block;
-    --filterAllFontSize: .5rem;
+    --filterAllFontSize: 16px;
+
+    /* SINGLE */
+    --containerAttributeW: 12rem;
   }
 }
 
@@ -382,6 +392,7 @@ FIN DE MAPA DE CONTENIDOS */
     --singleContainerDisplay: grid;
     --singleAtributesMarginTop: 6rem;
     --singleAtributesDisplay: grid;
+    --containerAttributeW: 12rem;
 
     /* ARCHIVE-PRODUCT */
     --searchResultsGTC: repeat(2,1fr);
@@ -422,7 +433,9 @@ FIN DE MAPA DE CONTENIDOS */
 
     --archiveFilter2AutoFlow: row;
 
-
+    /* ARCHIVE-PAGE */
+    --archiveFilterPosition: fixed;
+   --archiveFilterJustifyC: center;
   }
 }
 
@@ -520,8 +533,9 @@ FIN DE MAPA DE CONTENIDOS */
   margin:0;
   padding:0;
   font-family: 'Rambla', sans-serif;
+  transition: .25s;
 }
-.body{display:grid;background: var(--color5)}
+.body{display:grid;background: white}
 img{object-fit:cover;width:100%}
 a{text-decoration:none}
 /* a:visited{color:inherit} */
@@ -652,9 +666,15 @@ p, a, button, li {color: var(--color9)}
   display: var(--onlyDesktopG);
   grid-template-columns: max-content 1fr;;
   position: sticky;
-  top: 0;
+  top: -40px;
   background: white;
   z-index: 6;
+  height: 120px;
+}
+
+.headerLogoLink {
+  display: flex;
+  height: 80px;
 }
 
 .logo {
@@ -747,7 +767,7 @@ p, a, button, li {color: var(--color9)}
 .headerMob {
   display: var(--onlyMobileF);
   flex-wrap: wrap;
-  position: fixed;
+  position: sticky;
   top: 0;
   overflow-x: hidden;
   z-index: 2;
@@ -833,6 +853,7 @@ p, a, button, li {color: var(--color9)}
   width: 100%;
   grid-column: 1/-1;
   z-index: 3;
+  height: 40px;
 }
 
 .blueBar p {color: white;}
@@ -1597,28 +1618,6 @@ p, a, button, li {color: var(--color9)}
 */
 
 
-/* .questionaryFilter{
-  display: grid;
-  grid-auto-flow: column;
-  width: min-content;
-  grid-gap: 1rem;
-  padding: .6rem;
-  border-radius: 8px;
-  margin-left: auto;
-  margin-right: var(--lateral);
-  position: sticky;
-  top: 4rem;
-  z-index: 1;
-  box-shadow: var(--DP1);
-}
-
-.questionaryButton{
-  background: white;
-  border: none;
-  cursor: pointer;
-  transform: rotate(270deg);
-} */
-
 
 /*
 ---------------------------------------------------------------------------
@@ -1629,14 +1628,18 @@ p, a, button, li {color: var(--color9)}
 */
 
 .archiveTopInteraction{
- display: grid;
+ display: flex;
  grid-auto-flow: column;
  width: 100%;
  grid-gap: 5px;
  padding: .6rem;
  top: 4rem;
  z-index: 1;
- box-shadow: var(--DP1);
+ height:70px;
+ position: var(--archiveTopInteractionPosition);
+ top: 80px;
+ justify-content: flex-end;
+ box-shadow: var(--DP4);
 }
 
 .hideFilterBtn {
@@ -1647,11 +1650,16 @@ p, a, button, li {color: var(--color9)}
   box-sizing: border-box;
   background: var(--color3);
   transition: .35s;
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  border: none;
+  border-radius: 0 0 4px 0;
 }
 
 .hideFilterBtn.alt {
   background: var(--color2);
-  box-shadow: var(--DP2);
   border: 1px solid var(--color2);
 }
 
@@ -1667,7 +1675,7 @@ p, a, button, li {color: var(--color9)}
 
 .archiveFilter2 .hideFilter{
   display: var(--hideFilterDisplay);
-  position: absolute;
+  position: sticky;
   right: -1.25rem;
   align-self: center;
   border: none;
@@ -1699,10 +1707,15 @@ p, a, button, li {color: var(--color9)}
 
 .archiveTopInteractTitle {
   margin: auto;
-  font-size: .9rem;
+  font-weight: bold;
+  font-weight: 18px;
 }
 
-
+.advancedSearchTitle {
+  text-align: center;
+  font-size: 1.2rem;
+  font-size: bold;
+}
 .hideFilter.alt .filterArrow {
   position: relative;
   transform: rotate(180deg);
@@ -1859,6 +1872,7 @@ p, a, button, li {color: var(--color9)}
   transition:.4s;
   width: 2rem;
   z-index:-1;
+  top: 0;
 }
 .cartButton:hover{
   background:var(--color8);
@@ -2122,7 +2136,7 @@ p, a, button, li {color: var(--color9)}
   display: flex;
   justify-content: space-between;
   width: var(--singleProductsgalleryBtnsContainerWidth);
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
   width: 100%;
 }
@@ -2173,7 +2187,7 @@ p, a, button, li {color: var(--color9)}
   margin: .5rem;
   border-radius: 4px;
   box-shadow: var(--DP1);
-  width: 10rem;
+  width: var(--containerAttributeW);
 }
 
 .containerAttributeTitle {
@@ -2197,7 +2211,7 @@ p, a, button, li {color: var(--color9)}
 
 
 .btn.singleBuy {
-  width: 10rem;
+    width: var(--containerAttributeW);
   padding: 1rem;
   margin: .5rem;
 }
@@ -2228,12 +2242,9 @@ p, a, button, li {color: var(--color9)}
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  grid-gap: .5rem;
   padding: .5rem;
   margin: .5rem;
-  width: 10rem;
-  box-shadow: var(--DP1);
-  border-radius: 12px;
+  flex-basis: 100%;
 }
 
 .categoryCard .cartItemSvg {
@@ -2748,139 +2759,60 @@ p, a, button, li {color: var(--color9)}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-
-
 .searchResultsCont {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: var(--searchResultsGTC);
   padding: 1rem;
   background: inherit;
+  width: 75%;
+  margin: auto 0 auto auto;
+  transition: .25s;
+  min-height: 55vh;
+}
+
+.archiveMain.alt .searchResultsCont {
+  width: 100%;
 }
 
 .archiveMain{
   display: var(--archiveMainDisplay);
-  grid-template-columns: min-content 4fr;
   position: relative;
   transition: .5s;
 }
 
-/* .archiveMain.alt{
-  grid-template-columns: 1px 4fr;
-}
 
-.archiveMain.alt .searchResultsCont{
-  --searchResultsGTC : var(--searchResultsAltGTC);
-  margin: 1rem;
-} */
-
-
-
-
-
-
-
-.archiveFilter2{
-  position: relative;
-  min-height: 60vh;
-  display: grid;
-  height: min-content;
+.archiveFilter2 {
+  position: var(--archiveFilterPosition);
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
   grid-gap:.5rem;
   grid-auto-rows:40px;
-  /* background: white; */
   padding: 1rem;
   transition: .5s;
-  z-index: 2;
-  /* top: 0; */
-  /* border-top: solid var(--color5) 1px; */
-  /* border-right: solid var(--color5) 1px; */
-
+  z-index: 0;
+  width: 25%;
+  top: 150px;
+  border-radius: 0 0 4px 0;
+  justify-content: var(--archiveFilterJustifyC);
 }
 
 .archiveFilter2.alt{
   transform: translateX(calc(-100% + 15px));
-  /* grid-column: 1; */
-  /* grid-row: 1; */
   border-right: solid var(--color2) 15px;
+  box-shadow: var(--DP4);
 }
 
 
 
-
-.filter{
-  position: relative;
-  width: 100%;
-  margin: .7rem 0;
-}
-
-.filterTitle{
-  display: grid;
-  grid-template-columns: min-content;
-  grid-auto-flow: column;
-  grid-gap: .5rem;
-  padding: .3rem;
-  border-bottom: solid 1px var(--color4);
-  margin-bottom: .5rem;
-  color: var(--color1);
-}
-
-.filter .filterAll{
-  bottom: 0;
-  position: absolute;
-  transform: translateY(1rem);
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: var(--filterAllFontSize);
-}
-
-.filterItem{
-  display: grid;
-  align-items: center;
-  grid-auto-flow: column;
-  width: max-content;
-  grid-gap: .3rem;
-  margin: .5rem;
-}
-
-.filterTipo{
-  display: grid;
-  align-items: center;
-  width: max-content;
-  grid-gap: .3rem;
-  margin: .5rem;
-}
-
-.filterTipoItem{
+.byeByeBtn{
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: min-content;
-  grid-gap: .4rem;
-  align-items: center;
-  list-style-type: none;
-  /* margin-left: 2rem; */
 }
 
-
-.filterTipo input,
-.filterItem input{width:.75rem;height:.75rem}
-
-
-.flatRack,.openTop{
-  margin-left: 2rem;
-}
-
-.filterList.size{
-  margin-left: 1rem;
-}
-
-
-
-.finalbuttons{
-  display: grid;
-  align-items: flex-end;
-  grid-auto-flow: column;
+.byeByeBtn .btn {
+  margin: auto 20px;
 }
 
 /*

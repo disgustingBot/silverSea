@@ -60,11 +60,11 @@
 
 	<view id="load" class="load"><div class="circle"></div></view>
 
-  <?php include('blueBar.php') ?>
   <header class="header" id="header">
+    <?php include('blueBar.php') ?>
 
     <!-- NAVIGATION BAR -->
-    <a href="<?php echo site_url('');  ?>" class="logoLink">
+    <a class="headerLogoLink" href="<?php echo site_url('');  ?>" class="logoLink">
       <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
     </a>
   	<?php
