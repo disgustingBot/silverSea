@@ -98,18 +98,18 @@
         <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
       </g>
     </svg>
-    <p class="archiveTopInteractTitle">Hide<br>filters</p>
+    <p class="archiveTopInteractTitle">Hide filters</p>
   </button>
   <div class="byeByeBtn">
     <button class="btn">CONTENEDORES EN REBAJA</button>
-    <button class="btn">Finalizar Compra</button>
+    <button class="btn">Finalizar pedido</button>
   </div>
 </section>
 
 <div class="archiveMain">
   <div class="archiveFilter2">
-
-    <h6 class="advancedSearchTitle">Advanced Search</h6>
+    <h2 class="encuentraContenedorTitle brandColorTxt">ENCUENTRA TU CONTENEDOR</h2>
+    <h6 class="advancedSearchTitle">Búsqueda avanzada</h6>
 
     <?php woocommerce_subcats_from_parentcat('size'); ?>
 
