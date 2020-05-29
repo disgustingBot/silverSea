@@ -236,9 +236,9 @@ FIN DE MAPA DE CONTENIDOS */
   --archiveFilterPosition: static;
   --archiveFilter2Z-Index: 2;
   --archiveFilterJustifyC: space-evenly;
-  --archiveTopInteractionPosition: static;
   --archiveTopInteractionDisplay: none;
   --hideFilterBtnPosition: static;
+  --hideFilterBtnHeight: max-content;
   --archiveFilter2Width: 100%;
   --archiveFilter2MH: unset;
   --archiveFilter2FD: row;
@@ -319,7 +319,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* SINGLE CONTAINER */
 
     /* ARCHIVE-PAGE */
-    --archiveMainDisplay: grid;
+    --archiveMainDisplay: flex;
     --coprAlquiGTC: auto 1fr;
     --coprAlquiLocationGC: 2;
     --sladRadioMarginLeft: 0;
@@ -334,7 +334,7 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveTopInteractionFD: row;
     --archiveTopInteractionH: 70px;
     --hideFilterBtnOrder: unset;
-    --hideFilterBtnBR: 0 0 4px 0;
+    --hideFilterBtnBR: 0 4px 0 0;
     --byeByeBtnD: grid;
     --byeByeBtnsM: auto 20px;
 
@@ -477,9 +477,9 @@ FIN DE MAPA DE CONTENIDOS */
    --archiveFilterPosition: fixed;
    --archiveFilter2Z-Index: 1;
    --archiveFilterJustifyC: flex-start;
-   --archiveTopInteractionPosition: sticky;
    --archiveTopInteractionDisplay: flex;
-   --hideFilterBtnPosition: absolute;
+   --hideFilterBtnPosition: fixed;
+   --hideFilterBtnHeight: 70px;
    --archiveFilter2Width: 25%;
    --archiveFilter2MH: 70vh;
    --archiveFilter2FD: column;
@@ -1692,8 +1692,6 @@ p, a, button, li {color: var(--color9)}
  padding: .6rem;
  z-index: 2;
  height:var(--archiveTopInteractionH);
- position: var(--archiveTopInteractionPosition);
- top: 80px;
  justify-content: flex-end;
  box-shadow: var(--DP4);
  flex-direction: var(--archiveTopInteractionFD);
@@ -1702,24 +1700,30 @@ p, a, button, li {color: var(--color9)}
 .hideFilterBtn {
   padding: var(--hideFIlterBtnPadding);
   display: flex;
-  width: max-content;
+  width: var(--archiveFilter2Width);
   border: 1px solid var(--color4);
   box-sizing: border-box;
   background: var(--color3);
-  transition: .35s;
+  transition: .75s;
   position: var(--hideFilterBtnPosition);
   bottom: 0;
-  height: 100%;
+  top: 120px;
+  height: var(--hideFilterBtnHeight);
   left: 0;
   border: none;
   border-radius: var(--hideFilterBtnBR);
   margin: var(--hideFilterBtnM);
   order: var(--hideFilterBtnOrder);
+  z-index: var(--archiveFilter2Z-Index);
+  box-shadow: var(--DP1);
+  transition: .43s;
 }
 
 .hideFilterBtn.alt {
   background: var(--color2);
   border: 1px solid var(--color2);
+  width: 150px;
+  box-shadow: unset;
 }
 
 .archiveTopInteractBtn{
@@ -1748,11 +1752,6 @@ p, a, button, li {color: var(--color9)}
   border-right: solid var(--color1) 2px;
 }
 
-.filterIcon {}
-
-.filterArrow {
-
-}
 
 .filterArrow {
   transform-origin: center;
@@ -1764,15 +1763,25 @@ p, a, button, li {color: var(--color9)}
 
 }
 
-.archiveTopInteractTitle {
-  margin: auto;
-  font-weight: bold;
-  font-weight: 18px;
-}
+
+
 
 .encuentraContenedorTitle {
   width: 100%;
   font-size: 1.2rem;
+}
+
+.archiveTopInteractTitle {
+  margin: auto;
+  font-size: 1.2rem;
+  transition: .25s;
+  font-weight:normal;
+}
+
+
+.hideFilterBtn.alt .archiveTopInteractTitle {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .encuentraContenedorTitle, .advancedSearchTitle {
@@ -2852,7 +2861,7 @@ p, a, button, li {color: var(--color9)}
   padding: 1rem;
   width: var(--searchResultsContW);
   margin: auto 0 auto auto;
-  transition: .25s;
+  transition: .6s;
   min-height: 65vh;
   position: relative;
   z-index: 0;
@@ -2875,7 +2884,7 @@ p, a, button, li {color: var(--color9)}
   display: flex;
   flex-wrap: wrap;
   flex-direction: var(--archiveFilter2FD);
-  grid-gap:.5rem;
+  grid-gap:.6rem;
   grid-auto-rows:40px;
   padding: 2rem 1rem 1rem 1rem;
   transition: .5s;
@@ -2885,6 +2894,8 @@ p, a, button, li {color: var(--color9)}
   border-radius: 0 0 4px 0;
   justify-content: var(--archiveFilterJustifyC);
   background: white;
+  box-shadow: var(--DP4);
+
 }
 
 .archiveFilter2.alt{
