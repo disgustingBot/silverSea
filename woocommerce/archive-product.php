@@ -108,8 +108,8 @@
 
 <div class="archiveMain">
   <div class="archiveFilter2">
-    <h2 class="encuentraContenedorTitle  brandColorTxt">ENCUENTRA TU CONTENEDOR</h2>
-    <h6 class="advancedSearchTitle ">Búsqueda avanzada</h6>
+    <h2 class="encuentraContenedorTitle brandColorTxt">ENCUENTRA TU CONTENEDOR</h2>
+    <h6 class="advancedSearchTitle">Búsqueda avanzada</h6>
 
     <?php woocommerce_subcats_from_parentcat('size'); ?>
 
