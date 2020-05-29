@@ -47,7 +47,7 @@ Version: 0.0
 6.7.0.0) =btnSimple:
 6.7.1) =close:
 6.7.2) =cartButton:
-6.7.3) =arrowButton:
+6.7.3) =arrowBtn:
 6.8) =titleBanner:
 6.9) =Counts:
 6.10) =sectionSummarys:
@@ -168,9 +168,13 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* ?dynamicCont */
   /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
-  --dynamicContGAF:row;
-  --dynamicContGTC: 2rem 1fr;
-  --dynamicContGTR: repeat(6, 1fr);
+  /* --dynamicContGAF:row; */
+  /* --dynamicContGTC: 2rem 1fr; */
+  --dynamicContGTC: 1fr 1fr;
+  --dynamicChildsContGC: 1/-1;
+  --cotizacionAvanzadaFD: column;
+  --btnSimpleM: 1rem auto;
+  /* --dynamicContGTR: repeat(6, 1fr); */
 
 
   /* COUNTERS */
@@ -193,7 +197,6 @@ FIN DE MAPA DE CONTENIDOS */
   /* FRONT PAGE ATF */
   --featuresGTR: 1fr;
   --frontPageATFBgH: 100vh;
-  --frontPageATFMT: 65px;
 
 
 
@@ -235,14 +238,14 @@ FIN DE MAPA DE CONTENIDOS */
   --productGalleryTop: 0;
   --archiveFilterPosition: static;
   --archiveFilter2Z-Index: 2;
-  --archiveFilterJustifyC: space-evenly;
+  /* --archiveFilterJustifyC: space-evenly; */
   --archiveTopInteractionDisplay: none;
   --hideFilterBtnPosition: static;
   --hideFilterBtnHeight: max-content;
   --archiveFilter2Width: 100%;
   --archiveFilter2MH: unset;
-  --archiveFilter2FD: row;
-  --archiveFilter2SelectBoxW: 40%;
+  /* --archiveFilter2FD: row; */
+  /* --archiveFilter2SelectBoxW: 40%; */
   --archiveFilterAltTransform: translateY(calc(-100% + 15px));
   --archiveFilter2BR: none;
   --archiveFilter2BB: solid var(--color2) 15px;
@@ -305,10 +308,10 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?dynamicCont */
     /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
-    --dynamicContGAF:row;
-    --dynamicContGTC: 2rem 1fr 1fr;
-    --dynamicContGTR: 1fr 1fr 1fr;
-    --dynamicContSelectBox4GC:2;
+    /* --dynamicContGAF:row; */
+    /* --dynamicContGTC: 2rem 1fr 1fr; */
+    /* --dynamicContGTR: 1fr 1fr 1fr; */
+    /* --dynamicContSelectBox4GC:2; */
 
 
     /* ?FOOTER */
@@ -334,7 +337,7 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveTopInteractionFD: row;
     --archiveTopInteractionH: 70px;
     --hideFilterBtnOrder: unset;
-    --hideFilterBtnBR: 0 4px 0 0;
+    --hideFilterBtnBR: 0 4px 4px 0;
     --byeByeBtnD: grid;
     --byeByeBtnsM: auto 20px;
 
@@ -385,7 +388,6 @@ FIN DE MAPA DE CONTENIDOS */
     /* FRONT PAGE ATF */
     --featuresGTR: 1fr 1fr 1fr;
     --frontPageATFBgH: auto;
-    --frontPageATFMT: unset;
 
     /* COUNTERS */
     --articleCounterGR: auto;
@@ -408,9 +410,14 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?dynamicCont */
     /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
-    --dynamicContGAF:column;
-    --dynamicContGTC: 2rem 1fr 1fr 4.5rem;
-    --dynamicContGTR: 1fr 1fr;
+    /* --dynamicContGAF:column; */
+    /* --dynamicContGTC: 2rem 1fr 1fr 4.5rem; */
+    --dynamicContGTC: repeat(6, 1fr);
+    --dynamicChildsContGC: unset;
+    --cotizacionAvanzadaFD: row;
+      --btnSimpleM: 0;
+
+    /* --dynamicContGTR: 1fr 1fr; */
 
 
     /* ?FOOTER */
@@ -462,9 +469,9 @@ FIN DE MAPA DE CONTENIDOS */
     --featuresMarginTop: -75px;
 
     /* ?dynamicCont */
-    --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto;
-    --dynamicContGTR: 1fr;
-    --dynamicContSelectBox4GC:4;
+    /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
+    /* --dynamicContGTR: 1fr; */
+    /* --dynamicContSelectBox4GC:4; */
 
 
 
@@ -476,14 +483,14 @@ FIN DE MAPA DE CONTENIDOS */
     /* ARCHIVE-PAGE */
    --archiveFilterPosition: fixed;
    --archiveFilter2Z-Index: 1;
-   --archiveFilterJustifyC: flex-start;
+   /* --archiveFilterJustifyC: space-between; */
    --archiveTopInteractionDisplay: flex;
    --hideFilterBtnPosition: fixed;
    --hideFilterBtnHeight: 70px;
    --archiveFilter2Width: 25%;
-   --archiveFilter2MH: 70vh;
-   --archiveFilter2FD: column;
-   --archiveFilter2SelectBoxW: 100%;
+   --archiveFilter2MH: 40vh;
+   /* --archiveFilter2FD: column; */
+   /* --archiveFilter2SelectBoxW: 100%; */
    --archiveFilterAltTransform: translateX(calc(-100% + 15px));
    --archiveFilter2BR: solid var(--color2) 15px;
    --archiveFilter2BB: none;
@@ -965,7 +972,6 @@ p, a, button, li {color: var(--color9)}
   width: 100%;
   position:relative;
   z-index: 1;
-  margin-top: var(--frontPageATFMT);
 }
 
 .ATFWording {
@@ -1046,8 +1052,8 @@ p, a, button, li {color: var(--color9)}
 }
 
 .frontPageATF .cotizador {
-  border-radius: 4px;
-  box-shadow: var(--DP8);
+  border-radius: 12px;
+  box-shadow: var(--DP16);
   background: rgba(236,239,241, 0.8);
 }
 
@@ -1217,22 +1223,15 @@ p, a, button, li {color: var(--color9)}
   grid-template-columns: min-content 1fr min-content;
 }
 
+
 .testimonialCarusel {
   padding: var(--testimonialCaruselP);
 }
 
 
-.testimonialBtn {
-  border: none;
-  height: max-content;
-  border-radius: 50%;
-  padding: 1rem;
+.testimonialsContainer .arrowBtn {
   margin: auto;
-  background: transparent;
-  font-size: 2rem;
-  color: var(--color8);
 }
-
 
 .testimonialTxt {
   text-align: center;
@@ -1722,7 +1721,7 @@ p, a, button, li {color: var(--color9)}
 .hideFilterBtn.alt {
   background: var(--color2);
   border: 1px solid var(--color2);
-  width: 150px;
+  width: 100px;
   box-shadow: unset;
 }
 
@@ -1768,31 +1767,30 @@ p, a, button, li {color: var(--color9)}
 
 .encuentraContenedorTitle {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .archiveTopInteractTitle {
   margin: auto;
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: .25s;
-  font-weight:normal;
+  margin-left: 0;
+}
+
+.hideFilterBtn.alt .hideWord {
+  display: none;
 }
 
 
 .hideFilterBtn.alt .archiveTopInteractTitle {
   font-size: 16px;
-  font-weight: bold;
 }
 
 .encuentraContenedorTitle, .advancedSearchTitle {
   text-align: var(--archive2TxtAlign)
 }
 
-.advancedSearchTitle {
-  font-size: 1.1rem;
-  font-weight: bold;
-  width: 100%;
-}
+
 .hideFilter.alt .filterArrow {
   position: relative;
   transform: rotate(180deg);
@@ -1887,9 +1885,11 @@ p, a, button, li {color: var(--color9)}
 .btnSimple{
   background:none;
   box-shadow: none;
+  border: none;
   color:var(--color1);
   grid-row: 2;
-  margin: 0;
+  margin: var(--btnSimpleM);
+  cursor: pointer;
 }
 .btnSimple:hover{
   box-shadow: none;
@@ -1942,8 +1942,7 @@ p, a, button, li {color: var(--color9)}
   background:white;
   border:1px solid var(--color8);
   border-radius:50%;
-  bottom:-1.7rem;
-  left:-.3rem;
+  /* left:-.3rem; */
   color:var(--color8);
   cursor:pointer;
   height: 2rem;
@@ -1953,7 +1952,8 @@ p, a, button, li {color: var(--color9)}
   transition:.4s;
   width: 2rem;
   z-index:-1;
-  top: 0;
+  top: 100px;
+  right: 100px;
 }
 .cartButton:hover{
   background:var(--color8);
@@ -1972,22 +1972,53 @@ p, a, button, li {color: var(--color9)}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.7.3) =arrowButton:
+                          6.7.3) =arrowBtn:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.arrowButton{
-  background:transparent;
-  border:none;
-  border-radius: 20%;
-  color:black;
-  cursor: pointer;
-  height:1.5rem;
-  margin:auto 0;
-  position:relative;
-  transition: .25s;
-  width:1.5rem;
-  z-index: 2;
+
+
+
+.arrowBtnContainer {
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  width: 100%;
 }
+
+.arrowSVG {
+  height: 2rem;
+  width: 2rem;
+  color: var(--color1);
+  box-shadow: var(--DP4);
+  border-radius: 50%;
+  transition: .25s;
+}
+
+
+.arrowBtn {
+  border-radius: 20%;
+  border: none;
+  color:black;
+  transition: .25s;
+  height: 2rem;
+  cursor: pointer;
+  width: 2rem;
+  background: var(--color1);
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.arrowBtn:focus {
+  box-shadow: 0px 0px 0px 10px rgba(6,116,187,1);
+  outline: none;
+}
+
+.arrowBtn:hover .arrowSVG {
+  color: #03a4f2;
+  box-shadow: var(--DP8);
+}
+
 .arrowButtonNext{margin-left:auto}
 .arrowButton:hover {
   color: var(--color1);
@@ -2125,6 +2156,16 @@ p, a, button, li {color: var(--color9)}
   margin: .25rem 0;
 }
 
+.summaryTitleContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.summaryTitleContainer svg {
+  height: 2rem;
+  margin-left: 10px;
+}
+
 .summaryTitle{
   font-size: 1.7rem;
 }
@@ -2209,52 +2250,16 @@ p, a, button, li {color: var(--color9)}
   height: min-content;
 }
 
+.card .arrowBtn {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .productGalleryImg.inactive{ opacity:0;}
 
 
-.arrowBtnContainer {
-  margin-top: 0;
-  display: flex;
-  justify-content: space-between;
-  top: 50%;
-  width: 100%;
-}
 
-.arrowSVG {
-  height: 2rem;
-  width: 2rem;
-  color: var(--color1);
-  box-shadow: var(--DP4);
-  border-radius: 50%;
-  transition: .25s;
-}
-
-.arrowSVG:hover {
-}
-
-.arrowBtn {
-  border-radius: 20%;
-  border: none;
-  color:black;
-  transition: .25s;
-  height: 2rem;
-  cursor: pointer;
-  width: 2rem;
-  background: var(--color1);
-  border-radius: 50%;
-}
-
-.arrowBtn:focus {
-  box-shadow: 0px 0px 0px 10px rgba(6,116,187,1);
-  outline: none;
-}
-
-.arrowBtn:hover .arrowSVG {
-  color: #03a4f2;
-  box-shadow: var(--DP8);
-}
-
-.galleryTitleContainer {
+.galleryTitleContacardbiner {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2297,13 +2302,22 @@ p, a, button, li {color: var(--color9)}
 }
 
 .containerAttributeName {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.containerClassCaption {
+  font-size: 18px;
 }
 
 .containerAttribute img{
   width: auto;
 }
 
+.containerClassSeparator {
+  border: solid 1px var(--color7);
+  width: 100%;
+  margin: 1rem var(--lateral);
+}
 
 .btn.singleBuy {
     width: var(--containerAttributeW);
@@ -2343,7 +2357,7 @@ p, a, button, li {color: var(--color9)}
 }
 
 .categoryCard .cartItemSvg {
-  height: 4rem;
+  height: 3rem;
   margin: auto 16px auto 0;
 }
 
@@ -2376,21 +2390,82 @@ p, a, button, li {color: var(--color9)}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.cotizador{
+.cotizador {
   grid-column:1;
   grid-row:1;
   margin:auto var(--lateral);
   position: relative;
   width:calc(100% - var(--lateral) * 2);
   z-index: 3;
+  display: grid;
+  padding: 1rem;
+  min-height: 250px;
+  grid-gap: 1rem;
+}
+
+.cotizador .dynamicContLogo {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  background: white;
+  padding: 5px;
+  border-radius: 50%;
 }
 
 .cotizadorTitle,
 .cotizadorTxt {
   grid-column: 1/-1;
   display: none;
-  padding:.5rem 1rem;
+  margin: auto auto auto 0;
 }
+
+.cotizadorTxt {
+  font-size: 18px;
+}
+
+.contizacionAvanzada {
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  flex-direction: var(--cotizacionAvanzadaFD);
+}
+
+.contizacionAvanzada .btnSimple {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.avanzadaTxt {
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* .cotizador .cuantos {
+  position: relative;
+}
+
+.cotizador .cuantos::after {
+  content:'Cantidad';
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  padding: 9px 52px 9px 16px;
+  font-size: .8rem!important;
+  border-bottom: 2px solid var(--color2);
+  background: white;
+  text-align: center;
+  transition: .25s;
+}
+
+.cotizador .cuantos:hover::after {
+  opacity: 0;
+} */
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2706,20 +2781,34 @@ p, a, button, li {color: var(--color9)}
   grid-gap:.5rem;
   padding:.5rem 0;
 }
-.dynamicCont .btn{background:#ddd; color:var(--color8);}
-.dynamicCont.ready .btn{background:var(--color2)}
-.dynamicCont{
+
+.dynamicCont .btn{
+  background:#ddd;
+  color:var(--color8);
+}
+
+.dynamicCont.ready .btn{
+  background:var(--color2);
+}
+
+.dynamicCont {
   align-items:center;
   display:grid;
-  /* grid-auto-flow:column; */
-  grid-auto-flow:var(--dynamicContGAF);
-  grid-auto-columns:auto;
-  /* grid-template-columns:2rem 1fr 4.5rem auto; */
-  grid-template-columns:var(--dynamicContGTC);
-  grid-template-rows:var(--dynamicContGTR);
+  /* grid-auto-flow:var(--dynamicContGAF); */
+  /* grid-auto-columns:auto; */
+  /* grid-template-columns:var(--dynamicContGTC); */
+  grid-template-columns: var(--dynamicContGTC);
+  /* grid-template-rows:var(--dynamicContGTR); */
   grid-gap:1rem;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
 }
+
+.dynamicCont >* {margin:auto;}
+
+.dynamicCont>*:not(.cuantos):not(.btn) {
+  grid-column: var(--dynamicChildsContGC);
+}
+
 .dynamicContLogo{
   width:2rem;
   grid-row:1/-1;
@@ -2729,12 +2818,12 @@ p, a, button, li {color: var(--color9)}
   grid-gap:inherit;
   grid-template-columns:var(--dynamicContSelector);
 }
-
+/*
 .dynamicCont .selectBox:nth-child(2){grid-column:2}
 .dynamicCont .selectBox:nth-child(3){grid-column:3}
 .dynamicCont .selectBox:nth-child(4){grid-column:var(--dynamicContSelectBox4GC)}
-/* .dynamicCont .selectBox:nth-child(5){grid-column:} */
-
+.dynamicCont .selectBox:nth-child(5){grid-column:}
+ */
 
 
 /* ---------------------------------------------------------------------------
@@ -2880,19 +2969,19 @@ p, a, button, li {color: var(--color9)}
 
 .archiveFilter2 {
   position: var(--archiveFilterPosition);
-  min-height: var(--archiveFilter2MH);
   display: flex;
   flex-wrap: wrap;
-  flex-direction: var(--archiveFilter2FD);
+  /* flex-direction: var(--archiveFilter2FD); */
   grid-gap:.6rem;
   grid-auto-rows:40px;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: calc(2rem + 30px) 1rem 1rem 1rem;
   transition: .5s;
   z-index: var(--archiveFilter2Z-Index);
   width: var(--archiveFilter2Width);
-  top: 150px;
+  top: 120px;
   border-radius: 0 0 4px 0;
-  justify-content: var(--archiveFilterJustifyC);
+  /* justify-content: var(--archiveFilterJustifyC); */
+  justify-content: space-between;
   background: white;
   box-shadow: var(--DP4);
 
@@ -2906,7 +2995,9 @@ p, a, button, li {color: var(--color9)}
 }
 
 .archiveFilter2 .selectBox {
-  width: var(--archiveFilter2SelectBoxW);
+  /* width: var(--archiveFilter2SelectBoxW); */
+  width: 45%;
+  margin: 10px 0;
 }
 
 .byeByeBtn{

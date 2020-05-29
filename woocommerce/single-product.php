@@ -107,36 +107,43 @@
             <?php newSvg($sizeSlug) ?>
             <h6 class="containerAttributeName"><?php echo $size; ?></h6>
           </div>
-          <p class="tumamiCaption"><?php echo get_term_by('slug', $sizeSlug, 'product_cat')->description; ?></p>
+          <p class="containerClassCaption"><?php echo get_term_by('slug', $sizeSlug, 'product_cat')->description; ?></p>
         </div>
+
+        <hr class="containerClassSeparator">
 
         <div class="categoryCard">
           <div class="containerAttributeTxt">
             <?php newSvg($tipo_1) ?>
             <h6 class="containerAttributeName"><?php echo $tipo_1; ?></h6>
           </div>
-          <p class="tumamiCaption"><?php echo get_term_by('slug', $tipo_1, 'product_cat')->description; ?></p>
+          <p class="containerClassCaption"><?php echo get_term_by('slug', $tipo_1, 'product_cat')->description; ?></p>
         </div>
+
+        <hr class="containerClassSeparator">
 
         <div class="categoryCard">
           <div class="containerAttributeTxt">
             <?php newSvg(strtoupper($tipo_2Slug)) ?>
             <h6 class="containerAttributeName"><?php echo $tipo_2; ?></h6>
           </div>
-          <p class="tumamiCaption"><?php echo get_term_by('slug', $tipo_2Slug, 'product_cat')->description; ?></p>
+          <p class="containerClassCaption"><?php echo get_term_by('slug', $tipo_2Slug, 'product_cat')->description; ?></p>
         </div>
+
+        <hr class="containerClassSeparator">
 
         <div class="categoryCard">
           <div class="containerAttributeTxt">
             <?php newSvg(strtoupper($conditionSlug)) ?>
             <h6 class="containerAttributeName"><?php echo $condition; ?></h6>
           </div>
-          <p class="tumamiCaption"><?php echo get_term_by('slug', $conditionSlug, 'product_cat')->description; ?></p>
+          <p class="containerClassCaption"><?php echo get_term_by('slug', $conditionSlug, 'product_cat')->description; ?></p>
         </div>
 
 
       </section>
 
+      <hr class="containerClassSeparator">
 
       <section class="theContent">
         <p class="content">
@@ -147,9 +154,10 @@
       <section class="testimonialsSec sectionPadding">
         <h3 class="testimonialSecTitle brandColorTxt">CLIENTES SATISFECHOS</h3>
         <div class="testimonialsContainer Carousel">
-          <button class="testimonialBtn" id="nextButton" >
-            <svg class="arrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
+          <button class="arrowBtn" id="nextButton" >
+            <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
+              <path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
             </svg>
           </button>
           <?php
@@ -165,9 +173,10 @@
               </div>
             </quote>
           <?php } ?>
-          <button class="testimonialBtn" id="prevButton">
-            <svg class="arrowSVG" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
+          <button class="arrowBtn" id="prevButton">
+            <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="53" cy="53" r="53" fill="currentColor"/>
+              <path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
             </svg>
           </button>
         </div>

@@ -7,9 +7,13 @@
 
   <div class="cotizador" id="cotizador">
     <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
-
+    <p class="cotizadorTxt">Tras completar el proceso de cotización, recibiás una cotización rápida inmediata</p>
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
+    </div>
+    <div class="contizacionAvanzada">
+      <p class="avanzadaTxt">¿Necesitas una cotización mas detallada?</p>
+      <a href="#" class="btnSimple">Ir a Cotización avanzada</a>
     </div>
   </div>
 
@@ -113,7 +117,10 @@
         <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:flex}</style>
         <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
           <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
-            <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
+            <div class="summaryTitleContainer">
+              <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
+              <?php newSvg(strtoupper($category->slug)); ?>
+            </div>
             <p class="summaryTxt"><?php echo $category->description; ?></p>
           </div>
           <img class="article2Media" src="<?php echo wp_get_attachment_url( get_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">

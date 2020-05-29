@@ -22,10 +22,10 @@
 
 
 
-  <div class="addToCartQntContainer">
-    <input class="addToCartQnt" id="addToCartQantity" type="number" value="1" min="1" onchange="console.log('HOLA MUNDO')">
-    <div class="addToCartQntBtn" onclick="cartController.changeQuantity(-1)">-</div>
-    <div class="addToCartQntBtn" onclick="cartController.changeQuantity(+1)">+</div>
+  <div class="cuantos">
+    <input class="cuantosQnt" id="addToCartQantity" type="number" value="1" min="1" onchange="console.log('HOLA MUNDO')">
+    <div class="cuantosBtn" onclick="cartController.changeQuantity(-1)">-</div>
+    <div class="cuantosBtn" onclick="cartController.changeQuantity(+1)">+</div>
   </div>
 
   <button class="btn" onclick="cartController.add(cartController.currentSemiSelection)" disabled>AGREGAR</button>
