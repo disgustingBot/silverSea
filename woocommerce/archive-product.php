@@ -98,18 +98,17 @@
         <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
       </g>
     </svg>
-    <p class="archiveTopInteractTitle">Hide filters</p>
+    <p class="archiveTopInteractTitle"><span class="hideWord">Hide</span> filters</p>
   </button>
   <div class="byeByeBtn">
     <button class="btn">CONTENEDORES EN REBAJA</button>
-    <button class="btn">Finalizar pedido</button>
+    <button class="btn">Finalizar cotización</button>
   </div>
 </section>
 
 <div class="archiveMain">
   <div class="archiveFilter2">
-    <h2 class="encuentraContenedorTitle brandColorTxt">ENCUENTRA TU CONTENEDOR</h2>
-    <h6 class="advancedSearchTitle">Búsqueda avanzada</h6>
+    <h2 class="encuentraContenedorTitle brandColorTxt">Cotiza tu contenedor</h2>
 
     <?php woocommerce_subcats_from_parentcat('size'); ?>
 
@@ -183,14 +182,16 @@
             </a>
           <?php $count++; }} ?>
 
-            <button class="arrowButton arrowButtonNext rowcol1" id="nextButton" >
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 21.18L14.2713 12L5 2.82L7.85425 0L20 12L7.85425 24L5 21.18Z" fill="currentColor"/>
+            <button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
+              <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="53" cy="53" r="53" fill="currentColor"/>
+                <path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
               </svg>
             </button>
-            <button class="arrowButton arrowButtonPrev rowcol1" id="prevButton">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18.5455 21.18L9.77992 12L18.5455 2.82L15.8469 0L4.36365 12L15.8469 24L18.5455 21.18Z" fill="currentColor"/>
+            <button class="arrowBtn arrowButtonPrev rowcol1" id="prevButton">
+              <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
+                <path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
               </svg>
             </button>
         </div>
