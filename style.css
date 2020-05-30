@@ -199,6 +199,10 @@ FIN DE MAPA DE CONTENIDOS */
   --frontPageATFBgH: 100vh;
 
 
+  /* MAPS */
+  --mapInterTxtW: 100%;
+
+
 
 
   /* ?FOOTER */
@@ -238,14 +242,14 @@ FIN DE MAPA DE CONTENIDOS */
   --productGalleryTop: 0;
   --archiveFilterPosition: static;
   --archiveFilter2Z-Index: 2;
-  /* --archiveFilterJustifyC: space-evenly; */
+  --archiveFilterJustifyC: space-evenly;
   --archiveTopInteractionDisplay: none;
   --hideFilterBtnPosition: static;
   --hideFilterBtnHeight: max-content;
   --archiveFilter2Width: 100%;
   --archiveFilter2MH: unset;
-  /* --archiveFilter2FD: row; */
-  /* --archiveFilter2SelectBoxW: 40%; */
+  --archiveFilter2FD: row;
+  --archiveFilter2SelectBoxW: 40%;
   --archiveFilterAltTransform: translateY(calc(-100% + 15px));
   --archiveFilter2BR: none;
   --archiveFilter2BB: solid var(--color2) 15px;
@@ -363,7 +367,8 @@ FIN DE MAPA DE CONTENIDOS */
     --txtCenterLeft: left;
     --TxtLeftCenter: center;
 
-
+      /* MAPS */
+      --mapInterTxtW: 350px;
 
 
     /* BLUEBAR */
@@ -483,14 +488,14 @@ FIN DE MAPA DE CONTENIDOS */
     /* ARCHIVE-PAGE */
    --archiveFilterPosition: fixed;
    --archiveFilter2Z-Index: 1;
-   /* --archiveFilterJustifyC: space-between; */
+   --archiveFilterJustifyC: space-between;
    --archiveTopInteractionDisplay: flex;
    --hideFilterBtnPosition: fixed;
    --hideFilterBtnHeight: 70px;
    --archiveFilter2Width: 25%;
    --archiveFilter2MH: 40vh;
-   /* --archiveFilter2FD: column; */
-   /* --archiveFilter2SelectBoxW: 100%; */
+   --archiveFilter2FD: column;
+   --archiveFilter2SelectBoxW: 100%;
    --archiveFilterAltTransform: translateX(calc(-100% + 15px));
    --archiveFilter2BR: solid var(--color2) 15px;
    --archiveFilter2BB: none;
@@ -786,6 +791,11 @@ p, a, button, li {color: var(--color9)}
   font-weight: bold;
 }
 
+.current-menu-item:hover a {
+  color: white!important;
+}
+
+
 
 .header .menu-item::after {
   content: '';
@@ -815,6 +825,11 @@ p, a, button, li {color: var(--color9)}
 
 .headerMob .menu-item {
   margin: 1rem 0;
+}
+
+.headerMob .logoLink {
+  display: flex;
+  margin: 10px auto 10px var(--lateral);
 }
 
 .menu-item a{
@@ -849,25 +864,53 @@ p, a, button, li {color: var(--color9)}
 }
 
 .navBarMobile {
-  position:fixed;
-  top:60px;
-  right:0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  margin: auto;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  font-size: 2rem;
+}
+.navBarMobileContainer {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  height: calc(100vh - 120px);
   margin-right: -100%;
-  /* position: relative; */
   transition: .25s;
   width: 60vw;
-  padding: 1rem;
   background: white;
   filter: brightness(100%)!important;
   font-size: 2rem;
-  z-index: 3;
+  z-index: 5;
 }
 
-.body.mobileNavMenu .navBarMobile {
+.navBarMobileContainer .blueBar {
+  padding: 10px;
+  height: 60px;
+}
+
+.navBarMobileContainer .blueBar .socialMediaLink:first-child {
+  margin: auto!important;
+}
+
+.navBarMobileContainer .selectLang {
+  display: none;
+}
+
+.navBarMobileContainer .socialMedia {
+  width: 100%;
+  margin: auto;
+}
+
+
+
+.navBarMobileContainer .socialMediaLink {
+  height: 2rem;
+  margin: auto;
+}
+
+.body.mobileNavMenu .navBarMobileContainer {
   transition: .25s;
   margin-right: 0;
 }
@@ -881,6 +924,10 @@ p, a, button, li {color: var(--color9)}
   height: 2rem;
 }
 
+.headerMob .upperHeader {
+  height: 60px;
+}
+
 .hamburgerMenu {
   cursor: pointer;
   display: flex;
@@ -888,7 +935,7 @@ p, a, button, li {color: var(--color9)}
   justify-content: space-between;
   height: 1rem;
   width: 2rem;
-  margin: auto var(--lateral);
+  margin: auto var(--lateral) auto auto;
 }
 .hamStripe {
   background: var(--color1);
@@ -900,7 +947,18 @@ p, a, button, li {color: var(--color9)}
   font-size: 1.2rem;
 }
 
+.navBarMobile .menu-item {
+  margin: 16px auto;
+  width: 90%;
+}
 
+.navBarMobile .menu-item a {
+  font-size: 20px;
+}
+
+.navBarMobile .current-menu-item:hover a {
+  color: var(--color2)!important;
+}
 
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
@@ -928,6 +986,7 @@ p, a, button, li {color: var(--color9)}
 
 .blueBarTel{
   text-decoration: none;
+  color: white;
 }
 
 .blueBarTel{margin: var(--blueBarTelM);}
@@ -1149,7 +1208,7 @@ p, a, button, li {color: var(--color9)}
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 350px;
+  width: var(--mapInterTxtW);
   height: 45px;
   right: 0;
   box-shadow: var(--DP1);
@@ -2560,10 +2619,8 @@ p, a, button, li {color: var(--color9)}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .selectBox{
-  --selectBoxHeight:40px;
   display: grid;
   align-items: center;
-  grid-template-rows: var(--selectBoxHeight);
   width:100%;
   position: relative;
 }
@@ -2964,6 +3021,7 @@ p, a, button, li {color: var(--color9)}
   display: var(--archiveMainDisplay);
   position: relative;
   transition: .5s;
+  flex-wrap: wrap;
 }
 
 
@@ -2971,7 +3029,7 @@ p, a, button, li {color: var(--color9)}
   position: var(--archiveFilterPosition);
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: var(--archiveFilter2FD); */
+  flex-direction: var(--archiveFilter2FD);
   grid-gap:.6rem;
   grid-auto-rows:40px;
   padding: calc(2rem + 30px) 1rem 1rem 1rem;
@@ -2980,8 +3038,7 @@ p, a, button, li {color: var(--color9)}
   width: var(--archiveFilter2Width);
   top: 120px;
   border-radius: 0 0 4px 0;
-  /* justify-content: var(--archiveFilterJustifyC); */
-  justify-content: space-between;
+  justify-content: var(--archiveFilterJustifyC);
   background: white;
   box-shadow: var(--DP4);
 
@@ -2995,8 +3052,7 @@ p, a, button, li {color: var(--color9)}
 }
 
 .archiveFilter2 .selectBox {
-  /* width: var(--archiveFilter2SelectBoxW); */
-  width: 45%;
+  width: var(--archiveFilter2SelectBoxW);
   margin: 10px 0;
 }
 
