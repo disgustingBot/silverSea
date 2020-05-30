@@ -102,6 +102,15 @@
       <section class="singleCategoryDescription">
         <h5 class="singleCategoryTitle">Características del contenedor</h5>
 
+        <section class="theContent">
+          <p class="content">
+            <?php echo get_the_content(); ?>
+          </p>
+        </section>
+
+        <div class="containerClassSeparator"></div>
+        
+
         <div class="categoryCard">
           <div class="containerAttributeTxt">
             <?php newSvg($sizeSlug) ?>
@@ -110,7 +119,7 @@
           <p class="containerClassCaption"><?php echo get_term_by('slug', $sizeSlug, 'product_cat')->description; ?></p>
         </div>
 
-        <hr class="containerClassSeparator">
+        <div class="containerClassSeparator"></div>
 
         <div class="categoryCard">
           <div class="containerAttributeTxt">
@@ -120,7 +129,7 @@
           <p class="containerClassCaption"><?php echo get_term_by('slug', $tipo_1, 'product_cat')->description; ?></p>
         </div>
 
-        <hr class="containerClassSeparator">
+        <div class="containerClassSeparator"></div>
 
         <div class="categoryCard">
           <div class="containerAttributeTxt">
@@ -130,7 +139,7 @@
           <p class="containerClassCaption"><?php echo get_term_by('slug', $tipo_2Slug, 'product_cat')->description; ?></p>
         </div>
 
-        <hr class="containerClassSeparator">
+        <div class="containerClassSeparator"></div>
 
         <div class="categoryCard">
           <div class="containerAttributeTxt">
@@ -141,15 +150,9 @@
         </div>
 
 
+        <div class="containerClassSeparator"></div>
       </section>
 
-      <hr class="containerClassSeparator">
-
-      <section class="theContent">
-        <p class="content">
-          <?php echo get_the_content(); ?>
-        </p>
-      </section>
 
       <section class="testimonialsSec sectionPadding">
         <h3 class="testimonialSecTitle brandColorTxt">CLIENTES SATISFECHOS</h3>

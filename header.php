@@ -86,9 +86,8 @@
   </header>
 
   <header class="headerMob" id="headerMob">
-    <?php include('blueBar.php') ?>
     <div class="upperHeader" id="cosaTest">
-      <a href="<?php echo site_url('');  ?>" class="logoLink">
+      <a class="logoLink" href="<?php echo site_url('');  ?>">
         <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
       </a>
       <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
@@ -98,16 +97,19 @@
       </div>
     </div>
   </header>
-  <?php
-  $args = array(
-    'theme_location' => 'navBarMobile',
-    'depth' => 0,
-    'container'	=> false,
-    'fallback_cb' => false,
-    'menu_class' => 'navBarMobile',
-  );
-  wp_nav_menu($args);
-  ?>
+  <nav class="navBarMobileContainer">
+    <?php
+    $args = array(
+      'theme_location' => 'navBarMobile',
+      'depth' => 0,
+      'container'	=> false,
+      'fallback_cb' => false,
+      'menu_class' => 'navBarMobile',
+    );
+    wp_nav_menu($args);
+    ?>
+    <?php include('blueBar.php') ?>
+  </nav>
 
 
 
