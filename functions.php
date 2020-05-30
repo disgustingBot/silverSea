@@ -1,6 +1,11 @@
 <?php
+use Automattic\WooCommerce\Client;
+
 
 require_once 'customPosts.php';
+// require_once get_template_directory() . '/inc/productFactory.php';
+require_once 'inc/productFactory.php';
+
 
 function lattte_setup(){
 
@@ -378,10 +383,6 @@ function lt_new_pass(){
 
 
 
-
-
-
-
 //Second solution : two or more files.
 //If you're using a child theme you could use:
 // get_stylesheet_directory_uri() instead of get_template_directory_uri()
@@ -392,18 +393,262 @@ function load_admin_styles() {
 
 
 
+// SINCROTRON
+// consultas a base de datos para el sincrotron
+add_action( 'wp_ajax_lt_create_products', 'lt_create_products' );
+add_action( 'wp_ajax_nopriv_lt_create_products', 'lt_create_products' );
+function lt_create_products () {
+	$debugMode = true;
+	$respuesta = array();
+	$products = false;
+	// if(isset($_POST['products']) && $_POST['products'] == 'true'){$products=true;}
+	$respuesta['greet'] = 'Hi!';
+	if(isset($_POST['products'])){
+		$products=json_decode(stripslashes($_POST['products']));
+		$respuesta['gate0'] = 'productos recibidos';
+		// $respuesta['decode'] = $products;
+		foreach ($products as $key => $value) {
+			// $respuesta[$key] = $value;
+			$respuesta['name'] = $value->Name;
+			// code...
+						// FALTAN LAS IMAGENES
+						$basic_data = array(
+							'post_title'             => $value->Name,
+							'post_content'           => $value->Description,
+						);
+						$categories = array(
+							0 => $value->size,
+							1 => $value->tipo_2,
+							2 => $value->condition,
+						);
+						$meta_data = array(
+							'alto'  => $value->alto,
+							'ancho' => $value->ancho,
+							'largo' => $value->largo,
+							'_sku'  => $value->SKU,
+						);
+
+						// $respuesta['data'] = $basic_data;
+						// $respuesta['cate'] = $categories;
+						// $respuesta['meta'] = $meta_data;
+
+
+
+						$newID = newProduct($basic_data, $categories, $meta_data);
+						$respuesta[$key] = "Product '".$newID."' creado";
+		}
+
+
+
+	}else{$respuesta['gate0'] = 'error al recibir productos';}
+	if($debugMode){echo wp_json_encode($respuesta);}
+	exit();
+}
+
+
+
+function get_products_count(){
+
+		$qnty = 0;
+		$args = array(
+			'post_type'      => 'product',
+			// 'posts_per_page' => 30,
+			'posts_per_page' => -1,
+		);
+
+		$loop = new WP_Query( $args );
+    while ( $loop->have_posts() ) : $loop->the_post();
+			$qnty++;
+    endwhile;
+
+		wp_reset_query();
+		return $qnty;
+}
+
+
+// consultas a base de datos para el sincrotron
+add_action( 'wp_ajax_lt_wipe_products', 'lt_wipe_products' );
+add_action( 'wp_ajax_nopriv_lt_wipe_products', 'lt_wipe_products' );
+function lt_wipe_products () {
+	$debugMode = true;
+	$respuesta = array();
+	$delete = false;
+	$cantidad = 0;
+	if(isset($_POST['delete']) && $_POST['delete'] == 'true'){$delete=true;}
+	if(isset($_POST['cantidad'])){$cantidad=$_POST['cantidad'];}
+
+	$respuesta['status'] = 'Saludos desde el servidor, espero orden de eliminar.';
+	$respuesta['delete'] = $delete;
+
+
+
+	if ($delete) {
+		$respuesta['gate0'] = 'orden de eliminar detectada';
+
+		$qnty = get_products_count();
+		$respuesta['qnty'] = $qnty;
+
+		$args = array(
+			'post_type'      => 'product',
+			'posts_per_page' => $cantidad,
+		);
+
+		$loop = new WP_Query( $args );
+		$i = 0;
+    while ( $loop->have_posts() ) : $loop->the_post();
+			$respuesta[$i] = get_the_id();
+			if (wh_deleteProduct($respuesta[$i])) {
+				// $respuesta[$i] = "Producto '".$respuesta[$i]."' eliminado";
+				$respuesta[$i] = "Producto '".get_the_title()."' eliminado";
+				// echo '<h3>product: ' . $value->id . ' DELETED</h3>';
+			}
+      // global $product;
+      // echo '<br /><a href="'.get_permalink().'">' . woocommerce_get_product_thumbnail().' '.get_the_title().'</a>';
+			$i++;
+    endwhile;
+    wp_reset_query();
+
+		if($i==0){
+			$respuesta['status'] = 'No hay productos';
+
+		}
+		// echo 'DELETE ALL PRODUCTS';
+	}else{
+		// $qnty++;
+		$qnty = get_products_count();
+		$respuesta['qnty'] = $qnty;
+		$respuesta['toDelete'] = $qnty;
+	}
+
+	if($debugMode){echo wp_json_encode($respuesta);}
+	exit();
+}
+
+add_action( 'wp_ajax_lt_upload_file', 'lt_upload_file' );
+add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
+
+function lt_upload_file () {
+	$debugMode = false;
+	$respuesta = array();
+	$file = false;
+	if(isset($_FILES['file'])){$respuesta['gate0'] = "Your file '$fileName' got to the server safely";
+		$file = $_FILES['file'];
+
+    $fileName    = $file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize    = $file['size'];
+    $fileError   = $file['error'];
+
+		// $respuesta['name'] = $fileName;
+    $fileExt= explode('.' , $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $fileName2 = strtolower(($fileExt[0]));
+
+    $allowedExt = array( 'csv','tsv');
+    $fileNamesAllowed = array('ventas','gastos_adicionales','trenes','contenedores');
+
+		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
+		$fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
+
+		$fileRead = "C:/xampp/htdocs/Silversea/wp-content/themes/silverSea/uploads/".$fileNameNew;
+		if($fileActualExt=='csv'){$saltoDeLinea=",";}
+		if($fileActualExt=='tsv'){$saltoDeLinea="\\t";}
+
+
+    $dbServerName = "localhost";
+    $dbUsername = "root";
+    $dbPassword = "";
+    // $dbUsername = "contraseñaDificil";
+    // $dbPassword = ";$6qha)2L*KU)6nq";
+    $dbName = "lattedev_silver";
+
+    $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+		$query1 = "truncate table $dbName.$fileName2;";
+		$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
+		$qry = "Select
+						salesforce_id as SKU,
+						CONCAT( size, ' PIES' ) as 'Name',
+						container_description as 'Description',
+						null as 'Short description',
+						1 as 'In stock?',
+						1 as 'Stock',
+						null as 'Weight (kg)',
+						null as 'Length (cm)',
+						null as 'Width (cm)',
+						null as 'Height (cm)',
+						1 as 'Allow customer reviews?',
+						REPLACE(categoria,';',',') 'Categoria',
+						'http://localhost/Silversea/wp-content/uploads/2020/04/CIMG0468.png' Images,
+						ancho as 'ancho',
+						alto as 'alto',
+						largo as 'largo',
+						peso as 'peso',
+						tara as 'tara',
+						tipo_2 as 'tipo_2',
+						condicion as 'condition',
+						CONCAT( size, 'pies' ) as 'size'
+						from contenedores";
+
+		if($fileError===0){$respuesta['gate1']="No errors uploading";
+	    if(in_array($fileName2,$fileNamesAllowed)){$respuesta['gate2']="Your file '$fileName' has a valid name";
+				if(in_array($fileActualExt,$allowedExt)){$respuesta['gate3']="Your file '$fileName' has a valid type";
+					if($fileSize<7000000){$respuesta['gate4']="File size is ok";
+						if(move_uploaded_file($fileTmpName,$fileDestination)){$respuesta['gate5']="File saved in the server correctly";
+							if($conn->query($query1)){$respuesta['gate6']="table correctly truncated";
+								if ($conn->query($query2)) {$respuesta['gate7']="Data loaded into table";
+
+
+									// esta parte solo deberi ejecutar en el caso de "contenedores"
+									if($conn->query($qry)){
+									  $ress = $conn->query($qry);
+									  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+										$json_array = wp_json_encode( $resp );
+										if (!$debugMode) {
+											echo $json_array;
+											// echo wp_json_encode( $resp );
+										}
+		              }
+
+								}else{$respuesta['gate7']="Error loading data in the table";}
+							}else{$respuesta['gate6']="Error truncating old Table";}
+						}else{$respuesta['gate5']="Error saving file in the server";}
+					}else{$respuesta['gate4']="File is too big";}
+				}else{$respuesta['gate3']="Your file '$fileName' DOESN'T have a valid type";}
+	    }else{$respuesta['gate2']="Your file '$fileName' DOESN'T have a valid name";}
+		}else{$respuesta['gate1']="Error uploading";}
+	}else{$respuesta['gate0']="No file recived";}
+
+	if($debugMode){echo wp_json_encode($respuesta);}
+	exit();
+}
 
 
 
 
 
-add_action(        'admin_post_lt_upload_file', 'lt_upload_file');
-add_action( 'admin_post_nopriv_lt_upload_file', 'lt_upload_file');
+// add_action(        'admin_post_lt_upload_file', 'lt_upload_file');
+// add_action( 'admin_post_nopriv_lt_upload_file', 'lt_upload_file');
+add_action(        'wp_ajax_lt_upload_file2', 'lt_upload_file2');
+add_action( 'wp_ajax_nopriv_lt_upload_file2', 'lt_upload_file2');
 
-function lt_upload_file(){
-  $link=$_POST['link'];
+function lt_upload_file2(){
 
-  if(isset($_POST['submit'])){
+	$redirect = false;
+	$delete = false;
+
+	$respuesta = array();
+
+
+	$respuesta['test'] = 'hola mundo';
+	// echo 'holaaaa';
+	// print_r('holaaaaa');
+
+  $link = $_POST['link'];
+
+	// $respuesta['file'] = var_dump($file);
+
+
+  // if(isset($_POST['submit'])){
     $file = $_FILES['file'];
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name'];
@@ -427,7 +672,9 @@ function lt_upload_file(){
             $fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
             $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
             if(move_uploaded_file($fileTmpName,$fileDestination)){ //muevo el archivo
-              echo "Your file uploaded correctly" . "<br><br>";
+              // echo "Your file uploaded correctly" . "<br><br>";
+							$respuesta['upload'] = 'Your file uploaded correctly';
+
               // include get_template_directory().'/inc/dbh.inc.php';
               /// truncate table
 
@@ -441,11 +688,14 @@ function lt_upload_file(){
               $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
 
+
+if (false) {
+	// code...
               if ($conn -> query("truncate table $dbName.$fileName2;")) {
-                echo "Se trunco la tabla correctamente.\n" . "<br><br>";
+                // echo "Se trunco la tabla correctamente.\n" . "<br><br>";
               }
               else {
-                echo $conn -> error;
+                // echo $conn -> error;
               }
 
               /// insert file in table
@@ -470,109 +720,122 @@ function lt_upload_file(){
               }
 
 
-              $query = new WC_Product_Query();
-              $products = $query->get_products();
-              foreach ($products as $key => $value) {
-                // code...
-                var_dump($key);
-                echo '<br>';
-                var_dump($value->id);
-                echo '<br>';
-                echo '<br>';
-                if (wh_deleteProduct($value->id)) {
-                  echo '<h3>product: ' . $value->id . ' DELETED</h3>';
-                }
-                echo '<br>';
-                echo '<br>';
+
+
+							if ($delete) {
+								// code...
+								$args = array(
+									'posts_per_page' => -1,
+								);
+								$query = new WC_Product_Query();
+								$products = $query->get_products();
+								foreach ($products as $key => $value) {
+									// code...
+									// var_dump($key);
+									// echo '<br>';
+									// var_dump($value->id);
+									// echo '<br>';
+									// echo '<br>';
+									// if (wh_deleteProduct($value->id)) {
+									// 	echo '<h3>product: ' . $value->id . ' DELETED</h3>';
+									// }
+									// echo '<br>';
+									// echo '<br>';
+								}
+							}
+
+							// if ($conn -> query("create table WCProduct
+							$qry = "Select
+                      salesforce_id as SKU,
+                      CONCAT( size, ' PIES' ) as 'Name',
+											container_description as 'Description'
+                      null as 'Short description',
+                      1 as 'In stock?',
+                      1 as Stock  ,
+                      null as 'Weight (kg)',
+                      null as 'Length (cm)',
+                      null as 'Width (cm)',
+                      null as 'Height (cm)',
+                      1 as 'Allow customer reviews?',
+                      REPLACE(categoria,';',',') Categoria  ,
+                      'http://localhost/Silversea/wp-content/uploads/2020/04/CIMG0468.png' Images,
+                      ancho as 'ancho',
+                      alto as 'alto',
+                      largo as 'largo',
+                      peso as 'peso',
+                      tara as 'tara',
+											tipo_2 as 'tipo_2',
+											condicion as 'condition',
+                      CONCAT( size, 'pies' ) as 'size',
+                      from contenedores";
+
+							if ($conn -> query($qry)) {
+                // echo 'TABLA CREADAAAAA';
+
+							  $ress = $conn->query($qry);
+							  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+								foreach ($resp as $key => $value) {
+									// code...
+									// echo '<h4>'.$key.'</h4>';
+									// echo "<h4>$key: ".$value['Name']."</h4>";
+
+
+
+									// FALTAN LAS IMAGENES
+									$basic_data = array(
+										'post_title'             => $value['Name'],
+										'post_content'           => $value['Description'],
+									);
+									$categories = array(
+										0 => $value['size'],
+										1 => $value['tipo_2'],
+										2 => $value['condition'],
+									);
+									$meta_data = array(
+										'alto'  => $value['alto'],
+										'ancho' => $value['ancho'],
+										'largo' => $value['largo'],
+							  		'_sku'  => $value['SKU'],
+									);
+									// newProduct($basic_data, $categories, $meta_data);
+
+
+
+
+									foreach ($value as $k => $v) {
+										// echo '<p>'.$k.'</p>';
+										// echo '<p>';
+										// var_dump($v);
+										// echo '</p>';
+
+										// code...
+									}
+								}
+							  $json_array = wp_json_encode( $resp );
+								$link = add_query_arg( array( 'tablaWoocommerce'  => wp_json_encode( $resp ), ), $link );
+
               }
 
-
-              if ($conn -> query("create table WCProduct
-                                  Select
-                                  ID  ,
-                                  'simple' as Type,
-                                  salesforce_id as SKU,
-                                  CONCAT( size, ' PIES' ) as Name  ,
-                                  '1' as Published  ,
-                                  '0' as 'Is featured?'  ,
-                                  'visible' as 'Visibility in catalog',
-                                  null as 'Short description',
-                                  null as Description  ,
-                                  null as 'Date sale price starts',
-                                  null as 'Date sale price ends',
-                                  'taxable' as 'Tax status',
-                                  null as 'Tax class',
-                                  1 as 'In stock?',
-                                  1 as Stock  ,
-                                  null as 'Low stock amount',
-                                  0 as 'Backorders allowed?',
-                                  0 as 'Sold individually?',
-                                  null as 'Weight (kg)',
-                                  null as 'Length (cm)',
-                                  null as 'Width (cm)',
-                                  null as 'Height (cm)',
-                                  1 as 'Allow customer reviews?',
-                                  null as 'Purchase note',
-                                  null as 'Sale price'  ,
-                                  0 as 'Regular price'  ,
-                                  REPLACE(categoria,';',',') Categoria  ,
-                                  null as Tags  ,
-                                  null as 'Shipping class',
-                                  'http://localhost/Silversea/wp-content/uploads/2020/04/CIMG0468.png' Images  ,
-                                  null as 'Download limit'  ,
-                                  null as 'Download expiry days'  ,
-                                  null as Parent  ,
-                                  null as 'Grouped products',
-                                  null as 'Upsells',
-                                  null as 'Cross-sells'  ,
-                                  null as 'External URL'  ,
-                                  null as 'Button text',
-                                  null as 'Position',
-                                  ancho as 'Meta: ancho',
-                                  alto as 'Meta: alto',
-                                  largo as 'Meta: largo',
-                                  peso as 'Meta: peso',
-                                  tara as 'Meta: tara'
-                                  from contenedores")) {
-                                    echo 'TABLA CREADAAAAA';
-              }
+}
+							$basic_data = array(
+								'post_title'             => 'la prueba de SKU',
+								'post_content'           => 'funcionara?',
+							);
+							$categories = array(
+								0 => '20pies',
+								1 => 'hc',
+								2 => 'cw',
+							);
+							$meta_data = array(
+								'alto'  => '1m',
+								'ancho' => '5m',
+								'largo' => '10m',
+								'_sku'  => '20HC CW',
+							);
+							// newProduct($basic_data, $categories, $meta_data);
 
 
-
-              // // siguiendo directrices de este post:
-              // // https://dominykasgel.com/woocommerce-rest-api-import-products-json/
-              // require __DIR__ . '/vendor/autoload.php';
-              //
-              // use Automattic\WooCommerce\Client;
-              // $woocommerce = new Client(
-              //     'http://example.com',
-              //     'ck_ed4bf437c339742c7e1c52f470c34f24d2d1c8f5',
-              //     'cs_acb386012f49a7720d7f1dda8d4b2667d123f55c',
-              //     [
-              //         'wp_api' => true,
-              //         'version' => 'wc/v2',
-              //     ]
-              // );
-              //
-              // $sql = 'SELECT * FROM WCProduct';
-              //
-              // $result = $conn -> query($sql);
-              // $json_array = array();
-              //
-              // while ($row = mysqli_fetch_assoc($result)) {
-              //   // code...
-              //   $json_array[] = $row;
-              // }
-              //
-              // echo '<pre>';
-              // print_r($json_array);
-              // echo '</pre>';
-
-
-
-              // $importer = new WC_Product_CSV_Importer;
-
-              // var_dump($importer);
+              // https://dominykasgel.com/woocommerce-rest-api-import-products-json/
 
 
 
@@ -583,25 +846,26 @@ function lt_upload_file(){
 
 
 
-              /// delete the first row with the name of columns
-              // $sqlDelete = "delete from $dbName.contenedores where tamaño = 'tamaño';";
-              //
-              // if ($conn -> query($sqlDelete)) {
-              //   $sqlDelete = "delete from $dbName.gastos_adicionales where pais = 'pais';";
-              //   if ($conn -> query($sqlDelete)) {
-              //     $sqlDelete = "delete from $dbName.ventas where pais = 'pais';";
-              //     if($conn -> query($sqlDelete)){
-              //       $sqlDelete = "delete from $dbName.trenes where proveedor = 'empresa';";
-              //       if($conn -> query($sqlDelete)){
-              //         $link = add_query_arg( array( 'status'  => 'AllSetAndDone', ), $link );
-              //       }
-              //     }
-              //   } else {
-              //     $link = add_query_arg( array( 'status'  => 'errorDeleteGastos' ), $link );
-              //   }
-              // } else {
-              //   $link = add_query_arg( array( 'status'  => 'errorDeleteContenedores' ), $link );
-              // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             } else {
               $link = add_query_arg( array( 'status'  => 'errorUploadFile' ), $link );
             }
@@ -621,9 +885,13 @@ function lt_upload_file(){
     else{
       $link = add_query_arg( array( 'error'  => 'wrongFileName', ), $link );
     }
-  }
-  // $link = add_query_arg( array( 'success'  => true, ), $link );
-  wp_redirect($link);
+  // }
+	echo wp_json_encode( $respuesta );
+
+	// $link = add_query_arg( array( 'success'  => true, ), $link );
+	if($redirect){
+		wp_redirect($link);
+	}
 }
 
 
@@ -632,9 +900,11 @@ function lt_upload_file(){
 
 
 
-// Receive the Request post that came from AJAX
+
+// COTIZADOR
+// consultas a base de datos para el cotizador
+// consultas a base de datos para el cotizador
 add_action( 'wp_ajax_gatCol', 'gatCol' );
-// We allow non-logged in users to access our pagination
 add_action( 'wp_ajax_nopriv_gatCol', 'gatCol' );
 
 function gatCol () {
@@ -656,55 +926,20 @@ function gatCol () {
 
   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
-
-  // global $wpdb;
-  // $results = $wpdb->get_results( "SELECT distinct tamaño FROM contenedores WHERE tamaño = 20");
-  // if(!empty($results))                        // Checking if $results have some values or not
-  // {
-  //     foreach($results as $row){
-  //       echo $row;
-  //     }
-  // }
-
   $qry = "SELECT distinct $col FROM contenedores";
   if($size){
     $qry = $qry . " WHERE size = '$size'";
-    // $qry = "SELECT distinct $col FROM contenedores WHERE  size = '$size'";
   }
   if($size && $tipo_1){
     $qry = $qry . " AND tipo_1 = '$tipo_1'";
-    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo_1 = '$tipo_1')";
   }
   if($size && $tipo_1 && $tipo_2){
-    // echo 'soy el nene';
-    // $qry = $qry . " AND condicion = '$tipo_2'";
     $qry = "SELECT salesforce_id, condicion FROM contenedores WHERE size = '$size' and tipo_1 = '$tipo_1' and tipo_2 = '$tipo_2'";
-    // echo $qry;
-    // $qry = "SELECT distinct $col FROM contenedores WHERE (size = '$size' AND tipo_1 = '$tipo_1' AND condicion = '$tipo_2')";
   }
-
-  // echo $qry;
-  // "SELECT distinct tipo_1 FROM contenedores WHERE size = '$algunTamaño'"
-  // "SELECT distinct condicion FROM contenedores WHERE size = '$algunTamaño' and tipo_1 = '$algunTipo'"
 
   $ress = $conn->query($qry);
   $resp = $ress->fetch_all(MYSQLI_ASSOC);
   echo wp_json_encode( $resp );
-
-
-
-
-  // $ress = $conn -> query("SELECT * FROM contenedores where id = 1");
-  // echo json_encode($resp);
-  // var_dump($resp);
-  // if ($resp) {
-  //   echo "ahi tene";
-  //   echo "<br>";
-  // } else {
-  //   echo "error";
-  //   echo "<br>";
-  //   echo $conn -> error;
-  // }
   exit();
 }
 
