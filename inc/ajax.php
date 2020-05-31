@@ -1,5 +1,5 @@
 <?php
-add_action('pre_get_posts','alter_query');
+// add_action('pre_get_posts','alter_query');
 
 function alter_query($query) {
 	//gets the global query var object

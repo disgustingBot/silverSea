@@ -1,5 +1,5 @@
 jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" error
-  console.log('HOLAAAA!');
+  // console.log('HOLAAAA!');
 
   // FILTER BAR CONTROLLER
   // Bloque inspirado en el post:
