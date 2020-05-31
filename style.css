@@ -1765,7 +1765,7 @@ p, a, button, li {color: var(--color9)}
   transition: .75s;
   position: var(--hideFilterBtnPosition);
   bottom: 0;
-  top: 120px;
+  top: 153px;;
   height: var(--hideFilterBtnHeight);
   left: 0;
   border: none;
@@ -3036,7 +3036,7 @@ p, a, button, li {color: var(--color9)}
   transition: .5s;
   z-index: var(--archiveFilter2Z-Index);
   width: var(--archiveFilter2Width);
-  top: 120px;
+  top: 153px;
   border-radius: 0 0 4px 0;
   justify-content: var(--archiveFilterJustifyC);
   background: white;
