@@ -54,7 +54,7 @@
     <input class="footLogInput" type="text" id="fname" name="fname" value="User">
     <br>
     <input class="footLogInput" type="text" id="lname" name="lname" value="Password">
-    <button class="footLogSubmit" type="submit" value="Submit">LOGIN</button>
+    <button class="footLogSubmit btn" type="submit" value="Submit">LOGIN</button>
   </form>
 
 </footer>
