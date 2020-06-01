@@ -545,7 +545,7 @@ function lt_upload_file () {
     $fileName2 = strtolower(($fileExt[0]));
 
     $allowedExt = array( 'csv','tsv');
-    $fileNamesAllowed = array('ventas','gastos_adicionales','trenes','contenedores');
+    $fileNamesAllowed = array('ventas','gastos_adicionales','trenes','contenedores', 'locations');
 
 		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
 		$fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
@@ -597,17 +597,20 @@ function lt_upload_file () {
 							if($conn->query($query1)){$respuesta['gate6']="table correctly truncated";
 								if ($conn->query($query2)) {$respuesta['gate7']="Data loaded into table";
 
-
-									// esta parte solo deberi ejecutar en el caso de "contenedores"
-									if($conn->query($qry)){
-									  $ress = $conn->query($qry);
-									  $resp = $ress->fetch_all(MYSQLI_ASSOC);
-										$json_array = wp_json_encode( $resp );
-										if (!$debugMode) {
-											echo $json_array;
-											// echo wp_json_encode( $resp );
+									if($fileName2 == 'contenedores'){
+										// esta parte solo deberi ejecutar en el caso de "contenedores"
+										if($conn->query($qry)){
+											$ress = $conn->query($qry);
+											$resp = $ress->fetch_all(MYSQLI_ASSOC);
+											$json_array = wp_json_encode( $resp );
+											if (!$debugMode) {
+												echo $json_array;
+												// echo wp_json_encode( $resp );
+											}
 										}
-		              }
+									}else{
+										echo wp_json_encode($respuesta);
+									}
 
 								}else{$respuesta['gate7']="Error loading data in the table";}
 							}else{$respuesta['gate6']="Error truncating old Table";}
@@ -623,276 +626,6 @@ function lt_upload_file () {
 }
 
 
-
-
-
-// add_action(        'admin_post_lt_upload_file', 'lt_upload_file');
-// add_action( 'admin_post_nopriv_lt_upload_file', 'lt_upload_file');
-add_action(        'wp_ajax_lt_upload_file2', 'lt_upload_file2');
-add_action( 'wp_ajax_nopriv_lt_upload_file2', 'lt_upload_file2');
-
-function lt_upload_file2(){
-
-	$redirect = false;
-	$delete = false;
-
-	$respuesta = array();
-
-
-	$respuesta['test'] = 'hola mundo';
-	// echo 'holaaaa';
-	// print_r('holaaaaa');
-
-  $link = $_POST['link'];
-
-	// $respuesta['file'] = var_dump($file);
-
-
-  // if(isset($_POST['submit'])){
-    $file = $_FILES['file'];
-    $fileName = $_FILES['file']['name'];
-    $fileTmpName = $_FILES['file']['tmp_name'];
-    $fileSize = $_FILES['file']['size'];
-    $fileError = $_FILES['file']['error'];
-    $fileType = $_FILES['file']['type'];
-
-
-    $fileExt= explode('.' , $fileName);
-    $fileActualExt = strtolower(end($fileExt));
-    $fileName2 = strtolower(($fileExt[0]));
-
-    $allowedExt = array( 'csv','tsv');
-    $fileNamesAllowed = array('ventas','gastos_adicionales','trenes','contenedores');
-
-
-    if(in_array($fileName2,$fileNamesAllowed)){
-      if(in_array($fileActualExt, $allowedExt)){
-        if($fileError=== 0 ){
-          if ($fileSize < 7000000) {
-            $fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
-            $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
-            if(move_uploaded_file($fileTmpName,$fileDestination)){ //muevo el archivo
-              // echo "Your file uploaded correctly" . "<br><br>";
-							$respuesta['upload'] = 'Your file uploaded correctly';
-
-              // include get_template_directory().'/inc/dbh.inc.php';
-              /// truncate table
-
-              $dbServerName = "localhost";
-              $dbUsername = "root";
-              $dbPassword = "";
-              // $dbUsername = "contraseñaDificil";
-              // $dbPassword = ";$6qha)2L*KU)6nq";
-              $dbName = "lattedev_silver";
-
-              $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-
-
-
-if (false) {
-	// code...
-              if ($conn -> query("truncate table $dbName.$fileName2;")) {
-                // echo "Se trunco la tabla correctamente.\n" . "<br><br>";
-              }
-              else {
-                // echo $conn -> error;
-              }
-
-              /// insert file in table
-
-              // $fileRead = "http://silverSea.wave-host.net/wp-content/themes/silverSea/uploads/contenedores-05-07-2020.csv/uploads/".$fileNameNew;
-              // $fileRead = get_template_directory_uri()."/uploads/".$fileNameNew;
-              // $link = add_query_arg( array( 'fileRead'  => $fileRead ), $link );
-              $fileRead = "C:/xampp/htdocs/Silversea/wp-content/themes/silverSea/uploads/".$fileNameNew;
-              if($fileActualExt=='csv'){
-                $saltoDeLinea = ',';
-              } else if($fileActualExt=='tsv'){
-                $saltoDeLinea = "\\t";
-              }
-              if ($conn -> query("LOAD DATA INFILE '" . $fileRead . "'
-                                  INTO TABLE $dbName.$fileName2
-                                  FIELDS TERMINATED BY '" . $saltoDeLinea . "'
-                                  IGNORE 1 LINES;")) {
-                // echo "Great! filed turned into a table" ."<br /><br />";
-                $link = add_query_arg( array( 'status'  => 'fileIntoTable' ), $link );
-              } else {
-                $link = add_query_arg( array( 'status'  => 'InsertOnTableError' ), $link );
-              }
-
-
-
-
-							if ($delete) {
-								// code...
-								$args = array(
-									'posts_per_page' => -1,
-								);
-								$query = new WC_Product_Query();
-								$products = $query->get_products();
-								foreach ($products as $key => $value) {
-									// code...
-									// var_dump($key);
-									// echo '<br>';
-									// var_dump($value->id);
-									// echo '<br>';
-									// echo '<br>';
-									// if (wh_deleteProduct($value->id)) {
-									// 	echo '<h3>product: ' . $value->id . ' DELETED</h3>';
-									// }
-									// echo '<br>';
-									// echo '<br>';
-								}
-							}
-
-							// if ($conn -> query("create table WCProduct
-							$qry = "Select
-                      salesforce_id as SKU,
-                      CONCAT( size, ' PIES' ) as 'Name',
-											container_description as 'Description'
-                      null as 'Short description',
-                      1 as 'In stock?',
-                      1 as Stock  ,
-                      null as 'Weight (kg)',
-                      null as 'Length (cm)',
-                      null as 'Width (cm)',
-                      null as 'Height (cm)',
-                      1 as 'Allow customer reviews?',
-                      REPLACE(categoria,';',',') Categoria  ,
-                      'http://localhost/Silversea/wp-content/uploads/2020/04/CIMG0468.png' Images,
-                      ancho as 'ancho',
-                      alto as 'alto',
-                      largo as 'largo',
-                      peso as 'peso',
-                      tara as 'tara',
-											tipo_2 as 'tipo_2',
-											condicion as 'condition',
-                      CONCAT( size, 'pies' ) as 'size',
-                      from contenedores";
-
-							if ($conn -> query($qry)) {
-                // echo 'TABLA CREADAAAAA';
-
-							  $ress = $conn->query($qry);
-							  $resp = $ress->fetch_all(MYSQLI_ASSOC);
-								foreach ($resp as $key => $value) {
-									// code...
-									// echo '<h4>'.$key.'</h4>';
-									// echo "<h4>$key: ".$value['Name']."</h4>";
-
-
-
-									// FALTAN LAS IMAGENES
-									$basic_data = array(
-										'post_title'             => $value['Name'],
-										'post_content'           => $value['Description'],
-									);
-									$categories = array(
-										0 => $value['size'],
-										1 => $value['tipo_2'],
-										2 => $value['condition'],
-									);
-									$meta_data = array(
-										'alto'  => $value['alto'],
-										'ancho' => $value['ancho'],
-										'largo' => $value['largo'],
-							  		'_sku'  => $value['SKU'],
-									);
-									// newProduct($basic_data, $categories, $meta_data);
-
-
-
-
-									foreach ($value as $k => $v) {
-										// echo '<p>'.$k.'</p>';
-										// echo '<p>';
-										// var_dump($v);
-										// echo '</p>';
-
-										// code...
-									}
-								}
-							  $json_array = wp_json_encode( $resp );
-								$link = add_query_arg( array( 'tablaWoocommerce'  => wp_json_encode( $resp ), ), $link );
-
-              }
-
-}
-							$basic_data = array(
-								'post_title'             => 'la prueba de SKU',
-								'post_content'           => 'funcionara?',
-							);
-							$categories = array(
-								0 => '20pies',
-								1 => 'hc',
-								2 => 'cw',
-							);
-							$meta_data = array(
-								'alto'  => '1m',
-								'ancho' => '5m',
-								'largo' => '10m',
-								'_sku'  => '20HC CW',
-							);
-							// newProduct($basic_data, $categories, $meta_data);
-
-
-              // https://dominykasgel.com/woocommerce-rest-api-import-products-json/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            } else {
-              $link = add_query_arg( array( 'status'  => 'errorUploadFile' ), $link );
-            }
-          } else {
-            // echo "Your File is too big";
-            $link = add_query_arg( array( 'error'  => 'tooBig', ), $link );
-          }
-        } else {
-          // echo "Error uploading File";
-          $link = add_query_arg( array( 'error'  => 'uploading', ), $link );
-        }
-      } else{
-        // echo "You cannot upload Files of this type";
-        $link = add_query_arg( array( 'error'  => 'wrongType', ), $link );
-      }
-    }
-    else{
-      $link = add_query_arg( array( 'error'  => 'wrongFileName', ), $link );
-    }
-  // }
-	echo wp_json_encode( $respuesta );
-
-	// $link = add_query_arg( array( 'success'  => true, ), $link );
-	if($redirect){
-		wp_redirect($link);
-	}
-}
 
 
 
@@ -945,7 +678,37 @@ function gatCol () {
 
 
 
+add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
+add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
 
+function lt_get_location () {
+	$debugMode = true;
+	$respuesta = array();
+	$col = $_POST['column'];
+
+
+	$dbServerName = "localhost";
+	$dbUsername = "root";
+	$dbPassword = "";
+	// $dbUsername = "contraseñaDificil";
+	// $dbPassword = ";$6qha)2L*KU)6nq";
+	$dbName = "lattedev_silver";
+
+	$conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+
+
+	$qry = "SELECT distinct $col FROM locations";
+	  $ress = $conn->query($qry);
+	  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+		$respuesta['location'] = wp_json_encode( $resp );
+		// $respuesta['location'] = $col;
+
+
+	$respuesta['test'] = 'Hola desde el server';
+
+	if($debugMode){echo wp_json_encode($respuesta);}
+	exit();
+}
 
 
 
