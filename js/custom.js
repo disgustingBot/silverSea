@@ -565,6 +565,7 @@ const lt_upload_file = () => {
 			productSincrotron.wipeProducts();
 		}
 
+
 	});
 }
 
@@ -575,6 +576,9 @@ async function ajax2(formData) {
 			body: formData,
 		});
     return await response.json();
+
+		// return await response.text();
+
   }catch(err){
     console.error(err);
   }
@@ -592,6 +596,7 @@ async function ajax3(formData) {
     console.error(err);
   }
 }
+
 
 
 

@@ -13,8 +13,7 @@
   <?php echo the_content(); ?>
 </section>
 
-<section class="sectionPadding aboutUsSec2 sectionColor3">
-  <article class="articleCounter aboutUsCounter">
+  <article class="sectionPadding articleCounter aboutUsCounter">
       <div class="counter">
         <div class="redDot" id="growUpActivator"></div>
         <div class="count">
@@ -44,7 +43,6 @@
       </div>
     </div>
   </article>
-</section>
 
 
 <section class="testimonialsSec sectionPadding">
