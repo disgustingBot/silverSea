@@ -1116,11 +1116,6 @@ p, a, button, li {color: var(--color9)}
   box-shadow: var(--DP16);
   background: rgba(236,239,241, 0.8);
 }
-
-.frontPageATF .coprAlqui  {
-  /* margin: auto!important; */
-  /* padding: 1rem!important; */
-}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                             6.3.1) =About Us ATF:
@@ -2534,11 +2529,12 @@ p, a, button, li {color: var(--color9)}
 --------------------------------------------------------------------------- */
 .coprAlqui{
   /* margin:0 var(--lateral); */
-  padding:1rem;
+  padding-bottom:1rem;
   display:grid;
   grid-gap:.5rem;
   grid-template-columns: var(--coprAlquiGTC);
-  max-width: 40rem;
+  /* max-width: 40rem; */
+  width:100%;
   /* grid-auto-rows:2rem; */
 }
 
@@ -2891,18 +2887,22 @@ p, a, button, li {color: var(--color9)}
 --------------------------------------------------------------------------- */
 .cart{
   background:white;
-  /* display:grid; */
-  display: none;
+  border-radius: 0 0 8px 0;
+  display:grid;
+  /* display: none; */
   grid-gap:.5rem;
   margin:auto;
   padding: 1rem 2rem;
   position:fixed;
+  /* position:absolute; */
   top: -100px;
   transition:.6s;
   /* width: min-content; */
   z-index: 2;
 }
-.cart.alt{top:100px}
+.cart.alt{top:80px}
+.cart.observed{position:absolute;}
+.cart.observed.alt{top:120px}
 .cartHead{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -2931,16 +2931,20 @@ p, a, button, li {color: var(--color9)}
 --------------------------------------------------------------------------- */
 .finalizarConsulta{
   background:white;
-  position: fixed;
+  border-radius:8px;
+  box-shadow:var(--DP24);
   left:50%;
-  transform:translate(-50%, -50%);
-  padding: 1rem;
-  top:50%;
-  width: 50%;
-  z-index:122;
-  pointer-events: none;
+  /* margin:auto var(--lateral); */
   opacity:0;
+  padding: 1rem;
+  pointer-events: none;
+  position: fixed;
+  top:50%;
+  transform:translate(-50%, -50%);
   transition:.3s;
+  /* width: 50%; */
+  width: calc(100% - var(--lateral) * 2);
+  z-index:122;
 }
 .finalizarConsulta.alt{
   opacity:1;
@@ -3205,12 +3209,13 @@ SVG STYLES
 #growUpActivator,
 #sectioNSummarySilverSeaMundoActivator,
 #sectioNSummaryAboutUsActivator{bottom:0}
+#cartFixerActivator{top:40px;}
 .redDot {
   border-radius: 50%;
   height: 3rem;
   position: absolute;
   right: 10vw;
-  top: var(--redDotTop);
+  /* top: var(--redDotTop); */
   width: 3rem!important;
   z-index:12;
 }

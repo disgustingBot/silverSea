@@ -112,9 +112,8 @@
   </nav>
 
 
-
-
-  <div class="cart" id="cart">
+<div class="redDot" id="cartFixerActivator"></div>
+  <div class="cart Obse" id="cart" data-observe="#cartFixerActivator" data-unobserve="false">
     <div class="cartHead">
       <h4 class="cartTitle">Tu Carrito</h4>
       <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
@@ -124,8 +123,9 @@
     <div class="cartList"></div>
   </div>
 
-  <div class="finalizarConsulta" id="finalizarConsulta">
-    <p>comprAlqui</p>
+  <div class="finalizarConsulta alt" id="finalizarConsulta">
+    <?php require_once 'coprAlqui.php'; ?>
+    <!-- <p>comprAlqui</p> -->
     <p>datos de contacto</p>
     <button class="btn" onclick="cartController.send()">dame precio rapido</button>
   </div>
