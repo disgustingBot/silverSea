@@ -18,6 +18,7 @@ w.onload=()=>{
 	if(d.querySelector('#cotizador')){
 		cartController.ready(false);
 		cartController.getCol('Size');
+		cartController.getLocation()
 	}
 
 	carouselController.setup()
@@ -560,7 +561,10 @@ const lt_upload_file = () => {
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
 		// console.log(productSincrotron.products);
-		productSincrotron.wipeProducts();
+		if(!data['gate7']){
+			productSincrotron.wipeProducts();
+		}
+
 
 	});
 }
@@ -572,7 +576,9 @@ async function ajax2(formData) {
 			body: formData,
 		});
     return await response.json();
+
 		// return await response.text();
+
   }catch(err){
     console.error(err);
   }
@@ -618,12 +624,52 @@ async function ajax3(formData) {
 
 
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
-
+// TODO: pasar todo a minuscula... como no se me ocurrio antes???!?!?
 // CART CONTROLLER
 cartController = {
   currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
 	containerToAdd:false,
+	locationOrigen:[],
+	locationDestino:[],
+	getLocation:(column = 'country')=>{
+		console.log( 'poner la locacion' );
+		var formData = new FormData();
+		formData.append( 'action', 'lt_get_location' );
+		formData.append( 'column', column );
+		ajax2(formData).then( data => {
+			// console.log(data);
+			console.log(JSON.parse(data.location));
+			JSON.parse(data.location).forEach( e => {
+				// console.log(e);
+
+
+					for(var key in e) {
+								var value = e[key];
+								key = 'Origen'+key.capitalize();
+						// 		key = key[0].toUpperCase() + key.slice(1);
+								console.log(key);
+								console.log(value);
+								var a = cartController.selectBoxOption(key,value),
+								input = a.querySelector(".selectBoxInput");
+									input.setAttribute('type', 'radio');
+
+									functionExecute = 'console.log("VIVA LA VIDA")';
+									// functionExecute = 'cartController.sizeController("'+value+'")';
+									// if(tipo_2){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
+									input.setAttribute("onchange", functionExecute);
+
+									// Insert it into the document in the right place
+									d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
+					}
+
+			});
+
+		})
+	},
   cart: [],
 	send:()=>{
 		console.log(cartController.cart)

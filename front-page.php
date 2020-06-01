@@ -143,6 +143,7 @@
 </section>
 
 
+
 <article class="articleCounter sectionPadding">
   <div class="counter">
     <div class="redDot" id="growUpActivator"></div>
@@ -159,7 +160,7 @@
       <p class="countTxt">CENTROS LOGÍSTICOS</p>
     </div>
     <div class="count countTitle">
-      <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="30">0</span></p>
+      <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="60">0</span></p>
       <p class="countTxt">PAÍSES Y TERRITORIOS</p>
     </div>
   </div>

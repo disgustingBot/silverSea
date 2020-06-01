@@ -1160,11 +1160,6 @@ section {
   box-shadow: var(--DP16);
   background: rgba(255,255,255, 0.8);
 }
-
-.frontPageATF .coprAlqui  {
-  /* margin: auto!important; */
-  /* padding: 1rem!important; */
-}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                             6.3.1) =About Us ATF:
@@ -2597,11 +2592,12 @@ section {
 --------------------------------------------------------------------------- */
 .coprAlqui{
   /* margin:0 var(--lateral); */
-  padding:1rem;
+  padding-bottom:1rem;
   display:grid;
   grid-gap:.5rem;
   grid-template-columns: var(--coprAlquiGTC);
-  max-width: 40rem;
+  /* max-width: 40rem; */
+  width:100%;
   /* grid-auto-rows:2rem; */
 }
 
@@ -2952,19 +2948,22 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .cart{
-  /* background:white; */
-  /* display:grid; */
-  display: none;
+
+  background:white;
+  border-radius: 0 0 8px 0;
+  display:grid;
   grid-gap:.5rem;
   margin:auto;
   padding: 1rem 2rem;
   position:fixed;
   top: -100px;
   transition:.6s;
-  /* width: min-content; */
   z-index: 2;
 }
-.cart.alt{top:100px}
+
+.cart.alt{top:80px}
+.cart.observed{position:absolute;}
+.cart.observed.alt{top:120px}
 .cartHead{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -2992,17 +2991,21 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .finalizarConsulta{
-  /* background:white; */
-  position: fixed;
+  background:white;
+  border-radius:8px;
+  box-shadow:var(--DP24);
   left:50%;
-  transform:translate(-50%, -50%);
-  padding: 1rem;
-  top:50%;
-  width: 50%;
-  z-index:122;
-  pointer-events: none;
+  /* margin:auto var(--lateral); */
   opacity:0;
+  padding: 1rem;
+  pointer-events: none;
+  position: fixed;
+  top:50%;
+  transform:translate(-50%, -50%);
   transition:.3s;
+  /* width: 50%; */
+  width: calc(100% - var(--lateral) * 2);
+  z-index:122;
 }
 .finalizarConsulta.alt{
   opacity:1;
@@ -3224,11 +3227,12 @@ SVG STYLES
   padding: 2rem;
   box-shadow: var(--DP6);
   border-radius: 8px;
-
 }
+
 .updateController:not(.inicial) .uploadForm{opacity:0;pointer-events:none}
+
 .uploadForm{
-  /* background:white; */
+  background:white;
   display: grid;
   grid-gap: 1rem;
   grid-column:1;
@@ -3236,7 +3240,9 @@ SVG STYLES
   position:relative;
   z-index:1;
 }
+
 .updateController:not(.inicial) .updateProgress{opacity:1}
+
 .updateProgress{
   opacity:0;
   display:grid;
@@ -3258,6 +3264,7 @@ SVG STYLES
 
 
 
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.69) =redDot:
@@ -3267,12 +3274,13 @@ SVG STYLES
 #growUpActivator,
 #sectioNSummarySilverSeaMundoActivator,
 #sectioNSummaryAboutUsActivator{bottom:0}
+#cartFixerActivator{top:40px;}
 .redDot {
   border-radius: 50%;
   height: 3rem;
   position: absolute;
   right: 10vw;
-  top: var(--redDotTop);
+  /* top: var(--redDotTop); */
   width: 3rem!important;
   z-index:12;
 }
@@ -3294,6 +3302,30 @@ SVG STYLES
 .loadBarProgress{
   content:'';
   background:var(--secondaryColor);
+  /* width:30%; */
+  height:inherit;
+  border-radius:inherit;
+  position:absolute;
+  z-index:2;
+  transition:.4s;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.70) =loadBar:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.loadBar{
+  position:relative;
+  background:var(--color3);
+  width:100%;
+  height: 1.5rem;
+  border-radius:4px;
+  box-shadow:var(--DP4);
+}
+.loadBarProgress{
+  content:'';
+  background:var(--color2);
   /* width:30%; */
   height:inherit;
   border-radius:inherit;
