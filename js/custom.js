@@ -1,4 +1,6 @@
 d=document;w=window;c=console;
+String.prototype.capitalize=function(){return this.charAt(0).toUpperCase()+this.slice(1);}
+
 // color console
 c.lof = (message, farbe = false)=>{
 	if(farbe){c.log("%c" + message, "color:" + farbe);}
@@ -19,6 +21,7 @@ w.onload=()=>{
 		cartController.ready(false);
 		cartController.getCol('Size');
 		cartController.getLocation()
+		cartController.getLocation(false, 'Destino')
 	}
 
 	carouselController.setup()
@@ -553,19 +556,12 @@ const lt_upload_file = () => {
 	ajax2(formData).then(data => {
 		altClassFromSelector('loaded', '#updateController', 'updateController');
 		d.querySelector('.updateText').innerHTML = 'Tabla actualizada!, el Sicrotron esta en desarrollo.';
-		// d.querySelector('.updateText').innerHTML = "Tabla actualizada!, el Sicrotron esta en desarrollo.<br>Let's wipe things!";
-		// d.querySelector('.updateText').innerText = 'Tabla actualizada!, puedes abandonar la pagina o recargar para actualizar otra tabla.';
-		// console.log(data)
 		console.log('archivo subido, base de datos actualizada');
-		// JSON.parse(v).forEach(e=>{
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
-		// console.log(productSincrotron.products);
-		if(!data['gate7']){
+		if(!data.gate7){
 			productSincrotron.wipeProducts();
 		}
-
-
 	});
 }
 
@@ -576,9 +572,6 @@ async function ajax2(formData) {
 			body: formData,
 		});
     return await response.json();
-
-		// return await response.text();
-
   }catch(err){
     console.error(err);
   }
@@ -624,99 +617,117 @@ async function ajax3(formData) {
 
 
 
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
 
 // TODO: pasar todo a minuscula... como no se me ocurrio antes???!?!?
 // CART CONTROLLER
 cartController = {
   currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
 	containerToAdd:false,
+	cart: [],
 	locationOrigen:[],
 	locationDestino:[],
-	getLocation:(column = 'country')=>{
-		console.log( 'poner la locacion' );
+	getLocation: ( country = false, option = 'Origen' ) => {
 		var formData = new FormData();
 		formData.append( 'action', 'lt_get_location' );
-		formData.append( 'column', column );
+		if (country) {
+			if(option=='Origen'){cartController.locationOrigen['country'] = country;
+			}else{cartController.locationDestino['country'] = country;}
+			cartController.selectBoxWipe(option+'City');
+			formData.append( 'country', country );
+			formData.append( 'column', 'city' );
+		}else{
+			formData.append( 'column', 'country' );
+		}
 		ajax2(formData).then( data => {
-			// console.log(data);
-			console.log(JSON.parse(data.location));
+
 			JSON.parse(data.location).forEach( e => {
-				// console.log(e);
 
-
-					for(var key in e) {
-								var value = e[key];
-								key = 'Origen'+key.capitalize();
-						// 		key = key[0].toUpperCase() + key.slice(1);
-								console.log(key);
-								console.log(value);
-								var a = cartController.selectBoxOption(key,value),
-								input = a.querySelector(".selectBoxInput");
-									input.setAttribute('type', 'radio');
-
-									functionExecute = 'console.log("VIVA LA VIDA")';
-									// functionExecute = 'cartController.sizeController("'+value+'")';
-									// if(tipo_2){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
-									input.setAttribute("onchange", functionExecute);
-
-									// Insert it into the document in the right place
-									d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-					}
-
+				for(var key in e) {
+					var value = e[key].replace(/(?:\r\n|\r|\n)/g, '');
+					key = option + key.capitalize();
+					var a = cartController.selectBoxOption(key,value),
+					input = a.querySelector(".selectBoxInput");
+					input.setAttribute('type', 'radio');
+					if (country) {
+						if(option=='Origen'){functionExecute = "cartController.locationOrigen['city'] = value;console.log(cartController.locationOrigen);";
+						}else{functionExecute = "cartController.locationDestino['city'] = value;console.log(cartController.locationDestino);";}
+					}else{functionExecute = 'cartController.getLocation("'+value+'", "'+option+'")';}
+					input.setAttribute("onchange", functionExecute);
+					d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
+				}
 			});
-
 		})
 	},
-  cart: [],
-	send:()=>{
-		console.log(cartController.cart)
+	// cart: [{code:'20DC NEW'}],
+	// cart: [{code:'20DC CW'}],
+	// locationOrigen:{
+	// 	// country:'ARGENTINA',
+	// 	// city:'BUENOS AIRES',
+	// 		country:'BELGIUM',
+	// 		city:'ANTWERP',
+	// },
+	finish:()=>{
+		cartController.cart.forEach((item, i) => {
+			// cartController.getPrice(item.code);
+			console.log(item.code);
+		});
+
+	},
+	getPrice:(code)=>{
+		console.log('terminar consulta!!')
+		// console.log(cartController.cart[0].code)
+		console.log( cartController.locationOrigen['country'] );
+		console.log( cartController.locationOrigen['city'] );
+		var formData = new FormData();
+		formData.append( 'action', 'lt_cart_end' );
+		formData.append( 'cont', code );
+		// formData.append( 'cont', cartController.cart[0].code );
+		formData.append( 'country', cartController.locationOrigen['country'] );
+		formData.append( 'city', cartController.locationOrigen['city'] );
+		ajax2(formData).then( data => {
+			console.log(data)
+			let prices = data.map((x)=>{
+				return x.supplier_price;
+			})
+	    let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
+			let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+
+			let finalPrice = average + 200;
+	    console.log(average);
+			alert('tu precio es: ' + finalPrice)
+
+			// data.forEach((item, i) => {
+			// 	console.log(item.supplier_price)
+			//
+			// });
+			// var arr = [5, 4, 7, 2, 10, 1];
+	    // let res = arr.sort((a,b) => a - b).slice(0, 2);
+	    // console.log(res);
+
+		})
 	},
   add: (x) => {
 		const check = (element) => {
 			return element.code == x.code;
 		}
-		// console.log(cartController.cart.find(check))
 		if (cartController.cart.find(check)) {
-			// console.log('aqui deberia actualizar el numero')
 			cartController.cart.find(check).qty += x.qty
 			d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + x.qty;
-			// console.log(list.querySelector('.cartItem[data-code="'+code+'"]'))
-			// d.querySelector('')
 		} else {
 			cartController.cart.unshift(new CartItem(x));
 			cartController.cart[0].cartUI();
 			console.log(cartController.cart)
 		}
-
-    // console.log(cartController.currentSemiSelection)
   },
 	remove:(code)=>{
 		console.log(code)
     list = d.querySelector('.cartList');
-		// console.log(list)
-		// console.log(list.childNodes[code])
-		// console.log(list.querySelector('.cartItem[data-code="'+code+'"]'))
 		list.removeChild(list.querySelector('.cartItem[data-code="'+code+'"]'));
-
-
-	  // cartController.cart.splice(code, 1);
-    // if (list.firstChild) {
-    //   while (list.firstChild) {
-    //     list.removeChild(list.firstChild);
-    //   }
-    // }
 
 		const check = (element) => {
 			return element.code == code;
 		}
-		// console.log(cartController.cart.find(check))
-		// console.log(cartController.cart.findIndex(check))
 		cartController.cart.splice(cartController.cart.findIndex(check), 1)
-		// cartController.currentSemiSelection.code = cartController.cart.find(check).salesforce_id;
-
 	},
   ready:(ready = true)=>{
     let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
@@ -745,8 +756,6 @@ cartController = {
     option = a.querySelector(".selectBoxOption"),
     input  = a.querySelector(".selectBoxInput"),
     label  = a.querySelector(".selectBoxOptionLabel");
-    // Make your changes
-    // if(v.tck==1){element.classList.add("ticked")}
     if(value == 'nul'){
       option.setAttribute('for', 'nul'+key);
       input.setAttribute ('id' , 'nul'+key);
@@ -785,7 +794,7 @@ cartController = {
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#pies' + value);
+		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value + '-pies');
 		// console.log('value: ', value);
 
     cartController.ready(false);

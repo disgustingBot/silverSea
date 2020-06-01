@@ -1,10 +1,9 @@
 <?php
-use Automattic\WooCommerce\Client;
-
-
-require_once 'customPosts.php';
-// require_once get_template_directory() . '/inc/productFactory.php';
+require_once 'inc/customPosts.php';
 require_once 'inc/productFactory.php';
+require_once 'inc/ajax.php';
+
+// require_once get_template_directory() . '/inc/productFactory.php';
 
 
 function lattte_setup(){
@@ -74,7 +73,6 @@ add_action('after_setup_theme', 'gp_init');
 
 
 
-require_once 'inc/ajax.php';
 
 
 
@@ -408,9 +406,7 @@ function lt_create_products () {
 		$respuesta['gate0'] = 'productos recibidos';
 		// $respuesta['decode'] = $products;
 		foreach ($products as $key => $value) {
-			// $respuesta[$key] = $value;
 			$respuesta['name'] = $value->Name;
-			// code...
 						// FALTAN LAS IMAGENES
 						$basic_data = array(
 							'post_title'             => $value->Name,
@@ -447,23 +443,18 @@ function lt_create_products () {
 
 
 
+
+
 function get_products_count(){
-
 		$qnty = 0;
-		$args = array(
-			'post_type'      => 'product',
-			// 'posts_per_page' => 30,
-			'posts_per_page' => -1,
-		);
-
-		$loop = new WP_Query( $args );
-    while ( $loop->have_posts() ) : $loop->the_post();
-			$qnty++;
-    endwhile;
-
+		$args = array('post_type'=>'product','posts_per_page'=>-1,);
+		$loop = new WP_Query($args);
+    while($loop->have_posts()){$loop->the_post();$qnty++;}
 		wp_reset_query();
 		return $qnty;
 }
+
+
 
 
 // consultas a base de datos para el sincrotron
@@ -498,9 +489,7 @@ function lt_wipe_products () {
     while ( $loop->have_posts() ) : $loop->the_post();
 			$respuesta[$i] = get_the_id();
 			if (wh_deleteProduct($respuesta[$i])) {
-				// $respuesta[$i] = "Producto '".$respuesta[$i]."' eliminado";
 				$respuesta[$i] = "Producto '".get_the_title()."' eliminado";
-				// echo '<h3>product: ' . $value->id . ' DELETED</h3>';
 			}
       // global $product;
       // echo '<br /><a href="'.get_permalink().'">' . woocommerce_get_product_thumbnail().' '.get_the_title().'</a>';
@@ -508,13 +497,8 @@ function lt_wipe_products () {
     endwhile;
     wp_reset_query();
 
-		if($i==0){
-			$respuesta['status'] = 'No hay productos';
-
-		}
-		// echo 'DELETE ALL PRODUCTS';
+		if($i==0){$respuesta['status'] = 'No hay productos';}
 	}else{
-		// $qnty++;
 		$qnty = get_products_count();
 		$respuesta['qnty'] = $qnty;
 		$respuesta['toDelete'] = $qnty;
@@ -545,7 +529,7 @@ function lt_upload_file () {
     $fileName2 = strtolower(($fileExt[0]));
 
     $allowedExt = array( 'csv','tsv');
-    $fileNamesAllowed = array('ventas','gastos_adicionales','trenes','contenedores', 'locations');
+    $fileNamesAllowed = array('stock','gastos_adicionales','trenes','contenedores', 'locations');
 
 		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
 		$fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
@@ -605,7 +589,6 @@ function lt_upload_file () {
 											$json_array = wp_json_encode( $resp );
 											if (!$debugMode) {
 												echo $json_array;
-												// echo wp_json_encode( $resp );
 											}
 										}
 									}else{
@@ -635,6 +618,48 @@ function lt_upload_file () {
 
 
 // COTIZADOR
+
+
+add_action( 'wp_ajax_lt_cart_end', 'lt_cart_end' );
+add_action( 'wp_ajax_nopriv_lt_cart_end', 'lt_cart_end' );
+
+function lt_cart_end () {
+	$debugMode = false;
+	$respuesta = array();
+	$contenedor = $_POST['cont'];
+	$country = $_POST['country'];
+	$city = $_POST['city'];
+
+
+	    $dbServerName = "localhost";
+	    $dbUsername = "root";
+	    $dbPassword = "";
+	    // $dbUsername = "contraseñaDificil";
+	    // $dbPassword = ";$6qha)2L*KU)6nq";
+	    $dbName = "lattedev_silver";
+
+	    $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+
+	$qry = "SELECT * from stock WHERE id_contenedor = '$contenedor' AND pais = '$country' AND ciudad = '$city';";
+	$ress = $conn->query($qry);
+	$resp = $ress->fetch_all(MYSQLI_ASSOC);
+	$json_array = wp_json_encode( $resp );
+	if(!$debugMode){
+		echo $json_array;
+	}
+
+	$respuesta['query']=$qry;
+	$respuesta['contenedor']=$contenedor;
+	$respuesta['country']=$country;
+	$respuesta['city']=$city;
+
+	$respuesta['test'] = 'saludos desde aca en el server';
+
+	if($debugMode){echo wp_json_encode($respuesta);}
+	exit();
+}
+
+
 // consultas a base de datos para el cotizador
 // consultas a base de datos para el cotizador
 add_action( 'wp_ajax_gatCol', 'gatCol' );
@@ -685,6 +710,8 @@ function lt_get_location () {
 	$debugMode = true;
 	$respuesta = array();
 	$col = $_POST['column'];
+	$country = false;
+	if(isset($_POST['country'])){$country=$_POST['country'];}
 
 
 	$dbServerName = "localhost";
@@ -696,8 +723,11 @@ function lt_get_location () {
 
 	$conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
-
 	$qry = "SELECT distinct $col FROM locations";
+	if ($country) {
+		$qry = $qry . " WHERE country = '$country'";
+		// code...
+	}
 	  $ress = $conn->query($qry);
 	  $resp = $ress->fetch_all(MYSQLI_ASSOC);
 		$respuesta['location'] = wp_json_encode( $resp );

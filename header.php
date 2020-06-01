@@ -125,9 +125,9 @@
     <div class="cartList"></div>
   </div>
 
-  <div class="finalizarConsulta alt" id="finalizarConsulta">
+  <div class="finalizarConsulta" id="finalizarConsulta">
     <?php require_once 'coprAlqui.php'; ?>
     <!-- <p>comprAlqui</p> -->
     <p>datos de contacto</p>
-    <button class="btn" onclick="cartController.send()">dame precio rapido</button>
+    <button class="btn" onclick="cartController.getPrice()">dame precio rapido</button>
   </div>

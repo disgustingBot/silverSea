@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<section class="ATF frontPageATF">
+<section class="ATF frontPageATF sectionWhite">
   <video loop autoplay muted class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, '1-video-portada', true); ?>" alt="">
   </video>
 
@@ -20,7 +20,7 @@
 
   <div class="features">
 
-    <figure class="feature">
+    <figure class="feature sectionWhite">
       <svg class="featureIcon"  width="83" height="111" viewBox="0 0 83 111" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M79.8178 21.1423L61.718 3.04253C59.7759 1.10049 57.1434 0 54.4051 0H10.3554C4.63931 0.0215782 0 4.66089 0 10.377V100.125C0 105.841 4.63931 110.48 10.3554 110.48H72.5049C78.221 110.48 82.8603 105.841 82.8603 100.125V28.4767C82.8603 25.7385 81.7598 23.0844 79.8178 21.1423ZM55.2467 7.03233C55.8508 7.18338 56.3903 7.48548 56.8434 7.93862L74.9432 26.0384C75.3964 26.4916 75.6985 27.031 75.8495 27.6352H55.2467V7.03233ZM75.9574 100.125C75.9574 102.024 74.4038 103.578 72.5049 103.578H10.3554C8.4565 103.578 6.90287 102.024 6.90287 100.125V10.377C6.90287 8.47807 8.4565 6.90502 10.3554 6.90502H48.3416V29.3615C48.3416 32.2314 50.6505 34.5251 53.5204 34.5251H75.9574V100.125Z" fill="black"/>
       <path d="M39.7268 20.8308H15.5593C14.6055 20.8308 13.833 20.0583 13.833 19.1045V15.652C13.833 14.6983 14.6055 13.9258 15.5593 13.9258H39.7268C40.6806 13.9258 41.4531 14.6983 41.4531 15.652V19.1045C41.4531 20.0583 40.6806 20.8308 39.7268 20.8308Z" fill="#0674BB"/>
@@ -33,7 +33,7 @@
       </figcaption>
     </figure>
 
-    <figure class="feature">
+    <figure class="feature sectionWhite">
       <svg class="featureIcon" width="118" height="110" viewBox="0 0 118 110" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M63.914 42.5215H9.09583C8.09083 42.5215 7.26855 43.3438 7.26855 44.3488V69.9306C7.26855 70.9356 8.09083 71.7579 9.09583 71.7579H63.914C64.919 71.7579 65.7413 70.9356 65.7413 69.9306V44.3488C65.7413 43.3438 64.919 42.5215 63.914 42.5215ZM62.0868 68.1033H10.9231V46.176H62.0868V68.1033Z" fill="#0674BB"/>
         <path d="M20.0588 49.8301H16.4043V64.4483H20.0588V49.8301Z" fill="#0674BB"/>
@@ -55,7 +55,7 @@
       </figcaption>
     </figure>
 
-    <figure class="feature">
+    <figure class="feature sectionWhite">
       <svg class="featureIcon" width="138" height="110" viewBox="0 0 138 110" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M51.5481 46.4339V45.0787C51.5481 44.3334 50.6944 43.7236 49.651 43.7236H1.89715C0.853718 43.7236 0 44.3334 0 45.0787L0 46.4339C0 47.1792 0.853718 47.789 1.89715 47.789L1.89715 77.6014C0.853718 77.6014 0 78.2112 0 78.9565L0 80.3116C0 81.0569 0.853718 81.6667 1.89715 81.6667H49.651C50.6944 81.6667 51.5481 81.0569 51.5481 80.3116V78.9565C51.5481 78.2112 50.6944 77.6014 49.651 77.6014V47.789C50.6944 47.789 51.5481 47.1792 51.5481 46.4339ZM43.9595 77.6014H7.58861L7.58861 47.789H43.9595V77.6014Z" fill="#0674BB"/>
         <path d="M27.7058 73.6065H23.9115C23.3897 73.6065 22.9629 73.3016 22.9629 72.929V52.6024C22.9629 52.2297 23.3897 51.9248 23.9115 51.9248H27.7058C28.2275 51.9248 28.6543 52.2297 28.6543 52.6024V72.929C28.6543 73.3016 28.2275 73.6065 27.7058 73.6065Z" fill="#0674BB"/>
@@ -81,7 +81,7 @@
 
 
 
-<section class="sectionPadding card65" id="queContainerINeed">
+<section class="sectionPadding card60" id="queContainerINeed">
   <div class="redDot" id="sectioNSummaryCardActivator"></div>
   <style>#queContainerINeed.card0 #card0 {display:flex}</style>
 
@@ -143,28 +143,29 @@
 </section>
 
 
-
-<article class="articleCounter sectionPadding">
-  <div class="counter">
-    <div class="redDot" id="growUpActivator"></div>
-    <div class="count countTitle">
-      <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="30000">0</span></p>
-      <p class="countTxt">CONTENEDORES VENDIDOS</p>
+<section class="sectionColor3 sectionPadding">
+  <article class="articleCounter">
+    <div class="counter">
+      <div class="redDot" id="growUpActivator"></div>
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="30000">0</span></p>
+        <p class="countTxt">CONTENEDORES VENDIDOS</p>
+      </div>
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="3000">0</span></p>
+        <p class="countTxt">CLIENTES SATISFECHOS</p>
+      </div>
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="200">0</span></p>
+        <p class="countTxt">CENTROS LOGÍSTICOS</p>
+      </div>
+      <div class="count countTitle">
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="60">0</span></p>
+        <p class="countTxt">PAÍSES Y TERRITORIOS</p>
+      </div>
     </div>
-    <div class="count countTitle">
-      <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="3000">0</span></p>
-      <p class="countTxt">CLIENTES SATISFECHOS</p>
-    </div>
-    <div class="count countTitle">
-      <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="200">0</span></p>
-      <p class="countTxt">CENTROS LOGÍSTICOS</p>
-    </div>
-    <div class="count countTitle">
-      <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="60">0</span></p>
-      <p class="countTxt">PAÍSES Y TERRITORIOS</p>
-    </div>
-  </div>
-</article>
+  </article>
+</section>
 
 <section class="sectionPadding">
   <article class="article2">

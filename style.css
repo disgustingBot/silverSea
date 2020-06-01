@@ -109,11 +109,12 @@ FIN DE MAPA DE CONTENIDOS */
   --primaryColorDarker:#000032;
   --secondaryColor: #ECC800;
 
-  --grey0: #fff;
-  --grey1: #e9f0f6;
-  --grey2: #dbe2e8;
-  --grey3: #b9bfc5;
-  --grey99: #000;
+  --grey0:#fff;
+  --grey1:#e9f0f6;
+  --grey2:#dbe2e8;
+  --grey3:#b9bfc5;
+  --grey9:#1b1b1b;
+  --grey99:#000000;
 
   /* SIZES */
   /* Al editar los tamaños, hacerlo siempre sin unidades
@@ -3415,10 +3416,12 @@ section.contacto img{
   /* background: var(--color8); */
   color: var(--grey0);
   background: var(--primaryColorDarker);
+  /* background:#002984; */
   display: grid;
   grid-template-columns: var(--footGridTC);
   grid-gap: 1rem;
-  padding: var(--footerPad);
+  /* padding: var(--footerPad); */
+  padding:1rem var(--lateral);
   z-index: 3;
 }
 
