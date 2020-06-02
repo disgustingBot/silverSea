@@ -144,6 +144,7 @@
           if ($parent['slug']=="size") {
             $size = $cat->name;
             $sizeSlug = $cat->slug;
+            $sizeNumber = preg_replace("/[^0-9]/", "", $sizeSlug );
           }
           if ($grandParent['slug']=="general") {
             $tipo_1 = $parent['name'];
@@ -155,23 +156,32 @@
             $condition = $cat->name;
             $conditionSlug = $cat->slug;
           }
+          $code = $sizeNumber . strtoupper($tipo_2Slug) . ' ' . strtoupper($conditionSlug);
         }
       }
       // fin de comentario
       ?>
-      <article class="card">
+      <article
+        class="card"
+        data-code="<?php echo $code; ?>"
+        data-size="<?php echo $sizeNumber; ?>"
+        data-tip1="<?php echo $tipo_1; ?>"
+        data-tip2="<?php echo strtoupper($tipo_2Slug); ?>"
+        data-cond="<?php echo strtoupper($conditionSlug); ?>"
+      >
 
         <div class="cardHead">
           <div class="cardThumbnail">
             <?php newSvg(ucwords($tipo_1Slug)); ?>
           </div>
           <h4 class="cardTitle"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h4>
-          <p class="cardSubTitle"><?php echo $tipo_2 . ', ' . $condition ?></p>
+          <p class="cardSubTitle"><a href="<?php echo get_permalink(); ?>"><?php echo $tipo_2 . ', ' . $condition ?></a></p>
         </div>
+        <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
 
-        <div class="cardMedia Carousel" href="<?php echo get_permalink(); ?>" >
 
-          <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
+        <div class="cardMedia<?php if($attachment_ids){ echo ' Carousel'; } ?>">
+
           <a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
             <img class="productGalleryImg lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
           </a>
@@ -182,6 +192,7 @@
             </a>
           <?php $count++; }} ?>
 
+          <?php if($attachment_ids){ ?>
             <button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
               <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="53" cy="53" r="53" fill="currentColor"/>
@@ -194,6 +205,7 @@
                 <path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
               </svg>
             </button>
+            <?php } ?>
         </div>
 
         <div class="cardCaption">
@@ -209,12 +221,13 @@
 
           <div class="cardActions">
             <div class="cuantos">
-              <input class="cuantosQnt" id="cuantosQantity" type="number" value="1" min="1">
+              <input class="cuantosQnt" id="cuantosQantity" type="text" value="1" min="1">
               <button class="cuantosBtn" onclick="changeQuantity(-1)">-</button>
               <button class="cuantosBtn" onclick="changeQuantity(+1)">+</button>
             </div>
             <a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
-            <button class="btn btnSimple">AGREGAR</button>
+            <?php $selector = '.card[data-code="'.$code.'"]'; ?>
+            <button class="cardAdd btn btnSimple">AGREGAR</button>
           </div>
         </div>
 
