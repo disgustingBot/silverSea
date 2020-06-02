@@ -8,9 +8,21 @@
   <div class="cotizador" id="cotizador">
     <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
 
-      <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="" id="dynamicContLogo"></use>
+    <div class="currentSemiSelection" id="currentSemiSelection">
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+        <use xlink:href="" id="currentSemiSelectionSize"></use>
       </svg>
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+        <use xlink:href="" id="currentSemiSelectionTip1"></use>
+      </svg>
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+        <use xlink:href="" id="currentSemiSelectionTip2"></use>
+      </svg>
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+        <use xlink:href="" id="currentSemiSelectionCond"></use>
+      </svg>
+
+    </div>
 
 
           <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">

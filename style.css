@@ -60,6 +60,7 @@ Version: 0.0
 6.20) =cart:
 6.21) =finalizarConsulta:
 6.22) =cuantos:
+6.23) =currentSemiSelection:
 6.42) =archive-product:
 6.62) =forms:login:
 6.65) =uploadForm:
@@ -1562,7 +1563,6 @@ section {
 .cardMedia{
   display:grid;
   position: relative;
-  /* border-radius:4px 4px 0 0; */
   z-index:0;
 }
 .cardImgA img{border-radius:inherit}
@@ -1585,23 +1585,12 @@ section {
 }
 
 .cardFeatures{
-  /* background:white; */
   border-radius:4px 0 0 0;
   display:grid;
   grid-auto-flow:column;
   grid-auto-columns:1fr;
   grid-gap:.5rem;
-
-  /* opcion: lame */
   justify-content: center;
-
-  /* opcion overlap de imagen */
-  /* padding:.2rem .5rem;
-  padding-bottom:0;
-  position: absolute;
-  bottom:0;
-  right:0;
-  z-index:1; */
 }
 .cardFeatures *{
   margin: auto;
@@ -1688,40 +1677,14 @@ section {
 
 .teamSection:not(.direccion):not(.finance-administration):not(.sales-department-cis-region):not(.sales-department-europe):not(.sales-department-latam):not(.supply-operations) .teamCard {display: grid!important;}
 
-
-
-/*
-.teamSection.logistic       .teamCard.sales,
-.teamSection.administration .teamCard.sales,
-.teamSection.management     .teamCard.sales,
-.teamSection.ceo            .teamCard.sales {
-  display: none;
-}
-
-.teamSection.sales          .teamCard.logistic,
-.teamSection.administration .teamCard.logistic,
-.teamSection.management     .teamCard.logistic,
-.teamSection.ceo            .teamCard.logistic {
-  display: none;
-}
-
-.teamSection.logistic       .teamCard.management,
-.teamSection.administration .teamCard.management,
-.teamSection.sales          .teamCard.management,
-.teamSection.ceo            .teamCard.management {
-  display: none;
-} */
-
 .teamSection:not(.direccion)                   .teamCard.direccion,
 .teamSection:not(.finance-administration)      .teamCard.finance-administration,
 .teamSection:not(.sales-department-cis-region) .teamCard.sales-department-cis-region,
 .teamSection:not(.sales-department-europe)     .teamCard.sales-department-europe,
 .teamSection:not(.sales-department-latam)      .teamCard.sales-department-latam,
 .teamSection:not(.supply-operations)           .teamCard.supply-operations {
-
   display: none;
 }
-
 
 .teamSection.direccion                   .areaSelector.direccion,
 .teamSection.finance-administration      .areaSelector.finance-administration,
@@ -2273,6 +2236,9 @@ section {
   height: 2rem;
   margin-left: 10px;
 }
+.summaryTitleContainer circle {
+  fill:var(--grey1)!important;
+}
 
 .summaryTitle{
   font-size: 1.7rem;
@@ -2513,13 +2479,17 @@ section {
 .cotizador .cartButton{
   top:.5rem;
   right:.5rem;
+  z-index:2;
 }
 
-.cotizador .dynamicContLogo {
+.cotizador .currentSemiSelection {
   position: absolute;
-  top: -.5rem;
-  right: 3rem;
+  top: .5rem;
+  right:1.5rem;
+  /* right: -7rem; */
+  z-index:1;
 }
+
 
 .cotizadorTitle,
 .cotizadorTxt {
@@ -2549,29 +2519,6 @@ section {
   margin-right: 10px;
   text-align: center;
 }
-
-/* .cotizador .cuantos {
-  position: relative;
-}
-
-.cotizador .cuantos::after {
-  content:'Cantidad';
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  padding: 9px 52px 9px 16px;
-  font-size: .8rem!important;
-  border-bottom: 2px solid var(--color2);
-  background: white;
-  text-align: center;
-  transition: .25s;
-}
-
-.cotizador .cuantos:hover::after {
-  opacity: 0;
-} */
-
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2603,8 +2550,6 @@ section {
   transition:.3s;
   grid-column: var(--coprAlquiLocationGC);
 }
-/* .coprAlquiLocation:nth-child(2){grid-column:2;grid-row:1;}
-.coprAlquiLocation:nth-child(3){grid-column:2;grid-row:2;} */
 .coprAlquiLocationTitle{
   margin:auto 0;
   text-align: right;
@@ -2982,7 +2927,6 @@ section {
   top:50%;
   transform:translate(-50%, -50%);
   transition:.3s;
-  /* width: 50%; */
   width: calc(100% - var(--lateral) * 2);
   z-index:122;
 }
@@ -2990,12 +2934,6 @@ section {
   opacity:1;
   pointer-events:auto;
 }
-
-
-
-
-
-
 
 
 /* ---------------------------------------------------------------------------
@@ -3039,6 +2977,39 @@ section {
   outline:1px solid var(--color2);
 }
 
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.23) =currentSemiSelection:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.currentSemiSelection {
+  display:grid;
+  grid-gap:.5rem;
+  grid-auto-flow:column;
+  /* transition:.4s;
+  transition-delay:.2s;
+  transform:translateX(0); */
+  padding-right:1.5rem;
+  overflow:hidden;
+}
+.currentSemiSelection>*{
+  transition:.4s;
+  transition-delay:.2s;
+  transform:translateX(10rem)
+}
+.currentSemiSelection.size>*{transform:translateX(7.5rem)}
+.currentSemiSelection.tip1>*{transform:translateX(5rem)}
+.currentSemiSelection.tip2>*{transform:translateX(2.5rem)}
+.currentSemiSelection.cond>*{transform:translateX(0)}
+/* .currentSemiSelection.size>*{transform:translateX(-2.5rem)}
+.currentSemiSelection.tip1>*{transform:translateX(-5rem)}
+.currentSemiSelection.tip2>*{transform:translateX(-7.5rem)}
+.currentSemiSelection.cond>*{transform:translateX(-10rem)} */
+.currentSemiSelectionSvg{
+  height:2rem;
+  /* width:2rem; */
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -3110,24 +3081,6 @@ section {
 }
 
 
-/*
-
-SVG STYLES
-
-
-*/
-
-
-.svgIcon{
-  width: 30px;
-  height: 30px;
-}
-
-
-
-
-
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
               6.62) =forms:login:
@@ -3197,12 +3150,9 @@ SVG STYLES
 --------------------------------------------------------------------------- */
 .updateController{
   display: grid;
-  /* margin: 4rem auto; */
   margin: 4rem var(--lateral);
   width:calc(100% - var(--lateral) * 2);
-  /* height: 35vh; */
   grid-gap: 1rem;
-  /* background: white; */
   padding: 2rem;
   box-shadow: var(--DP6);
   border-radius: 8px;
@@ -3259,11 +3209,10 @@ SVG STYLES
   height: 3rem;
   position: absolute;
   right: 10vw;
-  /* top: var(--redDotTop); */
   width: 3rem!important;
   z-index:12;
 }
-/* .redDot.test{background:red} */
+.redDot.test{background:red}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -3281,7 +3230,6 @@ SVG STYLES
 .loadBarProgress{
   content:'';
   background:var(--secondaryColor);
-  /* width:30%; */
   height:inherit;
   border-radius:inherit;
   position:absolute;
@@ -3377,10 +3325,6 @@ section.contacto img{
   /* padding: var(--footerPad); */
   padding:1rem var(--lateral);
   z-index: 3;
-}
-
-.footer * {
-  /* color: white!important; */
 }
 
 .footWordingTitle {
