@@ -27,6 +27,7 @@ w.onload=()=>{
 	carouselController.setup()
 	growUpController.setup()
 	obseController.setup()
+	startMateput();
 
 
   if (d.getElementById("load")) {
@@ -350,6 +351,17 @@ function goBack(){w.history.back()}
 
 
 
+// mateput controller
+const startMateput = () =>{
+	const updateRequired=e=>{if(e.value==''){e.classList.remove('alt')}else{e.classList.add('alt')}}
+	if(d.querySelectorAll('.mateputInput')){
+		mateput=d.querySelectorAll('.mateputInput');
+		mateput.forEach(e=>{
+			updateRequired(e);
+			e.addEventListener('input',()=>{updateRequired(e)});
+		});
+	}
+}
 
 
 
@@ -646,14 +658,6 @@ cartController = {
 			});
 		})
 	},
-	// cart: [{code:'20DC NEW'}],
-	// cart: [{code:'20DC CW'}],
-	// locationOrigen:{
-	// 	// country:'ARGENTINA',
-	// 	// city:'BUENOS AIRES',
-	// 		country:'BELGIUM',
-	// 		city:'ANTWERP',
-	// },
 	finish:()=>{
 		console.log(cartController.cart)
 		cartController.cart.forEach((item, i) => {
@@ -667,9 +671,10 @@ cartController = {
 				formData.append( 'city', cartController.locationOrigen['city'] );
 				ajax2(formData).then( data => {
 					console.log(data)
-					let finalPrice;
+					let finalPrice, currency;
 
 					if (data[0]) {
+						currency = data[0].currency;
 
 						if (data[0].fixed_price!=0) {
 							finalPrice = data[0].fixed_price;
@@ -681,7 +686,9 @@ cartController = {
 							let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
 							finalPrice = average + 200;
 						}
+
 					} else {
+						currency = '';
 						finalPrice = 0;
 					}
 
@@ -692,12 +699,22 @@ cartController = {
 					itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
 
-					itemCurrency.innerText = data[0].currency
+					itemCurrency.innerText = currency
 					itemPrice.innerText = finalPrice * parseInt(itemQty);
 				})
 		});
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
+
+		cartController.sendMail();
+	},
+	sendMail:()=>{
+					var formData = new FormData();
+					formData.append( 'action', 'lt_form_handler' );
+
+					ajax2(formData).then( data => {
+						console.log(data);
+					});
 	},
 	getPrice:(code)=>{
 		var formData = new FormData();
@@ -730,6 +747,15 @@ cartController = {
 			cartController.cart[0].cartUI();
 			// console.log(cartController.cart)
 		}
+		if (cartController.cart.length<2) {
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#simpleTruck');
+			});
+		}else{
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#doubleTruck');
+			});
+		}
 
 		setTimeout(()=>{
 			d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#');
@@ -752,6 +778,15 @@ cartController = {
 			return element.code == code;
 		}
 		cartController.cart.splice(cartController.cart.findIndex(check), 1)
+		if (cartController.cart.length<2) {
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#simpleTruck');
+			});
+		}else{
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#doubleTruck');
+			});
+		}
 	},
   ready:(ready = true)=>{
     let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');

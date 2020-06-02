@@ -29,5 +29,7 @@
   include 'SCRAP.svg';
   include 'Special.svg';
   include 'voyage1St.svg';
+  include 'simpleTruck.svg';
+  include 'doubleTruck.svg';
   ?>
 </div>
