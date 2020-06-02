@@ -28,6 +28,7 @@ w.onload=()=>{
 	growUpController.setup()
 	obseController.setup()
 	startMateput();
+	cardSetup();
 
 
   if (d.getElementById("load")) {
@@ -293,12 +294,12 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 // quantity selector on the thing
 const changeQuantity = (value) => {
-  let quantity = parseInt(d.querySelector('#addToCartQantity').value);
+  let quantity = parseInt(d.querySelector('#cuantosQantity').value);
   quantity += value;
   if (quantity<=1) {
     quantity = 1;
   }
-  d.querySelector('#addToCartQantity').value       = quantity;
+  d.querySelector('#cuantosQantity').value       = quantity;
   // d.querySelector('#myAddToCart').dataset.quantity = quantity;
 }
 
@@ -604,7 +605,27 @@ async function ajax3(formData) {
 
 
 
+const cardSetup = () => {
+	d.querySelectorAll('.card').forEach((item, i) => {
+		let code = item.dataset.code,
+		size = item.dataset.size,
+		tip1 = item.dataset.tip1,
+		tip2 = item.dataset.tip2,
+		cond = item.dataset.cond,
+		butn = item.querySelector('.cardAdd');
 
+		butn.addEventListener('click',()=>{
+			cartController.add({
+				code: code,
+				size: size,
+				qty: item.querySelector('#cuantosQantity').value,
+				tipo_1: tip1,
+				tipo_2: tip2,
+				condicion: cond,
+			})
+		})
+	});
+}
 
 
 
@@ -757,16 +778,19 @@ cartController = {
 			});
 		}
 
-		setTimeout(()=>{
-			d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#');
-			d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
-			d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
-			d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
-		}, 800);
-		d.querySelector('#currentSemiSelection').classList.remove('size');
-		d.querySelector('#currentSemiSelection').classList.remove('tip1');
-		d.querySelector('#currentSemiSelection').classList.remove('tip2');
-		d.querySelector('#currentSemiSelection').classList.remove('cond');
+
+		if(d.querySelector('#cotizador')){
+			setTimeout(()=>{
+				d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+			}, 800);
+			d.querySelector('#currentSemiSelection').classList.remove('size');
+			d.querySelector('#currentSemiSelection').classList.remove('tip1');
+			d.querySelector('#currentSemiSelection').classList.remove('tip2');
+			d.querySelector('#currentSemiSelection').classList.remove('cond');
+		}
 
   },
 	remove:(code)=>{

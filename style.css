@@ -889,7 +889,7 @@ section {
   position: relative;
   width: 100%;
   z-index: 2;
-  /* background: white; */
+  background: white;
   justify-content: space-between;
 }
 
@@ -1516,10 +1516,8 @@ section {
                           6.5.0) =card:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-/* .card>:not(.cardMedia){padding:0 1rem} */
 .card .cuantosQnt{height: unset}
-.card .btn{padding: unset}
-.cardFeatures svg{width:2rem;height:2rem}
+/* .card .btn{padding: unset} */
 .card {
   /* background: white; */
   border-radius: 4px;
@@ -1551,6 +1549,9 @@ section {
   display:grid;
   align-items:center;
   justify-content:center;
+}
+.cardThumbnail svg{
+  height:2rem;
 }
 .cardTitle{
   grid-column:2;
@@ -1593,13 +1594,9 @@ section {
   grid-gap:.5rem;
   justify-content: center;
 }
+.cardFeatures svg{width:2rem;height:2rem}
 .cardFeatures *{
   margin: auto;
-}
-.cardSeparator {
-  width:calc(100% - 1rem);
-  margin: auto;
-  /* background: #676767; */
 }
 
 .cardActions {
@@ -2726,7 +2723,7 @@ section {
   align-items:center;
 }
 .selectBoxOption:hover{
-  /* background:#BBB; */
+  background:#BBB;
 }
 .selectBoxInput{
   display: none;
@@ -2820,7 +2817,7 @@ section {
 
 
 .dynamicCont.ready .btn{
-  /* background:var(--color2); */
+  background:var(--primaryColorDark);
 }
 
 .dynamicCont {
@@ -2850,13 +2847,6 @@ section {
   grid-gap:inherit;
   grid-template-columns:var(--dynamicContSelector);
 }
-/*
-.dynamicCont .selectBox:nth-child(2){grid-column:2}
-.dynamicCont .selectBox:nth-child(3){grid-column:3}
-.dynamicCont .selectBox:nth-child(4){grid-column:var(--dynamicContSelectBox4GC)}
-.dynamicCont .selectBox:nth-child(5){grid-column:}
- */
-
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2879,7 +2869,7 @@ section {
   transform:translateX(-50%);
   transition:.6s;
   width: calc(100% - var(--lateral) * 2);
-  z-index: 2;
+  z-index: 3;
 }
 
 .cart.alt{top:80px}
