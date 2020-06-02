@@ -1,6 +1,7 @@
 <?php
 require_once 'inc/customPosts.php';
 require_once 'inc/productFactory.php';
+require_once 'inc/formHandler.php';
 require_once 'inc/ajax.php';
 
 // require_once get_template_directory() . '/inc/productFactory.php';
