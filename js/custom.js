@@ -477,24 +477,13 @@ productSincrotron = {
 				productSincrotron.wipeProducts(true, cantidad);
 			} else {
 				// productSincrotron.wipeProducts();
-				let porcentage = productSincrotron.created.length * 100 / productSincrotron.qnty;
-				d.querySelector('.loadBarProgress').style.width = porcentage + '%';
+				// let porcentage = productSincrotron.created.length * 100 / productSincrotron.qnty;
+				// d.querySelector('.loadBarProgress').style.width = porcentage + '%';
 
 				d.querySelector('.loadBarProgress').style.width = '100%';
 				d.querySelector('.updateText').innerHTML = "Todos los productos eliminados";
 				setTimeout(1000, productSincrotron.productFabrik());
-				// productSincrotron.productFabrik();
-
 			}
-			// if (data.status == 'No hay productos') {
-			// 	// productSincrotron.wipeProducts();
-			// 	d.querySelector('.loadBarProgress').style.width = '100%';
-			// 	d.querySelector('.updateText').innerHTML = "Todos los productos eliminados";
-			// 	setTimeout(1000, productSincrotron.productFabrik());
-			// 	// productSincrotron.productFabrik();
-			// }else{
-			// 	// productSincrotron.wipeProducts();
-			// }
 		})
 	},
 	productFabrik:()=>{
@@ -515,34 +504,32 @@ productSincrotron = {
 
 		console.log('envio a fabricar:')
 		console.log(productSincrotron.temp);
-			let formData = new FormData();
-			formData.append('products', JSON.stringify(productSincrotron.temp));
-			formData.append('action', 'lt_create_products');
-			console.log('enviando '+productSincrotron.temp.length+' producto/s para crear');
-			ajax3(formData).then(data => {
-				// d.querySelector('.updateText').innerHTML = "Let's wipe things!";
-				// productSincrotron.created.unshift(productSincrotron.temp.shift());;
-				// console.log('largo del vector temp: ', productSincrotron.temp.length);
-				for (var i = 0; i < productSincrotron.temp.length; i++) {
-					productSincrotron.created.unshift(productSincrotron.temp.splice(0, 1));
-				}
-				// console.log(data);
-				console.log('products created: ', productSincrotron.created.length)
-				if (productSincrotron.created.length<productSincrotron.qnty) {
-				// if (productSincrotron.created.length<3) {
-					productSincrotron.productFabrik();
-				} else {
-					d.querySelector('.updateText').innerHTML = "Productos creados!!";
-				}
-				let porcentage = productSincrotron.created.length * 100 / productSincrotron.qnty;
-				d.querySelector('.loadBarProgress').style.width = porcentage + '%';
-			})
+		let formData = new FormData();
+		formData.append('products', JSON.stringify(productSincrotron.temp));
+		formData.append('action', 'lt_create_products');
+		console.log('enviando '+productSincrotron.temp.length+' producto/s para crear');
+		ajax3(formData).then(data => {
+			// d.querySelector('.updateText').innerHTML = "Let's wipe things!";
+			// productSincrotron.created.unshift(productSincrotron.temp.shift());;
+			// console.log('largo del vector temp: ', productSincrotron.temp.length);
+			for (var i = 0; i < productSincrotron.temp.length; i++) {
+				productSincrotron.created.unshift(productSincrotron.temp.splice(0, 1));
+			}
+			// console.log(data);
+			console.log('products created: ', productSincrotron.created.length)
+			if (productSincrotron.created.length<productSincrotron.qnty) {
+			// if (productSincrotron.created.length<3) {
+				productSincrotron.productFabrik();
+			} else {
+				d.querySelector('.updateText').innerHTML = "Productos creados!!";
+			}
+			let porcentage = productSincrotron.created.length * 100 / productSincrotron.qnty;
+			d.querySelector('.loadBarProgress').style.width = porcentage + '%';
+		})
 	}
 }
-// console.log(productSincrotron);
 
 
-// const url = 'process.php'
 const lt_upload_file = () => {
 	const controller = d.querySelector('.updateController'),
 	file = controller.querySelector('[type=file]');
@@ -555,7 +542,8 @@ const lt_upload_file = () => {
 	altClassFromSelector('loading', '#updateController', 'updateController')
 	ajax2(formData).then(data => {
 		altClassFromSelector('loaded', '#updateController', 'updateController');
-		d.querySelector('.updateText').innerHTML = 'Tabla actualizada!, el Sicrotron esta en desarrollo.';
+		d.querySelector('.updateText').innerHTML = 'Tabla actualizada!.';
+		d.querySelector('.loadBarProgress').style.width = '100%';
 		console.log('archivo subido, base de datos actualizada');
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
@@ -669,20 +657,45 @@ cartController = {
 	finish:()=>{
 		console.log(cartController.cart)
 		cartController.cart.forEach((item, i) => {
-			cartController.getPrice(item.code);
+			// cartController.getPrice(item.code);
 			// console.log(item);
-		});
 
+				var formData = new FormData();
+				formData.append( 'action', 'lt_cart_end' );
+				formData.append( 'cont', item.code );
+				formData.append( 'country', cartController.locationOrigen['country'] );
+				formData.append( 'city', cartController.locationOrigen['city'] );
+				ajax2(formData).then( data => {
+					console.log(data)
+
+					if (data[0].fixed_price) {
+						let finalPrice = data[0].fixed_price;
+					}else if(data[0].sale_price){
+						let finalPrice = data[0].sale_price - 300;
+					}else{
+						let prices = data.map( x => x.supplier_price ),
+						pricesSort = prices.sort((a,b) => a - b).slice(0, 2),
+						average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2,
+						finalPrice = average + 200;
+					}
+
+
+					cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
+					itemQty = cartItem.querySelector('.cartItemQty').innerText;
+					itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+					itemCurrency = cartItem.querySelector('.cartItemCurrency');
+
+
+					itemCurrency.innerText = data[0].currency
+					itemPrice.innerText = finalPrice * parseInt(itemQty);
+				})
+		});
+		altClassFromSelector('alt', '#finalizarConsulta')
 	},
 	getPrice:(code)=>{
-		console.log('terminar consulta!!')
-		// console.log(cartController.cart[0].code)
-		console.log( cartController.locationOrigen['country'] );
-		console.log( cartController.locationOrigen['city'] );
 		var formData = new FormData();
 		formData.append( 'action', 'lt_cart_end' );
 		formData.append( 'cont', code );
-		// formData.append( 'cont', cartController.cart[0].code );
 		formData.append( 'country', cartController.locationOrigen['country'] );
 		formData.append( 'city', cartController.locationOrigen['city'] );
 		ajax2(formData).then( data => {
@@ -696,15 +709,6 @@ cartController = {
 			let finalPrice = average + 200;
 	    console.log(average);
 			alert('tu precio es: ' + finalPrice)
-
-			// data.forEach((item, i) => {
-			// 	console.log(item.supplier_price)
-			//
-			// });
-			// var arr = [5, 4, 7, 2, 10, 1];
-	    // let res = arr.sort((a,b) => a - b).slice(0, 2);
-	    // console.log(res);
-
 		})
 	},
   add: (x) => {
@@ -972,6 +976,7 @@ class CartItem {
 		cartItem.setAttribute('data-code', this.code);
 
 		let cartItemQty = cartItemTemplate.querySelector(".cartItemQty");
+		let cartItemCode = cartItemTemplate.querySelector(".cartItemCode");
 
 		let cartItemSize = cartItemTemplate.querySelector(".cartItemSize .use");
 		let cartItemTip1 = cartItemTemplate.querySelector(".cartItemTip1 .use");
@@ -981,8 +986,9 @@ class CartItem {
 		let close = cartItemTemplate.querySelector(".close");
 
 		cartItemQty.innerText = this.qty;
+		cartItemCode.innerText = this.code;
 		// cartItemQty.innerText = this.ord;
-		cartItemSize.setAttribute('xlink:href', '#pies' + this.size);
+		cartItemSize.setAttribute('xlink:href', '#' + this.size + '-pies');
 		cartItemTip1.setAttribute('xlink:href', '#' + this.tipo_1);
 		cartItemTip2.setAttribute('xlink:href', '#' + this.tipo_2);
 		cartItemCond.setAttribute('xlink:href', '#' + this.condicion);

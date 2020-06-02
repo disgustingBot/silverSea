@@ -1,29 +1,12 @@
 <div class="dynamicCont" id="dynamicCont1">
 
-  <!-- <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"> -->
-  <svg class="dynamicContLogo" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
-    <use xlink:href="#test" id="dynamicContLogo"></use>
-  </svg>
-  <?php
-  // include 'img/svg/allIcons.php';
-  ?>
-
-    <!-- <object id="E" type="image/svg+xml" data="test.svg" width="320" height="240">
-     <param name="src" value="test.svg">
-    </object> -->
-
-  <!-- <div class="dynamicContSelector"> -->
-    <?php selectBox('Size'); ?>
-    <?php selectBox('Tipo_1'); ?>
-    <?php selectBox('Tipo_2'); ?>
-    <?php selectBox('Condicion'); ?>
-  <!-- </div> -->
-
-
-
+  <?php selectBox('Size'); ?>
+  <?php selectBox('Tipo_1'); ?>
+  <?php selectBox('Tipo_2'); ?>
+  <?php selectBox('Condicion'); ?>
 
   <div class="cuantos">
-    <input class="cuantosQnt" id="addToCartQantity" type="number" value="1" min="1" onchange="console.log('HOLA MUNDO')">
+    <input class="cuantosQnt" id="addToCartQantity" type="text" value="1" onchange="console.log('HOLA MUNDO')">
     <div class="cuantosBtn" onclick="cartController.changeQuantity(-1)">-</div>
     <div class="cuantosBtn" onclick="cartController.changeQuantity(+1)">+</div>
   </div>

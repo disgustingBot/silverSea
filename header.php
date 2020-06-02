@@ -35,11 +35,16 @@
 
   <template id="cartItemTemplate">
     <div class="cartItem">
-      <p class="cartItemQty">1</p>
+      <p class="cartItemCode"></p>
       <svg class="cartItemSvg cartItemSize" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
       <svg class="cartItemSvg cartItemTip1" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
       <svg class="cartItemSvg cartItemTip2" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
       <svg class="cartItemSvg cartItemCond" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
+      <p class="cartItemQty">1</p>
+      <p class="cartItemPrice">
+        <span class="cartItemPriceNumber"></span>
+        <span class="cartItemCurrency"></span>
+      </p>
       <button class="close" type="button" onclick="cartController.remove()">
         <div class="closeLine"></div>
         <div class="closeLine"></div>
@@ -52,13 +57,6 @@
 <body class="body" id="body" <?php body_class(); ?>>
 
   <?php include 'assets/allIcons.php'; ?>
-
-    <svg class="dynamicContLogo" style="display:none" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-      <path id="test" fill="currentColor" d="M632 64c4.4 0 8-3.6 8-8V40c0-4.4-3.6-8-8-8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h8v384H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h624c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8h-8V64h8zm-40 384H48V64h544v384zm-472-64h16c4.4 0 8-3.6 8-8V136c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v240c0 4.4 3.6 8 8 8zm96 0h16c4.4 0 8-3.6 8-8V136c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v240c0 4.4 3.6 8 8 8zm96 0h16c4.4 0 8-3.6 8-8V136c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v240c0 4.4 3.6 8 8 8zm96 0h16c4.4 0 8-3.6 8-8V136c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v240c0 4.4 3.6 8 8 8zm96 0h16c4.4 0 8-3.6 8-8V136c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v240c0 4.4 3.6 8 8 8z"></path>
-    </svg>
-
-
-
 
 	<view id="load" class="load"><div class="circle"></div></view>
 
