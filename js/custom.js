@@ -667,9 +667,10 @@ cartController = {
 	// 		city:'ANTWERP',
 	// },
 	finish:()=>{
+		console.log(cartController.cart)
 		cartController.cart.forEach((item, i) => {
-			// cartController.getPrice(item.code);
-			console.log(item.code);
+			cartController.getPrice(item.code);
+			// console.log(item);
 		});
 
 	},
@@ -716,7 +717,7 @@ cartController = {
 		} else {
 			cartController.cart.unshift(new CartItem(x));
 			cartController.cart[0].cartUI();
-			console.log(cartController.cart)
+			// console.log(cartController.cart)
 		}
   },
 	remove:(code)=>{
