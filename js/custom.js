@@ -667,16 +667,22 @@ cartController = {
 				formData.append( 'city', cartController.locationOrigen['city'] );
 				ajax2(formData).then( data => {
 					console.log(data)
+					let finalPrice;
 
-					if (data[0].fixed_price) {
-						let finalPrice = data[0].fixed_price;
-					}else if(data[0].sale_price){
-						let finalPrice = data[0].sale_price - 300;
-					}else{
-						let prices = data.map( x => x.supplier_price ),
-						pricesSort = prices.sort((a,b) => a - b).slice(0, 2),
-						average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2,
-						finalPrice = average + 200;
+					if (data[0]) {
+
+						if (data[0].fixed_price!=0) {
+							finalPrice = data[0].fixed_price;
+						}else if(data[0].sale_price!=0){
+							finalPrice = data[0].sale_price - 300;
+						}else{
+							let prices = data.map( x => x.supplier_price );
+							let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
+							let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+							finalPrice = average + 200;
+						}
+					} else {
+						finalPrice = 0;
 					}
 
 
@@ -691,6 +697,7 @@ cartController = {
 				})
 		});
 		altClassFromSelector('alt', '#finalizarConsulta')
+		d.querySelector('#cart').classList.add('alt')
 	},
 	getPrice:(code)=>{
 		var formData = new FormData();
@@ -723,6 +730,18 @@ cartController = {
 			cartController.cart[0].cartUI();
 			// console.log(cartController.cart)
 		}
+
+		setTimeout(()=>{
+			d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#');
+			d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
+			d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+			d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+		}, 800);
+		d.querySelector('#currentSemiSelection').classList.remove('size');
+		d.querySelector('#currentSemiSelection').classList.remove('tip1');
+		d.querySelector('#currentSemiSelection').classList.remove('tip2');
+		d.querySelector('#currentSemiSelection').classList.remove('cond');
+
   },
 	remove:(code)=>{
 		console.log(code)
@@ -799,7 +818,14 @@ cartController = {
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value + '-pies');
+		d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
+		d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelection').classList.add('size');
+		d.querySelector('#currentSemiSelection').classList.remove('tip1');
+		d.querySelector('#currentSemiSelection').classList.remove('tip2');
+		d.querySelector('#currentSemiSelection').classList.remove('cond');
 		// console.log('value: ', value);
 
     cartController.ready(false);
@@ -813,7 +839,14 @@ cartController = {
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+				// d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
+				d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
+				d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelection').classList.add('tip1');
+				d.querySelector('#currentSemiSelection').classList.remove('tip2');
+				d.querySelector('#currentSemiSelection').classList.remove('cond');
 
     cartController.ready(false);
     cartController.currentSemiSelection.tipo_1 = value;
@@ -830,7 +863,12 @@ cartController = {
 		cartController.getCol('condicion', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo_1, value);
     // cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
 		value = value.replace(/\s/g, '');
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelection').classList.add('tip2');
+		d.querySelector('#currentSemiSelection').classList.remove('cond');
   },
   condicionController: (value)=>{
 		// console.log(value)
@@ -853,7 +891,10 @@ cartController = {
 
 
 		value = value.replace(/\s/g, '');
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelection').classList.add('cond');
+
 		// console.log('value: ', value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
