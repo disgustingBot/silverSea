@@ -56,9 +56,6 @@ while(have_posts()){the_post();
 
     <section class="main"><?php the_content(); ?></section>
 
-    <div class="containerClassSeparator"></div>
-
-
     <div class="categoryCard">
       <div class="containerAttributeTxt">
         <?php newSvg($sizeSlug) ?>

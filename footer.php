@@ -51,9 +51,9 @@
   ?>
 
   <form class="footLog" action="/action_page.php">
-    <input class="footLogInput" type="text" id="fname" name="fname" value="User">
+    <input class="footLogInput" type="text" id="fname" name="fname" placeholder="User">
     <br>
-    <input class="footLogInput" type="text" id="lname" name="lname" value="Password">
+    <input class="footLogInput" type="password" id="lname" name="lname" placeholder="Password">
     <button class="footLogSubmit btn" type="submit" value="Submit">LOGIN</button>
   </form>
 
