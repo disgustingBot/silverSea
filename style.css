@@ -965,7 +965,7 @@ section {
 
 .hamburgerMenu {
   cursor: pointer;
-  display: var(--onlymobileF);
+  display: var(--onlyMobileF);
   flex-direction: column;
   justify-content: space-between;
   height: 1rem;
