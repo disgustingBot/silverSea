@@ -226,6 +226,7 @@ FIN DE MAPA DE CONTENIDOS */
   --footLogoHeight: 3rem;
   --footerNavMB: 1rem;
   --footerPad: 1rem 3rem;
+  --footLogoMargin: auto;
 
 
 
@@ -334,7 +335,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?FOOTER */
 
-    --footGridTC: 1fr 1fr;
+
 
     /* SINGLE CONTAINER */
     /* SINGLE CONTAINER */
@@ -442,9 +443,10 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?FOOTER */
 
     --footGridTC: repeat(4, 1fr);
-    --footLogoHeight: 1.5rem;
     --footerPad: 1rem 5rem;
     --footerNavMB: .1rem;
+    --footGridTC: 1fr 1fr;
+    --footLogoHeight: 2rem;
 
 
 
@@ -495,6 +497,8 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* ?FOOTER */
+      --footLogoMargin: auto auto auto 0;
+      --footGridTC: repeat(4, 1fr);
 
     --archiveFilter2AutoFlow: row;
 
@@ -753,7 +757,7 @@ section {
 --------------------------------------------------------------------------- */
 .header {
   box-shadow: var(--DP4);
-  display: var(--onlyDesktopG);
+  display: grid;
   background: var(--grey0);
   grid-template-columns: max-content 1fr;
   position: sticky;
@@ -774,7 +778,7 @@ section {
 }
 
 .navBar {
-  display: grid;
+  display: var(--onlyDesktopG);
   grid-auto-flow: column;
   margin: auto var(--lateral) auto auto;
   grid-gap: var(--navBarGG);
@@ -898,7 +902,10 @@ section {
   width: 100%;
   padding: 1rem;
   font-size: 2rem;
+  background: var(--grey0);
+  padding-top: 40px;
 }
+
 .navBarMobileContainer {
   position: fixed;
   top: 60px;
@@ -958,7 +965,7 @@ section {
 
 .hamburgerMenu {
   cursor: pointer;
-  display: flex;
+  display: var(--onlyMobileF);
   flex-direction: column;
   justify-content: space-between;
   height: 1rem;
@@ -966,7 +973,7 @@ section {
   margin: auto var(--lateral) auto auto;
 }
 .hamStripe {
-  /* background: var(--color1); */
+  background: var(--primaryColor);
   height: 3px;
   width: 100%;
 }
@@ -1089,9 +1096,7 @@ section {
 .frontPageATFBg{
   width: 100%;
   height: var(--frontPageATFBgH);
-  max-height: 90vh;
   object-fit: cover;
-  /* background: white; */
   z-index: 1;
 }
 
@@ -1515,7 +1520,9 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .card .cuantosQnt{height: unset}
-/* .card .btn{padding: unset} */
+.card .btn{padding: 5px;}
+.cardFeatures svg{width:2rem;height:2rem}
+
 .card {
   /* background: white; */
   border-radius: 4px;
@@ -1706,7 +1713,7 @@ section {
 .footLogInput {
   height: 1.5rem;
   width: 100%;
-  /* background: white; */
+  font-size: 16px;
   padding: .5rem;
   border: none;
 }
@@ -1715,7 +1722,7 @@ section {
   background: var(--grey0);
   color: var(--primaryColorDarker);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   text-align: right;
   border: none;
   margin-top: 5px;
@@ -1748,7 +1755,7 @@ section {
  z-index: 2;
  height:var(--archiveTopInteractionH);
  justify-content: flex-end;
- box-shadow: var(--DP4);
+ /* box-shadow: var(--DP4); */
  flex-direction: var(--archiveTopInteractionFD);
 }
 
@@ -2018,14 +2025,21 @@ section {
   position: absolute;
   transition:.4s;
   width: 2rem;
-  top: 100px;
-  right: 100px;
+  z-index:-1;
+  top: 10rem;
+  right: 1rem;
+}
+.cartButtonSvg{
+  margin: auto;
+  width: 1rem;
   z-index:1;
 }
 .cartButton:hover,
 .cartButton:focus {
   box-shadow: 0px 0px 0px 10px rgb(0,73,138);
   outline: none;
+  background:var(--grey99);
+  color:white;
 }
 
 
@@ -2662,7 +2676,7 @@ section {
   transform: scaleX(0);
   height: 2px;
   transition:.2s;
-  /* background: #000; */
+  background: #000;
 }
 .selectBox:focus{
   outline:none;
@@ -2850,7 +2864,6 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .cart{
-
   /* background:white; */
   background:var(--grey2);
   border-radius: 0 0 8px 8px;
@@ -2860,7 +2873,7 @@ section {
   left:50%;
   margin:auto;
   padding:1rem;
-  position:fixed;
+  position: fixed;
   top: -100px;
   transform:translateX(-50%);
   transition:.6s;
@@ -2869,15 +2882,20 @@ section {
 }
 
 .cart.alt{top:80px}
+
 .cart.observed{position:absolute;}
+
 .cart.observed.alt{top:120px}
+
 .cartHead{
   display:grid;
   grid-template-columns:1fr 1fr;
   grid-gap:inherit;
   align-items:center;
 }
+
 .cartHead .btn{margin-right:0}
+
 .cartList{
   display:grid;
   grid-gap:.5rem;
@@ -3094,6 +3112,7 @@ padding-bottom:0;
   min-height: 65vh;
   position: relative;
   z-index: 0;
+  grid-auto-flow: dense;
 }
 
 .archiveMain.alt .searchResultsCont {
@@ -3383,7 +3402,6 @@ section.contacto img{
 --------------------------------------------------------------------------- */
 
 .footer {
-  /* background: var(--color8); */
   color: var(--grey0);
   background: var(--primaryColorDarker);
   /* background:#002984; */
@@ -3396,7 +3414,7 @@ section.contacto img{
 }
 
 .footWordingTitle {
-  font-size: .75rem;
+  font-size: 20px;
 }
 
 .footWordingTxt {
@@ -3407,8 +3425,7 @@ section.contacto img{
 .footLogo {
   height: var(--footLogoHeight);
   width: auto;
-  margin: auto;
-  margin-left: 0;
+  margin: var(--footLogoMargin);
 }
 
 .footerInfoCont {
@@ -3434,12 +3451,33 @@ section.contacto img{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .footerNav li {
   text-align: var(--TxtLeftCenter);
   margin-bottom: var(--footerNavMB);
+  position: relative;
 }
+
+.footerNav li::after {
+  background: var(--grey0);
+  bottom: -.05rem;
+  content: ' ';
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transform: scale(0);
+  transition: .25s;
+  transform-origin: center;
+  width: 100%;
+}
+
+.footerNav li:hover::after  {
+  transform: scale(1);
+}
+
+
 
 .footerNav a {
   font-size: 18px;

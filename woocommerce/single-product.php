@@ -92,19 +92,6 @@ while(have_posts()){the_post();
           </div>
         <?php } ?>
 
-        <?php if (get_post_meta( get_the_id(), 'peso', true )){ ?>
-          <div class="containerAttribute">
-              <p class="containerAttributeTitle">Peso:</p>
-              <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), 'peso', true ); ?></p>
-          </div>
-        <?php } ?>
-
-        <?php if (get_post_meta( get_the_id(), 'tara', true )){ ?>
-          <div class="containerAttribute">
-              <p class="containerAttributeTitle">Tara:</p>
-              <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), 'tara', true ); ?></p>
-          </div>
-        <?php } ?>
 
         <button class="btn singleBuy" type="button" name="button">Agregar</button>
       </div>
