@@ -27,6 +27,7 @@ w.onload=()=>{
 	carouselController.setup()
 	growUpController.setup()
 	obseController.setup()
+	cuantosController.setup();
 	startMateput();
 	cardSetup();
 
@@ -41,7 +42,7 @@ w.onload=()=>{
 }
 
 
-
+// deprecated
 function postAjaxCall(url,dataNames,dataValues){// return a new promise.
 	return new Promise((resolve,reject)=>{// do the usual XHR stuff
 		var req=new XMLHttpRequest();
@@ -122,7 +123,6 @@ obseController = {
 		}
 	}
 }
-
 class Obse {
 	constructor(element){
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
@@ -168,14 +168,38 @@ class Obse {
 
 
 
+// CUANTOS
+cuantosController = {
+	cuantoses:[],
+	setup:()=>{
+		if (d.querySelectorAll('.Cuantos')) {
+			var cuantoses = d.querySelectorAll('.Cuantos');
+			cuantoses.forEach( cuantos => {
+				cuantosController.cuantoses.unshift(new Cuantos(cuantos))
+			});
+		}
+	},
+}
+class Cuantos {
+	constructor(element){
+		this.element = element;
+		this.quantity = parseInt(d.querySelector('#cuantosQantity').value);
+		element.querySelector('#cuantosPlus').onclick = () =>{this.changeQuantity(+1)}
+		element.querySelector('#cuantosMins').onclick = () =>{this.changeQuantity(-1)}
+	}
+	changeQuantity (value) {
+	  this.quantity += value;
+	  if (this.quantity<=1) {
+	    this.quantity = 1;
+	  }
+	  this.element.querySelector('#cuantosQantity').value       = this.quantity;
+	}
+}
 
 
 
 
-
-
-// OBSE:
-//Grow Up Handler o algo así, que se sho...
+// GROW UP
 growUpController = {
 	growUps:[],
 	setup:()=>{
@@ -292,29 +316,9 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
-// quantity selector on the thing
-const changeQuantity = (value) => {
-  let quantity = parseInt(d.querySelector('#cuantosQantity').value);
-  quantity += value;
-  if (quantity<=1) {
-    quantity = 1;
-  }
-  d.querySelector('#cuantosQantity').value       = quantity;
-  // d.querySelector('#myAddToCart').dataset.quantity = quantity;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 // SELECT BOX CONTROLER
+// TODO: mejorar eso a clases y POO
 const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
   if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
   else   {d.querySelector(selectBoxId).classList.remove('alt')}
@@ -340,6 +344,9 @@ const accordionSelector = (selector) => {
 	});
 }
 
+
+
+
 // GO BACK BUTTONS
 function goBack(){w.history.back()}
 
@@ -351,8 +358,8 @@ function goBack(){w.history.back()}
 
 
 
-
 // mateput controller
+// TODO: mejorar esto a clases y POO
 const startMateput = () =>{
 	const updateRequired=e=>{if(e.value==''){e.classList.remove('alt')}else{e.classList.add('alt')}}
 	if(d.querySelectorAll('.mateputInput')){
@@ -509,11 +516,7 @@ productSincrotron = {
 			// productSincrotron.temp.unshift(productSincrotron.products.shift(productSincrotron.products[i]));
 			let productoZero = productSincrotron.products.splice(0, 1);
 			productSincrotron.temp.unshift(productoZero[0]);
-			// console.log(productoZero)
-			// array[i]
 		}
-		// console.log('cantidad de productos a crear', productSincrotron.products.length);
-		// console.clear();
 
 		console.log('envio a fabricar:')
 		console.log(productSincrotron.temp);
