@@ -8,10 +8,18 @@ while(have_posts()){the_post();
   include get_template_directory() . '/inc/getAtributes.php';
   ?>
 
-  <section class="singleContainer">
+  <section
+    class="singleContainer"
+    contenedor="true"
+    data-code="<?php echo $code; ?>"
+    data-size="<?php echo $sizeNumber; ?>"
+    data-tip1="<?php echo $tipo_1; ?>"
+    data-tip2="<?php echo strtoupper($tipo_2Slug); ?>"
+    data-cond="<?php echo strtoupper($conditionSlug); ?>"
+  >
     <div class="singleContainerTitle">
       <?php newSvg($tipo_1) ?>
-      <h2 class="galleryTitle rowcol1"><?php echo the_title() . ', '  . $tipo ;?> </h2>
+      <h2 class="galleryTitle rowcol1"><?php echo the_title() . ', '  . $tipo_1 ;?> </h2>
     </div>
     <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
     <div class="productGallery<?php if($attachment_ids){ echo " Carousel";} ?>" >
@@ -47,7 +55,13 @@ while(have_posts()){the_post();
           <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), $value, true ); ?></p>
         </div>
       <?php } } ?>
-      <button class="btn singleBuy" type="button" name="button">Agregar</button>
+
+        <div class="cuantos Cuantos">
+          <input class="cuantosQnt" id="cuantosQantity" type="text" value="1" min="1">
+          <button class="cuantosBtn" id="cuantosMins">-</button>
+          <button class="cuantosBtn" id="cuantosPlus">+</button>
+        </div>
+      <button class="btn singleBuy cardAdd" type="button" name="button">Agregar</button>
     </div>
   </section>
 
@@ -57,41 +71,41 @@ while(have_posts()){the_post();
     <section class="main"><?php the_content(); ?></section>
 
     <div class="categoryCard">
-      <div class="containerAttributeTxt">
+      <div class="categoryCardHeader">
         <?php newSvg($sizeSlug) ?>
-        <h6 class="containerAttributeName"><?php echo $size; ?></h6>
+        <h6 class="categoryCardTitle"><?php echo $size; ?></h6>
       </div>
-      <p class="containerClassCaption"><?php echo get_term_by('slug', $sizeSlug, 'product_cat')->description; ?></p>
+      <p class="categoryCardCaption"><?php echo get_term_by('slug', $sizeSlug, 'product_cat')->description; ?></p>
     </div>
 
     <div class="containerClassSeparator"></div>
 
     <div class="categoryCard">
-      <div class="containerAttributeTxt">
+      <div class="categoryCardHeader">
         <?php newSvg($tipo_1) ?>
-        <h6 class="containerAttributeName"><?php echo $tipo_1; ?></h6>
+        <h6 class="categoryCardTitle"><?php echo $tipo_1; ?></h6>
       </div>
-      <p class="containerClassCaption"><?php echo get_term_by('slug', $tipo_1, 'product_cat')->description; ?></p>
+      <p class="categoryCardCaption"><?php echo get_term_by('slug', $tipo_1, 'product_cat')->description; ?></p>
     </div>
 
     <div class="containerClassSeparator"></div>
 
     <div class="categoryCard">
-      <div class="containerAttributeTxt">
+      <div class="categoryCardHeader">
         <?php newSvg(strtoupper($tipo_2Slug)) ?>
-        <h6 class="containerAttributeName"><?php echo $tipo_2; ?></h6>
+        <h6 class="categoryCardTitle"><?php echo $tipo_2; ?></h6>
       </div>
-      <p class="containerClassCaption"><?php echo get_term_by('slug', $tipo_2Slug, 'product_cat')->description; ?></p>
+      <p class="categoryCardCaption"><?php echo get_term_by('slug', $tipo_2Slug, 'product_cat')->description; ?></p>
     </div>
 
     <div class="containerClassSeparator"></div>
 
     <div class="categoryCard">
-      <div class="containerAttributeTxt">
+      <div class="categoryCardHeader">
         <?php newSvg(strtoupper($conditionSlug)) ?>
-        <h6 class="containerAttributeName"><?php echo $condition; ?></h6>
+        <h6 class="categoryCardTitle"><?php echo $condition; ?></h6>
       </div>
-      <p class="containerClassCaption"><?php echo get_term_by('slug', $conditionSlug, 'product_cat')->description; ?></p>
+      <p class="categoryCardCaption"><?php echo get_term_by('slug', $conditionSlug, 'product_cat')->description; ?></p>
     </div>
 
 

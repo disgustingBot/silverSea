@@ -248,7 +248,6 @@ FIN DE MAPA DE CONTENIDOS */
   --coprAlquiGTC: auto;
   --coprAlquiLocationGC: auto;
   --sladRadioMarginLeft: auto;
-  --hideFilterDisplay: none;
   --searchResultsGTC: repeat(1,1fr);
   --searchResultContTop: 0;
   --searchResultsAltGTC: repeat(2,1fr);
@@ -256,20 +255,14 @@ FIN DE MAPA DE CONTENIDOS */
   --productGalleryPosition: static;
   --productGalleryTop: 0;
   --archiveFilterPosition: static;
-  --archiveFilter2Z-Index: 2;
   --archiveFilterJustifyC: space-evenly;
   --archiveTopInteractionDisplay: none;
-  --hideFilterBtnPosition: static;
-  --hideFilterBtnHeight: max-content;
-  --archiveFilter2Width: 100%;
   --archiveFilter2MH: unset;
   --archiveFilter2FD: row;
   --archiveFilter2SelectBoxW: 40%;
   --archiveFilterAltTransform: translateY(calc(-100% + 15px));
   --archiveFilter2BR: none;
   --archiveFilter2BB: solid var(--color2) 15px;
-  --hideFilterBtnM: .5rem auto;
-  --hideFIlterBtnPadding: 5px 10px;
   --searchResultsContW: 100%;
   --cardActionsGG: 1rem;
   --cardActionsGGGTR: 1fr 1fr;
@@ -278,8 +271,6 @@ FIN DE MAPA DE CONTENIDOS */
   --cardActinsCuantityM: auto;
   --archiveTopInteractionFD: column;
   --archiveTopInteractionH: auto;
-  --hideFilterBtnOrder: 2;
-  --hideFilterBtnBR: 4px;
   --byeByeBtnD: flex;
   --byeByeBtnsM: 10px auto;
   --archive2TxtAlign: center;
@@ -345,18 +336,14 @@ FIN DE MAPA DE CONTENIDOS */
     --coprAlquiGTC: auto 1fr;
     --coprAlquiLocationGC: 2;
     --sladRadioMarginLeft: 0;
-    --hideFilterDisplay: block;
     --filterAllFontSize: 16px;
     --cardActionsGG: .5rem;
     --cardActionsGGGTR: unset;
     --cardActionsGGGTC: unset;
     --cardActinsCuantityGC: unset;
     --cardActinsCuantityM: unset;
-    --hideFilterBtnM: auto auto auto var(--lateral);
     --archiveTopInteractionFD: row;
     --archiveTopInteractionH: 70px;
-    --hideFilterBtnOrder: unset;
-    --hideFilterBtnBR: 0 4px 4px 0;
     --byeByeBtnD: grid;
     --byeByeBtnsM: auto auto auto 20px;
 
@@ -503,21 +490,16 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveFilter2AutoFlow: row;
 
     /* ARCHIVE-PAGE */
-   --archiveFilterPosition: fixed;
-   --archiveFilter2Z-Index: 1;
+    --archiveFilterPosition: fixed;
+   --archiveFilterPosition: sticky;
    --archiveFilterJustifyC: space-between;
    --archiveTopInteractionDisplay: flex;
-   --hideFilterBtnPosition: fixed;
-   --hideFilterBtnHeight: 70px;
-   --archiveFilter2Width: 25%;
    --archiveFilter2MH: 40vh;
    --archiveFilter2FD: column;
    --archiveFilter2SelectBoxW: 100%;
    --archiveFilterAltTransform: translateX(calc(-100% + 15px));
    --archiveFilter2BR: solid var(--primaryColorDark) 15px;
    --archiveFilter2BB: none;
-   --hideFilterBtnM: unset;
-   --hideFIlterBtnPadding: 10px;
    --searchResultsContW: 75%;
    --archive2TxtAlign: left;
    --searchResultContTop: -18rem;
@@ -765,6 +747,7 @@ section {
   z-index: 6;
   height: 120px;
 }
+.header .cartButton{top:calc(120px - 1rem)}
 
 .headerLogoLink {
   display: flex;
@@ -1705,9 +1688,9 @@ section {
 --------------------------------------------------------------------------- */
 
 .footLog {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-gap:.5rem;
+  margin: auto;
 }
 
 .footLogInput {
@@ -1721,11 +1704,6 @@ section {
 .footLogSubmit.btn {
   background: var(--grey0);
   color: var(--primaryColorDarker);
-  font-weight: 700;
-  font-size: 18px;
-  text-align: right;
-  border: none;
-  margin-top: 5px;
   margin-right: 0;
 }
 
@@ -1759,36 +1737,6 @@ section {
  flex-direction: var(--archiveTopInteractionFD);
 }
 
-.hideFilterBtn {
-  /* background: var(--color3); */
-  background: var(--primaryColorDark);
-  color: var(--grey0);
-  padding: var(--hideFIlterBtnPadding);
-  display: flex;
-  width: var(--archiveFilter2Width);
-  border: 1px solid var(--color4);
-  box-sizing: border-box;
-  transition: .75s;
-  position: var(--hideFilterBtnPosition);
-  bottom: 0;
-  top: 120px;
-  height: var(--hideFilterBtnHeight);
-  left: 0;
-  border: none;
-  border-radius: var(--hideFilterBtnBR);
-  margin: var(--hideFilterBtnM);
-  order: var(--hideFilterBtnOrder);
-  z-index: var(--archiveFilter2Z-Index);
-  box-shadow: var(--DP1);
-  transition: .43s;
-}
-
-.hideFilterBtn.alt {
-  /* background: var(--color2); */
-  border: 1px solid var(--color2);
-  width: 100px;
-  box-shadow: unset;
-}
 
 .archiveTopInteractBtn{
  /* background: white; */
@@ -1800,32 +1748,7 @@ section {
 
 
 
-.archiveFilter2 .hideFilter{
-  display: var(--hideFilterDisplay);
-  position: sticky;
-  right: -1.25rem;
-  align-self: center;
-  border: none;
-  transition: .5s;
-  /* background: var(--color5); */
-  /* color: var(--color1); */
-  z-index: -1;
-  margin: .5rem;
-  padding: .5rem;
-  border-radius: 8px;
-  border-right: solid var(--color1) 2px;
-}
 
-
-.filterArrow {
-  transform-origin: center;
-  transform: rotateY(0) translateX(0);
-  transition: .5s ease-out;
-}
-
-@keyframes animateArrow {
-
-}
 
 
 
@@ -1842,33 +1765,8 @@ section {
   margin-left: 0;
 }
 
-.hideFilterBtn.alt .hideWord {
-  display: none;
-}
 
 
-.hideFilterBtn.alt .archiveTopInteractTitle {
-  font-size: 16px;
-}
-
-.encuentraContenedorTitle, .advancedSearchTitle {
-  text-align: var(--archive2TxtAlign)
-}
-
-
-.hideFilter.alt .filterArrow {
-  position: relative;
-  transform: rotate(180deg);
-}
-
-.arrowTopStick { opacity: 0; transition: .25s;}
-/* .arrowBotStick { opacity: 1; transition: .25s;} */
-/* .hideFilter.alt  .arrowTopStick {opacity: 1;} */
-/* .hideFilter.alt  .arrowBotStick {opacity: 0;} */
-
-.hideFilter:focus{outline: none}
-
-.hideFilter svg{height: 1.7rem}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2016,30 +1914,24 @@ section {
   background:white;
   border:1px solid var(--grey99);
   border-radius:50%;
-  /* left:-.3rem; */
-  color:var(--color8);
+  /* color:var(--color8); */
   cursor:pointer;
-  height: 2rem;
   display: grid;
-  /* padding:.2rem; */
+  height: 2rem;
   position: absolute;
+  right: 1rem;
   transition:.4s;
   width: 2rem;
   z-index:-1;
-  top: 10rem;
-  right: 1rem;
 }
 .cartButtonSvg{
-  margin: auto;
-  width: 1rem;
   z-index:1;
 }
 .cartButton:hover,
 .cartButton:focus {
   box-shadow: 0px 0px 0px 10px rgb(0,73,138);
   outline: none;
-  background:var(--grey99);
-  color:white;
+  /* color:white; */
 }
 
 
@@ -2357,7 +2249,7 @@ section {
   align-items: center;
   justify-content: center;
 }
-
+.singleAtributes .cuantos{margin:auto;}
 .containerAttribute{
   display: flex;
   justify-content: center;
@@ -2377,18 +2269,6 @@ section {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-
-.containerAttributeName {
-  font-size: 1.2rem;
-}
-
-.containerClassCaption {
-  font-size: 18px;
-}
-
-.containerAttribute img{
-  width: auto;
 }
 
 .containerClassSeparator {
@@ -2425,6 +2305,8 @@ section {
   margin: 1rem;
 }
 
+
+
 .categoryCard {
   display: flex;
   flex-direction: column;
@@ -2433,11 +2315,23 @@ section {
   margin: .5rem;
   flex-basis: 100%;
 }
-
+.categoryCardHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .categoryCard .pageSvg {
   height: 3rem;
   margin: auto 16px auto 0;
 }
+.categoryCardTitle {
+  font-size: 1.2rem;
+}
+
+.categoryCardCaption {
+  font-size: 18px;
+}
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -3082,55 +2976,135 @@ padding-bottom:0;
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: var(--searchResultsGTC);
-  padding: 1rem;
-  width: var(--searchResultsContW);
-  margin: auto 0 auto auto;
-  transition: .6s;
-  min-height: 65vh;
-  position: relative;
-  z-index: 0;
   grid-auto-flow: dense;
+  margin-left: auto;
+  min-height: 65vh;
+  padding:0 1rem;
+  position: relative;
+  transition: .6s;
+  width: var(--searchResultsContW);
+  z-index: 0;
 }
 
-.archiveMain.alt .searchResultsCont {
-  width: 100%;
-}
-
+.archiveMain.alt .searchResultsCont{width:100%}
 .archiveMain{
   display: var(--archiveMainDisplay);
   position: relative;
   transition: .5s;
   flex-wrap: wrap;
+  padding:1rem 0;
 }
 
 
-.archiveFilter2 {
-  position: var(--archiveFilterPosition);
+
+.filtersContainer{
+  bottom:0;
+  padding:inherit;
+  position: absolute;
+  top:0;
+  width:100%;
+  z-index:3;
+}
+.archiveMain.alt .archiveFilters{
+  transform:translateX(calc(15px - 100%));
+  border-right:solid var(--primaryColorDark) 15px;
+}
+
+.archiveFilters {
+  background: white;
+  box-shadow: var(--DP4);
+  border-right:solid var(--primaryColorDark) 0px;
+  border-radius: 0 4px 4px 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: var(--archiveFilter2FD);
-  grid-gap:.6rem;
-  grid-auto-rows:40px;
-  padding: calc(2rem + 30px) 1rem 1rem 1rem;
-  transition: .5s;
-  z-index: var(--archiveFilter2Z-Index);
-  width: var(--archiveFilter2Width);
-  top: 153px;
-  border-radius: 0 0 4px 0;
   justify-content: var(--archiveFilterJustifyC);
-  box-shadow: var(--DP4);
-  /* background: white; */
+  margin-bottom:auto;
+  /* grid-gap:.6rem; */
+  /* grid-auto-rows:40px; */
+  /* padding: calc(2rem + 30px) 1rem 1rem 1rem; */
+  /* padding:1rem; */
+  /* padding-top:0; */
+  position: var(--archiveFilterPosition);
+  position:sticky;
+  transition: .5s ease-in-out;
+  /* top: 153px; */
+  top: 120px;
 
+  /* width: var(--archiveFilter2Width); */
+  width:25%;
+  z-index: var(--archiveFilter2Z-Index);
 }
 
-.archiveFilter2.alt{
+.archiveFilters.alt{
   transform: var(--archiveFilterAltTransform);
   border-right: var(--archiveFilter2BR);
   border-bottom: var(--archiveFilter2BB);
   box-shadow: var(--DP4);
 }
 
-.archiveFilter2 .selectBox {
+.archiveFiltersHeader{
+  align-items:center;
+  background: var(--primaryColorDark);
+  border-radius: var(--hideFilterBtnBR);
+  box-shadow: var(--DP1);
+  color: var(--grey0);
+  cursor:pointer;
+  display: flex;
+  padding: var(--hideFIlterBtnPadding);
+  transition:.5s ease-in-out;
+  transform:translateX(0) translateZ(0);
+  transform-origin: left;
+  width:100%;
+}
+.archiveFiltersHeader:hover{
+  box-shadow: var(--DP6);
+}
+
+.archiveMain.alt .archiveFiltersHeader{
+  transform:translateX(200%) translateZ(0);
+  width:50%;
+}
+
+
+.filtersLogo{
+  height: 1.7rem;
+  width:2rem;
+}
+
+.filterArrow {
+  transform-origin: center;
+  /* transform: rotateY(0) translateX(0); */
+  transform: rotateY(0);
+  transition: .5s ease-in-out;
+  position: relative;
+}
+.archiveMain.alt .filterArrow{transform:rotate(180deg)}
+
+.archiveFiltersHeaderTitle{
+  overflow:hidden;
+  font-size:16px;
+}
+
+.hideWords{
+  transition:.5s ease-in-out;
+  transform:translateX(0);
+  position:relative;
+}
+.archiveMain.alt .hideWords{
+  margin-left:-1.7rem;
+}
+
+
+.archiveFiltersContent{
+  padding:1rem;
+}
+
+.encuentraContenedorTitle {
+  text-align: var(--archive2TxtAlign)
+}
+
+.archiveFilters .selectBox {
   width: var(--archiveFilter2SelectBoxW);
   margin: 10px 0;
 }

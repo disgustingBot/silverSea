@@ -1,9 +1,5 @@
 <?php get_header(); ?>
 
-<?php global $product; ?>
-
-<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( wc_get_page_id( 'shop' ) ), 'full' );?>
-
 
 
   <?php function woocommerce_subcats_from_parentcat($category){
@@ -89,37 +85,43 @@
     </div>
   <?php } ?>
 
-<section class="archiveTopInteraction">
-  <button class="hideFilter hideFilterBtn" onclick="altClassFromSelector('alt','.archiveFilter2');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')">
-    <svg width="40" height="62" viewBox="0 0 40 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M32.0908 16H6.9097C4.3281 16 3.02556 19.1537 4.85468 20.9954L14.6562 30.8679V41.3609V47H24.3438V44.3277V30.8679L34.1459 20.9954C35.9713 19.1574 34.6776 16 32.0908 16ZM21.4375 29.6559V44.2871L17.5625 44.3277V29.6559L6.90625 18.9263H32.0938L21.4375 29.6559Z" fill="black"/>
-      <g class="filterArrow">
-        <path class="arrowBotStick" d="M9.625 56.875L35.4583 56.875L35.4583 53L9.625 53L9.625 56.875Z" fill="#0674BB"/>
-        <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
-      </g>
-    </svg>
-    <p class="archiveTopInteractTitle"><span class="hideWord">Hide</span> filters</p>
-  </button>
+<!-- <div class="archiveTopInteraction">
   <div class="byeByeBtn">
     <button class="btn">CONTENEDORES EN REBAJA</button>
     <button class="btn">Finalizar cotización</button>
   </div>
-</section>
+</div> -->
 
 <div class="archiveMain">
-  <div class="archiveFilter2">
-    <h2 class="encuentraContenedorTitle brandColorTxt">Cotiza tu contenedor</h2>
+  <div class="filtersContainer">
 
-    <?php woocommerce_subcats_from_parentcat('size'); ?>
+    <div class="archiveFilters">
+      <!-- <button class="hideFilter hideFilterBtn" onclick="altClassFromSelector('alt','.archiveFilters');altClassFromSelector('alt','.hideFilter');altClassFromSelector('alt','.archiveMain')"> -->
+      <div class=" archiveFiltersHeader" onclick="altClassFromSelector('alt','.archiveMain')">
+        <svg class="filtersLogo" viewBox="0 0 40 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32.0908 16H6.9097C4.3281 16 3.02556 19.1537 4.85468 20.9954L14.6562 30.8679V41.3609V47H24.3438V44.3277V30.8679L34.1459 20.9954C35.9713 19.1574 34.6776 16 32.0908 16ZM21.4375 29.6559V44.2871L17.5625 44.3277V29.6559L6.90625 18.9263H32.0938L21.4375 29.6559Z" fill="black"/>
+          <g class="filterArrow">
+            <path class="arrowBotStick" d="M9.625 56.875L35.4583 56.875L35.4583 53L9.625 53L9.625 56.875Z" fill="#0674BB"/>
+            <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
+          </g>
+        </svg>
+        <p class="archiveFiltersHeaderTitle"><span class="hideWords">Hide filters</span></p>
+      </div>
+      <div class="archiveFiltersContent">
+
+        <h2 class="encuentraContenedorTitle brandColorTxt">Cotiza tu contenedor</h2>
+
+        <?php woocommerce_subcats_from_parentcat('size'); ?>
 
 
-    <?php woocommerce_subcats_from_parentcat('dry'); ?>
-    <?php woocommerce_subcats_from_parentcat('reefer'); ?>
-    <?php woocommerce_subcats_from_parentcat('special'); ?>
+        <?php woocommerce_subcats_from_parentcat('dry'); ?>
+        <?php woocommerce_subcats_from_parentcat('reefer'); ?>
+        <?php woocommerce_subcats_from_parentcat('special'); ?>
 
 
-    <?php woocommerce_subcats_from_parentcat('condition'); ?>
-
+        <?php woocommerce_subcats_from_parentcat('condition'); ?>
+      </div>
+    </div>
   </div>
 
 
@@ -131,14 +133,16 @@
 
 
 
-<section class="searchResultsCont" id="postCont">
+  <section class="searchResultsCont" id="postCont">
     <?php while(have_posts()){the_post();
+      global $product;
+
       include get_template_directory() . '/inc/getAtributes.php';
-      
-      // fin de comentario
+
       ?>
       <article
         class="card"
+        contenedor="true"
         data-code="<?php echo $code; ?>"
         data-size="<?php echo $sizeNumber; ?>"
         data-tip1="<?php echo $tipo_1; ?>"
