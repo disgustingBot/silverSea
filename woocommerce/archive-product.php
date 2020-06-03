@@ -220,13 +220,12 @@
           </div>
 
           <div class="cardActions">
-            <div class="cuantos">
+            <div class="cuantos Cuantos">
               <input class="cuantosQnt" id="cuantosQantity" type="text" value="1" min="1">
-              <button class="cuantosBtn" onclick="changeQuantity(-1)">-</button>
-              <button class="cuantosBtn" onclick="changeQuantity(+1)">+</button>
+              <button class="cuantosBtn" id="cuantosMins">-</button>
+              <button class="cuantosBtn" id="cuantosPlus">+</button>
             </div>
             <a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
-            <?php $selector = '.card[data-code="'.$code.'"]'; ?>
             <button class="cardAdd btn btnSimple">AGREGAR</button>
           </div>
         </div>
