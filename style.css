@@ -60,6 +60,8 @@ Version: 0.0
 6.20) =cart:
 6.21) =finalizarConsulta:
 6.22) =cuantos:
+6.23) =currentSemiSelection:
+6.24) =mateput:
 6.42) =archive-product:
 6.62) =forms:login:
 6.65) =uploadForm:
@@ -235,7 +237,6 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* SINGLE CONTAINER */
   --singleContainerDisplay: block;
-  --singleAtributesMarginTop: 0;
   --containerAttributeW: 15rem;
 
   --singleAtributesDisplay: flex;
@@ -457,7 +458,6 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE CONTAINER */
     --singleContainerDisplay: grid;
-    --singleAtributesMarginTop: 6rem;
     --singleAtributesDisplay: grid;
     --containerAttributeW: 12rem;
 
@@ -891,7 +891,7 @@ section {
   position: relative;
   width: 100%;
   z-index: 2;
-  /* background: white; */
+  background: white;
   justify-content: space-between;
 }
 
@@ -1519,10 +1519,10 @@ section {
                           6.5.0) =card:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-/* .card>:not(.cardMedia){padding:0 1rem} */
 .card .cuantosQnt{height: unset}
 .card .btn{padding: 5px;}
 .cardFeatures svg{width:2rem;height:2rem}
+
 .card {
   /* background: white; */
   border-radius: 4px;
@@ -1555,6 +1555,9 @@ section {
   align-items:center;
   justify-content:center;
 }
+.cardThumbnail svg{
+  height:2rem;
+}
 .cardTitle{
   grid-column:2;
   grid-row:1;
@@ -1567,7 +1570,6 @@ section {
 .cardMedia{
   display:grid;
   position: relative;
-  /* border-radius:4px 4px 0 0; */
   z-index:0;
 }
 .cardImgA img{border-radius:inherit}
@@ -1590,31 +1592,16 @@ section {
 }
 
 .cardFeatures{
-  /* background:white; */
   border-radius:4px 0 0 0;
   display:grid;
   grid-auto-flow:column;
   grid-auto-columns:1fr;
   grid-gap:.5rem;
-
-  /* opcion: lame */
   justify-content: center;
-
-  /* opcion overlap de imagen */
-  /* padding:.2rem .5rem;
-  padding-bottom:0;
-  position: absolute;
-  bottom:0;
-  right:0;
-  z-index:1; */
 }
+.cardFeatures svg{width:2rem;height:2rem}
 .cardFeatures *{
   margin: auto;
-}
-.cardSeparator {
-  width:calc(100% - 1rem);
-  margin: auto;
-  /* background: #676767; */
 }
 
 .cardActions {
@@ -1693,40 +1680,14 @@ section {
 
 .teamSection:not(.direccion):not(.finance-administration):not(.sales-department-cis-region):not(.sales-department-europe):not(.sales-department-latam):not(.supply-operations) .teamCard {display: grid!important;}
 
-
-
-/*
-.teamSection.logistic       .teamCard.sales,
-.teamSection.administration .teamCard.sales,
-.teamSection.management     .teamCard.sales,
-.teamSection.ceo            .teamCard.sales {
-  display: none;
-}
-
-.teamSection.sales          .teamCard.logistic,
-.teamSection.administration .teamCard.logistic,
-.teamSection.management     .teamCard.logistic,
-.teamSection.ceo            .teamCard.logistic {
-  display: none;
-}
-
-.teamSection.logistic       .teamCard.management,
-.teamSection.administration .teamCard.management,
-.teamSection.sales          .teamCard.management,
-.teamSection.ceo            .teamCard.management {
-  display: none;
-} */
-
 .teamSection:not(.direccion)                   .teamCard.direccion,
 .teamSection:not(.finance-administration)      .teamCard.finance-administration,
 .teamSection:not(.sales-department-cis-region) .teamCard.sales-department-cis-region,
 .teamSection:not(.sales-department-europe)     .teamCard.sales-department-europe,
 .teamSection:not(.sales-department-latam)      .teamCard.sales-department-latam,
 .teamSection:not(.supply-operations)           .teamCard.supply-operations {
-
   display: none;
 }
-
 
 .teamSection.direccion                   .areaSelector.direccion,
 .teamSection.finance-administration      .areaSelector.finance-administration,
@@ -2068,16 +2029,18 @@ section {
   top: 10rem;
   right: 1rem;
 }
-
-.cartButton:hover{
-  background:var(--grey99);
-  color:white;
-}
 .cartButtonSvg{
   margin: auto;
   width: 1rem;
+  z-index:1;
 }
-
+.cartButton:hover,
+.cartButton:focus {
+  box-shadow: 0px 0px 0px 10px rgb(0,73,138);
+  outline: none;
+  background:var(--grey99);
+  color:white;
+}
 
 
 
@@ -2279,6 +2242,9 @@ section {
   height: 2rem;
   margin-left: 10px;
 }
+.summaryTitleContainer circle {
+  fill:var(--grey1)!important;
+}
 
 .summaryTitle{
   font-size: 1.7rem;
@@ -2342,6 +2308,19 @@ section {
   grid-template-columns: 2fr 1fr;
 }
 
+
+.singleContainerTitle {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  grid-column:1/-1;
+}
+.singleContainerTitle .pageSvg {
+  height: 2rem;
+  margin-right: 10px;
+}
+
+
 .productGallery{
   width: 100%;
   display:grid;
@@ -2369,27 +2348,12 @@ section {
   margin-bottom: auto;
 }
 
-.productGalleryImg.inactive{ opacity:0;}
-
-
-
-.galleryTitleContacardbiner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.galleryTitleContainer .cartItemSvg {
-  height: 2rem;
-  margin-right: 10px;
-}
-
+.productGalleryImg.inactive{opacity:0}
 
 .singleAtributes{
   display: var(--singleAtributesDisplay);
   flex-wrap: wrap;
   grid-gap: 1rem;
-  margin-top: var(--singleAtributesMarginTop);
   align-items: center;
   justify-content: center;
 }
@@ -2492,11 +2456,11 @@ section {
 }
 
 
-.theContent{
+/* .theContent{
   margin: 1rem var(--lateral);
   padding: 1rem;
   border-radius: 8px;
-}
+} */
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2519,13 +2483,17 @@ section {
 .cotizador .cartButton{
   top:.5rem;
   right:.5rem;
+  z-index:2;
 }
 
-.cotizador .dynamicContLogo {
+.cotizador .currentSemiSelection {
   position: absolute;
-  top: -.5rem;
-  right: 3rem;
+  top: .5rem;
+  right:1.5rem;
+  /* right: -7rem; */
+  z-index:1;
 }
+
 
 .cotizadorTitle,
 .cotizadorTxt {
@@ -2556,29 +2524,6 @@ section {
   text-align: center;
 }
 
-/* .cotizador .cuantos {
-  position: relative;
-}
-
-.cotizador .cuantos::after {
-  content:'Cantidad';
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  padding: 9px 52px 9px 16px;
-  font-size: .8rem!important;
-  border-bottom: 2px solid var(--color2);
-  background: white;
-  text-align: center;
-  transition: .25s;
-}
-
-.cotizador .cuantos:hover::after {
-  opacity: 0;
-} */
-
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.16) =coprAlqui:
@@ -2599,7 +2544,15 @@ section {
   margin-left: var(--sladRadioMarginLeft);
   border-radius: 16px;
   border: solid 2px var(--color2);
+
+
+  /* LO QUITO PORQUE NO TENEMOS EL CALCULO DE ALQUILER */
+  display:none;
 }
+
+
+
+
 
 .coprAlquiLocation{
   display: grid;
@@ -2609,8 +2562,6 @@ section {
   transition:.3s;
   grid-column: var(--coprAlquiLocationGC);
 }
-/* .coprAlquiLocation:nth-child(2){grid-column:2;grid-row:1;}
-.coprAlquiLocation:nth-child(3){grid-column:2;grid-row:2;} */
 .coprAlquiLocationTitle{
   margin:auto 0;
   text-align: right;
@@ -2782,7 +2733,7 @@ section {
   align-items:center;
 }
 .selectBoxOption:hover{
-  /* background:#BBB; */
+  background:#BBB;
 }
 .selectBoxInput{
   display: none;
@@ -2876,7 +2827,7 @@ section {
 
 
 .dynamicCont.ready .btn{
-  /* background:var(--color2); */
+  background:var(--primaryColorDark);
 }
 
 .dynamicCont {
@@ -2906,13 +2857,6 @@ section {
   grid-gap:inherit;
   grid-template-columns:var(--dynamicContSelector);
 }
-/*
-.dynamicCont .selectBox:nth-child(2){grid-column:2}
-.dynamicCont .selectBox:nth-child(3){grid-column:3}
-.dynamicCont .selectBox:nth-child(4){grid-column:var(--dynamicContSelectBox4GC)}
-.dynamicCont .selectBox:nth-child(5){grid-column:}
- */
-
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2934,7 +2878,7 @@ section {
   transform:translateX(-50%);
   transition:.6s;
   width: calc(100% - var(--lateral) * 2);
-  z-index: 2;
+  z-index: 3;
 }
 
 .cart.alt{top:80px}
@@ -2983,6 +2927,8 @@ section {
   background:white;
   border-radius:8px;
   box-shadow:var(--DP24);
+  display:grid;
+  grid-gap:.5rem;
   left:50%;
   /* margin:auto var(--lateral); */
   opacity:0;
@@ -2992,7 +2938,6 @@ section {
   top:50%;
   transform:translate(-50%, -50%);
   transition:.3s;
-  /* width: 50%; */
   width: calc(100% - var(--lateral) * 2);
   z-index:122;
 }
@@ -3000,12 +2945,9 @@ section {
   opacity:1;
   pointer-events:auto;
 }
-
-
-
-
-
-
+.finalizarConsulta .coprAlqui{
+padding-bottom:0;
+}
 
 
 /* ---------------------------------------------------------------------------
@@ -3034,7 +2976,7 @@ section {
 }
 .cuantosBtn{
   align-items:center;
-  /* background:none; */
+  background:none;
   text-align: center;
   cursor:pointer;
   border:none;
@@ -3049,6 +2991,109 @@ section {
   outline:1px solid var(--color2);
 }
 
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.23) =currentSemiSelection:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.currentSemiSelection {
+  display:grid;
+  grid-gap:.5rem;
+  grid-auto-flow:column;
+  /* transition:.4s;
+  transition-delay:.2s;
+  transform:translateX(0); */
+  padding-right:1.5rem;
+  overflow:hidden;
+}
+.currentSemiSelection>*{
+  transition:.4s;
+  transition-delay:.2s;
+  transform:translateX(10rem)
+}
+.currentSemiSelection.size>*{transform:translateX(7.5rem)}
+.currentSemiSelection.tip1>*{transform:translateX(5rem)}
+.currentSemiSelection.tip2>*{transform:translateX(2.5rem)}
+.currentSemiSelection.cond>*{transform:translateX(0)}
+.currentSemiSelectionSvg{height:2rem}
+
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.24) =mateput:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.mateput{
+  width: 50%;
+  position: relative;
+  --mateputHeight:40px;
+  /* height: 50px; */
+  height:var(--mateputHeight);
+  overflow: hidden;
+  width: var(--filterBarSearchWidth);
+}
+.filterBar .mateput{
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.mateput input{
+  background:none;
+  border:none;
+  color:#000;
+  font-size:.8rem!important;
+  height: 100%;
+  /* padding-top:20px; */
+  padding-top:calc(var(--mateputHeight) * 2 / 5);
+  outline: none;
+  width: 100%;
+}
+
+.mateputLabel{
+  border-bottom: 2px solid #666;
+  bottom:0;
+  color:#333;
+  font-size:.7rem!important;
+  height: 100%;
+  left:0;
+  pointer-events: none;
+  position: absolute;
+  width:100%;
+}
+
+.mateputLabel::after{
+  border-bottom:2px solid var(--primaryColor);
+  content:'';
+  position: absolute;
+  left: 0;
+  bottom:-2px;
+  height:100%;
+  width: 100%;
+  transform: translateX(-100%);
+  transition: .3s ease-in-out;
+}
+
+.mateputName{
+  position: absolute;
+  bottom:5px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.mateput input:focus + .mateputLabel .mateputName,
+.mateput input.alt + .mateputLabel .mateputName{
+  transform:translateY(-110%);
+  font-size: 14px!important;
+  color:var(--primaryColor);
+}
+
+.mateput input:focus + .mateputLabel::after,
+.mateput input.alt + .mateputLabel::after{
+  transform: translateX(0);
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -3121,24 +3166,6 @@ section {
 }
 
 
-/*
-
-SVG STYLES
-
-
-*/
-
-
-.svgIcon{
-  width: 30px;
-  height: 30px;
-}
-
-
-
-
-
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
               6.62) =forms:login:
@@ -3208,12 +3235,9 @@ SVG STYLES
 --------------------------------------------------------------------------- */
 .updateController{
   display: grid;
-  /* margin: 4rem auto; */
   margin: 4rem var(--lateral);
   width:calc(100% - var(--lateral) * 2);
-  /* height: 35vh; */
   grid-gap: 1rem;
-  /* background: white; */
   padding: 2rem;
   box-shadow: var(--DP6);
   border-radius: 8px;
@@ -3270,11 +3294,10 @@ SVG STYLES
   height: 3rem;
   position: absolute;
   right: 10vw;
-  /* top: var(--redDotTop); */
   width: 3rem!important;
   z-index:12;
 }
-/* .redDot.test{background:red} */
+.redDot.test{background:red}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -3292,7 +3315,6 @@ SVG STYLES
 .loadBarProgress{
   content:'';
   background:var(--secondaryColor);
-  /* width:30%; */
   height:inherit;
   border-radius:inherit;
   position:absolute;
@@ -3344,21 +3366,23 @@ section.contacto img{
   grid-row-gap: 1rem;
   align-items: center;
 }
-
+/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
+.inputConEstilosIgualALosDeLaPaginaDeContacto,
 .contactForm input{
   height: 2.5rem;
   padding-left: .5rem;
   width: var(--contactInputWidth);
   grid-column: var(--contactInputGC)
 }
-
+/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
+.textareaConEstilosIgualALosDeLaPaginaDeContacto,
 .contactForm textarea{
   grid-column: span 2;
   height: var(--contactTextareaHeight) ;
   padding: .5rem;
   width: var(--contactInputWidth);
 }
-
+/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
 .contactForm button{
   grid-column: span 2;
   width: min-content;
@@ -3387,10 +3411,6 @@ section.contacto img{
   /* padding: var(--footerPad); */
   padding:1rem var(--lateral);
   z-index: 3;
-}
-
-.footer * {
-  /* color: white!important; */
 }
 
 .footWordingTitle {

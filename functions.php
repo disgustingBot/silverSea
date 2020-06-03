@@ -1,6 +1,7 @@
 <?php
 require_once 'inc/customPosts.php';
 require_once 'inc/productFactory.php';
+require_once 'inc/formHandler.php';
 require_once 'inc/ajax.php';
 
 // require_once get_template_directory() . '/inc/productFactory.php';
@@ -363,7 +364,7 @@ function lt_new_pass(){
 
     function newSvg($id){ ?>
 
-      <svg class="cartItemSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+      <svg class="pageSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
         <use xlink:href="#<?php echo $id; ?>"></use>
       </svg>
 

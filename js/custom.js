@@ -27,6 +27,9 @@ w.onload=()=>{
 	carouselController.setup()
 	growUpController.setup()
 	obseController.setup()
+	cuantosController.setup();
+	startMateput();
+	cardSetup();
 
 
   if (d.getElementById("load")) {
@@ -39,7 +42,7 @@ w.onload=()=>{
 }
 
 
-
+// deprecated
 function postAjaxCall(url,dataNames,dataValues){// return a new promise.
 	return new Promise((resolve,reject)=>{// do the usual XHR stuff
 		var req=new XMLHttpRequest();
@@ -120,7 +123,6 @@ obseController = {
 		}
 	}
 }
-
 class Obse {
 	constructor(element){
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
@@ -166,14 +168,38 @@ class Obse {
 
 
 
+// CUANTOS
+cuantosController = {
+	cuantoses:[],
+	setup:()=>{
+		if (d.querySelectorAll('.Cuantos')) {
+			var cuantoses = d.querySelectorAll('.Cuantos');
+			cuantoses.forEach( cuantos => {
+				cuantosController.cuantoses.unshift(new Cuantos(cuantos))
+			});
+		}
+	},
+}
+class Cuantos {
+	constructor(element){
+		this.element = element;
+		this.quantity = parseInt(d.querySelector('#cuantosQantity').value);
+		element.querySelector('#cuantosPlus').onclick = () =>{this.changeQuantity(+1)}
+		element.querySelector('#cuantosMins').onclick = () =>{this.changeQuantity(-1)}
+	}
+	changeQuantity (value) {
+	  this.quantity += value;
+	  if (this.quantity<=1) {
+	    this.quantity = 1;
+	  }
+	  this.element.querySelector('#cuantosQantity').value       = this.quantity;
+	}
+}
 
 
 
 
-
-
-// OBSE:
-//Grow Up Handler o algo así, que se sho...
+// GROW UP
 growUpController = {
 	growUps:[],
 	setup:()=>{
@@ -290,29 +316,9 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
-// quantity selector on the thing
-const changeQuantity = (value) => {
-  let quantity = parseInt(d.querySelector('#addToCartQantity').value);
-  quantity += value;
-  if (quantity<=1) {
-    quantity = 1;
-  }
-  d.querySelector('#addToCartQantity').value       = quantity;
-  // d.querySelector('#myAddToCart').dataset.quantity = quantity;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 // SELECT BOX CONTROLER
+// TODO: mejorar eso a clases y POO
 const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
   if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
   else   {d.querySelector(selectBoxId).classList.remove('alt')}
@@ -338,6 +344,9 @@ const accordionSelector = (selector) => {
 	});
 }
 
+
+
+
 // GO BACK BUTTONS
 function goBack(){w.history.back()}
 
@@ -349,7 +358,18 @@ function goBack(){w.history.back()}
 
 
 
-
+// mateput controller
+// TODO: mejorar esto a clases y POO
+const startMateput = () =>{
+	const updateRequired=e=>{if(e.value==''){e.classList.remove('alt')}else{e.classList.add('alt')}}
+	if(d.querySelectorAll('.mateputInput')){
+		mateput=d.querySelectorAll('.mateputInput');
+		mateput.forEach(e=>{
+			updateRequired(e);
+			e.addEventListener('input',()=>{updateRequired(e)});
+		});
+	}
+}
 
 
 
@@ -496,11 +516,7 @@ productSincrotron = {
 			// productSincrotron.temp.unshift(productSincrotron.products.shift(productSincrotron.products[i]));
 			let productoZero = productSincrotron.products.splice(0, 1);
 			productSincrotron.temp.unshift(productoZero[0]);
-			// console.log(productoZero)
-			// array[i]
 		}
-		// console.log('cantidad de productos a crear', productSincrotron.products.length);
-		// console.clear();
 
 		console.log('envio a fabricar:')
 		console.log(productSincrotron.temp);
@@ -592,7 +608,27 @@ async function ajax3(formData) {
 
 
 
+const cardSetup = () => {
+	d.querySelectorAll('.card').forEach((item, i) => {
+		let code = item.dataset.code,
+		size = item.dataset.size,
+		tip1 = item.dataset.tip1,
+		tip2 = item.dataset.tip2,
+		cond = item.dataset.cond,
+		butn = item.querySelector('.cardAdd');
 
+		butn.addEventListener('click',()=>{
+			cartController.add({
+				code: code,
+				size: size,
+				qty: item.querySelector('#cuantosQantity').value,
+				tipo_1: tip1,
+				tipo_2: tip2,
+				condicion: cond,
+			})
+		})
+	});
+}
 
 
 
@@ -646,14 +682,6 @@ cartController = {
 			});
 		})
 	},
-	// cart: [{code:'20DC NEW'}],
-	// cart: [{code:'20DC CW'}],
-	// locationOrigen:{
-	// 	// country:'ARGENTINA',
-	// 	// city:'BUENOS AIRES',
-	// 		country:'BELGIUM',
-	// 		city:'ANTWERP',
-	// },
 	finish:()=>{
 		console.log(cartController.cart)
 		cartController.cart.forEach((item, i) => {
@@ -667,16 +695,25 @@ cartController = {
 				formData.append( 'city', cartController.locationOrigen['city'] );
 				ajax2(formData).then( data => {
 					console.log(data)
+					let finalPrice, currency;
 
-					if (data[0].fixed_price) {
-						let finalPrice = data[0].fixed_price;
-					}else if(data[0].sale_price){
-						let finalPrice = data[0].sale_price - 300;
-					}else{
-						let prices = data.map( x => x.supplier_price ),
-						pricesSort = prices.sort((a,b) => a - b).slice(0, 2),
-						average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2,
-						finalPrice = average + 200;
+					if (data[0]) {
+						currency = data[0].currency;
+
+						if (data[0].fixed_price!=0) {
+							finalPrice = data[0].fixed_price;
+						}else if(data[0].sale_price!=0){
+							finalPrice = data[0].sale_price - 300;
+						}else{
+							let prices = data.map( x => x.supplier_price );
+							let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
+							let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+							finalPrice = average + 200;
+						}
+
+					} else {
+						currency = '';
+						finalPrice = 0;
 					}
 
 
@@ -686,11 +723,22 @@ cartController = {
 					itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
 
-					itemCurrency.innerText = data[0].currency
+					itemCurrency.innerText = currency
 					itemPrice.innerText = finalPrice * parseInt(itemQty);
 				})
 		});
 		altClassFromSelector('alt', '#finalizarConsulta')
+		d.querySelector('#cart').classList.add('alt')
+
+		cartController.sendMail();
+	},
+	sendMail:()=>{
+					var formData = new FormData();
+					formData.append( 'action', 'lt_form_handler' );
+
+					ajax2(formData).then( data => {
+						console.log(data);
+					});
 	},
 	getPrice:(code)=>{
 		var formData = new FormData();
@@ -723,6 +771,30 @@ cartController = {
 			cartController.cart[0].cartUI();
 			// console.log(cartController.cart)
 		}
+		if (cartController.cart.length<2) {
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#simpleTruck');
+			});
+		}else{
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#doubleTruck');
+			});
+		}
+
+
+		if(d.querySelector('#cotizador')){
+			setTimeout(()=>{
+				d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+			}, 800);
+			d.querySelector('#currentSemiSelection').classList.remove('size');
+			d.querySelector('#currentSemiSelection').classList.remove('tip1');
+			d.querySelector('#currentSemiSelection').classList.remove('tip2');
+			d.querySelector('#currentSemiSelection').classList.remove('cond');
+		}
+
   },
 	remove:(code)=>{
 		console.log(code)
@@ -733,6 +805,15 @@ cartController = {
 			return element.code == code;
 		}
 		cartController.cart.splice(cartController.cart.findIndex(check), 1)
+		if (cartController.cart.length<2) {
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#simpleTruck');
+			});
+		}else{
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#doubleTruck');
+			});
+		}
 	},
   ready:(ready = true)=>{
     let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
@@ -799,7 +880,14 @@ cartController = {
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value + '-pies');
+		d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
+		d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelection').classList.add('size');
+		d.querySelector('#currentSemiSelection').classList.remove('tip1');
+		d.querySelector('#currentSemiSelection').classList.remove('tip2');
+		d.querySelector('#currentSemiSelection').classList.remove('cond');
 		// console.log('value: ', value);
 
     cartController.ready(false);
@@ -813,7 +901,14 @@ cartController = {
     cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+				// d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
+				d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
+				d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+				d.querySelector('#currentSemiSelection').classList.add('tip1');
+				d.querySelector('#currentSemiSelection').classList.remove('tip2');
+				d.querySelector('#currentSemiSelection').classList.remove('cond');
 
     cartController.ready(false);
     cartController.currentSemiSelection.tipo_1 = value;
@@ -830,7 +925,12 @@ cartController = {
 		cartController.getCol('condicion', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo_1, value);
     // cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
 		value = value.replace(/\s/g, '');
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelection').classList.add('tip2');
+		d.querySelector('#currentSemiSelection').classList.remove('cond');
   },
   condicionController: (value)=>{
 		// console.log(value)
@@ -853,7 +953,10 @@ cartController = {
 
 
 		value = value.replace(/\s/g, '');
-		d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelection').classList.add('cond');
+
 		// console.log('value: ', value);
     // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
   },
