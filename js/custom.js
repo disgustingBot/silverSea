@@ -17,12 +17,7 @@ w.onload=()=>{
     lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
   }
 
-	if(d.querySelector('#cotizador')){
-		cartController.ready(false);
-		cartController.getCol('Size');
-		cartController.getLocation()
-		cartController.getLocation(false, 'Destino')
-	}
+	cartController.setup();
 
 	carouselController.setup()
 	growUpController.setup()
@@ -416,6 +411,8 @@ function scrollAlter(){
 }
 
 
+
+
 // URL HANDLING
 const setUrlVar = ( variable, value = '' ) => {
   var filterQueries = new Array();
@@ -643,9 +640,46 @@ const cardSetup = () => {
 
 
 
+// COOKIES HANDLING
+
+function createCookie(n,value,days){if(days){var date=new Date();date.setTime(date.getTime()+(days*24*60*60*1000));var expires="; expires="+date.toUTCString();}else var expires="";d.cookie=n+"="+value+expires+"; path=/";}
+// function readCookie  (n){var m=n+"=",a=d.cookie.split(';');for(var i=0;i<a.length;i++){var c=a[i];while(c.charAt(0)==' ')c=c.substring(1,c.length);if(c.indexOf(m)==0)return c.substring(m.length,c.length);}return null;}
+function readCookie  (n){var m=n+"=",a=d.cookie.split(';');for(var i=0;i<a.length;i++){var c=a[i];while(c.charAt(0)==' ')c=c.substring(1,c.length);if(c.indexOf(m)==0)return c.substring(m.length,c.length);}}
+function eraseCookie (n){createCookie(n,"",-1)}
+
+
 // TODO: pasar todo a minuscula... como no se me ocurrio antes???!?!?
 // CART CONTROLLER
 cartController = {
+	setup:()=>{
+		if (d.querySelector('#cotizador')) {
+			cartController.ready(false);
+			cartController.getCol('Size');
+		}
+		cartController.getLocation();
+		cartController.getLocation(false, 'Destino');
+		// cartController.cart = JSON.parse(readCookie('cart'));
+		// cartController.cart = JSON.parse(readCookie('cart'));
+		if(readCookie('cart')){
+			JSON.parse(readCookie('cart')).forEach((item, i) => {
+				cartController.cart.unshift(new CartItem(item));
+				cartController.cart[0].cartUI();
+
+			});
+		}
+
+		if (cartController.cart.length<2) {
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#simpleTruck');
+			});
+		}else{
+			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
+				item.setAttribute('xlink:href', '#doubleTruck');
+			});
+		}
+
+		// console.log('la concha de la EXPLORAR')
+	},
   currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
 	containerToAdd:false,
 	cart: [],
@@ -765,8 +799,9 @@ cartController = {
 			return element.code == x.code;
 		}
 		if (cartController.cart.find(check)) {
-			cartController.cart.find(check).qty += x.qty
-			d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + x.qty;
+			let index = cartController.cart.findIndex(check)
+			cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
+			d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
 		} else {
 			cartController.cart.unshift(new CartItem(x));
 			cartController.cart[0].cartUI();
@@ -795,6 +830,8 @@ cartController = {
 			d.querySelector('#currentSemiSelection').classList.remove('tip2');
 			d.querySelector('#currentSemiSelection').classList.remove('cond');
 		}
+		// console.log(cartController.cart);
+		createCookie('cart', JSON.stringify(cartController.cart));
 
   },
 	remove:(code)=>{
@@ -815,6 +852,7 @@ cartController = {
 				item.setAttribute('xlink:href', '#doubleTruck');
 			});
 		}
+		createCookie('cart', JSON.stringify(cartController.cart));
 	},
   ready:(ready = true)=>{
     let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
@@ -1069,7 +1107,12 @@ class CartItem {
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
 		this.values = v;
 		// Esta parte define las propiedades del elemento como vienen del objeto v
-		for(var k in v){Object.defineProperty(this,k,{enumerable: true,value:v[k]})}
+		for(var k in v){Object.defineProperty(this,k,{enumerable: true,value:v[k],writable: true})}
+	}
+
+	setQty(x){
+		this.qty = x;
+		this.values.qty = x;
 	}
 
 
