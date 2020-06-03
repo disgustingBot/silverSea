@@ -61,7 +61,7 @@
 	<view id="load" class="load"><div class="circle"></div></view>
 
   <header class="header" id="header">
-    <?php include('blueBar.php') ?>
+    <?php // include('blueBar.php') ?>
 
     <!-- NAVIGATION BAR -->
     <a class="headerLogoLink" href="<?php echo site_url('');  ?>" class="logoLink">
@@ -117,8 +117,7 @@
   </nav>
 
 
-<div class="redDot" id="cartFixerActivator"></div>
-  <div class="cart Obse" id="cart" data-observe="#cartFixerActivator" data-unobserve="false">
+  <div class="cart" id="cart">
     <div class="cartHead">
       <h4 class="cartTitle">Tu Carrito</h4>
       <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
@@ -155,6 +154,6 @@
       </label>
     </div>
 
-    
+
     <button class="btn" onclick="cartController.finish()">dame precio rapido</button>
   </div>

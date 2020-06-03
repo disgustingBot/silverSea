@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
 
-
+<?php if(current_user_can('administrator') ) {  ?>
 
 <a href="http://localhost/silverSea/upload-file/">reload</a>
 <div class="updateController inicial" id="updateController">
@@ -36,4 +36,6 @@
 
 
 <a href="http://localhost/silverSea/upload-file/">reload</a>
+<?php } ?>
+
 <?php get_footer() ?>
