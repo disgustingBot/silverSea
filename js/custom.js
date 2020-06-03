@@ -609,7 +609,8 @@ async function ajax3(formData) {
 
 
 const cardSetup = () => {
-	d.querySelectorAll('.card').forEach((item, i) => {
+	// d.querySelectorAll('.card').forEach((item, i) => {
+	d.querySelectorAll('[contenedor*="true"]').forEach((item, i) => {
 		let code = item.dataset.code,
 		size = item.dataset.size,
 		tip1 = item.dataset.tip1,
