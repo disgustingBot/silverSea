@@ -84,15 +84,6 @@
               <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), 'largo', true ); ?></p>
           </div>
 
-          <div class="containerAttribute">
-              <p class="containerAttributeTitle">Peso:</p>
-              <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), 'peso', true ); ?></p>
-          </div>
-
-          <div class="containerAttribute">
-              <p class="containerAttributeTitle">Tara:</p>
-              <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), 'tara', true ); ?></p>
-          </div>
 
 
           <button class="btn singleBuy" type="button" name="button">Adquirir</button>
@@ -109,7 +100,7 @@
         </section>
 
         <div class="containerClassSeparator"></div>
-        
+
 
         <div class="categoryCard">
           <div class="containerAttributeTxt">
