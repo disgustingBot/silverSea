@@ -2394,7 +2394,7 @@ section {
 }
 
 .containerClassSeparator {
-  border: solid 1px var(--color7);
+  border-bottom: solid 1px var(--primaryColor);
   width: 100%;
   margin: 1rem var(--lateral);
 }
@@ -2436,33 +2436,10 @@ section {
   flex-basis: 100%;
 }
 
-.categoryCard .cartItemSvg {
+.categoryCard .pageSvg {
   height: 3rem;
   margin: auto 16px auto 0;
 }
-
-.categoryCardImg{
-  box-shadow: var(--dp6);
-  padding: .23rem;
-}
-
-.cateforyCardTitle{
-  margin: auto;
-  font-size: 1.2rem;
-}
-
-.categoryCard .svgIcon{
-  width: 100px;
-  height: 100px;
-  margin: auto;
-}
-
-
-/* .theContent{
-  margin: 1rem var(--lateral);
-  padding: 1rem;
-  border-radius: 8px;
-} */
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
