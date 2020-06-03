@@ -77,6 +77,11 @@
     	);
     	wp_nav_menu($args);
   	?>
+    <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
+      <div class="hamStripe"></div>
+      <div class="hamStripe"></div>
+      <div class="hamStripe"></div>
+    </div>
 
     <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
       <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -85,7 +90,7 @@
     </div>
   </header>
 
-  <header class="headerMob" id="headerMob">
+  <!-- <header class="headerMob" id="headerMob">
     <div class="upperHeader" id="cosaTest">
       <a class="logoLink" href="<?php echo site_url('');  ?>">
         <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
@@ -96,7 +101,7 @@
         <div class="hamStripe"></div>
       </div>
     </div>
-  </header>
+  </header> -->
   <nav class="navBarMobileContainer">
     <?php
     $args = array(
