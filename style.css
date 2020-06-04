@@ -1,4 +1,4 @@
-/*
+  /*
 Theme Name: silverTheme
 Author: Lattedev
 Author URI: https://www.lattedev.com
@@ -279,6 +279,30 @@ FIN DE MAPA DE CONTENIDOS */
   --archive2TxtAlign: center;
   --searchResultsContGR:2;
   --archiveFilterW:calc(100% - var(--lateral) * 2);
+
+
+  /* PAGE TEAM */
+
+  --teamSectionGridGap: 16px;
+  --teamCardsContainerGridAF: row;
+  --teamCardsContainerGridAC: auto;
+  --teamCardsContainerPadding: unset;
+  --teamCardsContainerOverflow: unset;
+  --areaSelectorTitlePadding: unset;
+  --areaSelectorHeight: auto;
+  --areaSelectorContPadding: 3px;
+  --teamCTAWidth: 90%;
+  --teamCardsGradientDisplay: none;
+  --teamATFImgPosition: static;
+  --teamATFImgHeight: auto;
+  --teamATFImgObjectFit: contain;
+  --teamAtfContHeight: max-content;
+  --teamCTAMargin: 16px auto;
+  --teamCardsContainerGridTC: 1fr;
+  --areaSelectorContHeight: 50vh;
+  --areaSelectorContPosition: sticky;
+
+
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -354,6 +378,11 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SINGLE */
     --containerAttributeW: 12rem;
+
+    /* PAGE TEAM */
+    --teamCardsContainerGridTC: ;
+
+
   }
 }
 
@@ -470,6 +499,24 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveFilter2SelectBoxW: 100%;
     --archiveTopInteractionDisplay: flex;
 
+
+    /* PAGE TEAM */
+
+    --teamSectionGridGap: unset;
+    --teamCardsContainerGridAF: column;
+    --teamCardsContainerGridAC: 20vw;
+    --teamCardsContainerPadding: 0 1rem;
+    --teamCardsContainerOverflow: scroll;
+    --teamCTAWidth: 50%;
+    --teamCardsGradientDisplay: block;
+    --teamATFImgPosition: fixed;
+    --teamATFImgHeight: 100vh;
+    --teamATFImgObjectFit: cover;
+    --teamAtfContHeight: 100vh;
+    --teamCTAMargin: auto;
+    --areaSelectorContHeight: 40vh;
+    --areaSelectorContPadding: 5px;
+    --areaSelectorContPosition: static;
   }
 }
 
@@ -514,6 +561,11 @@ FIN DE MAPA DE CONTENIDOS */
    --archiveFilter2BB: none;
    --archive2TxtAlign: left;
    --searchResultContTop: -18rem;
+
+   /* PAGE TEAM */
+   --areaSelectorTitlePadding: 1rem;
+   --areaSelectorHeight: 100%;
+
   }
 }
 
@@ -1361,26 +1413,27 @@ section {
 .teamATFImgCont {
   display: grid;
   width: 100%;
-  height: 100vh;
+  height: var(--teamAtfContHeight);
 }
 
 
 .teamATFImg {
-  position: fixed;
+  position: var(--teamATFImgPosition);
   top: 0;
   z-index: 1;
   width: 100%;
-  height: 100vh;
+  height: var(--teamATFImgHeight);
+  object-fit: var(--teamATFImgObjectFit);
 }
 
 .teamCTA {
-  width: 50%;
+  width: var(--teamCTAWidth);
   text-align: center;
   padding: 1rem;
   box-shadow: var(--DP4);
   border-radius: 4px;
   background: rgba(255,255,255,0.7);
-  margin: auto;
+  margin: var(--teamCTAMargin);
   z-index: 3;
 }
 
@@ -1398,6 +1451,7 @@ section {
   padding: 1rem var(--lateral);
   z-index: 2;
   position: relative;
+  grid-gap: var(--teamSectionGridGap);
 }
 
 .teamSectionTitle {
@@ -1411,20 +1465,20 @@ section {
 
 
 .areaSelectorCont {
-  position: sticky;
+  position: var(--areaSelectorContPosition);
   top: 20%;
-  height: 70vh;
+  height: var(--areaSelectorContHeight);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 20px;
+  padding: var(--areaSelectorContPadding);
 }
 
 .areaSelector {
   border-bottom: 1px solid var(--color6);
   border-radius: 8px;
   display: flex;
-  height: 100%;
+  height: var(--areaSelectorHeight);
   transition: .25s;
   cursor: pointer
 }
@@ -1438,11 +1492,11 @@ section {
 
 .areaSelectorTitle {
   text-align: center;
-  padding: 1rem;
+  padding: var(--areaSelectorTitlePadding);
 }
 
 .areaSelectorTxt {
-  margin:auto;
+  margin: auto;
   margin-left: 0;
   position: relative;
   display: flex;
@@ -1454,7 +1508,7 @@ section {
 .areaSelectorTxt::before{
   content: '⯈';
   color: var(--primaryColor);
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-right: .5rem;
 }
 
@@ -1621,12 +1675,13 @@ section {
 
 .teamCardsContainer {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 20vw;
+  grid-auto-flow: var(--teamCardsContainerGridAF);
+  grid-auto-columns: var(--teamCardsContainerGridAC);
   grid-gap: 1rem;
-  padding: 1rem;
-  overflow-x: scroll;
+  padding: var(--teamCardsContainerPadding);
+  overflow-x: var(--teamCardsContainerOverflow);
   position: relative;
+  grid-template-columns: var(--teamCardsContainerGridTC);
 }
 
 .teamCardsContGradient {
@@ -1637,6 +1692,7 @@ section {
   height: 100%;
   background-image: linear-gradient(to right, transparent, white);
   z-index: 2;
+  display: var(--teamCardsGradientDisplay);
 }
 
 .teamCard {
@@ -1673,11 +1729,11 @@ section {
 .teamCard:hover .teamCardNone{display: block;}
 
 
-.teamSection:not(.direccion):not(.finance-administration):not(.sales-department-cis-region):not(.sales-department-europe):not(.sales-department-latam):not(.supply-operations) .teamCard {display: grid!important;}
+.teamSection:not(.direccion):not(.finance-administration):not(.sales-department):not(.sales-department-europe):not(.sales-department-latam):not(.supply-operations) .teamCard {display: grid!important;}
 
 .teamSection:not(.direccion)                   .teamCard.direccion,
 .teamSection:not(.finance-administration)      .teamCard.finance-administration,
-.teamSection:not(.sales-department-cis-region) .teamCard.sales-department-cis-region,
+.teamSection:not(.sales-department)            .teamCard.sales-department,
 .teamSection:not(.sales-department-europe)     .teamCard.sales-department-europe,
 .teamSection:not(.sales-department-latam)      .teamCard.sales-department-latam,
 .teamSection:not(.supply-operations)           .teamCard.supply-operations {
@@ -1686,7 +1742,7 @@ section {
 
 .teamSection.direccion                   .areaSelector.direccion,
 .teamSection.finance-administration      .areaSelector.finance-administration,
-.teamSection.sales-department-cis-region .areaSelector.sales-department-cis-region,
+.teamSection.sales-department            .areaSelector.sales-department,
 .teamSection.sales-department-europe     .areaSelector.sales-department-europe,
 .teamSection.sales-department-latam      .areaSelector.sales-department-latam,
 .teamSection.supply-operations           .areaSelector.supply-operations {
