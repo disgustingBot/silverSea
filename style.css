@@ -166,6 +166,8 @@ FIN DE MAPA DE CONTENIDOS */
   --blueBarTelM: auto;
   --selectLangM: auto var(--lateral) auto auto;
   --headerBluebarDisplay: none;
+  --selectLangFlexDir: column;
+  --bluebarChildsMargin: 20px auto;
 
   /* RED DOTS */
   --redDotTop: 45vh;
@@ -412,6 +414,9 @@ FIN DE MAPA DE CONTENIDOS */
     --blueBarTelM: auto;
     --selectLangM: auto var(--lateral) auto 4rem;
     --headerBluebarDisplay: flex;
+    --selectLangFlexDir: row;
+    --bluebarChildsMargin: auto;
+
 
     /* RED DOTS */
     --redDotTop: unset;
@@ -1050,20 +1055,24 @@ section {
 
 
 .blueBar {
-  /* background-color: var(--color1); */
+  /* background-color: var(--grey0); */
   background: var(--primaryColorDark);
   display: flex;
-  font-size: .5rem;
+  flex-direction: var(--selectLangFlexDir);
+  font-size: 18px;
   padding: .25rem 0;
   width: 100%;
   grid-column: 1/-1;
   z-index: 3;
-  height: 40px;
 }
 
 .blueBar p {
 /* color: white; */
   color: var(--grey0);
+}
+
+.blueBar> * {
+  margin: var(--bluebarChildsMargin);
 }
 
 .load + .blueBar {
@@ -1073,14 +1082,12 @@ section {
 
 
 .blueBarTel{
-  margin: var(--blueBarTelM);
   text-decoration: none;
   color: var(--grey0);
 }
 
 .selectLang{
   display: flex;
-  margin: var(--selectLangM);
 }.selectLang > *{ margin: auto}
 
 .selectSVG{
@@ -1091,7 +1098,6 @@ section {
 .latteSignature{
   display: none;
   height: min-content;
-  margin: var(--blueBarTelM);
 }
 .footer .latteSignature{display: none: ;}
 
@@ -1520,9 +1526,9 @@ section {
 
 
 .socialMediaLink {
-  height: 1rem;
+  height: 1.5rem;
   margin: .1rem;
-  width: auto;
+  width: 1.5rem;
 }
 
 .socialMediaLink:first-child {
@@ -1531,7 +1537,6 @@ section {
 
 .socialMedia{
   display: flex;
-  margin: auto auto auto var(--lateral);
 }
 
 .socialMSVG{
