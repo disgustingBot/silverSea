@@ -408,7 +408,8 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* BLUEBAR */
-    --blueBarTelM: auto 1rem auto auto;
+    /* --blueBarTelM: auto 1rem auto auto; */
+    --blueBarTelM: auto;
     --selectLangM: auto var(--lateral) auto 4rem;
     --headerBluebarDisplay: flex;
 
@@ -1087,14 +1088,12 @@ section {
   margin: .1rem;
 }
 
-.blueBarTel{display: none}
-.header .blueBarTel{display: block}
 .latteSignature{
   display: none;
   height: min-content;
   margin: var(--blueBarTelM);
 }
-.footer .latteSignature{display: block}
+.footer .latteSignature{display: none: ;}
 
 .latteLink {
   text-decoration: none;
@@ -1519,11 +1518,13 @@ section {
   ------------------------------------------------------------------------------
   --------------------------------------------------------------------------- */
 
+
 .socialMediaLink {
   height: 1rem;
   margin: .1rem;
   width: auto;
 }
+
 .socialMediaLink:first-child {
   margin-left: 0;
 }
@@ -3421,7 +3422,7 @@ section.contacto img{
 
 .footer {
   color: var(--grey0);
-  background: var(--primaryColorDarker);
+  background: var(--primaryColorDark);
   /* background:#002984; */
   display: grid;
   grid-template-columns: var(--footGridTC);
@@ -3512,6 +3513,10 @@ section.contacto img{
   border-left: 2px solid var(--primaryColor);
   padding-left: 1rem;
   font-size: .8rem;
+}
+
+.footer .bluebar {
+
 }
 
 /* LOGIN */

@@ -49,8 +49,8 @@
     <button class="footLogSubmit btn" type="submit" value="Submit">LOGIN</button>
   </form>
 
-</footer>
   <?php include('blueBar.php') ?>
+</footer>
   <?php wp_footer(); ?>
 </body>
 </html>
