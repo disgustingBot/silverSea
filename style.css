@@ -2856,17 +2856,7 @@ padding-bottom:0;
   font-size:var(--fontSize3);
   pointer-events:none;
 }
-/* Chrome, Safari, Edge, Opera */
-.cuantosQnt::-webkit-outer-spin-button,
-.cuantosQnt::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
-/* Firefox */
-.cuantosQnt[type=number] {
-  -moz-appearance: textfield;
-}
 .cuantosBtn{
   align-items:center;
   background:none;
