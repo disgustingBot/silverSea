@@ -15,23 +15,15 @@
     <h3 class="areaSelectorTitle"><strong>Conoce nuestro <span class="brandColorTxt">Equipo</span></strong></h3>
 
     <div class="areaSelector direccion">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('direccion', '#teamSection', 'teamSection');">Dirección</p>
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('direccion', '#teamSection', 'teamSection');">Management</p>
     </div>
 
     <div class="areaSelector finance-administration">
       <p class="areaSelectorTxt" onclick="altClassFromSelector('finance-administration', '#teamSection', 'teamSection');" >Finance & Administration</p>
     </div>
 
-    <div class="areaSelector sales-department-cis-region">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-cis-region', '#teamSection', 'teamSection');" >Sales Department CIS Region</p>
-    </div>
-
-    <div class="areaSelector sales-department-europe">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-europe', '#teamSection', 'teamSection');" >Sales Department Europe</p>
-    </div>
-
-    <div class="areaSelector sales-department-latam">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-latam', '#teamSection', 'teamSection')" >Sales Department LATAM</p>
+    <div class="areaSelector sales-department">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-cis-region', '#teamSection', 'teamSection');" >Sales Department</p>
     </div>
 
     <div class="areaSelector supply-operations">
@@ -78,7 +70,8 @@
     <p class="teamCTATxt">Suspendisse pulvinar id diam in consequat. Praesent fringilla elementum dapibus. Aenean purus lectus, egestas vel massa ut, gravida aliquam tortor.</p>
     <button class="btn">Contáctanos</button>
   </div>
+  <img class="teamATFImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
 </section>
-<img class="teamATFImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+
 
 <?php get_footer(); ?>
