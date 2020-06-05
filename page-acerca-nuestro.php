@@ -9,6 +9,49 @@
   <?php } wp_reset_query(); ?>
 </section>
 
+
+
+
+
+
+
+<div class="timelinetimelineCont sectionPadding">
+  <ul class="timeline">
+    <h3 class="timelineTitle brandColorTxt">NUESTRA HISTORIA</h3>
+    <li class="event">
+      <h5>2016</h5>
+      <p>Fundacion de la empresa:Silversea se establece como una empresa muy dinámica. En su momento identificamos que todos nuestros clientes reclamaban lo mismo: Estabilidad en el abastecimiento. Dado que Silversea tiene como objetivo SATISFACER, fuimos en búsqueda de la solución.</p>
+    </li>
+    <li class="event">
+      <h5>2018</h5>
+      <p>Apertura de oficinas en España que nos permitira comenzar la travesía para transformar la industria en una más dinámica y transparente a la antes concebida.</p>
+    </li>
+    <li class="event">
+      <h5>2019</h5>
+      <p>Implementacion de CRM, herramientas de logisticas, profesionalizacion de los departamentos y capacitacion de las personas.</p>
+    </li>
+    <li class="event">
+      <h5>2019</h5>
+      <p>Presencia en CIS, como parte de nuestra expansion y desarrollo de abastecimiento de toda la zona.</p>
+    </li>
+    <li class="event">
+      <h5>2020</h5>
+      <p>Apertura de oficina en Shanghai, Asia buscando unir y estar mas cerca que nunca de nuestros clientes y proveedores.</p>
+    </li>
+  </ul>
+  <div class="timelineCont">
+    <h3 class="timelineTextTitle brandColorTxt">NUESTRA PERSPECTIVA</h3>
+    <p class="timelineTextTxt"><span class="brandColorTxt"><strong>Mision:</strong></span> Satisfacer las necesidades de nuestros clientes de manera eficiente y creativa. Apuntando siempre a la sostenibilidad a través de nuestros productos y servicios, ahorrando costos en la cadena de suministros, apoyando en el ahorro de la huella de carbono y fomentando la reutilización de nuestros productos de manera eco-friendly.</p>
+    <p class="timelineTextTxt"><span class="brandColorTxt"><strong>Vision:</strong></span> Ser la empresa de referencia a nivel mundial en abastecimiento de contenedores, motivando a otras empresas con nuestros valores y que actúen en consecuencia</p>
+  </div>
+</div>
+
+
+
+
+
+
+
 <section class="sectionPadding AboutSec1">
   <?php echo the_content(); ?>
 </section>
