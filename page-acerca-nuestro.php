@@ -3,8 +3,8 @@
   <section class="ATF aboutUsATF">
     <img class="aboutUsATFIMG lazy rowcol1" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
     <hgroup class="ATFWording rowcol1">
-      <h1 class="AboutUsTitle"><?php echo get_post_meta($post->ID, '1-about-titulo-portada', true); ?></h1>
-      <h4 class="aboutUsSubtitle"><?php echo get_post_meta($post->ID, '2-about-texto-portada', true); ?></h4>
+      <h1 class="AboutUsTitle"><?php echo get_post_meta($post->ID, 'A-about-titulo-portada', true); ?></h1>
+      <h4 class="aboutUsSubtitle"><?php echo get_post_meta($post->ID, 'B-about-texto-portada', true); ?></h4>
     </hgroup>
   <?php } wp_reset_query(); ?>
 </section>
@@ -15,45 +15,47 @@
 
 
 
-<div class="timelinetimelineCont sectionPadding">
+<div class="timelineCont sectionPadding">
   <ul class="timeline">
-    <h3 class="timelineTitle brandColorTxt">NUESTRA HISTORIA</h3>
+    <h3 class="timelineTitle brandColorTxt"><?php echo get_post_meta($post->ID, 'C-titulo-historia', true); ?></h3>
     <li class="event">
-      <h5>2016</h5>
-      <p>Fundacion de la empresa:Silversea se establece como una empresa muy dinámica. En su momento identificamos que todos nuestros clientes reclamaban lo mismo: Estabilidad en el abastecimiento. Dado que Silversea tiene como objetivo SATISFACER, fuimos en búsqueda de la solución.</p>
+      <h5><?php echo get_post_meta($post->ID, 'D-anio-1', true); ?></h5>
+      <p><?php echo get_post_meta($post->ID, 'E-anio-1-texto', true); ?></p>
     </li>
     <li class="event">
-      <h5>2018</h5>
-      <p>Apertura de oficinas en España que nos permitira comenzar la travesía para transformar la industria en una más dinámica y transparente a la antes concebida.</p>
+      <h5><?php echo get_post_meta($post->ID, 'F-anio-2', true); ?></h5>
+      <p><?php echo get_post_meta($post->ID, 'G-anio-2-texto', true); ?></p>
     </li>
     <li class="event">
-      <h5>2019</h5>
-      <p>Implementacion de CRM, herramientas de logisticas, profesionalizacion de los departamentos y capacitacion de las personas.</p>
+      <h5><?php echo get_post_meta($post->ID, 'H-anio-3', true); ?></h5>
+      <p><?php echo get_post_meta($post->ID, 'I-anio-3-texto', true); ?></p>
     </li>
     <li class="event">
-      <h5>2019</h5>
-      <p>Presencia en CIS, como parte de nuestra expansion y desarrollo de abastecimiento de toda la zona.</p>
+      <h5><?php echo get_post_meta($post->ID, 'J-anio-4', true); ?></h5>
+      <p><?php echo get_post_meta($post->ID, 'K-anio-4-texto', true); ?></p>
     </li>
     <li class="event">
-      <h5>2020</h5>
-      <p>Apertura de oficina en Shanghai, Asia buscando unir y estar mas cerca que nunca de nuestros clientes y proveedores.</p>
+      <h5><?php echo get_post_meta($post->ID, 'L-anio-5', true); ?></h5>
+      <p><?php echo get_post_meta($post->ID, 'M-anio-5-texto', true); ?></p>
     </li>
   </ul>
-  <div class="timelineCont">
-    <h3 class="timelineTextTitle brandColorTxt">NUESTRA PERSPECTIVA</h3>
-    <p class="timelineTextTxt"><span class="brandColorTxt"><strong>Mision:</strong></span> Satisfacer las necesidades de nuestros clientes de manera eficiente y creativa. Apuntando siempre a la sostenibilidad a través de nuestros productos y servicios, ahorrando costos en la cadena de suministros, apoyando en el ahorro de la huella de carbono y fomentando la reutilización de nuestros productos de manera eco-friendly.</p>
-    <p class="timelineTextTxt"><span class="brandColorTxt"><strong>Vision:</strong></span> Ser la empresa de referencia a nivel mundial en abastecimiento de contenedores, motivando a otras empresas con nuestros valores y que actúen en consecuencia</p>
+  <div class="timelineTextCont">
+    <h3 class="timelineTextTitle brandColorTxt"><?php echo get_post_meta($post->ID, 'N-sticky-text-title', true); ?></h3>
+    <p class="timelineTextTxt"><span class="brandColorTxt"><strong>Mision:</strong></span><?php echo get_post_meta($post->ID, 'O-mision-txt', true); ?></p>
+    <p class="timelineTextTxt"><span class="brandColorTxt"><strong>Vision:</strong></span> <?php echo get_post_meta($post->ID, 'P-vision-txt', true); ?></p>
   </div>
 </div>
 
 
 
-
-
-
-
-<section class="sectionPadding AboutSec1">
-  <?php echo the_content(); ?>
+<section class="sectionPadding valuesSec">
+  <h3 class="valuesTitle"><?php echo get_post_meta($post->ID, 'Q-valores-titulo', true); ?></h3>
+  <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator"><?php echo get_post_meta($post->ID, 'R-valor-1', true); ?></p>
+  <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator"><?php echo get_post_meta($post->ID, 'S-valor-2', true); ?></p>
+  <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator"><?php echo get_post_meta($post->ID, 'T-valor-3', true); ?></p>
+  <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator"><?php echo get_post_meta($post->ID, 'U-valor-4', true); ?></p>
+  <p class="valueItem"><?php echo get_post_meta($post->ID, 'V-values-texto-inferior', true); ?></p>
+  <div class="redDot" id="valueVisibleActivator"></div>
 </section>
 
   <article class="sectionPadding articleCounter aboutUsCounter">
@@ -61,26 +63,26 @@
         <div class="redDot" id="growUpActivator"></div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="30000">0</span></p>
-            <p class="countTxt">CONTENEDORES VENDIDOS</p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="<?php echo get_post_meta($post->ID, 'W-numero-metrica-1', true); ?>">0</span></p>
+            <p class="countTxt"><?php echo get_post_meta($post->ID, 'X-titulo-metrica-1', true); ?></p>
           </div>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="3000">0</span></p>
-            <p class="countTxt">CLIENTES SATISFECHOS</p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="<?php echo get_post_meta($post->ID, 'Y-numero-metrica-2', true); ?>">0</span></p>
+            <p class="countTxt"><?php echo get_post_meta($post->ID, 'Z-titulo-metrica-2', true); ?></p>
           </div>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="200">0</span></p>
-            <p class="countTxt">CENTROS LOGÍSTICOS</p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="<?php echo get_post_meta($post->ID, 'ZU-numero-metrica-3', true); ?>">0</span></p>
+            <p class="countTxt"><?php echo get_post_meta($post->ID, 'ZV-titulo-metrica-3', true); ?></p>
           </div>
         </div>
         <div class="count">
           <div class="countTitle">
-            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="30">0</span></p>
-            <p class="countTxt">PAÍSES Y TERRITORIOS</p>
+            <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="false" data-target="<?php echo get_post_meta($post->ID, 'ZW-numero-metrica-4', true); ?>">0</span></p>
+            <p class="countTxt"><?php echo get_post_meta($post->ID, 'ZX-titulo-metrica-4', true); ?></p>
           </div>
         </div>
       </div>

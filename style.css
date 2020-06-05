@@ -293,16 +293,24 @@ FIN DE MAPA DE CONTENIDOS */
   --areaSelectorTitlePadding: unset;
   --areaSelectorHeight: auto;
   --areaSelectorContPadding: 3px;
-  --teamCTAWidth: 90%;
   --teamCardsGradientDisplay: none;
   --teamATFImgPosition: static;
   --teamATFImgHeight: auto;
   --teamATFImgObjectFit: contain;
   --teamAtfContHeight: max-content;
-  --teamCTAMargin: 16px auto;
+  --teamValuesMargin: 16px auto;
   --teamCardsContainerGridTC: 1fr;
   --areaSelectorContHeight: 50vh;
   --areaSelectorContPosition: sticky;
+
+  --teamValuesGTC: 1fr;
+
+
+  /* ABOUT US */
+
+  --timelineContGridTC: 1fr;
+  --valuesSecGridTC: 1fr;
+  --timelineTextContMarginT: 50px;
 
 
 }
@@ -383,6 +391,8 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* PAGE TEAM */
     --teamCardsContainerGridTC: ;
+    --teamValuesGTC: 1fr 1fr;
+
 
 
   }
@@ -431,6 +441,10 @@ FIN DE MAPA DE CONTENIDOS */
     /* ABOUT US ATF */
     --aboutUsATFImgH:auto;
     --archiveFiltersMarginBOTTOM:auto;
+    --timelineContGridTC: 1fr 1fr;
+    --valuesSecGridTC: repeat(4, 1fr);
+    --timelineTextContMarginT: unset;
+
 
 
     /* FRONT PAGE ATF */
@@ -513,16 +527,17 @@ FIN DE MAPA DE CONTENIDOS */
     --teamCardsContainerGridAC: 20vw;
     --teamCardsContainerPadding: 0 1rem;
     --teamCardsContainerOverflow: scroll;
-    --teamCTAWidth: 50%;
     --teamCardsGradientDisplay: block;
     --teamATFImgPosition: fixed;
     --teamATFImgHeight: 100vh;
     --teamATFImgObjectFit: cover;
     --teamAtfContHeight: 100vh;
-    --teamCTAMargin: auto;
+    --teamValuesMargin: auto;
     --areaSelectorContHeight: 40vh;
     --areaSelectorContPadding: 5px;
     --areaSelectorContPosition: static;
+    --teamValuesGTC: 1fr 1fr 1fr 1fr;
+
   }
 }
 
@@ -972,6 +987,10 @@ section {
   z-index: 5;
 }
 
+.navBarMobileContainer .blueBarTel {
+  display: none;
+}
+
 .navBarMobileContainer .blueBar {
   padding: 10px;
   height: 60px;
@@ -1218,15 +1237,15 @@ section {
   height: var(--aboutUsATFImgH);
 }
 
-.AboutSec1 ul {
+.main ul {
   padding-left: 16px;
 }
 
-.AboutSec1 ul li {
+.main ul li {
   margin: 32px 0;
 }
 
-.AboutSec1 ul li::before {
+.main ul li::before {
   content: "\2022";
   /* color: var(--color2); */
   font-weight: bold;
@@ -1240,6 +1259,7 @@ section {
 }
 
 #contSelector {margin: var(--aboutUsSec2BtnM);}
+
 
 /* FULL WIDTH MAP AND IT'S FIXES */
 
@@ -1395,18 +1415,19 @@ section {
 
 /* TIMELINE */
 
-.timelinetimelineCont {
+.timelineCont {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: var(--timelineContGridTC);
   position: relative;
 }
 
-.timelineCont {
+.timelineTextCont {
   position: sticky;
   top: 100px;
   height: max-content;
   padding: 0 1rem;
   line-height: 1.4em;
+  margin-top: var(--timelineTextContMarginT);
 }
 
 
@@ -1490,7 +1511,42 @@ section {
   top: 5px;
 }
 
+/* VALUES */
 
+.valuesSec {
+  display: grid;
+  grid-template-columns: var(--valuesSecGridTC);
+  grid-row-gap: 2rem;
+  overflow-x:  hidden;
+}
+
+.valuesSec>* {text-align: center;}
+
+.valuesTitle {
+  grid-column: 1/-1;
+}
+.valueItem:not(.brandColorTxt) {
+  grid-column: 1/-1;
+  text-align: left;
+  font-size: 20px;
+
+}
+
+.valueItem.brandColorTxt {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: .75s ease-in;
+}
+
+.valueItem.brandColorTxt.observed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.valueItem.brandColorTxt:nth-child(2) {transition-delay: .25s;}
+.valueItem.brandColorTxt:nth-child(3) {transition-delay: .50s;}
+.valueItem.brandColorTxt:nth-child(4) {transition-delay: .75s;}
+.valueItem.brandColorTxt:nth-child(5) {transition-delay:   1s;}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1523,18 +1579,22 @@ section {
   z-index: 1;
   width: 100%;
   height: var(--teamATFImgHeight);
-  object-fit: var(--teamATFImgObjectFit);
 }
 
-.teamCTA {
-  width: var(--teamCTAWidth);
-  text-align: center;
+.teamValues {
+  width: 95%;
   padding: 1rem;
-  box-shadow: var(--DP4);
   border-radius: 4px;
   background: rgba(255,255,255,0.7);
-  margin: var(--teamCTAMargin);
+  margin: var(--teamValuesMargin);
   z-index: 3;
+  display: grid;
+  grid-template-columns: var(--teamValuesGTC);
+  grid-gap: 1rem;
+}
+
+.teamValues .valueItem {
+  margin: auto;
 }
 
 .teamATFSummary {
@@ -2237,7 +2297,9 @@ section {
 }
 
 
-
+.valuesTitle {
+  grid-column: 1/-1;
+}
 
 
 
