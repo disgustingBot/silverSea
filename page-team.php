@@ -65,10 +65,12 @@
   </div>
 </section>
 <section class="teamATFImgCont ">
-  <div class="teamCTA rowcol1">
-    <h3 class="teamCTATitle brandColorTxt">LOREM IPSUM DOLOR SIT.</h3>
-    <p class="teamCTATxt">Suspendisse pulvinar id diam in consequat. Praesent fringilla elementum dapibus. Aenean purus lectus, egestas vel massa ut, gravida aliquam tortor.</p>
-    <button class="btn">Contáctanos</button>
+  <div class="teamValues rowcol1">
+    <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator">INTENSIDAD</p>
+    <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator">CREATIVIDAD</p>
+    <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator">COLABORACIÓN</p>
+    <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator">TRANSFORMACIÓN</p>
+    <div class="redDot" id="valueVisibleActivator"></div>
   </div>
   <img class="teamATFImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
 </section>

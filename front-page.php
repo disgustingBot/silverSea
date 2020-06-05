@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <section class="ATF frontPageATF sectionWhite">
-  <video loop autoplay muted class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, '1-video-portada', true); ?>" alt="">
+  <video loop autoplay muted class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" alt="">
   </video>
 
 
@@ -55,8 +55,8 @@
       <path d="M37.5699 67.7732L47.2801 70.6863C51.2936 71.8904 54.0945 75.7399 54.0945 80.0491C54.0945 85.3422 49.9838 89.6384 44.8871 89.7744V94.979C44.8871 95.9328 44.1146 96.7053 43.1608 96.7053H39.7083C38.7545 96.7053 37.982 95.9328 37.982 94.979V89.7377C35.5459 89.6125 33.1766 88.7623 31.213 87.2886C30.3714 86.6563 30.3282 85.3961 31.09 84.669L33.6254 82.2501C34.2231 81.6804 35.1121 81.6545 35.8113 82.0925C36.6442 82.6169 37.5936 82.8952 38.5776 82.8952H44.6432C46.0458 82.8952 47.1894 81.6178 47.1894 80.0491C47.1894 78.7652 46.4105 77.6366 45.297 77.3022L35.5869 74.3891C31.5733 73.185 28.7725 69.3355 28.7725 65.0263C28.7725 59.7354 32.8831 55.437 37.9799 55.301V50.0964C37.9799 49.1426 38.7524 48.3701 39.7061 48.3701H43.1586C44.1124 48.3701 44.8849 49.1426 44.8849 50.0964V55.3377C47.3211 55.4629 49.6904 56.3131 51.654 57.7868C52.4955 58.4191 52.5387 59.6793 51.777 60.4064L49.2415 62.8253C48.6438 63.395 47.7548 63.4209 47.0557 62.9829C46.2227 62.4585 45.2733 62.1802 44.2893 62.1802H38.2237C36.8211 62.1802 35.6775 63.4576 35.6775 65.0263C35.6775 66.3102 36.4565 67.4388 37.5699 67.7732Z" fill="#ECC800"/>
       </svg>
       <figcaption class="featureTxt">
-        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, '2-titulo-beneficio-1', true); ?></h3>
-        <p class="featureP"><?php echo get_post_meta($post->ID, '3-texto-beneficio-1', true); ?></p>
+        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, 'B-titulo-beneficio-1', true); ?></h3>
+        <p class="featureP"><?php echo get_post_meta($post->ID, 'C-texto-beneficio-1', true); ?></p>
       </figcaption>
     </figure>
 
@@ -77,8 +77,8 @@
         <path d="M115.446 47.5091H108.137V16.8566C112.157 13.8416 112.979 8.13137 109.964 4.11137C106.949 0.0913636 101.239 -0.730909 97.219 2.28409C95.0948 3.88296 93.77 6.30409 93.5873 8.95364L44.1823 3.83727V1.82727C44.1823 0.822273 43.3601 0 42.3551 0H31.3914C30.3864 0 29.5641 0.822273 29.5641 1.82727V10.9636C29.5641 11.9686 30.3864 12.7909 31.3914 12.7909H35.0459V18.2727C35.0459 19.2777 35.8682 20.1 36.8732 20.1H37.7869C40.2994 20.1 42.3551 22.1557 42.3551 24.6682C42.3551 27.1807 40.2994 29.2364 37.7869 29.2364C35.2744 29.2364 33.2187 27.1807 33.2187 24.6682H29.5641C29.5641 27.1807 30.729 29.5562 32.7162 31.0865L10.8574 42.0273C10.8571 42.0273 61.0846 42.0273 61.0846 42.0273L41.9439 31.726C45.8497 29.4419 47.1745 24.4169 44.8904 20.5111C43.5885 18.2727 41.2815 16.7881 38.7005 16.4911V12.7909H42.3551C43.3601 12.7909 44.1823 11.9686 44.1823 10.9636V7.51466L94.0898 12.6767C94.6836 14.3441 95.7572 15.7831 97.1733 16.8566V47.5091H80.7278C79.7228 47.5091 78.9006 48.3314 78.9006 49.3364V74.9182H75.246C74.241 74.9182 73.4187 75.7405 73.4187 76.7455V107.809C73.4187 108.814 74.241 109.636 75.246 109.636H115.446C116.451 109.636 117.273 108.814 117.273 107.809V49.3364C117.273 48.3314 116.451 47.5091 115.446 47.5091ZM53.3872 42.0273H19.0345L36.8504 33.1193L53.3872 42.0273ZM40.5278 9.13637H33.2187V3.65455H40.5278V9.13637ZM102.655 4.11137C105.693 4.11137 108.137 6.55534 108.137 9.59319C108.137 12.631 105.693 15.075 102.655 15.075C99.6173 15.075 97.1733 12.631 97.1733 9.59319C97.1733 6.57819 99.6401 4.11137 102.655 4.11137ZM106.31 58.724L112.385 63.7947L106.31 67.8604V58.724ZM112.385 80.2402L106.31 84.3058V75.1695L112.385 80.2402ZM112.385 96.6856L106.31 100.751V91.6149L112.385 96.6856ZM102.655 105.982H77.0733V78.5728H102.655V105.982ZM102.655 74.9182H82.5551V51.1637H102.655V74.9182ZM104.482 47.5091H100.828V18.5468C102.038 18.7981 103.272 18.7981 104.482 18.5468V47.5091ZM113.619 105.982H106.31V105.137L113.619 100.272V105.982ZM113.619 92.9397L107.543 87.869L113.619 83.8033V92.9397ZM113.619 76.4942L107.543 71.4236L113.619 67.3579V76.4942ZM113.619 60.0488L106.31 53.9502V51.1637H113.619V60.0488Z" fill="black"/>
       </svg>
       <figcaption class="featureTxt">
-        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, '4-titulo-beneficio-2', true); ?></h3>
-        <p class="featureP"><?php echo get_post_meta($post->ID, '5-texto-beneficio-2', true); ?></p>
+        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, 'D-titulo-beneficio-2', true); ?></h3>
+        <p class="featureP"><?php echo get_post_meta($post->ID, 'E-texto-beneficio-2', true); ?></p>
       </figcaption>
     </figure>
 
@@ -98,8 +98,8 @@
         <path d="M34.0261 36.6189C32.309 36.8133 30.792 35.4996 30.7391 33.7723L30.0757 12.0878C29.997 9.51388 33.0184 8.07726 34.965 9.76306L57.1853 29.0061C59.1319 30.6919 58.1417 33.8876 55.583 34.1774L34.0261 36.6189Z" fill="black"/>
       </svg>
       <figcaption class="featureTxt">
-        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, '6-titulo-beneficio-3', true); ?></h3>
-        <p class="featureP"><?php echo get_post_meta($post->ID, '7-texto-beneficio-3', true); ?></p>
+        <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, 'F-titulo-beneficio-3', true); ?></h3>
+        <p class="featureP"><?php echo get_post_meta($post->ID, 'G-texto-beneficio-3', true); ?></p>
       </figcaption>
     </figure>
 
@@ -108,8 +108,8 @@
 
 
 
-<section class="sectionPadding card60" id="queContainerINeed">
-  <div class="redDot" id="sectioNSummaryCardActivator"></div>
+
+  <section class="sectionPadding card60" id="queContainerINeed">
   <style>#queContainerINeed.card0 #card0 {display:flex}</style>
 
 
@@ -151,6 +151,7 @@
             <p class="summaryTxt"><?php echo $category->description; ?></p>
           </div>
           <img class="article2Media" src="<?php echo wp_get_attachment_url( get_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
+          <div class="redDot" id="sectioNSummaryCardActivator"></div>
         </article>
       <?php } ?>
     <?php } ?>
@@ -170,41 +171,41 @@
 </section>
 
 
-<section class="sectionColor3 sectionPadding">
-  <article class="articleCounter">
+  <article class="articleCounter sectionPadding">
     <div class="counter">
       <div class="redDot" id="growUpActivator"></div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="30000">0</span></p>
-        <p class="countTxt">CONTENEDORES VENDIDOS</p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="<?php echo get_post_meta($post->ID, 'H-numero-metrica-1', true); ?>">0</span></p>
+        <p class="countTxt"><?php echo get_post_meta($post->ID, 'I-titulo-metrica-1', true); ?></p>
       </div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="3000">0</span></p>
-        <p class="countTxt">CLIENTES SATISFECHOS</p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="<?php echo get_post_meta($post->ID, 'J-numero-metrica-2', true); ?>">0</span></p>
+        <p class="countTxt"><?php echo get_post_meta($post->ID, 'K-titulo-metrica-2', true); ?></p>
       </div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="200">0</span></p>
-        <p class="countTxt">CENTROS LOGÍSTICOS</p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="<?php echo get_post_meta($post->ID, 'L-numero-metrica-3', true); ?>">0</span></p>
+        <p class="countTxt"><?php echo get_post_meta($post->ID, 'M-titulo-metrica-3', true); ?></p>
       </div>
       <div class="count countTitle">
-        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="60">0</span></p>
-        <p class="countTxt">PAÍSES Y TERRITORIOS</p>
+        <p class="countNumber">+<span class="GrowUp Obse" data-observe="#growUpActivator" data-unobserve="true" data-target="<?php echo get_post_meta($post->ID, 'N-numero-metrica-4', true); ?>">0</span></p>
+        <p class="countTxt"><?php echo get_post_meta($post->ID, 'O-titulo-metrica-4', true); ?></p>
       </div>
     </div>
   </article>
-</section>
 
 <section class="sectionPadding">
   <article class="article2">
     <div class="redDot" id="sectioNSummaryAboutUsActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummaryAboutUsActivator" data-unobserve="false">
-      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, '8-titulo-bloque-1', true); ?></h2>
-      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, '9-texto-azul-bloque-1', true); ?></h4>
-      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, '10-texto-negro-bloque-1', true); ?></h4>
+      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'P-titulo-valores', true); ?></h2>
+      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Q-texto-valores-1', true); ?></h4>
+      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, 'R-texto-valores-2', true); ?></h4>
+      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'S-texto-valores-3', true); ?></h4>
+      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, 'T-texto-valores-4', true); ?></h4>
     </hgroup>
-    <img class="article2Media" src="<?php echo get_post_meta($post->ID, '13-foto-bloque-1', true); ?>" alt="">
+    <img class="article2Media" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
   </article>
-  <button class="btn"><a href="<?php echo get_post_meta($post->ID, '12-link-boton-bloque-1', true); ?>"><?php echo get_post_meta($post->ID, '11-texto-boton-bloque-1', true); ?></a></button>
+  <button class="btn"><a href="<?php echo get_post_meta($post->ID, 'V-link-btn-valores', true); ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
 </section>
 
 <section class="sectionPadding sectionColor3">
@@ -212,10 +213,9 @@
     <iframe class="article2Media" src="https://www.google.com/maps/d/embed?mid=17c08JkE4KqI6p3EPcDfsiIMtwDveG7D8" width="640" height="480"></iframe>
     <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
-      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, '14-titulo-bloque-2', true); ?></span></h2>
-      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, '15-texto-azul-bloque-2', true); ?></h4>
-      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, '16-texto-negro1-bloque-2', true); ?></h4>
-      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, '17-texto-negro2-bloque-2', true); ?></h4>
+      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'X-titulo-SS-mundo', true); ?></span></h2>
+      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Y-texto-SS-mundo-1', true); ?></h4>
+      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, 'Z-texto-SS-mundo-2', true); ?></h4>
     </hgroup>
   </article>
 </section>
