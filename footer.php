@@ -41,8 +41,10 @@
   wp_nav_menu($args);
   ?>
 
-  <form class="footLog" action="/action_page.php">
-    <input class="footLogInput" type="text" name="user" placeholder="User">
+  <form class="footLog" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="POST">
+    <input type="hidden" name="action"   value="lt_login">
+    <input type="hidden" name="link"     value="<?php echo home_url( $wp->request ); ?>">
+    <input class="footLogInput" type="text" name="mail" placeholder="Email">
     <input class="footLogInput" type="password" name="pass" placeholder="Password">
     <button class="footLogSubmit btn" type="submit" value="Submit">LOGIN</button>
   </form>

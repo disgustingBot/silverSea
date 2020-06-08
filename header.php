@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <!-- GOOGLE FONTS -->
@@ -157,3 +158,19 @@
 
     <button class="btn" onclick="cartController.finish()">dame precio rapido</button>
   </div>
+
+
+
+  <div
+    id="redSquare"
+
+    style="
+      position:fixed;
+      bottom:235px;
+      left:25%;
+      height:400px;
+      width:400px;
+      background:red;
+      z-index:2000;
+    "
+  ></div>
