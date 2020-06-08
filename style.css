@@ -225,10 +225,9 @@ FIN DE MAPA DE CONTENIDOS */
   /* ?FOOTER */
 
   --footGridTC: 1fr;
-  --footLogoHeight: 3rem;
   --footerNavMB: 1rem;
   --footerPad: 1rem 3rem;
-  --footLogoMargin: auto;
+  --footerGG: 2rem;
 
 
 
@@ -484,11 +483,10 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?FOOTER */
 
-    --footGridTC: repeat(4, 1fr);
     --footerPad: 1rem 5rem;
     --footerNavMB: .1rem;
     --footGridTC: 1fr 1fr;
-    --footLogoHeight: 2rem;
+    --footerGG: 1rem;
 
 
 
@@ -568,7 +566,6 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* ?FOOTER */
-      --footLogoMargin: auto auto auto 0;
       --footGridTC: repeat(4, 1fr);
 
     --archiveFilter2AutoFlow: row;
@@ -1118,7 +1115,6 @@ section {
   display: none;
   height: min-content;
 }
-.footer .latteSignature{display: none: ;}
 
 .latteLink {
   text-decoration: none;
@@ -1935,6 +1931,8 @@ section {
   color: var(--primaryColorDarker);
   margin-right: 0;
 }
+
+
 
 /*
 ---------------------------------------------------------------------------
@@ -3585,47 +3583,38 @@ section.contacto img{
 .footer {
   color: var(--grey0);
   background: var(--primaryColorDark);
-  /* background:#002984; */
   display: grid;
   grid-template-columns: var(--footGridTC);
-  grid-gap: 1rem;
-  /* padding: var(--footerPad); */
-  padding:1rem var(--lateral);
+  grid-gap: var(--footerGG);
+  padding: 1rem var(--lateral);
   z-index: 1;
 }
 
-.footWordingTitle {
-  font-size: 20px;
-}
-
-.footWordingTxt {
-  font-size: 16px;
-  text-align: justify;
-}
-
 .footLogo {
-  height: var(--footLogoHeight);
-  width: auto;
-  margin: var(--footLogoMargin);
+  margin: auto;
 }
 
 .footerInfoCont {
   display: grid;
-  grid-template-columns: min-content auto;
-  grid-template-rows: repeat(3, 1fr);
-  grid-row-gap: 10px;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 1rem;
 }
 
-.footerInfoCont svg {
-  margin: auto;
-  height: 15px;
+.iconTextInline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.footLoc,.footerMail,.footTel {
-  font-size: 14px;
-  text-decoration: none;
-  margin: auto;
+.iconTextInline p:nth-child(2), .iconTextInline a:nth-child(2) {
   margin-left: 10px;
+  font-size: 14px;
+}
+
+
+.footer .socialMedia {
+  justify-content: center;
 }
 
 .footerNav {
@@ -3661,7 +3650,8 @@ section.contacto img{
 
 
 .footerNav a {
-  font-size: 18px;
+  font-size: 16px;
+  font-style: italic;
 }
 
 /* FIXES */
@@ -3677,8 +3667,5 @@ section.contacto img{
   font-size: .8rem;
 }
 
-.footer .bluebar {
-
-}
 
 /* LOGIN */
