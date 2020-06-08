@@ -188,47 +188,47 @@ add_action( 'admin_post_nopriv_lt_login', 'lt_login');
 add_action(        'admin_post_lt_login', 'lt_login');
 function lt_login(){
   $link=$_POST['link'];
-  $name=$_POST['name'];
-  $fono=$_POST['fono'];
+  // $name=$_POST['name'];
+  // $fono=$_POST['fono'];
   $mail=$_POST['mail'];
   $pass=$_POST['pass'];
 
 
-  if( null == username_exists( $mail ) ) {
-
-    // Generate the password and create the user for security
-    // $password = wp_generate_password( 12, false );
-    // $user_id = wp_create_user( $mail, $password, $mail );
-
-    // user generated pass for local testing
-    $user_id = wp_create_user( $mail, $pass, $mail );
-    // Set the nickname and display_name
-    wp_update_user(
-      array(
-        'ID'              =>    $user_id,
-        'display_name'    =>    $name,
-        'nickname'        =>    $name,
-      )
-    );
-    update_user_meta( $user_id, 'phone', $fono );
-
-
-    // Set the role
-    $user = new WP_User( $user_id );
-    $user->set_role( 'subscriber' );
-
-    // Email the user
-    wp_mail( $mail, 'Welcome '.$name.'!', 'Your Password: ' . $pass );
-  // end if
-  $action='register';
-  $creds = array(
-      'user_login'    => $mail,
-      'user_password' => $pass,
-      'remember'      => true
-  );
-
-  $status = wp_signon( $creds, false );
-} else {
+//   if( null == username_exists( $mail ) ) {
+//
+//     // Generate the password and create the user for security
+//     // $password = wp_generate_password( 12, false );
+//     // $user_id = wp_create_user( $mail, $password, $mail );
+//
+//     // user generated pass for local testing
+//     $user_id = wp_create_user( $mail, $pass, $mail );
+//     // Set the nickname and display_name
+//     wp_update_user(
+//       array(
+//         'ID'              =>    $user_id,
+//         'display_name'    =>    $name,
+//         'nickname'        =>    $name,
+//       )
+//     );
+//     update_user_meta( $user_id, 'phone', $fono );
+//
+//
+//     // Set the role
+//     $user = new WP_User( $user_id );
+//     $user->set_role( 'subscriber' );
+//
+//     // Email the user
+//     wp_mail( $mail, 'Welcome '.$name.'!', 'Your Password: ' . $pass );
+//   // end if
+//   $action='register';
+//   $creds = array(
+//       'user_login'    => $mail,
+//       'user_password' => $pass,
+//       'remember'      => true
+//   );
+//
+//   $status = wp_signon( $creds, false );
+// } else {
 
   $creds = array(
       'user_login'    => $mail,
@@ -241,11 +241,12 @@ function lt_login(){
   // $status=wp_login($mail, $pass);
 
   $action='login';
-}
+// }
 
   $link = add_query_arg( array(
     'action' => $action,
-    // 'status' => $status,
+		'mail'   => $mail,
+    'status' => $status,
     // 'resultado' => username_exists( $mail ),
   ), $link );
   wp_redirect($link);
@@ -389,6 +390,88 @@ add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 function load_admin_styles() {
   // wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
 }
+
+
+
+
+
+
+
+
+
+add_action( 'wp_ajax_lt_new_lead', 'lt_new_lead' );
+add_action( 'wp_ajax_nopriv_lt_new_lead', 'lt_new_lead' );
+function lt_new_lead(){
+	$debugMode = true;
+	$respuesta = array();
+
+
+		$oid        = $_POST['oid'];
+		$retURL     = $_POST['retURL'];
+		$debug      = $_POST['debug'];
+		$debugEmail = $_POST['debugEmail'];
+		$first_name = $_POST['first_name'];
+		$last_name  = $_POST['last_name'];
+		$email      = $_POST['email'];
+		$phone      = $_POST['phone'];
+		$company    = $_POST['company'];
+		$country    = $_POST['country'];
+		$city       = $_POST['city'];
+		$product    = $_POST['00N0X00000CrHzi'];
+		$type       = $_POST['00N0X00000AlPaB'];
+		$size       = $_POST['00N0X00000AlPaA'];
+		$quantity   = $_POST['00N0X00000AlPaC'];
+		$message    = $_POST['00N0X00000AlPa9'];
+
+
+	$url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
+	$data = array(
+		'oid'             => '00D1l0000000ia7',
+		'retURL'          => 'https://sstc.com.es/',
+		'debug'           => '1',
+		'debugEmail'      => 'gportela@silverseacontainers.com',
+		'first_name'      => $first_name,
+		'last_name'       => $last_name,
+		'email'           => 'email@test.fake',
+		'phone'           => '0800 666 696969',
+		'company'         => 'test company',
+		'country'         => 'my country',
+		'city'            => 'a city',
+		'00N0X00000CrHzi' => 'the product code',
+		'00N0X00000AlPaB' => 'product type',
+		'00N0X00000AlPaA' => 'product size',
+		'00N0X00000AlPaC' => 'product quantity',
+		'00N0X00000AlPa9' => 'el mensajeeeee',
+	);
+
+	// use key 'http' even if you send the request to https://...
+	$options = array(
+		'http' => array(
+			'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			'method'  => 'POST',
+			'content' => http_build_query($data)
+		)
+	);
+	$context  = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+if ($result === FALSE) { /* Handle error */ }
+
+var_dump($result);
+if($debugMode){echo wp_json_encode($respuesta);}
+exit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

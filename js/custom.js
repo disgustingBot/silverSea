@@ -23,6 +23,7 @@ w.onload=()=>{
 	growUpController.setup()
 	obseController.setup()
 	cuantosController.setup();
+	selectBoxSpace.poblate();
 	startMateput();
 	cardSetup();
 
@@ -309,6 +310,81 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
+// SELECT BOX
+selectBoxSpace = {
+	selectBoxPlanet:[],
+	poblate:()=>{
+		if (d.querySelector('.SelectBox')) {
+			var selectBoxes = d.querySelectorAll('.SelectBox');
+			selectBoxes.forEach( selectBox => {
+				selectBoxSpace.selectBoxPlanet.push(new SelectBox(selectBox))
+				let hausNummer = selectBoxSpace.selectBoxPlanet.length - 1;
+				let onclick="selectBoxSpace.selectBoxPlanet["+hausNummer+"].openClose('focus', '"+this.id+"')";
+				selectBoxSpace.selectBoxPlanet[hausNummer].button.setAttribute('onclick', onclick)
+				// this.button.setAttribute('onclick', onclick)
+			});
+		}
+	},
+}
+class SelectBox {
+	constructor(element){
+		// console.log(element);
+		this.element = element;
+		this.list = element.querySelector('.selectBoxList');
+		this.button = element.querySelector('.selectBoxButton');
+		this.className = element.className;
+		this.id = element.id;
+
+		// let onclick="selectBoxSpace.selectBoxPlanet"+this.id+".openClose()";
+		// let onclick="selectBoxSpace.selectBoxPlanet[0].openClose('focus', '"+this.id+"')";
+		// this.button.setAttribute('onclick', onclick)
+
+		this.config = { attributes: true, childList: true, characterData: true }
+	}
+	openClose(){
+		let status = 'focusDown';
+		// console.log(this.id)
+		console.log(this.list.offsetHeight);
+		let personalSpace = this.list.offsetHeight;
+		var domRect = this.element.getBoundingClientRect();
+		var spaceAvaliable = window.innerHeight - domRect.bottom;
+
+		let redSquare = d.querySelector('#redSquare');
+		redSquare.style.bottom = spaceAvaliable + 'px';
+		// redSquare.style.top = spaceAvaliable + 'px';
+
+		if(spaceAvaliable < personalSpace){
+			console.log('back off')
+			status = 'focusUp';
+		}
+		if(this.element.classList.contains('focusDown') || this.element.classList.contains('focusUp')){
+			this.element.classList.remove('focusDown')
+			this.element.classList.remove('focusUp')
+			if (status == 'focusDown') {
+				this.list.style.top = '0';
+			}else{
+				this.list.style.bottom = '0';
+			}
+		}else{
+			this.element.classList.add(status)
+		}
+
+		// var alturaDelViewport = window.innerHeight;
+		// colition detection
+		// altClassFromSelector(status, '#'+this.id);
+	}
+	select(a, selectBoxId, current){
+		// c.log(a)
+		 if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
+		 else   {d.querySelector(selectBoxId).classList.remove('alt')}
+
+		 d.querySelector(current).innerHTML=a;
+		 d.querySelector(selectBoxId).classList.remove('focus')
+		 d.activeElement.blur();
+	}
+}
+
+
 
 
 
@@ -565,12 +641,13 @@ const lt_upload_file = () => {
 		}
 	});
 }
-
-async function ajax2(formData) {
+// {mode: 'cors'}
+async function ajax2(formData, url = lt_data.ajaxurl) {
   try{
-	  let response = await fetch(lt_data.ajaxurl, {
+	  let response = await fetch(url, {
 			method: 'POST',
 			body: formData,
+			mode: 'no-cors',
 		});
     return await response.json();
   }catch(err){
@@ -578,9 +655,9 @@ async function ajax2(formData) {
   }
 }
 
-async function ajax3(formData) {
+async function ajax3(formData, url = lt_data.ajaxurl) {
   try{
-	  let response = await fetch(lt_data.ajaxurl, {
+	  let response = await fetch(url, {
 			method: 'POST',
 			body: formData,
 		});
@@ -630,6 +707,58 @@ const cardSetup = () => {
 
 
 
+//
+// // Create the XHR object.
+// function createCORSRequest(method, url) {
+//   var xhr = new XMLHttpRequest();
+//   if ("withCredentials" in xhr) {
+//     // XHR for Chrome/Firefox/Opera/Safari.
+//     xhr.open(method, url, true);
+//   } else if (typeof XDomainRequest != "undefined") {
+//     // XDomainRequest for IE.
+//     xhr = new XDomainRequest();
+//     xhr.open(method, url);
+//   } else {
+//     // CORS not supported.
+//     xhr = null;
+//   }
+//   return xhr;
+// }
+//
+// // Helper method to parse the title tag from the response.
+// function getTitle(text) {
+//   return text.match('<title>(.*)?</title>')[1];
+// }
+//
+// // Make the actual CORS request.
+// function makeCorsRequest() {
+//   // This is a sample server that supports CORS.
+//   var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
+//
+//   var xhr = createCORSRequest('GET', url);
+//   if (!xhr) {
+//     alert('CORS not supported');
+//     return;
+//   }
+//
+//   // Response handlers.
+//   xhr.onload = function() {
+//     var text = xhr.responseText;
+//     var title = getTitle(text);
+//     alert('Response from CORS request to ' + url + ': ' + title);
+//   };
+//
+//   xhr.onerror = function() {
+//     alert('Woops, there was an error making the request.');
+//   };
+//
+//   xhr.send();
+// }
+//
+//
+// var url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
+// var xhr = createCORSRequest('GET', url);
+// console.log(xhr.send());
 
 
 
@@ -765,7 +894,22 @@ cartController = {
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
 
-		cartController.sendMail();
+		// cartController.sendMail();
+		let info = {
+			fname:   'Fake',
+			lname:   'Name',
+			email:   'email@test.fake',
+			phone:   '0800 666 696969',
+			company: 'test company',
+			country: 'my country',
+			city:    'a city',
+			code:    'the product code',
+			type:    'product type',
+			size:    'product size',
+			quantity:'product quantity',
+			message: 'el mensajeeeee',
+		}
+		cartController.newLead(info);
 	},
 	sendMail:()=>{
 					var formData = new FormData();
@@ -775,23 +919,44 @@ cartController = {
 						console.log(data);
 					});
 	},
-	getPrice:(code)=>{
-		var formData = new FormData();
-		formData.append( 'action', 'lt_cart_end' );
-		formData.append( 'cont', code );
-		formData.append( 'country', cartController.locationOrigen['country'] );
-		formData.append( 'city', cartController.locationOrigen['city'] );
-		ajax2(formData).then( data => {
-			console.log(data)
-			let prices = data.map((x)=>{
-				return x.supplier_price;
-			})
-	    let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
-			let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+	newLead:(info)=>{
+		let oid = '00D1l0000000ia7',
+		retURL  = 'https://sstc.com.es/',
+		debug   = 1,
+		debugEmail = 'gportela@silverseacontainers.com',
+		first_name = info.fname,
+		last_name  = info.lname,
+		email      = info.email,
+		phone      = info.phone,
+		company    = info.company,
+		country    = info.country,
+		city       = info.city,
+		product    = info.code,
+		type       = info.type,
+		size       = info.size,
+		quantity   = info.quantity,
+		message    = info.message;
 
-			let finalPrice = average + 200;
-	    console.log(average);
-			alert('tu precio es: ' + finalPrice)
+		var formData = new FormData();
+		formData.append( 'action', 'lt_new_lead' );
+		formData.append( 'oid', oid );
+		formData.append( 'retURL'    , retURL );
+		formData.append( 'debug'     , debug );
+		formData.append( 'debugEmail', debugEmail );
+		formData.append( 'first_name', first_name );
+		formData.append( 'last_name', last_name );
+		formData.append( 'email', email );
+		formData.append( 'phone', phone );
+		formData.append( 'company', company );
+		formData.append( 'country', country );
+		formData.append( 'city', city );
+		formData.append( '00N0X00000CrHzi', product );
+		formData.append( '00N0X00000AlPaB', type );
+		formData.append( '00N0X00000AlPaA', size );
+		formData.append( '00N0X00000AlPaC', quantity );
+		formData.append( '00N0X00000AlPa9', message );
+		ajax3(formData, 'https://go.pardot.com/l/821023/2020-06-02/8qk1').then( data => {
+			console.log(data)
 		})
 	},
   add: (x) => {

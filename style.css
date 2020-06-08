@@ -1793,10 +1793,6 @@ section {
 --------------------------------------------------------------------------- */
 
 .btn {
-  /* background: var(--color2); */
-  /* border: solid 1px var(--color2); */
-  /* color:var(--color8); */
-  /* border: solid 1px var(--primaryColorDark); */
   color: var(--primaryColorDarker);
   background: var(--secondaryColor);
   border:none;
@@ -1816,8 +1812,6 @@ section {
 }
 
 .btn:hover {
-  /* background: white; */
-  /* border: solid 1px var(--color2); */
   box-shadow: var(--DP8);
   background: var(--primaryColor);
   color: var(--grey1);
@@ -1835,13 +1829,6 @@ section {
   /* background: white; */
   border: 1px solid var(--color1);
 }
-
-
-/* .btn a {
-  margin: auto;
-  text-decoration: none;
-  /* color: inherit; */
-} */
 
 
 
@@ -2507,7 +2494,7 @@ section {
                           6.18) =selectBox:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.selectBox{
+.SelectBox{
   display: grid;
   align-items: center;
   width:100%;
@@ -2562,16 +2549,16 @@ section {
   transition:.2s;
   background: #000;
 }
-.selectBox:focus{
+.SelectBox:focus{
   outline:none;
 }
-.selectBox:focus .selectBoxCurrent::after,
-.selectBox.alt .selectBoxCurrent::after{
+.SelectBox:focus .selectBoxCurrent::after,
+.SelectBox.alt .selectBoxCurrent::after{
   /* background:var(--color1); */
   transform:scaleX(1);
 }
-.selectBox:focus .selectBoxPlaceholder,
-.selectBox.alt .selectBoxPlaceholder{
+.SelectBox:focus .selectBoxPlaceholder,
+.SelectBox.alt .selectBoxPlaceholder{
   transform:translateY(-50%) scale(.6);
 }
 
@@ -2590,19 +2577,23 @@ section {
   opacity:0;
   overflow-y: scroll;
   right:0;
-  top:0;
+  /* top:0; */
   transition:.3s;
   transition-delay:.2s;
   width:100%;
-  z-index: 10;
+  z-index: 12;
 }
 
 .selectBoxList:focus,
-.selectBox.focus:focus .selectBoxList{
-/* .selectBox.focus .selectBoxList{ */
+/* .SelectBox.focusUp:focus .selectBoxList, */
+.SelectBox.focusDown:focus .selectBoxList{
   opacity:1;
-  /* top:40px; */
   top:var(--selectBoxHeight);
+  pointer-events: unset;
+}
+.SelectBox.focusUp:focus .selectBoxList{
+  opacity:1;
+  bottom:var(--selectBoxHeight);
   pointer-events: unset;
 }
 .selectBoxOption{
