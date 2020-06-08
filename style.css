@@ -1205,12 +1205,14 @@ section {
 
 
 .featureTitle {
-  font-size: .9rem;
+  font-size: 20px;
   font-weight: 700;
 }
 
 
-
+.featureP {
+  font-size: 18px;
+}
 
 
 .frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
