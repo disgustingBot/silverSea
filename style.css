@@ -3215,16 +3215,18 @@ padding-bottom:0;
 .archiveMain.alt .searchResultsCont{width:100%}
 .archiveMain{
   /* display: var(--archiveMainDisplay); */
-  display:grid;
+  /* display:grid; */
+  display:flex;
   position: relative;
   transition: .5s;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   padding:1rem 0;
 }
 
 
 .archiveMain.alt .archiveFilters{
-  transform:translateX(calc(15px - 100%));
+  /* transform:translateX(calc(15px - 100%)); */
+  margin-left:calc(-25% + 15px);
   border-right:solid var(--primaryColorDark) 15px;
 }
 
@@ -3242,24 +3244,25 @@ padding-bottom:0;
   justify-content: var(--archiveFilterJustifyC);
   margin:var(--archiveFiltersMargin);
   margin-bottom:var(--archiveFiltersMarginBOTTOM);
-  padding:1rem;
+  /* padding:1rem; */
   /* padding-top: calc(2rem + 30px); */
-  padding-top: var(--archiveFiltersPTkajsfbajkdbaskdbaskdjbksadsjofskdjgfvdasuosagdouyfvdofsgdofhsgjdfs);
+  /* padding-top: var(--archiveFiltersPTkajsfbajkdbaskdbaskdjbksadsjofskdjgfvdasuosagdouyfvdofsgdofhsgjdfs); */
   position: var(--archiveFilterPosition);
   /* position:sticky; */
   transition: .5s ease-in-out;
-  top:calc(80px + 1rem);
+  /* top:calc(80px + 1rem); */
+  top:80px;
   /* width:25%; */
   width:var(--archiveFilterW);
   z-index:2;
 }
 
-.archiveFilters.alt{
+/* .archiveFilters.alt .archiveFiltersBody{
   transform: var(--archiveFilterAltTransform);
   border-right: var(--archiveFilter2BR);
   border-bottom: var(--archiveFilter2BB);
   box-shadow: var(--DP4);
-}
+} */
 
 .archiveFiltersHeader{
   grid-row:1;
@@ -3271,11 +3274,13 @@ padding-bottom:0;
   cursor:pointer;
   margin-bottom:auto;
   padding:.5rem;
-  position:sticky;
+  /* position:sticky; */
   /* top:calc(80px + 1rem); */
-  top:80px;
+  /* top:80px; */
   transition:.5s ease-in-out;
-  width:25%;
+  margin-right:0;
+  /* width:25%; */
+  width:100%;
   z-index:1;
 }
 .archiveFiltersHeader:hover{
@@ -3283,8 +3288,10 @@ padding-bottom:0;
 }
 
 .archiveMain.alt .archiveFiltersHeader{
-  /* transform:translateX(200%) translateZ(0); */
-  width:13%;
+  transform:translateX(100%);
+  /* margin-right:-50%; */
+  /* margin-right:-100%; */
+  /* width:13%; */
 }
 
 
@@ -3314,6 +3321,9 @@ padding-bottom:0;
 }
 .archiveMain.alt .hideWords{
   margin-left:-1.7rem;
+}
+.archiveFiltersBody{
+  padding: 1rem;
 }
 
 

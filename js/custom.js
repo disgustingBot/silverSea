@@ -349,8 +349,8 @@ class SelectBox {
 		var domRect = this.element.getBoundingClientRect();
 		var spaceAvaliable = window.innerHeight - domRect.bottom;
 
-		let redSquare = d.querySelector('#redSquare');
-		redSquare.style.bottom = spaceAvaliable + 'px';
+		// let redSquare = d.querySelector('#redSquare');
+		// redSquare.style.bottom = spaceAvaliable + 'px';
 		// redSquare.style.top = spaceAvaliable + 'px';
 
 		if(spaceAvaliable < personalSpace){
