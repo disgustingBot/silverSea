@@ -59,7 +59,7 @@
     </button>
   </div>
 
-      
+
 
   <div class="features">
 
@@ -301,10 +301,10 @@
     <div class="redDot" id="sectioNSummaryAboutUsActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummaryAboutUsActivator" data-unobserve="false">
       <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'P-titulo-valores', true); ?></h2>
-      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Q-texto-valores-1', true); ?></h4>
-      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, 'R-texto-valores-2', true); ?></h4>
-      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'S-texto-valores-3', true); ?></h4>
-      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, 'T-texto-valores-4', true); ?></h4>
+      <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Q-texto-valores-1', true); ?></p>
+      <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'R-texto-valores-2', true); ?></p>
+      <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'S-texto-valores-3', true); ?></p>
+      <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'T-texto-valores-4', true); ?></p>
     </hgroup>
     <img class="article2Media" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
   </article>
@@ -317,8 +317,8 @@
     <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
       <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'X-titulo-SS-mundo', true); ?></span></h2>
-      <h4 class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Y-texto-SS-mundo-1', true); ?></h4>
-      <h4 class="summaryTxt"><?php echo get_post_meta($post->ID, 'Z-texto-SS-mundo-2', true); ?></h4>
+      <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Y-texto-SS-mundo-1', true); ?></p>
+      <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'Z-texto-SS-mundo-2', true); ?></p>
     </hgroup>
   </article>
 </section>

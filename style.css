@@ -2362,8 +2362,8 @@ section {
 }
 
 .summaryTxt {
-  font-size: .7rem;
-  line-height: 1rem;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 
@@ -3266,19 +3266,15 @@ padding-bottom:0;
   grid-column:1;
   align-items:center;
   background: var(--primaryColorDark);
-  /* border-radius: var(--hideFilterBtnBR); */
   border-radius:0 4px 4px 0;
-  box-shadow: var(--DP1);
   color: var(--grey0);
   cursor:pointer;
   margin-bottom:auto;
-  /* padding: var(--hideFIlterBtnPadding); */
   padding:.5rem;
   position:sticky;
-  top:calc(80px + 1rem);
+  /* top:calc(80px + 1rem); */
+  top:80px;
   transition:.5s ease-in-out;
-  /* transform:translateX(0) translateZ(0); */
-  /* transform-origin: left; */
   width:25%;
   z-index:3;
 }

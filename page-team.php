@@ -4,7 +4,7 @@
 <section class="teamATF">
   <hgroup class="sectionSummary teamATFSummary sectionColor3">
     <h1 class="tamATFTitle"><?php echo get_post_meta($post->ID, '1-equipo-titulo-negro', true); ?> <span class="brandColorTxt"><?php echo get_post_meta($post->ID, '2-equipo-titulo-azul', true); ?></span></h1>
-    <h5 class="summaryTxt"><?php echo get_post_meta($post->ID, '2-equipo-texto', true); ?></h5>
+    <p class="summaryTxt"><?php echo get_post_meta($post->ID, '2-equipo-texto', true); ?></p>
   </hgroup>
 </section>
 
