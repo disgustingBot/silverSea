@@ -106,7 +106,12 @@
       </svg>
       <p class="archiveFiltersHeaderTitle"><span class="hideWords">Hide filters</span></p>
     </div>
+
     <div class="archiveFilters">
+
+
+
+      
         <h2 class="encuentraContenedorTitle brandColorTxt">Cotiza tu contenedor</h2>
 
         <?php woocommerce_subcats_from_parentcat('size'); ?>
