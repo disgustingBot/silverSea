@@ -1800,7 +1800,9 @@ section {
 }
 
 .cardFeatures{
-  border-radius:4px 0 0 0;
+  border-radius:4px;
+  background:var(--grey1);
+  padding:.2rem 0;
   display:grid;
   grid-auto-flow:column;
   grid-auto-columns:1fr;
@@ -1815,7 +1817,7 @@ section {
 .cardActions {
   display: grid;
   grid-auto-flow: column;
-  grid-gap: 1rem;
+  grid-gap:.5rem;
   grid-template-rows: var(--cardActionsGGGTR);
   grid-template-columns: var(--cardActionsGGGTC);
 }
@@ -2785,36 +2787,59 @@ section {
 .selectBoxList{
   align-items: center;
   background: #FFF;
+  border-radius:4px;
+  box-shadow:var(--DP4);
   display: grid;
   grid-gap: .2rem;
   grid-auto-rows:1.5rem;
   padding: .2rem;
-  left:0;
+  left:50%;
   max-height: 300px;
   position: absolute;
   pointer-events: none;
   opacity:0;
   overflow-y: scroll;
-  right:0;
+  /* right:0; */
   /* top:0; */
   transition:.3s;
   transition-delay:.2s;
   width:100%;
   z-index: 12;
 }
-
-.selectBoxList:focus,
-/* .SelectBox.focusUp:focus .selectBoxList, */
-.SelectBox.focusDown:focus .selectBoxList{
+.SelectBox.focus:focus .selectBoxList{
+  background:var(--grey1);
+  /* top:var(--selectBoxHeight); */
+  left:100%;
   opacity:1;
-  top:var(--selectBoxHeight);
-  pointer-events: unset;
+  pointer-events:unset;
+}
+
+/* .selectBoxList:focus, */
+/* .SelectBox.focusDown:focus .selectBoxList{ */
+  /* opacity:1; */
+  /* pointer-events: unset; */
+  /* animation: selectBoxDown 1s forwards; */
+  /* animation: selectBoxDown 1s forwards reverse; */
+/* } */
+/* @keyframes selectBoxDown {
+  from{
+    top:0;
+    opacity:0;
+    pointer-events:none;
+  }
+  to{
+    top:var(--selectBoxHeight);
+    opacity:1;
+    pointer-events:unset;
+  }
 }
 .SelectBox.focusUp:focus .selectBoxList{
   opacity:1;
   bottom:var(--selectBoxHeight);
   pointer-events: unset;
-}
+} */
+
+
 .selectBoxOption{
   cursor:pointer;
   font-size: .7rem!important;
@@ -3226,7 +3251,7 @@ padding-bottom:0;
 
 .archiveMain.alt .archiveFilters{
   /* transform:translateX(calc(15px - 100%)); */
-  margin-left:calc(-25% + 15px);
+  margin-left:calc(15px - 25%);
   border-right:solid var(--primaryColorDark) 15px;
 }
 
@@ -3256,13 +3281,6 @@ padding-bottom:0;
   width:var(--archiveFilterW);
   z-index:2;
 }
-
-/* .archiveFilters.alt .archiveFiltersBody{
-  transform: var(--archiveFilterAltTransform);
-  border-right: var(--archiveFilter2BR);
-  border-bottom: var(--archiveFilter2BB);
-  box-shadow: var(--DP4);
-} */
 
 .archiveFiltersHeader{
   grid-row:1;

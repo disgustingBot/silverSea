@@ -318,10 +318,6 @@ selectBoxSpace = {
 			var selectBoxes = d.querySelectorAll('.SelectBox');
 			selectBoxes.forEach( selectBox => {
 				selectBoxSpace.selectBoxPlanet.push(new SelectBox(selectBox))
-				let hausNummer = selectBoxSpace.selectBoxPlanet.length - 1;
-				let onclick="selectBoxSpace.selectBoxPlanet["+hausNummer+"].openClose('focus', '"+this.id+"')";
-				selectBoxSpace.selectBoxPlanet[hausNummer].button.setAttribute('onclick', onclick)
-				// this.button.setAttribute('onclick', onclick)
 			});
 		}
 	},
@@ -335,43 +331,7 @@ class SelectBox {
 		this.className = element.className;
 		this.id = element.id;
 
-		// let onclick="selectBoxSpace.selectBoxPlanet"+this.id+".openClose()";
-		// let onclick="selectBoxSpace.selectBoxPlanet[0].openClose('focus', '"+this.id+"')";
-		// this.button.setAttribute('onclick', onclick)
-
 		this.config = { attributes: true, childList: true, characterData: true }
-	}
-	openClose(){
-		let status = 'focusDown';
-		// console.log(this.id)
-		console.log(this.list.offsetHeight);
-		let personalSpace = this.list.offsetHeight;
-		var domRect = this.element.getBoundingClientRect();
-		var spaceAvaliable = window.innerHeight - domRect.bottom;
-
-		// let redSquare = d.querySelector('#redSquare');
-		// redSquare.style.bottom = spaceAvaliable + 'px';
-		// redSquare.style.top = spaceAvaliable + 'px';
-
-		if(spaceAvaliable < personalSpace){
-			console.log('back off')
-			status = 'focusUp';
-		}
-		if(this.element.classList.contains('focusDown') || this.element.classList.contains('focusUp')){
-			this.element.classList.remove('focusDown')
-			this.element.classList.remove('focusUp')
-			if (status == 'focusDown') {
-				this.list.style.top = '0';
-			}else{
-				this.list.style.bottom = '0';
-			}
-		}else{
-			this.element.classList.add(status)
-		}
-
-		// var alturaDelViewport = window.innerHeight;
-		// colition detection
-		// altClassFromSelector(status, '#'+this.id);
 	}
 	select(a, selectBoxId, current){
 		// c.log(a)
@@ -552,7 +512,7 @@ productSincrotron = {
 	created:[],
 	temp:[],
 	wipeProducts:(del = false, cantidad = 1)=>{
-		d.querySelector('.updateText').innerHTML = "Eliminando productos viejos";
+		d.querySelector('.updateText').innerHTML = "Eliminando productos viejos, esto puede tardar unos minutos, por favor no abandone la pagina";
 		let formData = new FormData();
 		if(del){formData.append('delete', 'true');
 		}else  {formData.append('delete', 'false');}
@@ -581,7 +541,7 @@ productSincrotron = {
 	},
 	productFabrik:()=>{
 		d.querySelector('.loadBarProgress').style.width = '0%';
-		d.querySelector('.updateText').innerHTML = "Creando productos";
+		d.querySelector('.updateText').innerHTML = "Creando productos, esto puede tardar unos minutos, por favor no abandone la pagina";
 		// productSincrotron.products = [{sku: "6DC CW",Description:''}]
 		// productSincrotron.products.unshift({sku: "6DC CW",Description:''});
 		// console.log('cantidad de productos a crear: ', productSincrotron.products.length);
