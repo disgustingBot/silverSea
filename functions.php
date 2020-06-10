@@ -654,7 +654,7 @@ function lt_upload_file () {
 						tara as 'tara',
 						tipo_2 as 'tipo_2',
 						condicion as 'condition',
-						CONCAT( size, '-pies' ) as 'size'
+						CONCAT( size, ' pies' ) as 'size'
 						from contenedores";
 
 		if($fileError===0){$respuesta['gate1']="No errors uploading";

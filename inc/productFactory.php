@@ -1,7 +1,5 @@
 <?php
 
-
-
 function newProduct($product = array(), $product_cat = array(), $product_meta = array()){
 	// $user_id = 1;
 

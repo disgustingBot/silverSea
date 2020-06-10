@@ -32,8 +32,8 @@
 
 
     <div class="SelectBox<?php if(isset($_GET[$term->slug])){ echo ' alt'; } ?>" tabindex="1" id="selectBox<?php echo $term->term_id; ?>">
-      <!-- <div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $term->term_id; ?>')"> -->
-      <div class="selectBoxButton">
+      <div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $term->term_id; ?>')">
+      <!-- <div class="selectBoxButton"> -->
         <p class="selectBoxPlaceholder"><?php echo $term->name; ?></p>
         <p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $term->term_id; ?>">
           <?php if(isset($_GET[$term->slug])){ echo $_GET[$term->slug]; } ?>
