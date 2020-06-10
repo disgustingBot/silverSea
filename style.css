@@ -716,6 +716,7 @@ ul,ol{list-style:none}
 .main {
   /* display: flex; */
   /* flex-direction: column; */
+  padding: 1rem var(--lateral);
 }
 
 .main p,
@@ -727,9 +728,43 @@ ul,ol{list-style:none}
 .main h5,
 .main h6,
 .main ul,
-.main li{margin:unset;padding:unset}
-.main ul,.main ol{list-style:unset}
+.main li{margin:initial;padding:initial}
 
+
+.main h1 {
+  font-size: 2em;
+  margin: 0.67em 0 0.67em 0;
+}
+
+.main h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0 0.83em 0;
+}
+
+.main h3 {
+  font-size: 1.17em;
+  margin: 1em 0 1em 0;
+}
+.main h4 {
+  margin: 1.33em 0 1.33em 0;
+}
+.main h5 {
+  font-size: .83em;
+  margin: 1.67em 0 1.67em 0;
+}
+.main h6 {
+  font-size: .67em;
+  margin: 2.33em 0 2.33em 0;
+}
+
+.main p {
+  margin: 1em 0 1em 0;
+}
+
+.main a {
+  color: var(--primaryColor);
+  text-decoration: underline;
+}
 section {
   background-color: white;
 }
@@ -1888,22 +1923,20 @@ section {
 .teamCard:hover .teamCardNone{display: block;}
 
 
-.teamSection:not(.direccion):not(.finance-administration):not(.sales-department):not(.sales-department-europe):not(.sales-department-latam):not(.supply-operations) .teamCard {display: grid!important;}
+.teamSection:not(.direccion):not(.finance-administration):not(.sales):not(.supply-operations):not(.marketing) .teamCard {display: grid!important;}
 
 .teamSection:not(.direccion)                   .teamCard.direccion,
 .teamSection:not(.finance-administration)      .teamCard.finance-administration,
-.teamSection:not(.sales-department)            .teamCard.sales-department,
-.teamSection:not(.sales-department-europe)     .teamCard.sales-department-europe,
-.teamSection:not(.sales-department-latam)      .teamCard.sales-department-latam,
+.teamSection:not(.sales)                       .teamCard.sales,
+.teamSection:not(.marketing)                   .teamCard.marketing,
 .teamSection:not(.supply-operations)           .teamCard.supply-operations {
   display: none;
 }
 
 .teamSection.direccion                   .areaSelector.direccion,
 .teamSection.finance-administration      .areaSelector.finance-administration,
-.teamSection.sales-department            .areaSelector.sales-department,
-.teamSection.sales-department-europe     .areaSelector.sales-department-europe,
-.teamSection.sales-department-latam      .areaSelector.sales-department-latam,
+.teamSection.sales                       .areaSelector.sales,
+.teamSection.marketing                   .areaSelector.marketing,
 .teamSection.supply-operations           .areaSelector.supply-operations {
   background: var(--grey2)!important
 }
