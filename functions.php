@@ -76,7 +76,16 @@ add_action('after_setup_theme', 'gp_init');
 
 
 
+// REDIRECT WITH LANGUAGE
 
+
+function custom_lang_found(){
+    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    if( $lang == "en" ){
+        $url = get_home_url()."/en/";
+        wp_redirect( $url );
+    }
+}
 
 
 

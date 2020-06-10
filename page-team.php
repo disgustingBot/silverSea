@@ -22,12 +22,16 @@
       <p class="areaSelectorTxt" onclick="altClassFromSelector('finance-administration', '#teamSection', 'teamSection');" >Finance & Administration</p>
     </div>
 
-    <div class="areaSelector sales-department">
-      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales-department-cis-region', '#teamSection', 'teamSection');" >Sales Department</p>
+    <div class="areaSelector sales">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('sales', '#teamSection', 'teamSection');" >Sales Department</p>
     </div>
 
     <div class="areaSelector supply-operations">
       <p class="areaSelectorTxt" onclick="altClassFromSelector('supply-operations', '#teamSection', 'teamSection')" >Supply & Operations</p>
+    </div>
+
+    <div class="areaSelector marketing">
+      <p class="areaSelectorTxt" onclick="altClassFromSelector('marketing', '#teamSection', 'teamSection')" >Marketing</p>
     </div>
 
   </div>
