@@ -2838,6 +2838,7 @@ section {
   transition-delay:.2s;
   width:100%;
   z-index: 12;
+  display: none;
 }
 .SelectBox.focus:focus .selectBoxList{
   background:var(--grey1);
