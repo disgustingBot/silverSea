@@ -17,6 +17,21 @@ while(have_posts()){the_post();
     data-tip2="<?php echo strtoupper($tipo_2Slug); ?>"
     data-cond="<?php echo strtoupper($conditionSlug); ?>"
   >
+
+
+
+
+
+  <?php if ( has_post_thumbnail()) : ?>
+    <!-- <a href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
+        <?php // the_post_thumbnail(); ?>
+    </a> -->
+  <?php endif; ?>
+
+
+
+
+
     <div class="singleContainerTitle">
       <?php newSvg($tipo_1) ?>
       <h2 class="galleryTitle rowcol1"><?php echo the_title() . ', '  . $tipo_1 ;?> </h2>

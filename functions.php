@@ -525,10 +525,11 @@ function lt_create_products () {
 						// $respuesta['data'] = $basic_data;
 						// $respuesta['cate'] = $categories;
 						// $respuesta['meta'] = $meta_data;
+						$images = $value->imagenes;
 
 
 
-						$newID = newProduct($basic_data, $categories, $meta_data);
+						$newID = newProduct($basic_data, $categories, $meta_data, $images);
 						$respuesta[$key] = "Product '".$newID."' creado";
 		}
 
@@ -666,6 +667,7 @@ function lt_upload_file () {
 						largo as 'largo',
 						peso as 'peso',
 						tara as 'tara',
+						imagenes as 'imagenes',
 						tipo_2 as 'tipo_2',
 						condicion as 'condition',
 						CONCAT( size, ' pies' ) as 'size'

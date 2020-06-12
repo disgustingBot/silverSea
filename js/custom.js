@@ -548,15 +548,25 @@ productSincrotron = {
 		for (var i = 0; i < 1; i++) {
 			// productSincrotron.temp.unshift(productSincrotron.products.shift(productSincrotron.products[i]));
 			let productoZero = productSincrotron.products.splice(0, 1);
+			productoZero[0].imagenes = productoZero[0].imagenes.split(', ');
+			console.log('temp imagenes:')
+			console.log(productoZero[0].imagenes);
 			productSincrotron.temp.unshift(productoZero[0]);
 		}
+
+
+// var names = '20FRCW_1, 2ODCCW_1';
+// var nameArr = names.split(', ');
+// console.log(nameArr);
+
+
 
 		console.log('envio a fabricar:')
 		console.log(productSincrotron.temp);
 		let formData = new FormData();
 		formData.append('products', JSON.stringify(productSincrotron.temp));
 		formData.append('action', 'lt_create_products');
-		console.log('enviando '+productSincrotron.temp.length+' producto/s para crear');
+		// console.log('enviando '+productSincrotron.temp.length+' producto/s para crear');
 		ajax3(formData).then(data => {
 			// d.querySelector('.updateText').innerHTML = "Let's wipe things!";
 			// productSincrotron.created.unshift(productSincrotron.temp.shift());;
@@ -565,7 +575,7 @@ productSincrotron = {
 				productSincrotron.created.unshift(productSincrotron.temp.splice(0, 1));
 			}
 			// console.log(data);
-			console.log('products created: ', productSincrotron.created.length)
+			// console.log('products created: ', productSincrotron.created.length)
 			if (productSincrotron.created.length<productSincrotron.qnty) {
 			// if (productSincrotron.created.length<3) {
 				productSincrotron.productFabrik();

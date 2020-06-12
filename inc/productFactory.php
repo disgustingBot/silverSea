@@ -1,6 +1,6 @@
 <?php
 
-function newProduct($product = array(), $product_cat = array(), $product_meta = array()){
+function newProduct($product = array(), $product_cat = array(), $product_meta = array(), $imagenes = array()){
 	// $user_id = 1;
 
 	$product_defaults = array(
@@ -55,54 +55,63 @@ function newProduct($product = array(), $product_cat = array(), $product_meta = 
 
   foreach ($product_meta as $key => $value) {
     update_post_meta( $post_id, $key, $value );
-    // code...
   }
-
-  // update_post_meta( $post_id, '_visibility', $product_meta['_visibility'] );
-  // update_post_meta( $post_id, '_stock_status', $product_meta['_stock_status']);
-  // update_post_meta( $post_id, 'total_sales', $product_meta['total_sales'] );
-  // update_post_meta( $post_id, '_downloadable', $product_meta['_downloadable'] );
-  // update_post_meta( $post_id, '_virtual', $product_meta['_virtual'] );
-  // update_post_meta( $post_id, '_regular_price', $product_meta['_regular_price'] );
-  // update_post_meta( $post_id, '_sale_price', $product_meta['_sale_price'] );
-  // update_post_meta( $post_id, '_purchase_note', $product_meta['_purchase_note'] );
-  // update_post_meta( $post_id, '_featured', $product_meta['_featured'] );
-  // update_post_meta( $post_id, '_weight', $product_meta['_weight'] );
-  // update_post_meta( $post_id, '_length', $product_meta['_length'] );
-  // update_post_meta( $post_id, '_width', $product_meta['_width'] );
-  // update_post_meta( $post_id, '_height', $product_meta['_height'] );
-  // update_post_meta( $post_id, '_sku', $product_meta['_sku'] );
-  // update_post_meta( $post_id, '_product_attributes', $product_meta['_product_attributes'] );
-  // update_post_meta( $post_id, '_sale_price_dates_from', $product_meta['_sale_price_dates_from'] );
-  // update_post_meta( $post_id, '_sale_price_dates_to', $product_meta['_sale_price_dates_to'] );
-  // update_post_meta( $post_id, '_price', $product_meta['_price'] );
-  // update_post_meta( $post_id, '_sold_individually', $product_meta['_sold_individually'] );
-  // update_post_meta( $post_id, '_manage_stock', $product_meta['_manage_stock'] );
-  // update_post_meta( $post_id, '_backorders', $product_meta['_backorders'] );
-  // update_post_meta( $post_id, '_stock', $product_meta['_stock'] );
-							// }
-
-
-  // foreach ($product_cat as $key => $value) {
-  //   echo "<p><b>$key:</b> $value</p>";
-	// 	$term = get_term_by('slug', $value, 'product_cat');
-	// 	$term_id = $term->term_id;
-	// 	wp_set_object_terms( $post_id, $term_id, 'product_cat' );
-  // // code...
-  // }
 
 							// $term = get_term_by('slug', 'asis', 'product_cat');
 							// $term_id = $term->term_id;
-							wp_set_object_terms( $post_id, $product_cat, 'product_cat' );
 
-							// echo '<br>';
-							// echo "<h5>Producto $post_id creado</h5>";
-							// echo '<br>';
-							// echo '<br>';
-							// var_dump($term);
-							// echo $post_id;
-							return $post_id;
+				wp_set_object_terms( $post_id, $product_cat, 'product_cat' );
 
+				if (is_array($imagenes)) {
+					$image_id = get_attachment_id_by_slug( $imagenes[0] );
+					$commaList = '';
+					// code...
+					for ($i=1; $i < count($imagenes); $i++) {
+						// code...
+						$img_id = get_attachment_id_by_slug( $imagenes[$i] );
+						if ($i==1) {
+							$commaList = $img_id;
+						} else {
+							$commaList = $commaList . ',' . $img_id;
+						}
+					}
+				} else {
+					$image_id = get_attachment_id_by_slug( $imagenes );
+				}
+
+
+// $commaList = "20FRCW_1,2ODCCW_1";
+update_post_meta( $post_id, '_product_image_gallery', $commaList);
+
+				// $image_id = get_attachment_id_by_slug( '40RFASIS_1' );
+				set_post_thumbnail ( $post_id, $image_id );
+
+				// echo '<br>';
+				// echo "<h5>Producto $post_id creado</h5>";
+				// echo '<br>';
+				// echo '<br>';
+				// var_dump($term);
+				// echo $post_id;
+				return $post_id;
+
+}
+
+
+
+
+
+// function get_attachment_url_by_slug( $slug ) {
+function get_attachment_id_by_slug( $slug ) {
+  $args = array(
+    'post_type' => 'attachment',
+    'name' => sanitize_title($slug),
+    'posts_per_page' => 1,
+    'post_status' => 'inherit',
+  );
+  $_header = get_posts( $args );
+  $header = $_header ? array_pop($_header) : null;
+	// return $header ? wp_get_attachment_url($header->ID) : '';
+	return $header->ID;
 }
 
 
