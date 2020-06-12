@@ -152,7 +152,32 @@
         data-cond="<?php echo strtoupper($conditionSlug); ?>"
       >
 
+
+
+      <?php if ( has_post_thumbnail()) : ?>
+        <!-- <a href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
+          <?php // the_post_thumbnail(); ?>
+        </a> -->
+      <?php endif; ?>
+
+
+
+
+
         <div class="cardHead">
+          <?php
+
+
+          // $string = ['string'];
+          // if (is_array($string)) {
+          //   // code...
+          //   echo $string[0];
+          // }else{
+          //   echo $string;
+          // }
+
+
+           ?>
           <div class="cardThumbnail">
             <?php newSvg(ucwords($tipo_1Slug)); ?>
           </div>

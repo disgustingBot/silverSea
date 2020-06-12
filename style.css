@@ -2822,7 +2822,8 @@ section {
   background: #FFF;
   border-radius:4px;
   box-shadow:var(--DP4);
-  display: grid;
+  /* display: grid; */
+  display: none;
   grid-gap: .2rem;
   grid-auto-rows:1.5rem;
   padding: .2rem;
