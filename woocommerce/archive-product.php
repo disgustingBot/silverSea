@@ -94,16 +94,13 @@
 </div>
 
 <div class="archiveMain">
-  <!-- <div class="filtersContainer"> -->
-
-
     <div class="archiveFilters">
       <div class="archiveFiltersHeader onlyDesktopF" onclick="altClassFromSelector('alt','.archiveMain')">
         <svg class="filtersLogo" viewBox="0 0 40 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32.0908 16H6.9097C4.3281 16 3.02556 19.1537 4.85468 20.9954L14.6562 30.8679V41.3609V47H24.3438V44.3277V30.8679L34.1459 20.9954C35.9713 19.1574 34.6776 16 32.0908 16ZM21.4375 29.6559V44.2871L17.5625 44.3277V29.6559L6.90625 18.9263H32.0938L21.4375 29.6559Z" fill="black"/>
+          <path d="M32.0908 16H6.9097C4.3281 16 3.02556 19.1537 4.85468 20.9954L14.6562 30.8679V41.3609V47H24.3438V44.3277V30.8679L34.1459 20.9954C35.9713 19.1574 34.6776 16 32.0908 16ZM21.4375 29.6559V44.2871L17.5625 44.3277V29.6559L6.90625 18.9263H32.0938L21.4375 29.6559Z" fill="white"/>
           <g class="filterArrow">
-            <path class="arrowBotStick" d="M9.625 56.875L35.4583 56.875L35.4583 53L9.625 53L9.625 56.875Z" fill="#0674BB"/>
-            <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#0674BB"/>
+            <path class="arrowBotStick" d="M9.625 56.875L35.4583 56.875L35.4583 53L9.625 53L9.625 56.875Z" fill="#ecc800"/>
+            <path class="pointerArrow" d="M10.4583 60.625L10.4583 49L4 54.8125L10.4583 60.625Z" fill="#ecc800"/>
           </g>
         </svg>
         <p class="archiveFiltersHeaderTitle"><span class="hideWords">Hide filters</span></p>
@@ -124,7 +121,6 @@
 
       </div>
     </div>
-  <!-- </div> -->
 
 
 
@@ -217,6 +213,48 @@
   </section>
 </div>
 
+<div class="filterQuestionsActivatorCont">
+  <p class="filterQuestionActP">¿No sabes que contenedor necesitas?</p>
+  <svg class="pointingHand" width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.3529 5.64029C22.665 5.64029 22.9642 5.76156 23.1848 5.97743C23.4055 6.1933 23.5294 6.48608 23.5294 6.79137C23.5294 7.09665 23.4055 7.38943 23.1848 7.6053C22.9642 7.82117 22.665 7.94245 22.3529 7.94245H17.0941L16.9412 9.33525L14.3529 15.0216C14.1176 15.5971 13.4941 16 12.7765 16H7.64706C6.70588 16 5.88235 15.1597 5.88235 14.2734V6.79137C5.88235 6.34245 6.07059 5.93957 6.38823 5.64029L11.3294 0L12.2353 0.851799C12.4706 1.0705 12.6118 1.36978 12.6118 1.7036L12.5765 1.95683L10.5882 5.64029H22.3529ZM0 16V6.79137H3.52941V16H0Z" fill="white"/>
+  </svg>
+  <span class="filterQuestionsActivator" onclick="altClassFromSelector('visible','.filterQuestionsCont')">Pincha aquí</span>
+</div>
 
+<form class="filterQuestionsCont">
+  <p class="closeQuestions" onclick="altClassFromSelector('visible','.filterQuestionsCont')"><strong>+</strong></p>
+  <div class="filterSingleQuestCont">
+    <p class="filterQuestion"><strong>¿Para que estás buscando un contenedor?</strong></p>
+    <div class="filterAnswerCont">
+      <input type="radio" id="dewey" name="question1" value="storage-new">
+      <label for="dewey">Para almacenar o modificarlo</label>
+    </div>
+    <div class="filterAnswerCont">
+      <input type="radio" id="dewey" name="question1" value="cargo-dry">
+      <label for="dewey">Para exportar mercadería</label>
+    </div>
+    <div class="filterAnswerCont">
+      <input type="radio" id="dewey" name="question1" value="reffer">
+      <label for="dewey">Para productos que requieren refrigeración.</label>
+    </div>
+  </div>
+  <div class="filterSingleQuestCont">
+    <p class="filterQuestion"><strong>¿De que tamaño lo necesitas?</strong></p>
+    <div class="filterAnswerCont">
+      <input type="radio" id="dewey" name="question2" value="20DC">
+      <label for="dewey">Seis metros de largo por 2 y medio de ancho</label>
+    </div>
+    <div class="filterAnswerCont">
+      <input type="radio" id="dewey" name="question2" value="40DC-40HC">
+      <label for="dewey">12 metros de largo por 2 y medio de ancho</label>
+    </div>
+    <div class="filterAnswerCont">
+      <input type="radio" id="dewey" name="question2" value="no-40DC-40HC">
+      <label for="dewey">Otras medidas</label>
+    </div>
+  </div>
+
+  <button class="btn">Filtrar contenedores</button>
+</form>
 
 <?php get_footer() ;?>
