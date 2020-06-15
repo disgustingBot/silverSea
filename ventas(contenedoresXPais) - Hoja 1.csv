@@ -1,0 +1,29 @@
+ventas (cotizador online),,,,,,,,,
+pais,ciudad,proveedor,tipo_contenedor,estado_contenedor,stock,precio_compra,precio_fijo,precio_rebajado,precio_cotizado
+UY,MVD,YYY,40HC,NEW,14,1850,,,NULL
+Austria,Salzburg,XXX,20FT,AS IS,23,1450,,,NULL
+Austria,Vienna,ZZZ,40FT,CW,50,1500,,,NULL
+Belarus,Minsk,YYY,40HC,NEW,150,1300,1200,,NULL
+Belgium,Antwerp,XXX,20FT,AS IS,235,1550,1400,1200,NULL
+Czech Republic,Ostrava,ZZZ,40FT,CW,824,1200,,,NULL
+Czech Republic,Prague,YYY,40HC,RECICLE,12,1850,,,NULL
+Denmark,Aarhus,XXX,20FT,CW,52,1300,,,NULL
+Denmark,Copenhagen,ZZZ,40FT,NEW,15,1420,,,NULL
+Estonia,Tallinn,YYY,40HC,AS IS,14,1850,,,NULL
+Finland,Helsinki,XXX,20FT,CW,23,1450,,,NULL
+Finland,Kotka,ZZZ,40FT,AS IS,50,1500,,,NULL
+France,Bordeaux,YYY,40HC,CW,150,1300,,,NULL
+France,Le Havre,XXX,20FT,RECICLE,235,1550,,,NULL
+France,Lyon,ZZZ,40FT,CW,824,1200,,,NULL
+France,Marseille,YYY,40HC,NEW,12,1850,,,NULL
+France,Nantes,XXX,20FT,AS IS,52,1300,,,NULL
+Germany,Baunatal,ZZZ,40FT,CW,15,1420,,,NULL
+Germany,Berlin,YYY,40HC,AS IS,14,1850,,,NULL
+Germany,Bremen,XXX,20FT,CW,23,1450,,,NULL
+Germany,Bremerhaven,ZZZ,40FT,NEW,50,1500,,,NULL
+Germany,Cologne,YYY,40HC,AS IS,150,1300,,,NULL
+Germany,Duisburg,XXX,20FT,CW,235,1550,,,NULL
+Germany,Frankfurt,ZZZ,40FT,AS IS,824,1200,,,NULL
+Germany,Hamburg,YYY,40HC,CW,12,1850,,,NULL
+Germany,Karlsruhe,XXX,20FT,NEW,52,1300,,,NULL
+Germany,Kornwestheim,ZZZ,40FT,AS IS,15,1420,,,NULL
