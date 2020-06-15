@@ -371,7 +371,7 @@ function lt_new_pass(){
 // data-parent="city"
 
     function selectBox($placeholder){ ?>
-      <div class="selectBox" tabindex="1" id="selectBox<?php echo $placeholder; ?>">
+      <div class="SelectBox" tabindex="1" id="selectBox<?php echo $placeholder; ?>">
         <div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $placeholder; ?>')">
           <p class="selectBoxPlaceholder"><?php echo $placeholder; ?></p>
           <p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $placeholder; ?>"></p>

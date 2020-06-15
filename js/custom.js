@@ -1127,9 +1127,9 @@ cartController = {
 		cartController.ready();
 
 
-		value = value.replace(/\s/g, '');
+		value = value.replace(/\s/g, '-');
 		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#' + value.toUpperCase());
 		d.querySelector('#currentSemiSelection').classList.add('cond');
 
 		// console.log('value: ', value);
@@ -1274,7 +1274,8 @@ class CartItem {
 		cartItemSize.setAttribute('xlink:href', '#' + this.size + '-pies');
 		cartItemTip1.setAttribute('xlink:href', '#' + this.tipo_1);
 		cartItemTip2.setAttribute('xlink:href', '#' + this.tipo_2);
-		cartItemCond.setAttribute('xlink:href', '#' + this.condicion);
+		
+		cartItemCond.setAttribute('xlink:href', '#' + this.condicion.replace(/\s/g, '-').toUpperCase());
 
 		close.setAttribute('onclick', 'cartController.remove("' + this.code + '")');
 
