@@ -75,7 +75,11 @@ function newProduct($product = array(), $product_cat = array(), $product_meta = 
 							$commaList = $commaList . ',' . $img_id;
 						}
 					}
+				} else if($imagenes == '') {
+
+					$image_id = get_attachment_id_by_slug( 'contenedorSinFoto' );
 				} else {
+
 					$image_id = get_attachment_id_by_slug( $imagenes );
 				}
 

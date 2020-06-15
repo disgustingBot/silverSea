@@ -1,4 +1,10 @@
 <?php
+
+
+$server = 'local';
+$server = 'online';
+
+
 require_once 'inc/customPosts.php';
 require_once 'inc/productFactory.php';
 require_once 'inc/formHandler.php';
@@ -82,8 +88,19 @@ add_action('after_setup_theme', 'gp_init');
 function custom_lang_found(){
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     // if( $lang == "en" ){
-        // $url = get_home_url()."/$lang/";
+		// $url = get_home_url()."/$lang/";
+
+		$url = substr(get_home_url(), 0, -3);
+		$url = $url . "$lang/";
 				$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+if (strpos($actual_link, $lang) !== false) {
+    // echo 'true';
+		// var_dump(get_home_url());
+} else {
+	// wp_redirect( $url );
+
+}
 				if($url != $actual_link){
 					// wp_redirect( $url );
 					 // var_dump(get_home_url());
@@ -607,17 +624,22 @@ function lt_wipe_products () {
 	exit();
 }
 
+
+
+
+
 add_action( 'wp_ajax_lt_upload_file', 'lt_upload_file' );
 add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
-	$debugMode = false;
+
+	$server = 'online';
+	$debugMode = true;
 	$respuesta = array();
 	$file = false;
+	$file = $_FILES['file'];
+	$fileName    = $file['name'];
 	if(isset($_FILES['file'])){$respuesta['gate0'] = "Your file '$fileName' got to the server safely";
-		$file = $_FILES['file'];
-
-    $fileName    = $file['name'];
     $fileTmpName = $file['tmp_name'];
     $fileSize    = $file['size'];
     $fileError   = $file['error'];
@@ -631,77 +653,126 @@ function lt_upload_file () {
     $fileNamesAllowed = array('stock','gastos_adicionales','trenes','contenedores', 'locations');
 
 		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
-		$fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
+		// $fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
+		$fileDestination = get_template_directory()."/uploads/".$fileNameNew;
+		// $fileDestination = get_home_url()."/uploads/".$fileNameNew;
+		// $fileDestination = deslash($fileDestination);
+		// $respuesta['file_destination'] = "$fileDestination";
 
 		$fileRead = "C:/xampp/htdocs/Silversea/wp-content/themes/silverSea/uploads/".$fileNameNew;
 		if($fileActualExt=='csv'){$saltoDeLinea=",";}
 		if($fileActualExt=='tsv'){$saltoDeLinea="\\t";}
 
+		if ($server == 'online') {
 
-    $dbServerName = "localhost";
-    $dbUsername = "root";
-    $dbPassword = "";
-    // $dbUsername = "contraseñaDificil";
-    // $dbPassword = ";$6qha)2L*KU)6nq";
-    $dbName = "lattedev_silver";
+			// INSTALACION ONLINE
+			$dbServerName = "localhost";
+			$dbUsername = "silverse_admin";
+			$dbPassword = "M-9!-^%jZ*h5";
+			$dbName = "silverse_web";
+			// code...
+		} else {
 
-    $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-		$query1 = "truncate table $dbName.$fileName2;";
-		$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
-		$qry = "Select
-						salesforce_id as SKU,
-						CONCAT( size, ' PIES' ) as 'Name',
-						container_description as 'Description',
-						null as 'Short description',
-						1 as 'In stock?',
-						1 as 'Stock',
-						null as 'Weight (kg)',
-						null as 'Length (cm)',
-						null as 'Width (cm)',
-						null as 'Height (cm)',
-						1 as 'Allow customer reviews?',
-						REPLACE(categoria,';',',') 'Categoria',
-						'http://localhost/Silversea/wp-content/uploads/2020/04/CIMG0468.png' Images,
-						ancho as 'ancho',
-						alto as 'alto',
-						largo as 'largo',
-						peso as 'peso',
-						tara as 'tara',
-						imagenes as 'imagenes',
-						tipo_2 as 'tipo_2',
-						condicion as 'condition',
-						CONCAT( size, ' pies' ) as 'size'
-						from contenedores";
+			// INSTALACION LOCAL
+			$dbServerName = "localhost";
+			$dbUsername = "root";
+			$dbPassword = "";
+			// $dbUsername = "contraseñaDificil";
+			// $dbPassword = ";$6qha)2L*KU)6nq";
+			$dbName = "lattedev_silver";
+		}
 
-		if($fileError===0){$respuesta['gate1']="No errors uploading";
-	    if(in_array($fileName2,$fileNamesAllowed)){$respuesta['gate2']="Your file '$fileName' has a valid name";
-				if(in_array($fileActualExt,$allowedExt)){$respuesta['gate3']="Your file '$fileName' has a valid type";
-					if($fileSize<7000000){$respuesta['gate4']="File size is ok";
-						if(move_uploaded_file($fileTmpName,$fileDestination)){$respuesta['gate5']="File saved in the server correctly";
-							if($conn->query($query1)){$respuesta['gate6']="table correctly truncated";
-								if ($conn->query($query2)) {$respuesta['gate7']="Data loaded into table";
+		// $respuesta['db_name'] = "$dbName";
+		// $respuesta['db_user'] = "$dbUsername";
+		// $respuesta['db_pass'] = "$dbPassword";
+		// $respuesta['db_host'] = "$dbServerName";
 
-									if($fileName2 == 'contenedores'){
-										// esta parte solo deberi ejecutar en el caso de "contenedores"
-										if($conn->query($qry)){
-											$ress = $conn->query($qry);
-											$resp = $ress->fetch_all(MYSQLI_ASSOC);
-											$json_array = wp_json_encode( $resp );
-											if (!$debugMode) {
-												echo $json_array;
-											}
+		// if($debugMode){echo wp_json_encode($respuesta);}
+
+		if ($conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName)) {
+			$respuesta['gate1'] = "Conection is ok";
+			// code...
+			// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+
+			$query1 = "truncate table $dbName.$fileName2;";
+			$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
+			$qry = "Select
+			salesforce_id as SKU,
+			CONCAT( size, ' PIES' ) as 'Name',
+			container_description as 'Description',
+			null as 'Short description',
+			1 as 'In stock?',
+			1 as 'Stock',
+			null as 'Weight (kg)',
+			null as 'Length (cm)',
+			null as 'Width (cm)',
+			null as 'Height (cm)',
+			1 as 'Allow customer reviews?',
+			REPLACE(categoria,';',',') 'Categoria',
+			ancho as 'ancho',
+			alto as 'alto',
+			largo as 'largo',
+			peso as 'peso',
+			tara as 'tara',
+			imagenes as 'imagenes',
+			tipo_2 as 'tipo_2',
+			condicion as 'condition',
+			CONCAT( size, ' pies' ) as 'size'
+			from contenedores";
+
+			if($fileError===0){$respuesta['gate2']="No errors uploading";
+				if(in_array($fileName2,$fileNamesAllowed)){$respuesta['gate3']="Your file '$fileName' has a valid name";
+					if(in_array($fileActualExt,$allowedExt)){$respuesta['gate4']="Your file '$fileName' has a valid type";
+						if($fileSize<7000000){$respuesta['gate5']="File size is ok";
+							if(move_uploaded_file($fileTmpName,$fileDestination)){$respuesta['gate6']="File saved in the server correctly";
+								if($conn->query($query1)){$respuesta['gate7']="table correctly truncated";
+									if ($conn->query($query2)) {$respuesta['gate8']="Data loaded into table";
+									// try {
+									// 	$conn->query($query2);
+									// 	$respuesta['gate8']="Data loaded into table";
+				//
+										if($fileName2 == 'contenedores'){$respuesta['gate9']="Table contenedores";
+											// esta parte solo deberi ejecutar en el caso de "contenedores"
+											$respuesta['last_query']="$qry";
+											if($conn->query($qry)){$respuesta['gate10']="Last query ok";
+												$ress = $conn->query($qry);
+												$resp = $ress->fetch_all(MYSQLI_ASSOC);
+												$json_array = wp_json_encode( $resp );
+												if (!$debugMode) {
+													echo $json_array;
+												}
+											}else{$respuesta['gate10']="Last query ERROR";}
+										}else{
+											$respuesta['gate9']="NOT table contenedores";
+											echo wp_json_encode($respuesta);
 										}
-									}else{
-										echo wp_json_encode($respuesta);
-									}
 
-								}else{$respuesta['gate7']="Error loading data in the table";}
-							}else{$respuesta['gate6']="Error truncating old Table";}
-						}else{$respuesta['gate5']="Error saving file in the server";}
-					}else{$respuesta['gate4']="File is too big";}
-				}else{$respuesta['gate3']="Your file '$fileName' DOESN'T have a valid type";}
-	    }else{$respuesta['gate2']="Your file '$fileName' DOESN'T have a valid name";}
-		}else{$respuesta['gate1']="Error uploading";}
+									// }catch(Exception $e) {
+									//     // echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+									// 		$respuesta['gate8']="Error loading data in the table";
+									// 		$respuesta['error']=$e->getMessage();
+									// }
+
+									}else{
+										$respuesta['gate8']="Error loading data in the table";
+										$respuesta['query_fail']="$query2";
+										// try {
+										// 	$conn->query($query2);
+										// 	$respuesta['gate88']="Data loaded into table";
+										// }catch(Exception $e) {
+										//     // echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+										// 		$respuesta['gate88']="Error loading data in the table";
+										// 		$respuesta['error']=$e->getMessage();
+										// }
+
+									}
+								}else{$respuesta['gate7']="Error truncating old Table";}
+							}else{$respuesta['gate6']="Error saving file in the server";}
+						}else{$respuesta['gate5']="File is too big";}
+					}else{$respuesta['gate4']="Your file '$fileName' DOESN'T have a valid type";}
+				}else{$respuesta['gate3']="Your file '$fileName' DOESN'T have a valid name";}
+			}else{$respuesta['gate2']="Error uploading";}
+		}else{$respuesta['gate1']="Conection problem";}
 	}else{$respuesta['gate0']="No file recived";}
 
 	if($debugMode){echo wp_json_encode($respuesta);}
@@ -731,12 +802,23 @@ function lt_cart_end () {
 	$city = $_POST['city'];
 
 
-	    $dbServerName = "localhost";
-	    $dbUsername = "root";
-	    $dbPassword = "";
-	    // $dbUsername = "contraseñaDificil";
-	    // $dbPassword = ";$6qha)2L*KU)6nq";
-	    $dbName = "lattedev_silver";
+			if ($server == 'online') {
+				// INSTALACION ONLINE
+				$dbServerName = "localhost";
+				$dbUsername = "silverse_admin";
+				$dbPassword = "M-9!-^%jZ*h5";
+				$dbName = "silverse_web";
+				// code...
+			} else {
+
+				// INSTALACION LOCAL
+				$dbServerName = "localhost";
+				$dbUsername = "root";
+				$dbPassword = "";
+				// $dbUsername = "contraseñaDificil";
+				// $dbPassword = ";$6qha)2L*KU)6nq";
+				$dbName = "lattedev_silver";
+			}
 
 	    $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
@@ -775,12 +857,25 @@ function gatCol () {
   if(isset($_POST['tipo_2'])){$tipo_2=$_POST['tipo_2'];}
   // echo get_template_directory();
   // include get_template_directory_uri().'/dbh.inc.php';
-  $dbServerName = "localhost";
-  $dbUsername = "root";
-  $dbPassword = "";
-  // $dbUsername = "contraseñaDificil";
-  // $dbPassword = ";$6qha)2L*KU)6nq";
-  $dbName = "lattedev_silver";
+
+
+			if ($server == 'online') {
+				// INSTALACION ONLINE
+				$dbServerName = "localhost";
+				$dbUsername = "silverse_admin";
+				$dbPassword = "M-9!-^%jZ*h5";
+				$dbName = "silverse_web";
+				// code...
+			} else {
+
+				// INSTALACION LOCAL
+				$dbServerName = "localhost";
+				$dbUsername = "root";
+				$dbPassword = "";
+				// $dbUsername = "contraseñaDificil";
+				// $dbPassword = ";$6qha)2L*KU)6nq";
+				$dbName = "lattedev_silver";
+			}
 
   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
@@ -814,12 +909,23 @@ function lt_get_location () {
 	if(isset($_POST['country'])){$country=$_POST['country'];}
 
 
-	$dbServerName = "localhost";
-	$dbUsername = "root";
-	$dbPassword = "";
-	// $dbUsername = "contraseñaDificil";
-	// $dbPassword = ";$6qha)2L*KU)6nq";
-	$dbName = "lattedev_silver";
+			if ($server == 'online') {
+				// INSTALACION ONLINE
+				$dbServerName = "localhost";
+				$dbUsername = "silverse_admin";
+				$dbPassword = "M-9!-^%jZ*h5";
+				$dbName = "silverse_web";
+				// code...
+			} else {
+
+				// INSTALACION LOCAL
+				$dbServerName = "localhost";
+				$dbUsername = "root";
+				$dbPassword = "";
+				// $dbUsername = "contraseñaDificil";
+				// $dbPassword = ";$6qha)2L*KU)6nq";
+				$dbName = "lattedev_silver";
+			}
 
 	$conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 

@@ -235,6 +235,7 @@
 
       </article>
     <?php } ?>
+    <?php echo misha_paginator(get_pagenum_link()); ?>
   </section>
 </div>
 

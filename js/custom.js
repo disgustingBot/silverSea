@@ -567,7 +567,7 @@ productSincrotron = {
 		formData.append('products', JSON.stringify(productSincrotron.temp));
 		formData.append('action', 'lt_create_products');
 		// console.log('enviando '+productSincrotron.temp.length+' producto/s para crear');
-		ajax3(formData).then(data => {
+		ajax2(formData).then(data => {
 			// d.querySelector('.updateText').innerHTML = "Let's wipe things!";
 			// productSincrotron.created.unshift(productSincrotron.temp.shift());;
 			// console.log('largo del vector temp: ', productSincrotron.temp.length);
@@ -600,15 +600,16 @@ const lt_upload_file = () => {
 
 	altClassFromSelector('loading', '#updateController', 'updateController')
 	ajax2(formData).then(data => {
+		console.log(data)
 		altClassFromSelector('loaded', '#updateController', 'updateController');
 		d.querySelector('.updateText').innerHTML = 'Tabla actualizada!.';
 		d.querySelector('.loadBarProgress').style.width = '100%';
 		console.log('archivo subido, base de datos actualizada');
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
-		if(!data.gate7){
-			productSincrotron.wipeProducts();
-		}
+		// if(!data.gate8){
+		// 	productSincrotron.wipeProducts();
+		// }
 	});
 }
 // {mode: 'cors'}
