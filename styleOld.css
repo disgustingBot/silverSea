@@ -1,0 +1,881 @@
+/*
+Theme Name: silverTheme
+Author: Lattedev
+Author URI: https://www.lattedev.com
+Description: Este tema de wordpress fue desarrollado a medida para SilverSea.
+Version: 0.0
+*/
+
+
+
+/* MAPA DE CONTENIDOS:
+
+1) =ROOT:
+  1.1) =Variables de personalizacion de pagina
+  1.2) =Variables de cambio visual relacionado a al ancho de la pantalla
+
+2) =MEDIA QUERIES:
+  2.1) min-width:  360px
+  2.2) min-width:  576px
+  2.3) min-width:  768px
+  2.4) min-width:  992px
+  2.5) min-width: 1200px
+
+3) =TIPOGRAFIAS:
+
+4) =ETIQUETAS GLOBALES:
+
+5) =ESTRUCTURA:
+
+6) =COMPONENTES:
+6.0) =load:
+6.1) =header:
+6.2) =blueBar:
+6.3) =socalMedia:
+
+
+6.7) =forms
+
+6.7.1)=formContact:
+
+6.8) =titleBanner
+
+6.4) =multiCards:
+
+6.6) =BUTTONS:
+
+
+6.7) =forms
+
+6.7.1)=formContact:
+
+
+6.12.1)= containerAtributes
+
+
+6.99) =footer
+
+FIN DE MAPA DE CONTENIDOS */
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              1) =ROOT:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+:root {
+  font-size: var(--sizeR);
+  /* ---------------------------------------------------------------------------
+  ------------------------------------------------------------------------------
+                 1.1) =Variables de personalizacion de pagina
+  ------------------------------------------------------------------------------
+  --------------------------------------------------------------------------- */
+  /* la idea de esto es que sean como controles con los
+  que hacer facilmente diferentes versiones de la pagina */
+
+  --lateral: 1rem;
+
+  /* COLORS */
+  /* Al editar colores siempre usar HEX y nunca
+  dejar espacio entre los dos puntos y el color */
+  --color1:#0674BB;
+  --color2:#ECC800;
+  --color3:#60859E;
+  /* --color4:#EBE1C8; */
+  /* --color5:#F5F0DC; */
+  /* --color6:#FFFAE6; */
+
+  /* SIZES */
+  /* Al editar los tamaños, hacerlo siempre sin unidades
+  sabiendo que el numero corresponde a la cantidad de pixeles */
+  --sizeRa:16;--sizeRb:20;--sizeRc:20;--sizeRd:24;
+  /* !PREGUNTA: cual es el tamaño minimo de letra? */
+
+  --sizeR: calc(var(--sizeRa) * 1px);
+
+
+  /* SHADOWS */
+
+/**MATERIAL DESIGN'S ELEVATION: POINTS*/
+
+/*---- Nav drawer: 16dp
+       App bar:     4dp
+       Card:        1dp to 6dp
+       FAB:         6dp
+       Button:      2dp to 8dp
+       Dialog:      24dp ----*/
+
+  --DP0:  0px 0px 0px  rgba(0, 0, 0, 0.0),  0px 0px 0px  rgba(0, 0, 0, 0.00), 0px 0px 0px   rgba(0, 0, 0, 0.00);
+  --DP1:  0px 1px 3px  rgba(0, 0, 0, 0.2),  0px 2px 2px  rgba(0, 0, 0, 0.12), 0px 0px 2px   rgba(0, 0, 0, 0.14);
+  --DP2:  0px 1px 5px  rgba(0, 0, 0, 0.2),  0px 3px 4px  rgba(0, 0, 0, 0.12), 0px 2px 4px   rgba(0, 0, 0, 0.14);
+  --DP3:  0px 1px 8px  rgba(0, 0, 0, 0.2),  0px 3px 4px  rgba(0, 0, 0, 0.12), 0px 3px 3px   rgba(0, 0, 0, 0.14);
+  --DP4:  0px 1px 10px rgba(0, 0, 0, 0.2),  0px 4px 5px  rgba(0, 0, 0, 0.12), 0px 2px 4px   rgba(0, 0, 0, 0.14);
+  --DP6:  0px 3px 5px  rgba(0, 0, 0, 0.2),  0px 1px 18px rgba(0, 0, 0, 0.12), 0px 6px 10px  rgba(0, 0, 0, 0.14);
+  --DP8:  0px 4px 5px  rgba(0, 0, 0, 0.2),  0px 3px 14px rgba(0, 0, 0, 0.12), 0px 8px 10px  rgba(0, 0, 0, 0.14);
+  --DP9:  0px 5px 6px  rgba(0, 0, 0, 0.2),  0px 3px 16px rgba(0, 0, 0, 0.12), 0px 9px 12px  rgba(0, 0, 0, 0.14);
+  --DP12: 0px 7px 8px  rgba(0, 0, 0, 0.2),  0px 5px 22px rgba(0, 0, 0, 0.12), 0px 12px 17px rgba(0, 0, 0, 0.14);
+  --DP16: 0px 8px 10px rgba(0, 0, 0, 0.2),  0px 6px 30px rgba(0, 0, 0, 0.12), 0px 16px 24px rgba(0, 0, 0, 0.14);
+  --DP24: 0px 11px 15px rgba(0, 0, 0, 0.2), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 24px 38px rgba(0, 0, 0, 0.14);
+
+  /* ---------------------------------------------------------------------------
+  ------------------------------------------------------------------------------
+      1.2) =Variables de cambio visual relacionado a al ancho de la pantalla
+  ------------------------------------------------------------------------------
+  --------------------------------------------------------------------------- */
+  --onlyDesktopF:none;
+  --onlyDesktopG:none;
+  --onlyMobileF:flex;
+  --onlyMobileG:grid;
+
+  /* BLUEBAR */
+  --blueBarTelM: auto;
+  --selectLangM: auto var(--lateral) auto auto;
+
+  /* ?HEADER */
+  --navBarWidth: 50%;
+  /* ?FOOTER */
+
+
+  /* 6.7) =formContact: */
+  --contactInputWidth: 100%;
+  --contactInputGC: span 2;
+  --contactTextareaHeight: 10rem;
+
+  /* SINGLE CONTAINER */
+  --containerGTA: "imageGallery"
+                  "imageGallery"
+                  "atributo1"
+                  "atributo2"
+                  "atributo3"
+                  "atributo4"
+                  "atributo5"
+                  "atributo6"
+                  "atributo7"
+                  "atributo8";
+
+
+}
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            2) =MEDIA QUERIES:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.1) min-width:  =360px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media screen and (min-width: 360px) {
+  :root {
+  /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - 400px) / (1024 - 400))); */
+  --sizeR: calc(calc(var(--sizeRa) * 1px) + (var(--sizeRb) - var(--sizeRa)) * ((100vw - 360px) / (768 - 360)));
+
+    /* ?HEADER */
+    /* ?FOOTER */
+  }
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.2) min-width:  =576px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media screen and (min-width: 576px) {
+  :root {
+    /* ?HEADER */
+    /* ?FOOTER */
+    /* SINGLE CONTAINER */
+    --containerGTA: "imageGallery imageGallery"
+                    "imageGallery imageGallery"
+                    "atributo1 atributo2"
+                    "atributo3 atributo4"
+                    "atributo5 atributo6"
+                    "atributo7 atributo8";
+  }
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.3) min-width:  =768px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media screen and (min-width: 768px) {
+  :root {
+    --sizeR: calc(calc(var(--sizeRc) * 1px) + (var(--sizeRd) - var(--sizeRc)) * ((100vw - 768px) / (1200 - 768)));
+    --onlyDesktopG:grid;
+    --onlyDesktopF:flex;
+    --onlyMobileF:none;
+    --onlyMobileG:none;
+
+
+    /* BLUEBAR */
+    --blueBarTelM: auto 1rem auto auto;
+    --selectLangM: auto var(--lateral) auto 4rem;
+
+    /* ?HEADER */
+    /* ?FOOTER */
+
+    /* 6.7) =formContact: */
+    --contactInputWidth: auto;
+    --contactInputGC: auto;
+    --contactTextareaHeight: 4rem;
+
+
+    /* SINGLE CONTAINER */
+
+    --containerGTA: "imageGallery imageGallery atributo1 atributo2"
+                    "imageGallery imageGallery atributo3 atributo4"
+                    "imageGallery imageGallery atributo5 atributo6"
+                    "imageGallery imageGallery atributo7 atributo8";
+
+
+
+
+
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.4) min-width:  =992px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media screen and (min-width: 992px) {
+  :root {
+    /* ?HEADER */
+    --navBarWidth: 40%;
+
+    /* ?FOOTER */
+
+
+  }
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.5) min-width:  =1200px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media  screen and (min-width: 1200px) {
+  :root {
+    --lateral: 3rem;
+    --sizeR: calc(var(--sizeRd) * 1px);
+
+    /* ?HEADER */
+    /* ?FOOTER */
+
+    /* SINGLE CONTAINER */
+    --containerGTA: "imageGallery imageGallery imageGallery imageGallery"
+                    "imageGallery imageGallery imageGallery imageGallery"
+                    "atributo1 atributo2 atributo3 atributo4 "
+                    "atributo5 atributo6 atributo7 atributo8"
+                    ;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          2.5) min-width:  =1500px
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+@media  screen and (min-width: 1500px) {
+  :root {
+    --lateral: 3rem;
+    --sizeR: calc(var(--sizeRd) * 1px);
+
+    /* ?HEADER */
+    /* ?FOOTER */
+
+    /* SINGLE CONTAINER */
+    --containerGTA: "imageGallery imageGallery atributo1 atributo2 atributo3 atributo4"
+                    "imageGallery imageGallery atributo5 atributo6 atributo7 atributo8"
+                    ;
+  }
+}
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                                 =LOGIC FOLD
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                           3) =TIPOGRAFIAS:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                           4) =ETIQUETAS GLOBALES:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family: 'Rambla', sans-serif;
+}
+body{display:grid}
+img{object-fit:cover;width:100%}
+a{text-decoration:none}
+ul,ol{list-style:none}
+.main {
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+.main p,
+.main a,
+.main h1,
+.main h2,
+.main h3,
+.main h4,
+.main h5,
+.main h6,
+.main ul,
+.main li{margin:unset;padding:unset}
+.main ul,.main ol{list-style:unset}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              5) =ESTRUCTURA:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.rowcol1{grid-row:1;grid-column:1}
+.onlyDesktopF{display:var(--onlyDesktopF)}
+.onlyDesktopG{display:var(--onlyDesktopG)}
+.onlyMobileF{display:var(--onlyMobileF)}
+.onlyMobileG{display:var(--onlyMobileG)}
+
+
+.flex2,.flex3,.flex4{display:flex;flex-wrap:wrap}
+.flex2>*{flex:2 1 calc(50% - 1rem)}
+.flex3>*{flex:3 1 calc(33% - 1rem)}
+.flex4>*{flex:4 1 calc(25% - 1rem)}
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              6) =COMPONENTES:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              6.0) =load:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.load{
+  background: var(--color2);
+  display: grid;
+  height: 100vh;
+  width:  100vw;
+  position: fixed;
+  top:0;
+  left:0;
+  transition:.5s;
+  z-index: 10000;
+}
+.circle{
+  width:  50px;
+  height: 50px;
+  border-radius: 50%;
+  border-top: 2px solid var(--color1);
+  margin: auto;
+  animation: wheel 1s infinite;
+}
+@keyframes wheel{to{transform:rotate(360deg)}}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.1) =header:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.header {
+  display: var(--onlyDesktopF);
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 3rem;
+  margin: .5rem auto .5rem var(--lateral);
+  width: auto;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  margin: auto var(--lateral);
+  width: var(--navBarWidth);
+}
+.headerMob .menu-item {
+  margin: 1rem 0;
+}
+
+.menu-item a{
+  color: black;
+  font-size: .75rem;
+  text-decoration: none;
+}
+
+/* MOBILE HEADER */
+.headerMob {
+  display: var(--onlyMobileF);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  overflow-x: hidden;
+}
+
+.upperHeader {
+  display: flex;
+  height: min-content;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.navBarMobile {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: auto;
+  margin-right: -100%;
+  position: relative;
+  transition: .25s;
+  width: 60vw;
+  padding: 1rem;
+  background: white;
+}
+
+.navBarMobile.alt {
+  transition: .25s;
+  margin-right: 0;
+
+}
+
+.headerMob .logo {
+  height: 2rem;
+}
+
+.hamburgerMenu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1rem;
+  width: 2rem;
+  margin: auto var(--lateral);
+}
+.hamStripe {
+  background: var(--color1);
+  height: 3px;
+  width: 100%;
+}
+
+.headerMob .menu-item a{
+  font-size: 1rem;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                            6.2) =blueBar:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.blueBar {
+color: white;
+background-color: var(--color1);
+display: flex;
+font-size: .5rem;
+padding: .25rem 0;
+width: 100%;
+}
+.blueBarTel{
+color: white;
+text-decoration: none;
+}
+
+.blueBarTel{margin: var(--blueBarTelM);}
+
+.selectLang{
+display: flex;
+margin: var(--selectLangM);
+}.selectLang > *{ margin: auto}
+
+.selectSVG{
+height: .8rem;
+margin: .1rem;
+}
+
+.blueBarTel{display: none}
+.header .blueBarTel{display: block}
+.latteSignature{
+display: none;
+height: min-content;
+margin: var(--blueBarTelM);
+}
+.footer .latteSignature{display: block}
+
+.latteLink {
+text-decoration: none;
+color: white;
+}
+
+.latteHeartSVG {
+color:var(--color2);
+height: 12px;
+width: auto;
+}
+
+  /* ---------------------------------------------------------------------------
+  ------------------------------------------------------------------------------
+                                6.3) =socalMedia:
+  ------------------------------------------------------------------------------
+  --------------------------------------------------------------------------- */
+
+.socialMediaLink {
+  height: 1rem;
+  margin: .1rem;
+  width: auto;
+}
+.socialMediaLink:first-child {
+  margin-left: 0;
+}
+
+.socialMedia{
+  display: flex;
+  margin: auto auto auto var(--lateral);
+}
+
+.socialMSVG{
+  height: 100%;
+  width: auto;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.4) =multiCards:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.6) =BUTTONS:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.7) =formContact:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+section.contacto{
+  background: url("http://localhost/Silversea/wp-content/uploads/2020/04/pexels-photo-799091-1.jpg");
+  height: 90vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 5rem;
+}
+
+.contacto .subtitle{
+  align-self: flex-start;
+}
+
+.contacto .contactForm{
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  grid-column-gap: .5rem;
+  grid-row-gap: 1rem;
+  align-items: center;
+}
+
+.contactForm input{
+  height: 2rem;
+  padding-left: .5rem;
+  width: var(--contactInputWidth);
+  grid-column: var(--contactInputGC)
+}
+
+.contactForm textarea{
+  grid-column: span 2;
+  height: var(--contactTextareaHeight) ;
+  padding: .5rem;
+  width: var(--contactInputWidth);
+}
+
+.contactForm button{
+  grid-column: span 2;
+  width: min-content;
+  margin: auto;
+  height: 2rem;
+  padding: .5rem 1rem;
+
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.8) =titleBanner
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.titleBaner{
+  background: url("http://localhost/Silversea/wp-content/uploads/2020/04/portada-1.jpg");
+  height: 15rem;
+  color: white;
+}
+
+.titleBanerCaption{
+  padding: 2rem;
+}
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.12.1) =containerAtributes
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+
+.singleContainer{
+  display: grid;
+  grid-gap: 1.75rem;
+  padding: 1rem var(--lateral);
+  grid-template-areas: var(--containerGTA);
+}
+
+.singleContainer .imageGallery{
+  grid-area: imageGallery;
+  margin: auto;
+}
+
+.btn{
+  margin: 1rem var(--lateral);
+  height: 2.4rem;
+  width: 12rem;
+  /* font-size: 24px; */
+  font-size: 1rem;
+  background: #ECC800;
+  color: #676767;
+  border: none;
+}
+.btn.ancho{
+  width: 20rem;
+  margin: 1rem auto 3rem;
+}
+
+.atributo{
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  background: #F0F0F0;
+  padding: .7rem;
+  justify-content: center;
+}
+
+.singleContainer .atributo:nth-child(2){grid-area:atributo1}
+.singleContainer .atributo:nth-child(3){grid-area:atributo2}
+.singleContainer .atributo:nth-child(4){grid-area:atributo3}
+.singleContainer .atributo:nth-child(5){grid-area:atributo4}
+.singleContainer .atributo:nth-child(6){grid-area:atributo5}
+.singleContainer .atributo:nth-child(7){grid-area:atributo6}
+.singleContainer .atributo:nth-child(8){grid-area:atributo7}
+.singleContainer .atributo:nth-child(9){grid-area:atributo8}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.99) =footer
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.btn {
+  padding: .5rem;
+  background: var(--color2);
+  text-transform: uppercase;
+  display: flex;
+  border: none;
+  transition: .25s;
+  font-size: .75rem;
+  font-weight: 700;
+  width: max-content;
+  height: min-content;
+  border: 1px solid var(--color2);
+}
+
+.btn:hover {
+  color: var(--color2);
+  background: white;
+  border: 1px solid var(--color2);
+}
+
+
+
+.btn a
+{margin: auto;
+  text-decoration: none;
+  color: inherit;
+}
+
+.articleAboutUs .btn {
+  margin: auto auto 0 auto;
+  grid-area: btn;
+}
+
+.articleFPCounter .btn {
+  margin: auto;
+  margin-left: 0;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.8) =sectioNSummarys
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.sectionSummary{
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--color1);
+  padding-left: 1rem;
+}
+
+.sectionSummary > *{
+  margin: .25rem 0;
+}
+
+.summaryTitle{
+  color: var(--color4);
+  font-size: 1.7rem;
+}
+
+.summaryTxt {font-size: .7rem; color: var(--color4)}
+
+
+
+/* About us summary */
+
+.articleAboutUs .sectionSummary {grid-area: summary;}
+
+.aboutUsMedia {grid-area: media;}
+
+.articleAboutUs .playBtn {
+  grid-area: media;
+  width: 50px;
+  height: auto;
+  margin: auto;
+}
+
+
+/* Silversea en el mundo article */
+
+.articleFPCounter {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 2rem;
+}
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.9) =Counts:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.count {
+  border-left: solid 2px var(--color2);
+  padding: .5rem;
+  margin: auto;
+  margin-left: 0;
+}
+
+.countNumber {
+  font-size: 2rem;
+  color: var(--color2);
+  font-weight: 700;
+}
+
+.countTxt {
+  font-size: .75rem;
+  color: var(--color4);
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.99) =footer
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.footer {
+  background: var(--color4);
+  display: grid;
+  grid-template-columns: var(--footGridTC);
+  grid-gap: 1rem;
+  padding: var(--footerPad);
+  color: white;
+}
+.footWordingTitle {
+  font-size: .75rem;
+}
+
+.footWordingTxt {
+  font-size: .5rem;
+  text-align: justify;
+}
+
+.footLogo {
+  height: 1.5rem;
+  width: auto;
+  margin: auto;
+  margin-top: 0;
+}
+
+.footerInfoCont {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 10px;
+}
+
+.footerInfoCont svg {
+  margin: auto;
+  height: 15px;
+}
+
+.footLoc,.footerMail,.footTel {
+  font-size: .5rem;
+  text-decoration: none;
+  color: white;
+  margin: auto;
+  margin-left: 10px;
+}
+
+.footerNav li {
+  text-align: var(--TxtLeftCenter);
+  margin-bottom: var(--footerNavMB);
+}
+
+.footerNav a {
+  color: white;
+  font-size: .5rem;
+}
