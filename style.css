@@ -61,6 +61,7 @@ Version: 0.0
 6.22) =cuantos:
 6.23) =currentSemiSelection:
 6.24) =mateput:
+6.25) =pagination:
 6.42) =archive-product:
 6.62) =forms:login:
 6.65) =uploadForm:
@@ -2713,6 +2714,10 @@ section {
   margin:auto 0;
   text-align: right;
 }
+
+.coprAlquiLocation .SelectBox.focus:last-child:focus .selectBoxList{
+  left:-100%;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.17) =sladRadio:
@@ -2838,30 +2843,25 @@ section {
   transform:translateY(-50%) scale(.6);
 }
 
-
 .selectBoxList{
   align-items: center;
   background: #FFF;
   border-radius:4px;
   box-shadow:var(--DP4);
-  /* display: grid; */
-  display: none;
-  grid-gap: .2rem;
-  grid-auto-rows:1.5rem;
+  display: grid;
+  grid-gap: .3rem;
   padding: .2rem;
-  left:50%;
+  left:0;
   max-height: 300px;
   position: absolute;
   pointer-events: none;
   opacity:0;
   overflow-y: scroll;
-  /* right:0; */
-  /* top:0; */
+  top:0;
   transition:.3s;
   transition-delay:.2s;
   width:100%;
   z-index: 12;
-  display: none;
 }
 .SelectBox.focus:focus .selectBoxList{
   background:var(--grey1);
@@ -2871,123 +2871,25 @@ section {
   pointer-events:unset;
 }
 
-/* .selectBoxList:focus, */
-/* .SelectBox.focusDown:focus .selectBoxList{ */
-  /* opacity:1; */
-  /* pointer-events: unset; */
-  /* animation: selectBoxDown 1s forwards; */
-  /* animation: selectBoxDown 1s forwards reverse; */
-/* } */
-/* @keyframes selectBoxDown {
-  from{
-    top:0;
-    opacity:0;
-    pointer-events:none;
-  }
-  to{
-    top:var(--selectBoxHeight);
-    opacity:1;
-    pointer-events:unset;
-  }
-}
-.SelectBox.focusUp:focus .selectBoxList{
-  opacity:1;
-  bottom:var(--selectBoxHeight);
-  pointer-events: unset;
-} */
 
-
+.selectBoxOption:first-child{height:1.5rem}
 .selectBoxOption{
   cursor:pointer;
-  font-size: .7rem!important;
-  height: 1.5rem;
-  line-height: 1.8rem;
+  font-size: var(--fontSize4);
+  /* height: 1.5rem; */
+  /* line-height: 1.8rem; */
   transition:.3s;
-  /* padding:0 16px; */
-  position:relative;
-  display:flex;
-  align-items:center;
+  padding:0 16px;
+  /* width:max-content; */
 }
 .selectBoxOption:hover{
   background:#BBB;
+  z-index:1;
 }
+.hidden{display:none!important}
 .selectBoxInput{
   display: none;
 }
-.selectBoxInput[type*="checkbox"]{display:grid;}
-
-
-
-
-
-
-
-.selectBoxInput[type*="checkbox"] {
-  /* position: relative; */
-  margin: 0 1rem 0 0;
-  cursor: pointer;
-  z-index:-1;
-  left : 0.2rem;
-}
-
-.selectBoxInput[type*="checkbox"]:before {
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition:    all 0.3s ease-in-out;
-  transition:         all 0.3s ease-in-out;
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top:  0.2rem;
-  left: 0.1rem;
-  width:  .9rem;
-  height: .9rem;
-  border: 2px solid var(--color2);
-}
-.selectBoxInput[type*="checkbox"]:checked:before {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform:    rotate(-45deg);
-  -ms-transform:     rotate(-45deg);
-  -o-transform:      rotate(-45deg);
-  transform:         rotate(-45deg);
-  height: .5rem;
-  /* border-color: var(--color1); */
-  border-top-style: none;
-  border-right-style: none;
-  top: .3rem;
-  left:.12rem;
-}
-.selectBoxInput[type*="checkbox"]:after {
-  content: "";
-  position: absolute;
-  /* top:  -0.15rem; */
-  top:0;
-  bottom:0;
-  margin:auto;
-  left : 0;
-  width:  1.3rem;
-  height: 1.3rem;
-  /* background: white; */
-  /* background: transparent; */
-  cursor: pointer;
-  border-radius: calc(var(--borderRadiusEstandar) / 4 * 1px);
-}
-
-
-.selectBoxOptionLabel{
-  padding-left:.5rem;
-}
-
-
-
-
-
-
-.selectBoxCurrent:focus + .selectBoxList{
-  transform: translateY(calc(-20px - 50%));
-  /* background: red; */
-  transition: .7s;
-}
-
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -3271,6 +3173,30 @@ padding-bottom:0;
 .mateput input.alt + .mateputLabel::after{
   transform: translateX(0);
 }
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.25) =pagination:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.pagination{
+  grid-column:1/-1;
+  display:grid;
+  grid-auto-flow:column;
+  grid-gap:.5rem;
+  margin: auto;
+}
+.paginationLink:hover{box-shadow:var(--DP2)}
+.paginationLink{
+  cursor: pointer;
+  box-shadow:var(--DP1);
+  transition:.3s;
+  padding:.3rem .5rem;
+  border-radius:4px;
+}
+.paginationCurrent{padding:.3rem .5rem}
+
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------

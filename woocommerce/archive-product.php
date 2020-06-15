@@ -58,12 +58,6 @@
           <p class="colrOptP"></p>
         </label>
         <?php foreach ($subcats as $sc) { ?>
-
-              <!-- <div class="absolute" style="position:absolute">
-                <?php
-                var_dump($sc);
-                ?>
-              </div> -->
           <label for="<?php echo $sc->slug; ?>" class="selectBoxOption">
             <input
               class="selectBoxInput"
@@ -89,7 +83,7 @@
 <div class="archiveTopInteraction">
   <div class="byeByeBtn">
     <button class="btn">CONTENEDORES EN REBAJA</button>
-    <button class="btn">Finalizar cotización</button>
+    <button class="btn" onclick="altClassFromSelector('alt', '#finalizarConsulta')">Finalizar cotización</button>
   </div>
 </div>
 
@@ -150,30 +144,11 @@
 
 
 
-      <?php if ( has_post_thumbnail()) : ?>
-        <!-- <a href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
-          <?php // the_post_thumbnail(); ?>
-        </a> -->
-      <?php endif; ?>
-
 
 
 
 
         <div class="cardHead">
-          <?php
-
-
-          // $string = ['string'];
-          // if (is_array($string)) {
-          //   // code...
-          //   echo $string[0];
-          // }else{
-          //   echo $string;
-          // }
-
-
-           ?>
           <div class="cardThumbnail">
             <?php newSvg(ucwords($tipo_1Slug)); ?>
           </div>
@@ -252,31 +227,31 @@
   <div class="filterSingleQuestCont">
     <p class="filterQuestion"><strong>¿Para que estás buscando un contenedor?</strong></p>
     <div class="filterAnswerCont">
-      <input type="radio" id="dewey" name="question1" value="storage-new">
-      <label for="dewey">Para almacenar o modificarlo</label>
+      <input type="radio" id="asis" name="question1" value="storage-new">
+      <label for="asis">Para almacenar o modificarlo</label>
     </div>
     <div class="filterAnswerCont">
-      <input type="radio" id="dewey" name="question1" value="cargo-dry">
-      <label for="dewey">Para exportar mercadería</label>
+      <input type="radio" id="export" name="question1" value="cargo-dry">
+      <label for="export">Para exportar mercadería</label>
     </div>
     <div class="filterAnswerCont">
-      <input type="radio" id="dewey" name="question1" value="reffer">
-      <label for="dewey">Para productos que requieren refrigeración.</label>
+      <input type="radio" id="reefer" name="question1" value="reefer">
+      <label for="reefer">Para productos que requieren refrigeración.</label>
     </div>
   </div>
   <div class="filterSingleQuestCont">
     <p class="filterQuestion"><strong>¿De que tamaño lo necesitas?</strong></p>
     <div class="filterAnswerCont">
-      <input type="radio" id="dewey" name="question2" value="20DC">
-      <label for="dewey">Seis metros de largo por 2 y medio de ancho</label>
+      <input type="radio" id="pies20" name="question2" value="20DC">
+      <label for="pies20">Seis metros de largo por 2 y medio de ancho</label>
     </div>
     <div class="filterAnswerCont">
-      <input type="radio" id="dewey" name="question2" value="40DC-40HC">
-      <label for="dewey">12 metros de largo por 2 y medio de ancho</label>
+      <input type="radio" id="pies40" name="question2" value="40DC-40HC">
+      <label for="pies40">12 metros de largo por 2 y medio de ancho</label>
     </div>
     <div class="filterAnswerCont">
-      <input type="radio" id="dewey" name="question2" value="no-40DC-40HC">
-      <label for="dewey">Otras medidas</label>
+      <input type="radio" id="otres" name="question2" value="no-40DC-40HC">
+      <label for="otres">Otras medidas</label>
     </div>
   </div>
 
