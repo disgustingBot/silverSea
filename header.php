@@ -17,7 +17,6 @@
     <?php //include get_template_directory().'/dynamicCont.php' ?>
   <!-- </template> -->
 
-
   <template id="selectBoxOptionTemplate">
     <label for="" class="selectBoxOption" data-test="red">
       <input class="selectBoxInput" id="" type="" name="" value="">
@@ -78,16 +77,20 @@
     	);
     	wp_nav_menu($args);
   	?>
+
+    <div class="cardBtnContainer">
+      <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
+        <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+          <use xlink:href="#simpleTruck" class="cartButtonUse"></use>
+        </svg>
+      </div>
+      <p class="cartButtonTxt">Ver pedido</p>
+    </div>
+
     <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
       <div class="hamStripe"></div>
       <div class="hamStripe"></div>
       <div class="hamStripe"></div>
-    </div>
-
-    <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
-      <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="#simpleTruck" class="cartButtonUse"></use>
-      </svg>
     </div>
   </header>
 
