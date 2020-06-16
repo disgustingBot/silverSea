@@ -939,6 +939,7 @@ section {
   position: relative;
   border-radius: 4px;
   line-height: 18px;
+  margin: auto;
 }
 
 .current-menu-item a{
@@ -1919,7 +1920,7 @@ section {
   height: auto;
   transition: .5s;
   grid-template-rows: max-content auto;
-  margin-bottom: auto;
+  margin-bottom: 1rem;
 }
 
 .teamCardImg {
@@ -3648,6 +3649,7 @@ section.contacto img{
 
 .footLogo {
   margin: auto;
+  width: auto;
 }
 
 .footerInfoCont {
