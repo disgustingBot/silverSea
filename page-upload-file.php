@@ -1,6 +1,5 @@
 <?php get_header() ?>
 
-
 <?php if(current_user_can('administrator') ) {  ?>
 
 <a href="http://localhost/silverSea/upload-file/">reload</a>
