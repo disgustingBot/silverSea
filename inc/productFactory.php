@@ -63,23 +63,25 @@ function newProduct($product = array(), $product_cat = array(), $product_meta = 
 				wp_set_object_terms( $post_id, $product_cat, 'product_cat' );
 
 				if (is_array($imagenes)) {
-					$image_id = get_attachment_id_by_slug( $imagenes[0] );
-					$commaList = '';
-					// code...
-					for ($i=1; $i < count($imagenes); $i++) {
+					if ($imagenes[0]=='') {
+						$image_id = get_attachment_id_by_slug( 'no_photo_container' );
+					}else{
+						$image_id = get_attachment_id_by_slug( $imagenes[0] );
+						$commaList = '';
 						// code...
-						$img_id = get_attachment_id_by_slug( $imagenes[$i] );
-						if ($i==1) {
-							$commaList = $img_id;
-						} else {
-							$commaList = $commaList . ',' . $img_id;
+						for ($i=1; $i < count($imagenes); $i++) {
+							// code...
+							$img_id = get_attachment_id_by_slug( $imagenes[$i] );
+							if ($i==1) {
+								$commaList = $img_id;
+							} else {
+								$commaList = $commaList . ',' . $img_id;
+							}
 						}
 					}
 				} else if($imagenes == '') {
-
-					$image_id = get_attachment_id_by_slug( 'contenedorSinFoto' );
+					$image_id = get_attachment_id_by_slug( 'no_photo_container' );
 				} else {
-
 					$image_id = get_attachment_id_by_slug( $imagenes );
 				}
 

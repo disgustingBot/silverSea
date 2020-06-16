@@ -633,8 +633,9 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	$server = 'online';
-	$debugMode = true;
+	// $server = 'online';
+	$server = 'local';
+	$debugMode = false;
 	$respuesta = array();
 	$file = false;
 	$file = $_FILES['file'];
@@ -653,8 +654,8 @@ function lt_upload_file () {
     $fileNamesAllowed = array('stock','gastos_adicionales','trenes','contenedores', 'locations');
 
 		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
-		// $fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
-		$fileDestination = get_template_directory()."/uploads/".$fileNameNew;
+		$fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
+		// $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
 		// $fileDestination = get_home_url()."/uploads/".$fileNameNew;
 		// $fileDestination = deslash($fileDestination);
 		// $respuesta['file_destination'] = "$fileDestination";
