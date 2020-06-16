@@ -195,6 +195,8 @@ FIN DE MAPA DE CONTENIDOS */
   --cotizacionAvanzadaFD: column;
   --btnSimpleM: 1rem auto;
   /* --dynamicContGTR: repeat(6, 1fr); */
+  --contSelectorMargin: 8px auto;
+  --cotizarContainerMargin: 8px auto;
 
 
   /* COUNTERS */
@@ -454,6 +456,8 @@ FIN DE MAPA DE CONTENIDOS */
     /* ATFS */
     /* HOME ATF */
     --featuresMarginTop: -50px;
+    --contSelectorMargin: 16px 0 auto 0;
+    --cotizarContainerMargin: 16px 0 auto auto;
 
     /* ABOUT US ATF */
     --aboutUsATFImgH:auto;
@@ -1320,18 +1324,15 @@ section {
   padding: 0 20px;
 }
 
-#contSelector {margin: var(--aboutUsSec2BtnM);}
-
+.contSelector     {margin: var(--contSelectorMargin)!important}
+.cotizarContainer {margin: var(--cotizarContainerMargin)!important}
 
 /* FULL WIDTH MAP AND IT'S FIXES */
-
-
 
 .fullWidthMapContainer {
   width: 100%;
   height: 500px;
   position: relative;
-  /* padding: 2rem 0 0 0; */
 }
 
 .fullWidthMap {
@@ -2121,9 +2122,6 @@ section {
   margin: auto 0 auto auto;
 }
 
-.article2 + .btn {
-  margin-top: 2rem;
-}
 
 .byeByeBtn .btn {
   margin: var(--byeByeBtnsM);
@@ -2477,6 +2475,11 @@ section {
   grid-column: 1/-1;
 }
 
+.containerINeed {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .containerNeeded.contVisible {
   display: flex;
 }
@@ -2484,11 +2487,12 @@ section {
 .containerNeeded {
   display: none;
   position: relative;
+  width: 100%;
 }
 
 .containerNeeded .sectionSummary {
   margin: auto 0;
-  padding-left: 0;
+  padding-left: 16px;
 }
 
 /* ---------------------------------------------------------------------------

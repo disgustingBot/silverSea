@@ -1,19 +1,6 @@
 <?php get_header(); ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <section class="ATF frontPageATF sectionWhite">
   <video loop autoplay muted class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" alt="">
   </video>
@@ -212,7 +199,7 @@
 </form> -->
 
 
-  <section class="sectionPadding card60" id="queContainerINeed">
+  <section class="containerINeed sectionPadding card65" id="queContainerINeed">
   <style>#queContainerINeed.card0 #card0 {display:flex}</style>
 
 
@@ -260,7 +247,7 @@
     <?php } ?>
 
 
-    <select name="cont_selector" class="btn" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
+    <select name="cont_selector" class="btn contSelector" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
       <?php $i=0;
       foreach($categories as $category) { ?>
         <?php $lt_meta_desc = get_term_meta($category->term_id, 'lt_meta_desc', true); ?>
@@ -269,6 +256,7 @@
         <?php } ?>
       <?php $i++; } ?>
     </select>
+    <button class="btn cotizarContainer">Cotizar contenedor</button>
 
   <?php } ?>
 </section>
