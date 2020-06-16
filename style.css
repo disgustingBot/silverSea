@@ -304,8 +304,8 @@ FIN DE MAPA DE CONTENIDOS */
   --teamAtfContHeight: max-content;
   --teamValuesMargin: 16px auto;
   --teamCardsContainerGridTC: 1fr;
-  --areaSelectorContHeight: 50vh;
   --areaSelectorContPosition: sticky;
+  --areaSelectorContMaxHeight: 50vh;
 
   --teamValuesGTC: 1fr;
 
@@ -535,7 +535,7 @@ FIN DE MAPA DE CONTENIDOS */
     --teamSectionGridGap: unset;
     --teamCardsContainerGridAF: column;
     --teamCardsContainerGridAC: 20vw;
-    --teamCardsContainerPadding: 0 1rem;
+    --teamCardsContainerPadding: 16px 1rem;
     --teamCardsContainerOverflow: scroll;
     --teamCardsGradientDisplay: block;
     --teamATFImgPosition: fixed;
@@ -543,9 +543,9 @@ FIN DE MAPA DE CONTENIDOS */
     --teamATFImgObjectFit: cover;
     --teamAtfContHeight: 100vh;
     --teamValuesMargin: auto;
-    --areaSelectorContHeight: 40vh;
     --areaSelectorContPadding: 5px;
     --areaSelectorContPosition: static;
+    --areaSelectorContMaxHeight: unset;
     --teamValuesGTC: 1fr 1fr 1fr 1fr;
 
   }
@@ -947,6 +947,10 @@ section {
   font-weight: bold;
 }
 
+.footer .current-menu-item a{
+  color: var(--secondaryColor)!important;
+}
+
 .current-menu-item:hover {
   color: white!important;
 }
@@ -1209,11 +1213,11 @@ section {
 
 /* .ATFWording * {color: var(--colorWhite);} */
 
-/* ---------------------------------------------------------------------------
+ ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                             6.3.0) =Front Page ATF:
 ------------------------------------------------------------------------------
---------------------------------------------------------------------------- */
+---------------------------------------------------------------------------
 
 .featuresSection {
   padding-bottom: 0 var(--lateral);
@@ -1221,10 +1225,19 @@ section {
 
 .frontPageATFBg{
   width: 100%;
-  /* height: var(--frontPageATFBgH); */
   height:calc(100vh + -80px);
   object-fit: cover;
   z-index: 1;
+}
+/* EDGE FIX */
+@supports (-ms-ime-align:auto) {
+
+    .frontPageATFBg {
+      height:auto;
+    }
+    .cotizador {
+      margin-top: 10%;
+    }
 }
 
 .features {
@@ -1433,8 +1446,8 @@ section {
 }
 
 .testimonialQuote .wp-block-image img {
-  width: auto;
-  max-width: unset;
+  width: 26px;
+  height: 25px;
 }
 
 /*.star {
@@ -1477,6 +1490,7 @@ section {
   display: grid;
   grid-template-columns: var(--timelineContGridTC);
   position: relative;
+  background: var(--grey0);
 }
 
 .timelineTextCont {
@@ -1649,6 +1663,7 @@ section {
   display: grid;
   grid-template-columns: var(--teamValuesGTC);
   grid-gap: 1rem;
+  overflow-x: hidden;
 }
 
 .teamValues .valueItem {
@@ -1685,11 +1700,11 @@ section {
 .areaSelectorCont {
   position: var(--areaSelectorContPosition);
   top: 20%;
-  height: var(--areaSelectorContHeight);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   padding: var(--areaSelectorContPadding);
+  max-height: var(--areaSelectorContMaxHeight);
 }
 
 .areaSelector {
@@ -1922,6 +1937,8 @@ section {
   grid-template-rows: max-content auto;
   margin-bottom: 1rem;
 }
+
+
 
 .teamCardImg {
   transition: .5s;

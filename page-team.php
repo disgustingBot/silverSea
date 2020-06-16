@@ -65,6 +65,9 @@
       </article>
 
     <?php } wp_reset_query(); ?>
+    <div style="width: 80px">
+
+    </div>
 
   </div>
 </section>
