@@ -9,12 +9,6 @@
   <?php } wp_reset_query(); ?>
 </section>
 
-
-
-
-
-
-
 <div class="timelineCont sectionPadding">
   <ul class="timeline">
     <h3 class="timelineTitle brandColorTxt"><?php echo get_post_meta($post->ID, 'C-titulo-historia', true); ?></h3>
