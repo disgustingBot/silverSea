@@ -83,31 +83,29 @@ add_action('after_setup_theme', 'gp_init');
 
 
 // REDIRECT WITH LANGUAGE
-
-
-function custom_lang_found(){
-    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    // if( $lang == "en" ){
-		// $url = get_home_url()."/$lang/";
-
-		$url = substr(get_home_url(), 0, -3);
-		$url = $url . "$lang/";
-				$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-if (strpos($actual_link, $lang) !== false) {
-    // echo 'true';
-		// var_dump(get_home_url());
-} else {
-	// wp_redirect( $url );
-
-}
-				if($url != $actual_link){
-					// wp_redirect( $url );
-					 // var_dump(get_home_url());
-				}
-    // }
-}
-add_action( 'template_redirect', 'custom_lang_found' );
+// function custom_lang_found(){
+//     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+//     // if( $lang == "en" ){
+// 		// $url = get_home_url()."/$lang/";
+//
+// 		$url = substr(get_home_url(), 0, -3);
+// 		$url = $url . "$lang/";
+// 		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+//
+// 		if (strpos($actual_link, $lang) !== false) {
+// 		    // echo 'true';
+// 				// var_dump(get_home_url());
+// 		} else {
+// 			// wp_redirect( $url );
+//
+// 		}
+// 				if($url != $actual_link){
+// 					// wp_redirect( $url );
+// 					 // var_dump(get_home_url());
+// 				}
+//     // }
+// }
+// add_action( 'template_redirect', 'custom_lang_found' );
 
 
 
@@ -633,8 +631,8 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	// $server = 'online';
-	$server = 'local';
+	$server = 'online';
+	// $server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$file = false;
@@ -741,11 +739,13 @@ function lt_upload_file () {
 												$json_array = wp_json_encode( $resp );
 												if (!$debugMode) {
 													echo $json_array;
+													exit();
 												}
 											}else{$respuesta['gate10']="Last query ERROR";}
 										}else{
 											$respuesta['gate9']="NOT table contenedores";
 											echo wp_json_encode($respuesta);
+											exit();
 										}
 
 									// }catch(Exception $e) {
@@ -776,7 +776,8 @@ function lt_upload_file () {
 		}else{$respuesta['gate1']="Conection problem";}
 	}else{$respuesta['gate0']="No file recived";}
 
-	if($debugMode){echo wp_json_encode($respuesta);}
+	// if($debugMode){echo wp_json_encode($respuesta);}
+	echo wp_json_encode($respuesta);
 	exit();
 }
 
@@ -849,6 +850,7 @@ add_action( 'wp_ajax_gatCol', 'gatCol' );
 add_action( 'wp_ajax_nopriv_gatCol', 'gatCol' );
 
 function gatCol () {
+	$server = 'online';
   $col = $_POST['col'];
   $size = false;
   $tipo_1 = false;
@@ -892,7 +894,11 @@ function gatCol () {
   }
 
   $ress = $conn->query($qry);
-  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+  // $resp = $ress->fetch_all(MYSQLI_ASSOC);
+	$resp = [];
+	while ($fila = $ress->fetch_assoc()) {
+			$resp[] = $fila;
+	}
   echo wp_json_encode( $resp );
   exit();
 }
@@ -903,6 +909,7 @@ add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
 add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
 
 function lt_get_location () {
+	$server = 'online';
 	$debugMode = true;
 	$respuesta = array();
 	$col = $_POST['column'];
@@ -936,7 +943,15 @@ function lt_get_location () {
 		// code...
 	}
 	  $ress = $conn->query($qry);
-	  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+	  // $resp = $ress->fetch_all(MYSQLI_ASSOC);
+
+		// $resp = "{";
+		$resp = [];
+    while ($fila = $ress->fetch_assoc()) {
+				$resp[] = $fila;
+    }
+
+
 		$respuesta['location'] = wp_json_encode( $resp );
 		// $respuesta['location'] = $col;
 
