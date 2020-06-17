@@ -605,9 +605,9 @@ const lt_upload_file = () => {
 		console.log('archivo subido, base de datos actualizada');
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
-		if(!data.gate8){
-			productSincrotron.wipeProducts();
-		}
+		// if(!data.gate8){
+		// 	productSincrotron.wipeProducts();
+		// }
 	});
 }
 // {mode: 'cors'}
@@ -797,6 +797,7 @@ cartController = {
 			formData.append( 'column', 'country' );
 		}
 		ajax2(formData).then( data => {
+			console.log(data)
 
 			JSON.parse(data.location).forEach( e => {
 
