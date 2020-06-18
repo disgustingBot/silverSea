@@ -592,7 +592,7 @@ const lt_upload_file = () => {
 	file = controller.querySelector('[type=file]');
 	var formData = new FormData();
 	console.clear();
-  console.log('subiendo archivo con ajax');
+	console.log('subiendo archivo con ajax');
 	formData.append('file', file.files[0]);
 	formData.append('action', 'lt_upload_file');
 
