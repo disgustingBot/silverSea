@@ -60,7 +60,7 @@
           <p class="teamCardPosition teamCardBlock"><?php echo get_post_meta($post->ID, 'Cargo', true); ?></p>
           <a class="teamCardLinkedin teamCardNone brandColorTxt" href="<?php echo get_post_meta( get_the_id(), 'Linkedin' )[0]; ?>" >LinkedIn</a>
           <p class="teamCardPhone teamCardNone"><?php echo get_post_meta( get_the_id(), 'Telefono' )[0]; ?></p>
-          <!-- <p class="teamCardMail teamCardNone"><?php echo get_post_meta( get_the_id(), 'Correo' )[0]; ?></p> -->
+          <!-- <p class="teamCardMail teamCardNone"><?php // echo get_post_meta( get_the_id(), 'Correo' )[0]; ?></p> -->
         </div>
       </article>
 

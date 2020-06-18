@@ -84,6 +84,7 @@ add_action('after_setup_theme', 'gp_init');
 
 // REDIRECT WITH LANGUAGE
 
+
 //
 // function custom_lang_found(){
 //     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -110,6 +111,7 @@ add_action('after_setup_theme', 'gp_init');
 // add_action( 'template_redirect', 'custom_lang_found' );
 //
 //
+
 
 
 
@@ -634,7 +636,8 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 function lt_upload_file () {
 
 	$server = 'online';
-	$debugMode = true;
+	// $server = 'local';
+	$debugMode = false;
 	$respuesta = array();
 	$file = false;
 	$file = $_FILES['file'];
@@ -653,9 +656,9 @@ function lt_upload_file () {
     $fileNamesAllowed = array('stock','gastos_adicionales','trenes','contenedores', 'locations');
 
 		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
-		// $fileDestination = wp_normalize_path(get_template_directory()."/uploads/".$fileNameNew);
-		$fileDestination = get_template_directory()."/uploads/".$fileNameNew;
-		// $fileDestination = get_home_url()."/uploads/".$fileNameNew;
+		// $fileDestination = wp_normalize_path( get_template_directory()."/uploads/".$fileNameNew );
+		// $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
+		$fileDestination = get_home_url()."/uploads/".$fileNameNew;
 		// $fileDestination = deslash($fileDestination);
 		// $respuesta['file_destination'] = "$fileDestination";
 
@@ -671,6 +674,12 @@ function lt_upload_file () {
 			$dbPassword = "M-9!-^%jZ*h5";
 			$dbName = "silverse_web";
 			// code...
+
+			// INSTALACION WAVE HOST
+			// $dbServerName = "localhost";
+			// $dbUsername = "lattedev_silver";
+			// $dbPassword = "%fGC+<`@]Csz#75F";
+			// $dbName = "lattedev_silver";
 		} else {
 
 			// INSTALACION LOCAL
@@ -719,7 +728,8 @@ function lt_upload_file () {
 			condicion as 'condition',
 			CONCAT( size, ' pies' ) as 'size'
 			from contenedores";
-
+										$respuesta['query1']="$query1";
+										$respuesta['query2']="$query2";
 			if($fileError===0){$respuesta['gate2']="No errors uploading";
 				if(in_array($fileName2,$fileNamesAllowed)){$respuesta['gate3']="Your file '$fileName' has a valid name";
 					if(in_array($fileActualExt,$allowedExt)){$respuesta['gate4']="Your file '$fileName' has a valid type";
@@ -727,7 +737,9 @@ function lt_upload_file () {
 							if(move_uploaded_file($fileTmpName,$fileDestination)){$respuesta['gate6']="File saved in the server correctly";
 								if($conn->query($query1)){$respuesta['gate7']="table correctly truncated";
 									if ($conn->query($query2)) {$respuesta['gate8']="Data loaded into table";
-									// try {
+										$respuesta['query1']="$query1";
+										$respuesta['query2']="$query2";
+										// try {
 									// 	$conn->query($query2);
 									// 	$respuesta['gate8']="Data loaded into table";
 				//
@@ -740,11 +752,13 @@ function lt_upload_file () {
 												$json_array = wp_json_encode( $resp );
 												if (!$debugMode) {
 													echo $json_array;
+													exit();
 												}
 											}else{$respuesta['gate10']="Last query ERROR";}
 										}else{
 											$respuesta['gate9']="NOT table contenedores";
 											echo wp_json_encode($respuesta);
+											exit();
 										}
 
 									// }catch(Exception $e) {
@@ -755,7 +769,8 @@ function lt_upload_file () {
 
 									}else{
 										$respuesta['gate8']="Error loading data in the table";
-										$respuesta['query_fail']="$query2";
+										$respuesta['query1']="$query1";
+										$respuesta['query2']="$query2";
 										// try {
 										// 	$conn->query($query2);
 										// 	$respuesta['gate88']="Data loaded into table";
@@ -775,7 +790,8 @@ function lt_upload_file () {
 		}else{$respuesta['gate1']="Conection problem";}
 	}else{$respuesta['gate0']="No file recived";}
 
-	if($debugMode){echo wp_json_encode($respuesta);}
+	// if($debugMode){echo wp_json_encode($respuesta);}
+	echo wp_json_encode($respuesta);
 	exit();
 }
 
@@ -848,6 +864,7 @@ add_action( 'wp_ajax_gatCol', 'gatCol' );
 add_action( 'wp_ajax_nopriv_gatCol', 'gatCol' );
 
 function gatCol () {
+	$server = 'online';
   $col = $_POST['col'];
   $size = false;
   $tipo_1 = false;
@@ -891,17 +908,22 @@ function gatCol () {
   }
 
   $ress = $conn->query($qry);
-  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+  // $resp = $ress->fetch_all(MYSQLI_ASSOC);
+	$resp = [];
+	while ($fila = $ress->fetch_assoc()) {
+			$resp[] = $fila;
+	}
   echo wp_json_encode( $resp );
   exit();
 }
 
 
 
-add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
-add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
+// add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
+// add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
 
 function lt_get_location () {
+	$server = 'online';
 	$debugMode = true;
 	$respuesta = array();
 	$col = $_POST['column'];
@@ -935,7 +957,15 @@ function lt_get_location () {
 		// code...
 	}
 	  $ress = $conn->query($qry);
-	  $resp = $ress->fetch_all(MYSQLI_ASSOC);
+	  // $resp = $ress->fetch_all(MYSQLI_ASSOC);
+
+		// $resp = "{";
+		$resp = [];
+    while ($fila = $ress->fetch_assoc()) {
+				$resp[] = $fila;
+    }
+
+
 		$respuesta['location'] = wp_json_encode( $resp );
 		// $respuesta['location'] = $col;
 

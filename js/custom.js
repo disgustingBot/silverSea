@@ -36,6 +36,7 @@ w.onload=()=>{
 
 
 }
+console.log(lt_data.ajaxurl)
 
 
 // deprecated
@@ -503,7 +504,6 @@ const getUrlVars = () => {
 
 
 
-
 productSincrotron = {
 	qnty:0,
 	toDelete:0,
@@ -568,8 +568,6 @@ productSincrotron = {
 		formData.append('action', 'lt_create_products');
 		// console.log('enviando '+productSincrotron.temp.length+' producto/s para crear');
 		ajax2(formData).then(data => {
-			// d.querySelector('.updateText').innerHTML = "Let's wipe things!";
-			// productSincrotron.created.unshift(productSincrotron.temp.shift());;
 			// console.log('largo del vector temp: ', productSincrotron.temp.length);
 			for (var i = 0; i < productSincrotron.temp.length; i++) {
 				productSincrotron.created.unshift(productSincrotron.temp.splice(0, 1));
@@ -594,7 +592,7 @@ const lt_upload_file = () => {
 	file = controller.querySelector('[type=file]');
 	var formData = new FormData();
 	console.clear();
-  console.log('subiendo archivo con ajax');
+	console.log('subiendo archivo con ajax');
 	formData.append('file', file.files[0]);
 	formData.append('action', 'lt_upload_file');
 
@@ -757,7 +755,8 @@ cartController = {
 			cartController.getCol('Size');
 		}
 		cartController.getLocation();
-		cartController.getLocation(false, 'Destino');
+		// cartController.getLocation(false, 'Destino');
+
 		// cartController.cart = JSON.parse(readCookie('cart'));
 		// cartController.cart = JSON.parse(readCookie('cart'));
 		if(readCookie('cart')){
@@ -798,12 +797,16 @@ cartController = {
 			formData.append( 'column', 'country' );
 		}
 		ajax2(formData).then( data => {
+			console.log(data)
 
 			JSON.parse(data.location).forEach( e => {
 
 				for(var key in e) {
+
 					var value = e[key].replace(/(?:\r\n|\r|\n)/g, '');
 					key = option + key.capitalize();
+					// console.log(key);
+					// console.log(d.querySelector('#selectBox'+key+' .selectBoxList'))
 					var a = cartController.selectBoxOption(key,value),
 					input = a.querySelector(".selectBoxInput");
 					input.setAttribute('type', 'radio');
@@ -1274,7 +1277,7 @@ class CartItem {
 		cartItemSize.setAttribute('xlink:href', '#' + this.size + '-pies');
 		cartItemTip1.setAttribute('xlink:href', '#' + this.tipo_1);
 		cartItemTip2.setAttribute('xlink:href', '#' + this.tipo_2);
-		
+
 		cartItemCond.setAttribute('xlink:href', '#' + this.condicion.replace(/\s/g, '-').toUpperCase());
 
 		close.setAttribute('onclick', 'cartController.remove("' + this.code + '")');
