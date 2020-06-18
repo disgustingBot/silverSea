@@ -84,32 +84,32 @@ add_action('after_setup_theme', 'gp_init');
 
 // REDIRECT WITH LANGUAGE
 
-
-function custom_lang_found(){
-    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    // if( $lang == "en" ){
-		// $url = get_home_url()."/$lang/";
-
-		$url = substr(get_home_url(), 0, -3);
-		$url = $url . "$lang/";
-				$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-if (strpos($actual_link, $lang) !== false) {
-    // echo 'true';
-		// var_dump(get_home_url());
-} else {
-	// wp_redirect( $url );
-
-}
-				if($url != $actual_link){
-					// wp_redirect( $url );
-					 // var_dump(get_home_url());
-				}
-    // }
-}
-add_action( 'template_redirect', 'custom_lang_found' );
-
-
+//
+// function custom_lang_found(){
+//     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+//     // if( $lang == "en" ){
+// 		// $url = get_home_url()."/$lang/";
+//
+// 		$url = substr(get_home_url(), 0, -3);
+// 		$url = $url . "$lang/";
+// 				$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+//
+// if (strpos($actual_link, $lang) !== false) {
+//     // echo 'true';
+// 		// var_dump(get_home_url());
+// } else {
+// 	// wp_redirect( $url );
+//
+// }
+// 				if($url != $actual_link){
+// 					// wp_redirect( $url );
+// 					 // var_dump(get_home_url());
+// 				}
+//     // }
+// }
+// add_action( 'template_redirect', 'custom_lang_found' );
+//
+//
 
 
 
@@ -280,7 +280,7 @@ function lt_login(){
     'status' => $status,
     // 'resultado' => username_exists( $mail ),
   ), $link );
-  wp_redirect($link);
+  // wp_redirect($link);
 }
 
 
@@ -345,7 +345,7 @@ function lt_new_pass(){
         'success'  => true,
       ), $link );
   }
-  wp_redirect($link);
+  // wp_redirect($link);
 }
 
 
