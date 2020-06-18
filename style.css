@@ -19,7 +19,7 @@ Version: 0.0
   2.1) min-width:  360px
   2.2) min-width:  576px
   2.3) min-width:  768px
-  2.4) min-width:  992px
+  2.4) min-width: 1024px
   2.5) min-width: 1200px
 
 3) =TIPOGRAFIAS:
@@ -176,6 +176,9 @@ FIN DE MAPA DE CONTENIDOS */
   /* ?HEADER */
   --navBarWidth: 50%;
   --navBarGG: .7rem;
+  --headerLogoHeight: 3rem;
+  --menuItemAFontSize: 16px;
+  --cartButtonTxtDisplay: none;
 
   /* ATFS */
   /* FRONT PAGE ATF */
@@ -192,6 +195,8 @@ FIN DE MAPA DE CONTENIDOS */
   --cotizacionAvanzadaFD: column;
   --btnSimpleM: 1rem auto;
   /* --dynamicContGTR: repeat(6, 1fr); */
+  --contSelectorMargin: 8px auto;
+  --cotizarContainerMargin: 8px auto;
 
 
   /* COUNTERS */
@@ -442,11 +447,17 @@ FIN DE MAPA DE CONTENIDOS */
     --redDotTop: unset;
 
     /* ?HEADER */
+    --headerLogoHeight: 2rem;
+    --menuItemAFontSize: 14px;
+    --cartButtonTxtDisplay: block;
+
 
 
     /* ATFS */
     /* HOME ATF */
     --featuresMarginTop: -50px;
+    --contSelectorMargin: 16px 0 auto 0;
+    --cotizarContainerMargin: 16px 0 auto auto;
 
     /* ABOUT US ATF */
     --aboutUsATFImgH:auto;
@@ -554,14 +565,17 @@ FIN DE MAPA DE CONTENIDOS */
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          2.4) min-width:  =992px
+                          2.4) min-width:  =1024px
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1024px) {
   :root {
     /* ?HEADER */
     --navBarWidth: 40%;
     --navBarGG: 1rem;
+    --menuItemAFontSize: 16px;
+    --headerLogoHeight: 3rem;
+
 
 
     /* ATFS */
@@ -869,7 +883,8 @@ section {
   box-shadow: var(--DP4);
   display: grid;
   background: var(--grey0);
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: max-content 1fr max-content;
+  grid-gap: 8px;
   position: sticky;
   top:0;
   z-index: 6;
@@ -879,23 +894,13 @@ section {
   top:calc(80px - 1rem);
 }
 
-.header .cartButton::after {
-  content: 'Ver carrito';
-  position: absolute;
-  top: 40px;
-  left: 0;
-  pointer-events: none;
-  font-size: 15px;
-  text-align: center;
-}
-
 .headerLogoLink {
   display: flex;
   height: 80px;
 }
 
 .logo {
-  height: 3rem;
+  height: var(--headerLogoHeight);
   margin: auto auto auto var(--lateral);
   width: auto;
 }
@@ -903,11 +908,9 @@ section {
 .navBar {
   display: var(--onlyDesktopG);
   grid-auto-flow: column;
-  margin: auto var(--lateral) auto auto;
+  margin: auto;
   grid-gap: var(--navBarGG);
 }
-
-
 
 .header .menu-item:nth-child(1)  {
   box-shadow: var(--DP1);
@@ -917,17 +920,14 @@ section {
   transition: .25s;
 }
 
-
 .header .menu-item.current-menu-item:nth-child(1) a {
   color: var(--grey0)!important;
 }
-
 
 .header .menu-item:nth-child(1):hover {
   /* background: var(--color1); */
   background: var(--primaryColor);
 }
-
 
 .header .menu-item:nth-child(1):hover::after {
   width: 0;
@@ -955,14 +955,11 @@ section {
   color: white!important;
 }
 
-
-
 .header .menu-item::after {
   content: '';
   width: 0%;
   height: 0%;
   border-radius: 50%;
-  /* background: white; */
   background: var(--primaryColor);
   bottom: 0;
   left: 40%;
@@ -973,8 +970,6 @@ section {
   width: 100%;
   height: 100%;
   position: absolute;
-  /* background: var(--color1)!important; */
-  /* color: white; */
   border-radius: 4px;
   left:0;
   transition: .25s;
@@ -994,7 +989,7 @@ section {
 }
 
 .menu-item a{
-  font-size: .75rem;
+  font-size: var(--menuItemAFontSize);
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -1329,18 +1324,15 @@ section {
   padding: 0 20px;
 }
 
-#contSelector {margin: var(--aboutUsSec2BtnM);}
-
+.contSelector     {margin: var(--contSelectorMargin)!important}
+.cotizarContainer {margin: var(--cotizarContainerMargin)!important}
 
 /* FULL WIDTH MAP AND IT'S FIXES */
-
-
 
 .fullWidthMapContainer {
   width: 100%;
   height: 500px;
   position: relative;
-  /* padding: 2rem 0 0 0; */
 }
 
 .fullWidthMap {
@@ -2130,9 +2122,6 @@ section {
   margin: auto 0 auto auto;
 }
 
-.article2 + .btn {
-  margin-top: 2rem;
-}
 
 .byeByeBtn .btn {
   margin: var(--byeByeBtnsM);
@@ -2201,7 +2190,16 @@ section {
                           6.7.2) =cartButton:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.cartButton{
+
+.cardBtnContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto var(--lateral) auto auto;
+}
+
+.cartButton {
   background:white;
   border:1px solid var(--grey99);
   border-radius:50%;
@@ -2209,12 +2207,13 @@ section {
   cursor:pointer;
   display: grid;
   height: 2rem;
-  position: absolute;
+  /* position: absolute; */
   right: 1rem;
   transition:.4s;
   width: 2rem;
-  z-index:-1;
+  /* z-index:-1; */
 }
+
 .cartButtonSvg{
   z-index:1;
 }
@@ -2226,7 +2225,13 @@ section {
 }
 
 
-
+.cartButtonTxt {
+  font-size: 12px;
+  text-align: center;
+  width: max-content;
+  margin-top: 4px;
+  display: var(--cartButtonTxtDisplay);
+}
 
 
 
@@ -2470,13 +2475,24 @@ section {
   grid-column: 1/-1;
 }
 
-.containerNeeded {
-  display: none;
-  position: relative;
+.containerINeed {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .containerNeeded.contVisible {
   display: flex;
+}
+
+.containerNeeded {
+  display: none;
+  position: relative;
+  width: 100%;
+}
+
+.containerNeeded .sectionSummary {
+  margin: auto 0;
+  padding-left: 16px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -2650,6 +2666,7 @@ section {
   top:.5rem;
   right:.5rem;
   z-index:2;
+  position: absolute;
 }
 
 .cotizador .currentSemiSelection {
