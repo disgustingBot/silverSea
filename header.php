@@ -61,7 +61,6 @@
 	<view id="load" class="load"><div class="circle"></div></view>
 
   <header class="header" id="header">
-    <?php // include('blueBar.php') ?>
 
     <!-- NAVIGATION BAR -->
     <a class="headerLogoLink" href="<?php echo site_url('');  ?>" class="logoLink">
@@ -87,25 +86,15 @@
       <p class="cartButtonTxt">Ver pedido</p>
     </div>
 
+
     <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
-      <div class="hamStripe"></div>
-      <div class="hamStripe"></div>
-      <div class="hamStripe"></div>
+      <span class="hamStripe"></span>
+      <span class="hamStripe"></span>
+      <span class="hamStripe"></span>
     </div>
   </header>
 
-  <!-- <header class="headerMob" id="headerMob">
-    <div class="upperHeader" id="cosaTest">
-      <a class="logoLink" href="<?php echo site_url('');  ?>">
-        <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
-      </a>
-      <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
-        <div class="hamStripe"></div>
-        <div class="hamStripe"></div>
-        <div class="hamStripe"></div>
-      </div>
-    </div>
-  </header> -->
+
   <nav class="navBarMobileContainer">
     <?php
     $args = array(
@@ -133,7 +122,6 @@
 
   <div class="finalizarConsulta" id="finalizarConsulta">
     <?php require_once 'coprAlqui.php'; ?>
-    <!-- <p>comprAlqui</p> -->
 
 
 

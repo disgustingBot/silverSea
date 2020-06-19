@@ -448,7 +448,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* ?HEADER */
     --headerLogoHeight: 2rem;
-    --menuItemAFontSize: 14px;
+    --menuItemAFontSize: 13px;
     --cartButtonTxtDisplay: block;
 
 
@@ -951,7 +951,7 @@ section {
   color: var(--secondaryColor)!important;
 }
 
-.current-menu-item:hover {
+.header .current-menu-item:hover a{
   color: white!important;
 }
 
@@ -1031,16 +1031,15 @@ section {
 
 .navBarMobileContainer {
   position: fixed;
-  top: 60px;
+  top: 79px;
   right: 0;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 139px);
   margin-right: -100%;
   transition: .25s;
   width: 60vw;
-  /* background: white; */
   filter: brightness(100%)!important;
   font-size: 2rem;
-  z-index: 5;
+  z-index: 6;
 }
 
 .navBarMobileContainer .blueBarTel {
@@ -1082,6 +1081,15 @@ section {
   transition: .25s;
 }
 
+
+
+
+
+
+
+
+
+
 .headerMob .logo {
   height: 2rem;
 }
@@ -1090,20 +1098,54 @@ section {
   height: 60px;
 }
 
+
 .hamburgerMenu {
-  cursor: pointer;
   display: var(--onlyMobileF);
   flex-direction: column;
-  justify-content: space-between;
-  height: 1rem;
-  width: 2rem;
+  width: 30px;
+  height: 24px;
+  position: relative;
   margin: auto var(--lateral) auto auto;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
 }
+
 .hamStripe {
-  background: var(--primaryColor);
-  height: 3px;
+  position: absolute;
+  height: 4.5px;
   width: 100%;
+  background: var(--primaryColor);
+  border-radius: 4.5px;
+  left: 0;
+  transition: .25s ease-in-out;
 }
+
+.hamStripe:nth-child(1) {top: 0px}
+.body.mobileNavMenu .hamburgerMenu .hamStripe:nth-child(1) {
+  top: 9px;
+  transform: rotate(135deg);
+}
+
+.hamStripe:nth-child(2) {top: 9px}
+.body.mobileNavMenu .hamburgerMenu .hamStripe:nth-child(2) {
+  opacity: 0;
+  left: -30px;
+}
+
+.hamStripe:nth-child(3) {top: 18px}
+.body.mobileNavMenu .hamburgerMenu .hamStripe:nth-child(3) {
+  top: 9px;
+  transform: rotate(-135deg);
+}
+
+
 
 #menu-mainmenu-1 .menu-item a{
   font-size: 1.2rem;
@@ -1118,9 +1160,7 @@ section {
   font-size: 20px;
 }
 
-.navBarMobile .current-menu-item:hover a {
-  /* color: var(--color2)!important; */
-}
+
 
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
@@ -2219,9 +2259,8 @@ section {
 }
 .cartButton:hover,
 .cartButton:focus {
-  box-shadow: 0px 0px 0px 10px rgb(0,73,138);
+  box-shadow: 0px 0px 0px 5px rgb(0,73,138);
   outline: none;
-  /* color:white; */
 }
 
 
