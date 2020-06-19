@@ -612,29 +612,29 @@ const lt_upload_file = () => {
 }
 // {mode: 'cors'}
 async function ajax2(formData, url = lt_data.ajaxurl) {
-  try{
-	  let response = await fetch(url, {
+	try{
+		let response = await fetch(url, {
 			method: 'POST',
 			body: formData,
 			mode: 'no-cors',
 		});
-    return await response.json();
-  }catch(err){
-    console.error(err);
-  }
+		return await response.json();
+	}catch(err){
+		console.error(err);
+	}
 }
 
 async function ajax3(formData, url = lt_data.ajaxurl) {
-  try{
-	  let response = await fetch(url, {
+	try{
+		let response = await fetch(url, {
 			method: 'POST',
 			body: formData,
 		});
-    // return await response.json();
+	// return await response.json();
 		return await response.text();
-  }catch(err){
-    console.error(err);
-  }
+	}catch(err){
+		console.error(err);
+	}
 }
 
 
@@ -934,7 +934,7 @@ cartController = {
 			console.log(data)
 		})
 	},
-  add: (x) => {
+	add: (x) => {
 		const check = (element) => {
 			return element.code == x.code;
 		}
@@ -973,10 +973,10 @@ cartController = {
 		// console.log(cartController.cart);
 		createCookie('cart', JSON.stringify(cartController.cart));
 
-  },
+	},
 	remove:(code)=>{
 		console.log(code)
-    list = d.querySelector('.cartList');
+		list = d.querySelector('.cartList');
 		list.removeChild(list.querySelector('.cartItem[data-code="'+code+'"]'));
 
 		const check = (element) => {
@@ -994,48 +994,48 @@ cartController = {
 		}
 		createCookie('cart', JSON.stringify(cartController.cart));
 	},
-  ready:(ready = true)=>{
-    let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
-    if (ready) {
-      btn.disabled = false;
-      selector.classList.add('ready')
-    } else {
-      btn.disabled = true;
-      selector.classList.remove('ready')
-    }
-  },
-
-	changeQuantity:(value)=>{
-	  let quantity = parseInt(d.querySelector('#addToCartQantity').value);
-	  quantity += value;
-	  if (quantity<=1) {
-	    quantity = 1;
-	  }
-		cartController.currentSemiSelection.qty = quantity;
-	  d.querySelector('#addToCartQantity').value   = quantity;
+	ready:(ready = true)=>{
+		let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
+		if (ready) {
+			btn.disabled = false;
+			selector.classList.add('ready')
+		} else {
+			btn.disabled = true;
+			selector.classList.remove('ready')
+		}
 	},
 
-  selectBoxOption:(key, value = '')=>{
+	changeQuantity:(value)=>{
+		let quantity = parseInt(d.querySelector('#addToCartQantity').value);
+		quantity += value;
+		if (quantity<=1) {
+			quantity = 1;
+		}
+		cartController.currentSemiSelection.qty = quantity;
+		d.querySelector('#addToCartQantity').value   = quantity;
+	},
 
-    let a  = d.importNode(d.querySelector("#selectBoxOptionTemplate").content, true),
-    option = a.querySelector(".selectBoxOption"),
-    input  = a.querySelector(".selectBoxInput"),
-    label  = a.querySelector(".selectBoxOptionLabel");
-    if(value == 'nul'){
-      option.setAttribute('for', 'nul'+key);
-      input.setAttribute ('id' , 'nul'+key);
-      input.setAttribute('value', 0);
-    } else {
-      option.setAttribute('for', key+value);
-      input.setAttribute ('id' , key+value);
-      input.setAttribute('value', value);
-    }
-    label.textContent = value;
-    input.setAttribute('name', key);
-    input.setAttribute("onclick", 'selectBoxControler("'+value+'", "#selectBox'+key+'", "#selectBoxCurrent'+key+'")');
+	selectBoxOption:(key, value = '')=>{
 
-    return a;
-  },
+		let a  = d.importNode(d.querySelector("#selectBoxOptionTemplate").content, true),
+		option = a.querySelector(".selectBoxOption"),
+		input  = a.querySelector(".selectBoxInput"),
+		label  = a.querySelector(".selectBoxOptionLabel");
+		if(value == 'nul'){
+			option.setAttribute('for', 'nul'+key);
+			input.setAttribute ('id' , 'nul'+key);
+			input.setAttribute('value', 0);
+		} else {
+			option.setAttribute('for', key+value);
+			input.setAttribute ('id' , key+value);
+			input.setAttribute('value', value);
+		}
+		label.textContent = value;
+		input.setAttribute('name', key);
+		input.setAttribute("onclick", 'selectBoxControler("'+value+'", "#selectBox'+key+'", "#selectBoxCurrent'+key+'")');
+
+		return a;
+	},
 
   selectBoxWipe:(nombre, comptleteWipe = false)=>{
     list = d.querySelector('#selectBox'+nombre+' .selectBoxList');

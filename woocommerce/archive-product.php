@@ -183,7 +183,7 @@
                 <path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
               </svg>
             </button>
-            <?php } ?>
+          <?php } ?>
         </div>
 
         <div class="cardCaption">
@@ -210,7 +210,7 @@
 
       </article>
     <?php } ?>
-    <?php echo misha_paginator(get_pagenum_link()); ?>
+    <?php echo ajax_paginator(get_pagenum_link()); ?>
   </section>
 </div>
 
