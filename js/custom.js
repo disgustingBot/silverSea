@@ -9,13 +9,13 @@ c.lof = (message, farbe = false)=>{
 
 
 w.onload=()=>{
-  // LAZY LOAD FUNCTIONS MODULE
-  var lBs=[].slice.call(d.querySelectorAll(".lazy-background")),lIs=[].slice.call(d.querySelectorAll(".lazy")),opt={threshold:.01};
-  if("IntersectionObserver" in window){
-    let lBO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){let l=e.target;l.classList.add("visible");lBO.unobserve(l)}})},opt),
-        lIO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){let l=e.target;l.classList.remove("lazy");lIO.unobserve(l);l.srcset=l.dataset.url}})},opt);
-    lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
-  }
+	// LAZY LOAD FUNCTIONS MODULE
+	var lBs=[].slice.call(d.querySelectorAll(".lazy-background")),lIs=[].slice.call(d.querySelectorAll(".lazy")),opt={threshold:.01};
+	if("IntersectionObserver" in window){
+	let lBO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){let l=e.target;l.classList.add("visible");lBO.unobserve(l)}})},opt),
+		lIO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){let l=e.target;l.classList.remove("lazy");lIO.unobserve(l);l.srcset=l.dataset.url}})},opt);
+	lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
+	}
 
 	cartController.setup();
 
@@ -28,15 +28,15 @@ w.onload=()=>{
 	cardSetup();
 
 
-  if (d.getElementById("load")) {
-    d.getElementById("load").style.top="-100vh";
-  }
+	if (d.getElementById("load")) {
+		d.getElementById("load").style.top="-100vh";
+	}
 	scrollAlter();
 
 
 
 }
-console.log(lt_data.ajaxurl)
+// console.log(lt_data.ajaxurl)
 
 
 // deprecated
@@ -185,11 +185,11 @@ class Cuantos {
 		element.querySelector('#cuantosMins').onclick = () =>{this.changeQuantity(-1)}
 	}
 	changeQuantity (value) {
-	  this.quantity += value;
-	  if (this.quantity<=1) {
-	    this.quantity = 1;
-	  }
-	  this.element.querySelector('#cuantosQantity').value       = this.quantity;
+		this.quantity += value;
+		if (this.quantity<=1) {
+			this.quantity = 1;
+		}
+		this.element.querySelector('#cuantosQantity').value       = this.quantity;
 	}
 }
 
@@ -605,9 +605,9 @@ const lt_upload_file = () => {
 		console.log('archivo subido, base de datos actualizada');
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
-		// if(!data.gate8){
-		// 	productSincrotron.wipeProducts();
-		// }
+		if(!data.gate8){
+			productSincrotron.wipeProducts();
+		}
 	});
 }
 // {mode: 'cors'}
@@ -779,7 +779,7 @@ cartController = {
 
 		// console.log('la concha de la EXPLORAR')
 	},
-  currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
+	currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
 	containerToAdd:false,
 	cart: [],
 	locationOrigen:[],
@@ -796,6 +796,7 @@ cartController = {
 		}else{
 			formData.append( 'column', 'country' );
 		}
+		console.log(formData);
 		ajax2(formData).then( data => {
 			console.log(data)
 

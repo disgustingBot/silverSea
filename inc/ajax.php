@@ -52,7 +52,7 @@ remove_action('template_redirect', 'redirect_canonical');
 // PAGINATION
 // bloque inspirado en el comienzo de este post:
 // https://rudrastyh.com/wordpress/load-more-and-pagination.html
-function misha_paginator( $first_page_url ){
+function ajax_paginator( $first_page_url ){
 
 	// the function works only with $wp_query that's why we must use query_posts() instead of WP_Query()
 	global $wp_query;
@@ -195,113 +195,113 @@ function latte_pagination() {
 
 			// run the loop
 			while( have_posts() ): the_post();
-  			if(get_post_type()=='product'){
-  				$_pf = new WC_Product_Factory();
-  				$_product = $_pf->get_product(get_the_ID());
-  			}
+				if(get_post_type()=='product'){
+					$_pf = new WC_Product_Factory();
+					$_product = $_pf->get_product(get_the_ID());
+				}
 
-        $categories = get_the_terms( get_the_ID(), 'product_cat' );
-        // FIND OUT WHICH CARACTERISTICS
-        if ($categories) {
-          // for each category
-          foreach ($categories as $cat) {
-            $parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A');
-            $grandParent=get_term_by('id', $parent['parent'], 'product_cat', 'ARRAY_A');
+				$categories = get_the_terms( get_the_ID(), 'product_cat' );
+				// FIND OUT WHICH CARACTERISTICS
+				if ($categories) {
+					// for each category
+					foreach ($categories as $cat) {
+						$parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A');
+						$grandParent=get_term_by('id', $parent['parent'], 'product_cat', 'ARRAY_A');
 
-            if ($parent['slug']=="size") {
-              $size = $cat->name;
-              $sizeSlug = $cat->slug;
-            }
-            if ($grandParent['slug']=="general") {
-              $tipo_1 = $parent['name'];
-              $tipo_1Slug = $parent['slug'];
-              $tipo_2 = $cat->name;
-              $tipo_2Slug = $cat->slug;
-            }
-            if ($parent['slug']=="condition") {
-              $condition = $cat->name;
-              $conditionSlug = $cat->slug;
-            }
-          }
-        }
-			?>
+						if ($parent['slug']=="size") {
+							$size = $cat->name;
+							$sizeSlug = $cat->slug;
+						}
+						if ($grandParent['slug']=="general") {
+							$tipo_1 = $parent['name'];
+							$tipo_1Slug = $parent['slug'];
+							$tipo_2 = $cat->name;
+							$tipo_2Slug = $cat->slug;
+						}
+						if ($parent['slug']=="condition") {
+							$condition = $cat->name;
+							$conditionSlug = $cat->slug;
+						}
+					}
+				}
+				?>
 
 
 				<article class="card" id="card<?php echo get_the_id();?>">
-          <div class="cardHead">
-            <div class="cardThumbnail">
-              <?php newSvg(ucwords($tipo_1Slug)); ?>
-            </div>
-            <h4 class="cardTitle"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h4>
-            <p class="cardSubTitle"><?php echo $tipo_2 . ', ' . $condition ?></p>
-          </div>
+					<div class="cardHead">
+						<div class="cardThumbnail">
+							<?php newSvg(ucwords($tipo_1Slug)); ?>
+						</div>
+						<h4 class="cardTitle"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h4>
+						<p class="cardSubTitle"><?php echo $tipo_2 . ', ' . $condition ?></p>
+					</div>
 
 
-          <div class="cardMedia<?php if($attachment_ids){ echo ' Carousel'; } ?>">
+					<div class="cardMedia<?php if($attachment_ids){ echo ' Carousel'; } ?>">
 
-            <?php $attachment_ids = $_product->get_gallery_attachment_ids(); ?>
-            <a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
-              <img class="productGalleryImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
-            </a>
+					<?php $attachment_ids = $_product->get_gallery_attachment_ids(); ?>
+					<a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
+						<img class="productGalleryImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
+					</a>
 
-            <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
-              <a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
-                <img class="productGalleryImg"  src="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
-              </a>
-            <?php $count++; }} ?>
+					<?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
+						<a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
+							<img class="productGalleryImg"  src="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+						</a>
+					<?php $count++; }} ?>
 
-	          <?php if($attachment_ids){ ?>
-	            <button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
-	              <svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	                <circle cx="53" cy="53" r="53" fill="currentColor"/>
-	                <path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
-	              </svg>
-	            </button>
-	            <button class="arrowBtn arrowButtonPrev rowcol1" id="prevButton">
-	              <svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	                <circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
-	                <path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
-	              </svg>
-	            </button>
-            <?php } ?>
-          </div>
+					<?php if($attachment_ids){ ?>
+						<button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
+							<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="53" cy="53" r="53" fill="currentColor"/>
+								<path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
+							</svg>
+							</button>
+							<button class="arrowBtn arrowButtonPrev rowcol1" id="prevButton">
+							<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
+								<path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
+							</svg>
+						</button>
+					<?php } ?>
+					</div>
 
 
-          <div class="cardCaption">
+					<div class="cardCaption">
 
-            <div class="cardFeatures">
-              <?php if ($categories) {
-                newSvg($sizeSlug);
-                newSvg(ucwords($tipo_1Slug));
-                newSvg(strtoupper($tipo_2Slug));
-                newSvg(strtoupper($conditionSlug));
-              } ?>
-            </div>
+						<div class="cardFeatures">
+							<?php if ($categories) {
+								newSvg($sizeSlug);
+								newSvg(ucwords($tipo_1Slug));
+								newSvg(strtoupper($tipo_2Slug));
+								newSvg(strtoupper($conditionSlug));
+							} ?>
+						</div>
 
-            <div class="cardActions">
-              <a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
-              <div class="cuantos">
-                <input class="cuantosQnt" id="cuantosQantity" type="number" value="1" min="1">
-                <button class="cuantosBtn" onclick="changeQuantity(-1)">-</button>
-                <button class="cuantosBtn" onclick="changeQuantity(+1)">+</button>
-              </div>
-              <button class="btn btnSimple">AGREGAR</button>
-            </div>
-          </div>
+						<div class="cardActions">
+							<a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
+							<div class="cuantos">
+								<input class="cuantosQnt" id="cuantosQantity" type="number" value="1" min="1">
+								<button class="cuantosBtn" onclick="changeQuantity(-1)">-</button>
+								<button class="cuantosBtn" onclick="changeQuantity(+1)">+</button>
+							</div>
+							<button class="btn btnSimple">AGREGAR</button>
+						</div>
+					</div>
 				</article>
-	      <?php
+				<?php
 
 			endwhile;
 
 		endif;
 
-		// var_dump(misha_paginator(5));
-		// echo latte_pagination(5);
-		echo misha_paginator(get_pagenum_link());
+	// var_dump(ajax_paginator(5));
+	// echo latte_pagination(5);
+	echo ajax_paginator(get_pagenum_link());
 
-  // }
-  // Always exit to avoid further execution
-  exit();
+	// }
+	// Always exit to avoid further execution
+	exit();
 }
 
 
