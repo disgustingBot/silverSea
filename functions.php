@@ -656,9 +656,9 @@ function lt_upload_file () {
     $fileNamesAllowed = array('stock','gastos_adicionales','trenes','contenedores', 'locations');
 
 		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
-		// $fileDestination = wp_normalize_path( get_template_directory()."/uploads/".$fileNameNew );
+		$fileDestination = wp_normalize_path( get_template_directory()."/uploads/".$fileNameNew );
 		// $fileDestination = get_template_directory()."/uploads/".$fileNameNew;
-		$fileDestination = get_home_url()."/uploads/".$fileNameNew;
+		// $fileDestination = get_home_url()."/uploads/".$fileNameNew;
 		// $fileDestination = deslash($fileDestination);
 		// $respuesta['file_destination'] = "$fileDestination";
 
@@ -669,23 +669,29 @@ function lt_upload_file () {
 		if ($server == 'online') {
 
 			// INSTALACION ONLINE
-			$dbServerName = "localhost";
-			$dbUsername = "silverse_admin";
-			$dbPassword = "M-9!-^%jZ*h5";
-			$dbName = "silverse_web";
+			// $dbServerName = "localhost";
+			// $dbUsername = "silverse_admin";
+			// $dbPassword = "M-9!-^%jZ*h5";
+			// $dbName = "silverse_web";
 			// code...
-
+	
 			// INSTALACION WAVE HOST
 			// $dbServerName = "localhost";
 			// $dbUsername = "lattedev_silver";
 			// $dbPassword = "%fGC+<`@]Csz#75F";
 			// $dbName = "lattedev_silver";
+	
+			// INSTALACION FINAL
+			$dbHost = "localhost";
+			$dbUser = "silversea_web";
+			$dbPass = "qXne2abld1";
+			$dbName = "silversea_web";
 		} else {
-
+	
 			// INSTALACION LOCAL
-			$dbServerName = "localhost";
-			$dbUsername = "root";
-			$dbPassword = "";
+			$dbHost = "localhost";
+			$dbUser = "root";
+			$dbPass = "";
 			// $dbUsername = "contraseñaDificil";
 			// $dbPassword = ";$6qha)2L*KU)6nq";
 			$dbName = "lattedev_silver";
@@ -698,13 +704,14 @@ function lt_upload_file () {
 
 		// if($debugMode){echo wp_json_encode($respuesta);}
 
-		if ($conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName)) {
+		// if ($conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName)) {
+		if ($conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName)) {
 			$respuesta['gate1'] = "Conection is ok";
 			// code...
 			// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
 			$query1 = "truncate table $dbName.$fileName2;";
-			$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
+			$query2 = "LOAD DATA LOCAL INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
 			$qry = "Select
 			salesforce_id as SKU,
 			CONCAT( size, ' PIES' ) as 'Name',
@@ -817,26 +824,41 @@ function lt_cart_end () {
 	$country = $_POST['country'];
 	$city = $_POST['city'];
 
+	if ($server == 'online') {
 
-			if ($server == 'online') {
-				// INSTALACION ONLINE
-				$dbServerName = "localhost";
-				$dbUsername = "silverse_admin";
-				$dbPassword = "M-9!-^%jZ*h5";
-				$dbName = "silverse_web";
-				// code...
-			} else {
+		// INSTALACION ONLINE
+		// $dbServerName = "localhost";
+		// $dbUsername = "silverse_admin";
+		// $dbPassword = "M-9!-^%jZ*h5";
+		// $dbName = "silverse_web";
+		// code...
 
-				// INSTALACION LOCAL
-				$dbServerName = "localhost";
-				$dbUsername = "root";
-				$dbPassword = "";
-				// $dbUsername = "contraseñaDificil";
-				// $dbPassword = ";$6qha)2L*KU)6nq";
-				$dbName = "lattedev_silver";
-			}
+		// INSTALACION WAVE HOST
+		// $dbServerName = "localhost";
+		// $dbUsername = "lattedev_silver";
+		// $dbPassword = "%fGC+<`@]Csz#75F";
+		// $dbName = "lattedev_silver";
 
-	    $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+		// INSTALACION FINAL
+		$dbHost = "localhost";
+		$dbUser = "silversea_web";
+		$dbPass = "qXne2abld1";
+		$dbName = "silversea_web";
+	} else {
+
+		// INSTALACION LOCAL
+		$dbHost = "localhost";
+		$dbUser = "root";
+		$dbPass = "";
+		// $dbUsername = "contraseñaDificil";
+		// $dbPassword = ";$6qha)2L*KU)6nq";
+		$dbName = "lattedev_silver";
+	}
+		
+
+	// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+	
+	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 	$qry = "SELECT * from stock WHERE id_contenedor = '$contenedor' AND pais = '$country' AND ciudad = '$city';";
 	$ress = $conn->query($qry);
@@ -875,26 +897,38 @@ function gatCol () {
   // echo get_template_directory();
   // include get_template_directory_uri().'/dbh.inc.php';
 
+	if ($server == 'online') {
 
-			if ($server == 'online') {
-				// INSTALACION ONLINE
-				$dbServerName = "localhost";
-				$dbUsername = "silverse_admin";
-				$dbPassword = "M-9!-^%jZ*h5";
-				$dbName = "silverse_web";
-				// code...
-			} else {
+		// INSTALACION ONLINE
+		// $dbServerName = "localhost";
+		// $dbUsername = "silverse_admin";
+		// $dbPassword = "M-9!-^%jZ*h5";
+		// $dbName = "silverse_web";
+		// code...
 
-				// INSTALACION LOCAL
-				$dbServerName = "localhost";
-				$dbUsername = "root";
-				$dbPassword = "";
-				// $dbUsername = "contraseñaDificil";
-				// $dbPassword = ";$6qha)2L*KU)6nq";
-				$dbName = "lattedev_silver";
-			}
+		// INSTALACION WAVE HOST
+		// $dbServerName = "localhost";
+		// $dbUsername = "lattedev_silver";
+		// $dbPassword = "%fGC+<`@]Csz#75F";
+		// $dbName = "lattedev_silver";
 
-  $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+		// INSTALACION FINAL
+		$dbHost = "localhost";
+		$dbUser = "silversea_web";
+		$dbPass = "qXne2abld1";
+		$dbName = "silversea_web";
+	} else {
+
+		// INSTALACION LOCAL
+		$dbHost = "localhost";
+		$dbUser = "root";
+		$dbPass = "";
+		// $dbUsername = "contraseñaDificil";
+		// $dbPassword = ";$6qha)2L*KU)6nq";
+		$dbName = "lattedev_silver";
+	}
+//   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+  $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
   $qry = "SELECT distinct $col FROM contenedores";
   if($size){
@@ -931,25 +965,38 @@ function lt_get_location () {
 	if(isset($_POST['country'])){$country=$_POST['country'];}
 
 
-			if ($server == 'online') {
-				// INSTALACION ONLINE
-				$dbServerName = "localhost";
-				$dbUsername = "silverse_admin";
-				$dbPassword = "M-9!-^%jZ*h5";
-				$dbName = "silverse_web";
-				// code...
-			} else {
+	if ($server == 'online') {
 
-				// INSTALACION LOCAL
-				$dbServerName = "localhost";
-				$dbUsername = "root";
-				$dbPassword = "";
-				// $dbUsername = "contraseñaDificil";
-				// $dbPassword = ";$6qha)2L*KU)6nq";
-				$dbName = "lattedev_silver";
-			}
+		// INSTALACION ONLINE
+		// $dbServerName = "localhost";
+		// $dbUsername = "silverse_admin";
+		// $dbPassword = "M-9!-^%jZ*h5";
+		// $dbName = "silverse_web";
+		// code...
 
-	$conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+		// INSTALACION WAVE HOST
+		// $dbServerName = "localhost";
+		// $dbUsername = "lattedev_silver";
+		// $dbPassword = "%fGC+<`@]Csz#75F";
+		// $dbName = "lattedev_silver";
+
+		// INSTALACION FINAL
+		$dbHost = "localhost";
+		$dbUser = "silversea_web";
+		$dbPass = "qXne2abld1";
+		$dbName = "silversea_web";
+	} else {
+
+		// INSTALACION LOCAL
+		$dbHost = "localhost";
+		$dbUser = "root";
+		$dbPass = "";
+		// $dbUsername = "contraseñaDificil";
+		// $dbPassword = ";$6qha)2L*KU)6nq";
+		$dbName = "lattedev_silver";
+	}
+
+	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 	$qry = "SELECT distinct $col FROM locations";
 	if ($country) {

@@ -3,56 +3,56 @@
 
 <?php
 global $wpdb;
-// $server = 'local';
-$server = 'online';
+// // $server = 'local';
+// $server = 'online';
 
 
-$table = 'locations';
-$data = array('country' => 'test', 'city' => 'cosa');
+// $table = 'locations';
+// $data = array('country' => 'test', 'city' => 'cosa');
 
 
-if ($server == 'online') {
+// if ($server == 'online') {
 
-  // INSTALACION ONLINE
-  $dbServerName = "localhost";
-  $dbUsername = "silverse_admin";
-  $dbPassword = "M-9!-^%jZ*h5";
-  $dbName = "silverse_web";
-  // code...
-  $queryDePrueba1 = "truncate table silverse_web.locations;";
-  $queryDePrueba2 = "LOAD DATA LOCAL INFILE
-    '/home/silverse/public_html/wp-content/themes/silverSea/uploads/locations-06-16-2020.tsv'
-    INTO TABLE silverse_web.locations FIELDS TERMINATED BY '\\t' IGNORE 1 LINES;";
+//   // INSTALACION ONLINE
+//   $dbServerName = "localhost";
+//   $dbUsername = "silverse_admin";
+//   $dbPassword = "M-9!-^%jZ*h5";
+//   $dbName = "silverse_web";
+//   // code...
+//   $queryDePrueba1 = "truncate table silverse_web.locations;";
+//   $queryDePrueba2 = "LOAD DATA LOCAL INFILE
+//     '/home/silverse/public_html/wp-content/themes/silverSea/uploads/locations-06-16-2020.tsv'
+//     INTO TABLE silverse_web.locations FIELDS TERMINATED BY '\\t' IGNORE 1 LINES;";
 
-  // INSTALACION WAVE HOST
-  // $dbServerName = "localhost";
-  // $dbUsername = "lattedev_silver";
-  // $dbPassword = "%fGC+<`@]Csz#75F";
-  // $dbName = "lattedev_silver";
-  // // code...
-  // $queryDePrueba1 = "truncate table lattedev_silver.locations;";
-  // $queryDePrueba2 = "LOAD DATA LOCAL INFILE '/home/lattedev/web/silversea/public_html/wp-content/themes/silverSea/uploads/locations-06-17-2020.tsv' INTO TABLE lattedev_silver.locations FIELDS TERMINATED BY '\\t' IGNORE 1 LINES;";
-} else {
+//   // INSTALACION WAVE HOST
+//   // $dbServerName = "localhost";
+//   // $dbUsername = "lattedev_silver";
+//   // $dbPassword = "%fGC+<`@]Csz#75F";
+//   // $dbName = "lattedev_silver";
+//   // // code...
+//   // $queryDePrueba1 = "truncate table lattedev_silver.locations;";
+//   // $queryDePrueba2 = "LOAD DATA LOCAL INFILE '/home/lattedev/web/silversea/public_html/wp-content/themes/silverSea/uploads/locations-06-17-2020.tsv' INTO TABLE lattedev_silver.locations FIELDS TERMINATED BY '\\t' IGNORE 1 LINES;";
+// } else {
 
-  // INSTALACION LOCAL
-  $dbServerName = "localhost";
-  $dbUsername = "root";
-  $dbPassword = "";
-  // $dbUsername = "contraseñaDificil";
-  // $dbPassword = ";$6qha)2L*KU)6nq";
-  $dbName = "lattedev_silver";
+//   // INSTALACION LOCAL
+//   $dbServerName = "localhost";
+//   $dbUsername = "root";
+//   $dbPassword = "";
+//   // $dbUsername = "contraseñaDificil";
+//   // $dbPassword = ";$6qha)2L*KU)6nq";
+//   $dbName = "lattedev_silver";
 
-  $queryDePrueba1 = "truncate table lattedev_silver.locations;";
-  $queryDePrueba2 = "LOAD DATA INFILE 'C:/xampp/htdocs/silverSea/wp-content/themes/silverSea/uploads/locations-06-17-2020.tsv' INTO TABLE lattedev_silver.locations FIELDS TERMINATED BY '\\t' IGNORE 1 LINES;";
-}
+//   $queryDePrueba1 = "truncate table lattedev_silver.locations;";
+//   $queryDePrueba2 = "LOAD DATA INFILE 'C:/xampp/htdocs/silverSea/wp-content/themes/silverSea/uploads/locations-06-17-2020.tsv' INTO TABLE lattedev_silver.locations FIELDS TERMINATED BY '\\t' IGNORE 1 LINES;";
+// }
 
-echo $queryDePrueba1;
-echo '<br>';
-echo '<br>';
-echo $queryDePrueba2;
+// echo $queryDePrueba1;
+// echo '<br>';
+// echo '<br>';
+// echo $queryDePrueba2;
 
-echo '<br>';
-echo '<br>';
+// echo '<br>';
+// echo '<br>';
 
 
 
@@ -79,38 +79,38 @@ echo '<br>';
 // }
 
 
-if ($conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName)) {
-  echo "CONECTION correct";
-  echo '<br>';
-  echo '<br>';
+// if ($conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName)) {
+//   echo "CONECTION correct";
+//   echo '<br>';
+//   echo '<br>';
   
-  // if ($wpdb->query($queryDePrueba1)) {
-  if ($wpdb->query( $wpdb->prepare( $queryDePrueba1 ))) {
-    echo "Table truncated";
-    echo '<br>';
-    echo '<br>';
-    // if ($wpdb->query( $wpdb->prepare( $queryDePrueba2 ))) {
-    if ($conn->query($queryDePrueba2)) {
-    // if ($conn->query( $conn->prepare( $queryDePrueba2 ))) {
-      echo "Data loaded into table";
-      echo '<br>';
-      echo '<br>';
-    } else {
-      echo "Data load PROBLEM";
-      echo '<br>';
-      echo '<br>';
-    }
-  } else {
-    echo "Table truncate ERROR";
-    echo '<br>';
-    echo '<br>';
+//   // if ($wpdb->query($queryDePrueba1)) {
+//   if ($wpdb->query( $wpdb->prepare( $queryDePrueba1 ))) {
+//     echo "Table truncated";
+//     echo '<br>';
+//     echo '<br>';
+//     // if ($wpdb->query( $wpdb->prepare( $queryDePrueba2 ))) {
+//     if ($conn->query($queryDePrueba2)) {
+//     // if ($conn->query( $conn->prepare( $queryDePrueba2 ))) {
+//       echo "Data loaded into table";
+//       echo '<br>';
+//       echo '<br>';
+//     } else {
+//       echo "Data load PROBLEM";
+//       echo '<br>';
+//       echo '<br>';
+//     }
+//   } else {
+//     echo "Table truncate ERROR";
+//     echo '<br>';
+//     echo '<br>';
 
-  }
-}else{
-  echo 'conection PROBLEM';
-  echo '<br>';
-  echo '<br>';
-}
+//   }
+// }else{
+//   echo 'conection PROBLEM';
+//   echo '<br>';
+//   echo '<br>';
+// }
 
 // $filename = 'file.csv';
 // $sql = "LOAD DATA LOCAL INFILE '" . $filename . "'

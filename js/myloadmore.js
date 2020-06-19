@@ -159,7 +159,9 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
       type : 'POST',
       success : respuesta => {
 				c.log(respuesta);
-	        d.querySelector('.cartButtonCant').innerText = respuesta/10;
+          d.querySelector('.cartButtonCant').innerText = respuesta/10;
+          
+	        carouselController.setup()
 				// c.log('soy el nene');
         // d.querySelector('.cartButtonCant').innerText = respuesta/10;
       }
