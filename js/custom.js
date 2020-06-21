@@ -32,9 +32,6 @@ w.onload=()=>{
 		d.getElementById("load").style.top="-100vh";
 	}
 	scrollAlter();
-
-
-
 }
 // console.log(lt_data.ajaxurl)
 
@@ -58,212 +55,7 @@ function postAjaxCall(url,dataNames,dataValues){// return a new promise.
 
 
 
-// CAROUSEL:
-carouselController = {
-	carousels:[],
-	setup:()=>{
-		if (d.querySelectorAll('.Carousel')) {
-			var carousels = d.querySelectorAll('.Carousel');
-			carousels.forEach( carousel => {
-				carouselController.carousels.unshift(new Carousel(carousel))
-			});
-		}
-	}
-}
 
-class Carousel {
-	constructor(gallery){
-		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
-		this.j = 1;
-		this.elements = gallery.querySelectorAll('.Element');
-		this.title = gallery.id;
-
-	  gallery.querySelector('#nextButton').onclick = () =>{this.plusDivs(+1)}
-	  gallery.querySelector('#prevButton').onclick = () =>{this.plusDivs(-1)}
-		if(this.elements.length>0){this.showDivs(this.j);setTimeout(this.carousel, 8000);}
-
-	}
-
-  showDivs(n){
-
-    if(n>this.elements.length){this.j=1}
-    if(n<1){this.j=this.elements.length}
-    for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
-    this.elements[this.j-1].classList.remove("inactive");
-
-  }
-  carousel(){this.j++;
-		if (this.elements) {
-			for(i=0;i<this.elements.length;i++){this.elements[i].classList.add("inactive")}
-			if(this.j>this.elements.length){this.j=1}
-			this.elements[this.j-1].classList.remove("inactive");
-			setTimeout(this.carousel, 8000); // Change image every N/1000 seconds
-		}
-
-  }
-
-  plusDivs(n){this.showDivs(this.j+=n)}
-}
-
-
-
-
-// OBSE:
-obseController = {
-	obses:[],
-	setup:()=>{
-		if (d.querySelectorAll('.Obse')) {
-			var obses = d.querySelectorAll('.Obse');
-			obses.forEach( obse => {
-				obseController.obses.unshift(new Obse(obse))
-			});
-		}
-	}
-}
-class Obse {
-	constructor(element){
-		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
-		this.j = 1;
-		this.id = element.id;
-		this.observe = d.querySelector(element.dataset.observe);
-		this.unobserve = element.dataset.unobserve;
-		// console.log(this.observe);
-		// console.log(this.unobserve);
-
-		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
-		this.observer = new IntersectionObserver(function(entries, observer){
-			entries.forEach(entry => {
-				// const x = d.querySelector('#'+this.id);
-				if(entry.isIntersecting){
-					// if(!reverse){
-					element.classList.add('observed')
-					// } else {
-						// x.classList.remove('observed')
-						// }
-					if(this.unobserve=='true'){observer.unobserve(entry.target)}
-				} else {
-				// if(!reverse){
-					element.classList.remove('observed')
-					// } else {
-						// x.classList.add('observed')
-						// }
-				}
-			})
-		}, this.options);
-
-		this.activate();
-
-	}
-
-	activate(){
-		// console.log()
-		// d.querySelectorAll(observado).forEach(e => {
-			this.observer.observe(this.observe);
-		// })
-	}
-}
-
-
-
-// CUANTOS
-cuantosController = {
-	cuantoses:[],
-	setup:()=>{
-		if (d.querySelectorAll('.Cuantos')) {
-			var cuantoses = d.querySelectorAll('.Cuantos');
-			cuantoses.forEach( cuantos => {
-				cuantosController.cuantoses.unshift(new Cuantos(cuantos))
-			});
-		}
-	},
-}
-class Cuantos {
-	constructor(element){
-		this.element = element;
-		this.quantity = parseInt(d.querySelector('#cuantosQantity').value);
-		element.querySelector('#cuantosPlus').onclick = () =>{this.changeQuantity(+1)}
-		element.querySelector('#cuantosMins').onclick = () =>{this.changeQuantity(-1)}
-	}
-	changeQuantity (value) {
-		this.quantity += value;
-		if (this.quantity<=1) {
-			this.quantity = 1;
-		}
-		this.element.querySelector('#cuantosQantity').value       = this.quantity;
-	}
-}
-
-
-
-
-// GROW UP
-growUpController = {
-	growUps:[],
-	setup:()=>{
-		if (d.querySelectorAll('.GrowUp')) {
-			var growUps = d.querySelectorAll('.GrowUp');
-			growUps.forEach( growUp => {
-				growUpController.growUps.unshift(new GrowUp(growUp))
-			});
-		}
-	},
-	again:()=>{
-		growUpController.growUps.forEach( growUp => {
-			growUp.again();
-		});
-	}
-}
-class GrowUp {
-	constructor(element){
-		// console.log(element);
-		this.element = element;
-		this.className = element.className;
-		this.target = element.dataset.target;
-		this.step = 50;
-		this.timeDuration = 1500;
-		this.current = parseFloat(element.innerHTML);
-
-		this.config = { attributes: true, childList: true, characterData: true }
-
-		this.init();
-	}
-
-	init(){
-		this.observer = new MutationObserver( (mutations) => {
-	    mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes') {
-					if (mutation.target.className.includes('observed')) {
-						console.log(mutation.target.className)
-						this.grow();
-					}
-        }
-	    });
-		});
-		this.observer.observe(this.element, this.config);
-	}
-
-	grow(){
-		this.observer.disconnect();
-		this.current = this.current + this.target / this.step;
-		// console.log('number of ' + this.element.id + ', is: ', this.current);
-		this.element.innerHTML = parseInt(this.current);
-		if (parseFloat(this.element.innerHTML) < this.target ) {
-			setTimeout(() =>{
-				this.grow();
-			}, this.timeDuration / this.step)
-		} else {
-			this.element.innerHTML = this.target;
-		}
-	}
-	again(){
-		this.element.innerHTML = 0;
-		this.current = 0;
-		// this.grow();
-		setTimeout(() =>{
-			this.grow();
-		}, 1000)
-	}
-}
 
 
 
@@ -277,73 +69,37 @@ class GrowUp {
 // alternates a class from a selector of choice, example:
 // <div class="someButton" onclick="altClassFromSelector('activ', '#navBar')"></div>
 const altClassFromSelector = ( clase, selector, mainClass = false )=>{
-  const x = d.querySelector(selector);
-  // if there is a main class removes all other classes
-  if(mainClass){
-    x.classList.forEach( item=>{
-      // TODO: testear si anda con el nuevo condicional
-      if( item!=mainClass && item!=clase ){
-        x.classList.remove(item);
-      }
-    });
-  }
-
-  if(x.classList.contains(clase)){
-    x.classList.remove(clase)
-  }else{
-    x.classList.add(clase)
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// SELECT BOX
-selectBoxSpace = {
-	selectBoxPlanet:[],
-	poblate:()=>{
-		if (d.querySelector('.SelectBox')) {
-			var selectBoxes = d.querySelectorAll('.SelectBox');
-			selectBoxes.forEach( selectBox => {
-				selectBoxSpace.selectBoxPlanet.push(new SelectBox(selectBox))
-			});
-		}
-	},
-}
-class SelectBox {
-	constructor(element){
-		// console.log(element);
-		this.element = element;
-		this.list = element.querySelector('.selectBoxList');
-		this.button = element.querySelector('.selectBoxButton');
-		this.className = element.className;
-		this.id = element.id;
-
-		this.config = { attributes: true, childList: true, characterData: true }
+	const x = d.querySelector(selector);
+	// if there is a main class removes all other classes
+	if(mainClass){
+		x.classList.forEach( item=>{
+			// TODO: testear si anda con el nuevo condicional
+			if( item!=mainClass && item!=clase ){
+			x.classList.remove(item);
+			}
+		});
 	}
-	select(a, selectBoxId, current){
-		// c.log(a)
-		 if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
-		 else   {d.querySelector(selectBoxId).classList.remove('alt')}
 
-		 d.querySelector(current).innerHTML=a;
-		 d.querySelector(selectBoxId).classList.remove('focus')
-		 d.activeElement.blur();
+	if(x.classList.contains(clase)){
+		x.classList.remove(clase)
+	}else{
+		x.classList.add(clase)
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -352,12 +108,12 @@ class SelectBox {
 // SELECT BOX CONTROLER
 // TODO: mejorar eso a clases y POO
 const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
-  if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
-  else   {d.querySelector(selectBoxId).classList.remove('alt')}
+	if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
+	else   {d.querySelector(selectBoxId).classList.remove('alt')}
 
-  d.querySelector(current).innerHTML=a;
-  d.querySelector(selectBoxId).classList.remove('focus')
-  d.activeElement.blur();
+	d.querySelector(current).innerHTML=a;
+	d.querySelector(selectBoxId).classList.remove('focus')
+	d.activeElement.blur();
 }
 
 // ACCORDION SELECTOR CONTROLLER
@@ -411,18 +167,18 @@ var acc = d.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click",()=>{
-    this.classList.toggle("active");
-    // TODO: Hacer que se puede elegir el elemento a acordionar
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {d
-      panel.style.maxHeight = null;
-      panel.style.padding = "0";
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-      panel.style.padding = "20px";
-    }
-  });
+	acc[i].addEventListener("click",()=>{
+		this.classList.toggle("active");
+		// TODO: Hacer que se puede elegir el elemento a acordionar
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight) {
+			panel.style.maxHeight = null;
+			panel.style.padding = "0";
+		} else {
+			panel.style.maxHeight = panel.scrollHeight + "px";
+			panel.style.padding = "20px";
+		}
+	});
 }
 
 
@@ -452,20 +208,20 @@ function scrollAlter(){
 
 // URL HANDLING
 const setUrlVar = ( variable, value = '' ) => {
-  var filterQueries = new Array();
+	var filterQueries = new Array();
 	// urlVirg es la url sin variables
-  var urlVirg = w.location.href.split('?')[0];
+	var urlVirg = w.location.href.split('?')[0];
 	// urlVars será el vector de variables en la url
-  // var urlVars = w.location.href.split('?');
-  // urlVars.shift();
-  // urlVars = !urlVars[0] ? [] : urlVars.join().split('&');
+	// var urlVars = w.location.href.split('?');
+	// urlVars.shift();
+	// urlVars = !urlVars[0] ? [] : urlVars.join().split('&');
 
-  var urlVars = getUrlVars();
+	var urlVars = getUrlVars();
 
 	var variables = urlVars.map( x => x.split('=')[0] );
-  var values  = urlVars.map( x => x.split('=')[1] );
+	var values  = urlVars.map( x => x.split('=')[1] );
 
-  // c.log(page)
+	// c.log(page)
 
 
 	if(variable){
@@ -484,18 +240,18 @@ const setUrlVar = ( variable, value = '' ) => {
 			filterQueries.push(variable + '=' + value);
 		}
 	}
-  let conector = filterQueries.length != 0 ? '?' : '';
-  w.history.replaceState('', 'Title', urlVirg + conector + filterQueries.join('&'));
-  // c.log(filterQueries)
-  return filterQueries;
+	let conector = filterQueries.length != 0 ? '?' : '';
+	w.history.replaceState('', 'Title', urlVirg + conector + filterQueries.join('&'));
+	// c.log(filterQueries)
+	return filterQueries;
 }
 
 const getUrlVars = () => {
-  var urlVars = w.location.href.split('?');
-  urlVars.shift();
-  urlVars = !urlVars[0] ? [] : urlVars.join().split('&');
+	var urlVars = w.location.href.split('?');
+	urlVars.shift();
+	urlVars = !urlVars[0] ? [] : urlVars.join().split('&');
 
-  return urlVars;
+	return urlVars;
 }
 // END OF URL HANDLING
 
@@ -605,7 +361,7 @@ const lt_upload_file = () => {
 		console.log('archivo subido, base de datos actualizada');
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
-		if(!data.gate8){
+		if(!data.gate0){
 			productSincrotron.wipeProducts();
 		}
 	});
@@ -650,29 +406,6 @@ async function ajax3(formData, url = lt_data.ajaxurl) {
 
 
 
-
-const cardSetup = () => {
-	// d.querySelectorAll('.card').forEach((item, i) => {
-	d.querySelectorAll('[contenedor*="true"]').forEach((item, i) => {
-		let code = item.dataset.code,
-		size = item.dataset.size,
-		tip1 = item.dataset.tip1,
-		tip2 = item.dataset.tip2,
-		cond = item.dataset.cond,
-		butn = item.querySelector('.cardAdd');
-
-		butn.addEventListener('click',()=>{
-			cartController.add({
-				code: code,
-				size: size,
-				qty: item.querySelector('#cuantosQantity').value,
-				tipo_1: tip1,
-				tipo_2: tip2,
-				condicion: cond,
-			})
-		})
-	});
-}
 
 
 
@@ -801,9 +534,7 @@ cartController = {
 			console.log(data)
 
 			JSON.parse(data.location).forEach( e => {
-
 				for(var key in e) {
-
 					var value = e[key].replace(/(?:\r\n|\r|\n)/g, '');
 					key = option + key.capitalize();
 					// console.log(key);
@@ -821,50 +552,58 @@ cartController = {
 			});
 		})
 	},
+
+
 	finish:()=>{
 		console.log(cartController.cart)
 		cartController.cart.forEach((item, i) => {
 			// cartController.getPrice(item.code);
 			// console.log(item);
 
-				var formData = new FormData();
-				formData.append( 'action', 'lt_cart_end' );
-				formData.append( 'cont', item.code );
-				formData.append( 'country', cartController.locationOrigen['country'] );
-				formData.append( 'city', cartController.locationOrigen['city'] );
-				ajax2(formData).then( data => {
-					console.log(data)
-					let finalPrice, currency;
+			var formData = new FormData();
+			formData.append( 'action', 'lt_cart_end' );
+			formData.append( 'cont', item.code );
+			formData.append( 'country', cartController.locationOrigen['country'] );
+			formData.append( 'city', cartController.locationOrigen['city'] );
+			console.log('formData');
+			
+			// Display the key/value pairs
+			for (var pair of formData.entries()) {
+				console.log(pair[0]+ ', ' + pair[1]); 
+			}
+			ajax2(formData).then( data => {
+				console.log(data)
+				let finalPrice, currency;
 
-					if (data[0]) {
-						currency = data[0].currency;
+				if (data[0]) {
+					currency = data[0].currency;
 
-						if (data[0].fixed_price!=0) {
-							finalPrice = data[0].fixed_price;
-						}else if(data[0].sale_price!=0){
-							finalPrice = data[0].sale_price - 300;
-						}else{
-							let prices = data.map( x => x.supplier_price );
-							let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
-							let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
-							finalPrice = average + 200;
-						}
-
-					} else {
-						currency = '';
-						finalPrice = 0;
+					if (data[0].fixed_price!=0) {
+						finalPrice = data[0].fixed_price;
+					}else if(data[0].sale_price!=0){
+						finalPrice = data[0].sale_price - 300;
+					}else{
+						let prices = data.map( x => x.supplier_price );
+						let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
+						let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+						finalPrice = average + 200;
 					}
 
+				} else {
+					currency = '';
+					finalPrice = 0;
+				}
 
-					cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
-					itemQty = cartItem.querySelector('.cartItemQty').innerText;
-					itemPrice = cartItem.querySelector('.cartItemPriceNumber');
-					itemCurrency = cartItem.querySelector('.cartItemCurrency');
+
+				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
+				itemQty = cartItem.querySelector('.cartItemQty').innerText;
+				itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+				itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
 
-					itemCurrency.innerText = currency
-					itemPrice.innerText = finalPrice * parseInt(itemQty);
-				})
+				itemCurrency.innerText = currency
+				itemPrice.innerText = finalPrice * parseInt(itemQty);
+			})
 		});
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
@@ -884,19 +623,23 @@ cartController = {
 			quantity:'product quantity',
 			message: 'el mensajeeeee',
 		}
-		cartController.newLead(info);
+		// cartController.newLead(info);
 	},
-	sendMail:()=>{
-					var formData = new FormData();
-					formData.append( 'action', 'lt_form_handler' );
 
-					ajax2(formData).then( data => {
-						console.log(data);
-					});
+
+	sendMail:()=>{
+		var formData = new FormData();
+		formData.append( 'action', 'lt_form_handler' );
+
+		ajax2(formData).then( data => {
+			console.log(data);
+		});
 	},
+
+
 	newLead:(info)=>{
 		let oid = '00D1l0000000ia7',
-		retURL  = 'https://sstc.com.es/',
+		retURL  = 'https://silverseacontainers.com/',
 		debug   = 1,
 		debugEmail = 'gportela@silverseacontainers.com',
 		first_name = info.fname,
@@ -1037,26 +780,26 @@ cartController = {
 		return a;
 	},
 
-  selectBoxWipe:(nombre, comptleteWipe = false)=>{
-    list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
-    selectBoxControler('', '#selectBox'+nombre, '#selectBoxCurrent'+nombre);
-    if (list.firstChild) {
-      while (list.firstChild) {
-        list.removeChild(list.firstChild);
-      }
-    }
-    if(!comptleteWipe){
-      list.appendChild(cartController.selectBoxOption(nombre));
-    }
-  },
+	selectBoxWipe:(nombre, comptleteWipe = false)=>{
+		list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
+		selectBoxControler('', '#selectBox'+nombre, '#selectBoxCurrent'+nombre);
+		if (list.firstChild) {
+			while (list.firstChild) {
+			list.removeChild(list.firstChild);
+			}
+		}
+		if(!comptleteWipe){
+			list.appendChild(cartController.selectBoxOption(nombre));
+		}
+	},
 
-  sizeController: (value)=>{
-    // PRIMERO VACIAR EL/LOS SELECT
-    cartController.selectBoxWipe('Tipo_1');
+	sizeController: (value)=>{
+		// PRIMERO VACIAR EL/LOS SELECT
+		cartController.selectBoxWipe('Tipo_1');
 		cartController.selectBoxWipe('Tipo_2');
-    cartController.selectBoxWipe('Condicion');
-    cartController.currentSemiSelection.tipo_1 = false;
-    cartController.currentSemiSelection.tipo_2 = false;
+		cartController.selectBoxWipe('Condicion');
+		cartController.currentSemiSelection.tipo_1 = false;
+		cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
 		d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
@@ -1069,40 +812,42 @@ cartController = {
 		d.querySelector('#currentSemiSelection').classList.remove('cond');
 		// console.log('value: ', value);
 
-    cartController.ready(false);
-    cartController.currentSemiSelection.size = value;
-    cartController.getCol('tipo_1', value);
-  },
-  tipo1Controller: (value)=>{
-    // PRIMERO VACIAR EL SELECT
-    cartController.selectBoxWipe('Tipo_2');
+		cartController.ready(false);
+		cartController.currentSemiSelection.size = value;
+		cartController.getCol('tipo_1', value);
+	},
+
+	tipo1Controller: (value)=>{
+		// PRIMERO VACIAR EL SELECT
+		cartController.selectBoxWipe('Tipo_2');
 		cartController.selectBoxWipe('Condicion');
-    cartController.currentSemiSelection.tipo_2 = false;
+		cartController.currentSemiSelection.tipo_2 = false;
 		cartController.currentSemiSelection.condicion = false;
 
 		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-				// d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
-				d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
-				d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
-				d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
-				d.querySelector('#currentSemiSelection').classList.add('tip1');
-				d.querySelector('#currentSemiSelection').classList.remove('tip2');
-				d.querySelector('#currentSemiSelection').classList.remove('cond');
+		// d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
+		d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
+		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
+		d.querySelector('#currentSemiSelection').classList.add('tip1');
+		d.querySelector('#currentSemiSelection').classList.remove('tip2');
+		d.querySelector('#currentSemiSelection').classList.remove('cond');
 
-    cartController.ready(false);
-    cartController.currentSemiSelection.tipo_1 = value;
-    cartController.getCol('tipo_2', cartController.currentSemiSelection.size, value);
-  },
-  tipo2Controller: (value)=>{
-    // PRIMERO VACIAR EL SELECT
+		cartController.ready(false);
+		cartController.currentSemiSelection.tipo_1 = value;
+		cartController.getCol('tipo_2', cartController.currentSemiSelection.size, value);
+	},
+
+	tipo2Controller: (value)=>{
+		// PRIMERO VACIAR EL SELECT
 		cartController.selectBoxWipe('Condicion');
 		cartController.currentSemiSelection.condicion = false;
 
 
 		cartController.ready(false);
-    cartController.currentSemiSelection.tipo_2 = value;
+		cartController.currentSemiSelection.tipo_2 = value;
 		cartController.getCol('condicion', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo_1, value);
-    // cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
+		// cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
 		value = value.replace(/\s/g, '');
 		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
 		// d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
@@ -1110,14 +855,15 @@ cartController = {
 		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
 		d.querySelector('#currentSemiSelection').classList.add('tip2');
 		d.querySelector('#currentSemiSelection').classList.remove('cond');
-  },
-  condicionController: (value)=>{
+	},
+
+	condicionController: (value)=>{
 		// console.log(value)
 		// console.log(document.getElementsByName('Condicion')[0].value)
 		// if (cartController.currentSemiSelection.condicion) {
 		//
 		// }
-    // PRIMERO VACIAR EL SELECT
+		// PRIMERO VACIAR EL SELECT
 		// console.log('value: ', value);
 		const check = (element) => {
 			return element.condicion == value;
@@ -1137,21 +883,21 @@ cartController = {
 		d.querySelector('#currentSemiSelection').classList.add('cond');
 
 		// console.log('value: ', value);
-    // cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
-  },
+		// cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
+	},
 
-  getCol: (col, size = false, tipo_1 = false, tipo_2 = false) => {
+	getCol: (col, size = false, tipo_1 = false, tipo_2 = false) => {
 		let lastCase = (size &&  tipo_1 &&  tipo_2) ? true : false;
-    let dataNames = ['action', 'col'],
-    dataValues = ['gatCol', col];
-    if(size){dataNames.push('size');dataValues.push(size);}
-    if(tipo_1){dataNames.push('tipo_1');dataValues.push(tipo_1);}
-    if(tipo_2){dataNames.push('tipo_2');dataValues.push(tipo_2);}
+		let dataNames = ['action', 'col'],
+		dataValues = ['gatCol', col];
+		if(size){dataNames.push('size');dataValues.push(size);}
+		if(tipo_1){dataNames.push('tipo_1');dataValues.push(tipo_1);}
+		if(tipo_2){dataNames.push('tipo_2');dataValues.push(tipo_2);}
 
-    postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
-      try{
+		postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
+			try{
 				if (!lastCase) {
-		      JSON.parse(v).forEach(e=>{
+					JSON.parse(v).forEach(e=>{
 						for(var key in e) {
 							var value = e[key],
 							key = key[0].toUpperCase() + key.slice(1);
@@ -1231,12 +977,12 @@ cartController = {
 					});
 					// console.log(cartController.currentSemiSelection.condicion)
 				}
-      } catch(err) {
-        console.log(err);
-        console.log(v);
-      }
-    })
-  },
+			} catch(err) {
+				console.log(err);
+				console.log(v);
+			}
+		})
+	},
 }
 
 

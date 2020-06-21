@@ -1,9 +1,9 @@
 <div class="dynamicCont" id="dynamicCont1">
 
-  <?php selectBox('Size'); ?>
-  <?php selectBox('Tipo_1'); ?>
-  <?php selectBox('Tipo_2'); ?>
-  <?php selectBox('Condicion'); ?>
+  <?php selectBox('Size', 'Size'); ?>
+  <?php selectBox('Tipo 1', 'Tipo_1'); ?>
+  <?php selectBox('Tipo 2', 'Tipo_2'); ?>
+  <?php selectBox('Condicion', 'Condicion'); ?>
 
   <div class="cuantos">
     <input class="cuantosQnt" id="addToCartQantity" type="text" value="1" onchange="console.log('HOLA MUNDO')">
