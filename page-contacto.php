@@ -2,14 +2,7 @@
 
 <a
   href="<?php echo get_site_url() . '/buscar-contenedor'; ?>"
-  class="btn"
-  style="
-    position:fixed;
-    top: 120px;
-    left: 1rem;
-    z-index:4;
-  "
->COTIZA TU CONTENEDOR</a>
+  class="btn contactCta">COTIZA TU CONTENEDOR</a>
 
 <section class="contacto">
   <img class="rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
