@@ -233,7 +233,7 @@
     foreach($categories as $category) { ?>
       <?php $lt_meta_desc = get_term_meta($category->term_id, 'lt_meta_desc', true); ?>
       <?php if ($lt_meta_desc == 'on'){ ?>
-        <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:flex}</style>
+        <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:grid; grid-template-columns: var(--queContainerINeedGTC);}</style>
         <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
           <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
             <div class="summaryTitleContainer">
