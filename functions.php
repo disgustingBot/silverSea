@@ -12,8 +12,11 @@ require_once 'inc/ajax.php';
 
 // require_once get_template_directory() . '/inc/productFactory.php';
 
-
-function lattte_setup(){
+// LOAD SCRIPTS
+add_action('wp_enqueue_scripts', 'lt_script_load');
+function lt_script_load(){
+	wp_enqueue_style('style', get_stylesheet_uri(), NULL, microtime(), 'all');
+	wp_enqueue_script('modules', get_theme_file_uri('/js/modules.js'), NULL, microtime(), true);
 
   // TOOOODO ESTO ES PARA AJAX
 	global $wp_query;
@@ -33,49 +36,46 @@ function lattte_setup(){
 		'first_page' => get_pagenum_link(1) // here it is
 	) );
 
- 	wp_enqueue_script( 'my_loadmore' );
-  // FIN DE PARA AJAX
+	wp_enqueue_script( 'my_loadmore' );
+	// FIN DE PARA AJAX
 
+	// TOOOODO ESTO ES PARA AJAX
+	// In most cases it is already included on the page and this line can be removed
+	wp_enqueue_script('jquery');
+	// register our main script but do not enqueue it yet
+	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery') );
 
-  wp_enqueue_style('style', get_stylesheet_uri(), NULL, microtime(), 'all');
-  // wp_enqueue_script('main', get_theme_file_uri('/js/custom.js'), NULL, microtime(), true);
+	// now the most interesting part
+	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
+	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
+	wp_localize_script( 'main', 'lt_data', array(
+		'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
+	) );
 
-      // TOOOODO ESTO ES PARA AJAX
-    	// In most cases it is already included on the page and this line can be removed
-    	wp_enqueue_script('jquery');
-    	// register our main script but do not enqueue it yet
-    	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery') );
+	wp_enqueue_script( 'main' );
+	// FIN DE PARA AJAX
 
-    	// now the most interesting part
-    	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
-    	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
-    	wp_localize_script( 'main', 'lt_data', array(
-    		'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
-    	) );
+	
 
-     	wp_enqueue_script( 'main' );
-      // FIN DE PARA AJAX
 }
 
-add_action('wp_enqueue_scripts', 'lattte_setup');
+
+
 
 // Adding Theme Support
+add_action('after_setup_theme', 'lt_add_theme_support');
+function lt_add_theme_support() {
+	add_theme_support('title-tag');
+	add_theme_support('html5',
+		array('comment-list', 'comment-form', 'search-form')
+	);
 
-function gp_init() {
-  // add_theme_support('post-thumbnails');
-  add_theme_support('title-tag');
-  add_theme_support('html5',
-    array('comment-list', 'comment-form', 'search-form')
-  );
-
-  add_theme_support( 'woocommerce' );
-  add_theme_support( 'wc-product-gallery-zoom' );
-  add_theme_support( 'wc-product-gallery-lightbox' );
-  add_theme_support( 'wc-product-gallery-slider' );
-  add_theme_support( 'post-thumbnails' );
-
+	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
+	add_theme_support( 'post-thumbnails' );
 }
-add_action('after_setup_theme', 'gp_init');
 
 
 
@@ -372,37 +372,43 @@ function lt_new_pass(){
 // data-slug="0"
 // data-parent="city"
 
-    function selectBox($placeholder){ ?>
-      <div class="SelectBox" tabindex="1" id="selectBox<?php echo $placeholder; ?>">
-        <div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $placeholder; ?>')">
-          <p class="selectBoxPlaceholder"><?php echo $placeholder; ?></p>
-          <p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $placeholder; ?>"></p>
-        </div>
-        <div class="selectBoxList focus">
-          <label for="nul<?php echo $placeholder; ?>" class="selectBoxOption" id="selectBoxOptionNul">
-            <input
-              class="selectBoxInput"
-              id="nul<?php echo $placeholder; ?>"
-              type="radio"
-              onclick="selectBoxControler('','#selectBox<?php echo $placeholder; ?>','#selectBoxCurrent<?php echo $placeholder; ?>')"
-              value="0"
-              checked
-            >
-            <!-- <span class="checkmark"></span> -->
-            <p class="colrOptP"></p>
-          </label>
-        </div>
-      </div>
-    <?php }
+// function selectBox($placeholder, $slug){ -->
+function selectBox($name, $slug = false){
+	if(!$slug){
+		$slug = sanitize_title($name);
+	}
+	// echo "<h1>$slug</h1>";
+	?>
+	<div class="SelectBox" tabindex="1" id="selectBox<?php echo $slug; ?>">
+		<div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $slug; ?>')">
+			<p class="selectBoxPlaceholder"><?php echo $name; ?></p>
+			<p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $slug; ?>"></p>
+		</div>
+		<div class="selectBoxList focus">
+			<label for="nul<?php echo $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul">
+			<input
+				class="selectBoxInput"
+				id="nul<?php echo $slug; ?>"
+				type="radio"
+				onclick="selectBoxControler('','#selectBox<?php echo $slug; ?>','#selectBoxCurrent<?php echo $slug; ?>')"
+				value="0"
+				checked
+			>
+			<!-- <span class="checkmark"></span> -->
+			<p class="colrOptP"></p>
+			</label>
+		</div>
+	</div>
+<?php }
 
 
-    function newSvg($id){ ?>
+function newSvg($id){ ?>
 
-      <svg class="pageSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="#<?php echo $id; ?>"></use>
-      </svg>
+	<svg class="pageSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+		<use xlink:href="#<?php echo $id; ?>"></use>
+	</svg>
 
-    <?php }
+<?php }
 
 
 
@@ -735,8 +741,10 @@ function lt_upload_file () {
 			condicion as 'condition',
 			CONCAT( size, ' pies' ) as 'size'
 			from contenedores";
-										$respuesta['query1']="$query1";
-										$respuesta['query2']="$query2";
+
+			$respuesta['query1']="$query1";
+			$respuesta['query2']="$query2";
+
 			if($fileError===0){$respuesta['gate2']="No errors uploading";
 				if(in_array($fileName2,$fileNamesAllowed)){$respuesta['gate3']="Your file '$fileName' has a valid name";
 					if(in_array($fileActualExt,$allowedExt)){$respuesta['gate4']="Your file '$fileName' has a valid type";
@@ -818,6 +826,7 @@ add_action( 'wp_ajax_lt_cart_end', 'lt_cart_end' );
 add_action( 'wp_ajax_nopriv_lt_cart_end', 'lt_cart_end' );
 
 function lt_cart_end () {
+	$server = 'online';
 	$debugMode = false;
 	$respuesta = array();
 	$contenedor = $_POST['cont'];
@@ -887,13 +896,13 @@ add_action( 'wp_ajax_nopriv_gatCol', 'gatCol' );
 
 function gatCol () {
 	$server = 'online';
-  $col = $_POST['col'];
-  $size = false;
-  $tipo_1 = false;
-  $tipo_2 = false;
-  if(isset($_POST['size'])){$size=$_POST['size'];}
-  if(isset($_POST['tipo_1'])){$tipo_1=$_POST['tipo_1'];}
-  if(isset($_POST['tipo_2'])){$tipo_2=$_POST['tipo_2'];}
+	$col = $_POST['col'];
+	$size = false;
+	$tipo_1 = false;
+	$tipo_2 = false;
+	if(isset($_POST['size'])){$size=$_POST['size'];}
+	if(isset($_POST['tipo_1'])){$tipo_1=$_POST['tipo_1'];}
+	if(isset($_POST['tipo_2'])){$tipo_2=$_POST['tipo_2'];}
   // echo get_template_directory();
   // include get_template_directory_uri().'/dbh.inc.php';
 
@@ -928,33 +937,33 @@ function gatCol () {
 		$dbName = "lattedev_silver";
 	}
 //   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-  $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
-  $qry = "SELECT distinct $col FROM contenedores";
-  if($size){
-    $qry = $qry . " WHERE size = '$size'";
-  }
-  if($size && $tipo_1){
-    $qry = $qry . " AND tipo_1 = '$tipo_1'";
-  }
-  if($size && $tipo_1 && $tipo_2){
-    $qry = "SELECT salesforce_id, condicion FROM contenedores WHERE size = '$size' and tipo_1 = '$tipo_1' and tipo_2 = '$tipo_2'";
-  }
-
-  $ress = $conn->query($qry);
-  // $resp = $ress->fetch_all(MYSQLI_ASSOC);
-	$resp = [];
-	while ($fila = $ress->fetch_assoc()) {
-			$resp[] = $fila;
+	$qry = "SELECT distinct $col FROM contenedores";
+	if($size){
+		$qry = $qry . " WHERE size = '$size'";
 	}
-  echo wp_json_encode( $resp );
-  exit();
+	if($size && $tipo_1){
+		$qry = $qry . " AND tipo_1 = '$tipo_1'";
+	}
+	if($size && $tipo_1 && $tipo_2){
+		$qry = "SELECT salesforce_id, condicion FROM contenedores WHERE size = '$size' and tipo_1 = '$tipo_1' and tipo_2 = '$tipo_2'";
+	}
+
+	$ress = $conn->query($qry);
+	// $resp = $ress->fetch_all(MYSQLI_ASSOC);
+		$resp = [];
+		while ($fila = $ress->fetch_assoc()) {
+				$resp[] = $fila;
+		}
+	echo wp_json_encode( $resp );
+	exit();
 }
 
 
 
-// add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
-// add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
+add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
+add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
 
 function lt_get_location () {
 	$server = 'online';

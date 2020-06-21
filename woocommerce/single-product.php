@@ -72,9 +72,9 @@ while(have_posts()){the_post();
       <?php } } ?>
 
         <div class="cuantos Cuantos">
-          <input class="cuantosQnt" id="cuantosQantity" type="text" value="1" min="1">
-          <button class="cuantosBtn" id="cuantosMins">-</button>
-          <button class="cuantosBtn" id="cuantosPlus">+</button>
+          <input class="cuantosQnt cuantosQantity" type="text" value="1" min="1">
+          <button class="cuantosBtn cuantosMins">-</button>
+          <button class="cuantosBtn cuantosPlus">+</button>
         </div>
       <button class="btn singleBuy cardAdd" type="button" name="button">Agregar</button>
     </div>

@@ -8,25 +8,25 @@
 
 
 
-    	if (isset($_GET[$category])) {
-        // var_dump($_GET[$category]);
-    		$parentArray = $_GET[$category];
-    	  // foreach ($parentArray as $key => $value) {
-  			$wp_query['query']['tax_query'][$key] = array(
-  				'taxonomy' => 'product_cat',
-  				'field'    => 'slug',
-  				'terms'    => $parentArray,
-  			);
-    	  // }
-    	}
+    if (isset($_GET[$category])) {
+      // var_dump($_GET[$category]);
+      $parentArray = $_GET[$category];
+      // foreach ($parentArray as $key => $value) {
+      $wp_query['query']['tax_query'][$key] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'slug',
+        'terms'    => $parentArray,
+      );
+      // }
+    }
 
 
     $args = array(
-     'hierarchical' => 1,
-     'show_option_none' => '',
-     'hide_empty' => 0,
-     'parent' => $term->term_id,
-     'taxonomy' => 'product_cat'
+      'hierarchical' => 1,
+      'show_option_none' => '',
+      'hide_empty' => 0,
+      'parent' => $term->term_id,
+      'taxonomy' => 'product_cat'
     );
     $subcats = get_categories($args); ?>
 
@@ -199,9 +199,9 @@
 
           <div class="cardActions">
             <div class="cuantos Cuantos">
-              <input class="cuantosQnt" id="cuantosQantity" type="text" value="1" min="1">
-              <button class="cuantosBtn" id="cuantosMins">-</button>
-              <button class="cuantosBtn" id="cuantosPlus">+</button>
+              <input class="cuantosQnt cuantosQantity" type="text" value="1" min="1">
+              <button class="cuantosBtn cuantosMins">-</button>
+              <button class="cuantosBtn cuantosPlus">+</button>
             </div>
             <a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
             <button class="cardAdd btn btnSimple">AGREGAR</button>
