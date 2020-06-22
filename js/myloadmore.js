@@ -99,6 +99,10 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
         $('#postCont').empty();
         $('#postCont').append(respuesta);
         carouselController.setup()
+        
+        cuantosController.setup();
+
+        cardSetup();
 
       }
     });
@@ -161,9 +165,8 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
 				c.log(respuesta);
           d.querySelector('.cartButtonCant').innerText = respuesta/10;
           
-	        carouselController.setup()
-				// c.log('soy el nene');
-        // d.querySelector('.cartButtonCant').innerText = respuesta/10;
+          // c.log('soy el nene');
+          // d.querySelector('.cartButtonCant').innerText = respuesta/10;
       }
     });
   })

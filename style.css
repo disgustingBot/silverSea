@@ -197,6 +197,7 @@ FIN DE MAPA DE CONTENIDOS */
   /* --dynamicContGTR: repeat(6, 1fr); */
   --contSelectorMargin: 8px auto;
   --cotizarContainerMargin: 8px auto;
+  --queContainerINeedGTC: 1fr;
 
 
   /* COUNTERS */
@@ -213,7 +214,6 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* ARTICLES */
   --archiveFiltersMarginBOTTOM:1rem;
-  --article2ElementsW: 90%;
   --A2sectionSummaryMB: 2rem;
   --aboutUsSec2BtnM: 1rem auto 0 auto;
 
@@ -471,6 +471,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* FRONT PAGE ATF */
     --featuresGTR: 1fr 1fr 1fr;
     --frontPageATFBgH: auto;
+    --queContainerINeedGTC: 1fr 1fr;
 
     /* COUNTERS */
     --articleCounterGR: auto;
@@ -483,7 +484,6 @@ FIN DE MAPA DE CONTENIDOS */
     --testimonialCaruselP: 0 20px;
 
     /* ARTICLES */
-    --article2ElementsW: 45%;
     --A2sectionSummaryMB: 0;
     --aboutUsSec2BtnM: 1rem auto auto 0;
 
@@ -1367,7 +1367,13 @@ section {
   padding: 0 20px;
 }
 
-.contSelector     {margin: var(--contSelectorMargin)!important; height: 36px;}
+
+.contSelector     {
+  margin: var(--contSelectorMargin)!important;
+  padding: 0!important;
+  height: 36px!important;
+}
+
 .cotizarContainer {margin: var(--cotizarContainerMargin)!important}
 
 /* FULL WIDTH MAP AND IT'S FIXES */
@@ -1506,6 +1512,7 @@ section {
 
 .testimonialsContainer .arrowBtn {
   margin: auto;
+  margin-bottom: 0;
 }
 
 .testimonialTxt {
@@ -1774,7 +1781,7 @@ section {
 }
 
 .areaSelectorTxt::before{
-  content: '⯈';
+  content: '►';
   color: var(--primaryColor);
   font-size: 1.5rem;
   margin-right: .5rem;
@@ -1891,6 +1898,15 @@ section {
   z-index:0;
 }
 .cardImgA img{border-radius:inherit}
+
+@media not all and (min-resolution:.001dpcm) {
+  @media {.cardImgA{display:block!important}}
+}
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
+  @media {.cardImgA{display:block!important}}
+}
+
+
 .cardImgA.inactive{opacity:0}
 .cardImgA{
   border-radius:inherit;
@@ -2171,11 +2187,13 @@ section {
 
 }
 
+
 .valoresBtn {
   margin-top: 1rem;
 }
 
-.btn.contactCTA {
+
+.btn .contactCta {
   position:fixed;
   top: 120px;
   left: 1rem;
@@ -2443,7 +2461,7 @@ section {
 }
 
 .article2 > * {
-  width: var(--article2ElementsW)!important;
+  width: 100%;
   object-fit: contain;
   margin: auto;
 }

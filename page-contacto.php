@@ -1,8 +1,7 @@
 <?php get_header(); ?>
 
-<a
-  href="<?php echo get_site_url() . '/buscar-contenedor'; ?>"
-  class="btn contactCTA">COTIZA TU CONTENEDOR</a>
+<a href="<?php echo get_site_url() . '/buscar-contenedor'; ?>" class="btn contactCTA">COTIZA TU CONTENEDOR</a>
+
 
 <section class="contacto">
   <img class="rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">

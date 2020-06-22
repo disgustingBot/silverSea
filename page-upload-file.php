@@ -4,7 +4,7 @@
 <?php
 global $wpdb;
 // // $server = 'local';
-// $server = 'online';
+$server = 'online';
 
 
 // $table = 'locations';
@@ -45,6 +45,39 @@ global $wpdb;
 //   $queryDePrueba1 = "truncate table lattedev_silver.locations;";
 //   $queryDePrueba2 = "LOAD DATA INFILE 'C:/xampp/htdocs/silverSea/wp-content/themes/silverSea/uploads/locations-06-17-2020.tsv' INTO TABLE lattedev_silver.locations FIELDS TERMINATED BY '\\t' IGNORE 1 LINES;";
 // }
+
+if ($server == 'online') {
+
+  // INSTALACION ONLINE
+  // $dbServerName = "localhost";
+  // $dbUsername = "silverse_admin";
+  // $dbPassword = "M-9!-^%jZ*h5";
+  // $dbName = "silverse_web";
+  // code...
+
+  // INSTALACION WAVE HOST
+  // $dbServerName = "localhost";
+  // $dbUsername = "lattedev_silver";
+  // $dbPassword = "%fGC+<`@]Csz#75F";
+  // $dbName = "lattedev_silver";
+
+  // INSTALACION FINAL
+  $dbHost = "localhost";
+  $dbUser = "silversea_web";
+  $dbPass = "qXne2abld1";
+  $dbName = "silversea_web";
+} else {
+
+  // INSTALACION LOCAL
+  $dbHost = "localhost";
+  $dbUser = "root";
+  $dbPass = "";
+  // $dbUsername = "contraseñaDificil";
+  // $dbPassword = ";$6qha)2L*KU)6nq";
+  $dbName = "lattedev_silver";
+}
+
+// $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 // echo $queryDePrueba1;
 // echo '<br>';
@@ -132,7 +165,11 @@ global $wpdb;
 
 <?php if(current_user_can('administrator') ) {  ?>
 
-<a href="https://silverseacontainers.com/upload-file/">reload</a>
+
+<!-- <a href="https://silverseacontainers.com/upload-file/">reload</a> -->
+
+<a class="btn" href="<?php echo get_site_url(); ?>/upload-file/">Upload another file</a>
+
 <div class="updateController inicial" id="updateController">
 <!-- <div class="updateController" id="updateController"> -->
   <h3 class="fileUploadLabel">Sincrotron</h3>
@@ -163,8 +200,11 @@ global $wpdb;
   </div>
 <?php } ?>
 
+<a class="btn" href="<?php echo get_site_url(); ?>/upload-file/">Upload another file</a>
 
-<a href="https://silverseacontainers.com/upload-file/">reload</a>
+
+<!-- <a href="https://silverseacontainers.com/upload-file/">reload</a> -->
+
 <?php } ?>
 
 <?php get_footer() ?>

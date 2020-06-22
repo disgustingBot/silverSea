@@ -1,49 +1,40 @@
 <?php
-// add_action('pre_get_posts','alter_query');
+add_action('pre_get_posts','alter_query');
 
 function alter_query($query) {
-	//gets the global query var object
-	global $wp_query;
-	$max_page = $query->max_num_pages;
-	// var_dump($max_page);
+	if(!is_admin()){
+		//gets the global query var object
+		global $wp_query;
+		$max_page = $query->max_num_pages;
+		// var_dump($max_page);
 
-	//gets the front page id set in options
-	$front_page_id = get_option('page_on_front');
+		//gets the front page id set in options
+		$front_page_id = get_option('page_on_front');
 
-	if ( !$query->is_main_query() )
-		return;
+		if ( !$query->is_main_query() ) return;
 
-		// $args['paged'] = $page;
-		// if (isset($_GET['page']) AND $_GET['page'] <= $max_page ) {
+			// $args['paged'] = $page;
+			// if (isset($_GET['page']) AND $_GET['page'] <= $max_page ) {
 		if (isset($_GET['page'])) {
-		$query-> set('paged' , $_GET['page']);
-	} else {
-		$query-> set('paged' , 1);
-	}
+			$query-> set('paged' , $_GET['page']);
+		} else {
+			$query-> set('paged' , 1);
+		}
 
-	if (isset($_GET['tipo'])) {
-		$query->query_vars['tax_query']['tipo'] = array(
-			'taxonomy' => 'product_cat',
-			'field'    => 'slug',
-			'terms'    => $_GET['tipo'],
-		);
-	}
+		$filters = array('dry', 'reefer', 'special', 'condition', 'size');
+		foreach ($filters as $key => $value) {
+			if (isset($_GET[$value])) {
+				$query->query_vars['tax_query'][$value] = array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => $_GET[$value],
+				);
+			}
+		}
 
-	if (isset($_GET['motivo'])) {
-		$query->query_vars['tax_query']['motivo'] = array(
-			'taxonomy' => 'product_cat',
-			'field'    => 'slug',
-			'terms'    => $_GET['motivo'],
-		);
+		//we remove the actions hooked on the '__after_loop' (post navigation)
+		remove_all_actions ( '__after_loop');
 	}
-	// $query-> set('post__in' ,$front_page_id-);
-	// $query-> set('post__in' ,array( $front_page_id , [YOUR SECOND PAGE ID]  ));
-	// $query-> set('orderby' ,'post__in');
-	// $query-> set('p' , null);
-	// $query-> set( 'page_id' ,null);
-
-	//we remove the actions hooked on the '__after_loop' (post navigation)
-	remove_all_actions ( '__after_loop');
 }
 
 
@@ -189,9 +180,7 @@ function latte_pagination() {
 
 		query_posts( $args );
 
-		// echo 'a<br>';
 		if( have_posts() ) :
-			// echo 'b<br>';
 
 			// run the loop
 			while( have_posts() ): the_post();
@@ -199,35 +188,23 @@ function latte_pagination() {
 					$_pf = new WC_Product_Factory();
 					$_product = $_pf->get_product(get_the_ID());
 				}
-
-				$categories = get_the_terms( get_the_ID(), 'product_cat' );
 				// FIND OUT WHICH CARACTERISTICS
-				if ($categories) {
-					// for each category
-					foreach ($categories as $cat) {
-						$parent=get_term_by('id', $cat->parent, 'product_cat', 'ARRAY_A');
-						$grandParent=get_term_by('id', $parent['parent'], 'product_cat', 'ARRAY_A');
-
-						if ($parent['slug']=="size") {
-							$size = $cat->name;
-							$sizeSlug = $cat->slug;
-						}
-						if ($grandParent['slug']=="general") {
-							$tipo_1 = $parent['name'];
-							$tipo_1Slug = $parent['slug'];
-							$tipo_2 = $cat->name;
-							$tipo_2Slug = $cat->slug;
-						}
-						if ($parent['slug']=="condition") {
-							$condition = $cat->name;
-							$conditionSlug = $cat->slug;
-						}
-					}
-				}
+				require_once 'getAtributes.php';
 				?>
 
 
-				<article class="card" id="card<?php echo get_the_id();?>">
+
+				<article
+					class="card"
+					contenedor="true"
+					data-code="<?php echo $code; ?>"
+					data-size="<?php echo $sizeNumber; ?>"
+					data-tip1="<?php echo $tipo_1; ?>"
+					data-tip2="<?php echo strtoupper($tipo_2Slug); ?>"
+					data-cond="<?php echo strtoupper($conditionSlug); ?>"
+				>
+
+
 					<div class="cardHead">
 						<div class="cardThumbnail">
 							<?php newSvg(ucwords($tipo_1Slug)); ?>
@@ -236,34 +213,34 @@ function latte_pagination() {
 						<p class="cardSubTitle"><?php echo $tipo_2 . ', ' . $condition ?></p>
 					</div>
 
+					<?php $attachment_ids = $_product->get_gallery_attachment_ids(); ?>
 
 					<div class="cardMedia<?php if($attachment_ids){ echo ' Carousel'; } ?>">
 
-					<?php $attachment_ids = $_product->get_gallery_attachment_ids(); ?>
-					<a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
-						<img class="productGalleryImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
-					</a>
-
-					<?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
 						<a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
-							<img class="productGalleryImg"  src="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+							<img class="productGalleryImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
 						</a>
-					<?php $count++; }} ?>
 
-					<?php if($attachment_ids){ ?>
-						<button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
-							<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-								<circle cx="53" cy="53" r="53" fill="currentColor"/>
-								<path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
-							</svg>
+						<?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
+							<a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
+								<img class="productGalleryImg"  src="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+							</a>
+						<?php $count++; }} ?>
+
+						<?php if($attachment_ids){ ?>
+							<button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
+								<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="53" cy="53" r="53" fill="currentColor"/>
+									<path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
+								</svg>
+								</button>
+								<button class="arrowBtn arrowButtonPrev rowcol1" id="prevButton">
+								<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
+									<path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
+								</svg>
 							</button>
-							<button class="arrowBtn arrowButtonPrev rowcol1" id="prevButton">
-							<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-								<circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
-								<path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
-							</svg>
-						</button>
-					<?php } ?>
+						<?php } ?>
 					</div>
 
 
@@ -279,13 +256,14 @@ function latte_pagination() {
 						</div>
 
 						<div class="cardActions">
-							<a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
-							<div class="cuantos">
-								<input class="cuantosQnt" id="cuantosQantity" type="number" value="1" min="1">
-								<button class="cuantosBtn" onclick="changeQuantity(-1)">-</button>
-								<button class="cuantosBtn" onclick="changeQuantity(+1)">+</button>
+							
+							<div class="cuantos Cuantos">
+								<input class="cuantosQnt cuantosQantity" type="text" value="1" min="1">
+								<button class="cuantosBtn cuantosMins">-</button>
+								<button class="cuantosBtn cuantosPlus">+</button>
 							</div>
-							<button class="btn btnSimple">AGREGAR</button>
+							<a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
+							<button class="cardAdd btn btnSimple">AGREGAR</button>
 						</div>
 					</div>
 				</article>
@@ -295,15 +273,11 @@ function latte_pagination() {
 
 		endif;
 
-	// var_dump(ajax_paginator(5));
-	// echo latte_pagination(5);
 	echo ajax_paginator(get_pagenum_link());
 
 	// }
 	// Always exit to avoid further execution
 	exit();
 }
-
-
 
 ?>
