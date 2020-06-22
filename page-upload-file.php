@@ -56,10 +56,10 @@ global $wpdb;
 
 
 
-  
+
 // $table_name = "{$wpdb->prefix}myTable";
 // $myID = 12;
- 
+
 // $wpdb->query( $wpdb->prepare( $queryDePrueba1 ));
 
 
@@ -83,7 +83,7 @@ global $wpdb;
 //   echo "CONECTION correct";
 //   echo '<br>';
 //   echo '<br>';
-  
+
 //   // if ($wpdb->query($queryDePrueba1)) {
 //   if ($wpdb->query( $wpdb->prepare( $queryDePrueba1 ))) {
 //     echo "Table truncated";
@@ -132,7 +132,7 @@ global $wpdb;
 
 <?php if(current_user_can('administrator') ) {  ?>
 
-<a href="http://localhost/silverSea/upload-file/">reload</a>
+<a href="https://silverseacontainers.com/upload-file/">reload</a>
 <div class="updateController inicial" id="updateController">
 <!-- <div class="updateController" id="updateController"> -->
   <h3 class="fileUploadLabel">Sincrotron</h3>
@@ -164,7 +164,7 @@ global $wpdb;
 <?php } ?>
 
 
-<a href="http://localhost/silverSea/upload-file/">reload</a>
+<a href="https://silverseacontainers.com/upload-file/">reload</a>
 <?php } ?>
 
 <?php get_footer() ?>
