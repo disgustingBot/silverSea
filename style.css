@@ -835,6 +835,7 @@ section {
 .opacity0{opacity:0}
 
 .txtCenterLeft {text-align: var(--txtCenterLeft)}
+.txtCenter {text-align: center}
 
 .grid{display:grid}
 .flex{display:flex}
@@ -2217,6 +2218,9 @@ section {
   font-weight: bolder;
   font-size: 28px;
   cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 16px;
 }
 
 /* ---------------------------------------------------------------------------
