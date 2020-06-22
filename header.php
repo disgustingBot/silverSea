@@ -125,7 +125,11 @@
 
   <div class="finalizarConsulta" id="finalizarConsulta">
     <p class="closeCross" onclick="altClassFromSelector('alt', '#finalizarConsulta'),altClassFromSelector('alt', '#cart')">&#10006;</p>
+    <h4 class="finalizarConsultaTitle txtCenter">Un paso mas...</h4>
+    <p class="finalizarConsultaSubTitle txtCenter">Necesitamos algunos datos para poder darte una cotización rápida.</p>
+    <p class="finalizarConsultaSubTitle txtCenter">Además, te enviaremos un email con el detalle.</p>
     <?php require_once 'coprAlqui.php'; ?>
+
 
     <div class="mateput">
       <input class="mateputInput" id="mateputNombre" type="text" name="nombre" autocomplete="off">
@@ -135,14 +139,14 @@
     </div>
 
     <div class="mateput">
-      <input class="mateputInput" id="mateputTelefono" type="text" name="telefono" autocomplete="off">
+      <input class="mateputInput" id="mateputTelefono" type="tel" name="telefono" autocomplete="off">
       <label for="mateputTelefono" class="mateputLabel">
         <span class="mateputName">Telefono</span>
       </label>
     </div>
 
     <div class="mateput">
-      <input class="mateputInput" id="mateputEmail" type="text" name="email" autocomplete="off">
+      <input class="mateputInput" id="mateputEmail" type="email" name="email" autocomplete="off">
       <label for="mateputEmail" class="mateputLabel">
         <span class="mateputName">Email</span>
       </label>
