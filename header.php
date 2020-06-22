@@ -114,16 +114,18 @@
     <div class="cartHead">
       <h4 class="cartTitle">Tu Carrito</h4>
       <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
-        Finalizar
+        FINALIZAR
+      </button>
+      <button class="btn" type="button" onclick="altClassFromSelector('alt', '#cart')">
+        CERRAR
       </button>
     </div>
     <div class="cartList"></div>
   </div>
 
   <div class="finalizarConsulta" id="finalizarConsulta">
+    <p class="closeCross" onclick="altClassFromSelector('alt', '#finalizarConsulta'),altClassFromSelector('alt', '#cart')">&#10006;</p>
     <?php require_once 'coprAlqui.php'; ?>
-
-
 
     <div class="mateput">
       <input class="mateputInput" id="mateputNombre" type="text" name="nombre" autocomplete="off">
