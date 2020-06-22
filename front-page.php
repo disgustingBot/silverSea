@@ -10,23 +10,23 @@
     <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
 
     <div class="currentSemiSelection" id="currentSemiSelection">
-      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
         <use xlink:href="" id="currentSemiSelectionSize"></use>
       </svg>
-      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
         <use xlink:href="" id="currentSemiSelectionTip1"></use>
       </svg>
-      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
         <use xlink:href="" id="currentSemiSelectionTip2"></use>
       </svg>
-      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+      <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
         <use xlink:href="" id="currentSemiSelectionCond"></use>
       </svg>
     </div>
 
 
           <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
-            <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+            <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
               <use xlink:href="#simpleTruck" class="cartButtonUse"></use>
             </svg>
           </div>
@@ -51,7 +51,7 @@
   <div class="features">
 
     <figure class="feature sectionWhite">
-      <svg class="featureIcon"  width="83" height="111" viewBox="0 0 83 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="featureIcon"  width="83" height="111" viewBox="0 0 83 111" fill="none" xmlns="https://www.w3.org/2000/svg">
       <path d="M79.8178 21.1423L61.718 3.04253C59.7759 1.10049 57.1434 0 54.4051 0H10.3554C4.63931 0.0215782 0 4.66089 0 10.377V100.125C0 105.841 4.63931 110.48 10.3554 110.48H72.5049C78.221 110.48 82.8603 105.841 82.8603 100.125V28.4767C82.8603 25.7385 81.7598 23.0844 79.8178 21.1423ZM55.2467 7.03233C55.8508 7.18338 56.3903 7.48548 56.8434 7.93862L74.9432 26.0384C75.3964 26.4916 75.6985 27.031 75.8495 27.6352H55.2467V7.03233ZM75.9574 100.125C75.9574 102.024 74.4038 103.578 72.5049 103.578H10.3554C8.4565 103.578 6.90287 102.024 6.90287 100.125V10.377C6.90287 8.47807 8.4565 6.90502 10.3554 6.90502H48.3416V29.3615C48.3416 32.2314 50.6505 34.5251 53.5204 34.5251H75.9574V100.125Z" fill="black"/>
       <path d="M39.7268 20.8308H15.5593C14.6055 20.8308 13.833 20.0583 13.833 19.1045V15.652C13.833 14.6983 14.6055 13.9258 15.5593 13.9258H39.7268C40.6806 13.9258 41.4531 14.6983 41.4531 15.652V19.1045C41.4531 20.0583 40.6806 20.8308 39.7268 20.8308Z" fill="#0674BB"/>
       <path d="M41.4531 29.4621V32.9146C41.4531 33.8684 40.6806 34.6409 39.7268 34.6409H15.5593C14.6055 34.6409 13.833 33.8684 13.833 32.9146V29.4621C13.833 28.5083 14.6055 27.7358 15.5593 27.7358H39.7268C40.6806 27.7358 41.4531 28.5083 41.4531 29.4621Z" fill="#0674BB"/>
@@ -64,7 +64,7 @@
     </figure>
 
     <figure class="feature sectionWhite">
-      <svg class="featureIcon" width="118" height="110" viewBox="0 0 118 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="featureIcon" width="118" height="110" viewBox="0 0 118 110" fill="none" xmlns="https://www.w3.org/2000/svg">
         <path d="M63.914 42.5215H9.09583C8.09083 42.5215 7.26855 43.3438 7.26855 44.3488V69.9306C7.26855 70.9356 8.09083 71.7579 9.09583 71.7579H63.914C64.919 71.7579 65.7413 70.9356 65.7413 69.9306V44.3488C65.7413 43.3438 64.919 42.5215 63.914 42.5215ZM62.0868 68.1033H10.9231V46.176H62.0868V68.1033Z" fill="#0674BB"/>
         <path d="M20.0588 49.8301H16.4043V64.4483H20.0588V49.8301Z" fill="#0674BB"/>
         <path d="M29.1965 49.8301H25.542V64.4483H29.1965V49.8301Z" fill="#0674BB"/>
@@ -86,7 +86,7 @@
     </figure>
 
     <figure class="feature sectionWhite">
-      <svg class="featureIcon" width="138" height="110" viewBox="0 0 138 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="featureIcon" width="138" height="110" viewBox="0 0 138 110" fill="none" xmlns="https://www.w3.org/2000/svg">
         <path d="M51.5481 46.4339V45.0787C51.5481 44.3334 50.6944 43.7236 49.651 43.7236H1.89715C0.853718 43.7236 0 44.3334 0 45.0787L0 46.4339C0 47.1792 0.853718 47.789 1.89715 47.789L1.89715 77.6014C0.853718 77.6014 0 78.2112 0 78.9565L0 80.3116C0 81.0569 0.853718 81.6667 1.89715 81.6667H49.651C50.6944 81.6667 51.5481 81.0569 51.5481 80.3116V78.9565C51.5481 78.2112 50.6944 77.6014 49.651 77.6014V47.789C50.6944 47.789 51.5481 47.1792 51.5481 46.4339ZM43.9595 77.6014H7.58861L7.58861 47.789H43.9595V77.6014Z" fill="#0674BB"/>
         <path d="M27.7058 73.6065H23.9115C23.3897 73.6065 22.9629 73.3016 22.9629 72.929V52.6024C22.9629 52.2297 23.3897 51.9248 23.9115 51.9248H27.7058C28.2275 51.9248 28.6543 52.2297 28.6543 52.6024V72.929C28.6543 73.3016 28.2275 73.6065 27.7058 73.6065Z" fill="#0674BB"/>
         <path d="M38.9685 73.6065H35.1742C34.6524 73.6065 34.2256 73.3016 34.2256 72.929V52.6024C34.2256 52.2297 34.6524 51.9248 35.1742 51.9248H38.9685C39.4902 51.9248 39.917 52.2297 39.917 52.6024V72.929C39.917 73.3016 39.4902 73.6065 38.9685 73.6065Z" fill="#0674BB"/>
@@ -298,7 +298,7 @@
     </hgroup>
     <img class="article2Media" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
   </article>
-  <button class="btn"><a href="<?php echo get_post_meta($post->ID, 'V-link-btn-valores', true); ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
+  <button class="btn valoresBtn"><a href="<?php echo get_post_meta($post->ID, 'V-link-btn-valores', true); ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
 </section>
 
 <section class="sectionPadding sectionColor3">

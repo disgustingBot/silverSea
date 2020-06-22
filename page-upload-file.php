@@ -89,10 +89,10 @@ if ($server == 'online') {
 
 
 
-  
+
 // $table_name = "{$wpdb->prefix}myTable";
 // $myID = 12;
- 
+
 // $wpdb->query( $wpdb->prepare( $queryDePrueba1 ));
 
 
@@ -116,7 +116,7 @@ if ($server == 'online') {
 //   echo "CONECTION correct";
 //   echo '<br>';
 //   echo '<br>';
-  
+
 //   // if ($wpdb->query($queryDePrueba1)) {
 //   if ($wpdb->query( $wpdb->prepare( $queryDePrueba1 ))) {
 //     echo "Table truncated";
@@ -165,7 +165,11 @@ if ($server == 'online') {
 
 <?php if(current_user_can('administrator') ) {  ?>
 
+
+<!-- <a href="https://silverseacontainers.com/upload-file/">reload</a> -->
+
 <a class="btn" href="<?php echo get_site_url(); ?>/upload-file/">Upload another file</a>
+
 <div class="updateController inicial" id="updateController">
 <!-- <div class="updateController" id="updateController"> -->
   <h3 class="fileUploadLabel">Sincrotron</h3>
@@ -198,7 +202,9 @@ if ($server == 'online') {
 
 <a class="btn" href="<?php echo get_site_url(); ?>/upload-file/">Upload another file</a>
 
-<!-- <a href="http://localhost/silverSea/upload-file/">reload</a> -->
+
+<!-- <a href="https://silverseacontainers.com/upload-file/">reload</a> -->
+
 <?php } ?>
 
 <?php get_footer() ?>

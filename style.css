@@ -242,11 +242,13 @@ FIN DE MAPA DE CONTENIDOS */
   --contactInputGC: span 2;
   --contactTextareaHeight: 10rem;
 
-  /* SINGLE CONTAINER */
+  /* SINGLE  */
   --singleContainerDisplay: block;
   --containerAttributeW: 15rem;
 
   --singleAtributesDisplay: flex;
+  --singleBuyWidth: 100%;
+  --singleAtributesJC: space-between;
 
 
   /* ARCHIVE-PAGE */
@@ -288,7 +290,6 @@ FIN DE MAPA DE CONTENIDOS */
   --archiveFilterW: 100%;
 
   --filterQuestionContWidth: 320px;
-  --filterQuestActivatorRight: 0;
   --filterQuestActivatorWidth: 100%;
 
 
@@ -396,7 +397,6 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     --filterQuestionContWidth: 500px;
-    --filterQuestActivatorRight: 5%;
     --filterQuestActivatorWidth: 280px;
 
 
@@ -405,7 +405,7 @@ FIN DE MAPA DE CONTENIDOS */
     --containerAttributeW: 12rem;
 
     /* PAGE TEAM */
-    --teamCardsContainerGridTC: ;
+    --teamCardsContainerGridTC: 1fr 1fr;
     --teamValuesGTC: 1fr 1fr;
 
 
@@ -518,10 +518,13 @@ FIN DE MAPA DE CONTENIDOS */
     --contactTextareaHeight: 4rem;
 
 
-    /* SINGLE CONTAINER */
+    /* SINGLE  */
     --singleContainerDisplay: grid;
     --singleAtributesDisplay: grid;
     --containerAttributeW: 12rem;
+    --singleBuyWidth: 12rem;
+    --singleAtributesJC: center;
+
 
     /* ARCHIVE-PRODUCT */
     --searchResultsAltGTC:  repeat(3,1fr);
@@ -558,7 +561,7 @@ FIN DE MAPA DE CONTENIDOS */
     --areaSelectorContPosition: static;
     --areaSelectorContMaxHeight: unset;
     --teamValuesGTC: 1fr 1fr 1fr 1fr;
-
+    --teamCardsContainerGridTC: ;
   }
 }
 
@@ -1364,11 +1367,13 @@ section {
   padding: 0 20px;
 }
 
+
 .contSelector     {
   margin: var(--contSelectorMargin)!important;
   padding: 0!important;
   height: 36px!important;
 }
+
 .cotizarContainer {margin: var(--cotizarContainerMargin)!important}
 
 /* FULL WIDTH MAP AND IT'S FIXES */
@@ -2182,14 +2187,21 @@ section {
 
 }
 
+
+.valoresBtn {
+  margin-top: 1rem;
+}
+
+
 .btn .contactCta {
   position:fixed;
   top: 120px;
   left: 1rem;
   z-index:4;
   text-align: center;
-  display: flex;
+  display: var(--onlyDesktopF);
   align-items: center;
+  justify-content: center;
 }
 
 
@@ -2621,7 +2633,7 @@ section {
   flex-wrap: wrap;
   grid-gap: 1rem;
   align-items: center;
-  justify-content: center;
+  justify-content: var(--singleAtributesJC);
 }
 .singleAtributes .cuantos{margin:auto;}
 .containerAttribute{
@@ -2652,9 +2664,10 @@ section {
 }
 
 .btn.singleBuy {
-    width: var(--containerAttributeW);
+  width: var(--containerAttributeW);
   padding: 1rem;
   margin: .5rem;
+  width: var(--singleBuyWidth);
 }
 
 
@@ -3434,7 +3447,7 @@ padding-bottom:0;
   flex-wrap: wrap;
   position: fixed;
   bottom: 0;
-  right: var(--filterQuestActivatorRight);
+  left: 0;
   font-size: 18px;
   align-items: center;
   justify-content: center;
@@ -3736,7 +3749,7 @@ section.contacto img{
 
 .footer {
   color: var(--grey0);
-  background: var(--primaryColorDark);
+  background: var(--primaryColorDarker);
   display: grid;
   grid-template-columns: var(--footGridTC);
   grid-gap: var(--footerGG);
@@ -3822,5 +3835,9 @@ section.contacto img{
   font-size: .8rem;
 }
 
+
+#wp-live-chat {
+  bottom: 60px!important;
+}
 
 /* LOGIN */
