@@ -537,7 +537,7 @@ cartController = {
 				for(var key in e) {
 					var value = e[key].replace(/(?:\r\n|\r|\n)/g, '');
 					key = option + key.capitalize();
-					// console.log(key);
+					console.log(key);
 					// console.log(d.querySelector('#selectBox'+key+' .selectBoxList'))
 					var a = cartController.selectBoxOption(key,value),
 					input = a.querySelector(".selectBoxInput");
@@ -607,29 +607,30 @@ cartController = {
 		});
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
-
-		// cartController.sendMail();
-		let info = {
-			fname:   'Fake',
-			lname:   'Name',
-			email:   'email@test.fake',
-			phone:   '0800 666 696969',
-			company: 'test company',
-			country: 'my country',
-			city:    'a city',
-			code:    'the product code',
-			type:    'product type',
-			size:    'product size',
-			quantity:'product quantity',
-			message: 'el mensajeeeee',
-		}
+		console.log('send Mail')
+		cartController.sendMail();
+		// let info = {
+		// 	fname:   'Fake',
+		// 	lname:   'Name',
+		// 	email:   'email@test.fake',
+		// 	phone:   '0800 666 696969',
+		// 	company: 'test company',
+		// 	country: 'my country',
+		// 	city:    'a city',
+		// 	code:    'the product code',
+		// 	type:    'product type',
+		// 	size:    'product size',
+		// 	quantity:'product quantity',
+		// 	message: 'el mensajeeeee',
+		// }
 		// cartController.newLead(info);
 	},
 
 
 	sendMail:()=>{
 		var formData = new FormData();
-		formData.append( 'action', 'lt_form_handler' );
+		formData.append( 'action', 'lt_ajax_mail' );
+		formData.append( 'cart', JSON.stringify(cartController.cart) );
 
 		ajax2(formData).then( data => {
 			console.log(data);
