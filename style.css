@@ -198,6 +198,8 @@ FIN DE MAPA DE CONTENIDOS */
   --contSelectorMargin: 8px auto;
   --cotizarContainerMargin: 8px auto;
   --queContainerINeedGTC: 1fr;
+  --article2ContentWidth: 90%;
+  --frontPageATFBgHeight: max-content;
 
 
   /* COUNTERS */
@@ -458,6 +460,9 @@ FIN DE MAPA DE CONTENIDOS */
     --featuresMarginTop: -50px;
     --contSelectorMargin: 16px 0 auto 0;
     --cotizarContainerMargin: 16px 0 auto auto;
+    --article2ContentWidth: 45%;
+    --frontPageATFBgHeight: calc(100vh + -80px);
+
 
     /* ABOUT US ATF */
     --aboutUsATFImgH:auto;
@@ -1251,11 +1256,11 @@ section {
 
 /* .ATFWording * {color: var(--colorWhite);} */
 
- ---------------------------------------------------------------------------
+/* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                             6.3.0) =Front Page ATF:
 ------------------------------------------------------------------------------
----------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
 
 .featuresSection {
   padding-bottom: 0 var(--lateral);
@@ -1263,7 +1268,7 @@ section {
 
 .frontPageATFBg{
   width: 100%;
-  height:calc(100vh + -80px);
+  height: var(--frontPageATFBgHeight);
   object-fit: cover;
   z-index: 1;
 }
@@ -2205,6 +2210,11 @@ section {
 }
 
 
+.closeCross {
+  font-weight: bolder;
+  font-size: 28px;
+  cursor: pointer;
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2283,9 +2293,8 @@ section {
   cursor:pointer;
   display: grid;
   height: 2rem;
-  /* position: absolute; */
   right: 1rem;
-  transition:.4s;
+  transition:.2s;
   width: 2rem;
   /* z-index:-1; */
 }
@@ -2295,7 +2304,7 @@ section {
 }
 .cartButton:hover,
 .cartButton:focus {
-  box-shadow: 0px 0px 0px 5px rgb(0,73,138);
+  border: solid 5px rgb(0,73,138);
   outline: none;
 }
 
@@ -2460,8 +2469,14 @@ section {
   position: relative;
 }
 
-.article2 > * {
+.article2.containerNeeded  > * {
   width: 100%;
+  object-fit: contain;
+  margin: auto;
+}
+
+.article2  > * {
+  width: var(--article2ContentWidth);
   object-fit: contain;
   margin: auto;
 }
@@ -3083,6 +3098,8 @@ section {
 
 .cartHead .btn{margin-right:0}
 
+.cartHead .btn:nth-child(3) {grid-column: 2;}
+
 .cartList{
   display:grid;
   grid-gap:.5rem;
@@ -3117,7 +3134,6 @@ section {
   display:grid;
   grid-gap:.5rem;
   left:50%;
-  /* margin:auto var(--lateral); */
   opacity:0;
   padding: 1rem;
   pointer-events: none;
