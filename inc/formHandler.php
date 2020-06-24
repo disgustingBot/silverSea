@@ -35,12 +35,12 @@ function lt_form_handler() {
 
     // $result = json_decode($payload,true);
     // if ($result['success']!=1) {
-     // $link = add_query_arg( array( 'status' => 'bot' , ), $link );
+    // $link = add_query_arg( array( 'status' => 'bot' , ), $link );
     // } else {
 
 
       if (wp_mail( $email , $subject , $message , $headers )) {
-      	$link = add_query_arg( array( 'status' => 'sent' , ), $link );
+        $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       } else {
         $link = add_query_arg( array( 'status' => 'error', ), $link );
       }
