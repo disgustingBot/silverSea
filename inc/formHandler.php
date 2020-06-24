@@ -35,12 +35,12 @@ function lt_form_handler() {
 
     // $result = json_decode($payload,true);
     // if ($result['success']!=1) {
-     // $link = add_query_arg( array( 'status' => 'bot' , ), $link );
+    // $link = add_query_arg( array( 'status' => 'bot' , ), $link );
     // } else {
 
 
       if (wp_mail( $email , $subject , $message , $headers )) {
-      	$link = add_query_arg( array( 'status' => 'sent' , ), $link );
+        $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       } else {
         $link = add_query_arg( array( 'status' => 'error', ), $link );
       }
@@ -62,9 +62,14 @@ function lt_ajax_mail() {
 	$debugMode = true;
 	$respuesta = array();
 
-  require_once 'mailv1.php';
-
+  
   // $link=$_POST['link'];
+  $cont=json_decode(stripslashes($_POST['cont']));
+  $country=$_POST['country'];
+  $phone=$_POST['phone'];
+  $city=$_POST['city'];
+  $name=$_POST['name'];
+  $mail=$_POST['mail'];
 
 	if($_POST['a00'] != ""){
     $respuesta['gate0'] = 'ROBOT';
@@ -74,12 +79,42 @@ function lt_ajax_mail() {
 
 
 
-    // $email='molinerozadkiel@gmail.com';
-    $email='tomas.moralparra@gmail.com';
+    // $respuesta['cont'] = json_encode($cont);
+    $totalPrice = 0;
+    $tablaDePrecios = '';
+    foreach ($cont as $key => $value) {
+      $respuesta[$key] = $value;
+      if($value->singlePrice != 'NaN'){
+        $finalPrice = $value->qty * $value->singlePrice;
+      } else {
+        $finalPrice = 0;
+      }
+      $totalPrice = $totalPrice + $finalPrice;
+      $clase = '';
+      if($key & 1){
+        $clase = 'budget-row-colored';
+      }
+    # code...
+      // $tablaDePrecios = $tablaDePrecios . $key . " - " . $value . "<br>";
+      $tablaDePrecios = $tablaDePrecios . "
+      <tr class='budget-row $clase'>
+        <td>$value->code</td>
+        <td>$value->qty</td>
+        <td>$value->singlePrice</td>
+        <td> - </td>
+        <td>$finalPrice</td>
+      </tr>";
+    }
 
-		$subject='Test mail';
-    // $message='TESTEEEE';
-    $message=$mail;
+
+
+    $email='molinerozadkiel@gmail.com';
+    // $email='tomas.moralparra@gmail.com';
+
+		$subject="Cotizacion para $name";
+    // $message='';
+    // $message=$mail;
+
     
 
     // foreach ($_POST as $key => $value) {
@@ -88,6 +123,7 @@ function lt_ajax_mail() {
     //   }
     // }
 
+    require_once 'mailv1.php';
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
 
