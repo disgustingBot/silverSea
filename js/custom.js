@@ -512,7 +512,7 @@ cartController = {
 
 		// console.log('la concha de la EXPLORAR')
 	},
-	currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false},
+	currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false, singlePrice: 0},
 	containerToAdd:false,
 	cart: [],
 	locationOrigen:[],
@@ -529,15 +529,15 @@ cartController = {
 		}else{
 			formData.append( 'column', 'country' );
 		}
-		console.log(formData);
+		// console.log(formData);
 		ajax2(formData).then( data => {
-			console.log(data)
+			// console.log(data)
 
 			JSON.parse(data.location).forEach( e => {
 				for(var key in e) {
 					var value = e[key].replace(/(?:\r\n|\r|\n)/g, '');
 					key = option + key.capitalize();
-					console.log(key);
+					// console.log(key);
 					// console.log(d.querySelector('#selectBox'+key+' .selectBoxList'))
 					var a = cartController.selectBoxOption(key,value),
 					input = a.querySelector(".selectBoxInput");
@@ -555,7 +555,7 @@ cartController = {
 
 
 	finish:()=>{
-		console.log(cartController.cart)
+		console.log('carrito antes de la transforrmacion', cartController.cart)
 		cartController.cart.forEach((item, i) => {
 			// cartController.getPrice(item.code);
 			// console.log(item);
@@ -565,50 +565,77 @@ cartController = {
 			formData.append( 'cont', item.code );
 			formData.append( 'country', cartController.locationOrigen['country'] );
 			formData.append( 'city', cartController.locationOrigen['city'] );
-			console.log('formData');
+			// console.log('formData');
 			
 			// Display the key/value pairs
-			for (var pair of formData.entries()) {
-				console.log(pair[0]+ ', ' + pair[1]); 
-			}
+			// for (var pair of formData.entries()) {
+			// 	console.log(pair[0]+ ', ' + pair[1]); 
+			// }
 			ajax2(formData).then( data => {
 				console.log(data)
-				let finalPrice, currency;
-
-				if (data[0]) {
-					currency = data[0].currency;
-
-					if (data[0].fixed_price!=0) {
-						finalPrice = data[0].fixed_price;
-					}else if(data[0].sale_price!=0){
-						finalPrice = data[0].sale_price - 300;
-					}else{
-						let prices = data.map( x => x.supplier_price );
-						let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
-						let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
-						finalPrice = average + 200;
-					}
-
-				} else {
-					currency = '';
-					finalPrice = 0;
-				}
-
-
+				let singlePrice, currency;
+				
 				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
 				itemQty = cartItem.querySelector('.cartItemQty').innerText;
 				itemPrice = cartItem.querySelector('.cartItemPriceNumber');
 				itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
+				if (data[0]) {
+					currency = data[0].currency;
+
+					if (data[0].fixed_price!=0) {
+						singlePrice = parseFloat(data[0].fixed_price)
+					}else if(data[0].sale_price!=0){
+						singlePrice = parseFloat(data[0].sale_price - 300)
+					}else if(!data[1]){
+						singlePrice = parseFloat(data[0].supplier_price)
+					}else{
+						let prices = data.map( x => x.supplier_price );
+						let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
+						let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+						singlePrice = average + 200;
+					}
+					totalPrice = singlePrice * parseInt(itemQty);
+
+				} else {
+					currency = '';
+					singlePrice = 0;
+					totalPrice = 'NaN';
+				}
+				
+				// const check = (element) => {
+				// 	return element.code == x.code;
+				// }
+				// // if (cartController.cart.find(check)) {
+				// let index = cartController.cart.findIndex(check)
+				// cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
+				cartController.cart[i].setPrice(singlePrice);
+				nuevoElemento = new CartItem(cartController.cart[i].values)
+				cartController.cart[i] = nuevoElemento;
+				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
+				// console.log(cartController.cart[i]);
+				if (i==cartController.cart.length - 1){
+
+					console.log('CARRITO luego de la transformacion', cartController.cart)
+					cartController.sendMail();
+				}
+				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
+				// }
+
+
 
 				itemCurrency.innerText = currency
-				itemPrice.innerText = finalPrice * parseInt(itemQty);
+				itemPrice.innerText = totalPrice;
 			})
 		});
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
-		console.log('send Mail')
-		cartController.sendMail();
+		// console.log('send Mail')
+		// console.log(cartController.cart)
+
+
+
+		// cartController.sendMail(falsoCarrito);
 		// let info = {
 		// 	fname:   'Fake',
 		// 	lname:   'Name',
@@ -627,10 +654,19 @@ cartController = {
 	},
 
 
-	sendMail:()=>{
+	sendMail:(cart)=>{
+		// console.log(cart)
+		// cart[0].toJSON="I won't allow you to use sails toJSON, just use the native stringification";
+		// console.log(JSON.stringify(cart))
 		var formData = new FormData();
 		formData.append( 'action', 'lt_ajax_mail' );
-		formData.append( 'cart', JSON.stringify(cartController.cart) );
+		formData.append( 'cont', JSON.stringify(cartController.cart) );
+		formData.append( 'country', cartController.locationOrigen['country'] );
+		formData.append( 'city', cartController.locationOrigen['city'] );
+		formData.append( 'name', d.querySelector('#mateputNombre').value );
+		formData.append( 'phone', d.querySelector('#mateputTelefono').value );
+		formData.append( 'mail', d.querySelector('#mateputEmail').value );
+
 
 		ajax2(formData).then( data => {
 			console.log(data);
@@ -993,6 +1029,7 @@ class CartItem {
 	constructor(v){
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
 		this.values = v;
+		// this.singlePrice = 0;
 		// Esta parte define las propiedades del elemento como vienen del objeto v
 		for(var k in v){Object.defineProperty(this,k,{enumerable: true,value:v[k],writable: true})}
 	}
@@ -1000,6 +1037,10 @@ class CartItem {
 	setQty(x){
 		this.qty = x;
 		this.values.qty = x;
+	}
+	setPrice(x){
+		this.singlePrice = x;
+		this.values.singlePrice = x;
 	}
 
 
