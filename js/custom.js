@@ -572,7 +572,7 @@ cartController = {
 			// 	console.log(pair[0]+ ', ' + pair[1]); 
 			// }
 			ajax2(formData).then( data => {
-				console.log(data)
+				// console.log(data)
 				let singlePrice, currency;
 				
 				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
@@ -581,7 +581,21 @@ cartController = {
 				itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
 				if (data[0]) {
-					currency = data[0].currency;
+					// currency = data[0].currency;
+					currency = 'EUR';
+					// // TODO: leer el exchange de algun lado
+					// TODO: transformar todo al mismo antes de hacer comparaciones ni nada
+					exchange = data.pop()
+					data.forEach(element => {
+						if(element.currency.includes('USD')){
+							element.currency = 'EUR'
+							element.supplier_price = element.supplier_price * exchange.rate
+							element.fixed_price = element.fixed_price * exchange.rate
+							element.sale_price = element.sale_price * exchange.rate
+						}
+					});
+					// console.log(data)
+					// console.log('EX-change rate SUELTOOO:', exchange)
 
 					if (data[0].fixed_price!=0) {
 						singlePrice = parseFloat(data[0].fixed_price)
@@ -614,8 +628,10 @@ cartController = {
 				cartController.cart[i] = nuevoElemento;
 				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
 				// console.log(cartController.cart[i]);
-				if (i==cartController.cart.length - 1){
 
+
+				// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
+				if (i==cartController.cart.length - 1){
 					console.log('CARRITO luego de la transformacion', cartController.cart)
 					cartController.sendMail();
 				}

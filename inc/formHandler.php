@@ -71,10 +71,10 @@ function lt_ajax_mail() {
   $name=$_POST['name'];
   $mail=$_POST['mail'];
 
-	if($_POST['a00'] != ""){
-    $respuesta['gate0'] = 'ROBOT';
+	// if($_POST['a00'] != ""){
+    // $respuesta['gate0'] = 'ROBOT';
 		// $link = add_query_arg( array('status' => 'nope',), $link );
-	} else {
+	// } else {
     $respuesta['gate0'] = 'no es robot';
 
 
@@ -134,7 +134,7 @@ function lt_ajax_mail() {
       // $link = add_query_arg( array( 'status' => 'error', ), $link );
       $respuesta['gate1'] = 'error al enviar mensaje';
     }
-	}
+	// }
 	if($debugMode){echo wp_json_encode($respuesta);}
 	exit();
 }
