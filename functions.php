@@ -427,7 +427,7 @@ function newSvg($id){ ?>
 // get_stylesheet_directory_uri() instead of get_template_directory_uri()
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 function load_admin_styles() {
-  // wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
+  wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
 }
 
 
@@ -825,7 +825,7 @@ function lt_upload_file () {
 add_action( 'wp_ajax_lt_cart_end', 'lt_cart_end' );
 add_action( 'wp_ajax_nopriv_lt_cart_end', 'lt_cart_end' );
 
-function lt_cart_end () {
+function lt_cart_end () { global $wpdb;
 	$server = 'online';
 	$debugMode = false;
 	$respuesta = array();
@@ -872,7 +872,17 @@ function lt_cart_end () {
 	$qry = "SELECT * from stock WHERE id_contenedor = '$contenedor' AND pais = '$country' AND ciudad = '$city';";
 	$ress = $conn->query($qry);
 	$resp = $ress->fetch_all(MYSQLI_ASSOC);
+	
+	//TODO: agregar a $resp el currency exchange
+	
+	$query = "SELECT * FROM `exchange` WHERE currency1 = 'USD' AND currency2 = 'EUR'";
+	$results = $wpdb->get_results( $query );
+	$respuesta['exchange']=$results;
+	array_push($resp, $results[0]);
 	$json_array = wp_json_encode( $resp );
+	// $resp[] = json_decode($results);
+	$respuesta['resp']=$resp;
+
 	if(!$debugMode){
 		echo $json_array;
 	}
@@ -1091,3 +1101,107 @@ function wh_deleteProduct($id, $force = FALSE)
     }
     return true;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Register a custom menu page.
+ */
+function wpdocs_register_my_custom_menu_page(){
+    add_menu_page( 
+        __( 'Currencies', 'SilverSea' ),
+        'Currencies',
+        'manage_options',
+        'currencies',
+        'my_custom_menu_page',
+        'dashicons-welcome-widgets-menus',
+        79
+    ); 
+}
+add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+
+/**
+ * Display a custom menu page
+ */
+function my_custom_menu_page(){ global $wp; ?>
+	<h3>Currency exchange rates:</h3>
+
+
+	<form class="currencies" name="myform" action="<?php echo esc_attr( admin_url('admin-post.php') ); ?>" method="POST">
+	<?php
+	global $wpdb;
+
+	$query = "SELECT * FROM `exchange`";
+	$authors = $wpdb->get_results( $query );
+	?>
+		<input type="hidden" name="action" value="save_my_custom_form" />
+        <input type="hidden" name="link"     value="<?php echo admin_url('/admin.php?page=currencies'); ?>">
+		<?php foreach( $authors as $author ) : ?>
+			<label class="currencies_label" for="curr<?php echo $author->id; ?>">
+				<p class="currency_name">
+					<?php echo $author->currency1 . ' - ' . $author->currency2; ?>
+				</p>
+				<input id="curr<?php echo $author->id; ?>" name="<?php echo $author->currency1 . $author->currency2; ?>" type="text" value="<?php echo $author->rate; ?>">
+			</label>
+		<?php endforeach; ?>
+
+
+		<input type="submit" value="submit" />
+	</form>
+<?php }
+
+
+
+function my_save_custom_form() {
+	$link=$_POST['link'];
+    global $wpdb;
+	$table = 'exchange';
+
+	foreach ($_POST as $key => $value) {
+		if($key != 'action' and $key != 'link'){
+			$curr1 = substr($key,  0, 3);
+			$curr2 = substr($key, -3);
+			$query = "SELECT * FROM `exchange` WHERE currency1 = '$curr1' AND currency2 = '$curr2'";
+			$results = $wpdb->get_results( $query );
+			if(count($results)>0){
+
+
+				$data = array( 'rate' => $value );
+				$where = array(
+					'currency1' => $curr1,
+					'currency2' => $curr2
+				);
+				$wpdb->update($table, $data, $where );
+
+
+			} else {
+				// TODO: si no existe, crearlo
+				$data = array( 'currency1' => $curr1, 'currency2' => $curr2, 'rate' => 0.89 );
+				$wpdb->insert($table,$data);
+			}
+		}
+	}
+	wp_redirect($link);
+	exit();
+}
+
+add_action( 'admin_post_save_my_custom_form', 'my_save_custom_form' );
