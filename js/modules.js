@@ -87,7 +87,7 @@ class GrowUp {
 		this.className = element.className;
 		this.target = element.dataset.target;
 		this.step = 50;
-		this.timeDuration = 1500;
+		this.timeDuration = 2500;
 		this.current = parseFloat(element.innerHTML);
 
 		this.config = { attributes: true, childList: true, characterData: true }
@@ -314,7 +314,7 @@ cardSetupExecuter = {
             tip2 = item.dataset.tip2,
             cond = item.dataset.cond,
             butn = item.querySelector('.cardAdd');
-    
+
             butn.addEventListener('click',()=>{
                 cartController.add({
                     code: code,
