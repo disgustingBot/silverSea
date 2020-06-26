@@ -177,7 +177,7 @@ FIN DE MAPA DE CONTENIDOS */
   --navBarWidth: 50%;
   --navBarGG: .7rem;
   --headerLogoHeight: 3rem;
-  --menuItemAFontSize: 16px;
+  --menuItemAFontSize: 14px;
   --cartButtonTxtDisplay: none;
 
   /* ATFS */
@@ -584,7 +584,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
     --navBarWidth: 40%;
     --navBarGG: 1rem;
-    --menuItemAFontSize: 16px;
+    --menuItemAFontSize: 14px;
     --headerLogoHeight: 3rem;
 
 
@@ -2542,6 +2542,22 @@ section {
 .summaryTxt {
   font-size: 18px;
   line-height: 24px;
+}
+
+.otroTxt {
+  text-align: left;
+  margin: 10px 0;
+}
+ li.otroTxt {
+   margin-left: 24px;
+ }
+ li.otroTxt::before {
+  content: "\2022";
+  color: var(--primaryColor);
+  font-weight: bold;
+  display: inline-block;
+  width: 14px;
+  font-size: 24px;
 }
 
 
