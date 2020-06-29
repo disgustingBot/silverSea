@@ -35,6 +35,7 @@ Version: 0.0
 6.3.0) =Front Page ATF:
 6.3.1) =About Us ATF:
 6.3.2) =Team ATF:
+6.3.3) =Stock ATF:
 6.4) =socalMedia:
 6.5) =multiCards:
 6.5.0) =card:
@@ -631,7 +632,7 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
   :root {
-    --lateral: 5rem;
+    --lateral: 3rem;
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
@@ -657,7 +658,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media  screen and (min-width: 1500px) {
   :root {
 
-    --lateral: 10rem;
+    --lateral: 8rem;
 
 
     /* ?HEADER */
@@ -687,7 +688,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media  screen and (min-width: 1800px) {
   :root {
 
-    --lateral: 15rem;
+    --lateral: 10rem;
 
 
   }
@@ -1796,7 +1797,57 @@ section {
   margin-right: .5rem;
 }
 
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              6.3.3) =Stock ATF:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
 
+.stockBanner {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.stockBannerOverlay {
+  background: black;
+  opacity: .5;
+}
+
+.stockATFTitle {
+  color: var(--grey0);
+  z-index: 2;
+  margin: auto;
+}
+
+.stockReport {
+  width: 100%;
+  padding: 2rem var(--lateral);
+  display: grid;
+}
+
+.stockreport-table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+
+table.stockreport-table th {
+  background: var(--primaryColor);
+  color: var(--grey0);
+}
+
+table.stockreport-table .border {
+  border-bottom: 1px solid #3C272A;
+}
+
+.stockReport table caption, .stockReport table th, .stockReport table td {
+  font-size: 10px;
+  font-size: .714285714286rem;
+  line-height: 10px;
+  line-height: .714285714286rem;
+  text-align: left;
+  padding: 5px;
+}
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
                                 6.4) =socalMedia:
@@ -2202,9 +2253,9 @@ section {
 }
 
 
-.btn .contactCta {
+.contactCTA {
   position:fixed;
-  top: 120px;
+  bottom: 60px;
   left: 1rem;
   z-index:4;
   text-align: center;
