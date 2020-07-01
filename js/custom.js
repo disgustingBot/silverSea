@@ -736,8 +736,8 @@ cartController = {
 
 
 		let info = {
-			fname:   'Fake',
-			lname:   'Name',
+			fname:   'Desde el otro lugar',
+			lname:   'tambien llega el testeo?',
 			email:   'email@test.fake',
 			phone:   '0800 666 696969',
 			company: 'test company',
@@ -788,24 +788,9 @@ cartController = {
 		// 	quantity:'product quantity',
 		// 	message: 'el mensajeeeee',
 		// }
+		// cartController.newLead(info)
 
 
-		// let oid = '00D1l0000000ia7',
-		// retURL  = 'https://silverseacontainers.com/',
-		// debug   = 1,
-		// debugEmail = 'gportela@silverseacontainers.com',
-		// first_name = info.fname,
-		// last_name  = info.lname,
-		// email      = info.email,
-		// phone      = info.phone,
-		// company    = info.company,
-		// country    = info.country,
-		// city       = info.city,
-		// product    = info.code,
-		// type       = info.type,
-		// size       = info.size,
-		// quantity   = info.quantity,
-		// message    = info.message;
 
 		// var formData = new FormData();
 		// formData.append( 'action', 'lt_new_lead' );
@@ -828,30 +813,54 @@ cartController = {
 		
 
 
-	newLead:()=>{
-			
-		var formData = new FormData();
-		formData.append( 'action', 'lt_new_lead' );
-		// formData.append( 'oid', '00D1l0000000ia7' );
-		// formData.append( 'retURL'    , 'https://silverseacontainers.com/' );
-		// formData.append( 'debug'     , 1 );
-		// formData.append( 'debugEmail', 'gportela@silverseacontainers.com' );
-		// formData.append( 'first_name', 'Fake' );
-		// formData.append( 'last_name', 'Name' );
-		// formData.append( 'email', 'test@email.fake' );
-		// formData.append( 'phone', '0800 666 696969' );
-		// formData.append( 'company', 'test company' );
-		// formData.append( 'country', 'my country' );
-		// formData.append( 'city', 'a city' );
-		// formData.append( '00N0X00000CrHzi', 'the product code' );
-		// formData.append( '00N0X00000AlPaB', 'product type' );
-		// formData.append( '00N0X00000AlPaA', 'product size' );
-		// formData.append( '00N0X00000AlPaC', 'product quantity' );
-		// formData.append( '00N0X00000AlPa9', 'please help me' );
+	newLead:(info)=>{
+		
+		// let oid = '00D1l0000000ia7';
+		// let retURL  = 'https://silverseacontainers.com/';
+		// let debug   = 1;
+		// let debugEmail = 'gportela@silverseacontainers.com';
+		let first_name = info.fname;
+		let last_name  = info.lname;
+		let email      = info.email;
+		let phone      = info.phone;
+		let company    = info.company;
+		let country    = info.country;
+		let city       = info.city;
+		let product    = info.code;
+		let type       = info.type;
+		let size       = info.size;
+		let quantity   = info.quantity;
+		let message    = info.message;
 
-		ajax3(formData, 'https://silverseacontainers.com/testLead.php').then( data => {
-			console.log(data)
-		})
+		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
+
+		let baseURL= 'https://silverseacontainers.com/testLead.php';
+
+		let url = baseURL + vars;
+		window.open(url,'_blank');
+			
+		// var formData = new FormData();
+		// formData.append( 'action', 'lt_new_lead' );
+		// // formData.append( 'oid', '00D1l0000000ia7' );
+		// // formData.append( 'retURL'    , 'https://silverseacontainers.com/' );
+		// // formData.append( 'debug'     , 1 );
+		// // formData.append( 'debugEmail', 'gportela@silverseacontainers.com' );
+		// // formData.append( 'first_name', 'Fake' );
+		// // formData.append( 'last_name', 'Name' );
+		// // formData.append( 'email', 'test@email.fake' );
+		// // formData.append( 'phone', '0800 666 696969' );
+		// // formData.append( 'company', 'test company' );
+		// // formData.append( 'country', 'my country' );
+		// // formData.append( 'city', 'a city' );
+		// // formData.append( '00N0X00000CrHzi', 'the product code' );
+		// // formData.append( '00N0X00000AlPaB', 'product type' );
+		// // formData.append( '00N0X00000AlPaA', 'product size' );
+		// // formData.append( '00N0X00000AlPaC', 'product quantity' );
+		// // formData.append( '00N0X00000AlPa9', 'please help me' );
+
+		// ajax3(formData, 'https://silverseacontainers.com/testLead.php').then( data => {
+		// 	console.log(data)
+		// })
 	},
 	add: (x) => {
 		const check = (element) => {

@@ -43,41 +43,44 @@
 // echo '<h1>HOla mundo</h1>';
 
 
-// $oid        = $_POST['oid'];
-// $retURL     = $_POST['retURL'];
-// $debug      = $_POST['debug'];
-// $debugEmail = $_POST['debugEmail'];
-// $first_name = $_POST['first_name'];
-// $last_name  = $_POST['last_name'];
-// $email      = $_POST['email'];
-// $phone      = $_POST['phone'];
-// $company    = $_POST['company'];
-// $country    = $_POST['country'];
-// $city       = $_POST['city'];
-// $product    = $_POST['00N0X00000CrHzi'];
-// $type       = $_POST['00N0X00000AlPaB'];
-// $size       = $_POST['00N0X00000AlPaA'];
-// $quantity   = $_POST['00N0X00000AlPaC'];
-// $message    = $_POST['00N0X00000AlPa9'];
+// $oid        = $_GET['oid'];
+// $retURL     = $_GET['retURL'];
+// $debug      = $_GET['debug'];
+// $debugEmail = $_GET['debugEmail'];
+$first_name = $_GET['first_name'];
+$last_name  = $_GET['last_name'];
+$email      = $_GET['email'];
+$phone      = $_GET['phone'];
+$company    = $_GET['company'];
+$country    = $_GET['country'];
+$city       = $_GET['city'];
+$product    = $_GET['product'];
+$type       = $_GET['type'];
+$size       = $_GET['size'];
+$quantity   = $_GET['quantity'];
+$message    = $_GET['message'];
+
+
 
 $oid        = '00D1l0000000ia7';
 $retURL     = 'https%3A%2F%2Fsstc.com.es%2F';
 $debug      = '1';
 $debugEmail = 'testtter%40aaallll.com';
-$first_name = 'Test de Julio';
-$last_name  = 'Testsonaaaaa';
-$email      = 'mail%40test.tt';
-$phone      = '1234567890';
-$company    = 'Test inc.';
-$country    = 'Testland';
-$city       = 'Testpolis';
-$product    = '20FR+CW';
-$type       = 'container';
-$size       = 'big';
-$quantity   = '22';
-$message    = 'yet+another+test';
 
+// $first_name = 'Test de Julio';
+// $last_name  = 'Testsonaaaaa';
+// $email      = 'mail%40test.tt';
+// $phone      = '1234567890';
+// $company    = 'Test inc.';
+// $country    = 'Testland';
+// $city       = 'Testpolis';
+// $product    = '20FR+CW';
+// $type       = 'container';
+// $size       = 'big';
+// $quantity   = '22';
+// $message    = 'yet+another+test';
 
+// $testUrl = 'https://silverseacontainers.com/testLead.php';
 
 $url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
 // $myvars = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
