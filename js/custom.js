@@ -772,47 +772,6 @@ cartController = {
 		});
 	},
 
-
-		
-		// info = {
-		// 	fname:   'Fake',
-		// 	lname:   'Name',
-		// 	email:   'email@test.fake',
-		// 	phone:   '0800 666 696969',
-		// 	company: 'test company',
-		// 	country: 'my country',
-		// 	city:    'a city',
-		// 	code:    'the product code',
-		// 	type:    'product type',
-		// 	size:    'product size',
-		// 	quantity:'product quantity',
-		// 	message: 'el mensajeeeee',
-		// }
-		// cartController.newLead(info)
-
-
-
-		// var formData = new FormData();
-		// formData.append( 'action', 'lt_new_lead' );
-		// formData.append( 'oid', oid );
-		// formData.append( 'retURL'    , retURL );
-		// formData.append( 'debug'     , debug );
-		// formData.append( 'debugEmail', debugEmail );
-		// formData.append( 'first_name', first_name );
-		// formData.append( 'last_name', last_name );
-		// formData.append( 'email', email );
-		// formData.append( 'phone', phone );
-		// formData.append( 'company', company );
-		// formData.append( 'country', country );
-		// formData.append( 'city', city );
-		// formData.append( '00N0X00000CrHzi', product );
-		// formData.append( '00N0X00000AlPaB', type );
-		// formData.append( '00N0X00000AlPaA', size );
-		// formData.append( '00N0X00000AlPaC', quantity );
-		// formData.append( '00N0X00000AlPa9', message );
-		
-
-
 	newLead:(info)=>{
 		
 		// let oid = '00D1l0000000ia7';
@@ -838,29 +797,7 @@ cartController = {
 
 		let url = baseURL + vars;
 		window.open(url,'_blank');
-			
-		// var formData = new FormData();
-		// formData.append( 'action', 'lt_new_lead' );
-		// // formData.append( 'oid', '00D1l0000000ia7' );
-		// // formData.append( 'retURL'    , 'https://silverseacontainers.com/' );
-		// // formData.append( 'debug'     , 1 );
-		// // formData.append( 'debugEmail', 'gportela@silverseacontainers.com' );
-		// // formData.append( 'first_name', 'Fake' );
-		// // formData.append( 'last_name', 'Name' );
-		// // formData.append( 'email', 'test@email.fake' );
-		// // formData.append( 'phone', '0800 666 696969' );
-		// // formData.append( 'company', 'test company' );
-		// // formData.append( 'country', 'my country' );
-		// // formData.append( 'city', 'a city' );
-		// // formData.append( '00N0X00000CrHzi', 'the product code' );
-		// // formData.append( '00N0X00000AlPaB', 'product type' );
-		// // formData.append( '00N0X00000AlPaA', 'product size' );
-		// // formData.append( '00N0X00000AlPaC', 'product quantity' );
-		// // formData.append( '00N0X00000AlPa9', 'please help me' );
-
-		// ajax3(formData, 'https://silverseacontainers.com/testLead.php').then( data => {
-		// 	console.log(data)
-		// })
+		//TODO: que la pagina que se abre se cierre... 
 	},
 	add: (x) => {
 		const check = (element) => {
@@ -965,21 +902,3 @@ class CartItem {
     d.querySelector('.cartList').insertBefore(cartItemTemplate, null);
 	}
 }
-
-
-// formElement = document.querySelector('form');
-// console.log(new URLSearchParams(new FormData(formElement)).toString())
-
-
-
-// jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" error
-
-// 	data = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=test%40fake.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
-// 	action = "https://go.pardot.com/l/821023/2020-06-02/8qk1";
-// 	$.ajax({
-// 		url: action,
-// 		method: 'POST',
-// 		data: data,
-// 		dataType: 'jsonp'
-// 	})
-// })

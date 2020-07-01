@@ -456,114 +456,8 @@ function newSvg($id){ ?>
 // get_stylesheet_directory_uri() instead of get_template_directory_uri()
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 function load_admin_styles() {
-  wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
+	wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-add_action( 'wp_ajax_lt_new_lead', 'lt_new_lead' );
-add_action( 'wp_ajax_nopriv_lt_new_lead', 'lt_new_lead' );
-function lt_new_lead(){
-// 	$debugMode = true;
-// 	$respuesta = array();
-
-
-// 	// $oid        = $_POST['oid'];
-// 	// $retURL     = $_POST['retURL'];
-// 	// $debug      = $_POST['debug'];
-// 	// $debugEmail = $_POST['debugEmail'];
-// 	// $first_name = $_POST['first_name'];
-// 	// $last_name  = $_POST['last_name'];
-// 	// $email      = $_POST['email'];
-// 	// $phone      = $_POST['phone'];
-// 	// $company    = $_POST['company'];
-// 	// $country    = $_POST['country'];
-// 	// $city       = $_POST['city'];
-// 	// $product    = $_POST['00N0X00000CrHzi'];
-// 	// $type       = $_POST['00N0X00000AlPaB'];
-// 	// $size       = $_POST['00N0X00000AlPaA'];
-// 	// $quantity   = $_POST['00N0X00000AlPaC'];
-// 	// $message    = $_POST['00N0X00000AlPa9'];
-
-
-// 	$first_name = 'Test NAme';
-// 	$last_name  = 'And Last Name';
-
-
-// 	$url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
-// 	$data = array(
-// 		'oid'             => '00D1l0000000ia7',
-// 		'retURL'          => 'https://sstc.com.es/',
-// 		'debug'           => '1',
-// 		'debugEmail'      => 'gportela@silverseacontainers.com',
-// 		'first_name'      => $first_name,
-// 		'last_name'       => $last_name,
-// 		'email'           => 'email@test.fake',
-// 		'phone'           => '0800 666 696969',
-// 		'company'         => 'test company',
-// 		'country'         => 'my country',
-// 		'city'            => 'a city',
-// 		'00N0X00000CrHzi' => 'the product code',
-// 		'00N0X00000AlPaB' => 'product type',
-// 		'00N0X00000AlPaA' => 'product size',
-// 		'00N0X00000AlPaC' => 'product quantity',
-// 		'00N0X00000AlPa9' => 'el mensajeeeee',
-// 	);
-
-// 	// use key 'http' even if you send the request to https://...
-// 	$options = array(
-// 		'http' => array(
-// 			'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-// 			'method'  => 'POST',
-// 			'content' => http_build_query($data)
-// 		)
-// 	);
-// 	$context  = stream_context_create($options);
-// 	$result = file_get_contents($url, false, $context);
-// if ($result === FALSE) { /* Handle error */ }
-
-// var_dump($result);
-// if($debugMode){echo wp_json_encode($respuesta);}
-
-
-
-
-
-$url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
-$myvars = 'oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test';
-
-$ch = curl_init( $url );
-curl_setopt( $ch, CURLOPT_POST, 1);
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
-curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt( $ch, CURLOPT_HEADER, 0);
-curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
-
-$response = curl_exec( $ch );
-
-var_dump($response);
-
-
-
-
-
-exit();
-}
-
-
-
-
 
 
 
@@ -735,19 +629,6 @@ function lt_upload_file () {
 
 		if ($server == 'online') {
 
-			// INSTALACION ONLINE
-			// $dbServerName = "localhost";
-			// $dbUsername = "silverse_admin";
-			// $dbPassword = "M-9!-^%jZ*h5";
-			// $dbName = "silverse_web";
-			// code...
-	
-			// INSTALACION WAVE HOST
-			// $dbServerName = "localhost";
-			// $dbUsername = "lattedev_silver";
-			// $dbPassword = "%fGC+<`@]Csz#75F";
-			// $dbName = "lattedev_silver";
-	
 			// INSTALACION FINAL
 			$dbHost = "localhost";
 			$dbUser = "silversea_web";
@@ -896,19 +777,6 @@ function lt_cart_end () { global $wpdb;
 
 	if ($server == 'online') {
 
-		// INSTALACION ONLINE
-		// $dbServerName = "localhost";
-		// $dbUsername = "silverse_admin";
-		// $dbPassword = "M-9!-^%jZ*h5";
-		// $dbName = "silverse_web";
-		// code...
-
-		// INSTALACION WAVE HOST
-		// $dbServerName = "localhost";
-		// $dbUsername = "lattedev_silver";
-		// $dbPassword = "%fGC+<`@]Csz#75F";
-		// $dbName = "lattedev_silver";
-
 		// INSTALACION FINAL
 		$dbHost = "localhost";
 		$dbUser = "silversea_web";
@@ -978,13 +846,6 @@ function gatCol () {
   // include get_template_directory_uri().'/dbh.inc.php';
 
 	if ($server == 'online') {
-
-		// INSTALACION ONLINE
-		// $dbServerName = "localhost";
-		// $dbUsername = "silverse_admin";
-		// $dbPassword = "M-9!-^%jZ*h5";
-		// $dbName = "silverse_web";
-		// code...
 
 		// INSTALACION WAVE HOST
 		// $dbServerName = "localhost";
@@ -1087,14 +948,6 @@ function lt_get_location () {
 
 
 	if ($server == 'online') {
-
-		// INSTALACION ONLINE
-		// $dbServerName = "localhost";
-		// $dbUsername = "silverse_admin";
-		// $dbPassword = "M-9!-^%jZ*h5";
-		// $dbName = "silverse_web";
-		// code...
-
 		// INSTALACION WAVE HOST
 		// $dbServerName = "localhost";
 		// $dbUsername = "lattedev_silver";
