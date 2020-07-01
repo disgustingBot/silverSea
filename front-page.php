@@ -9,27 +9,28 @@
   <div class="cotizador" id="cotizador">
     <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
 
-    <div class="currentSemiSelection" id="currentSemiSelection">
+    <div class="currentSemiSelection cond" id="currentSemiSelection">
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
         <use xlink:href="" id="currentSemiSelectionSize"></use>
       </svg>
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="" id="currentSemiSelectionTip1"></use>
+        <use xlink:href="" id="currentSemiSelectionTipo_1"></use>
       </svg>
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="" id="currentSemiSelectionTip2"></use>
+        <use xlink:href="" id="currentSemiSelectionTipo_2"></use>
       </svg>
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="" id="currentSemiSelectionCond"></use>
+        <use xlink:href="" id="currentSemiSelectionCondicion"></use>
       </svg>
     </div>
 
 
-          <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
-            <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-              <use xlink:href="#simpleTruck" class="cartButtonUse"></use>
-            </svg>
-          </div>
+    <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
+      <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
+        <use xlink:href="#simpleTruck" class="cartButtonUse"></use>
+      </svg>
+    </div>
+
 
     <p class="cotizadorTxt">Tras completar el proceso de cotización, recibiás una cotización rápida inmediata</p>
     <div class="dynamicContList" id="dynamicContList">
@@ -109,6 +110,73 @@
   </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="pfah-wrapper">
+  <form action="https://go.pardot.com/l/821023/2020-06-02/8qk1" class="pfah-form">
+    <input class="pfah-input" type=hidden name="oid" value="00D1l0000000ia7">
+    <input class="pfah-input" type=hidden name="retURL" value="https://sstc.com.es/">
+    <!-- <input class="pfah-input" type="hidden" name="debug" value=1> -->
+    <!-- <input class="pfah-input" type="hidden" name="debugEmail" value="gportela@silverseacontainers.com"> -->
+
+
+    
+    <input class="pfah-input" id="first_name" maxlength="40" name="first_name" size="20" type="text" value="MY name" /><br>
+    <input class="pfah-input" id="last_name"  maxlength="80" name="last_name" size="20" type="text" value="last NAME" /><br>
+    <input class="pfah-input" id="email"      maxlength="80" name="email" size="20" type="text" value="test@email.fake" /><br>
+    <input class="pfah-input" id="phone"      maxlength="40" name="phone" size="20" type="text" value="234567" /><br>
+    <input class="pfah-input" id="company"    maxlength="40" name="company" size="20" type="text" value="company" /><br>
+    <input class="pfah-input" id="country"    maxlength="40" name="country" size="20" type="text" value="country" /><br>
+    <input class="pfah-input" id="city"       maxlength="40" name="city" size="20" type="text" value="city" /><br>
+    <input class="pfah-input" id="product"    maxlength="40" name="00N0X00000CrHzi" size="20" type="text" value="20FR ASIS" /><br>
+
+    <input class="pfah-input" id="00N0X00000AlPaB" maxlength="30" name="00N0X00000AlPaB" size="20" type="text" value="type" /><br>
+
+    <input class="pfah-input" id="00N0X00000AlPaA" maxlength="25" name="00N0X00000AlPaA" size="20" type="text" value="big" /><br>
+
+    <input class="pfah-input" id="00N0X00000AlPaC" name="00N0X00000AlPaC" size="20" type="text" value="a lot" /><br>
+
+    <textarea class="pfah-input" id="00N0X00000AlPa9" name="00N0X00000AlPa9" rows="3" type="text" wrap="soft">MY message</textarea><br>
+
+    
+
+    <!-- <input class="pfah-input" type="email" name="email" required />
+    <input class="pfah-input" type="text"  name="name" /> -->
+    <button type="submit" class="pfah-input">Submit</button>
+  </form>
+  <aside class="pfah-done">
+    <div class="pfah-done-text">Thank you for your time!</div>
+  </aside>
+  <aside class="pfah-error">
+    <span class="pfah-error-text">Something wrong, please try again!</span>
+  </aside>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--  ----------------------------------------------------------------------  -->
 <!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
 <!--  If necessary, please modify the charset parameter to specify the        -->
@@ -121,20 +189,30 @@
 <!--  NOTE: Please add the following <FORM> element to your page.             -->
 <!--  ----------------------------------------------------------------------  -->
 
-<!-- <form action="https://go.pardot.com/l/821023/2020-06-02/8qk1" method="POST">
+<form action="https://go.pardot.com/l/821023/2020-06-02/8qk1" method="POST">
 
   <input type=hidden name="oid" value="00D1l0000000ia7">
-  <input type=hidden name="retURL" value="https://sstc.com.es/"> -->
+  <input type=hidden name="retURL" value="https://sstc.com.es/">
 
 <!--  ----------------------------------------------------------------------  -->
 <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
 <!--  these lines if you wish to test in debug mode.                          -->
-   <!-- <input type="hidden" name="debug" value=1>
-   <input type="hidden" name="debugEmail"
-   value="gportela@silverseacontainers.com"> -->
+  <input type="hidden" name="debug" value=1>
+  <input type="hidden" name="debugEmail"
+    value="gportela@silverseacontainers.com">
 <!--  ----------------------------------------------------------------------  -->
+<!-- oid=00D1l0000000ia7&
+retURL=https%3A%2F%2Fsstc.com.es%2F&
+debug=1&
+debugEmail=gportela%40silverseacontainers.com&
+first_name=&
+last_name=&
+email=&phone=&company=&country=&city=&00N0X00000CrHzi=&00N0X00000AlPaB=&00N0X00000AlPaA=&00N0X00000AlPaC=&00N0X00000AlPa9=
 
-  <!-- <label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=test%40fake.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test -->
+
+
+  <label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
 
   <label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
 
@@ -196,7 +274,7 @@
 
   <input type="submit" name="submit">
 
-</form> -->
+</form>
 
 
 

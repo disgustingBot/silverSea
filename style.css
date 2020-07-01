@@ -2222,6 +2222,17 @@ table.stockreport-table .border {
   color: var(--grey1);
 }
 
+.btn:disabled{
+  background:var(--grey3);
+  cursor:default;
+}
+.btn:disabled:hover{
+  background:var(--grey3);
+  color:black;
+}
+
+
+
 
 .btn.blue{
   /* background: var(--color1); */
@@ -3013,7 +3024,7 @@ table.stockreport-table .border {
 .selectBoxCurrent{
   /* border-bottom:2px solid var(--color2); */
   border-bottom: 2px solid var(--primaryColor);
-  padding:16px 52px 2px 16px;
+  padding:16px 10px 2px 16px;
   font-size: .8rem!important;
   position: relative;
 }
@@ -3074,11 +3085,11 @@ table.stockreport-table .border {
 .selectBoxOption:first-child{height:1.5rem}
 .selectBoxOption{
   cursor:pointer;
-  font-size: var(--fontSize4);
+  font-size: var(--fontSize5);
   /* height: 1.5rem; */
   /* line-height: 1.8rem; */
   transition:.3s;
-  padding:0 16px;
+  padding:0 8px;
   /* width:max-content; */
 }
 .selectBoxOption:hover{
@@ -3103,9 +3114,10 @@ table.stockreport-table .border {
 
 
 
-.dynamicCont.ready .btn{
+/* .dynamicCont.ready .btn{
   background:var(--primaryColorDark);
-}
+} */
+
 
 .dynamicCont {
   align-items:center;

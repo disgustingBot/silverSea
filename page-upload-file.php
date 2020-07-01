@@ -2,6 +2,10 @@
 
 
 <?php
+
+// lt_new_lead();
+
+
 global $wpdb;
 // // $server = 'local';
 $server = 'online';
