@@ -55,7 +55,7 @@ function lt_script_load(){
 	wp_enqueue_script( 'main' );
 	// FIN DE PARA AJAX
 
-	
+
 
 }
 
@@ -680,20 +680,20 @@ function lt_upload_file () {
 			// $dbPassword = "M-9!-^%jZ*h5";
 			// $dbName = "silverse_web";
 			// code...
-	
+
 			// INSTALACION WAVE HOST
 			// $dbServerName = "localhost";
 			// $dbUsername = "lattedev_silver";
 			// $dbPassword = "%fGC+<`@]Csz#75F";
 			// $dbName = "lattedev_silver";
-	
+
 			// INSTALACION FINAL
 			$dbHost = "localhost";
 			$dbUser = "silversea_web";
 			$dbPass = "qXne2abld1";
 			$dbName = "silversea_web";
 		} else {
-	
+
 			// INSTALACION LOCAL
 			$dbHost = "localhost";
 			$dbUser = "root";
@@ -863,18 +863,18 @@ function lt_cart_end () { global $wpdb;
 		// $dbPassword = ";$6qha)2L*KU)6nq";
 		$dbName = "lattedev_silver";
 	}
-		
+
 
 	// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-	
+
 	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 	$qry = "SELECT * from stock WHERE id_contenedor = '$contenedor' AND pais = '$country' AND ciudad = '$city';";
 	$ress = $conn->query($qry);
 	$resp = $ress->fetch_all(MYSQLI_ASSOC);
-	
+
 	//TODO: agregar a $resp el currency exchange
-	
+
 	$query = "SELECT * FROM `exchange` WHERE currency1 = 'USD' AND currency2 = 'EUR'";
 	$results = $wpdb->get_results( $query );
 	$respuesta['exchange']=$results;
@@ -1127,7 +1127,7 @@ function wh_deleteProduct($id, $force = FALSE)
  * Register a custom menu page.
  */
 function wpdocs_register_my_custom_menu_page(){
-    add_menu_page( 
+    add_menu_page(
         __( 'Currencies', 'SilverSea' ),
         'Currencies',
         'manage_options',
@@ -1135,7 +1135,7 @@ function wpdocs_register_my_custom_menu_page(){
         'my_custom_menu_page',
         'dashicons-welcome-widgets-menus',
         79
-    ); 
+    );
 }
 add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
 
@@ -1204,4 +1204,32 @@ function my_save_custom_form() {
 	exit();
 }
 
+
 add_action( 'admin_post_save_my_custom_form', 'my_save_custom_form' );
+
+
+
+
+// Filtros de preguntas al usuario
+
+add_action('pre_get_posts','lt_filtro_magico');
+
+function lt_filtro_magico($query) { // Creamos filtro mágico
+  if(!is_admin()){ //Esto previene que se ejecute en el backoffice
+
+    if ( !$query->is_main_query() ) return; //Esto hace que se ejecute solo en el main query
+
+
+    $filtroMagico = 'reeferEJEMPLO' // Nombra el filtro
+    if (isset($_GET[$filtroMagico])) { //Repetir este IF tantas veces como filtros
+      $query->query_vars['tax_query'][$filtroMagico] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'slug',
+        'terms'    => $_GET[$filtroMagico], //Acá va el query
+      );
+    } //Hay casos de OR (Research)
+
+    //we remove the actions hooked on the '__after_loop' (post navigation)
+    remove_all_actions ( '__after_loop');
+  }
+}
