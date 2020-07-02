@@ -651,15 +651,15 @@ cartController = {
 			formData.append( 'country', cartController.locationOrigen['country'] );
 			formData.append( 'city', cartController.locationOrigen['city'] );
 			// console.log('formData');
-			
+
 			// Display the key/value pairs
 			// for (var pair of formData.entries()) {
-			// 	console.log(pair[0]+ ', ' + pair[1]); 
+			// 	console.log(pair[0]+ ', ' + pair[1]);
 			// }
 			ajax2(formData).then( data => {
 				// console.log(data)
 				let singlePrice, currency;
-				
+
 				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
 				itemQty = cartItem.querySelector('.cartItemQty').innerText;
 				itemPrice = cartItem.querySelector('.cartItemPriceNumber');
@@ -701,7 +701,7 @@ cartController = {
 					singlePrice = 0;
 					totalPrice = 'NaN';
 				}
-				
+
 				// const check = (element) => {
 				// 	return element.code == x.code;
 				// }

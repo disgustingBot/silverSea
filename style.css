@@ -675,7 +675,6 @@ FIN DE MAPA DE CONTENIDOS */
                     "productGallery productGallery singleBuy singleRent  . ."
                     ; */
     /* ARCHIVE-PRODUCT */
-    --searchResultsGTC: repeat(4,1fr);
     --searchResultsAltGTC: repeat(5,1fr);
   }
 }
@@ -836,7 +835,7 @@ section {
 .opacity0{opacity:0}
 
 .txtCenterLeft {text-align: var(--txtCenterLeft)}
-.txtCenter {text-align: center}
+.txtCenter {text-align: center!important}
 
 .grid{display:grid}
 .flex{display:flex}
@@ -1037,7 +1036,7 @@ section {
   height: 100%;
   width: 100%;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   background: var(--grey0);
   padding-top: 40px;
 }
@@ -1051,7 +1050,7 @@ section {
   transition: .25s;
   width: 60vw;
   filter: brightness(100%)!important;
-  font-size: 2rem;
+  font-size: 1.5rem;
   z-index: 6;
 }
 
@@ -1161,7 +1160,7 @@ section {
 
 
 #menu-mainmenu-1 .menu-item a{
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .navBarMobile .menu-item {
@@ -1170,7 +1169,7 @@ section {
 }
 
 .navBarMobile .menu-item a {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 
@@ -1187,7 +1186,7 @@ section {
   background: var(--primaryColorDark);
   display: flex;
   flex-direction: var(--selectLangFlexDir);
-  font-size: 18px;
+  font-size: 16px;
   padding: .25rem 0;
   width: 100%;
   grid-column: 1/-1;
@@ -1318,7 +1317,7 @@ section {
 }
 
 .featureTxt {
-  font-size: .9rem;
+  font-size: 15px;
   margin: auto;
   margin-top: 0;
   text-align: center;
@@ -1326,7 +1325,7 @@ section {
 
 
 .featureTitle {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -1426,13 +1425,14 @@ section {
 }
 
 .mapSecTitle {
+  font-size: 28px;
   text-align: center;
   text-transform: uppercase;
   margin: auto;
 }
 
 .mapInterTxt {
-  font-size: .7rem;
+  font-size:  15px;
   align-self: flex-end;
   position: absolute;
   z-index: 3;
@@ -1556,17 +1556,17 @@ section {
 
 
 .timelineTitle, .timelineTextTitle {
-  font-size: 24px;
+  font-size: 18px;
   text-align: center;
   margin: 16px auto;
 }
 
 .timelineTextTxt .brandColorTxt {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .timelineTextTxt {
-  font-size: 18px;
+  font-size: 16px;
   margin: 16px auto;
   text-align: center;
 }
@@ -1592,11 +1592,11 @@ section {
 
 
 .timeline h5 {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .timeline p {
-  font-size: 18px;
+  font-size: 16px;
 }
 .timeline .event {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
@@ -1621,7 +1621,7 @@ section {
   content: attr(data-date);
   text-align: right;
   font-weight: 100;
-  font-size: 0.9em;
+  font-size: 16px;
   min-width: 120px;
 }
 .timeline .event:after {
@@ -1652,7 +1652,7 @@ section {
 .valueItem:not(.brandColorTxt) {
   grid-column: 1/-1;
   text-align: left;
-  font-size: 20px;
+  font-size: 18px;
 
 }
 
@@ -1740,7 +1740,7 @@ section {
 }
 
 .teamSectionTitle {
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   grid-column: 1/-1;
   padding: 1rem 0;
@@ -1787,13 +1787,13 @@ section {
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: .8rem;
+  font-size: 16px;
 }
 
 .areaSelectorTxt::before{
   content: '►';
   color: var(--primaryColor);
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-right: .5rem;
 }
 
@@ -1905,7 +1905,10 @@ table.stockreport-table .border {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .card .cuantosQnt{height: unset}
-.card .btn{padding: 5px;}
+.card .btn{
+  padding: 5px;
+  padding-bottom: 0;
+}
 .cardFeatures svg{width:2rem;height:2rem}
 
 .card {
@@ -1987,7 +1990,6 @@ table.stockreport-table .border {
 
 .cardFeatures{
   border-radius:4px;
-  background:var(--grey1);
   padding:.2rem 0;
   display:grid;
   grid-auto-flow:column;
@@ -2004,13 +2006,15 @@ table.stockreport-table .border {
   display: grid;
   grid-auto-flow: column;
   grid-gap:.5rem;
-  grid-template-rows: var(--cardActionsGGGTR);
-  grid-template-columns: var(--cardActionsGGGTC);
+  /* grid-template-rows: var(--cardActionsGGGTR); */
+  /* grid-template-columns: var(--cardActionsGGGTC); */
+  grid-template-columns: 1fr 1fr;
 }
 
 .cardActions .cuantos {
-  grid-column: var(--cardActinsCuantityGC);
-  margin: var(--cardActinsCuantityM);
+  /* grid-column: var(--cardActinsCuantityGC); */
+  /* margin: var(--cardActinsCuantityM); */
+  margin: auto;
 }
 
 
@@ -2060,7 +2064,7 @@ table.stockreport-table .border {
 .teamCard:hover .teamCardImg1{opacity:1}
 
 .teamCardTxt {
-  font-size: .7rem;
+  font-size: 14px;
   padding: .5rem;
   display: flex;
   flex-direction: column;
@@ -2068,8 +2072,8 @@ table.stockreport-table .border {
   height: 100px;
 }
 
-.teamCardMail {font-size: .5rem;}
-.teamCardName {font-size: .8rem;}
+.teamCardMail {font-size: 12px;}
+.teamCardName {font-size: 12px;}
 
 .teamCardBlock {display: block;}
 .teamCardNone {display: none;}
@@ -2111,7 +2115,7 @@ table.stockreport-table .border {
 .footLogInput {
   height: 1.5rem;
   width: 100%;
-  font-size: 16px;
+  font-size: 15px;
   padding: .5rem;
   border: none;
 }
@@ -2172,12 +2176,12 @@ table.stockreport-table .border {
 
 .encuentraContenedorTitle {
   width: 100%;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .archiveTopInteractTitle {
   margin: auto;
-  font-size: 1rem;
+  font-size: 18px;
   transition: .25s;
   margin-left: 0;
 }
@@ -2295,7 +2299,7 @@ table.stockreport-table .border {
   border: none;
   background:none;
   color:var(--primaryColorDark);
-  grid-row: 2;
+  /* grid-row: 2; */
   cursor: pointer;
 }
 .btnSimple:hover{
@@ -2506,11 +2510,11 @@ table.stockreport-table .border {
 }
 
 .countTxt {
-  font-size: .65rem;
+  font-size: 16px;
 }
 
 .countSmallerTxt {
-  font-size: .6rem;
+  font-size: 14px;
 }
 
 .countTxt:nth-child(2) {
@@ -2538,6 +2542,8 @@ table.stockreport-table .border {
   position: relative;
 }
 
+.article2 .sectionSummary {padding-left: 1rem;}
+
 .article2.containerNeeded  > * {
   width: 100%;
   object-fit: contain;
@@ -2559,7 +2565,6 @@ table.stockreport-table .border {
 .sectionSummary{
   display: flex;
   flex-direction: column;
-  padding-left: 1rem;
   position: relative;
   justify-content: center;
   margin-bottom: var(--A2sectionSummaryMB);
@@ -2598,11 +2603,11 @@ table.stockreport-table .border {
 }
 
 .summaryTitle{
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 
 .summaryTxt {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
 }
 
@@ -2619,7 +2624,7 @@ table.stockreport-table .border {
   font-weight: bold;
   display: inline-block;
   width: 14px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 
@@ -2787,7 +2792,7 @@ table.stockreport-table .border {
 
 .singleCategoryTitle {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 100%;
   margin: 1rem;
 }
@@ -2812,11 +2817,11 @@ table.stockreport-table .border {
   margin: auto 16px auto 0;
 }
 .categoryCardTitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .categoryCardCaption {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
@@ -2862,18 +2867,18 @@ table.stockreport-table .border {
 }
 
 .cotizadorTxt {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .contizacionAvanzada {
   display: flex;
-  font-size: 20px;
+  font-size: 18px;
   align-items: center;
   flex-direction: var(--cotizacionAvanzadaFD);
 }
 
 .contizacionAvanzada .btnSimple {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -3011,7 +3016,7 @@ table.stockreport-table .border {
 }
 
 .selectBoxPlaceholder{
-  font-size: .8rem!important;
+  font-size: 16px!important;
   height:1rem;
   line-height:1rem;
   left:16px;
@@ -3024,8 +3029,8 @@ table.stockreport-table .border {
 .selectBoxCurrent{
   /* border-bottom:2px solid var(--color2); */
   border-bottom: 2px solid var(--primaryColor);
+  font-size: 14px!important;
   padding:16px 10px 2px 16px;
-  font-size: .8rem!important;
   position: relative;
 }
 
@@ -3054,7 +3059,7 @@ table.stockreport-table .border {
   transform:translateY(-50%) scale(.6);
 }
 
-.selectBoxList{
+.selectBoxList {
   align-items: center;
   background: #FFF;
   border-radius:4px;
@@ -3074,7 +3079,8 @@ table.stockreport-table .border {
   width:100%;
   z-index: 12;
 }
-.SelectBox.focus:focus .selectBoxList{
+
+.SelectBox.focus:focus .selectBoxList {
   background:var(--grey1);
   left: var(--selectBoxListLeft);
   opacity:1;
@@ -3082,22 +3088,22 @@ table.stockreport-table .border {
 }
 
 
-.selectBoxOption:first-child{height:1.5rem}
-.selectBoxOption{
+.selectBoxOption:first-child {height:1.5rem}
+
+.selectBoxOption {
   cursor:pointer;
-  font-size: var(--fontSize5);
-  /* height: 1.5rem; */
-  /* line-height: 1.8rem; */
+  font-size: 15px;
   transition:.3s;
   padding:0 8px;
-  /* width:max-content; */
 }
-.selectBoxOption:hover{
+
+.selectBoxOption:hover {
   background:#BBB;
   z-index:1;
 }
-.hidden{display:none!important}
-.selectBoxInput{
+.hidden {display:none!important}
+
+.selectBoxInput {
   display: none;
 }
 
@@ -3106,17 +3112,11 @@ table.stockreport-table .border {
                           6.19) =dynamicCont:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.dynamicContList{
+.dynamicContList {
   display:grid;
   grid-gap:.5rem;
   padding:.5rem 0;
 }
-
-
-
-/* .dynamicCont.ready .btn{
-  background:var(--primaryColorDark);
-} */
 
 
 .dynamicCont {
@@ -3129,6 +3129,10 @@ table.stockreport-table .border {
   /* grid-template-rows:var(--dynamicContGTR); */
   grid-gap:1rem;
   /* padding: 0 1rem; */
+}
+
+.dynamicCont .btn {
+  background: var(--grey3);
 }
 
 .dynamicCont >* {margin:auto;}
@@ -3174,16 +3178,16 @@ table.stockreport-table .border {
 
 .cart.alt{transform:translateY(0)}
 
-.cartHead{
+.cartHead {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  /* grid-template-columns:1fr 1fr; */
   grid-gap:inherit;
   align-items:center;
 }
 
 .cartHead .btn{margin-right:0}
 
-.cartHead .btn:nth-child(3) {grid-column: 2;}
+/* .cartHead .btn:nth-child(3) {grid-column: 2;} */
 
 .cartList{
   display:grid;
@@ -3259,7 +3263,7 @@ padding-bottom:0;
   border:none;
   min-width: 1.5rem;
   text-align: right;
-  font-size:var(--fontSize3);
+  font-size:18px;
   pointer-events:none;
 }
 
@@ -3269,7 +3273,7 @@ padding-bottom:0;
   text-align: center;
   cursor:pointer;
   border:none;
-  font-size:var(--fontSize3);
+  font-size:18px;
   /* color:black; */
   display: grid;
   justify-content: center;
@@ -3335,7 +3339,7 @@ padding-bottom:0;
   background:none;
   border:none;
   color:#000;
-  font-size:.8rem!important;
+  font-size:16px!important;
   height: 100%;
   /* padding-top:20px; */
   padding-top:calc(var(--mateputHeight) * 2 / 5);
@@ -3347,7 +3351,7 @@ padding-bottom:0;
   border-bottom: 2px solid #666;
   bottom:0;
   color:#333;
-  font-size:.7rem!important;
+  font-size:15px!important;
   height: 100%;
   left:0;
   pointer-events: none;
@@ -3549,7 +3553,7 @@ padding-bottom:0;
   position: fixed;
   bottom: 0;
   left: 0;
-  font-size: 18px;
+  font-size: 16px;
   align-items: center;
   justify-content: center;
   padding: 8px;
@@ -3557,7 +3561,7 @@ padding-bottom:0;
   border-radius: 4px;
   box-shadow: var(--DP24);
   width: var(--filterQuestActivatorWidth);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .filterQuestionActP {
@@ -3644,7 +3648,7 @@ padding-bottom:0;
 
 .loginForm input{
   height: 1.4rem;
-  font-size: 1rem;
+  font-size: 14px;
   padding: .5rem;
   border-radius: 6px;
 }
@@ -3665,7 +3669,7 @@ padding-bottom:0;
 }
 
 .forgot{
-  font-size: .7rem;
+  font-size: 16px;
   text-align: right;
   /* color: var(--color2); */
 }
@@ -3791,7 +3795,7 @@ section.contacto{
 
 .contacto .formTitle{
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 section.contacto > *{width: 80%; z-index: 1;}
@@ -3838,7 +3842,7 @@ section.contacto img{
   padding: .5rem 1rem;
   background: var(--grey1);
   color: var(--primaryColorDarker);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
@@ -3919,7 +3923,7 @@ section.contacto img{
 
 
 .footerNav a {
-  font-size: 16px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -3933,7 +3937,7 @@ section.contacto img{
 .wp-block-quote {
   border-left: 2px solid var(--primaryColor);
   padding-left: 1rem;
-  font-size: .8rem;
+  font-size: 14px;
 }
 
 

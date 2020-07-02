@@ -113,14 +113,13 @@
   <div class="cart" id="cart">
     <div class="cartHead">
       <h4 class="cartTitle">Tu Carrito</h4>
-      <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
-        FINALIZAR
-      </button>
-      <button class="btn" type="button" onclick="altClassFromSelector('alt', '#cart')">
-        CERRAR
-      </button>
+
+      <p class="closeCross" type="button" onclick="altClassFromSelector('alt', '#cart')">&#10006;</p>
     </div>
     <div class="cartList"></div>
+    <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
+      FINALIZAR
+    </button>
   </div>
 
   <div class="finalizarConsulta" id="finalizarConsulta">
