@@ -1091,13 +1091,3 @@ class CartItem {
     d.querySelector('.cartList').insertBefore(cartItemTemplate, null);
 	}
 }
-
-// Comportamiento del link de los filtros de preguntas al cliente
-
-questionLink = d.querySelector('Aca va el id')
-questionInputs = [...d.querySelectorAll('aca van las clases de los input')];
-questionInputs.forEach((questionInput)=>{
-  questionInput.onchange = ()=>{
-    questionLink.href = 'https://url-base.com/?' + questionInput.value
-  }
-})

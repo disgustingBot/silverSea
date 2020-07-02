@@ -3048,7 +3048,7 @@ table.stockreport-table .border {
   transform:translateY(-50%) scale(.6);
 }
 
-.selectBoxList{
+.selectBoxList {
   align-items: center;
   background: #FFF;
   border-radius:4px;
@@ -3068,7 +3068,8 @@ table.stockreport-table .border {
   width:100%;
   z-index: 12;
 }
-.SelectBox.focus:focus .selectBoxList{
+
+.SelectBox.focus:focus .selectBoxList {
   background:var(--grey1);
   left: var(--selectBoxListLeft);
   opacity:1;
@@ -3076,22 +3077,22 @@ table.stockreport-table .border {
 }
 
 
-.selectBoxOption:first-child{height:1.5rem}
-.selectBoxOption{
+.selectBoxOption:first-child {height:1.5rem}
+
+.selectBoxOption {
   cursor:pointer;
-  font-size: 16px;
-  /* height: 1.5rem; */
-  /* line-height: 1.8rem; */
+  font-size: 15px;
   transition:.3s;
-  padding:0 16px;
-  /* width:max-content; */
+  padding:0 10px;
 }
-.selectBoxOption:hover{
+
+.selectBoxOption:hover {
   background:#BBB;
   z-index:1;
 }
-.hidden{display:none!important}
-.selectBoxInput{
+.hidden {display:none!important}
+
+.selectBoxInput {
   display: none;
 }
 
@@ -3100,15 +3101,13 @@ table.stockreport-table .border {
                           6.19) =dynamicCont:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.dynamicContList{
+.dynamicContList {
   display:grid;
   grid-gap:.5rem;
   padding:.5rem 0;
 }
 
-
-
-.dynamicCont.ready .btn{
+.dynamicCont.ready .btn {
   background:var(--secondaryColor);
 }
 
@@ -3171,16 +3170,16 @@ table.stockreport-table .border {
 
 .cart.alt{transform:translateY(0)}
 
-.cartHead{
+.cartHead {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  /* grid-template-columns:1fr 1fr; */
   grid-gap:inherit;
   align-items:center;
 }
 
 .cartHead .btn{margin-right:0}
 
-.cartHead .btn:nth-child(3) {grid-column: 2;}
+/* .cartHead .btn:nth-child(3) {grid-column: 2;} */
 
 .cartList{
   display:grid;

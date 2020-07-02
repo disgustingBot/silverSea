@@ -1206,30 +1206,3 @@ function my_save_custom_form() {
 
 
 add_action( 'admin_post_save_my_custom_form', 'my_save_custom_form' );
-
-
-
-
-// Filtros de preguntas al usuario
-
-add_action('pre_get_posts','lt_filtro_magico');
-
-function lt_filtro_magico($query) { // Creamos filtro mágico
-  if(!is_admin()){ //Esto previene que se ejecute en el backoffice
-
-    if ( !$query->is_main_query() ) return; //Esto hace que se ejecute solo en el main query
-
-
-    $filtroMagico = 'reeferEJEMPLO' // Nombra el filtro
-    if (isset($_GET[$filtroMagico])) { //Repetir este IF tantas veces como filtros
-      $query->query_vars['tax_query'][$filtroMagico] = array(
-        'taxonomy' => 'product_cat',
-        'field'    => 'slug',
-        'terms'    => $_GET[$filtroMagico], //Acá va el query
-      );
-    } //Hay casos de OR (Research)
-
-    //we remove the actions hooked on the '__after_loop' (post navigation)
-    remove_all_actions ( '__after_loop');
-  }
-}
