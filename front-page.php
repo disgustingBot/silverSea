@@ -9,27 +9,28 @@
   <div class="cotizador" id="cotizador">
     <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
 
-    <div class="currentSemiSelection" id="currentSemiSelection">
+    <div class="currentSemiSelection cond" id="currentSemiSelection">
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
         <use xlink:href="" id="currentSemiSelectionSize"></use>
       </svg>
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="" id="currentSemiSelectionTip1"></use>
+        <use xlink:href="" id="currentSemiSelectionTipo_1"></use>
       </svg>
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="" id="currentSemiSelectionTip2"></use>
+        <use xlink:href="" id="currentSemiSelectionTipo_2"></use>
       </svg>
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-        <use xlink:href="" id="currentSemiSelectionCond"></use>
+        <use xlink:href="" id="currentSemiSelectionCondicion"></use>
       </svg>
     </div>
 
 
-          <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
-            <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
-              <use xlink:href="#simpleTruck" class="cartButtonUse"></use>
-            </svg>
-          </div>
+    <div class="cartButton" onclick="altClassFromSelector('alt', '#cart')">
+      <svg class="cartButtonSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
+        <use xlink:href="#simpleTruck" class="cartButtonUse"></use>
+      </svg>
+    </div>
+
 
     <p class="cotizadorTxt">Tras completar el proceso de cotización, recibiás una cotización rápida inmediata</p>
     <div class="dynamicContList" id="dynamicContList">
@@ -108,97 +109,6 @@
 
   </div>
 </section>
-
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
-<!--  If necessary, please modify the charset parameter to specify the        -->
-<!--  character set of your HTML page.                                        -->
-<!--  ----------------------------------------------------------------------  -->
-
-<!-- <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"> -->
-
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <FORM> element to your page.             -->
-<!--  ----------------------------------------------------------------------  -->
-
-<!-- <form action="https://go.pardot.com/l/821023/2020-06-02/8qk1" method="POST">
-
-  <input type=hidden name="oid" value="00D1l0000000ia7">
-  <input type=hidden name="retURL" value="https://sstc.com.es/"> -->
-
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-<!--  these lines if you wish to test in debug mode.                          -->
-   <!-- <input type="hidden" name="debug" value=1>
-   <input type="hidden" name="debugEmail"
-   value="gportela@silverseacontainers.com"> -->
-<!--  ----------------------------------------------------------------------  -->
-
-  <!-- <label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
-
-  <label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
-
-  <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-
-  <label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
-
-  <label for="company">Company</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br>
-
-  <label for="country">Country</label><input  id="country" maxlength="40" name="country" size="20" type="text" /><br>
-
-  <label for="city">City</label><input  id="city" maxlength="40" name="city" size="20" type="text" /><br>
-
-  Producto:<select  id="00N0X00000CrHzi" name="00N0X00000CrHzi" title="Producto"><option value="">--None--</option><option value="Cacahuete">Cacahuete</option>
-  <option value="Madera Rolo">Madera Rolo</option>
-  <option value="Madera Aserrada">Madera Aserrada</option>
-  <option value="Maíz Pisingallo">Maíz Pisingallo</option>
-  <option value="Semilla de Girasol">Semilla de Girasol</option>
-  <option value="Kernel de Girasol">Kernel de Girasol</option>
-  <option value="Chia">Chia</option>
-  <option value="Quinoa">Quinoa</option>
-  <option value="20DV ASIS">20DV ASIS</option>
-  <option value="20DV CW">20DV CW</option>
-  <option value="20DV NEW">20DV NEW</option>
-  <option value="20RF">20RF</option>
-  <option value="20NOR">20NOR</option>
-  <option value="20OT ASIS">20OT ASIS</option>
-  <option value="20FR ASIS">20FR ASIS</option>
-  <option value="20OT CW">20OT CW</option>
-  <option value="20FR CW">20FR CW</option>
-  <option value="40DV ASIS">40DV ASIS</option>
-  <option value="40DV CW">40DV CW</option>
-  <option value="40DV PW">40DV PW</option>
-  <option value="40DV NEW">40DV NEW</option>
-  <option value="40HC ASIS">40HC ASIS</option>
-  <option value="40HC CW">40HC CW</option>
-  <option value="40HC PW">40HC PW</option>
-  <option value="40HC NEW">40HC NEW</option>
-  <option value="40HRF CW PTI">40HRF CW PTI</option>
-  <option value="40HRF CW">40HRF CW</option>
-  <option value="40HNOR">40HNOR</option>
-  <option value="40NOR ASIS">40NOR ASIS</option>
-  <option value="40OT ASIS">40OT ASIS</option>
-  <option value="40FR ASIS">40FR ASIS</option>
-  <option value="40OT CW">40OT CW</option>
-  <option value="40OT REBUILT CW">40OT REBUILT CW</option>
-  <option value="40FR CW">40FR CW</option>
-  <option value="45 HC CW">45 HC CW</option>
-  <option value="45HC ASIS">45HC ASIS</option>
-  </select><br>
-
-  ProductType:<input  id="00N0X00000AlPaB" maxlength="30" name="00N0X00000AlPaB" size="20" type="text" /><br>
-
-  ProductSize:<input  id="00N0X00000AlPaA" maxlength="25" name="00N0X00000AlPaA" size="20" type="text" /><br>
-
-  Quantity:<input  id="00N0X00000AlPaC" name="00N0X00000AlPaC" size="20" type="text" /><br>
-
-  Message:<textarea  id="00N0X00000AlPa9" name="00N0X00000AlPa9" rows="3" type="text" wrap="soft"></textarea><br>
-
-  <input type="submit" name="submit">
-
-</form> -->
-
-
 
   <section class="containerINeed sectionPadding card65" id="queContainerINeed">
 

@@ -45,6 +45,12 @@ function lt_script_load(){
 	// register our main script but do not enqueue it yet
 	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery') );
 
+
+	//register pfah github library
+	wp_register_script( 'pfah', get_home_url() . '/pfah/pardot-form.js', array('jquery') );
+	wp_register_script( 'pfah-error', get_home_url() . '/pfah/pardot-form-callback-error.js', array('jquery') );
+	wp_register_script( 'pfah-succs', get_home_url() . '/pfah/pardot-form-callback-done.js', array('jquery') );
+
 	// now the most interesting part
 	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
 	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
@@ -372,12 +378,9 @@ function lt_new_pass(){
 // data-slug="0"
 // data-parent="city"
 
-// function selectBox($placeholder, $slug){ -->
-function selectBox($name, $slug = false){
-	if(!$slug){
-		$slug = sanitize_title($name);
-	}
-	// echo "<h1>$slug</h1>";
+// This function generates a selectBox object
+function selectBox($name, $slug = false, $options = array()){
+	if(!$slug){ $slug = sanitize_title($name); }
 	?>
 	<div class="SelectBox" tabindex="1" id="selectBox<?php echo $slug; ?>">
 		<div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $slug; ?>')">
@@ -386,17 +389,43 @@ function selectBox($name, $slug = false){
 		</div>
 		<div class="selectBoxList focus">
 			<label for="nul<?php echo $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul">
-			<input
-				class="selectBoxInput"
-				id="nul<?php echo $slug; ?>"
-				type="radio"
-				onclick="selectBoxControler('','#selectBox<?php echo $slug; ?>','#selectBoxCurrent<?php echo $slug; ?>')"
-				value="0"
-				checked
-			>
-			<!-- <span class="checkmark"></span> -->
-			<p class="colrOptP"></p>
+				<input
+					class="selectBoxInput"
+					id="nul<?php echo $slug; ?>"
+					type="radio"
+					name="<?php echo $slug; ?>"
+					onclick="selectBoxControler('','#selectBox<?php echo $slug; ?>','#selectBoxCurrent<?php echo $slug; ?>')"
+					value="0"
+					<?php if(!isset($_GET[$slug])){ ?>
+						checked
+					<?php } ?>
+				>
+				<!-- <span class="checkmark"></span> -->
+				<p class="colrOptP"></p>
 			</label>
+
+
+			<?php foreach ($options as $opt_slug => $opt_name) { ?>
+
+				
+				<label for="filter_<?php echo $opt_slug; ?>" class="selectBoxOption">
+					<input
+						class="selectBoxInput <?php echo $opt_slug; ?>"
+						type="radio"
+						id="filter_<?php echo $opt_slug; ?>"
+						name="<?php echo $slug; ?>"
+						onclick="selectBoxControler('<?php echo $opt_name; ?>', '#selectBox<?php echo $slug; ?>', '#selectBoxCurrent<?php echo $slug; ?>')"
+						value="<?php echo $opt_slug; ?>"
+						<?php if(isset($_GET[$slug]) && $_GET[$slug] == $opt_slug){ ?>
+							checked
+						<?php } ?>
+					>
+					<!-- <span class="checkmark"></span> -->
+					<p class="colrOptP"><?php echo $opt_name; ?></p>
+				</label>
+				
+
+			<?php } ?>
 		</div>
 	</div>
 <?php }
@@ -427,82 +456,8 @@ function newSvg($id){ ?>
 // get_stylesheet_directory_uri() instead of get_template_directory_uri()
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 function load_admin_styles() {
-  wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
+	wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
 }
-
-
-
-
-
-
-
-
-
-add_action( 'wp_ajax_lt_new_lead', 'lt_new_lead' );
-add_action( 'wp_ajax_nopriv_lt_new_lead', 'lt_new_lead' );
-function lt_new_lead(){
-	$debugMode = true;
-	$respuesta = array();
-
-
-		$oid        = $_POST['oid'];
-		$retURL     = $_POST['retURL'];
-		$debug      = $_POST['debug'];
-		$debugEmail = $_POST['debugEmail'];
-		$first_name = $_POST['first_name'];
-		$last_name  = $_POST['last_name'];
-		$email      = $_POST['email'];
-		$phone      = $_POST['phone'];
-		$company    = $_POST['company'];
-		$country    = $_POST['country'];
-		$city       = $_POST['city'];
-		$product    = $_POST['00N0X00000CrHzi'];
-		$type       = $_POST['00N0X00000AlPaB'];
-		$size       = $_POST['00N0X00000AlPaA'];
-		$quantity   = $_POST['00N0X00000AlPaC'];
-		$message    = $_POST['00N0X00000AlPa9'];
-
-
-	$url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
-	$data = array(
-		'oid'             => '00D1l0000000ia7',
-		'retURL'          => 'https://sstc.com.es/',
-		'debug'           => '1',
-		'debugEmail'      => 'gportela@silverseacontainers.com',
-		'first_name'      => $first_name,
-		'last_name'       => $last_name,
-		'email'           => 'email@test.fake',
-		'phone'           => '0800 666 696969',
-		'company'         => 'test company',
-		'country'         => 'my country',
-		'city'            => 'a city',
-		'00N0X00000CrHzi' => 'the product code',
-		'00N0X00000AlPaB' => 'product type',
-		'00N0X00000AlPaA' => 'product size',
-		'00N0X00000AlPaC' => 'product quantity',
-		'00N0X00000AlPa9' => 'el mensajeeeee',
-	);
-
-	// use key 'http' even if you send the request to https://...
-	$options = array(
-		'http' => array(
-			'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-			'method'  => 'POST',
-			'content' => http_build_query($data)
-		)
-	);
-	$context  = stream_context_create($options);
-	$result = file_get_contents($url, false, $context);
-if ($result === FALSE) { /* Handle error */ }
-
-var_dump($result);
-if($debugMode){echo wp_json_encode($respuesta);}
-exit();
-}
-
-
-
-
 
 
 
@@ -612,7 +567,7 @@ function lt_wipe_products () {
 		$i = 0;
     while ( $loop->have_posts() ) : $loop->the_post();
 			$respuesta[$i] = get_the_id();
-			if (wh_deleteProduct($respuesta[$i])) {
+			if (wh_deleteProduct($respuesta[$i], true)) {
 				$respuesta[$i] = "Producto '".get_the_title()."' eliminado";
 			}
       // global $product;
@@ -674,18 +629,6 @@ function lt_upload_file () {
 
 		if ($server == 'online') {
 
-			// INSTALACION ONLINE
-			// $dbServerName = "localhost";
-			// $dbUsername = "silverse_admin";
-			// $dbPassword = "M-9!-^%jZ*h5";
-			// $dbName = "silverse_web";
-			// code...
-
-			// INSTALACION WAVE HOST
-			// $dbServerName = "localhost";
-			// $dbUsername = "lattedev_silver";
-			// $dbPassword = "%fGC+<`@]Csz#75F";
-			// $dbName = "lattedev_silver";
 
 			// INSTALACION FINAL
 			$dbHost = "localhost";
@@ -835,19 +778,6 @@ function lt_cart_end () { global $wpdb;
 
 	if ($server == 'online') {
 
-		// INSTALACION ONLINE
-		// $dbServerName = "localhost";
-		// $dbUsername = "silverse_admin";
-		// $dbPassword = "M-9!-^%jZ*h5";
-		// $dbName = "silverse_web";
-		// code...
-
-		// INSTALACION WAVE HOST
-		// $dbServerName = "localhost";
-		// $dbUsername = "lattedev_silver";
-		// $dbPassword = "%fGC+<`@]Csz#75F";
-		// $dbName = "lattedev_silver";
-
 		// INSTALACION FINAL
 		$dbHost = "localhost";
 		$dbUser = "silversea_web";
@@ -918,13 +848,6 @@ function gatCol () {
 
 	if ($server == 'online') {
 
-		// INSTALACION ONLINE
-		// $dbServerName = "localhost";
-		// $dbUsername = "silverse_admin";
-		// $dbPassword = "M-9!-^%jZ*h5";
-		// $dbName = "silverse_web";
-		// code...
-
 		// INSTALACION WAVE HOST
 		// $dbServerName = "localhost";
 		// $dbUsername = "lattedev_silver";
@@ -972,6 +895,47 @@ function gatCol () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// consultas a base de datos para el cotizador
+// consultas a base de datos para el cotizador
+add_action( 'wp_ajax_lt_get_all', 'lt_get_all' );
+add_action( 'wp_ajax_nopriv_lt_get_all', 'lt_get_all' );
+
+function lt_get_all () {
+	global $wpdb;
+	$ress = $wpdb->get_results("SELECT * FROM contenedores"); 
+	echo wp_json_encode( $ress );
+	exit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
 add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
 
@@ -985,14 +949,6 @@ function lt_get_location () {
 
 
 	if ($server == 'online') {
-
-		// INSTALACION ONLINE
-		// $dbServerName = "localhost";
-		// $dbUsername = "silverse_admin";
-		// $dbPassword = "M-9!-^%jZ*h5";
-		// $dbName = "silverse_web";
-		// code...
-
 		// INSTALACION WAVE HOST
 		// $dbServerName = "localhost";
 		// $dbUsername = "lattedev_silver";
@@ -1022,18 +978,18 @@ function lt_get_location () {
 		$qry = $qry . " WHERE country = '$country'";
 		// code...
 	}
-	  $ress = $conn->query($qry);
-	  // $resp = $ress->fetch_all(MYSQLI_ASSOC);
+	$ress = $conn->query($qry);
+	// $resp = $ress->fetch_all(MYSQLI_ASSOC);
 
-		// $resp = "{";
-		$resp = [];
+	// $resp = "{";
+	$resp = [];
     while ($fila = $ress->fetch_assoc()) {
-				$resp[] = $fila;
+		$resp[] = $fila;
     }
 
 
-		$respuesta['location'] = wp_json_encode( $resp );
-		// $respuesta['location'] = $col;
+	$respuesta['location'] = wp_json_encode( $resp );
+	// $respuesta['location'] = $col;
 
 
 	$respuesta['test'] = 'Hola desde el server';
@@ -1125,6 +1081,7 @@ function wh_deleteProduct($id, $force = FALSE)
 
 /**
  * Register a custom menu page.
+ * Page Currencies!!!!!
  */
 function wpdocs_register_my_custom_menu_page(){
     add_menu_page(

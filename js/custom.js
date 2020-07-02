@@ -17,7 +17,8 @@ w.onload=()=>{
 	lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
 	}
 
-	cartController.setup();
+	// cartController.setup();
+	productSelector.setup();
 
 	carouselController.setup()
 	growUpController.setup()
@@ -107,7 +108,7 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 // SELECT BOX CONTROLER
 // TODO: mejorar eso a clases y POO
-const selectBoxControler=(a, selectBoxId, current)=>{ // c.log(a)
+const selectBoxControler=(a, selectBoxId, current)=>{ //c.log(a)
 	if(!!a){d.querySelector(selectBoxId).classList.add('alt')}
 	else   {d.querySelector(selectBoxId).classList.remove('alt')}
 
@@ -310,13 +311,6 @@ productSincrotron = {
 			productSincrotron.temp.unshift(productoZero[0]);
 		}
 
-
-// var names = '20FRCW_1, 2ODCCW_1';
-// var nameArr = names.split(', ');
-// console.log(nameArr);
-
-
-
 		console.log('envio a fabricar:')
 		console.log(productSincrotron.temp);
 		let formData = new FormData();
@@ -386,7 +380,6 @@ async function ajax3(formData, url = lt_data.ajaxurl) {
 			method: 'POST',
 			body: formData,
 		});
-	// return await response.json();
 		return await response.text();
 	}catch(err){
 		console.error(err);
@@ -409,66 +402,6 @@ async function ajax3(formData, url = lt_data.ajaxurl) {
 
 
 
-//
-// // Create the XHR object.
-// function createCORSRequest(method, url) {
-//   var xhr = new XMLHttpRequest();
-//   if ("withCredentials" in xhr) {
-//     // XHR for Chrome/Firefox/Opera/Safari.
-//     xhr.open(method, url, true);
-//   } else if (typeof XDomainRequest != "undefined") {
-//     // XDomainRequest for IE.
-//     xhr = new XDomainRequest();
-//     xhr.open(method, url);
-//   } else {
-//     // CORS not supported.
-//     xhr = null;
-//   }
-//   return xhr;
-// }
-//
-// // Helper method to parse the title tag from the response.
-// function getTitle(text) {
-//   return text.match('<title>(.*)?</title>')[1];
-// }
-//
-// // Make the actual CORS request.
-// function makeCorsRequest() {
-//   // This is a sample server that supports CORS.
-//   var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
-//
-//   var xhr = createCORSRequest('GET', url);
-//   if (!xhr) {
-//     alert('CORS not supported');
-//     return;
-//   }
-//
-//   // Response handlers.
-//   xhr.onload = function() {
-//     var text = xhr.responseText;
-//     var title = getTitle(text);
-//     alert('Response from CORS request to ' + url + ': ' + title);
-//   };
-//
-//   xhr.onerror = function() {
-//     alert('Woops, there was an error making the request.');
-//   };
-//
-//   xhr.send();
-// }
-//
-//
-// var url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
-// var xhr = createCORSRequest('GET', url);
-// console.log(xhr.send());
-
-
-
-
-
-
-
-
 
 
 // COOKIES HANDLING
@@ -479,13 +412,164 @@ function readCookie  (n){var m=n+"=",a=d.cookie.split(';');for(var i=0;i<a.lengt
 function eraseCookie (n){createCookie(n,"",-1)}
 
 
+
+
+
+
+productSelector = {
+	allProducts:[],
+	currentSearch:[],
+	selectors: [],
+	setup: ()=>{
+		dynamicCont = d.querySelector('.dynamicCont');
+		if (dynamicCont) {
+			productSelector.getAllProducts();
+			productSelector.selectors = [
+				d.querySelector('#selectBoxSize'),
+				d.querySelector('#selectBoxTipo_1'),
+				d.querySelector('#selectBoxTipo_2'),
+				d.querySelector('#selectBoxCondicion'),
+			];
+			// console.log(productSelector.selectors)
+
+			inputs = [...dynamicCont.querySelectorAll('.selectBoxInput')]
+			inputs.forEach((input)=>{
+				// input.addEventListener('change',productSelector.searchProduct.bind(input))
+				// input.onchange = productSelector.searchProduct.bind(input);
+				input.onchange = ()=>{productSelector.searchProduct()};
+			})
+		}
+	},
+
+	addToCart:(product)=>{
+		product.qty = parseInt(d.querySelector('.dynamicCont .cuantosQnt').value)
+		product.code = product.salesforce_id
+
+		cartController.add(product)
+
+		
+		d.querySelector('#currentSemiSelection').classList.remove('cond');
+		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
+		
+		setTimeout(()=>{
+			selected.forEach((selector)=>{
+				d.querySelector('#currentSemiSelection'+selector.name).setAttribute('xlink:href', '#');
+			})
+			d.querySelector('#currentSemiSelection').classList.add('cond');
+		}, 800);
+
+		// TODO: unselect all selected
+		// let nuls = [...dynamicCont.querySelectorAll('.selectBoxInput[value="0"]')];
+		// nuls.forEach((nul)=>{
+		// 	nul.checked = true
+		// 	// console.log(nul.name)
+		// 	selectBoxControler('','#selectBox'+nul.name,'#selectBoxCurrent'+nul.name)
+		// })
+		// productSelector.hideUnwantedOptions();
+		// console.log(nuls)
+	},
+	
+	getAllProducts: () => {
+		var formData = new FormData();
+		formData.append( 'action', 'lt_get_all' );
+
+		ajax2(formData).then( data => {
+			productSelector.allProducts   = data;
+			productSelector.currentSearch = data;
+			// console.log(productSelector.allProducts)
+		})
+	},
+
+	searchProduct:()=>{
+		let dynamicCont = d.querySelector('.dynamicCont');
+		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
+		
+		productSelector.currentSearch = productSelector.allProducts;
+		
+		// filtra los productos que coincidan con la busqueda actual
+		selected.forEach((input)=>{
+			if(input.value!='0'){
+				let key   = input.name.toLowerCase(),
+				value = key == 'size' ? input.value.match(/(\d+)/)[0] : input.value;
+				
+				let helperArray = [];
+				productSelector.currentSearch.forEach(product => {
+					if( product[key] == value ){ helperArray.push(product) }
+				})
+				productSelector.currentSearch = helperArray;
+			}
+		})
+		console.log(productSelector.currentSearch);
+
+		// si hay solo un producto encontrado habilitar boton de agregar al carrito
+		let uniqueProductFound = productSelector.currentSearch.length == 1,
+		btn = dynamicCont.querySelector('.btn');
+		btn.disabled = !uniqueProductFound;
+
+		// esconde todos los option que no coincidan con elementos de la busqueda actual
+		productSelector.hideUnwantedOptions();
+
+		productSelector.iconPlay();
+	},
+
+
+	hideUnwantedOptions:()=>{ console.log('asi??')
+		// esconde todos los option que no coincidan con elementos de la busqueda actual
+		let options = [...dynamicCont.querySelectorAll('.selectBoxOption')];
+		options.forEach(option=>{
+			let input = option.querySelector('.selectBoxInput');
+			if (input.value != 0){
+				let key   = input.name.toLowerCase(),
+				val = key == 'size' ? input.value.match(/(\d+)/)[0] : input.value,
+				found = false;
+				// search on currentSearch
+				productSelector.currentSearch.forEach(product=>{
+					if(product[key]==val){
+						found = true;
+					}
+				})
+				
+				if(found){
+					option.style.display = 'block';
+				} else {
+					option.style.display = 'none';
+				}
+			}
+		})
+	},
+
+	iconPlay:()=>{
+		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
+		selected.forEach((selector)=>{
+			d.querySelector('#currentSemiSelection'+selector.name).setAttribute('xlink:href', '#'+selector.value);
+			// console.log(selector.name)
+			// console.log(selector.value)
+			// let input = selector.querySelector('[checked=true]')
+			// console.log(input)
+		})
+		// TODO: hacer el cambio de iconos en el selector de la front page, mas o menos asi:
+
+	},
+
+}
+
+
+
+
+
+
+
+
+
+
+
 // TODO: pasar todo a minuscula... como no se me ocurrio antes???!?!?
 // CART CONTROLLER
 cartController = {
 	setup:()=>{
 		if (d.querySelector('#cotizador')) {
 			cartController.ready(false);
-			cartController.getCol('Size');
+			// cartController.getCol('Size');
 		}
 		cartController.getLocation();
 		// cartController.getLocation(false, 'Destino');
@@ -515,6 +599,7 @@ cartController = {
 	currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false, singlePrice: 0},
 	containerToAdd:false,
 	cart: [],
+	allProducts:{},
 	locationOrigen:[],
 	locationDestino:[],
 	getLocation: ( country = false, option = 'Origen' ) => {
@@ -650,23 +735,21 @@ cartController = {
 		// console.log(cartController.cart)
 
 
-
-		// cartController.sendMail(falsoCarrito);
-		// let info = {
-		// 	fname:   'Fake',
-		// 	lname:   'Name',
-		// 	email:   'email@test.fake',
-		// 	phone:   '0800 666 696969',
-		// 	company: 'test company',
-		// 	country: 'my country',
-		// 	city:    'a city',
-		// 	code:    'the product code',
-		// 	type:    'product type',
-		// 	size:    'product size',
-		// 	quantity:'product quantity',
-		// 	message: 'el mensajeeeee',
-		// }
-		// cartController.newLead(info);
+		let info = {
+			fname:   'Desde el otro lugar',
+			lname:   'tambien llega el testeo?',
+			email:   'email@test.fake',
+			phone:   '0800 666 696969',
+			company: 'test company',
+			country: 'my country',
+			city:    'a city',
+			code:    'the product code',
+			type:    'product type',
+			size:    'product size',
+			quantity:'product quantity',
+			message: 'el mensajeeeee',
+		}
+		cartController.newLead(info);
 	},
 
 
@@ -689,46 +772,32 @@ cartController = {
 		});
 	},
 
-
 	newLead:(info)=>{
-		let oid = '00D1l0000000ia7',
-		retURL  = 'https://silverseacontainers.com/',
-		debug   = 1,
-		debugEmail = 'gportela@silverseacontainers.com',
-		first_name = info.fname,
-		last_name  = info.lname,
-		email      = info.email,
-		phone      = info.phone,
-		company    = info.company,
-		country    = info.country,
-		city       = info.city,
-		product    = info.code,
-		type       = info.type,
-		size       = info.size,
-		quantity   = info.quantity,
-		message    = info.message;
+		
+		// let oid = '00D1l0000000ia7';
+		// let retURL  = 'https://silverseacontainers.com/';
+		// let debug   = 1;
+		// let debugEmail = 'gportela@silverseacontainers.com';
+		let first_name = info.fname;
+		let last_name  = info.lname;
+		let email      = info.email;
+		let phone      = info.phone;
+		let company    = info.company;
+		let country    = info.country;
+		let city       = info.city;
+		let product    = info.code;
+		let type       = info.type;
+		let size       = info.size;
+		let quantity   = info.quantity;
+		let message    = info.message;
 
-		var formData = new FormData();
-		formData.append( 'action', 'lt_new_lead' );
-		formData.append( 'oid', oid );
-		formData.append( 'retURL'    , retURL );
-		formData.append( 'debug'     , debug );
-		formData.append( 'debugEmail', debugEmail );
-		formData.append( 'first_name', first_name );
-		formData.append( 'last_name', last_name );
-		formData.append( 'email', email );
-		formData.append( 'phone', phone );
-		formData.append( 'company', company );
-		formData.append( 'country', country );
-		formData.append( 'city', city );
-		formData.append( '00N0X00000CrHzi', product );
-		formData.append( '00N0X00000AlPaB', type );
-		formData.append( '00N0X00000AlPaA', size );
-		formData.append( '00N0X00000AlPaC', quantity );
-		formData.append( '00N0X00000AlPa9', message );
-		ajax3(formData, 'https://go.pardot.com/l/821023/2020-06-02/8qk1').then( data => {
-			console.log(data)
-		})
+		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
+
+		let baseURL= 'https://silverseacontainers.com/testLead.php';
+
+		let url = baseURL + vars;
+		window.open(url,'_blank');
+		//TODO: que la pagina que se abre se cierre... 
 	},
 	add: (x) => {
 		const check = (element) => {
@@ -754,18 +823,6 @@ cartController = {
 		}
 
 
-		if(d.querySelector('#cotizador')){
-			setTimeout(()=>{
-				d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#');
-				d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
-				d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
-				d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
-			}, 800);
-			d.querySelector('#currentSemiSelection').classList.remove('size');
-			d.querySelector('#currentSemiSelection').classList.remove('tip1');
-			d.querySelector('#currentSemiSelection').classList.remove('tip2');
-			d.querySelector('#currentSemiSelection').classList.remove('cond');
-		}
 		// console.log(cartController.cart);
 		createCookie('cart', JSON.stringify(cartController.cart));
 
@@ -789,252 +846,6 @@ cartController = {
 			});
 		}
 		createCookie('cart', JSON.stringify(cartController.cart));
-	},
-	ready:(ready = true)=>{
-		let selector = d.querySelector('#dynamicCont1'),btn=d.querySelector('#dynamicCont1 .btn');
-		if (ready) {
-			btn.disabled = false;
-			selector.classList.add('ready')
-		} else {
-			btn.disabled = true;
-			selector.classList.remove('ready')
-		}
-	},
-
-	changeQuantity:(value)=>{
-		let quantity = parseInt(d.querySelector('#addToCartQantity').value);
-		quantity += value;
-		if (quantity<=1) {
-			quantity = 1;
-		}
-		cartController.currentSemiSelection.qty = quantity;
-		d.querySelector('#addToCartQantity').value   = quantity;
-	},
-
-	selectBoxOption:(key, value = '')=>{
-
-		let a  = d.importNode(d.querySelector("#selectBoxOptionTemplate").content, true),
-		option = a.querySelector(".selectBoxOption"),
-		input  = a.querySelector(".selectBoxInput"),
-		label  = a.querySelector(".selectBoxOptionLabel");
-		if(value == 'nul'){
-			option.setAttribute('for', 'nul'+key);
-			input.setAttribute ('id' , 'nul'+key);
-			input.setAttribute('value', 0);
-		} else {
-			option.setAttribute('for', key+value);
-			input.setAttribute ('id' , key+value);
-			input.setAttribute('value', value);
-		}
-		label.textContent = value;
-		input.setAttribute('name', key);
-		input.setAttribute("onclick", 'selectBoxControler("'+value+'", "#selectBox'+key+'", "#selectBoxCurrent'+key+'")');
-
-		return a;
-	},
-
-	selectBoxWipe:(nombre, comptleteWipe = false)=>{
-		list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
-		selectBoxControler('', '#selectBox'+nombre, '#selectBoxCurrent'+nombre);
-		if (list.firstChild) {
-			while (list.firstChild) {
-			list.removeChild(list.firstChild);
-			}
-		}
-		if(!comptleteWipe){
-			list.appendChild(cartController.selectBoxOption(nombre));
-		}
-	},
-
-	sizeController: (value)=>{
-		// PRIMERO VACIAR EL/LOS SELECT
-		cartController.selectBoxWipe('Tipo_1');
-		cartController.selectBoxWipe('Tipo_2');
-		cartController.selectBoxWipe('Condicion');
-		cartController.currentSemiSelection.tipo_1 = false;
-		cartController.currentSemiSelection.tipo_2 = false;
-		cartController.currentSemiSelection.condicion = false;
-
-		d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
-		d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#');
-		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
-		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
-		d.querySelector('#currentSemiSelection').classList.add('size');
-		d.querySelector('#currentSemiSelection').classList.remove('tip1');
-		d.querySelector('#currentSemiSelection').classList.remove('tip2');
-		d.querySelector('#currentSemiSelection').classList.remove('cond');
-		// console.log('value: ', value);
-
-		cartController.ready(false);
-		cartController.currentSemiSelection.size = value;
-		cartController.getCol('tipo_1', value);
-	},
-
-	tipo1Controller: (value)=>{
-		// PRIMERO VACIAR EL SELECT
-		cartController.selectBoxWipe('Tipo_2');
-		cartController.selectBoxWipe('Condicion');
-		cartController.currentSemiSelection.tipo_2 = false;
-		cartController.currentSemiSelection.condicion = false;
-
-		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-		// d.querySelector('#currentSemiSelectionSize').setAttribute('xlink:href', '#' + value + '-pies');
-		d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
-		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#');
-		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
-		d.querySelector('#currentSemiSelection').classList.add('tip1');
-		d.querySelector('#currentSemiSelection').classList.remove('tip2');
-		d.querySelector('#currentSemiSelection').classList.remove('cond');
-
-		cartController.ready(false);
-		cartController.currentSemiSelection.tipo_1 = value;
-		cartController.getCol('tipo_2', cartController.currentSemiSelection.size, value);
-	},
-
-	tipo2Controller: (value)=>{
-		// PRIMERO VACIAR EL SELECT
-		cartController.selectBoxWipe('Condicion');
-		cartController.currentSemiSelection.condicion = false;
-
-
-		cartController.ready(false);
-		cartController.currentSemiSelection.tipo_2 = value;
-		cartController.getCol('condicion', cartController.currentSemiSelection.size, cartController.currentSemiSelection.tipo_1, value);
-		// cartController.getCol('tipo_2', cartController.currentSemiSelection.tipo_2, value);
-		value = value.replace(/\s/g, '');
-		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-		// d.querySelector('#currentSemiSelectionTip1').setAttribute('xlink:href', '#' + value);
-		d.querySelector('#currentSemiSelectionTip2').setAttribute('xlink:href', '#' + value);
-		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#');
-		d.querySelector('#currentSemiSelection').classList.add('tip2');
-		d.querySelector('#currentSemiSelection').classList.remove('cond');
-	},
-
-	condicionController: (value)=>{
-		// console.log(value)
-		// console.log(document.getElementsByName('Condicion')[0].value)
-		// if (cartController.currentSemiSelection.condicion) {
-		//
-		// }
-		// PRIMERO VACIAR EL SELECT
-		// console.log('value: ', value);
-		const check = (element) => {
-			return element.condicion == value;
-		}
-		cartController.currentSemiSelection.code = cartController.currentSemiSelection.condicion.find(check).salesforce_id;
-		cartController.containerToAdd = cartController.currentSemiSelection;
-		cartController.containerToAdd.condicion = value;
-		// cartController.currentSemiSelection.condicion = value;
-		// console.log('container To Add: ', cartController.containerToAdd)
-
-		cartController.ready();
-
-
-		value = value.replace(/\s/g, '-');
-		// d.querySelector('#dynamicContLogo').setAttribute('xlink:href', '#' + value);
-		d.querySelector('#currentSemiSelectionCond').setAttribute('xlink:href', '#' + value.toUpperCase());
-		d.querySelector('#currentSemiSelection').classList.add('cond');
-
-		// console.log('value: ', value);
-		// cartController.getCol('condicion', cartController.currentSemiSelection.condicion, value);
-	},
-
-	getCol: (col, size = false, tipo_1 = false, tipo_2 = false) => {
-		let lastCase = (size &&  tipo_1 &&  tipo_2) ? true : false;
-		let dataNames = ['action', 'col'],
-		dataValues = ['gatCol', col];
-		if(size){dataNames.push('size');dataValues.push(size);}
-		if(tipo_1){dataNames.push('tipo_1');dataValues.push(tipo_1);}
-		if(tipo_2){dataNames.push('tipo_2');dataValues.push(tipo_2);}
-
-		postAjaxCall(lt_data.ajaxurl,dataNames,dataValues).then(v=>{ // console.log(v)
-			try{
-				if (!lastCase) {
-					JSON.parse(v).forEach(e=>{
-						for(var key in e) {
-							var value = e[key],
-							key = key[0].toUpperCase() + key.slice(1);
-							// console.log(key);
-							// console.log(value);
-							var a = cartController.selectBoxOption(key,value),
-							input = a.querySelector(".selectBoxInput");
-
-							// if(lastCase){
-							// 	input.setAttribute('type', 'checkbox');
-							// } else {
-							// }
-							input.setAttribute('type', 'radio');
-
-							if (JSON.parse(v).length == 1) {
-								// TODO: tambien falta preseleccionar la unica opcion cuando hay una sola
-								cartController.selectBoxWipe(key, true);
-
-								input.setAttribute("checked", true);
-								selectBox = d.querySelector('#selectBox'+key);
-								current = d.querySelector('#selectBox'+key+' #selectBoxCurrent'+key);
-
-								d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-								if (value != '') {value = value[0].toUpperCase() + value.slice(1);}
-
-								if(size && !tipo_1 && !tipo_2){
-									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
-									cartController.tipo1Controller(value);
-								}
-								if(size &&  tipo_1 && !tipo_2){
-									selectBoxControler(value, '#selectBox'+key, '#selectBoxCurrent'+key)
-									cartController.tipo2Controller(value, true);
-								}
-
-							} else {
-
-								functionExecute = 'cartController.sizeController("'+value+'")';
-								if(size){functionExecute = 'cartController.tipo1Controller("'+value+'")';}
-								if(tipo_1){functionExecute = 'cartController.tipo2Controller("'+value+'")';}
-								// if(tipo_2){functionExecute = 'console.log("EL NENE ESTA BIEN!!!");cartController.ready()';}
-								input.setAttribute("onchange", functionExecute);
-
-								// Insert it into the document in the right place
-								d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-							}
-						}
-					});
-				} else {
-					cartController.currentSemiSelection.condicion = new Array();
-					// cartController.currentSemiSelection.condicion = new Array();
-					cartController.selectBoxWipe('Condicion', true);
-					// console.log('comienza el ultimo caso')
-					JSON.parse(v).forEach(e=>{
-						cartController.currentSemiSelection.condicion.push(e);
-
-						var a = cartController.selectBoxOption('Condicion', e.condicion),
-						input = a.querySelector(".selectBoxInput");
-						input.setAttribute('type', 'radio');
-						input.setAttribute('onchange', 'cartController.condicionController("' + e.condicion + '")');
-
-						// if (JSON.parse(v).length == 1) {
-							// input.setAttribute("checked", true);
-							// cartController.cart.unshift(e.id)
-						// }
-
-						// a los found los tendria que mostrar en la UI
-						// if (e.condicion == '') {
-						// 	cartController.ready()
-						// 	cartController.containerToAdd = e.id;
-						// }
-						// else {
-						// if (e.condicion!='' && e.avanzado_2 == '') {
-							d.querySelector('#selectBoxCondicion .selectBoxList').insertBefore(a, null);
-						// }
-						// console.log(e.length)
-
-					});
-					// console.log(cartController.currentSemiSelection.condicion)
-				}
-			} catch(err) {
-				console.log(err);
-				console.log(v);
-			}
-		})
 	},
 }
 

@@ -116,7 +116,7 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
       page = this.dataset.pagination;
       filterPagination(false, false, page);
   });
-	$('.selectBoxOption').change(function(){
+	$('.archiveFilters .selectBoxOption').change(function(){
     console.log('eh?')
     var button = $(this),
         parent = button[0].querySelector('input').dataset.parent,
