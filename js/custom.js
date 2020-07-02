@@ -17,7 +17,7 @@ w.onload=()=>{
 	lIs.forEach(lI=>{lIO.observe(lI)});lBs.forEach(lB=>{lBO.observe(lB)});
 	}
 
-	// cartController.setup();
+	cartController.setup();
 	productSelector.setup();
 
 	carouselController.setup()
@@ -568,7 +568,7 @@ productSelector = {
 cartController = {
 	setup:()=>{
 		if (d.querySelector('#cotizador')) {
-			cartController.ready(false);
+			// cartController.ready(false);
 			// cartController.getCol('Size');
 		}
 		cartController.getLocation();
@@ -577,11 +577,11 @@ cartController = {
 		// cartController.cart = JSON.parse(readCookie('cart'));
 		// cartController.cart = JSON.parse(readCookie('cart'));
 		if(readCookie('cart')){
-			JSON.parse(readCookie('cart')).forEach((item, i) => {
-				cartController.cart.unshift(new CartItem(item));
-				cartController.cart[0].cartUI();
+			// JSON.parse(readCookie('cart')).forEach((item, i) => {
+			// 	cartController.cart.unshift(new CartItem(item));
+			// 	cartController.cart[0].cartUI();
 
-			});
+			// });
 		}
 
 		if (cartController.cart.length<2) {
@@ -847,6 +847,29 @@ cartController = {
 			});
 		}
 		createCookie('cart', JSON.stringify(cartController.cart));
+	},
+
+
+	selectBoxOption:(key, value = '')=>{
+
+		let a  = d.importNode(d.querySelector("#selectBoxOptionTemplate").content, true),
+		option = a.querySelector(".selectBoxOption"),
+		input  = a.querySelector(".selectBoxInput"),
+		label  = a.querySelector(".selectBoxOptionLabel");
+		if(value == 'nul'){
+			option.setAttribute('for', 'nul'+key);
+			input.setAttribute ('id' , 'nul'+key);
+			input.setAttribute('value', 0);
+		} else {
+			option.setAttribute('for', key+value);
+			input.setAttribute ('id' , key+value);
+			input.setAttribute('value', value);
+		}
+		label.textContent = value;
+		input.setAttribute('name', key);
+		input.setAttribute("onclick", 'selectBoxControler("'+value+'", "#selectBox'+key+'", "#selectBoxCurrent'+key+'")');
+
+		return a;
 	},
 }
 

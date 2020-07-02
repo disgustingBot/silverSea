@@ -940,7 +940,7 @@ add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
 add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
 
 function lt_get_location () {
-	$server = 'online';
+	$server = 'local';
 	$debugMode = true;
 	$respuesta = array();
 	$col = $_POST['column'];
