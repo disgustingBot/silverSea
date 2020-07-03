@@ -18,15 +18,17 @@
     <input type="hidden" id="lead_source" name="lead_source" value="Web BOX ES">
     <input type="hidden" name="retURL" value="https://sstc.com.es/en/gracias/silverbox/">
 
-
-
     <input type="hidden" name="action" value="lt_form_handler">
     <input type="hidden" name="link" value="<?php echo home_url( $wp->request );?>">
-    <input type="text" id="last_name" name="last_name" placeholder="Nombre">
-    <input type="text" id="phone" name="phone" placeholder="Telefono">
-    <input type="text" id="email" name="email" placeholder="Email">
-    <input type="text" id="country" name="Pais" placeholder="Pais">
+    <input type="text" id="last_name" name="last_name" placeholder="Nombre" required>
+    <input type="tel" id="phone" name="phone" placeholder="Telefono" required>
+    <input type="email" id="email" name="email" placeholder="Email" required>
+    <input type="text" id="country" name="Pais" placeholder="Pais" required>
     <textarea type="text" id="comment" name="Comentarios" placeholder="Comentarios"> </textarea>
+    <div class="formAcceptance">
+      <input type="checkbox" required>
+      <p class="temsAcceptance">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank"> privacy terms</a></p>
+    </div>
     <button type="submit" name="a06" class="btn" value="Submit">Enviar</button>
   </form>
 </section>
