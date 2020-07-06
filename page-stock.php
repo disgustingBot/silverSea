@@ -7,7 +7,7 @@
 
 $pais= $_GET['pais'];
 $ciudad= $_GET['ciudad'];
-$container= $_GET['container'];
+$id_contenedor= $_GET['id_contenedor'];
 
 
 if($pais!="*" and $pais!=''){
@@ -16,8 +16,8 @@ if($pais!="*" and $pais!=''){
 if($ciudad!="*" and $ciudad!=''){
   $whereCiudad = "and ciudad = '$ciudad'";
 }
-if($container!="*" and $container!=''){
-  $whereContainer = "and id_contenedor = '$container'";
+if($id_contenedor!="*" and $id_contenedor!=''){
+  $whereContainer = "and id_contenedor = '$id_contenedor'";
 }
 
 $qry= "SELECT

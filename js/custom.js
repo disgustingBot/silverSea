@@ -447,10 +447,10 @@ productSelector = {
 
 		cartController.add(product)
 
-		
+
 		d.querySelector('#currentSemiSelection').classList.remove('cond');
 		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
-		
+
 		setTimeout(()=>{
 			selected.forEach((selector)=>{
 				d.querySelector('#currentSemiSelection'+selector.name).setAttribute('xlink:href', '#');
@@ -468,7 +468,7 @@ productSelector = {
 		// productSelector.hideUnwantedOptions();
 		// console.log(nuls)
 	},
-	
+
 	getAllProducts: () => {
 		var formData = new FormData();
 		formData.append( 'action', 'lt_get_all' );
@@ -483,15 +483,15 @@ productSelector = {
 	searchProduct:()=>{
 		let dynamicCont = d.querySelector('.dynamicCont');
 		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
-		
+
 		productSelector.currentSearch = productSelector.allProducts;
-		
+
 		// filtra los productos que coincidan con la busqueda actual
 		selected.forEach((input)=>{
 			if(input.value!='0'){
 				let key   = input.name.toLowerCase(),
 				value = key == 'size' ? input.value.match(/(\d+)/)[0] : input.value;
-				
+
 				let helperArray = [];
 				productSelector.currentSearch.forEach(product => {
 					if( product[key] == value ){ helperArray.push(product) }
@@ -528,7 +528,7 @@ productSelector = {
 						found = true;
 					}
 				})
-				
+
 				if(found){
 					option.style.display = 'block';
 				} else {
@@ -773,7 +773,7 @@ cartController = {
 	},
 
 	newLead:(info)=>{
-		
+
 		// let oid = '00D1l0000000ia7';
 		// let retURL  = 'https://silverseacontainers.com/';
 		// let debug   = 1;
@@ -797,8 +797,8 @@ cartController = {
 
 		let url = baseURL + vars;
 		window.open(url,'_blank');
-		//TODO: que la pagina que se abre se cierre... 
-		
+		//TODO: que la pagina que se abre se cierre...
+
 	},
 	add: (x) => {
 		const check = (element) => {
@@ -947,7 +947,7 @@ function filterByCountry(){
 		where += '?ciudad='+ciudad;
 	}
 	if(container!="*"){
-		where +=   '?container='+container;
+		where +=   '?id_contenedor='+container;
 	}
 
 	console.log(location.pathname+where);
