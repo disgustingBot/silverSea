@@ -1,517 +1,158 @@
 <?php get_header() ?>
 
-<a href="<?php echo get_site_url() . '/buscar-contenedor'; ?>" class="btn contactCTA">COTIZA TU CONTENEDOR</a>
+<h2 class="stock_title">Silversea Stock</h2>
 
-<div class="ATF stockATF">
-  <img class="lazy rowcol1 stockBanner" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
-  <div class="stockBannerOverlay rowcol1"></div>
-  <h1 class="stockATFTitle rowcol1 txtCenter">Check our stock worldwide with our containers stock report.</h1>
+<!-- Set DB Connection -->
+<?php
+
+$pais= $_GET['pais'];
+$ciudad= $_GET['ciudad'];
+$container= $_GET['container'];
+
+
+if($pais!="*" and $pais!=''){
+  $wherePais = "and pais = '$pais'";
+}
+if($ciudad!="*" and $ciudad!=''){
+  $whereCiudad = "and ciudad = '$ciudad'";
+}
+if($container!="*" and $container!=''){
+  $whereContainer = "and id_contenedor = '$container'";
+}
+
+$qry= "SELECT
+       pais, ciudad, id_contenedor, sum(quantity) as quantity, truncate(avg(supplier_price),0) as supplier_price
+       from stock
+       where quantity > 0 $wherePais  $whereCiudad $whereContainer
+       group by pais, ciudad, id_contenedor";
+
+$get = $wpdb->get_results($qry);
+
+$list_pais = $wpdb->get_results(" SELECT distinct pais from stock where quantity > 0 $whereContainer");
+$list_ciudad = $wpdb->get_results(" SELECT distinct ciudad from stock where quantity > 0 $wherePais $whereContainer");
+$list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock where quantity > 0 $wherePais $whereCiudad");
+
+
+?>
+
+
+<div class="stock_main">
+  <div class="table_stock">
+    <div class="stock_header_row">
+      <div class="table_head">
+        <select class="select_stock" name="select" id="getPais">
+          <option value="*">COUNTRY</option>
+          <?php foreach ($list_pais as $row) {
+            $pais = $row->pais;?>
+            <option value="<?php echo $pais ?>"><?php  echo $pais; ?></option>
+          <?php } ?>
+        </select>
+      </div>
+      <div class="table_head">
+        <select class="select_stock" name="select" id="getCiudad">
+          <option value="*" >CITY</option>
+          <?php foreach ($list_ciudad as $row) {
+            $ciudad = $row->ciudad;?>
+            <option value="<?php echo $ciudad ?>"><?php  echo $ciudad; ?></option>
+          <?php } ?>
+        </select>
+      </div>
+      <div class="table_head">
+        <select class="select_stock" name="select" id="getContainer">
+          <option value="*" >CONTAINER</option>
+          <?php foreach ($list_container as $row) {
+            $container = $row->id_contenedor;?>
+            <option value="<?php echo $container ?>"><?php  echo $container; ?></option>
+          <?php } ?>
+        </select>
+      </div>
+
+      <div class="table_head">QUANTITY</div>
+      <div class="table_head">PRICE</div>
+      <button type="button" name="button" class="btn stock_btn" onclick="filterByCountry()">Filter</button>
+    </div>
+    <?php foreach ($get as $row ) {
+      $pais = $row->pais;
+      $ciudad = $row->ciudad;
+      $container = $row->id_contenedor;
+      $stock = $row->quantity;
+      $supplier_price = $row->supplier_price;
+      $supplier = $row->supplier;
+      $fixed_price = $row->fixed_price;
+      $sale_price = $row->sale_price;
+      $currency = $row->currency;
+      ?>
+
+      <div class="stock_row">
+        <div class="table_column"><?php echo $pais; ?></div>
+        <div class="table_column"><?php echo $ciudad; ?></div>
+        <div class="table_column"><?php echo $container; ?></div>
+        <div class="table_column"><?php echo $stock; ?></div>
+        <div class="table_column"><?php echo $supplier_price; ?></div>
+      </div>
+  <?php  } ?>
+
 </div>
 
-<section class="stockReport">
-  <table class="stockreport-table">
-    <thead>
-      <tr>
-        <th>Country</th>
-        <th>Depot Location</th>
-        <th>Type</th>
-        <th>Grade</th>
-        <th>Quantity</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="contact_regions">
+    <div class="region">
+      <h4 class="region_title">EUROPE</h4>
+      <div class="region_sellers">
+        <p class="seller_name">Federico Platero</p>
+        <p class="seller_phone">(+34) 683 623 698 </p>
+        <p class="seller_email">fplatero@silverseacontainers.com</p>
+      </div>
+      <div class="region_sellers">
+        <p class="seller_name">Stefano Ricci</p>
+        <p class="seller_phone">(+34) 696988243</p>
+        <p class="seller_email">sricci@silverseacontainers.com</p>
+      </div>
+      <div class="region_sellers">
+        <p class="seller_name">Francisco Mulet</p>
+        <p class="seller_phone">(+34) 689 666 142</p>
+        <p class="seller_email">fmulet@silverseacontainers.com</p>
+      </div>
 
-      <tr class="border">
-        <td>Austria</td>
-        <td>Vienna</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
+      <h4 class="region_title">CIS & ASIA</h4>
+      <div class="region_sellers">
+        <p class="seller_name">Sinder Tamimi</p>
+        <p class="seller_phone">(+34) 646 504 571</p>
+        <p class="seller_email">stamimi@silverseacontainers.com</p>
+      </div>
+      <div class="region_sellers">
+        <p class="seller_name">Farhodjon Abdulazizov</p>
+        <p class="seller_phone">(+998) 949231133</p>
+        <p class="seller_email">fabdulazizov@silverseacontainers.com</p>
+      </div>
+      <div class="region_sellers">
+        <p class="seller_name">Leon Lin</p>
+        <p class="seller_phone">(+86) 189 30902821</p>
+        <p class="seller_email">llin@silverseacontainers.com</p>
+      </div>
 
-      <tr>
-        <td>Belgium</td>
-        <td>Antwerp</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>4</td>
-      </tr>
+      <h4 class="region_title">LATAM</h4>
+      <div class="region_sellers">
+        <p class="seller_name">Damián González</p>
+        <p class="seller_phone">(+52) 8182292083</p>
+        <p class="seller_email">dgonzalez@silverseacontainers.com </p>
+      </div>
+      <div class="region_sellers">
+        <p class="seller_name">Felipe Peña</p>
+        <p class="seller_phone">(+598) 99 101 199</p>
+        <p class="seller_email">fpena@silverseacontainers.com </p>
+      </div>
+      <div class="region_sellers">
+        <p class="seller_name">Nicolás Lingordo</p>
+        <p class="seller_phone">(+598) 99 101 057</p>
+        <p class="seller_email">nlingordo@silverseacontainers.com</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <tr class="border">
-        <td></td>
-        <td></td>
-        <td>40DV</td>
-        <td>CW</td>
-        <td>17</td>
-      </tr>
 
-      <tr>
-        <td>Czech Republic</td>
-        <td>Prague</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>9</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>IICL5</td>
-        <td>&gt;25</td>
-      </tr>
-
-      <tr>
-        <td>France</td>
-        <td>Le Havre</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>2</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Lyon</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>5</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td>Strasbourg</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td>Germany</td>
-        <td>Augsburg</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Baunatal</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>8</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Bremen</td>
-        <td>40DV</td>
-        <td>ASIS</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40HP</td>
-        <td>ASIS</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Duisburg</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>13</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40DV</td>
-        <td>CW</td>
-        <td>&gt;50</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>&gt;50</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>IICL5</td>
-        <td>&gt;25</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>NEW</td>
-        <td>15</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Hamburg</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>5</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>NEW</td>
-        <td>&gt;50</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>&gt;25</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40HR</td>
-        <td>CW</td>
-        <td>5</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40OT</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Köln / Cologne</td>
-        <td>40DV</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Kornwestheim</td>
-        <td>40OT</td>
-        <td>ASIS</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Leipzig</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>2</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Ludwigshafen</td>
-        <td>40DV</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>&gt;25</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td>Muenchen</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>2</td>
-      </tr>
-
-      <tr>
-        <td>Hungary</td>
-        <td>Budapest</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>&gt;25</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>NEW</td>
-        <td>1</td>
-      </tr>
-
-      <tr class="border">
-        <td>India</td>
-        <td>Mumbai (Ex Bombay)</td>
-        <td>20OT</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td>Italy</td>
-        <td>Milano</td>
-        <td>40HC</td>
-        <td>IICL5</td>
-        <td>5</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td>Venezia</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>15</td>
-      </tr>
-
-      <tr>
-        <td>Netherlands</td>
-        <td>Rotterdam</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>12</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>IICL5</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>NEW</td>
-        <td>12</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td></td>
-        <td>40OR</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td>Poland</td>
-        <td>Gdansk</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>6</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>NEW</td>
-        <td>2</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Gdynia</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>20RF</td>
-        <td>CW</td>
-        <td>4</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Gliwice</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>4</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Lodz</td>
-        <td>20RF</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>8</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Slawkow</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>6</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Warsaw</td>
-        <td>20DV</td>
-        <td>NEW</td>
-        <td>4</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td></td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>&gt;50</td>
-      </tr>
-
-      <tr>
-        <td>Portugal</td>
-        <td>Lisbon</td>
-        <td>40HR</td>
-        <td>ASIS</td>
-        <td>1</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr class="border">
-        <td>Serbia</td>
-        <td>Belgrade</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>&gt;50</td>
-      </tr>
-
-      <tr class="border">
-        <td>Slovakia</td>
-        <td>Bratislava</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>2</td>
-      </tr>
-
-      <tr>
-        <td>Spain</td>
-        <td>Barcelona</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40HR</td>
-        <td>ASIS</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Bilbao</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>6</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td>40DV</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr class="border">
-        <td></td>
-        <td>Madrid</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>&gt;25</td>
-      </tr>
-
-      <tr class="border">
-        <td>Sweden</td>
-        <td>Gothenburg (Göteborg)</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>7</td>
-      </tr>
-
-      <tr class="border">
-        <td>Switzerland</td>
-        <td>Frenkendorf</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>5</td>
-      </tr>
-
-      <tr class="border">
-        <td>Turkey</td>
-        <td>Mersin</td>
-        <td>20DV</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td>United Kingdom</td>
-        <td>Liverpool</td>
-        <td>40HC</td>
-        <td>CW</td>
-        <td>1</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>London</td>
-        <td>40HC</td>
-        <td>NEW</td>
-        <td>1</td>
-      </tr>
-
-    </tbody>
-  </table>
-</section>
-
+<div class="" id="display">
+   <!-- Records will be displayed here -->
+</div>
 
 <?php get_footer() ?>

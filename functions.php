@@ -629,6 +629,19 @@ function lt_upload_file () {
 
 		if ($server == 'online') {
 
+			// INSTALACION ONLINE
+			// $dbServerName = "localhost";
+			// $dbUsername = "silverse_admin";
+			// $dbPassword = "M-9!-^%jZ*h5";
+			// $dbName = "silverse_web";
+			// code...
+
+			// INSTALACION WAVE HOST
+			// $dbServerName = "localhost";
+			// $dbUsername = "lattedev_silver";
+			// $dbPassword = "%fGC+<`@]Csz#75F";
+			// $dbName = "lattedev_silver";
+
 
 			// INSTALACION FINAL
 			$dbHost = "localhost";
@@ -1160,6 +1173,5 @@ function my_save_custom_form() {
 	wp_redirect($link);
 	exit();
 }
-
 
 add_action( 'admin_post_save_my_custom_form', 'my_save_custom_form' );

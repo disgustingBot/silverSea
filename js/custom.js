@@ -932,6 +932,30 @@ class CartItem {
 
 
 
+function filterByCountry(){
+	var pais = document.getElementById('getPais').value;
+	var ciudad = document.getElementById('getCiudad').value;
+	var container = document.getElementById('getContainer').value;
+
+	var where = '';
+
+
+	if(pais!="*"){
+		where +=  '?pais='+pais;
+	}
+	if(ciudad!="*"){
+		where += '?ciudad='+ciudad;
+	}
+	if(container!="*"){
+		where +=   '?container='+container;
+	}
+
+	console.log(location.pathname+where);
+
+	window.location = location.pathname+where;
+
+
+}
 
 
 
