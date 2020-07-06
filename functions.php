@@ -1175,3 +1175,67 @@ function my_save_custom_form() {
 }
 
 add_action( 'admin_post_save_my_custom_form', 'my_save_custom_form' );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// add_action('pre_get_posts','lt_filtro_magico');
+
+// function lt_filtro_magico($query) {
+// 	if(!is_admin()){
+
+// 		if ( !$query->is_main_query() ) return;
+
+
+// 		$filtroMagico = 'filter1';
+
+// 		if (isset($_GET[$filtroMagico])) {
+// 			$query->query_vars['tax_query'][$filtroMagico] = array(
+// 				'taxonomy' => 'product_cat',
+// 				'field'    => 'slug',
+// 				'terms'    => $_GET[$filtroMagico],
+// 			);
+// 		}
+
+// 		//we remove the actions hooked on the '__after_loop' (post navigation)
+// 		remove_all_actions ( '__after_loop');
+// 	}
+// }
+
+
+// link = d.querySelector('selector del link dinamico')
+// cosos = [...d.querySelectorAll('selector de tus inputs')];
+// cosos.forEach((coso)=>{
+//   coso.onchange = ()=>{
+//     link.href = 'https://url-base.com/?' + coso.value
+//   }
+// })
