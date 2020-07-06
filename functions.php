@@ -485,32 +485,32 @@ function lt_create_products () {
 		// $respuesta['decode'] = $products;
 		foreach ($products as $key => $value) {
 			$respuesta['name'] = $value->Name;
-						// FALTAN LAS IMAGENES
-						$basic_data = array(
-							'post_title'             => $value->Name,
-							'post_content'           => $value->Description,
-						);
-						$categories = array(
-							0 => $value->size,
-							1 => $value->tipo_2,
-							2 => $value->condition,
-						);
-						$meta_data = array(
-							'alto'  => $value->alto,
-							'ancho' => $value->ancho,
-							'largo' => $value->largo,
-							'_sku'  => $value->SKU,
-						);
+			// // FALTAN LAS IMAGENES
+			$basic_data = array(
+				'post_title'             => $value->Name,
+				'post_content'           => $value->Description,
+			);
+			$categories = array(
+				0 => $value->size,
+				1 => $value->tipo_2,
+				2 => $value->condition,
+			);
+			$meta_data = array(
+				'alto'  => $value->alto,
+				'ancho' => $value->ancho,
+				'largo' => $value->largo,
+				'_sku'  => $value->SKU,
+			);
 
-						// $respuesta['data'] = $basic_data;
-						// $respuesta['cate'] = $categories;
-						// $respuesta['meta'] = $meta_data;
-						$images = $value->imagenes;
+			// $respuesta['data'] = $basic_data;
+			// $respuesta['cate'] = $categories;
+			// $respuesta['meta'] = $meta_data;
+			$images = $value->imagenes;
 
 
 
-						$newID = newProduct($basic_data, $categories, $meta_data, $images);
-						$respuesta[$key] = "Product '".$newID."' creado";
+			$newID = newProduct($basic_data, $categories, $meta_data, $images);
+			$respuesta[$key] = "Product '".$newID."' creado";
 		}
 
 
@@ -596,8 +596,8 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	$server = 'online';
-	// $server = 'local';
+	// $server = 'online';
+	$server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$file = false;
@@ -782,7 +782,7 @@ add_action( 'wp_ajax_lt_cart_end', 'lt_cart_end' );
 add_action( 'wp_ajax_nopriv_lt_cart_end', 'lt_cart_end' );
 
 function lt_cart_end () { global $wpdb;
-	$server = 'online';
+	$server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$contenedor = $_POST['cont'];
@@ -806,7 +806,6 @@ function lt_cart_end () { global $wpdb;
 		// $dbPassword = ";$6qha)2L*KU)6nq";
 		$dbName = "lattedev_silver";
 	}
-
 
 	// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
@@ -840,72 +839,6 @@ function lt_cart_end () { global $wpdb;
 	if($debugMode){echo wp_json_encode($respuesta);}
 	exit();
 }
-
-
-// consultas a base de datos para el cotizador
-// consultas a base de datos para el cotizador
-add_action( 'wp_ajax_gatCol', 'gatCol' );
-add_action( 'wp_ajax_nopriv_gatCol', 'gatCol' );
-
-function gatCol () {
-	$server = 'online';
-	$col = $_POST['col'];
-	$size = false;
-	$tipo_1 = false;
-	$tipo_2 = false;
-	if(isset($_POST['size'])){$size=$_POST['size'];}
-	if(isset($_POST['tipo_1'])){$tipo_1=$_POST['tipo_1'];}
-	if(isset($_POST['tipo_2'])){$tipo_2=$_POST['tipo_2'];}
-  // echo get_template_directory();
-  // include get_template_directory_uri().'/dbh.inc.php';
-
-	if ($server == 'online') {
-
-		// INSTALACION WAVE HOST
-		// $dbServerName = "localhost";
-		// $dbUsername = "lattedev_silver";
-		// $dbPassword = "%fGC+<`@]Csz#75F";
-		// $dbName = "lattedev_silver";
-
-		// INSTALACION FINAL
-		$dbHost = "localhost";
-		$dbUser = "silversea_web";
-		$dbPass = "qXne2abld1";
-		$dbName = "silversea_web";
-	} else {
-
-		// INSTALACION LOCAL
-		$dbHost = "localhost";
-		$dbUser = "root";
-		$dbPass = "";
-		// $dbUsername = "contraseñaDificil";
-		// $dbPassword = ";$6qha)2L*KU)6nq";
-		$dbName = "lattedev_silver";
-	}
-//   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
-
-	$qry = "SELECT distinct $col FROM contenedores";
-	if($size){
-		$qry = $qry . " WHERE size = '$size'";
-	}
-	if($size && $tipo_1){
-		$qry = $qry . " AND tipo_1 = '$tipo_1'";
-	}
-	if($size && $tipo_1 && $tipo_2){
-		$qry = "SELECT salesforce_id, condicion FROM contenedores WHERE size = '$size' and tipo_1 = '$tipo_1' and tipo_2 = '$tipo_2'";
-	}
-
-	$ress = $conn->query($qry);
-	// $resp = $ress->fetch_all(MYSQLI_ASSOC);
-		$resp = [];
-		while ($fila = $ress->fetch_assoc()) {
-				$resp[] = $fila;
-		}
-	echo wp_json_encode( $resp );
-	exit();
-}
-
 
 
 
@@ -1021,7 +954,7 @@ function lt_get_location () {
  * @param bool $force true to permanently delete product, false to move to trash.
  * @return \WP_Error|boolean
  */
-function wh_deleteProduct($id, $force = FALSE)
+function wh_deleteProduct($id, $force = TRUE)
 {
     $product = wc_get_product($id);
 
@@ -1208,34 +1141,81 @@ add_action( 'admin_post_save_my_custom_form', 'my_save_custom_form' );
 
 
 
-// add_action('pre_get_posts','lt_filtro_magico');
+add_action('pre_get_posts','lt_filtro_magico');
 
-// function lt_filtro_magico($query) {
-// 	if(!is_admin()){
+function lt_filtro_magico($query) {
+	if(!is_admin()){
 
-// 		if ( !$query->is_main_query() ) return;
+		if ( !$query->is_main_query() ) return;
+
+		$taxes = array( 'dry', 'new', 'cw');
+
+		foreach ( $taxes as $tax ) {
+			$terms = get_terms( $tax );
+		
+			foreach ( $terms as $term )
+				$tax_map[$tax][$term->slug] = $term->term_taxonomy_id;
+		}
+
+		$filtroMagico = 'use';
+		if (isset($_GET[$filtroMagico]) && $_GET[$filtroMagico]== 'storage-new') {
+			$query->query_vars['tax_query'][$filtroMagico . '1'] = array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => 'dry',
+			);
+			$query->query_vars['tax_query'][$filtroMagico . '2'] = array(
+				'taxonomy' => 'product_cat', // gets ignored
+				'field' => 'term_taxonomy_id',
+				'terms' => array( 43, 23 ), // secos para almacenaje o nuevos
+				'operator' => 'IN'
+			);
+		} else if(isset($_GET[$filtroMagico]) && $_GET[$filtroMagico]== 'cargo-dry') {
+			$query->query_vars['tax_query'][$filtroMagico . '1'] = array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => 'dry',
+			);
+			$query->query_vars['tax_query'][$filtroMagico . '2'] = array(
+				'taxonomy' => 'product_cat', // gets ignored
+				'field' => 'term_taxonomy_id',
+				'terms' => array( 39, 23 ), // secos para carga o nuevos
+				'operator' => 'IN'
+			);
+		} else if(isset($_GET[$filtroMagico]) && $_GET[$filtroMagico]== 'reefer') {
+			$query->query_vars['tax_query'][$filtroMagico . '1'] = array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => 'reefer',
+			);
+		}
 
 
-// 		$filtroMagico = 'filter1';
+		
+		$filtroMagicoSize = 'sizes';
+		if (isset($_GET[$filtroMagicoSize]) && $_GET[$filtroMagicoSize]=='20') {
+			$query->query_vars['tax_query'][$filtroMagicoSize . '1'] = array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => '20-pies',
+			);
+		} else if (isset($_GET[$filtroMagicoSize]) && $_GET[$filtroMagicoSize]=='40') {
+			$query->query_vars['tax_query'][$filtroMagicoSize . '1'] = array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => '40-pies',
+			);
+		} else if (isset($_GET[$filtroMagicoSize]) && $_GET[$filtroMagicoSize]=='others') {
+			$query->query_vars['tax_query'][$filtroMagicoSize . '1'] = array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms' => array( '40-pies', '20-pies' ), // secos para carga o nuevos
+				'operator' => 'NOT IN'
+			);
+		}
 
-// 		if (isset($_GET[$filtroMagico])) {
-// 			$query->query_vars['tax_query'][$filtroMagico] = array(
-// 				'taxonomy' => 'product_cat',
-// 				'field'    => 'slug',
-// 				'terms'    => $_GET[$filtroMagico],
-// 			);
-// 		}
+		//we remove the actions hooked on the '__after_loop' (post navigation)
+		remove_all_actions ( '__after_loop');
+	}
+}
 
-// 		//we remove the actions hooked on the '__after_loop' (post navigation)
-// 		remove_all_actions ( '__after_loop');
-// 	}
-// }
-
-
-// link = d.querySelector('selector del link dinamico')
-// cosos = [...d.querySelectorAll('selector de tus inputs')];
-// cosos.forEach((coso)=>{
-//   coso.onchange = ()=>{
-//     link.href = 'https://url-base.com/?' + coso.value
-//   }
-// })

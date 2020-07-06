@@ -28,6 +28,8 @@ w.onload=()=>{
 	startMateput();
 	cardSetup();
 
+	filterActivate();
+
 
 	if (d.getElementById("load")) {
 		d.getElementById("load").style.top="-100vh";
@@ -641,103 +643,103 @@ cartController = {
 
 
 	finish:()=>{
-		// console.log('carrito antes de la transforrmacion', cartController.cart)
-		// cartController.cart.forEach((item, i) => {
-		// 	// cartController.getPrice(item.code);
-		// 	// console.log(item);
+		console.log('carrito antes de la transforrmacion', cartController.cart)
+		cartController.cart.forEach((item, i) => {
+			// cartController.getPrice(item.code);
+			// console.log(item);
 
-		// 	var formData = new FormData();
-		// 	formData.append( 'action', 'lt_cart_end' );
-		// 	formData.append( 'cont', item.code );
-		// 	formData.append( 'country', cartController.locationOrigen['country'] );
-		// 	formData.append( 'city', cartController.locationOrigen['city'] );
-		// 	// console.log('formData');
+			var formData = new FormData();
+			formData.append( 'action', 'lt_cart_end' );
+			formData.append( 'cont', item.code );
+			formData.append( 'country', cartController.locationOrigen['country'] );
+			formData.append( 'city', cartController.locationOrigen['city'] );
+			// console.log('formData');
 
-		// 	// Display the key/value pairs
-		// 	// for (var pair of formData.entries()) {
-		// 	// 	console.log(pair[0]+ ', ' + pair[1]);
-		// 	// }
-		// 	ajax2(formData).then( data => {
-		// 		// console.log(data)
-		// 		let singlePrice, currency;
+			// Display the key/value pairs
+			// for (var pair of formData.entries()) {
+			// 	console.log(pair[0]+ ', ' + pair[1]);
+			// }
+			ajax2(formData).then( data => {
+				// console.log(data)
+				let singlePrice, currency;
 
-		// 		cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
-		// 		itemQty = cartItem.querySelector('.cartItemQty').innerText;
-		// 		itemPrice = cartItem.querySelector('.cartItemPriceNumber');
-		// 		itemCurrency = cartItem.querySelector('.cartItemCurrency');
+				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
+				itemQty = cartItem.querySelector('.cartItemQty').innerText;
+				itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+				itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
-		// 		if (data[0]) {
-		// 			// currency = data[0].currency;
-		// 			currency = 'EUR';
-		// 			// // TODO: leer el exchange de algun lado
-		// 			// TODO: transformar todo al mismo antes de hacer comparaciones ni nada
-		// 			exchange = data.pop()
-		// 			data.forEach(element => {
-		// 				if(element.currency.includes('USD')){
-		// 					element.currency = 'EUR'
-		// 					element.supplier_price = element.supplier_price * exchange.rate
-		// 					element.fixed_price = element.fixed_price * exchange.rate
-		// 					element.sale_price = element.sale_price * exchange.rate
-		// 				}
-		// 			});
-		// 			// console.log(data)
-		// 			// console.log('EX-change rate SUELTOOO:', exchange)
+				if (data[0]) {
+					// currency = data[0].currency;
+					currency = 'EUR';
+					// // TODO: leer el exchange de algun lado
+					// TODO: transformar todo al mismo antes de hacer comparaciones ni nada
+					exchange = data.pop()
+					data.forEach(element => {
+						if(element.currency.includes('USD')){
+							element.currency = 'EUR'
+							element.supplier_price = element.supplier_price * exchange.rate
+							element.fixed_price = element.fixed_price * exchange.rate
+							element.sale_price = element.sale_price * exchange.rate
+						}
+					});
+					// console.log(data)
+					// console.log('EX-change rate SUELTOOO:', exchange)
 
-		// 			if (data[0].fixed_price!=0) {
-		// 				singlePrice = parseFloat(data[0].fixed_price)
-		// 			}else if(data[0].sale_price!=0){
-		// 				singlePrice = parseFloat(data[0].sale_price - 300)
-		// 			}else if(!data[1]){
-		// 				singlePrice = parseFloat(data[0].supplier_price)
-		// 			}else{
-		// 				let prices = data.map( x => x.supplier_price );
-		// 				let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
-		// 				let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
-		// 				singlePrice = average + 200;
-		// 			}
-		// 			totalPrice = singlePrice * parseInt(itemQty);
+					if (data[0].fixed_price!=0) {
+						singlePrice = parseFloat(data[0].fixed_price)
+					}else if(data[0].sale_price!=0){
+						singlePrice = parseFloat(data[0].sale_price - 300)
+					}else if(!data[1]){
+						singlePrice = parseFloat(data[0].supplier_price)
+					}else{
+						let prices = data.map( x => x.supplier_price );
+						let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
+						let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+						singlePrice = average + 200;
+					}
+					totalPrice = singlePrice * parseInt(itemQty);
 
-		// 		} else {
-		// 			currency = '';
-		// 			singlePrice = 0;
-		// 			totalPrice = 'NaN';
-		// 		}
+				} else {
+					currency = '';
+					singlePrice = 0;
+					totalPrice = 'NaN';
+				}
 
-		// 		// const check = (element) => {
-		// 		// 	return element.code == x.code;
-		// 		// }
-		// 		// // if (cartController.cart.find(check)) {
-		// 		// let index = cartController.cart.findIndex(check)
-		// 		// cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
-		// 		cartController.cart[i].setPrice(singlePrice);
-		// 		nuevoElemento = new CartItem(cartController.cart[i].values)
-		// 		cartController.cart[i] = nuevoElemento;
-		// 		// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
-		// 		// console.log(cartController.cart[i]);
-
-
-		// 		// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
-		// 		if (i==cartController.cart.length - 1){
-		// 			console.log('CARRITO luego de la transformacion', cartController.cart)
-		// 			cartController.sendMail();
-		// 		}
-		// 		// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
-		// 		// }
+				// const check = (element) => {
+				// 	return element.code == x.code;
+				// }
+				// // if (cartController.cart.find(check)) {
+				// let index = cartController.cart.findIndex(check)
+				// cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
+				cartController.cart[i].setPrice(singlePrice);
+				nuevoElemento = new CartItem(cartController.cart[i].values)
+				cartController.cart[i] = nuevoElemento;
+				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
+				// console.log(cartController.cart[i]);
 
 
+				// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
+				if (i==cartController.cart.length - 1){
+					console.log('CARRITO luego de la transformacion', cartController.cart)
+					// cartController.sendMail();
+				}
+				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
+				// }
 
-		// 		itemCurrency.innerText = currency
-		// 		itemPrice.innerText = totalPrice;
-		// 	})
-		// });
+
+
+				itemCurrency.innerText = currency
+				itemPrice.innerText = totalPrice;
+			})
+		});
 
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
-		// console.log('send Mail')
-		// console.log(cartController.cart)
-		cartController.cartToLeads = cartController.cart;
-		createCookie('status','next')
-		cartController.sendAllLeads();
+
+
+		// cartController.cartToLeads = cartController.cart;
+		// createCookie('status','next')
+		// cartController.sendAllLeads();
 	},
 
 	sendMail:(cart)=>{
@@ -1140,3 +1142,60 @@ function filterByCountry(){
 // loadornot()
 
 // </script>
+
+
+const filterActivate = ()=>{
+
+	if (d.querySelector('#filterButtonAFK')){
+		link = d.querySelector('#filterButtonAFK')
+		cosos1 = [...d.querySelectorAll('[name=question1]')];
+		cosos2 = [...d.querySelectorAll('[name=question2]')];
+
+		// urlBase = 'https://silverseacontainers.com/buscar-contenedor/'
+		urlBase = 'http://localhost/silverSea/buscar-contenedor/'
+	
+		console.log(link)
+		cosos1.forEach((coso)=>{
+			coso.onchange = ()=>{
+				console.log(coso.value)
+				// link.href = urlBase + '?uso=' + coso.value
+				if(d.querySelectorAll('[name=question2]:checked')){
+					otro=d.querySelector('[name=question2]:checked')
+					link.href = urlBase + '?use=' + coso.value + '&sizes=' + otro.value
+				} else {
+					link.href = urlBase + '?use=' + coso.value
+				}
+			}
+		})
+		cosos2.forEach((coso)=>{
+			coso.onchange = ()=>{
+				if(d.querySelectorAll('[name=question1]:checked')){
+					otro=d.querySelector('[name=question1]:checked')
+					console.log(otro);
+					link.href = urlBase + '?use=' + otro.value + '&sizes=' + coso.value
+				} else {
+					link.href = urlBase + '?sizes=' + coso.value
+				}
+				console.log(coso.value)
+			}
+		})
+	
+	}
+	if(d.querySelector('[name=cont_selector')){
+		d.querySelector('[name=cont_selector').onchange=(option)=>{
+			let button = d.querySelector('.cotizarContainer'),
+			urlBase = 'http://localhost/silverSea/buscar-contenedor/'
+			console.log(option.target.value)
+			card = option.target.value
+			if(card == 'card67'){
+				button.href = urlBase + '?use=storage-new';
+			}
+			if(card == 'card68'){
+				button.href = urlBase + '?use=cargo-dry';
+			}
+			if(card == 'card69'){
+				button.href = urlBase + '?use=reefer';
+			}
+		}
+	}
+}
