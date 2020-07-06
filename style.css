@@ -35,6 +35,7 @@ Version: 0.0
 6.3.0) =Front Page ATF:
 6.3.1) =About Us ATF:
 6.3.2) =Team ATF:
+6.3.3) =Stock ATF:
 6.4) =socalMedia:
 6.5) =multiCards:
 6.5.0) =card:
@@ -643,7 +644,7 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
   :root {
-    --lateral: 5rem;
+    --lateral: 3rem;
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
@@ -669,7 +670,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media  screen and (min-width: 1500px) {
   :root {
 
-    --lateral: 10rem;
+    --lateral: 8rem;
 
 
     /* ?HEADER */
@@ -686,7 +687,6 @@ FIN DE MAPA DE CONTENIDOS */
                     "productGallery productGallery singleBuy singleRent  . ."
                     ; */
     /* ARCHIVE-PRODUCT */
-    --searchResultsGTC: repeat(4,1fr);
     --searchResultsAltGTC: repeat(5,1fr);
   }
 }
@@ -699,7 +699,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media  screen and (min-width: 1800px) {
   :root {
 
-    --lateral: 15rem;
+    --lateral: 10rem;
 
 
   }
@@ -847,7 +847,7 @@ section {
 .opacity0{opacity:0}
 
 .txtCenterLeft {text-align: var(--txtCenterLeft)}
-.txtCenter {text-align: center}
+.txtCenter {text-align: center!important}
 
 .grid{display:grid}
 .flex{display:flex}
@@ -1048,7 +1048,7 @@ section {
   height: 100%;
   width: 100%;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   background: var(--grey0);
   padding-top: 40px;
 }
@@ -1062,7 +1062,7 @@ section {
   transition: .25s;
   width: 60vw;
   filter: brightness(100%)!important;
-  font-size: 2rem;
+  font-size: 1.5rem;
   z-index: 6;
 }
 
@@ -1172,7 +1172,7 @@ section {
 
 
 #menu-mainmenu-1 .menu-item a{
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .navBarMobile .menu-item {
@@ -1181,7 +1181,7 @@ section {
 }
 
 .navBarMobile .menu-item a {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 
@@ -1198,7 +1198,7 @@ section {
   background: var(--primaryColorDark);
   display: flex;
   flex-direction: var(--selectLangFlexDir);
-  font-size: 18px;
+  font-size: 16px;
   padding: .25rem 0;
   width: 100%;
   grid-column: 1/-1;
@@ -1329,7 +1329,7 @@ section {
 }
 
 .featureTxt {
-  font-size: .9rem;
+  font-size: 15px;
   margin: auto;
   margin-top: 0;
   text-align: center;
@@ -1337,7 +1337,7 @@ section {
 
 
 .featureTitle {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -1437,13 +1437,14 @@ section {
 }
 
 .mapSecTitle {
+  font-size: 28px;
   text-align: center;
   text-transform: uppercase;
   margin: auto;
 }
 
 .mapInterTxt {
-  font-size: .7rem;
+  font-size:  15px;
   align-self: flex-end;
   position: absolute;
   z-index: 3;
@@ -1567,17 +1568,17 @@ section {
 
 
 .timelineTitle, .timelineTextTitle {
-  font-size: 24px;
+  font-size: 18px;
   text-align: center;
   margin: 16px auto;
 }
 
 .timelineTextTxt .brandColorTxt {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .timelineTextTxt {
-  font-size: 18px;
+  font-size: 16px;
   margin: 16px auto;
   text-align: center;
 }
@@ -1603,11 +1604,11 @@ section {
 
 
 .timeline h5 {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .timeline p {
-  font-size: 18px;
+  font-size: 16px;
 }
 .timeline .event {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
@@ -1632,7 +1633,7 @@ section {
   content: attr(data-date);
   text-align: right;
   font-weight: 100;
-  font-size: 0.9em;
+  font-size: 16px;
   min-width: 120px;
 }
 .timeline .event:after {
@@ -1663,7 +1664,7 @@ section {
 .valueItem:not(.brandColorTxt) {
   grid-column: 1/-1;
   text-align: left;
-  font-size: 20px;
+  font-size: 18px;
 
 }
 
@@ -1751,7 +1752,7 @@ section {
 }
 
 .teamSectionTitle {
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   grid-column: 1/-1;
   padding: 1rem 0;
@@ -1798,17 +1799,67 @@ section {
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: .8rem;
+  font-size: 16px;
 }
 
 .areaSelectorTxt::before{
   content: '►';
   color: var(--primaryColor);
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-right: .5rem;
 }
 
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              6.3.3) =Stock ATF:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
 
+.stockBanner {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.stockBannerOverlay {
+  background: black;
+  opacity: .5;
+}
+
+.stockATFTitle {
+  color: var(--grey0);
+  z-index: 2;
+  margin: auto;
+}
+
+.stockReport {
+  width: 100%;
+  padding: 2rem var(--lateral);
+  display: grid;
+}
+
+.stockreport-table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+
+table.stockreport-table th {
+  background: var(--primaryColor);
+  color: var(--grey0);
+}
+
+table.stockreport-table .border {
+  border-bottom: 1px solid #3C272A;
+}
+
+.stockReport table caption, .stockReport table th, .stockReport table td {
+  font-size: 10px;
+  font-size: .714285714286rem;
+  line-height: 10px;
+  line-height: .714285714286rem;
+  text-align: left;
+  padding: 5px;
+}
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
                                 6.4) =socalMedia:
@@ -1866,7 +1917,10 @@ section {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .card .cuantosQnt{height: unset}
-.card .btn{padding: 5px;}
+.card .btn{
+  padding: 5px;
+  padding-bottom: 0;
+}
 .cardFeatures svg{width:2rem;height:2rem}
 
 .card {
@@ -1948,7 +2002,6 @@ section {
 
 .cardFeatures{
   border-radius:4px;
-  background:var(--grey1);
   padding:.2rem 0;
   display:grid;
   grid-auto-flow:column;
@@ -1965,13 +2018,15 @@ section {
   display: grid;
   grid-auto-flow: column;
   grid-gap:.5rem;
-  grid-template-rows: var(--cardActionsGGGTR);
-  grid-template-columns: var(--cardActionsGGGTC);
+  /* grid-template-rows: var(--cardActionsGGGTR); */
+  /* grid-template-columns: var(--cardActionsGGGTC); */
+  grid-template-columns: 1fr 1fr;
 }
 
 .cardActions .cuantos {
-  grid-column: var(--cardActinsCuantityGC);
-  margin: var(--cardActinsCuantityM);
+  /* grid-column: var(--cardActinsCuantityGC); */
+  /* margin: var(--cardActinsCuantityM); */
+  margin: auto;
 }
 
 
@@ -2021,7 +2076,7 @@ section {
 .teamCard:hover .teamCardImg1{opacity:1}
 
 .teamCardTxt {
-  font-size: .7rem;
+  font-size: 14px;
   padding: .5rem;
   display: flex;
   flex-direction: column;
@@ -2029,8 +2084,8 @@ section {
   height: 100px;
 }
 
-.teamCardMail {font-size: .5rem;}
-.teamCardName {font-size: .8rem;}
+.teamCardMail {font-size: 12px;}
+.teamCardName {font-size: 12px;}
 
 .teamCardBlock {display: block;}
 .teamCardNone {display: none;}
@@ -2072,7 +2127,7 @@ section {
 .footLogInput {
   height: 1.5rem;
   width: 100%;
-  font-size: 16px;
+  font-size: 15px;
   padding: .5rem;
   border: none;
 }
@@ -2133,12 +2188,12 @@ section {
 
 .encuentraContenedorTitle {
   width: 100%;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .archiveTopInteractTitle {
   margin: auto;
-  font-size: 1rem;
+  font-size: 18px;
   transition: .25s;
   margin-left: 0;
 }
@@ -2183,6 +2238,17 @@ section {
   color: var(--grey1);
 }
 
+.btn:disabled{
+  background:var(--grey3);
+  cursor:default;
+}
+.btn:disabled:hover{
+  background:var(--grey3);
+  color:black;
+}
+
+
+
 
 .btn.blue{
   /* background: var(--color1); */
@@ -2214,9 +2280,9 @@ section {
 }
 
 
-.btn .contactCta {
+.contactCTA {
   position:fixed;
-  top: 120px;
+  bottom: 60px;
   left: 1rem;
   z-index:4;
   text-align: center;
@@ -2245,7 +2311,7 @@ section {
   border: none;
   background:none;
   color:var(--primaryColorDark);
-  grid-row: 2;
+  /* grid-row: 2; */
   cursor: pointer;
 }
 .btnSimple:hover{
@@ -2456,11 +2522,11 @@ section {
 }
 
 .countTxt {
-  font-size: .65rem;
+  font-size: 16px;
 }
 
 .countSmallerTxt {
-  font-size: .6rem;
+  font-size: 14px;
 }
 
 .countTxt:nth-child(2) {
@@ -2488,6 +2554,8 @@ section {
   position: relative;
 }
 
+.article2 .sectionSummary {padding-left: 1rem;}
+
 .article2.containerNeeded  > * {
   width: 100%;
   object-fit: contain;
@@ -2509,7 +2577,6 @@ section {
 .sectionSummary{
   display: flex;
   flex-direction: column;
-  padding-left: 1rem;
   position: relative;
   justify-content: center;
   margin-bottom: var(--A2sectionSummaryMB);
@@ -2548,11 +2615,11 @@ section {
 }
 
 .summaryTitle{
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 
 .summaryTxt {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
 }
 
@@ -2569,7 +2636,7 @@ section {
   font-weight: bold;
   display: inline-block;
   width: 14px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 
@@ -2737,7 +2804,7 @@ section {
 
 .singleCategoryTitle {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 100%;
   margin: 1rem;
 }
@@ -2762,11 +2829,11 @@ section {
   margin: auto 16px auto 0;
 }
 .categoryCardTitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .categoryCardCaption {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
@@ -2812,18 +2879,18 @@ section {
 }
 
 .cotizadorTxt {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .contizacionAvanzada {
   display: flex;
-  font-size: 20px;
+  font-size: 18px;
   align-items: center;
   flex-direction: var(--cotizacionAvanzadaFD);
 }
 
 .contizacionAvanzada .btnSimple {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -2961,7 +3028,7 @@ section {
 }
 
 .selectBoxPlaceholder{
-  font-size: .8rem!important;
+  font-size: 16px!important;
   height:1rem;
   line-height:1rem;
   left:16px;
@@ -2974,8 +3041,8 @@ section {
 .selectBoxCurrent{
   /* border-bottom:2px solid var(--color2); */
   border-bottom: 2px solid var(--primaryColor);
-  padding:16px 52px 2px 16px;
-  font-size: .8rem!important;
+  font-size: 14px!important;
+  padding:16px 10px 2px 16px;
   position: relative;
 }
 
@@ -3004,7 +3071,7 @@ section {
   transform:translateY(-50%) scale(.6);
 }
 
-.selectBoxList{
+.selectBoxList {
   align-items: center;
   background: #FFF;
   border-radius:4px;
@@ -3024,7 +3091,8 @@ section {
   width:100%;
   z-index: 12;
 }
-.SelectBox.focus:focus .selectBoxList{
+
+.SelectBox.focus:focus .selectBoxList {
   background:var(--grey1);
   left: var(--selectBoxListLeft);
   opacity:1;
@@ -3032,22 +3100,22 @@ section {
 }
 
 
-.selectBoxOption:first-child{height:1.5rem}
-.selectBoxOption{
+.selectBoxOption:first-child {height:1.5rem}
+
+.selectBoxOption {
   cursor:pointer;
-  font-size: var(--fontSize4);
-  /* height: 1.5rem; */
-  /* line-height: 1.8rem; */
+  font-size: 15px;
   transition:.3s;
-  padding:0 16px;
-  /* width:max-content; */
+  padding:0 8px;
 }
-.selectBoxOption:hover{
+
+.selectBoxOption:hover {
   background:#BBB;
   z-index:1;
 }
-.hidden{display:none!important}
-.selectBoxInput{
+.hidden {display:none!important}
+
+.selectBoxInput {
   display: none;
 }
 
@@ -3056,17 +3124,12 @@ section {
                           6.19) =dynamicCont:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.dynamicContList{
+.dynamicContList {
   display:grid;
   grid-gap:.5rem;
   padding:.5rem 0;
 }
 
-
-
-.dynamicCont.ready .btn{
-  background:var(--primaryColorDark);
-}
 
 .dynamicCont {
   align-items:center;
@@ -3078,6 +3141,10 @@ section {
   /* grid-template-rows:var(--dynamicContGTR); */
   grid-gap:1rem;
   /* padding: 0 1rem; */
+}
+
+.dynamicCont .btn {
+  background: var(--grey3);
 }
 
 .dynamicCont >* {margin:auto;}
@@ -3123,16 +3190,16 @@ section {
 
 .cart.alt{transform:translateY(0)}
 
-.cartHead{
+.cartHead {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  /* grid-template-columns:1fr 1fr; */
   grid-gap:inherit;
   align-items:center;
 }
 
 .cartHead .btn{margin-right:0}
 
-.cartHead .btn:nth-child(3) {grid-column: 2;}
+/* .cartHead .btn:nth-child(3) {grid-column: 2;} */
 
 .cartList{
   display:grid;
@@ -3186,7 +3253,9 @@ section {
 padding-bottom:0;
 }
 
-
+.finalizarConsulta .formAcceptance {
+  color: black;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.22) =cuantos:
@@ -3208,7 +3277,7 @@ padding-bottom:0;
   border:none;
   min-width: 1.5rem;
   text-align: right;
-  font-size:var(--fontSize3);
+  font-size:18px;
   pointer-events:none;
 }
 
@@ -3218,7 +3287,7 @@ padding-bottom:0;
   text-align: center;
   cursor:pointer;
   border:none;
-  font-size:var(--fontSize3);
+  font-size:18px;
   /* color:black; */
   display: grid;
   justify-content: center;
@@ -3284,7 +3353,7 @@ padding-bottom:0;
   background:none;
   border:none;
   color:#000;
-  font-size:.8rem!important;
+  font-size:16px!important;
   height: 100%;
   /* padding-top:20px; */
   padding-top:calc(var(--mateputHeight) * 2 / 5);
@@ -3296,7 +3365,7 @@ padding-bottom:0;
   border-bottom: 2px solid #666;
   bottom:0;
   color:#333;
-  font-size:.7rem!important;
+  font-size:15px!important;
   height: 100%;
   left:0;
   pointer-events: none;
@@ -3498,7 +3567,7 @@ padding-bottom:0;
   position: fixed;
   bottom: 0;
   left: 0;
-  font-size: 18px;
+  font-size: 16px;
   align-items: center;
   justify-content: center;
   padding: 8px;
@@ -3506,7 +3575,7 @@ padding-bottom:0;
   border-radius: 4px;
   box-shadow: var(--DP24);
   width: var(--filterQuestActivatorWidth);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .filterQuestionActP {
@@ -3593,7 +3662,7 @@ padding-bottom:0;
 
 .loginForm input{
   height: 1.4rem;
-  font-size: 1rem;
+  font-size: 14px;
   padding: .5rem;
   border-radius: 6px;
 }
@@ -3614,7 +3683,7 @@ padding-bottom:0;
 }
 
 .forgot{
-  font-size: .7rem;
+  font-size: 16px;
   text-align: right;
   /* color: var(--color2); */
 }
@@ -3726,21 +3795,37 @@ padding-bottom:0;
 --------------------------------------------------------------------------- */
 
 section.contacto{
-  height: 90vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  /* color: white; */
   text-align: center;
   position: relative;
+  padding: 1rem 0;
 }
 
-.formTxt * {color: var(--grey0)};
+.formTxt *{color: var(--grey0)}
+
+.formAcceptance {
+  display: flex;
+  align-items: center;
+  color: var(--grey0);
+  font-size: 15px;
+  grid-column: 1/-1;
+}
+.formAcceptance input {
+  margin-right: 5px;
+  width: 1rem!important;
+  height: 1rem!important;
+}
+.formAcceptance p a {
+  text-decoration: underline;
+}
 
 .contacto .formTitle{
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 section.contacto > *{width: 80%; z-index: 1;}
@@ -3787,7 +3872,7 @@ section.contacto img{
   padding: .5rem 1rem;
   background: var(--grey1);
   color: var(--primaryColorDarker);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -3955,7 +4040,7 @@ section.contacto img{
 
 
 .footerNav a {
-  font-size: 16px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -3969,7 +4054,7 @@ section.contacto img{
 .wp-block-quote {
   border-left: 2px solid var(--primaryColor);
   padding-left: 1rem;
-  font-size: .8rem;
+  font-size: 14px;
 }
 
 

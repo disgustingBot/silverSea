@@ -227,8 +227,8 @@
   <div class="filterSingleQuestCont">
     <p class="filterQuestion"><strong>¿Para que estás buscando un contenedor?</strong></p>
     <div class="filterAnswerCont">
-      <input type="radio" id="asis" name="question1" value="storage-new">
-      <label for="asis">Para almacenar o modificarlo</label>
+      <input type="radio" id="asis2" name="question1" value="storage-new">
+      <label for="asis2">Para almacenar o modificarlo</label>
     </div>
     <div class="filterAnswerCont">
       <input type="radio" id="export" name="question1" value="cargo-dry">
@@ -255,7 +255,7 @@
     </div>
   </div>
 
-  <button class="btn">Filtrar contenedores</button>
+  <a href="" class="btn" type="submit">Filtrar contenedores</a>
 </form>
 
 <?php get_footer() ;?>
