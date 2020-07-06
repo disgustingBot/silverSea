@@ -189,7 +189,7 @@ function latte_pagination() {
 					$_product = $_pf->get_product(get_the_ID());
 				}
 				// FIND OUT WHICH CARACTERISTICS
-				require_once 'getAtributes.php';
+				include 'getAtributes.php';
 				?>
 
 

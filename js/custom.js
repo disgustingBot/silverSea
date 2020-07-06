@@ -577,11 +577,11 @@ cartController = {
 		// cartController.cart = JSON.parse(readCookie('cart'));
 		// cartController.cart = JSON.parse(readCookie('cart'));
 		if(readCookie('cart')){
-			// JSON.parse(readCookie('cart')).forEach((item, i) => {
-			// 	cartController.cart.unshift(new CartItem(item));
-			// 	cartController.cart[0].cartUI();
+			JSON.parse(readCookie('cart')).forEach((item, i) => {
+				cartController.cart.unshift(new CartItem(item));
+				cartController.cart[0].cartUI();
 
-			// });
+			});
 		}
 
 		if (cartController.cart.length<2) {
@@ -599,6 +599,7 @@ cartController = {
 	currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false, singlePrice: 0},
 	containerToAdd:false,
 	cart: [],
+	cartToLeads: [],
 	allProducts:{},
 	locationOrigen:[],
 	locationDestino:[],
@@ -640,118 +641,104 @@ cartController = {
 
 
 	finish:()=>{
-		console.log('carrito antes de la transforrmacion', cartController.cart)
-		cartController.cart.forEach((item, i) => {
-			// cartController.getPrice(item.code);
-			// console.log(item);
+		// console.log('carrito antes de la transforrmacion', cartController.cart)
+		// cartController.cart.forEach((item, i) => {
+		// 	// cartController.getPrice(item.code);
+		// 	// console.log(item);
 
-			var formData = new FormData();
-			formData.append( 'action', 'lt_cart_end' );
-			formData.append( 'cont', item.code );
-			formData.append( 'country', cartController.locationOrigen['country'] );
-			formData.append( 'city', cartController.locationOrigen['city'] );
-			// console.log('formData');
+		// 	var formData = new FormData();
+		// 	formData.append( 'action', 'lt_cart_end' );
+		// 	formData.append( 'cont', item.code );
+		// 	formData.append( 'country', cartController.locationOrigen['country'] );
+		// 	formData.append( 'city', cartController.locationOrigen['city'] );
+		// 	// console.log('formData');
 
-			// Display the key/value pairs
-			// for (var pair of formData.entries()) {
-			// 	console.log(pair[0]+ ', ' + pair[1]);
-			// }
-			ajax2(formData).then( data => {
-				// console.log(data)
-				let singlePrice, currency;
+		// 	// Display the key/value pairs
+		// 	// for (var pair of formData.entries()) {
+		// 	// 	console.log(pair[0]+ ', ' + pair[1]);
+		// 	// }
+		// 	ajax2(formData).then( data => {
+		// 		// console.log(data)
+		// 		let singlePrice, currency;
 
-				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
-				itemQty = cartItem.querySelector('.cartItemQty').innerText;
-				itemPrice = cartItem.querySelector('.cartItemPriceNumber');
-				itemCurrency = cartItem.querySelector('.cartItemCurrency');
+		// 		cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
+		// 		itemQty = cartItem.querySelector('.cartItemQty').innerText;
+		// 		itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+		// 		itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
-				if (data[0]) {
-					// currency = data[0].currency;
-					currency = 'EUR';
-					// // TODO: leer el exchange de algun lado
-					// TODO: transformar todo al mismo antes de hacer comparaciones ni nada
-					exchange = data.pop()
-					data.forEach(element => {
-						if(element.currency.includes('USD')){
-							element.currency = 'EUR'
-							element.supplier_price = element.supplier_price * exchange.rate
-							element.fixed_price = element.fixed_price * exchange.rate
-							element.sale_price = element.sale_price * exchange.rate
-						}
-					});
-					// console.log(data)
-					// console.log('EX-change rate SUELTOOO:', exchange)
+		// 		if (data[0]) {
+		// 			// currency = data[0].currency;
+		// 			currency = 'EUR';
+		// 			// // TODO: leer el exchange de algun lado
+		// 			// TODO: transformar todo al mismo antes de hacer comparaciones ni nada
+		// 			exchange = data.pop()
+		// 			data.forEach(element => {
+		// 				if(element.currency.includes('USD')){
+		// 					element.currency = 'EUR'
+		// 					element.supplier_price = element.supplier_price * exchange.rate
+		// 					element.fixed_price = element.fixed_price * exchange.rate
+		// 					element.sale_price = element.sale_price * exchange.rate
+		// 				}
+		// 			});
+		// 			// console.log(data)
+		// 			// console.log('EX-change rate SUELTOOO:', exchange)
 
-					if (data[0].fixed_price!=0) {
-						singlePrice = parseFloat(data[0].fixed_price)
-					}else if(data[0].sale_price!=0){
-						singlePrice = parseFloat(data[0].sale_price - 300)
-					}else if(!data[1]){
-						singlePrice = parseFloat(data[0].supplier_price)
-					}else{
-						let prices = data.map( x => x.supplier_price );
-						let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
-						let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
-						singlePrice = average + 200;
-					}
-					totalPrice = singlePrice * parseInt(itemQty);
+		// 			if (data[0].fixed_price!=0) {
+		// 				singlePrice = parseFloat(data[0].fixed_price)
+		// 			}else if(data[0].sale_price!=0){
+		// 				singlePrice = parseFloat(data[0].sale_price - 300)
+		// 			}else if(!data[1]){
+		// 				singlePrice = parseFloat(data[0].supplier_price)
+		// 			}else{
+		// 				let prices = data.map( x => x.supplier_price );
+		// 				let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
+		// 				let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+		// 				singlePrice = average + 200;
+		// 			}
+		// 			totalPrice = singlePrice * parseInt(itemQty);
 
-				} else {
-					currency = '';
-					singlePrice = 0;
-					totalPrice = 'NaN';
-				}
+		// 		} else {
+		// 			currency = '';
+		// 			singlePrice = 0;
+		// 			totalPrice = 'NaN';
+		// 		}
 
-				// const check = (element) => {
-				// 	return element.code == x.code;
-				// }
-				// // if (cartController.cart.find(check)) {
-				// let index = cartController.cart.findIndex(check)
-				// cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
-				cartController.cart[i].setPrice(singlePrice);
-				nuevoElemento = new CartItem(cartController.cart[i].values)
-				cartController.cart[i] = nuevoElemento;
-				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
-				// console.log(cartController.cart[i]);
-
-
-				// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
-				if (i==cartController.cart.length - 1){
-					console.log('CARRITO luego de la transformacion', cartController.cart)
-					cartController.sendMail();
-				}
-				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
-				// }
+		// 		// const check = (element) => {
+		// 		// 	return element.code == x.code;
+		// 		// }
+		// 		// // if (cartController.cart.find(check)) {
+		// 		// let index = cartController.cart.findIndex(check)
+		// 		// cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
+		// 		cartController.cart[i].setPrice(singlePrice);
+		// 		nuevoElemento = new CartItem(cartController.cart[i].values)
+		// 		cartController.cart[i] = nuevoElemento;
+		// 		// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
+		// 		// console.log(cartController.cart[i]);
 
 
+		// 		// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
+		// 		if (i==cartController.cart.length - 1){
+		// 			console.log('CARRITO luego de la transformacion', cartController.cart)
+		// 			cartController.sendMail();
+		// 		}
+		// 		// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
+		// 		// }
 
-				itemCurrency.innerText = currency
-				itemPrice.innerText = totalPrice;
-			})
-		});
+
+
+		// 		itemCurrency.innerText = currency
+		// 		itemPrice.innerText = totalPrice;
+		// 	})
+		// });
+
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
 		// console.log('send Mail')
 		// console.log(cartController.cart)
-
-
-		let info = {
-			fname:   'Desde el otro lugar',
-			lname:   'tambien llega el testeo?',
-			email:   'email@test.fake',
-			phone:   '0800 666 696969',
-			company: 'test company',
-			country: 'my country',
-			city:    'a city',
-			code:    'the product code',
-			type:    'product type',
-			size:    'product size',
-			quantity:'product quantity',
-			message: 'el mensajeeeee',
-		}
-		cartController.newLead(info);
+		cartController.cartToLeads = cartController.cart;
+		createCookie('status','next')
+		cartController.sendAllLeads();
 	},
-
 
 	sendMail:(cart)=>{
 		// console.log(cart)
@@ -772,34 +759,6 @@ cartController = {
 		});
 	},
 
-	newLead:(info)=>{
-		
-		// let oid = '00D1l0000000ia7';
-		// let retURL  = 'https://silverseacontainers.com/';
-		// let debug   = 1;
-		// let debugEmail = 'gportela@silverseacontainers.com';
-		let first_name = info.fname;
-		let last_name  = info.lname;
-		let email      = info.email;
-		let phone      = info.phone;
-		let company    = info.company;
-		let country    = info.country;
-		let city       = info.city;
-		let product    = info.code;
-		let type       = info.type;
-		let size       = info.size;
-		let quantity   = info.quantity;
-		let message    = info.message;
-
-		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
-
-		let baseURL= 'https://silverseacontainers.com/testLead.php';
-
-		let url = baseURL + vars;
-		window.open(url,'_blank');
-		//TODO: que la pagina que se abre se cierre... 
-		
-	},
 	add: (x) => {
 		const check = (element) => {
 			return element.code == x.code;
@@ -823,9 +782,9 @@ cartController = {
 			});
 		}
 
-
-		// console.log(cartController.cart);
-		createCookie('cart', JSON.stringify(cartController.cart));
+		// str.split(search).join(replacement)
+		console.log(cartController.cart);
+		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
 
 	},
 	remove:(code)=>{
@@ -846,7 +805,7 @@ cartController = {
 				item.setAttribute('xlink:href', '#doubleTruck');
 			});
 		}
-		createCookie('cart', JSON.stringify(cartController.cart));
+		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
 	},
 
 
@@ -871,7 +830,157 @@ cartController = {
 
 		return a;
 	},
+	selectBoxWipe:(nombre, comptleteWipe = false)=>{
+		list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
+		selectBoxControler('', '#selectBox'+nombre, '#selectBoxCurrent'+nombre);
+		if (list.firstChild) {
+			while (list.firstChild) {
+			list.removeChild(list.firstChild);
+			}
+		}
+		if(!comptleteWipe){
+			list.appendChild(cartController.selectBoxOption(nombre));
+		}
+	},
+
+
+	sendAllLeads:()=>{
+		// if(readCookie('status')=='next'){
+		// eraseCookie('status')
+		
+		// cartController.cartToLeads.forEach(product=>{
+			
+		let product = cartController.cartToLeads.shift();
+		console.log('send '+product.qty+' product: ', product.code)
+		
+
+		let info = {
+			fname:    d.querySelector('#mateputNombre').value,
+			email:    d.querySelector('#mateputEmail').value,
+			phone:    d.querySelector('#mateputTelefono').value,
+			country:  d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value,
+			city:     d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value,
+			code:     product.code,
+			type:     product.tipo_2,
+			size:     product.size,
+			quantity: product.qty,
+			company:  '-',
+			lname:    '-',
+			message:  '-',
+		}
+		
+		if(cartController.cartToLeads.length!=0){
+			createCookie('cartToLeads', JSON.stringify(cartController.cartToLeads).split(';').join(':'));
+			createCookie('info', JSON.stringify(info));
+			createCookie('lastLead', 'waiting');
+		} else {
+			createCookie('lastLead', 'sent');
+		}
+		console.log(info)
+		createCookie('leadsSent', '1');
+		cartController.newLead(info);
+		// });
+
+
+		// }
+
+		// if(readCookie('status')=='success'){
+		// 	win2.close()
+		// 	eraseCookie('status')
+		// 	if(cartController.cartToLeads.length>0){
+		// 		createCookie('status','next')
+		// 		cartController.sendAllLeads();
+		// 	} else {
+		// 		console.log('todos los elementos del carrito fueron enviados con exitooo')
+		// 	}
+		// 	// console.log('FOUNDDDD, close cycle')
+		// 	// console.log('respuesta de salesforce: ' + readCookie('status'))
+		// } else {
+		// 	console.log(readCookie('status'))
+		// 	setTimeout(() => {
+		// 		cartController.sendAllLeads();
+		// 	}, 200);
+		// }
+		// }
+	},
+
+	newLead:(info)=>{
+		
+		// let oid = '00D1l0000000ia7';
+		// let retURL  = 'https://silverseacontainers.com/';
+		// let debug   = 1;
+		// let debugEmail = 'gportela@silverseacontainers.com';
+		let first_name = info.fname;
+		let last_name  = info.lname;
+		let email      = info.email;
+		let phone      = info.phone;
+		let company    = info.company;
+		let country    = info.country;
+		let city       = info.city;
+		let product    = info.code;
+		let type       = info.type;
+		let size       = info.size;
+		let quantity   = info.quantity;
+		let message    = info.message;
+
+		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
+
+		let baseURL= 'https://silverseacontainers.com/testLead.php';
+		// let baseURL= 'http://localhost/silversea/wp-content/themes/silversea/cookiePractice.php';
+
+		
+		let url = baseURL + vars;
+		win2 = window.open(url,'_blank');
+		win2.blur();
+		window.focus();
+		//TODO: que la pagina que se abre se cierre... 
+		checkForClose();
+		
+	},
+
+
 }
+
+const checkForClose = ()=>{
+	console.log(readCookie('allLeads')=='success')
+    if(readCookie('allLeads')=='success'){
+		// console.log('FOUNDDDD, close cycle')
+		let cant = parseInt(readCookie('leadsSent'))
+		console.log('cantidad de Leads enviados: ', cant)
+		eraseCookie('allLeads')
+		win2.close()
+    } else {
+		console.log(readCookie('status'))
+		setTimeout(() => {
+			checkForClose();
+		}, 200);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -928,6 +1037,7 @@ class CartItem {
 }
 
 
+// window.location.href = "http://www.w3schools.com";
 
 
 
@@ -950,7 +1060,7 @@ class CartItem {
 // http://www.javascriptkit.com/script/script2/popunder.shtml
 
 
-// {/* <script> */}
+// <script>
 
 // //Pop-under window- By JavaScript Kit
 // //Credit notice must stay intact for use
