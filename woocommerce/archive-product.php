@@ -242,20 +242,20 @@
   <div class="filterSingleQuestCont">
     <p class="filterQuestion"><strong>¿De que tamaño lo necesitas?</strong></p>
     <div class="filterAnswerCont">
-      <input type="radio" id="pies20" name="question2" value="20DC">
+      <input type="radio" id="pies20" name="question2" value="20">
       <label for="pies20">Seis metros de largo por 2 y medio de ancho</label>
     </div>
     <div class="filterAnswerCont">
-      <input type="radio" id="pies40" name="question2" value="40DC-40HC">
+      <input type="radio" id="pies40" name="question2" value="40">
       <label for="pies40">12 metros de largo por 2 y medio de ancho</label>
     </div>
     <div class="filterAnswerCont">
-      <input type="radio" id="otres" name="question2" value="no-40DC-40HC">
+      <input type="radio" id="otres" name="question2" value="others">
       <label for="otres">Otras medidas</label>
     </div>
   </div>
 
-  <a href="" class="btn" type="submit">Filtrar contenedores</a>
+  <a href="" class="btn" id="filterButtonAFK" type="submit">Filtrar contenedores</a>
 </form>
 
 <?php get_footer() ;?>

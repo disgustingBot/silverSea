@@ -168,7 +168,7 @@
         <?php } ?>
       <?php $i++; } ?>
     </select>
-    <button class="btn cotizarContainer">Cotizar contenedor</button>
+    <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
 
   <?php } ?>
 </section>
