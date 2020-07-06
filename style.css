@@ -69,6 +69,7 @@ Version: 0.0
 6.69) =redDot:
 6.70) =loadBar:
 6.71) =formContact:
+6.80) =table_stock:
 6.99) =footer:
 FIN DE MAPA DE CONTENIDOS */
 
@@ -325,6 +326,12 @@ FIN DE MAPA DE CONTENIDOS */
   --timelineContGridTC: 1fr;
   --valuesSecGridTC: 1fr;
   --timelineTextContMarginT: 50px;
+
+  /* STOCK */
+
+  --stockDisplay: grid;
+  --stockGTC: 1fr;
+  --stockGTR: 1fr 1fr;
 
 
 }
@@ -621,6 +628,11 @@ FIN DE MAPA DE CONTENIDOS */
    /* PAGE TEAM */
    --areaSelectorTitlePadding: 1rem;
    --areaSelectorHeight: 100%;
+
+   /* STOCK */
+
+   --stockGTC: 6fr min-content;
+   --stockGTR: 1fr;
 
   }
 }
@@ -3241,7 +3253,9 @@ table.stockreport-table .border {
 padding-bottom:0;
 }
 
-
+.finalizarConsulta .formAcceptance {
+  color: black;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.22) =cuantos:
@@ -3781,17 +3795,33 @@ padding-bottom:0;
 --------------------------------------------------------------------------- */
 
 section.contacto{
-  height: 90vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  /* color: white; */
   text-align: center;
   position: relative;
+  padding: 1rem 0;
 }
 
-.formTxt * {color: var(--grey0)};
+.formTxt *{color: var(--grey0)}
+
+.formAcceptance {
+  display: flex;
+  align-items: center;
+  color: var(--grey0);
+  font-size: 15px;
+  grid-column: 1/-1;
+}
+.formAcceptance input {
+  margin-right: 5px;
+  width: 1rem!important;
+  height: 1rem!important;
+}
+.formAcceptance p a {
+  text-decoration: underline;
+}
 
 .contacto .formTitle{
   margin-bottom: 1rem;
@@ -3844,6 +3874,93 @@ section.contacto img{
   color: var(--primaryColorDarker);
   font-size: 16px;
 }
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.80) =table_stock:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.stock_title{
+  margin: 1rem var(--lateral);
+  text-align: center;
+  color: var(--primaryColorDark);
+}
+
+.stock_main{
+  display: var(--stockDisplay) ;
+  grid-template-columns: var(--stockGTC) ;
+  grid-template-rows: var(--stockGTR)
+  grid-gap: 1rem;
+  margin: 0 var(--lateral);
+}
+
+.table_stock{
+  justify-content: center;
+  font-size: 18px;
+}
+
+.select_stock{
+  max-width: 4rem;
+  color: white;
+  background: var(--primaryColorDark);
+  border: solid 2px;
+}
+
+.stock_btn{
+  position: sticky;
+  top: 3.8rem;
+  background: var(--grey0);
+  padding: .3rem;
+  width: 100%;
+  font-size: 14px;
+}
+
+.stock_header_row{
+  text-align: left;
+  background: var(--primaryColorDark);
+  color: var(--grey0);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  position: sticky;
+  grid-gap: .5rem;
+  top: 3.8rem;
+}
+
+.table_head{
+  padding: 10px 0;
+  font-size: 14px;
+  align-self: center;
+}
+
+.table_column{
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.stock_row{
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-gap: .5rem;
+}
+
+
+.contact_regions{  font-size: 16px;}
+
+.region{
+  margin: 3rem 0;
+  /* position: sticky;
+  top: 5rem; */
+}
+
+.region_title{
+  margin: 2rem 0;
+  border-bottom: solid black 2px;
+}
+
+.region_sellers{margin: 1rem 0}
+
 
 
 /* ---------------------------------------------------------------------------

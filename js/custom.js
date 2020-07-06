@@ -447,10 +447,10 @@ productSelector = {
 
 		cartController.add(product)
 
-		
+
 		d.querySelector('#currentSemiSelection').classList.remove('cond');
 		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
-		
+
 		setTimeout(()=>{
 			selected.forEach((selector)=>{
 				d.querySelector('#currentSemiSelection'+selector.name).setAttribute('xlink:href', '#');
@@ -468,7 +468,7 @@ productSelector = {
 		// productSelector.hideUnwantedOptions();
 		// console.log(nuls)
 	},
-	
+
 	getAllProducts: () => {
 		var formData = new FormData();
 		formData.append( 'action', 'lt_get_all' );
@@ -483,15 +483,15 @@ productSelector = {
 	searchProduct:()=>{
 		let dynamicCont = d.querySelector('.dynamicCont');
 		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
-		
+
 		productSelector.currentSearch = productSelector.allProducts;
-		
+
 		// filtra los productos que coincidan con la busqueda actual
 		selected.forEach((input)=>{
 			if(input.value!='0'){
 				let key   = input.name.toLowerCase(),
 				value = key == 'size' ? input.value.match(/(\d+)/)[0] : input.value;
-				
+
 				let helperArray = [];
 				productSelector.currentSearch.forEach(product => {
 					if( product[key] == value ){ helperArray.push(product) }
@@ -528,7 +528,7 @@ productSelector = {
 						found = true;
 					}
 				})
-				
+
 				if(found){
 					option.style.display = 'block';
 				} else {
@@ -1042,6 +1042,30 @@ class CartItem {
 
 
 
+function filterByCountry(){
+	var pais = document.getElementById('getPais').value;
+	var ciudad = document.getElementById('getCiudad').value;
+	var container = document.getElementById('getContainer').value;
+
+	var where = '';
+
+
+	if(pais!="*"){
+		where +=  '?pais='+pais;
+	}
+	if(ciudad!="*"){
+		where += '?ciudad='+ciudad;
+	}
+	if(container!="*"){
+		where +=   '?id_contenedor='+container;
+	}
+
+	console.log(location.pathname+where);
+
+	window.location = location.pathname+where;
+
+
+}
 
 
 
