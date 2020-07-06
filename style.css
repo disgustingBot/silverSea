@@ -1800,6 +1800,7 @@ section {
   align-items: center;
   width: 100%;
   font-size: 16px;
+  height: 100%;
 }
 
 .areaSelectorTxt::before{
@@ -3100,7 +3101,9 @@ table.stockreport-table .border {
 }
 
 
-.selectBoxOption:first-child {height:1.5rem}
+.selectBoxOption:first-child {
+  font-weight: bold;
+}
 
 .selectBoxOption {
   cursor:pointer;
