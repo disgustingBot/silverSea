@@ -660,7 +660,8 @@ cartController = {
 			// 	console.log(pair[0]+ ', ' + pair[1]);
 			// }
 			ajax2(formData).then( data => {
-				// console.log(data)
+				console.log(data)
+				console.log(data[0])
 				let singlePrice, currency;
 
 				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
@@ -736,7 +737,7 @@ cartController = {
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
 
-
+		// TODO: encender el lead Sender
 		// cartController.cartToLeads = cartController.cart;
 		// createCookie('status','next')
 		// cartController.sendAllLeads();
@@ -961,32 +962,6 @@ const checkForClose = ()=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class CartItem {
 	constructor(v){
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
@@ -1039,15 +1014,14 @@ class CartItem {
 }
 
 
-// window.location.href = "http://www.w3schools.com";
 
 
 
 
 function filterStock(){
-	var pais = document.getElementById('getPais').value;
-	var ciudad = document.getElementById('getCiudad').value;
-	var container = document.getElementById('getContainer').value;
+	let pais  = document.getElementById('getPais').value,
+	ciudad    = document.getElementById('getCiudad').value,
+	container = document.getElementById('getContainer').value;
 
 	var where = '';
 
@@ -1061,87 +1035,11 @@ function filterStock(){
 	if(container!="*"){
 		where +=   '?id_contenedor='+container;
 	}
-
-	console.log(location.pathname+where);
-
-	window.location = location.pathname+where;
-
-
+	// console.log(location.pathname+where);
+	window.location = location.pathname + where;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// idea tomada de aqqui:
-// http://www.javascriptkit.com/script/script2/popunder.shtml
-
-
-// <script>
-
-// //Pop-under window- By JavaScript Kit
-// //Credit notice must stay intact for use
-// //Visit http://javascriptkit.com for this script
-
-// //specify page to pop-under
-// var popunder="http://yahoo.com"
-
-// //specify popunder window features
-// //set 1 to enable a particular feature, 0 to disable
-// var winfeatures="width=800,height=510,scrollbars=1,resizable=1,toolbar=1,location=1,menubar=1,status=1,directories=0"
-
-// //Pop-under only once per browser session? (0=no, 1=yes)
-// //Specifying 0 will cause popunder to load every time page is loaded
-// var once_per_session=0
-
-// ///No editing beyond here required/////
-
-// function get_cookie(Name) {
-//   var search = Name + "="
-//   var returnvalue = "";
-//   if (document.cookie.length > 0) {
-//     offset = document.cookie.indexOf(search)
-//     if (offset != -1) { // if cookie exists
-//       offset += search.length
-//       // set index of beginning of value
-//       end = document.cookie.indexOf(";", offset);
-//       // set index of end of cookie value
-//       if (end == -1)
-//          end = document.cookie.length;
-//       returnvalue=unescape(document.cookie.substring(offset, end))
-//       }
-//    }
-//   return returnvalue;
-// }
-
-// function loadornot(){
-// if (get_cookie('popunder')==''){
-// loadpopunder()
-// document.cookie="popunder=yes"
-// }
-// }
-
-// function loadpopunder(){
-// win2=window.open(popunder,"",winfeatures)
-// win2.blur()
-// window.focus()
-// }
-
-// if (once_per_session==0)
-// loadpopunder()
-// else
-// loadornot()
-
-// </script>
 
 
 const filterActivate = ()=>{
@@ -1151,15 +1049,15 @@ const filterActivate = ()=>{
 		cosos1 = [...d.querySelectorAll('[name=question1]')];
 		cosos2 = [...d.querySelectorAll('[name=question2]')];
 
-		// urlBase = 'https://silverseacontainers.com/buscar-contenedor/'
-		urlBase = 'http://localhost/silverSea/buscar-contenedor/'
+		urlBase = 'https://silverseacontainers.com/buscar-contenedor/'
+		// urlBase = 'http://localhost/silverSea/buscar-contenedor/'
 	
 		console.log(link)
 		cosos1.forEach((coso)=>{
 			coso.onchange = ()=>{
 				console.log(coso.value)
 				// link.href = urlBase + '?uso=' + coso.value
-				if(d.querySelectorAll('[name=question2]:checked')){
+				if(d.querySelector('[name=question2]:checked')){
 					otro=d.querySelector('[name=question2]:checked')
 					link.href = urlBase + '?use=' + coso.value + '&sizes=' + otro.value
 				} else {
@@ -1169,7 +1067,7 @@ const filterActivate = ()=>{
 		})
 		cosos2.forEach((coso)=>{
 			coso.onchange = ()=>{
-				if(d.querySelectorAll('[name=question1]:checked')){
+				if(d.querySelector('[name=question1]:checked')){
 					otro=d.querySelector('[name=question1]:checked')
 					console.log(otro);
 					link.href = urlBase + '?use=' + otro.value + '&sizes=' + coso.value
@@ -1184,7 +1082,8 @@ const filterActivate = ()=>{
 	if(d.querySelector('[name=cont_selector')){
 		d.querySelector('[name=cont_selector').onchange=(option)=>{
 			let button = d.querySelector('.cotizarContainer'),
-			urlBase = 'http://localhost/silverSea/buscar-contenedor/'
+			// urlBase = 'http://localhost/silverSea/buscar-contenedor/'
+			urlBase = 'https://silverseacontainers.com/buscar-contenedor/'
 			console.log(option.target.value)
 			card = option.target.value
 			if(card == 'card67'){
