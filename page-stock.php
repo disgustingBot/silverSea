@@ -2,6 +2,7 @@
 
 <h2 class="stock_title">Silversea Stock</h2>
 
+
 <!-- Set DB Connection -->
 <?php
 
@@ -37,11 +38,12 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
 
 
 <div class="stock_main">
+  <?php echo $log; ?>
   <div class="table_stock">
     <div class="stock_header_row">
       <div class="table_head">
         <select class="select_stock" name="select" id="getPais">
-          <option value="*">COUNTRY</option>
+          <option value="*">PAIS</option>
           <?php foreach ($list_pais as $row) {
             $pais = $row->pais;?>
             <option value="<?php echo $pais ?>"><?php  echo $pais; ?></option>
@@ -50,7 +52,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       </div>
       <div class="table_head">
         <select class="select_stock" name="select" id="getCiudad">
-          <option value="*" >CITY</option>
+          <option value="*" >CIUDAD</option>
           <?php foreach ($list_ciudad as $row) {
             $ciudad = $row->ciudad;?>
             <option value="<?php echo $ciudad ?>"><?php  echo $ciudad; ?></option>
@@ -67,9 +69,17 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
         </select>
       </div>
 
-      <div class="table_head">QUANTITY</div>
-      <div class="table_head">PRICE</div>
-      <button type="button" name="button" class="btn stock_btn" onclick="filterByCountry()">Filter</button>
+      <div class="table_head">CANTIDAD</div>
+
+      <!-- CHECHEO SI EL USER ESTA LOGUEADO -->
+      <?php
+      if ( is_user_logged_in() ) {?>
+         <div class="table_head">PRECIO</div>
+      <?php }  ?>
+      <div class="filter_buttons">
+        <button type="button" name="button" class="btn stock_btn" onclick="filterStock()">Filtrar</button>
+        <button type="button" name="button" class="btn stock_btn" onclick="location.href='http://localhost/Silversea/stock';">Limpiar <br>Filtros</button>
+      </div>
     </div>
     <?php foreach ($get as $row ) {
       $pais = $row->pais;
@@ -87,10 +97,18 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
         <div class="table_column"><?php echo $pais; ?></div>
         <div class="table_column"><?php echo $ciudad; ?></div>
         <div class="table_column"><?php echo $container; ?></div>
-        <div class="table_column"><?php echo $stock; ?></div>
-        <div class="table_column"><?php echo $supplier_price; ?></div>
+
+
+        <div class="table_column">
+          <?php echo $stock; ?>
+        </div>
+        
+        <!-- CHECHEO SI EL USER ESTA LOGUEADO -->
+        <?php if ( is_user_logged_in() ) {?>
+          <div class="table_column"><?php echo $supplier_price; ?></div>
+        <?php }  ?>
       </div>
-  <?php  } ?>
+    <?php  } ?>
 
 </div>
 

@@ -932,7 +932,7 @@ class CartItem {
 
 
 
-function filterByCountry(){
+function filterStock(){
 	var pais = document.getElementById('getPais').value;
 	var ciudad = document.getElementById('getCiudad').value;
 	var container = document.getElementById('getContainer').value;
