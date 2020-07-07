@@ -811,7 +811,17 @@ function lt_cart_end () { global $wpdb;
 
 	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
-	$qry = "SELECT * from stock WHERE id_contenedor = '$contenedor' AND pais = '$country' AND ciudad = '$city';";
+	$qry = "SELECT
+	        *
+			FROM
+			stock a, gastos_adicionales b
+			WHERE (
+				a.id_contenedor = '$contenedor' AND
+				a.pais = '$country' AND
+				a.ciudad = '$city' AND
+				b.country = '$country' AND
+				b.city = '$city'
+			);";
 	$ress = $conn->query($qry);
 	$resp = $ress->fetch_all(MYSQLI_ASSOC);
 
@@ -844,8 +854,17 @@ function lt_cart_end () { global $wpdb;
 
 
 
-
-
+// SELECT
+// *
+// FROM
+// stock a, gastos_adicionales b
+// WHERE (
+// 	a.id_contenedor = '20DC CW' AND
+// 	a.pais = 'BELGIUM' AND
+// 	a.ciudad = 'ANTWERP' AND
+// 	b.country = 'BELGIUM' AND
+// 	b.city = 'ANTWERP'
+// );
 
 
 
@@ -1148,14 +1167,15 @@ function lt_filtro_magico($query) {
 
 		if ( !$query->is_main_query() ) return;
 
-		$taxes = array( 'dry', 'new', 'cw');
+		// $taxes = array( 'dry', 'new', 'cw');
 
-		foreach ( $taxes as $tax ) {
-			$terms = get_terms( $tax );
+		// foreach ( $taxes as $tax ) {
+		// 	$terms = get_terms( $tax );
 		
-			foreach ( $terms as $term )
-				$tax_map[$tax][$term->slug] = $term->term_taxonomy_id;
-		}
+		// 	foreach ( $terms as $term )
+		// 		$tax_map[$tax][$term->slug] = $term->term_taxonomy_id;
+		// }
+		// TODO: hacer que se pueda poner slug y se de cuenta el ID
 
 		$filtroMagico = 'use';
 		if (isset($_GET[$filtroMagico]) && $_GET[$filtroMagico]== 'storage-new') {
