@@ -328,7 +328,9 @@ FIN DE MAPA DE CONTENIDOS */
   --timelineTextContMarginT: 50px;
 
   /* STOCK */
-
+  --stock_header_row_GAF: auto;
+  --table_column_FS:12px;
+  --stock_main_GTC: 1fr;
   --stockGTR: 1fr 1fr;
 
 
@@ -416,6 +418,10 @@ FIN DE MAPA DE CONTENIDOS */
     /* PAGE TEAM */
     --teamCardsContainerGridTC: 1fr 1fr;
     --teamValuesGTC: 1fr 1fr;
+
+    /* STOCK */
+    --stock_header_row_GAF: column;
+    --table_column_FS: 15px;
 
 
 
@@ -576,6 +582,9 @@ FIN DE MAPA DE CONTENIDOS */
     --areaSelectorContMaxHeight: unset;
     --teamValuesGTC: 1fr 1fr 1fr 1fr;
     --teamCardsContainerGridTC: ;
+
+    /* STOCK */
+    --stock_main_GTC: 1fr min-content;
   }
 }
 
@@ -627,7 +636,7 @@ FIN DE MAPA DE CONTENIDOS */
    --areaSelectorTitlePadding: 1rem;
    --areaSelectorHeight: 100%;
 
-   /* STOCK */
+
 
    --stockGTR: 1fr;
 
@@ -3888,7 +3897,7 @@ section.contacto img{
 
 .stock_main{
   display: grid;
-  grid-template-columns: 1fr min-content;
+  grid-template-columns: var(--stock_main_GTC);
   grid-gap: 1rem;
   margin: 0 var(--lateral);
 }
@@ -3906,30 +3915,23 @@ section.contacto img{
   min-height: 1.5rem;
 }
 
-.filter_buttons{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: .5rem;
-}
-
 .stock_btn{
-  position: sticky;
-  top: 3.8rem;
   background: var(--grey0);
   padding: .3rem;
   width: 100%;
   font-size: 14px;
   min-height: 1.5rem;
+  align-items: center;
 }
 
-.stock_header_row{
+.stock_header_row {
   text-align: left;
   background: var(--primaryColorDark);
   color: var(--grey0);
   padding: 10px;
   display: grid;
   grid-template-columns: auto;
-  grid-auto-flow: column;
+  grid-auto-flow: var(--stock_header_row_GAF);
   grid-gap: .5rem;
 }
 
@@ -3941,7 +3943,7 @@ section.contacto img{
 
 .table_column{
   padding: 10px 0;
-  font-size: 14px;
+  font-size: var(--table_column_FS);
 }
 
 .stock_row, .stock_row_title{
@@ -3982,6 +3984,10 @@ section.contacto img{
   font-weight: bold;
   font-size: 17px;
   margin-bottom: 8px;
+}
+
+.stock_phone_email {
+  margin-right: 5px;
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
