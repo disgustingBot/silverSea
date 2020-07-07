@@ -1018,7 +1018,7 @@ class CartItem {
 
 
 
-function filterByCountry(){
+function filterStock(){
 	let pais  = document.getElementById('getPais').value,
 	ciudad    = document.getElementById('getCiudad').value,
 	container = document.getElementById('getContainer').value;

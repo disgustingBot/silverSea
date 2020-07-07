@@ -388,7 +388,7 @@ function selectBox($name, $slug = false, $options = array()){
 			<p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $slug; ?>"></p>
 		</div>
 		<div class="selectBoxList focus">
-			<label for="nul<?php echo $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul">
+			<label for="nul<?php echo $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul">Todos
 				<input
 					class="selectBoxInput"
 					id="nul<?php echo $slug; ?>"
@@ -407,7 +407,7 @@ function selectBox($name, $slug = false, $options = array()){
 
 			<?php foreach ($options as $opt_slug => $opt_name) { ?>
 
-				
+
 				<label for="filter_<?php echo $opt_slug; ?>" class="selectBoxOption">
 					<input
 						class="selectBoxInput <?php echo $opt_slug; ?>"
@@ -423,7 +423,7 @@ function selectBox($name, $slug = false, $options = array()){
 					<!-- <span class="checkmark"></span> -->
 					<p class="colrOptP"><?php echo $opt_name; ?></p>
 				</label>
-				
+
 
 			<?php } ?>
 		</div>
@@ -880,7 +880,7 @@ add_action( 'wp_ajax_nopriv_lt_get_all', 'lt_get_all' );
 
 function lt_get_all () {
 	global $wpdb;
-	$ress = $wpdb->get_results("SELECT * FROM contenedores"); 
+	$ress = $wpdb->get_results("SELECT * FROM contenedores");
 	echo wp_json_encode( $ress );
 	exit();
 }
