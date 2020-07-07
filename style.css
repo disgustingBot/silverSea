@@ -3475,7 +3475,7 @@ padding-bottom:0;
   box-shadow: var(--archiveFiltersBoxFuckinShadow);
   border-right:solid var(--primaryColorDark) 0px;
   border-radius: 0 4px 4px 0;
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
   flex-direction: var(--archiveFilter2FD);
   justify-content: var(--archiveFilterJustifyC);
@@ -3908,6 +3908,12 @@ section.contacto img{
   color: white;
   background: var(--primaryColorDark);
   border: solid 2px;
+}
+
+.filter_buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: .5rem;
 }
 
 .stock_btn{
