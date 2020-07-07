@@ -1,7 +1,9 @@
 <?php get_header() ?>
 
-<h2 class="stock_title">Silversea Stock</h2>
-
+<div class="stockATF">
+  <h2 class="stock_title txtCenter brandColorTxt">Silversea Stock</h2>
+  <p class="stock_txt txtCenter">Conoce nuestro stock alrededor del mundo, actualizado semana a semana.</p>
+</div>
 
 <!-- Set DB Connection -->
 <?php
@@ -35,51 +37,59 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
 
 
 ?>
+<div class="stock_header_row">
+  <div class="table_head">
+    <select class="select_stock" name="select" id="getPais">
+      <option value="*">PAIS</option>
+      <?php foreach ($list_pais as $row) {
+        $pais = $row->pais;?>
+        <option value="<?php echo $pais ?>"><?php  echo $pais; ?></option>
+      <?php } ?>
+    </select>
+  </div>
+  <div class="table_head">
+    <select class="select_stock" name="select" id="getCiudad">
+      <option value="*" >CIUDAD</option>
+      <?php foreach ($list_ciudad as $row) {
+        $ciudad = $row->ciudad;?>
+        <option value="<?php echo $ciudad ?>"><?php  echo $ciudad; ?></option>
+      <?php } ?>
+    </select>
+  </div>
+  <div class="table_head">
+    <select class="select_stock" name="select" id="getContainer">
+      <option value="*" >CONTAINER</option>
+      <?php foreach ($list_container as $row) {
+        $container = $row->id_contenedor;?>
+        <option value="<?php echo $container ?>"><?php  echo $container; ?></option>
+      <?php } ?>
+    </select>
+  </div>
 
+  <!-- <div class="table_head">CANTIDAD</div> -->
+
+  <!-- CHECHEO SI EL USER ESTA LOGUEADO -->
+  <?php
+  if ( is_user_logged_in() ) {?>
+     <div class="table_head">PRECIO</div>
+  <?php }  ?>
+  <div class="filter_buttons">
+    <button type="button" name="button" class="btn stock_btn" onclick="filterStock()">Filtrar</button>
+    <button type="button" name="button" class="btn stock_btn" onclick="location.href='http://localhost/Silversea/stock';">Limpiar Filtros</button>
+  </div>
+</div>
 
 <div class="stock_main">
   <?php echo $log; ?>
   <div class="table_stock">
-    <div class="stock_header_row">
-      <div class="table_head">
-        <select class="select_stock" name="select" id="getPais">
-          <option value="*">PAIS</option>
-          <?php foreach ($list_pais as $row) {
-            $pais = $row->pais;?>
-            <option value="<?php echo $pais ?>"><?php  echo $pais; ?></option>
-          <?php } ?>
-        </select>
-      </div>
-      <div class="table_head">
-        <select class="select_stock" name="select" id="getCiudad">
-          <option value="*" >CIUDAD</option>
-          <?php foreach ($list_ciudad as $row) {
-            $ciudad = $row->ciudad;?>
-            <option value="<?php echo $ciudad ?>"><?php  echo $ciudad; ?></option>
-          <?php } ?>
-        </select>
-      </div>
-      <div class="table_head">
-        <select class="select_stock" name="select" id="getContainer">
-          <option value="*" >CONTAINER</option>
-          <?php foreach ($list_container as $row) {
-            $container = $row->id_contenedor;?>
-            <option value="<?php echo $container ?>"><?php  echo $container; ?></option>
-          <?php } ?>
-        </select>
-      </div>
-
-      <div class="table_head">CANTIDAD</div>
-
-      <!-- CHECHEO SI EL USER ESTA LOGUEADO -->
-      <?php
-      if ( is_user_logged_in() ) {?>
-         <div class="table_head">PRECIO</div>
+    <div class="stock_row_title">
+      <p class="stock_row_title_txt">PAIS</p>
+      <p class="stock_row_title_txt">CIUDAD</p>
+      <p class="stock_row_title_txt">CONTENEDOR</p>
+      <p class="stock_row_title_txt">CANTIDAD</p>
+      <?php if ( is_user_logged_in() ) {?>
+        <p class="stock_row_title_txt">PRECIO</p>
       <?php }  ?>
-      <div class="filter_buttons">
-        <button type="button" name="button" class="btn stock_btn" onclick="filterStock()">Filtrar</button>
-        <button type="button" name="button" class="btn stock_btn" onclick="location.href='http://localhost/Silversea/stock';">Limpiar <br>Filtros</button>
-      </div>
     </div>
     <?php foreach ($get as $row ) {
       $pais = $row->pais;
@@ -102,7 +112,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
         <div class="table_column">
           <?php echo $stock; ?>
         </div>
-        
+
         <!-- CHECHEO SI EL USER ESTA LOGUEADO -->
         <?php if ( is_user_logged_in() ) {?>
           <div class="table_column"><?php echo $supplier_price; ?></div>
@@ -113,8 +123,9 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
 </div>
 
   <div class="contact_regions">
+    <h3 class="txtCenter contact_regions_title"><strong>Datos de contacto según región:</strong></h3>
     <div class="region">
-      <h4 class="region_title">EUROPE</h4>
+      <h4 class="region_title">EUROPA</h4>
       <div class="region_sellers">
         <p class="seller_name">Federico Platero</p>
         <p class="seller_phone">(+34) 683 623 698 </p>
@@ -122,7 +133,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       </div>
       <div class="region_sellers">
         <p class="seller_name">Stefano Ricci</p>
-        <p class="seller_phone">(+34) 696988243</p>
+        <p class="seller_phone">(+34) 696 98 82 43</p>
         <p class="seller_email">sricci@silverseacontainers.com</p>
       </div>
       <div class="region_sellers">
@@ -139,19 +150,19 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       </div>
       <div class="region_sellers">
         <p class="seller_name">Farhodjon Abdulazizov</p>
-        <p class="seller_phone">(+998) 949231133</p>
+        <p class="seller_phone">(+998) 949 23 11 33</p>
         <p class="seller_email">fabdulazizov@silverseacontainers.com</p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Leon Lin</p>
-        <p class="seller_phone">(+86) 189 30902821</p>
+        <p class="seller_phone">(+86) 189 30 902 821</p>
         <p class="seller_email">llin@silverseacontainers.com</p>
       </div>
 
       <h4 class="region_title">LATAM</h4>
       <div class="region_sellers">
         <p class="seller_name">Damián González</p>
-        <p class="seller_phone">(+52) 8182292083</p>
+        <p class="seller_phone">(+52) 818 229 2083</p>
         <p class="seller_email">dgonzalez@silverseacontainers.com </p>
       </div>
       <div class="region_sellers">

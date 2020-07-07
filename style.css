@@ -329,8 +329,6 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* STOCK */
 
-  --stockDisplay: grid;
-  --stockGTC: 1fr;
   --stockGTR: 1fr 1fr;
 
 
@@ -631,7 +629,6 @@ FIN DE MAPA DE CONTENIDOS */
 
    /* STOCK */
 
-   --stockGTC: 6fr min-content;
    --stockGTR: 1fr;
 
   }
@@ -3884,16 +3881,14 @@ section.contacto img{
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.stock_title{
-  margin: 1rem var(--lateral);
-  text-align: center;
-  color: var(--primaryColorDark);
+.stockATF {
+  padding: 1rem var(--lateral);
 }
 
+
 .stock_main{
-  display: var(--stockDisplay) ;
-  grid-template-columns: var(--stockGTC) ;
-  grid-template-rows: var(--stockGTR)
+  display: grid;
+  grid-template-columns: 1fr min-content;
   grid-gap: 1rem;
   margin: 0 var(--lateral);
 }
@@ -3903,11 +3898,12 @@ section.contacto img{
   font-size: 18px;
 }
 
-.select_stock{
-  max-width: 4rem;
+.select_stock {
   color: white;
   background: var(--primaryColorDark);
   border: solid 2px;
+  width: 100%;
+  min-height: 1.5rem;
 }
 
 .filter_buttons{
@@ -3923,6 +3919,7 @@ section.contacto img{
   padding: .3rem;
   width: 100%;
   font-size: 14px;
+  min-height: 1.5rem;
 }
 
 .stock_header_row{
@@ -3931,10 +3928,9 @@ section.contacto img{
   color: var(--grey0);
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(6,1fr);
-  position: sticky;
+  grid-template-columns: auto;
+  grid-auto-flow: column;
   grid-gap: .5rem;
-  top: 3.8rem;
 }
 
 .table_head{
@@ -3948,19 +3944,30 @@ section.contacto img{
   font-size: 14px;
 }
 
-.stock_row{
+.stock_row, .stock_row_title{
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   grid-gap: .5rem;
 }
 
+.stock_row_title {
+  background: white;
+  padding: 1rem 0;
+  position: sticky;
+  top: 80px;
+}
+
+.stock_row_title_txt {
+  font-size: 15px;
+  font-weight: bold;
+}
 
 .contact_regions{  font-size: 16px;}
 
-.region{
-  margin: 3rem 0;
-  /* position: sticky;
-  top: 5rem; */
+.contact_regions_title {
+  margin-top: 3rem;
+  text-transform: uppercase;
 }
 
 .region_title{
@@ -3971,7 +3978,11 @@ section.contacto img{
 .region_sellers{margin: 1rem 0}
 
 
-
+.seller_name {
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =footer:
