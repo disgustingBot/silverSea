@@ -669,7 +669,7 @@ cartController = {
 				itemPrice = cartItem.querySelector('.cartItemPriceNumber');
 				itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
-				if (data[0]) {
+				if (data[1]) {
 					// currency = data[0].currency;
 					currency = 'EUR';
 					// // TODO: leer el exchange de algun lado
