@@ -77,10 +77,10 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
   <?php echo $log; ?>
   <div class="table_stock">
     <div class="stock_row_title">
-      <p class="stock_row_title_txt">PAIS</p>
-      <p class="stock_row_title_txt">CIUDAD</p>
-      <p class="stock_row_title_txt">CONTENEDOR</p>
-      <p class="stock_row_title_txt">CANTIDAD</p>
+      <p class="stock_row_title_txt txtCenterLeft">PAIS</p>
+      <p class="stock_row_title_txt txtCenterLeft">CIUDAD</p>
+      <p class="stock_row_title_txt txtCenterLeft">CONTENEDOR</p>
+      <p class="stock_row_title_txt txtCenterLeft">CANTIDAD</p>
       <?php if ( is_user_logged_in() ) {?>
         <p class="stock_row_title_txt">PRECIO</p>
       <?php }  ?>
