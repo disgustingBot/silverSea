@@ -62,7 +62,7 @@ function lt_ajax_mail() {
 	$debugMode = true;
 	$respuesta = array();
 
-  
+
   // $link=$_POST['link'];
   $cont=json_decode(stripslashes($_POST['cont']));
   $country=$_POST['country'];
@@ -115,7 +115,7 @@ function lt_ajax_mail() {
     // $message='';
     // $message=$mail;
 
-    
+
 
     // foreach ($_POST as $key => $value) {
     //   if ( $key != 'a00' && $key != 'action' && $key != 'link' && $key != 'status' && $key != 'submit' && $key != 'g-recaptcha-response' ) {

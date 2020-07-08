@@ -673,7 +673,7 @@ function lt_upload_file () {
 			// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
 			$query1 = "truncate table $dbName.$fileName2;";
-			$query2 = "LOAD DATA LOCAL INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
+			$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
 			$qry = "Select
 			salesforce_id as SKU,
 			CONCAT( size, ' PIES' ) as 'Name',

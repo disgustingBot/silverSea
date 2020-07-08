@@ -33,28 +33,6 @@
   </template>
 
 
-  <!-- <template id="cartItemTemplate">
-    <div class="cartItem">
-      <p class="cartItemCode"></p>
-      <svg class="cartItemSvg cartItemSize" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <svg class="cartItemSvg cartItemTip1" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <svg class="cartItemSvg cartItemTip2" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <svg class="cartItemSvg cartItemCond" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <p class="cartItemQty">1</p>
-      <p class="cartItemPrice">
-        <span class="cartItemPriceNumber"></span>
-        <span class="cartItemCurrency"></span>
-      </p>
-      <button class="close" type="button" onclick="cartController.remove()">
-        <div class="closeLine"></div>
-        <div class="closeLine"></div>
-      </button>
-    </div>
-  </template> -->
-
-<!-- ALGUNOS CONTENEDORES SELECCIONADOS NO TIENEN PRECIO RAPIDO  -->
-
-<!-- PRECIO DISPONIBLE -->
   <template id="cartItemTemplate">
     <div class="cartItem">
       <p class="cartItemCode"></p>
@@ -73,7 +51,6 @@
       </button>
     </div>
   </template>
-
 
 
 
@@ -136,11 +113,33 @@
 
   <div class="cart" id="cart">
     <div class="cartHead">
-      <h4 class="cartTitle">Tu Carrito</h4>
+      <p class="cartTitle">Tu Pedido</p>
 
       <p class="closeCross" type="button" onclick="altClassFromSelector('alt', '#cart')">&#10006;</p>
     </div>
-    <div class="cartList"></div>
+
+    <div class="cartList">
+      <!--- PRECIO DISPONIBLE -->
+
+      <!-- <p class="cartTotalTxt"><strong>Gracias por su consulta.</strong></p>
+      <p class="cartTotalTxt">El valor estimado de su consulta es de <span class="cartTotal brandColorTxt txtUnderlined">1234€</span>. Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle. </p> -->
+
+
+      <!-- ALGUNOS CONTENEDORES SELECCIONADOS NO TIENEN PRECIO RAPIDO  -->
+
+      <!-- <p class="cartTotalTxt"><strong>Gracias por su consulta.</strong></p>
+      <p class="cartTotalTxt"><strong>No disponemos de un valor fijo para algunos de los contenedores que ha seleccionado</strong>. Sin embargo, un asesor se pondrá en contacto para proveerle el precio de estos contenedores.</p>
+      <p class="cartTotalTxt">El valor estimado de los contenedores que disponen de precio fijo es de <span class="cartTotal brandColorTxt txtUnderlined">1234€</span>. Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle.</p> -->
+
+
+      <!-- PRECIO NO DISPONIBLE -->
+
+      <!-- <p class="cartTotalTxt"><strong>Gracias por su consulta.</strong></p>
+      <p class="cartTotalTxt"><strong>No disponemos de un valor fijo los contenedores que ha seleccionado</strong>. Sin embargo, un asesor se pondrá en contacto para proveerle el precio de estos contenedores.</p> -->
+
+
+      <p class="cartTitle txtCenter txtUnderlined">Detalle de la consulta</p>
+    </div>
     <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
       FINALIZAR
     </button>
@@ -179,7 +178,7 @@
       <input type="checkbox" required>
       <p class="temsAcceptance">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank"> privacy terms</a></p>
     </div>
-    <button class="btn" onclick="cartController.finish()">dame precio rapido</button>
+    <button class="btn" onclick="cartController.finish()">Calcular cotización</button>
   </div>
 
 
