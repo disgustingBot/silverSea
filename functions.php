@@ -433,7 +433,7 @@ function selectBox($name, $slug = false, $options = array()){
 
 function newSvg($id){ ?>
 
-	<svg class="pageSvg" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+	<svg class="pageSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
 		<use xlink:href="#<?php echo $id; ?>"></use>
 	</svg>
 
@@ -1171,7 +1171,7 @@ function lt_filtro_magico($query) {
 
 		// foreach ( $taxes as $tax ) {
 		// 	$terms = get_terms( $tax );
-		
+
 		// 	foreach ( $terms as $term )
 		// 		$tax_map[$tax][$term->slug] = $term->term_taxonomy_id;
 		// }
@@ -1211,7 +1211,7 @@ function lt_filtro_magico($query) {
 		}
 
 
-		
+
 		$filtroMagicoSize = 'sizes';
 		if (isset($_GET[$filtroMagicoSize]) && $_GET[$filtroMagicoSize]=='20') {
 			$query->query_vars['tax_query'][$filtroMagicoSize . '1'] = array(
@@ -1238,4 +1238,3 @@ function lt_filtro_magico($query) {
 		remove_all_actions ( '__after_loop');
 	}
 }
-
