@@ -123,51 +123,51 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       <div class="region_sellers">
         <p class="seller_name">Federico Platero</p>
         <p class="seller_phone"><a href="tel:+34-683-623-698"><span class="stock_phone_email">&#128241;</span>(+34) 683 623 698</a></p>
-        <p class="seller_email"><a href="mailto:fplatero@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>fplatero@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:fplatero@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Stefano Ricci</p>
         <p class="seller_phone"><a href="tel:+34-696-98-82-43"><span class="stock_phone_email">&#128241;</span>(+34) 696 98 82 43</a></p>
-        <p class="seller_email"><a href="mailto:sricci@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>sricci@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:sricci@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Francisco Mulet</p>
         <p class="seller_phone"><a href="tel:+34-689-666-142"><span class="stock_phone_email">&#128241;</span>(+34) 689 666 142</a></p>
-        <p class="seller_email"><a href="mailto:fmulet@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>fmulet@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:fmulet@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
 
       <h4 class="region_title">CIS & ASIA</h4>
       <div class="region_sellers">
         <p class="seller_name">Sinder Tamimi</p>
         <p class="seller_phone"><a href="tel:+34-646-504-571"><span class="stock_phone_email">&#128241;</span>(+34) 646 504 571</a></p>
-        <p class="seller_email"><a href="mailto:stamimi@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>stamimi@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:stamimi@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Farhodjon Abdulazizov</p>
         <p class="seller_phone"><a href="tel:+998-949-23-11-33"><span class="stock_phone_email">&#128241;</span>(+998) 949 23 11 33</a></p>
-        <p class="seller_email"><a href="mailto:fabdulazizov@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>fabdulazizov@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:fabdulazizov@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Leon Lin</p>
         <p class="seller_phone"><a href="tel:+86-189-30-902-821"><span class="stock_phone_email">&#128241;</span>(+86) 189 30 902 821</a></p>
-        <p class="seller_email"><a href="mailto:llin@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>llin@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:llin@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
 
       <h4 class="region_title">LATAM</h4>
       <div class="region_sellers">
         <p class="seller_name">Damián González</p>
         <p class="seller_phone"><a href="tel:+52-818-229-2083"><span class="stock_phone_email">&#128241;</span>(+52) 818 229 2083</a></p>
-        <p class="seller_email"><a href="mailto:dgonzalez@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>dgonzalez@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:dgonzalez@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Felipe Peña</p>
         <p class="seller_phone"><a href="tel:+598-99-101-199"><span class="stock_phone_email">&#128241;</span>(+598) 99 101 199</a></p>
-        <p class="seller_email"><a href="mailto:fpena@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>fpena@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:fpena@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Nicolás Lingordo</p>
         <p class="seller_phone"><a href="tel:+598-99-101-057"><span class="stock_phone_email">&#128241;</span>(+598) 99 101 057</a></p>
-        <p class="seller_email"><a href="mailto:nlingordo@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span>nlingordo@silverseacontainers.com</a></p>
+        <p class="seller_email"><a href="mailto:nlingordo@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
     </div>
   </div>
