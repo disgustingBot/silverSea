@@ -576,7 +576,7 @@ FIN DE MAPA DE CONTENIDOS */
     --productGalleryPosition: sticky;
     --productGalleryTop: 2.5rem;
     --filtersContainerPosition:absolute;
-    --archiveMainDisplay: flex;
+    --archiveMainDisplay: grid;
 
 
     --searchResultsContGR:1;
@@ -3525,7 +3525,7 @@ padding-bottom:0;
   box-shadow: var(--archiveFiltersBoxFuckinShadow);
   border-right:solid var(--primaryColorDark) 0px;
   border-radius: 0 4px 4px 0;
-  display: grid;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: var(--archiveFilter2FD);
   justify-content: var(--archiveFilterJustifyC);
