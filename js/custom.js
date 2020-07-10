@@ -19,6 +19,7 @@ w.onload=()=>{
 
 	cartController.setup();
 	productSelector.setup();
+	locationSelector.setup();
 
 	carouselController.setup()
 	growUpController.setup()
@@ -395,7 +396,23 @@ async function ajax3(formData, url = lt_data.ajaxurl) {
 
 
 
+function string_to_slug (str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+  
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
 
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+}
 
 
 
@@ -412,6 +429,335 @@ function createCookie(n,value,days){if(days){var date=new Date();date.setTime(da
 // function readCookie  (n){var m=n+"=",a=d.cookie.split(';');for(var i=0;i<a.length;i++){var c=a[i];while(c.charAt(0)==' ')c=c.substring(1,c.length);if(c.indexOf(m)==0)return c.substring(m.length,c.length);}return null;}
 function readCookie  (n){var m=n+"=",a=d.cookie.split(';');for(var i=0;i<a.length;i++){var c=a[i];while(c.charAt(0)==' ')c=c.substring(1,c.length);if(c.indexOf(m)==0)return c.substring(m.length,c.length);}}
 function eraseCookie (n){createCookie(n,"",-1)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+trenController = {
+	setup:()=>{
+		console.log("let's go with the trains!!")
+	},
+	precio_en_origen:0,
+	precio_en_destino:0,
+	gastos_adicionales:{},
+	altTrainAndCont:(option)=>{
+		let cotizador = d.querySelector('#cotizador')
+		let buttonFinish = d.querySelector('#buttonFinishCart');
+		// altClassFromSelector('tren', '#cotizador')
+		if(option=='tren' && !cotizador.classList.contains('tren')){
+			// // TODO: if cart is full, you should empty it first
+			// TODO: que se fije si tenes el contenedor habilitado?... maybe
+			if (cartController.cart.length>0) {
+				alert('debes vaciar tu carrito primero')
+			} else {
+
+				cotizador.classList.add('tren');
+				trenController.select40DCCW();
+				trenController.setPointerEvents('none');
+
+				buttonFinish.onclick = trenController.finish
+	
+				accordionSelector('#destino')
+			}
+		}
+
+		if(option!='tren' && cotizador.classList.contains('tren')){
+			cotizador.classList.remove('tren');
+			productSelector.unselectAll();
+			trenController.setPointerEvents('auto');
+
+			buttonFinish.onclick = cartController.finish
+
+
+			accordionSelector('#destino')
+		}
+
+
+	},
+
+	finish:()=>{
+		console.log('ooooootre testeeeo')
+
+
+
+
+
+
+
+
+		// TODO: que chequee los dos precios y luego haga cuentas con ellos (precio en origen, precio en destino)
+
+		// console.log('carrito antes de la transforrmacion', cartController.cart)
+		// cartController.cart.forEach((item, i) => {
+			// cartController.getPrice(item.code);
+			// console.log(item);
+
+			var formData = new FormData();
+			formData.append( 'action', 'lt_cart_end' );
+			formData.append( 'cont', "40DC CW" );
+			// formData.append( 'cont', item.code );
+			formData.append( 'country', locationSelector.origen[0] );
+			formData.append( 'city', locationSelector.origen[1] );
+			// console.log('formData');
+
+			// Display the key/value pairs
+			// for (var pair of formData.entries()) {
+			// 	console.log(pair[0]+ ', ' + pair[1]);
+			// }
+
+
+			ajax2(formData).then( data => {
+				trenController.precio_en_origen = processPrice(data, false)[0]
+
+				var formData = new FormData();
+				formData.append( 'action', 'lt_cart_end' );
+				formData.append( 'cont', "40DC CW" );
+				formData.append( 'country', locationSelector.destino[0] );
+				formData.append( 'city', locationSelector.destino[1] );
+
+
+				ajax2(formData).then( data => {
+					respuesta = processPrice(data, false)
+					trenController.precio_en_destino = respuesta[0]
+					trenController.gastos_adicionales = respuesta[1]
+					// gastos = respuesta[1]
+					if(!singlePrice){
+						totalPrice = 'Precio no disponible';
+						currency = '';
+					} else {
+						// totalPrice = singlePrice * parseInt(itemQty);
+					}
+					console.log('precio en destino: ', singlePrice)
+
+				});
+
+
+
+				// cartController.cart[i].setPrice(singlePrice);
+				// nuevoElemento = new CartItem(cartController.cart[i].values)
+				// cartController.cart[i] = nuevoElemento;
+
+
+				
+				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
+				// console.log(cartController.cart[i]);
+
+
+				// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
+				// if (i==cartController.cart.length - 1){
+				// 	console.log('CARRITO luego de la transformacion', cartController.cart)
+				// 	// cartController.sendMail();
+				// }
+				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
+				// }
+
+
+				// itemCurrency.innerText = currency
+				// itemPrice.innerText = totalPrice;
+			})
+		// });
+
+		altClassFromSelector('alt', '#finalizarConsulta')
+		d.querySelector('#cart').classList.add('alt')
+
+		// TODO: encender el lead Sender
+		// cartController.cartToLeads = cartController.cart;
+		// createCookie('status','next')
+		// cartController.sendAllLeads();
+
+
+
+
+
+
+
+
+
+
+
+
+
+	},
+
+
+	setPointerEvents:(value)=>{
+		d.querySelector('#selectBoxSize').style.pointerEvents = value
+		d.querySelector('#selectBoxTipo_1').style.pointerEvents = value
+		d.querySelector('#selectBoxTipo_2').style.pointerEvents = value
+		d.querySelector('#selectBoxCondicion').style.pointerEvents = value
+	},
+	select40DCCW:()=>{
+		selectBoxControler('40 Pies', '#selectBoxSize', '#selectBoxCurrentSize')
+		d.querySelector('[value="40-pies"]').checked = true
+
+		selectBoxControler('Dry', '#selectBoxTipo_1', '#selectBoxCurrentTipo_1')
+		d.querySelector('[value="Dry"]').checked = true
+
+		selectBoxControler('Standard', '#selectBoxTipo_2', '#selectBoxCurrentTipo_2')
+		d.querySelector('[value="DC"]').checked = true
+
+		selectBoxControler('Cargo	', '#selectBoxCondicion', '#selectBoxCurrentCondicion')
+		d.querySelector('[value="CW"]').checked = true
+
+		productSelector.searchProduct()
+	},
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+locationSelector = {
+	allLocations:[],
+	currentSearch:[],
+	selectors: [],
+	origen:[],
+	destino:[],
+	setup: ()=>{
+		// this setup populates the selectors and sets their onchange function
+		coprAlqui = d.querySelector('.coprAlqui');
+		locationSelector.getAllLocations();
+		locationSelector.origenSelectors = [
+			d.querySelector('#selectBoxOrigenCountry'),
+			d.querySelector('#selectBoxOrigenCity'),
+		];
+
+		locationSelector.destinoSelectors = [
+			d.querySelector('#selectBoxDestinoCountry'),
+			d.querySelector('#selectBoxDestinoCity'),
+		];
+
+		inputs = [...coprAlqui.querySelectorAll('#origen .selectBoxInput')]
+		inputs.forEach((input)=>{
+			input.onchange = ()=>{
+				locationSelector.searchLocation('origen')
+			};
+		})
+
+		
+		inputs = [...coprAlqui.querySelectorAll('#destino .selectBoxInput')]
+		inputs.forEach((input)=>{
+			input.onchange = ()=>{
+				locationSelector.searchLocation('destino')
+			};
+		})
+	},
+
+
+
+	getAllLocations: () => {
+		var formData = new FormData();
+		formData.append( 'action', 'lt_get_all' );
+		formData.append( 'table', 'locations' );
+
+		ajax2(formData).then( data => {
+			locationSelector.allLocations   = data;
+			locationSelector.currentSearch  = data;
+		})
+	},
+
+	
+	searchLocation:(option)=>{
+		let coprAlqui = d.querySelector('.coprAlqui');
+		let selected = [...coprAlqui.querySelectorAll('#'+option+' .selectBoxInput:checked')];
+
+		locationSelector.currentSearch = locationSelector.allLocations;
+		// console.log(locationSelector.currentSearch);
+
+		// filtra los productos que coincidan con la busqueda actual
+		selected.forEach((input)=>{
+			if(input.value!='0'){
+				let key = input.name.toLowerCase().replace(option,''),
+				value   = input.value;
+				// console.log(key, value);
+
+				let helperArray = [];
+				locationSelector.currentSearch.forEach(location => {
+					if( string_to_slug(location[key]) == value ){ helperArray.push(location) }
+				})
+				locationSelector.currentSearch = helperArray;
+			}
+		})
+		// console.log(locationSelector.currentSearch);
+
+		let uniqueLocationFound = locationSelector.currentSearch.length == 1;
+		// TODO: si hay solo un location encontrado habilitar boton de finalizar
+		// TODO: si hay uno solo que complete el otro?...
+		if( uniqueLocationFound ){
+			locationSelector[option] = [
+				coprAlqui.querySelector('#selectBox'+option.capitalize()+'Country .selectBoxInput:checked').value,
+				coprAlqui.querySelector('#selectBox'+option.capitalize()+'City .selectBoxInput:checked').value,
+			]
+			// console.log(locationSelector[option])
+		} else {
+			locationSelector[option] = []
+		}
+		// esconde todos los option que no coincidan con elementos de la busqueda actual
+		locationSelector.hideUnwantedOptions(option);
+	},
+
+
+	hideUnwantedOptions:(origenDestino)=>{ console.log('asi??')
+		// esconde todos los option que no coincidan con elementos de la busqueda actual
+		let options = [...coprAlqui.querySelectorAll('#'+origenDestino+' .selectBoxOption')];
+		options.forEach(option=>{
+			let input = option.querySelector('.selectBoxInput');
+			if (input.value != 0){
+				let key   = input.name.toLowerCase().replace(origenDestino,''),
+				val = input.value,
+				found = false;
+
+				// search on currentSearch
+				locationSelector.currentSearch.forEach(location=>{
+					if(string_to_slug(location[key])==val){
+						found = true;
+					}
+				})
+
+				if(found){
+					option.style.display = 'block';
+				} else {
+					option.style.display = 'none';
+				}
+			}
+		})
+	},
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -459,21 +805,22 @@ productSelector = {
 			})
 			d.querySelector('#currentSemiSelection').classList.add('cond');
 		}, 800);
-
-		// TODO: unselect all selected
-		// let nuls = [...dynamicCont.querySelectorAll('.selectBoxInput[value="0"]')];
-		// nuls.forEach((nul)=>{
-		// 	nul.checked = true
-		// 	// console.log(nul.name)
-		// 	selectBoxControler('','#selectBox'+nul.name,'#selectBoxCurrent'+nul.name)
-		// })
-		// productSelector.hideUnwantedOptions();
+		productSelector.unselectAll();
+	},
+	unselectAll:()=>{
+		let nuls = [...dynamicCont.querySelectorAll('.selectBoxInput[value="0"]')];
+		nuls.forEach((nul)=>{
+			nul.checked = true
+			selectBoxControler('','#selectBox'+nul.name,'#selectBoxCurrent'+nul.name)
+		})
+		productSelector.searchProduct();
 		// console.log(nuls)
 	},
 
 	getAllProducts: () => {
 		var formData = new FormData();
 		formData.append( 'action', 'lt_get_all' );
+		formData.append( 'table', 'contenedores' );
 
 		ajax2(formData).then( data => {
 			productSelector.allProducts   = data;
@@ -501,7 +848,7 @@ productSelector = {
 				productSelector.currentSearch = helperArray;
 			}
 		})
-		console.log(productSelector.currentSearch);
+		// console.log(productSelector.currentSearch);
 
 		// si hay solo un producto encontrado habilitar boton de agregar al carrito
 		let uniqueProductFound = productSelector.currentSearch.length == 1,
@@ -561,6 +908,57 @@ productSelector = {
 
 
 
+const processPrice = (data, gastos_adicionales = true)=>{
+
+	if (data[1]) {
+		let exchange = data.pop()
+		data.forEach(element => {
+			if(element.currency.includes('USD')){
+				element.currency = 'EUR'
+				element.supplier_price = element.supplier_price * exchange.rate
+				element.fixed_price = element.fixed_price * exchange.rate
+				element.sale_price = element.sale_price * exchange.rate
+			}
+		});
+
+		if (data[0].fixed_price!=0) {
+			singlePrice = parseFloat(data[0].fixed_price)
+		}else if(data[0].sale_price!=0){
+			singlePrice = parseFloat(data[0].sale_price - 300)
+		}else if(!data[1]){
+			singlePrice = parseFloat(data[0].supplier_price)
+		}else{
+			let prices = data.map( x => x.supplier_price );
+			let pricesSort = prices.sort((a, b) => a - b).slice(0, 2);
+			let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
+			singlePrice = average;
+		}
+		// totalPrice = singlePrice * parseInt(itemQty);
+		if(singlePrice == 0){
+			final_price = false;
+		} else{
+			if(data[0].profit && gastos_adicionales){
+				singlePrice += parseInt(data[0].profit) + parseInt(data[0].others) + parseInt(data[0].deposit)
+			}
+			final_price = singlePrice
+		}
+
+	} else {
+		final_price = false;
+	}
+
+	if(gastos_adicionales){
+		return final_price
+	} else {
+		return [final_price, {profit: data[0].profit, deposit: data[0].deposit, others: data[0].others}]
+	}
+}
+
+
+
+
+
+
 
 
 
@@ -573,7 +971,7 @@ cartController = {
 			// cartController.ready(false);
 			// cartController.getCol('Size');
 		}
-		cartController.getLocation();
+		// cartController.getLocation();
 		// cartController.getLocation(false, 'Destino');
 
 		// cartController.cart = JSON.parse(readCookie('cart'));
@@ -582,7 +980,6 @@ cartController = {
 			JSON.parse(readCookie('cart')).forEach((item, i) => {
 				cartController.cart.unshift(new CartItem(item));
 				cartController.cart[0].cartUI();
-
 			});
 		}
 
@@ -595,51 +992,13 @@ cartController = {
 				item.setAttribute('xlink:href', '#doubleTruck');
 			});
 		}
-
-		// console.log('la concha de la EXPLORAR')
 	},
-	currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false, singlePrice: 0},
+	// currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false, singlePrice: 0},
 	containerToAdd:false,
 	cart: [],
 	cartToLeads: [],
 	allProducts:{},
-	locationOrigen:[],
-	locationDestino:[],
-	getLocation: ( country = false, option = 'Origen' ) => {
-		var formData = new FormData();
-		formData.append( 'action', 'lt_get_location' );
-		if (country) {
-			if(option=='Origen'){cartController.locationOrigen['country'] = country;
-			}else{cartController.locationDestino['country'] = country;}
-			cartController.selectBoxWipe(option+'City');
-			formData.append( 'country', country );
-			formData.append( 'column', 'city' );
-		}else{
-			formData.append( 'column', 'country' );
-		}
-		// console.log(formData);
-		ajax2(formData).then( data => {
-			// console.log(data)
-
-			JSON.parse(data.location).forEach( e => {
-				for(var key in e) {
-					var value = e[key].replace(/(?:\r\n|\r|\n)/g, '');
-					key = option + key.capitalize();
-					// console.log(key);
-					// console.log(d.querySelector('#selectBox'+key+' .selectBoxList'))
-					var a = cartController.selectBoxOption(key,value),
-					input = a.querySelector(".selectBoxInput");
-					input.setAttribute('type', 'radio');
-					if (country) {
-						if(option=='Origen'){functionExecute = "cartController.locationOrigen['city'] = value;console.log(cartController.locationOrigen);";
-						}else{functionExecute = "cartController.locationDestino['city'] = value;console.log(cartController.locationDestino);";}
-					}else{functionExecute = 'cartController.getLocation("'+value+'", "'+option+'")';}
-					input.setAttribute("onchange", functionExecute);
-					d.querySelector('#selectBox'+key+' .selectBoxList').insertBefore(a, null);
-				}
-			});
-		})
-	},
+	
 
 
 	finish:()=>{
@@ -651,8 +1010,8 @@ cartController = {
 			var formData = new FormData();
 			formData.append( 'action', 'lt_cart_end' );
 			formData.append( 'cont', item.code );
-			formData.append( 'country', cartController.locationOrigen['country'] );
-			formData.append( 'city', cartController.locationOrigen['city'] );
+			formData.append( 'country', locationSelector.origen[0] );
+			formData.append( 'city', locationSelector.origen[1] );
 			// console.log('formData');
 
 			// Display the key/value pairs
@@ -660,51 +1019,25 @@ cartController = {
 			// 	console.log(pair[0]+ ', ' + pair[1]);
 			// }
 			ajax2(formData).then( data => {
-				console.log(data)
-				console.log(data[0])
-				let singlePrice, currency;
+				let cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
+				let itemQty = cartItem.querySelector('.cartItemQty').innerText;
+				let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+				let itemCurrency = cartItem.querySelector('.cartItemCurrency');
+				let currency = 'EUR';
 
-				cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
-				itemQty = cartItem.querySelector('.cartItemQty').innerText;
-				itemPrice = cartItem.querySelector('.cartItemPriceNumber');
-				itemCurrency = cartItem.querySelector('.cartItemCurrency');
 
-				if (data[1]) {
-					// currency = data[0].currency;
-					currency = 'EUR';
-					// // TODO: leer el exchange de algun lado
-					// TODO: transformar todo al mismo antes de hacer comparaciones ni nada
-					exchange = data.pop()
-					data.forEach(element => {
-						if(element.currency.includes('USD')){
-							element.currency = 'EUR'
-							element.supplier_price = element.supplier_price * exchange.rate
-							element.fixed_price = element.fixed_price * exchange.rate
-							element.sale_price = element.sale_price * exchange.rate
-						}
-					});
-					// console.log(data)
-					// console.log('EX-change rate SUELTOOO:', exchange)
-
-					if (data[0].fixed_price!=0) {
-						singlePrice = parseFloat(data[0].fixed_price)
-					}else if(data[0].sale_price!=0){
-						singlePrice = parseFloat(data[0].sale_price - 300)
-					}else if(!data[1]){
-						singlePrice = parseFloat(data[0].supplier_price)
-					}else{
-						let prices = data.map( x => x.supplier_price );
-						let pricesSort = prices.sort((a,b) => a - b).slice(0, 2);
-						let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
-						singlePrice = average + 200;
-					}
-					totalPrice = singlePrice * parseInt(itemQty);
-
-				} else {
+				singlePrice = processPrice(data)
+				if(!singlePrice){
+					totalPrice = 'Precio no disponible';
 					currency = '';
-					singlePrice = 0;
-					totalPrice = 'NaN';
+				} else {
+					totalPrice = singlePrice * parseInt(itemQty);
 				}
+
+				// console.log('mi nuevo calculador de precio dice: ', singlePrice)
+
+
+
 
 				// const check = (element) => {
 				// 	return element.code == x.code;
@@ -726,7 +1059,6 @@ cartController = {
 				}
 				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
 				// }
-
 
 
 				itemCurrency.innerText = currency
@@ -809,41 +1141,6 @@ cartController = {
 			});
 		}
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
-	},
-
-
-	selectBoxOption:(key, value = '')=>{
-
-		let a  = d.importNode(d.querySelector("#selectBoxOptionTemplate").content, true),
-		option = a.querySelector(".selectBoxOption"),
-		input  = a.querySelector(".selectBoxInput"),
-		label  = a.querySelector(".selectBoxOptionLabel");
-		if(value == 'nul'){
-			option.setAttribute('for', 'nul'+key);
-			input.setAttribute ('id' , 'nul'+key);
-			input.setAttribute('value', 0);
-		} else {
-			option.setAttribute('for', key+value);
-			input.setAttribute ('id' , key+value);
-			input.setAttribute('value', value);
-		}
-		label.textContent = value;
-		input.setAttribute('name', key);
-		input.setAttribute("onclick", 'selectBoxControler("'+value+'", "#selectBox'+key+'", "#selectBoxCurrent'+key+'")');
-
-		return a;
-	},
-	selectBoxWipe:(nombre, comptleteWipe = false)=>{
-		list = d.querySelector('#selectBox'+nombre+' .selectBoxList');
-		selectBoxControler('', '#selectBox'+nombre, '#selectBoxCurrent'+nombre);
-		if (list.firstChild) {
-			while (list.firstChild) {
-			list.removeChild(list.firstChild);
-			}
-		}
-		if(!comptleteWipe){
-			list.appendChild(cartController.selectBoxOption(nombre));
-		}
 	},
 
 

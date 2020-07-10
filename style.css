@@ -117,6 +117,7 @@ FIN DE MAPA DE CONTENIDOS */
   --grey1:#e9f0f6;
   --grey2:#dbe2e8;
   --grey3:#b9bfc5;
+  --grey4:#818181;
   --grey9:#1b1b1b;
   --grey99:#000000;
 
@@ -868,6 +869,18 @@ section {
 
 .Accordion{max-height:0;overflow:hidden;}
 .Accordion.active{overflow:unset;}
+
+
+
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                               6) =COMPONENTES:
@@ -2861,6 +2874,19 @@ table.stockreport-table .border {
   padding: 1rem;
   min-height: 250px;
   grid-gap: 1rem;
+}
+.cotizador.tren .cotizadorCont{color:var(--grey4)}
+.cotizadorCont{
+  /* color: var(--grey4); */
+  color:var(--primaryColorDark);
+  cursor:pointer;
+  transition:.3s;
+}
+.cotizador.tren .cotizadorTren{color: var(--primaryColorDark)}
+.cotizadorTren{
+  color:var(--grey4);
+  cursor:pointer;
+  transition:.3s;
 }
 .cotizador .cartButton{
   top:.5rem;

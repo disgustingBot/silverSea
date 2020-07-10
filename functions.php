@@ -405,14 +405,14 @@ function selectBox($name, $slug = false, $options = array()){
 			</label>
 
 
-			<?php foreach ($options as $opt_slug => $opt_name) { ?>
+			<?php foreach ($options as $opt_slug => $opt_name) { 
+				$opt_name = preg_replace('/\s+/', ' ', trim($opt_name)); ?>
 
-
-				<label for="filter_<?php echo $opt_slug; ?>" class="selectBoxOption">
+				<label for="<?php echo $slug; ?>_<?php echo $opt_slug; ?>" class="selectBoxOption">
 					<input
 						class="selectBoxInput <?php echo $opt_slug; ?>"
 						type="radio"
-						id="filter_<?php echo $opt_slug; ?>"
+						id="<?php echo $slug; ?>_<?php echo $opt_slug; ?>"
 						name="<?php echo $slug; ?>"
 						onclick="selectBoxControler('<?php echo $opt_name; ?>', '#selectBox<?php echo $slug; ?>', '#selectBoxCurrent<?php echo $slug; ?>')"
 						value="<?php echo $opt_slug; ?>"
@@ -811,7 +811,20 @@ function lt_cart_end () { global $wpdb;
 
 	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
-	$qry = "SELECT
+
+	$queryTest = "SELECT
+	*
+	FROM
+	gastos_adicionales
+	WHERE (
+		country = '$country' AND
+		city = '$city'
+	);";
+
+	$ressy = $conn->query($queryTest);
+	$respy = $ressy->fetch_all(MYSQLI_ASSOC);
+	if(count($respy) > 0){
+		$qry = "SELECT
 	        *
 			FROM
 			stock a, gastos_adicionales b
@@ -822,8 +835,23 @@ function lt_cart_end () { global $wpdb;
 				b.country = '$country' AND
 				b.city = '$city'
 			);";
-	$ress = $conn->query($qry);
-	$resp = $ress->fetch_all(MYSQLI_ASSOC);
+		$ress = $conn->query($qry);
+		$resp = $ress->fetch_all(MYSQLI_ASSOC);
+	} else {
+		$qry = "SELECT
+	        *
+			FROM
+			stock
+			WHERE (
+				id_contenedor = '$contenedor' AND
+				pais = '$country' AND
+				ciudad = '$city'
+			);";
+		$ress = $conn->query($qry);
+		$resp = $ress->fetch_all(MYSQLI_ASSOC);
+
+	}
+
 
 	//TODO: agregar a $resp el currency exchange
 
@@ -866,7 +894,14 @@ function lt_cart_end () { global $wpdb;
 // 	b.city = 'ANTWERP'
 // );
 
-
+// SELECT
+// *
+// FROM
+// gastos_adicionales
+// WHERE (
+// 	country = 'BELGIUM' AND
+// 	city = 'ANTWERP'
+// );
 
 
 
@@ -879,11 +914,14 @@ add_action( 'wp_ajax_lt_get_all', 'lt_get_all' );
 add_action( 'wp_ajax_nopriv_lt_get_all', 'lt_get_all' );
 
 function lt_get_all () {
+	$table = $_POST['table'];
 	global $wpdb;
-	$ress = $wpdb->get_results("SELECT * FROM contenedores");
+	$ress = $wpdb->get_results("SELECT * FROM $table");
 	echo wp_json_encode( $ress );
 	exit();
 }
+
+
 
 
 
