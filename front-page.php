@@ -6,8 +6,12 @@
   </video>
 
 
-  <div class="cotizador" id="cotizador">
-    <h3 class="cotizadorTitle">COTIZA TU<span class="brandColorTxt"> CONTENEDOR</span></h3>
+  <div class="cotizador cont" id="cotizador">
+    <h3 class="cotizadorTitle">
+      COTIZA TU
+      <span class="cotizadorCont unselectable" onclick="trenController.altTrainAndCont('cont')"> CONTENEDOR</span> /
+      <span class="cotizadorTren unselectable" onclick="trenController.altTrainAndCont('tren')"> TREN</span>
+    </h3>
 
     <div class="currentSemiSelection cond" id="currentSemiSelection">
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">

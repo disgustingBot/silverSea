@@ -178,7 +178,8 @@
       <input type="checkbox" required>
       <p class="temsAcceptance">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank"> privacy terms</a></p>
     </div>
-    <button class="btn" onclick="cartController.finish()">Calcular cotización</button>
+    <button class="btn" id="buttonFinishCart" onclick="cartController.finish()">dame precio rapido</button>
+
   </div>
 
 
