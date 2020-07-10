@@ -47,7 +47,7 @@
 
     <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
     <!-- <button class="btn" type="button" onclick="cartController.newLead"> -->
-      Finalizar
+      COTIZAR
     </button>
   </div>
 

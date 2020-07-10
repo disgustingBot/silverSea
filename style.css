@@ -164,6 +164,7 @@ FIN DE MAPA DE CONTENIDOS */
   --onlyMobileG:grid;
 
   --txtCenterLeft: center;
+  --txtCenterRight: center;
   --TxtLeftCenter: left;
 
   /* BLUEBAR */
@@ -248,6 +249,11 @@ FIN DE MAPA DE CONTENIDOS */
   --contactInputGC: span 2;
   --contactTextareaHeight: 10rem;
 
+
+  --contactCTABottom:0;
+  --contactCTARight: 0;
+  --contactCTAWidth: 100%;
+
   /* SINGLE  */
   --singleContainerDisplay: block;
   --containerAttributeW: 15rem;
@@ -262,6 +268,7 @@ FIN DE MAPA DE CONTENIDOS */
   --archiveMainDisplay: block;
   --coprAlquiGTC: auto;
   --coprAlquiLocationGC: auto;
+  --coprAlquiLocationGAC: row;
   --sladRadioMarginLeft: auto;
 
   --filtersContainerPosition:static;
@@ -330,9 +337,19 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* STOCK */
   --stock_header_row_GAF: auto;
+
   --table_column_FS:12px;
+
   --stock_main_GTC: 1fr;
   --stockGTR: 1fr 1fr;
+
+
+
+
+  /* CART */
+  --cartGridGap: 2rem;
+
+
 
 
 }
@@ -394,6 +411,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* ARCHIVE-PAGE */
     --coprAlquiGTC: auto 1fr;
     --coprAlquiLocationGC: 2;
+    --coprAlquiLocationGAC: column;
     --sladRadioMarginLeft: 0;
     --filterAllFontSize: 16px;
     --cardActionsGG: .5rem;
@@ -410,6 +428,12 @@ FIN DE MAPA DE CONTENIDOS */
 
     --filterQuestionContWidth: 500px;
     --filterQuestActivatorWidth: 280px;
+
+    /* 6.7) =formContact: */
+
+    --contactCTABottom:60px;
+    --contactCTARight: 1rem;
+    --contactCTAWidth: max-content;
 
 
 
@@ -443,6 +467,7 @@ FIN DE MAPA DE CONTENIDOS */
     --onlyMobileG:none;
 
     --txtCenterLeft: left;
+    --txtCenterRight: right;
     --TxtLeftCenter: center;
 
       /* MAPS */
@@ -552,7 +577,7 @@ FIN DE MAPA DE CONTENIDOS */
     --productGalleryPosition: sticky;
     --productGalleryTop: 2.5rem;
     --filtersContainerPosition:absolute;
-    --archiveMainDisplay: flex;
+    --archiveMainDisplay: grid;
 
 
     --searchResultsContGR:1;
@@ -569,7 +594,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     --teamSectionGridGap: unset;
     --teamCardsContainerGridAF: column;
-    --teamCardsContainerGridAC: 20vw;
+    --teamCardsContainerGridAC: 15vw;
     --teamCardsContainerPadding: 16px 1rem;
     --teamCardsContainerOverflow: scroll;
     --teamCardsGradientDisplay: block;
@@ -586,6 +611,10 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* STOCK */
     --stock_main_GTC: 1fr min-content;
+
+
+      /* CART */
+      --cartGridGap: 1rem;
   }
 }
 
@@ -664,6 +693,9 @@ FIN DE MAPA DE CONTENIDOS */
     /* ARCHIVE-PRODUCT */
     --searchResultsGTC: repeat(3,1fr);
     --searchResultsAltGTC: repeat(4,1fr);
+
+    /* CART */
+    --cartGridGap: .5rem;
 
   }
 }
@@ -758,6 +790,7 @@ FIN DE MAPA DE CONTENIDOS */
 .body{
   display:grid;
   background: white;
+  min-height: 100vh;
 }
 
 img{object-fit:cover;width:100%}
@@ -855,6 +888,7 @@ section {
 
 .txtCenterLeft {text-align: var(--txtCenterLeft)}
 .txtCenter {text-align: center!important}
+.txtUnderlined {text-decoration: underline}
 
 .grid{display:grid}
 .flex{display:flex}
@@ -2302,11 +2336,11 @@ table.stockreport-table .border {
 
 .contactCTA {
   position:fixed;
-  bottom: 60px;
-  left: 1rem;
+  bottom: var(--contactCTABottom);
+  right: var(--contactCTARight);
+  width: var(--contactCTAWidth);
   z-index:4;
   text-align: center;
-  display: var(--onlyDesktopF);
   align-items: center;
   justify-content: center;
 }
@@ -2965,7 +2999,7 @@ table.stockreport-table .border {
 
 .coprAlquiLocation{
   display: grid;
-  grid-auto-flow:column;
+  grid-auto-flow:var(--coprAlquiLocationGAC);
   grid-auto-columns:1fr;
   grid-gap:1rem;
   transition:.3s;
@@ -2973,7 +3007,7 @@ table.stockreport-table .border {
 }
 .coprAlquiLocationTitle{
   margin:auto 0;
-  text-align: right;
+  text-align: var(--txtCenterRight);
 }
 
 .coprAlquiLocation .SelectBox.focus:last-child:focus .selectBoxList{
@@ -3209,7 +3243,7 @@ table.stockreport-table .border {
   border-radius: 0 0 8px 8px;
   box-shadow:var(--DP12);
   display:grid;
-  grid-gap:.5rem;
+  grid-gap:var(--cartGridGap);
   /* left:50%; */
   margin:auto;
   padding:1rem;
@@ -3234,17 +3268,25 @@ table.stockreport-table .border {
 
 .cartHead .btn{margin-right:0}
 
-/* .cartHead .btn:nth-child(3) {grid-column: 2;} */
 
 .cartList{
   display:grid;
   grid-gap:.5rem;
 }
+
+.cartTotalTxt {
+  font-size: 16px;
+}
+
+.cartTotal {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .cartItem{
   display:grid;
   grid-auto-flow:column;
   grid-gap:.5rem;
-  /* grid-auto-columns:1fr; */
   align-items:center;
   justify-content: center;
   text-align: center;
@@ -3291,6 +3333,8 @@ padding-bottom:0;
 .finalizarConsulta .formAcceptance {
   color: black;
 }
+
+.finalizarConsultaSubTitle {margin-top: 16px;}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.22) =cuantos:
@@ -3507,7 +3551,7 @@ padding-bottom:0;
   box-shadow: var(--archiveFiltersBoxFuckinShadow);
   border-right:solid var(--primaryColorDark) 0px;
   border-radius: 0 4px 4px 0;
-  display: grid;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: var(--archiveFilter2FD);
   justify-content: var(--archiveFilterJustifyC);
@@ -3954,7 +3998,7 @@ section.contacto img{
   text-align: left;
   background: var(--primaryColorDark);
   color: var(--grey0);
-  padding: 10px;
+  padding: 1rem var(--lateral);
   display: grid;
   grid-template-columns: auto;
   grid-auto-flow: var(--stock_header_row_GAF);
@@ -3987,7 +4031,7 @@ section.contacto img{
 }
 
 .stock_row_title_txt {
-  font-size: 15px;
+  font-size: var(--table_column_FS);
   font-weight: bold;
 }
 

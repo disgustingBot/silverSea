@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
 <div class="stockATF">
-  <h2 class="stock_title txtCenter brandColorTxt">Silversea Stock</h2>
+  <h2 class="stock_title txtCenter brandColorTxt">SILVERSEA Stocks</h2>
   <p class="stock_txt txtCenter">Conoce nuestro stock alrededor del mundo, actualizado semana a semana.</p>
 </div>
 
@@ -77,10 +77,10 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
   <?php echo $log; ?>
   <div class="table_stock">
     <div class="stock_row_title">
-      <p class="stock_row_title_txt">PAIS</p>
-      <p class="stock_row_title_txt">CIUDAD</p>
-      <p class="stock_row_title_txt">CONTENEDOR</p>
-      <p class="stock_row_title_txt">CANTIDAD</p>
+      <p class="stock_row_title_txt txtCenterLeft">PAIS</p>
+      <p class="stock_row_title_txt txtCenterLeft">CIUDAD</p>
+      <p class="stock_row_title_txt txtCenterLeft">CONTENEDOR</p>
+      <p class="stock_row_title_txt txtCenterLeft">CANTIDAD</p>
       <?php if ( is_user_logged_in() ) {?>
         <p class="stock_row_title_txt">PRECIO</p>
       <?php }  ?>
@@ -117,7 +117,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
 </div>
 
   <div class="contact_regions">
-    <h3 class="txtCenter contact_regions_title"><strong>Datos de contacto según región:</strong></h3>
+    <h3 class="txtCenter contact_regions_title"><strong>Datos de contacto de SILVERSEA según región:</strong></h3>
     <div class="region">
       <h4 class="region_title">EUROPA</h4>
       <div class="region_sellers">

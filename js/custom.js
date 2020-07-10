@@ -1147,12 +1147,12 @@ cartController = {
 	sendAllLeads:()=>{
 		// if(readCookie('status')=='next'){
 		// eraseCookie('status')
-		
+
 		// cartController.cartToLeads.forEach(product=>{
-			
+
 		let product = cartController.cartToLeads.shift();
 		console.log('send '+product.qty+' product: ', product.code)
-		
+
 
 		let info = {
 			fname:    d.querySelector('#mateputNombre').value,
@@ -1168,7 +1168,7 @@ cartController = {
 			lname:    '-',
 			message:  '-',
 		}
-		
+
 		if(cartController.cartToLeads.length!=0){
 			createCookie('cartToLeads', JSON.stringify(cartController.cartToLeads).split(';').join(':'));
 			createCookie('info', JSON.stringify(info));
@@ -1205,7 +1205,7 @@ cartController = {
 	},
 
 	newLead:(info)=>{
-		
+
 		// let oid = '00D1l0000000ia7';
 		// let retURL  = 'https://silverseacontainers.com/';
 		// let debug   = 1;
@@ -1228,14 +1228,14 @@ cartController = {
 		let baseURL= 'https://silverseacontainers.com/testLead.php';
 		// let baseURL= 'http://localhost/silversea/wp-content/themes/silversea/cookiePractice.php';
 
-		
+
 		let url = baseURL + vars;
 		win2 = window.open(url,'_blank');
 		win2.blur();
 		window.focus();
-		//TODO: que la pagina que se abre se cierre... 
+		//TODO: que la pagina que se abre se cierre...
 		checkForClose();
-		
+
 	},
 
 
@@ -1348,7 +1348,7 @@ const filterActivate = ()=>{
 
 		urlBase = 'https://silverseacontainers.com/buscar-contenedor/'
 		// urlBase = 'http://localhost/silverSea/buscar-contenedor/'
-	
+
 		console.log(link)
 		cosos1.forEach((coso)=>{
 			coso.onchange = ()=>{
@@ -1374,7 +1374,7 @@ const filterActivate = ()=>{
 				console.log(coso.value)
 			}
 		})
-	
+
 	}
 	if(d.querySelector('[name=cont_selector')){
 		d.querySelector('[name=cont_selector').onchange=(option)=>{

@@ -29,7 +29,7 @@
 
 
   <div class="coprAlquiLocation" id="origen">
-    <h4 class="coprAlquiLocationTitle">Origen</h4>
+    <h4 class="coprAlquiLocationTitle">Origen del Pedido</h4>
 
     <?php selectBox('Country', 'OrigenCountry', $countries); ?>
     <?php selectBox('City', 'OrigenCity', $cities); ?>
