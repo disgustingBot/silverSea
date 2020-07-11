@@ -1332,6 +1332,15 @@ function filterStock(){
 	if(container!="*"){
 		where +=   '?id_contenedor='+container;
 	}
+	if(pais!="*"&&ciudad!="*"){
+		where = '?pais='+pais+'&ciudad='+ciudad;
+	}
+	if(pais!="*"&&container!="*"){
+		where = '?pais='+pais+'&id_contenedor='+container;
+	}
+	if(pais!="*"&&ciudad!="*"&&container!="*"){
+		where = '?pais='+pais+'&ciudad='+ciudad+'&id_contenedor='+container;
+	}
 	// console.log(location.pathname+where);
 	window.location = location.pathname + where;
 }

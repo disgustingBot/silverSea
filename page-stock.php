@@ -43,7 +43,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       <option value="*">PAIS</option>
       <?php foreach ($list_pais as $row) {
         $pais = $row->pais;?>
-        <option value="<?php echo $pais ?>"><?php  echo $pais; ?></option>
+        <option value="<?php echo $pais ?>" <?php if($_GET['pais']==$pais){echo "selected";} ?>><?php  echo $pais; ?></option>
       <?php } ?>
     </select>
   </div>
@@ -52,7 +52,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       <option value="*" >CIUDAD</option>
       <?php foreach ($list_ciudad as $row) {
         $ciudad = $row->ciudad;?>
-        <option value="<?php echo $ciudad ?>"><?php  echo $ciudad; ?></option>
+        <option value="<?php echo $ciudad ?>" <?php if($_GET['ciudad']==$ciudad){echo "selected";} ?>><?php  echo $ciudad; ?></option>
       <?php } ?>
     </select>
   </div>
@@ -61,7 +61,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       <option value="*" >CONTAINER</option>
       <?php foreach ($list_container as $row) {
         $container = $row->id_contenedor;?>
-        <option value="<?php echo $container ?>"><?php  echo $container; ?></option>
+        <option value="<?php echo $container ?>" <?php if($_GET['id_contenedor']==$container){echo "selected";} ?>><?php  echo $container; ?></option>
       <?php } ?>
     </select>
   </div>
