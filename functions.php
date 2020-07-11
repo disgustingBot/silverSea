@@ -652,8 +652,8 @@ function lt_upload_file () {
 
 			// INSTALACION LOCAL
 			$dbHost = "localhost";
-			$dbUser = "root";
-			$dbPass = "";
+			$dbUser = "Rafita";
+			$dbPass = "95RAaurdHTONszLp";
 			// $dbUsername = "contraseñaDificil";
 			// $dbPassword = ";$6qha)2L*KU)6nq";
 			$dbName = "lattedev_silver";
@@ -929,8 +929,8 @@ function lt_get_location () {
 
 		// INSTALACION LOCAL
 		$dbHost = "localhost";
-		$dbUser = "root";
-		$dbPass = "";
+		$dbUser = "Rafita";
+		$dbPass = "95RAaurdHTONszLp";
 		// $dbUsername = "contraseñaDificil";
 		// $dbPassword = ";$6qha)2L*KU)6nq";
 		$dbName = "lattedev_silver";
