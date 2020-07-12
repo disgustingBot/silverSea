@@ -738,7 +738,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media  screen and (min-width: 1800px) {
   :root {
 
-    --lateral: 10rem;
+    --lateral: 16rem;
 
 
   }
@@ -3873,18 +3873,28 @@ padding-bottom:0;
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-section.contacto{
-  height: 100%;
+.contacto{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-self: center;
   align-items: center;
   text-align: center;
-  position: relative;
-  padding: 1rem 0;
+  /* position: relative; */
+  padding: 2rem 1rem;
 }
 
-.formTxt *{color: var(--grey0)}
+.contacto .formTitle{
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--grey0);
+}
+
+.contacto .formSubtitle{
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  color: var(--grey0);
+}
 
 .formAcceptance {
   display: flex;
@@ -3893,30 +3903,23 @@ section.contacto{
   font-size: 15px;
   grid-column: 1/-1;
 }
-.formAcceptance input {
+.formAcceptance .contact_check {
   margin-right: 5px;
-  width: 1rem!important;
-  height: 1rem!important;
+  width: 1rem;
+  height: 1rem;
 }
-.formAcceptance p a {
+.formAcceptance .temsAcceptance {
   text-decoration: underline;
 }
 
-.contacto .formTitle{
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
 
-section.contacto > *{width: 80%; z-index: 1;}
+.contacto > *{width: 80%; z-index: 1;}
 
-section.contacto img{
+.contacto .contact-background{
   object-fit: cover;
   width: 100%;
   height: 100%;
   position: absolute;
-}
-.contacto .formSubtitle{
-  align-self: flex-start;
 }
 
 .contacto .contactForm{
@@ -3926,24 +3929,22 @@ section.contacto img{
   grid-row-gap: 1rem;
   align-items: center;
 }
-/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
-.inputConEstilosIgualALosDeLaPaginaDeContacto,
-.contactForm input{
+
+.contactForm .contact_input{
   height: 2.5rem;
   padding-left: .5rem;
   width: var(--contactInputWidth);
   grid-column: var(--contactInputGC)
 }
-/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
-.textareaConEstilosIgualALosDeLaPaginaDeContacto,
-.contactForm textarea{
+
+.contactForm .contact_textarea{
   grid-column: span 2;
   height: var(--contactTextareaHeight) ;
   padding: .5rem;
   width: var(--contactInputWidth);
 }
-/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
-.contactForm button{
+
+.contactForm .contact_btn{
   grid-column: span 2;
   width: min-content;
   margin: auto;

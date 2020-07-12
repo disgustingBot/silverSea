@@ -70,7 +70,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
 
 
     <button type="button" name="button" class="btn stock_btn" onclick="filterStock()">Filtrar</button>
-    <button type="button" name="button" class="btn stock_btn" onclick="location.href='http://localhost/Silversea/stock';">Limpiar Filtros</button>
+    <a type="button" name="button" class="btn stock_btn" href="<?php echo get_site_url() . '/stock'; ?>">Limpiar Filtros</a>
 </div>
 
 <div class="stock_main">
