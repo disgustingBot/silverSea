@@ -461,7 +461,7 @@ trenController = {
 		// altClassFromSelector('tren', '#cotizador')
 		if(option=='tren' && !cotizador.classList.contains('tren')){
 			// // TODO: if cart is full, you should empty it first
-			// TODO: que se fije si tenes el contenedor habilitado?... maybe
+			// TODO: % chequear si tenes en el carrito el contenedor habilitado...
 			if (cartController.cart.length>0) {
 				alert('debes vaciar tu carrito primero')
 			} else {
@@ -491,91 +491,85 @@ trenController = {
 	},
 
 	finish:()=>{
-		console.log('ooooootre testeeeo')
+		// console.log('ooooootre testeeeo')
+
+		// // TODO: que no te deje finalizar consulta si no seleccionas cantidad
+		// TODO: no dejar que la consulta termine si no seleccionan lugar
+		// TODO: que se guarden las locaciones en cookies
 
 
 
+		var formData = new FormData();
+		formData.append( 'action', 'lt_tren_end' );
+		formData.append( 'cont', "40DC CW" );
+		formData.append( 'origen_country', locationSelector.origen[0].capitalize() );
+		formData.append( 'origen_city', locationSelector.origen[1].capitalize() );
+		formData.append( 'destino_country', locationSelector.destino[0].capitalize() );
+		formData.append( 'destino_city', locationSelector.destino[1].capitalize() );
+
+
+		ajax2(formData).then( data => {
+			// console.log(data)
+			// precio_origen_data = [data['precio_origen'], data['gastos']]
+			// precio_destino_data = [data['precio_destino'], data['gastos']]
+			data['precio_origen'].push(data['exchange'])
+			data['precio_destino'].push(data['exchange'])
+			let gastos = data['gastos'] ? parseInt(data['gastos'].profit) + parseInt(data['gastos'].deposit) + parseInt(data['gastos'].others) : 0;
+
+			precio_origen = processPrice(data['precio_origen'], false)
+			precio_destino = processPrice(data['precio_destino'], false)
+
+			// console.log('precio_origen', precio_origen)
+			// console.log('precio_destino', precio_destino)
+
+			final_price = precio_origen - precio_destino + gastos
+			console.log('final_price', final_price)
+
+			// trenController.precio_en_origen = processPrice(data, false)[0]
+
+			// var formData = new FormData();
+			// formData.append( 'action', 'lt_cart_end' );
+			// formData.append( 'cont', "40DC CW" );
+			// formData.append( 'country', locationSelector.destino[0] );
+			// formData.append( 'city', locationSelector.destino[1] );
+
+
+			// ajax2(formData).then( data => {
+			// 	respuesta = processPrice(data, false)
+			// 	trenController.precio_en_destino = respuesta[0]
+			// 	trenController.gastos_adicionales = respuesta[1]
+			// 	// gastos = respuesta[1]
+			// 	if(!singlePrice){
+			// 		totalPrice = 'Precio no disponible';
+			// 		currency = '';
+			// 	} else {
+			// 		// totalPrice = singlePrice * parseInt(itemQty);
+			// 	}
+			// 	console.log('precio en destino: ', singlePrice)
+
+			// });
 
 
 
+			// cartController.cart[i].setPrice(singlePrice);
+			// nuevoElemento = new CartItem(cartController.cart[i].values)
+			// cartController.cart[i] = nuevoElemento;
 
 
-		// TODO: que chequee los dos precios y luego haga cuentas con ellos (precio en origen, precio en destino)
-
-		// console.log('carrito antes de la transforrmacion', cartController.cart)
-		// cartController.cart.forEach((item, i) => {
-			// cartController.getPrice(item.code);
-			// console.log(item);
-
-			var formData = new FormData();
-			formData.append( 'action', 'lt_cart_end' );
-			formData.append( 'cont', "40DC CW" );
-			// formData.append( 'cont', item.code );
-			formData.append( 'country', locationSelector.origen[0] );
-			formData.append( 'city', locationSelector.origen[1] );
-			// console.log('formData');
-
-			// Display the key/value pairs
-			// for (var pair of formData.entries()) {
-			// 	console.log(pair[0]+ ', ' + pair[1]);
-			// }
+			
+			// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
+			// console.log(cartController.cart[i]);
 
 
-			ajax2(formData).then( data => {
-				trenController.precio_en_origen = processPrice(data, false)[0]
-
-				var formData = new FormData();
-				formData.append( 'action', 'lt_cart_end' );
-				formData.append( 'cont', "40DC CW" );
-				formData.append( 'country', locationSelector.destino[0] );
-				formData.append( 'city', locationSelector.destino[1] );
-
-
-				ajax2(formData).then( data => {
-					respuesta = processPrice(data, false)
-					trenController.precio_en_destino = respuesta[0]
-					trenController.gastos_adicionales = respuesta[1]
-					// gastos = respuesta[1]
-					if(!singlePrice){
-						totalPrice = 'Precio no disponible';
-						currency = '';
-					} else {
-						// totalPrice = singlePrice * parseInt(itemQty);
-					}
-					console.log('precio en destino: ', singlePrice)
-
-				});
-
-
-
-				// cartController.cart[i].setPrice(singlePrice);
-				// nuevoElemento = new CartItem(cartController.cart[i].values)
-				// cartController.cart[i] = nuevoElemento;
-
-
-				
-				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
-				// console.log(cartController.cart[i]);
-
-
-				// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
-				// if (i==cartController.cart.length - 1){
-				// 	console.log('CARRITO luego de la transformacion', cartController.cart)
-				// 	// cartController.sendMail();
-				// }
-				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
-				// }
-
-
-				// itemCurrency.innerText = currency
-				// itemPrice.innerText = totalPrice;
-			})
+			// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
+		})
 		// });
 
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
 
 		// TODO: encender el lead Sender
+		// TODO: aqui poner el destino como mensaje como asi tambien que es una interaccion de tren...
 		// cartController.cartToLeads = cartController.cart;
 		// createCookie('status','next')
 		// cartController.sendAllLeads();
@@ -632,6 +626,7 @@ trenController = {
 
 
 locationSelector = {
+	// first dowloads the hole location table and then executes searches on the object
 	allLocations:[],
 	currentSearch:[],
 	selectors: [],
@@ -706,7 +701,8 @@ locationSelector = {
 
 		let uniqueLocationFound = locationSelector.currentSearch.length == 1;
 		// TODO: si hay solo un location encontrado habilitar boton de finalizar
-		// TODO: si hay uno solo que complete el otro?...
+		// TODO: %si hay uno solo que complete el otro?...
+		// TODO: %que garde seleccion en cookie?... 
 		if( uniqueLocationFound ){
 			locationSelector[option] = [
 				coprAlqui.querySelector('#selectBox'+option.capitalize()+'Country .selectBoxInput:checked').value,
@@ -910,8 +906,10 @@ productSelector = {
 
 const processPrice = (data, gastos_adicionales = true)=>{
 
+	console.log(data)
 	if (data[1]) {
 		let exchange = data.pop()
+		console.log(exchange)
 		data.forEach(element => {
 			if(element.currency.includes('USD')){
 				element.currency = 'EUR'
@@ -947,11 +945,7 @@ const processPrice = (data, gastos_adicionales = true)=>{
 		final_price = false;
 	}
 
-	if(gastos_adicionales){
-		return final_price
-	} else {
-		return [final_price, {profit: data[0].profit, deposit: data[0].deposit, others: data[0].others}]
-	}
+	return final_price
 }
 
 
@@ -1107,6 +1101,9 @@ cartController = {
 			cartController.cart[0].cartUI();
 			// console.log(cartController.cart)
 		}
+
+
+
 		if (cartController.cart.length<2) {
 			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
 				item.setAttribute('xlink:href', '#simpleTruck');
@@ -1120,6 +1117,12 @@ cartController = {
 		// str.split(search).join(replacement)
 		console.log(cartController.cart);
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
+
+		
+		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
+		let endButton = d.querySelector('#cotizadorEndButton');
+		let isTheCartEmpty = cartController.cart.length < 1;
+		endButton.disabled = isTheCartEmpty;
 
 	},
 	remove:(code)=>{
@@ -1141,6 +1144,11 @@ cartController = {
 			});
 		}
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
+		
+		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
+		let endButton = d.querySelector('#cotizadorEndButton');
+		let isTheCartEmpty = cartController.cart.length < 1;
+		endButton.disabled = isTheCartEmpty;
 	},
 
 

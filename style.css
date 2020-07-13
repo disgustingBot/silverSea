@@ -3178,10 +3178,6 @@ table.stockreport-table .border {
   /* padding: 0 1rem; */
 }
 
-.dynamicCont .btn {
-  background: var(--grey3);
-}
-
 .dynamicCont >* {margin:auto;}
 
 .dynamicCont>*:not(.cuantos):not(.btn) {
