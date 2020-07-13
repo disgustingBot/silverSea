@@ -652,8 +652,8 @@ function lt_upload_file () {
 
 			// INSTALACION LOCAL
 			$dbHost = "localhost";
-			$dbUser = "root";
-			$dbPass = "";
+			$dbUser = "Rafita";
+			$dbPass = "95RAaurdHTONszLp";
 			// $dbUsername = "contraseñaDificil";
 			// $dbPassword = ";$6qha)2L*KU)6nq";
 			$dbName = "lattedev_silver";
@@ -673,7 +673,7 @@ function lt_upload_file () {
 			// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
 			$query1 = "truncate table $dbName.$fileName2;";
-			$query2 = "LOAD DATA LOCAL INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
+			$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
 			$qry = "Select
 			salesforce_id as SKU,
 			CONCAT( size, ' PIES' ) as 'Name',
@@ -1037,7 +1037,6 @@ function lt_tren_end () { global $wpdb;
 	if($debugMode){echo wp_json_encode($respuesta);}
 	exit();
 }
-
 
 
 

@@ -7,11 +7,19 @@
 
 
   <div class="cotizador cont" id="cotizador">
-    <h3 class="cotizadorTitle">
-      COTIZA TU
-      <span class="cotizadorCont unselectable" onclick="trenController.altTrainAndCont('cont')"> CONTENEDOR</span> /
-      <span class="cotizadorTren unselectable" onclick="trenController.altTrainAndCont('tren')"> TREN</span>
-    </h3>
+    <div class="cotizadorOptionsContainer">
+      <div class="cotizadorOptions">
+        <h3 class="cotizadorTitle">ELIGE EL TIPO DE COTIZACIÓN:</h3>
+        <div class="cotizadorOptionContainer">
+          <input name="option" type="radio" id="contOption" class="cotizadorCont unselectable" checked onclick="trenController.altTrainAndCont('cont')"></input>
+          <label for="contOption">CONTENEDOR</label>
+        </div>
+        <div class="cotizadorOptionContainer">
+          <input name="option" type="radio" id="trenOption" class="cotizadorTren unselectable" onclick="trenController.altTrainAndCont('tren')"></input>
+          <label for="trenOption">TREN</label>
+        </div>
+      </div>
+    </div>
 
     <div class="currentSemiSelection cond" id="currentSemiSelection">
       <svg class="currentSemiSelectionSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
@@ -35,8 +43,13 @@
       </svg>
     </div>
 
+    <div class="cotizadorTxtContainer">
+      <!-- SI EL INPUT DE TRENES ESTÁ CHECKEADO, VA ESTE TEXTO: -->
+      <p class="cotizadorTxt">El servicio de trenes solo está disponible para contenedores secos estandar de 40 pies aptos para carga.</p>
 
-    <p class="cotizadorTxt">Tras completar el proceso de cotización, recibiás una cotización rápida inmediata</p>
+      <!-- ESTE TEXTO VA SIEMPRE: -->
+      <p class="cotizadorTxt">Tras completar el proceso de cotización, recibiás una cotización rápida inmediata</p>
+    </div>
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
     </div>
@@ -47,7 +60,7 @@
 
     <button class="btn" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
     <!-- <button class="btn" type="button" onclick="cartController.newLead"> -->
-      Finalizar
+      COTIZAR
     </button>
   </div>
 

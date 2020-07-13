@@ -164,6 +164,7 @@ FIN DE MAPA DE CONTENIDOS */
   --onlyMobileG:grid;
 
   --txtCenterLeft: center;
+  --txtCenterRight: center;
   --TxtLeftCenter: left;
 
   /* BLUEBAR */
@@ -248,6 +249,11 @@ FIN DE MAPA DE CONTENIDOS */
   --contactInputGC: span 2;
   --contactTextareaHeight: 10rem;
 
+
+  --contactCTABottom:0;
+  --contactCTARight: 0;
+  --contactCTAWidth: 100%;
+
   /* SINGLE  */
   --singleContainerDisplay: block;
   --containerAttributeW: 15rem;
@@ -262,6 +268,7 @@ FIN DE MAPA DE CONTENIDOS */
   --archiveMainDisplay: block;
   --coprAlquiGTC: auto;
   --coprAlquiLocationGC: auto;
+  --coprAlquiLocationGAC: row;
   --sladRadioMarginLeft: auto;
 
   --filtersContainerPosition:static;
@@ -330,9 +337,19 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* STOCK */
   --stock_header_row_GAF: auto;
+
   --table_column_FS:12px;
+
   --stock_main_GTC: 1fr;
   --stockGTR: 1fr 1fr;
+
+
+
+
+  /* CART */
+  --cartGridGap: 2rem;
+
+
 
 
 }
@@ -394,6 +411,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* ARCHIVE-PAGE */
     --coprAlquiGTC: auto 1fr;
     --coprAlquiLocationGC: 2;
+    --coprAlquiLocationGAC: column;
     --sladRadioMarginLeft: 0;
     --filterAllFontSize: 16px;
     --cardActionsGG: .5rem;
@@ -410,6 +428,12 @@ FIN DE MAPA DE CONTENIDOS */
 
     --filterQuestionContWidth: 500px;
     --filterQuestActivatorWidth: 280px;
+
+    /* 6.7) =formContact: */
+
+    --contactCTABottom:60px;
+    --contactCTARight: 1rem;
+    --contactCTAWidth: max-content;
 
 
 
@@ -443,6 +467,7 @@ FIN DE MAPA DE CONTENIDOS */
     --onlyMobileG:none;
 
     --txtCenterLeft: left;
+    --txtCenterRight: right;
     --TxtLeftCenter: center;
 
       /* MAPS */
@@ -552,7 +577,7 @@ FIN DE MAPA DE CONTENIDOS */
     --productGalleryPosition: sticky;
     --productGalleryTop: 2.5rem;
     --filtersContainerPosition:absolute;
-    --archiveMainDisplay: flex;
+    --archiveMainDisplay: grid;
 
 
     --searchResultsContGR:1;
@@ -569,7 +594,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     --teamSectionGridGap: unset;
     --teamCardsContainerGridAF: column;
-    --teamCardsContainerGridAC: 20vw;
+    --teamCardsContainerGridAC: 15vw;
     --teamCardsContainerPadding: 16px 1rem;
     --teamCardsContainerOverflow: scroll;
     --teamCardsGradientDisplay: block;
@@ -585,7 +610,11 @@ FIN DE MAPA DE CONTENIDOS */
     --teamCardsContainerGridTC: ;
 
     /* STOCK */
-    --stock_main_GTC: 1fr min-content;
+    --stock_main_GTC: 1fr 200px;
+
+
+      /* CART */
+      --cartGridGap: 1rem;
   }
 }
 
@@ -665,6 +694,12 @@ FIN DE MAPA DE CONTENIDOS */
     --searchResultsGTC: repeat(3,1fr);
     --searchResultsAltGTC: repeat(4,1fr);
 
+    /* CART */
+    --cartGridGap: .5rem;
+
+    /* STOCK */
+    --stock_main_GTC: 1fr 300px;
+
   }
 }
 
@@ -706,7 +741,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media  screen and (min-width: 1800px) {
   :root {
 
-    --lateral: 10rem;
+    --lateral: 16rem;
 
 
   }
@@ -758,6 +793,7 @@ FIN DE MAPA DE CONTENIDOS */
 .body{
   display:grid;
   background: white;
+  min-height: 100vh;
 }
 
 img{object-fit:cover;width:100%}
@@ -855,6 +891,7 @@ section {
 
 .txtCenterLeft {text-align: var(--txtCenterLeft)}
 .txtCenter {text-align: center!important}
+.txtUnderlined {text-decoration: underline}
 
 .grid{display:grid}
 .flex{display:flex}
@@ -2302,11 +2339,11 @@ table.stockreport-table .border {
 
 .contactCTA {
   position:fixed;
-  bottom: 60px;
-  left: 1rem;
+  bottom: var(--contactCTABottom);
+  right: var(--contactCTARight);
+  width: var(--contactCTAWidth);
   z-index:4;
   text-align: center;
-  display: var(--onlyDesktopF);
   align-items: center;
   justify-content: center;
 }
@@ -2899,16 +2936,33 @@ table.stockreport-table .border {
   position: absolute;
   top: .5rem;
   right:1.5rem;
-  /* right: -7rem; */
   z-index:1;
 }
 
+.cotizadorOptions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  width: max-content;
+}
 
 .cotizadorTitle,
 .cotizadorTxt {
   grid-column: 1/-1;
   display: none;
   margin: auto auto auto 0;
+}
+
+.cotizadorOptions .cotizadorTitle {
+  grid-column: 1/-1;
+}
+
+.cotizadorOptionContainer label {
+  color: var(--grey4);
+}
+
+.cotizadorOptionContainer input:checked + label {
+  color: var(--gray99);
 }
 
 .cotizadorTxt {
@@ -2965,7 +3019,7 @@ table.stockreport-table .border {
 
 .coprAlquiLocation{
   display: grid;
-  grid-auto-flow:column;
+  grid-auto-flow:var(--coprAlquiLocationGAC);
   grid-auto-columns:1fr;
   grid-gap:1rem;
   transition:.3s;
@@ -2973,7 +3027,7 @@ table.stockreport-table .border {
 }
 .coprAlquiLocationTitle{
   margin:auto 0;
-  text-align: right;
+  text-align: var(--txtCenterRight);
 }
 
 .coprAlquiLocation .SelectBox.focus:last-child:focus .selectBoxList{
@@ -3205,7 +3259,7 @@ table.stockreport-table .border {
   border-radius: 0 0 8px 8px;
   box-shadow:var(--DP12);
   display:grid;
-  grid-gap:.5rem;
+  grid-gap:var(--cartGridGap);
   /* left:50%; */
   margin:auto;
   padding:1rem;
@@ -3230,17 +3284,25 @@ table.stockreport-table .border {
 
 .cartHead .btn{margin-right:0}
 
-/* .cartHead .btn:nth-child(3) {grid-column: 2;} */
 
 .cartList{
   display:grid;
   grid-gap:.5rem;
 }
+
+.cartTotalTxt {
+  font-size: 16px;
+}
+
+.cartTotal {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .cartItem{
   display:grid;
   grid-auto-flow:column;
   grid-gap:.5rem;
-  /* grid-auto-columns:1fr; */
   align-items:center;
   justify-content: center;
   text-align: center;
@@ -3287,6 +3349,8 @@ padding-bottom:0;
 .finalizarConsulta .formAcceptance {
   color: black;
 }
+
+.finalizarConsultaSubTitle {margin-top: 16px;}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.22) =cuantos:
@@ -3503,7 +3567,7 @@ padding-bottom:0;
   box-shadow: var(--archiveFiltersBoxFuckinShadow);
   border-right:solid var(--primaryColorDark) 0px;
   border-radius: 0 4px 4px 0;
-  display: grid;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: var(--archiveFilter2FD);
   justify-content: var(--archiveFilterJustifyC);
@@ -3825,18 +3889,28 @@ padding-bottom:0;
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-section.contacto{
-  height: 100%;
+.contacto{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-self: center;
   align-items: center;
   text-align: center;
-  position: relative;
-  padding: 1rem 0;
+  /* position: relative; */
+  padding: 2rem 1rem;
 }
 
-.formTxt *{color: var(--grey0)}
+.contacto .formTitle{
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--grey0);
+}
+
+.contacto .formSubtitle{
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  color: var(--grey0);
+}
 
 .formAcceptance {
   display: flex;
@@ -3845,30 +3919,23 @@ section.contacto{
   font-size: 15px;
   grid-column: 1/-1;
 }
-.formAcceptance input {
+.formAcceptance .contact_check {
   margin-right: 5px;
-  width: 1rem!important;
-  height: 1rem!important;
+  width: 1rem;
+  height: 1rem;
 }
-.formAcceptance p a {
+.formAcceptance .temsAcceptance {
   text-decoration: underline;
 }
 
-.contacto .formTitle{
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
 
-section.contacto > *{width: 80%; z-index: 1;}
+.contacto > *{width: 80%; z-index: 1;}
 
-section.contacto img{
+.contacto .contact-background{
   object-fit: cover;
   width: 100%;
   height: 100%;
   position: absolute;
-}
-.contacto .formSubtitle{
-  align-self: flex-start;
 }
 
 .contacto .contactForm{
@@ -3878,24 +3945,22 @@ section.contacto img{
   grid-row-gap: 1rem;
   align-items: center;
 }
-/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
-.inputConEstilosIgualALosDeLaPaginaDeContacto,
-.contactForm input{
+
+.contactForm .contact_input{
   height: 2.5rem;
   padding-left: .5rem;
   width: var(--contactInputWidth);
   grid-column: var(--contactInputGC)
 }
-/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
-.textareaConEstilosIgualALosDeLaPaginaDeContacto,
-.contactForm textarea{
+
+.contactForm .contact_textarea{
   grid-column: span 2;
   height: var(--contactTextareaHeight) ;
   padding: .5rem;
   width: var(--contactInputWidth);
 }
-/* MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL MAL */
-.contactForm button{
+
+.contactForm .contact_btn{
   grid-column: span 2;
   width: min-content;
   margin: auto;
@@ -3950,7 +4015,7 @@ section.contacto img{
   text-align: left;
   background: var(--primaryColorDark);
   color: var(--grey0);
-  padding: 10px;
+  padding: 1rem var(--lateral);
   display: grid;
   grid-template-columns: auto;
   grid-auto-flow: var(--stock_header_row_GAF);
@@ -3983,7 +4048,7 @@ section.contacto img{
 }
 
 .stock_row_title_txt {
-  font-size: 15px;
+  font-size: var(--table_column_FS);
   font-weight: bold;
 }
 
@@ -4010,6 +4075,7 @@ section.contacto img{
 
 .stock_phone_email {
   margin-right: 5px;
+  font-size: 24px;
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -4111,3 +4177,6 @@ section.contacto img{
 }
 
 /* LOGIN */
+
+.unauthenticatedUser {padding: 1rem var(--lateral)}
+.unauthenticatedTxt {margin-bottom: 1rem}
