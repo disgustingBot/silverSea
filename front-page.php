@@ -58,7 +58,7 @@
       <a href="#" class="btnSimple">Ir a Cotización avanzada</a>
     </div>
 
-    <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
+    <button class="btn" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
     <!-- <button class="btn" type="button" onclick="cartController.newLead"> -->
       COTIZAR
     </button>

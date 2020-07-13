@@ -614,7 +614,7 @@ function lt_upload_file () {
     $fileName2 = strtolower(($fileExt[0]));
 
     $allowedExt = array( 'csv','tsv');
-    $fileNamesAllowed = array('stock','gastos_adicionales','trenes','contenedores', 'locations');
+    $fileNamesAllowed = array('conv_trenes', 'stock','gastos_adicionales','trenes','contenedores', 'locations');
 
 		$fileNameNew = $fileName2 . '-' . date("m-d-Y"). '.' . $fileActualExt;
 		$fileDestination = wp_normalize_path( get_template_directory()."/uploads/".$fileNameNew );
@@ -908,6 +908,171 @@ function lt_cart_end () { global $wpdb;
 
 
 
+
+
+
+
+
+
+// $query = "DROP table conv_trenes;
+// CREATE table conv_trenes ( 
+//     origen_city varchar(80),
+//     origen_country varchar(50), 
+//     destino_city varchar(80),
+//     destino_country varchar(50) 
+// );";
+
+
+// "SELECT * FROM `conv_trenes` WHERE ( origen_city = 'Dalian' and origen_country = 'China' and destino_city = 'Antwerp' );"
+
+
+
+
+
+
+
+add_action( 'wp_ajax_lt_tren_end', 'lt_tren_end' );
+add_action( 'wp_ajax_nopriv_lt_tren_end', 'lt_tren_end' );
+
+function lt_tren_end () { global $wpdb;
+	$server = 'local';
+	$debugMode = false;
+	$respuesta = array();
+	$contenedor = $_POST['cont'];
+	$origen_country  = $_POST['origen_country'];
+	$origen_city     = $_POST['origen_city'];
+	$destino_country = $_POST['destino_country'];
+	$destino_city    = $_POST['destino_city'];
+
+	
+	// ! on the server get the following info:
+	// ! is this convination posible?
+	// TODO: implementar tabla convinaciones_posibles!
+	// ! if yes: return price data for both locations (to analiza in JS)
+	// ! if not: return 'this is not a posible train convination'
+
+	// $query = "SELECT * FROM `conv_trenes` WHERE ( origen_country  = '$origen_country'  and origen_city     = '$origen_city' and destino_city    = '$destino_city' );";
+	$query = "SELECT * FROM `conv_trenes` WHERE	 ( origen_country  LIKE '%$origen_country%'  and origen_city     LIKE '%$origen_city%'     and destino_country LIKE '%$destino_country%' and destino_city    LIKE '%$destino_city%' );";
+	// $respuesta['query'] = $query;
+	$possible_convination = $wpdb->get_results($query);
+	// $respuesta['cosa'] = $possible_convination;
+	
+	if(count($possible_convination) > 0){
+		$conv = array('conv' => true);
+		$respuesta['conv'] = true;
+
+
+		$query_gastos = "SELECT * FROM `gastos_adicionales` WHERE (
+			country = '$origen_country' AND
+			city = '$origen_city'
+		);";
+		$gastos_adicionales = $wpdb->get_results($query_gastos);
+		if(count($gastos_adicionales) > 0){
+			$respuesta['gastos'] = $gastos_adicionales[0];
+		} else {
+			$respuesta['gastos'] = false;
+		}
+
+
+		$precio_origen_query = "SELECT * FROM stock WHERE (
+			id_contenedor = '$contenedor' AND
+			pais = '$origen_country' AND
+			ciudad = '$origen_city'
+		);";
+			
+		$precio_origen = $wpdb->get_results($precio_origen_query);
+		if(count($gastos_adicionales) > 0){
+			$respuesta['precio_origen'] = $precio_origen;
+		} else {
+			$respuesta['precio_origen'] = false;
+		}
+
+
+
+		
+		$precio_destino_query = "SELECT * FROM stock WHERE (
+			id_contenedor = '$contenedor' AND
+			pais = '$destino_country' AND
+			ciudad = '$destino_city'
+		);";
+			
+		$precio_destino = $wpdb->get_results($precio_destino_query);
+		if(count($gastos_adicionales) > 0){
+			$respuesta['precio_destino'] = $precio_destino;
+		} else {
+			$respuesta['precio_destino'] = false;
+		}
+
+
+
+		//TODO: agregar a $resp el currency exchange
+
+		$query = "SELECT * FROM `exchange` WHERE currency1 = 'USD' AND currency2 = 'EUR'";
+		$results = $wpdb->get_results( $query );
+		$respuesta['exchange']=$results[0];
+		array_push($resp, $results[0]);
+		$json_array = wp_json_encode( $resp );
+		// $resp[] = json_decode($results);
+		// $respuesta['resp']=$resp;
+
+		
+		
+		
+		
+		
+		echo wp_json_encode($respuesta);
+	} else {
+		$respuesta['conv'] = true;
+		echo wp_json_encode($respuesta);
+	}
+
+
+	// $respuesta['query']=$qry;
+	// $respuesta['contenedor']=$contenedor;
+	// $respuesta['country']=$country;
+	// $respuesta['city']=$city;
+
+	// $respuesta['test'] = 'saludos desde aca en el server';
+
+	if($debugMode){echo wp_json_encode($respuesta);}
+	exit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // consultas a base de datos para el cotizador
 // consultas a base de datos para el cotizador
 add_action( 'wp_ajax_lt_get_all', 'lt_get_all' );
@@ -915,9 +1080,11 @@ add_action( 'wp_ajax_nopriv_lt_get_all', 'lt_get_all' );
 
 function lt_get_all () {
 	$table = $_POST['table'];
-	global $wpdb;
-	$ress = $wpdb->get_results("SELECT * FROM $table");
-	echo wp_json_encode( $ress );
+	if ($table == 'contenedores' OR $table == 'locations'){
+		global $wpdb;
+		$ress = $wpdb->get_results("SELECT * FROM $table");
+		echo wp_json_encode( $ress );
+	}
 	exit();
 }
 
@@ -936,70 +1103,6 @@ function lt_get_all () {
 
 
 
-
-
-
-add_action( 'wp_ajax_lt_get_location', 'lt_get_location' );
-add_action( 'wp_ajax_nopriv_lt_get_location', 'lt_get_location' );
-
-function lt_get_location () {
-	$server = 'local';
-	$debugMode = true;
-	$respuesta = array();
-	$col = $_POST['column'];
-	$country = false;
-	if(isset($_POST['country'])){$country=$_POST['country'];}
-
-
-	if ($server == 'online') {
-		// INSTALACION WAVE HOST
-		// $dbServerName = "localhost";
-		// $dbUsername = "lattedev_silver";
-		// $dbPassword = "%fGC+<`@]Csz#75F";
-		// $dbName = "lattedev_silver";
-
-		// INSTALACION FINAL
-		$dbHost = "localhost";
-		$dbUser = "silversea_web";
-		$dbPass = "qXne2abld1";
-		$dbName = "silversea_web";
-	} else {
-
-		// INSTALACION LOCAL
-		$dbHost = "localhost";
-		$dbUser = "Rafita";
-		$dbPass = "95RAaurdHTONszLp";
-		// $dbUsername = "contraseñaDificil";
-		// $dbPassword = ";$6qha)2L*KU)6nq";
-		$dbName = "lattedev_silver";
-	}
-
-	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
-
-	$qry = "SELECT distinct $col FROM locations";
-	if ($country) {
-		$qry = $qry . " WHERE country = '$country'";
-		// code...
-	}
-	$ress = $conn->query($qry);
-	// $resp = $ress->fetch_all(MYSQLI_ASSOC);
-
-	// $resp = "{";
-	$resp = [];
-    while ($fila = $ress->fetch_assoc()) {
-		$resp[] = $fila;
-    }
-
-
-	$respuesta['location'] = wp_json_encode( $resp );
-	// $respuesta['location'] = $col;
-
-
-	$respuesta['test'] = 'Hola desde el server';
-
-	if($debugMode){echo wp_json_encode($respuesta);}
-	exit();
-}
 
 
 
