@@ -2936,16 +2936,33 @@ table.stockreport-table .border {
   position: absolute;
   top: .5rem;
   right:1.5rem;
-  /* right: -7rem; */
   z-index:1;
 }
 
+.cotizadorOptions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  width: max-content;
+}
 
 .cotizadorTitle,
 .cotizadorTxt {
   grid-column: 1/-1;
   display: none;
   margin: auto auto auto 0;
+}
+
+.cotizadorOptions .cotizadorTitle {
+  grid-column: 1/-1;
+}
+
+.cotizadorOptionContainer label {
+  color: var(--grey4);
+}
+
+.cotizadorOptionContainer input:checked + label {
+  color: var(--gray99);
 }
 
 .cotizadorTxt {
