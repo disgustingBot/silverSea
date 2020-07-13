@@ -4164,3 +4164,6 @@ padding-bottom:0;
 }
 
 /* LOGIN */
+
+.unauthenticatedUser {padding: 1rem var(--lateral)}
+.unauthenticatedTxt {margin-bottom: 1rem}

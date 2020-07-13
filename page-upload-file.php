@@ -44,7 +44,16 @@
 <a class="btn" href="<?php echo get_site_url(); ?>/upload-file/">Upload another file</a>
 
 
+
+
 <!-- <a href="https://silverseacontainers.com/upload-file/">reload</a> -->
+
+<?php } else {?>
+
+  <div class="unauthenticatedUser">
+    <p class="unauthenticatedTxt txtCenter">No tienes permiso para acceder a esta página :(</p>
+    <a href="<?php echo get_site_url(); ?>" class="btn">Ir al inicio</a>
+  </div>
 
 <?php } ?>
 
