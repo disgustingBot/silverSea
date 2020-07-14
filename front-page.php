@@ -8,17 +8,22 @@
 
   <div class="cotizador cont" id="cotizador">
     <div class="cotizadorOptionsContainer">
+
       <div class="cotizadorOptions">
         <h3 class="cotizadorTitle">ELIGE EL TIPO DE COTIZACIÓN:</h3>
+
         <div class="cotizadorOptionContainer">
           <input name="cotizadorOption" type="radio" value="cont" checked id="contOption" class="cotizadorCont unselectable" onclick="trenController.altTrainAndCont('cont')"></input>
           <label for="contOption">CONTENEDOR</label>
         </div>
+
         <div class="cotizadorOptionContainer">
           <input name="cotizadorOption" type="radio" value="tren" id="trenOption" class="cotizadorTren unselectable" onclick="trenController.altTrainAndCont('tren')"></input>
           <label for="trenOption">TREN</label>
         </div>
+
       </div>
+
     </div>
 
     <div class="currentSemiSelection cond" id="currentSemiSelection">
@@ -58,8 +63,8 @@
       <a href="#" class="btnSimple">Ir a Cotización avanzada</a>
     </div>
 
-    <button class="btn CotizadorEndButton" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
-    <!-- <button class="btn" type="button" onclick="cartController.newLead"> -->
+
+    <button class="btn" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
       COTIZAR
     </button>
   </div>

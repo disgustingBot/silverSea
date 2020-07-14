@@ -256,13 +256,12 @@ function latte_pagination() {
 						</div>
 
 						<div class="cardActions">
-							
+
 							<div class="cuantos Cuantos">
 								<input class="cuantosQnt cuantosQantity" type="text" value="1" min="1">
 								<button class="cuantosBtn cuantosMins">-</button>
 								<button class="cuantosBtn cuantosPlus">+</button>
 							</div>
-							<a class="btn btnSimple" href="<?php echo get_permalink(); ?>">VER DETALLES</a>
 							<button class="cardAdd btn btnSimple">AGREGAR</button>
 						</div>
 					</div>

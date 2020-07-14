@@ -147,7 +147,7 @@
 
   <div class="finalizarConsulta" id="finalizarConsulta">
     <p class="closeCross" onclick="altClassFromSelector('alt', '#finalizarConsulta'),altClassFromSelector('alt', '#cart')">&#10006;</p>
-    <h4 class="finalizarConsultaTitle txtCenter">Un paso mas...</h4>
+    <h4 class="finalizarConsultaTitle txtCenter">Un paso más...</h4>
     <p class="finalizarConsultaSubTitle txtCenter">Necesitamos algunos datos para poder darte una cotización rápida.</p>
     <p class="finalizarConsultaSubTitle txtCenter">Además, te enviaremos un email con el detalle.</p>
     <?php require_once 'coprAlqui.php'; ?>
@@ -174,9 +174,17 @@
       </label>
     </div>
 
-    <div class="formAcceptance">
+    <div class="finalizarConsultaCheckboxes">
       <input type="checkbox" required>
-      <p class="temsAcceptance">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank"> privacy terms</a></p>
+      <p class="termsDescription">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;"> privacy terms</a></p>
+    </div>
+    <div class="finalizarConsultaCheckboxes">
+      <input type="checkbox">
+      <p class="termsDescription"><strong>Necesito entrega inmediata</strong> marca esta opción para obtener <strong style="color: red">50€ de descuento</strong></p>
+    </div>
+    <div class="finalizarConsultaCheckboxes">
+      <input type="checkbox">
+      <p class="termsDescription"><strong>Necesito transporte</strong> marca esta opción para solicitar la cotización del transporte del pedido hasta ti.</p>
     </div>
     <button class="btn" id="buttonFinishCart" onclick="cartController.finish()">dame precio rapido</button>
 
