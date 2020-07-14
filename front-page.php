@@ -11,11 +11,11 @@
       <div class="cotizadorOptions">
         <h3 class="cotizadorTitle">ELIGE EL TIPO DE COTIZACIÓN:</h3>
         <div class="cotizadorOptionContainer">
-          <input name="option" type="radio" id="contOption" class="cotizadorCont unselectable" checked onclick="trenController.altTrainAndCont('cont')"></input>
+          <input name="cotizadorOption" type="radio" value="cont" checked id="contOption" class="cotizadorCont unselectable" onclick="trenController.altTrainAndCont('cont')"></input>
           <label for="contOption">CONTENEDOR</label>
         </div>
         <div class="cotizadorOptionContainer">
-          <input name="option" type="radio" id="trenOption" class="cotizadorTren unselectable" onclick="trenController.altTrainAndCont('tren')"></input>
+          <input name="cotizadorOption" type="radio" value="tren" id="trenOption" class="cotizadorTren unselectable" onclick="trenController.altTrainAndCont('tren')"></input>
           <label for="trenOption">TREN</label>
         </div>
       </div>
@@ -45,7 +45,7 @@
 
     <div class="cotizadorTxtContainer">
       <!-- SI EL INPUT DE TRENES ESTÁ CHECKEADO, VA ESTE TEXTO: -->
-      <p class="cotizadorTxt">El servicio de trenes solo está disponible para contenedores secos estandar de 40 pies aptos para carga.</p>
+      <p class="cotizadorTxt" id="trenExplanation" style="display:none">El servicio de trenes solo está disponible para contenedores secos estandar de 40 pies aptos para carga, entre Asia y Europa.</p>
 
       <!-- ESTE TEXTO VA SIEMPRE: -->
       <p class="cotizadorTxt">Tras completar el proceso de cotización, recibiás una cotización rápida inmediata</p>
@@ -58,7 +58,7 @@
       <a href="#" class="btnSimple">Ir a Cotización avanzada</a>
     </div>
 
-    <button class="btn" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
+    <button class="btn CotizadorEndButton" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
     <!-- <button class="btn" type="button" onclick="cartController.newLead"> -->
       COTIZAR
     </button>
@@ -149,17 +149,23 @@
     'pad_counts'   => $pad_counts,
     'hierarchical' => $hierarchical,
     'title_li'     => $title,
-    'hide_empty'   => $empty
+    'hide_empty'   => $empty,
+    'meta_query' => array(
+        array(
+            'key'     => 'lt_meta_desc',     // Adjust to your needs!
+            'value'   => 'on',   // Adjust to your needs!
+            'compare' => '=',         // Default
+        )
+    )
   );
 
 
 
-
+// TODO: poner el 'lt_meta_desc' en el query directamente
   $categories = get_categories( $args );
   if($categories) {
     foreach($categories as $category) { ?>
-      <?php $lt_meta_desc = get_term_meta($category->term_id, 'lt_meta_desc', true); ?>
-      <?php if ($lt_meta_desc == 'on'){ ?>
+
         <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:grid; grid-template-columns: var(--queContainerINeedGTC);}</style>
         <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
           <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
@@ -172,21 +178,23 @@
           <img class="article2Media" src="<?php echo wp_get_attachment_url( get_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
           <div class="redDot" id="sectioNSummaryCardActivator"></div>
         </article>
-      <?php } ?>
+
     <?php } ?>
 
 
-    <select name="cont_selector" class="btn contSelector" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
+
+
+    <select name="cont_selector" class="btn contSelector" id="contSelector" >
       <?php $i=0;
       foreach($categories as $category) { ?>
-        <?php $lt_meta_desc = get_term_meta($category->term_id, 'lt_meta_desc', true); ?>
-        <?php if ($lt_meta_desc == 'on'){ ?>
-          <option class="contOption" name="option" <?php if($i==0){echo 'checked';} ?> value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
-        <?php } ?>
+          <option class="contOption" name="option" onclick="altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')" <?php if($i==0){echo 'checked';} ?> value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
       <?php $i++; } ?>
     </select>
-    <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
 
+
+
+
+    <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
   <?php } ?>
 </section>
 

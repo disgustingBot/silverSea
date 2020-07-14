@@ -628,49 +628,21 @@ function lt_upload_file () {
 		if($fileActualExt=='tsv'){$saltoDeLinea="\\t";}
 
 		if ($server == 'online') {
-
-			// INSTALACION ONLINE
-			// $dbServerName = "localhost";
-			// $dbUsername = "silverse_admin";
-			// $dbPassword = "M-9!-^%jZ*h5";
-			// $dbName = "silverse_web";
-			// code...
-
-			// INSTALACION WAVE HOST
-			// $dbServerName = "localhost";
-			// $dbUsername = "lattedev_silver";
-			// $dbPassword = "%fGC+<`@]Csz#75F";
-			// $dbName = "lattedev_silver";
-
-
 			// INSTALACION FINAL
 			$dbHost = "localhost";
 			$dbUser = "silversea_web";
 			$dbPass = "qXne2abld1";
 			$dbName = "silversea_web";
 		} else {
-
 			// INSTALACION LOCAL
 			$dbHost = "localhost";
-			$dbUser = "Rafita";
-			$dbPass = "95RAaurdHTONszLp";
-			// $dbUsername = "contraseñaDificil";
-			// $dbPassword = ";$6qha)2L*KU)6nq";
+			$dbUser = "root";
+			$dbPass = "";
 			$dbName = "lattedev_silver";
 		}
 
-		// $respuesta['db_name'] = "$dbName";
-		// $respuesta['db_user'] = "$dbUsername";
-		// $respuesta['db_pass'] = "$dbPassword";
-		// $respuesta['db_host'] = "$dbServerName";
-
-		// if($debugMode){echo wp_json_encode($respuesta);}
-
-		// if ($conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName)) {
 		if ($conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName)) {
 			$respuesta['gate1'] = "Conection is ok";
-			// code...
-			// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
 			$query1 = "truncate table $dbName.$fileName2;";
 			$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
@@ -710,14 +682,13 @@ function lt_upload_file () {
 									if ($conn->query($query2)) {$respuesta['gate8']="Data loaded into table";
 										$respuesta['query1']="$query1";
 										$respuesta['query2']="$query2";
-										// try {
-									// 	$conn->query($query2);
-									// 	$respuesta['gate8']="Data loaded into table";
-				//
+										
 										if($fileName2 == 'contenedores'){$respuesta['gate9']="Table contenedores";
 											// esta parte solo deberi ejecutar en el caso de "contenedores"
-											$respuesta['last_query']="$qry";
-											if($conn->query($qry)){$respuesta['gate10']="Last query ok";
+											// $respuesta['last_query']="$qry";
+											if($conn->query($qry)){
+												$respuesta['gate10']="Last query ok";
+												$respuesta['error']="Comienza a actualizar productos, si la actualizacion no comienza contacte a su webmaster";
 												$ress = $conn->query($qry);
 												$resp = $ress->fetch_all(MYSQLI_ASSOC);
 												$json_array = wp_json_encode( $resp );
@@ -725,41 +696,28 @@ function lt_upload_file () {
 													echo $json_array;
 													exit();
 												}
-											}else{$respuesta['gate10']="Last query ERROR";}
+											}else{$respuesta['gate10']="Last query ERROR";$respuesta['gate10']="Error armando el estructura de datos para productos, contacte a su webmaster";}
 										}else{
 											$respuesta['gate9']="NOT table contenedores";
+											$respuesta['error']="Tabla actualizada correctamente";
 											echo wp_json_encode($respuesta);
 											exit();
 										}
 
-									// }catch(Exception $e) {
-									//     // echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-									// 		$respuesta['gate8']="Error loading data in the table";
-									// 		$respuesta['error']=$e->getMessage();
-									// }
-
 									}else{
 										$respuesta['gate8']="Error loading data in the table";
-										$respuesta['query1']="$query1";
-										$respuesta['query2']="$query2";
-										// try {
-										// 	$conn->query($query2);
-										// 	$respuesta['gate88']="Data loaded into table";
-										// }catch(Exception $e) {
-										//     // echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-										// 		$respuesta['gate88']="Error loading data in the table";
-										// 		$respuesta['error']=$e->getMessage();
-										// }
-
+										$respuesta['error']="Error loading data in the table";
+										// $respuesta['query1']="$query1";
+										// $respuesta['query2']="$query2";
 									}
-								}else{$respuesta['gate7']="Error truncating old Table";}
-							}else{$respuesta['gate6']="Error saving file in the server";}
-						}else{$respuesta['gate5']="File is too big";}
-					}else{$respuesta['gate4']="Your file '$fileName' DOESN'T have a valid type";}
-				}else{$respuesta['gate3']="Your file '$fileName' DOESN'T have a valid name";}
-			}else{$respuesta['gate2']="Error uploading";}
-		}else{$respuesta['gate1']="Conection problem";}
-	}else{$respuesta['gate0']="No file recived";}
+								}else{$respuesta['gate7']="Error truncating old Table";$respuesta['error']="Error truncating old Table";}
+							}else{$respuesta['gate6']="Error saving file in the server";$respuesta['error']="Error saving file in the server";}
+						}else{$respuesta['gate5']="File is too big";$respuesta['error']="File is too big";}
+					}else{$respuesta['gate4']="Your file '$fileName' DOESN'T have a valid type";$respuesta['error']="Your file '$fileName' DOESN'T have a valid type";}
+				}else{$respuesta['gate3']="Your file '$fileName' DOESN'T have a valid name";$respuesta['error']="Your file '$fileName' DOESN'T have a valid name";}
+			}else{$respuesta['gate2']="Error uploading";$respuesta['error']="Error uploading";}
+		}else{$respuesta['gate1']="Conection problem";$respuesta['error']="An error ocurred trying to connect to database";}
+	}else{$respuesta['gate0']="No file recived";$respuesta['error']="No file recived";}
 
 	// if($debugMode){echo wp_json_encode($respuesta);}
 	echo wp_json_encode($respuesta);
@@ -812,11 +770,7 @@ function lt_cart_end () { global $wpdb;
 	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 
-	$queryTest = "SELECT
-	*
-	FROM
-	gastos_adicionales
-	WHERE (
+	$queryTest = "SELECT * FROM gastos_adicionales WHERE (
 		country = '$country' AND
 		city = '$city'
 	);";
@@ -824,32 +778,23 @@ function lt_cart_end () { global $wpdb;
 	$ressy = $conn->query($queryTest);
 	$respy = $ressy->fetch_all(MYSQLI_ASSOC);
 	if(count($respy) > 0){
-		$qry = "SELECT
-	        *
-			FROM
-			stock a, gastos_adicionales b
-			WHERE (
-				a.id_contenedor = '$contenedor' AND
-				a.pais = '$country' AND
-				a.ciudad = '$city' AND
-				b.country = '$country' AND
-				b.city = '$city'
-			);";
+		$qry = "SELECT * FROM stock a, gastos_adicionales b WHERE (
+			a.id_contenedor = '$contenedor' AND
+			a.pais = '$country' AND
+			a.ciudad = '$city' AND
+			b.country = '$country' AND
+			b.city = '$city'
+		);";
 		$ress = $conn->query($qry);
 		$resp = $ress->fetch_all(MYSQLI_ASSOC);
 	} else {
-		$qry = "SELECT
-	        *
-			FROM
-			stock
-			WHERE (
-				id_contenedor = '$contenedor' AND
-				pais = '$country' AND
-				ciudad = '$city'
-			);";
+		$qry = "SELECT * FROM stock WHERE (
+			id_contenedor = '$contenedor' AND
+			pais = '$country' AND
+			ciudad = '$city'
+		);";
 		$ress = $conn->query($qry);
 		$resp = $ress->fetch_all(MYSQLI_ASSOC);
-
 	}
 
 
@@ -925,140 +870,87 @@ function lt_cart_end () { global $wpdb;
 
 // "SELECT * FROM `conv_trenes` WHERE ( origen_city = 'Dalian' and origen_country = 'China' and destino_city = 'Antwerp' );"
 
-
-
-
-
-
-
 add_action( 'wp_ajax_lt_tren_end', 'lt_tren_end' );
 add_action( 'wp_ajax_nopriv_lt_tren_end', 'lt_tren_end' );
 
-function lt_tren_end () { global $wpdb;
-	$server = 'local';
-	$debugMode = false;
+function lt_tren_end () {
+	global $wpdb;
 	$respuesta = array();
-	$contenedor = $_POST['cont'];
+	$contenedor      = $_POST['cont'];
 	$origen_country  = $_POST['origen_country'];
 	$origen_city     = $_POST['origen_city'];
 	$destino_country = $_POST['destino_country'];
 	$destino_city    = $_POST['destino_city'];
 
 	
-	// ! on the server get the following info:
-	// ! is this convination posible?
-	// TODO: implementar tabla convinaciones_posibles!
-	// ! if yes: return price data for both locations (to analiza in JS)
-	// ! if not: return 'this is not a posible train convination'
+	// on the server get the following info:
+	// is this convination posible?
+	// if yes: return price data for both locations (to analiza in JS)
+	// if not: return 'this is not a posible train convination'
 
-	// $query = "SELECT * FROM `conv_trenes` WHERE ( origen_country  = '$origen_country'  and origen_city     = '$origen_city' and destino_city    = '$destino_city' );";
-	$query = "SELECT * FROM `conv_trenes` WHERE	 ( origen_country  LIKE '%$origen_country%'  and origen_city     LIKE '%$origen_city%'     and destino_country LIKE '%$destino_country%' and destino_city    LIKE '%$destino_city%' );";
-	// $respuesta['query'] = $query;
-	$possible_convination = $wpdb->get_results($query);
-	// $respuesta['cosa'] = $possible_convination;
+	$possible_convination_query = "SELECT * FROM `conv_trenes` WHERE (
+		origen_country  LIKE '%$origen_country%'  AND
+		origen_city     LIKE '%$origen_city%'     AND
+		destino_country LIKE '%$destino_country%' AND
+		destino_city    LIKE '%$destino_city%'
+	);";
+	$possible_convination = $wpdb->get_results($possible_convination_query);
 	
+	// checkea si la convinacion es una conv posible
 	if(count($possible_convination) > 0){
 		$conv = array('conv' => true);
 		$respuesta['conv'] = true;
 
-
+		// agrega data de gastos adicionales
+		$respuesta['gastos'] = false;
 		$query_gastos = "SELECT * FROM `gastos_adicionales` WHERE (
 			country = '$origen_country' AND
-			city = '$origen_city'
+			city    = '$origen_city'
 		);";
 		$gastos_adicionales = $wpdb->get_results($query_gastos);
 		if(count($gastos_adicionales) > 0){
 			$respuesta['gastos'] = $gastos_adicionales[0];
-		} else {
-			$respuesta['gastos'] = false;
 		}
 
-
+		// agrega data de precio en origen
+		$respuesta['precio_origen'] = false;
 		$precio_origen_query = "SELECT * FROM stock WHERE (
-			id_contenedor = '$contenedor' AND
-			pais = '$origen_country' AND
-			ciudad = '$origen_city'
+			id_contenedor = '$contenedor'     AND
+			pais          = '$origen_country' AND
+			ciudad        = '$origen_city'
 		);";
 			
 		$precio_origen = $wpdb->get_results($precio_origen_query);
 		if(count($gastos_adicionales) > 0){
 			$respuesta['precio_origen'] = $precio_origen;
-		} else {
-			$respuesta['precio_origen'] = false;
 		}
 
-
-
-		
+		// agrega data de precio en destino
+		$respuesta['precio_destino'] = false;
 		$precio_destino_query = "SELECT * FROM stock WHERE (
-			id_contenedor = '$contenedor' AND
-			pais = '$destino_country' AND
-			ciudad = '$destino_city'
+			id_contenedor = '$contenedor'      AND
+			pais          = '$destino_country' AND
+			ciudad        = '$destino_city'
 		);";
 			
 		$precio_destino = $wpdb->get_results($precio_destino_query);
 		if(count($gastos_adicionales) > 0){
 			$respuesta['precio_destino'] = $precio_destino;
-		} else {
-			$respuesta['precio_destino'] = false;
 		}
 
+		// agregar a $respuesta el currency exchange
+		$exchange_query = "SELECT * FROM `exchange` WHERE (
+			currency1 = 'USD' AND
+			currency2 = 'EUR'
+		)";
+		$exchange = $wpdb->get_results( $exchange_query );
+		$respuesta['exchange']=$exchange[0];
 
+	} else { $respuesta['conv'] = false; }
 
-		//TODO: agregar a $resp el currency exchange
-
-		$query = "SELECT * FROM `exchange` WHERE currency1 = 'USD' AND currency2 = 'EUR'";
-		$results = $wpdb->get_results( $query );
-		$respuesta['exchange']=$results[0];
-		array_push($resp, $results[0]);
-		$json_array = wp_json_encode( $resp );
-		// $resp[] = json_decode($results);
-		// $respuesta['resp']=$resp;
-
-		
-		
-		
-		
-		
-		echo wp_json_encode($respuesta);
-	} else {
-		$respuesta['conv'] = true;
-		echo wp_json_encode($respuesta);
-	}
-
-
-	// $respuesta['query']=$qry;
-	// $respuesta['contenedor']=$contenedor;
-	// $respuesta['country']=$country;
-	// $respuesta['city']=$city;
-
-	// $respuesta['test'] = 'saludos desde aca en el server';
-
-	if($debugMode){echo wp_json_encode($respuesta);}
+	echo wp_json_encode($respuesta);
 	exit();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

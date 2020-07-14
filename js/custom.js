@@ -352,10 +352,13 @@ const lt_upload_file = () => {
 	altClassFromSelector('loading', '#updateController', 'updateController')
 	ajax2(formData).then(data => {
 		console.log(data)
+		// console.log(data['error'])
 		altClassFromSelector('loaded', '#updateController', 'updateController');
-		d.querySelector('.updateText').innerHTML = 'Tabla actualizada!.';
+
+		d.querySelector('.updateText').innerHTML = data['error'];
+
 		d.querySelector('.loadBarProgress').style.width = '100%';
-		console.log('archivo subido, base de datos actualizada');
+		// console.log('archivo subido, base de datos actualizada');
 		productSincrotron.products = data;
 		productSincrotron.qnty = productSincrotron.products.length;
 		if(!data.gate0){
@@ -473,6 +476,7 @@ trenController = {
 				buttonFinish.onclick = trenController.finish
 	
 				accordionSelector('#destino')
+				d.querySelector('#trenExplanation').style.display = 'block';
 			}
 		}
 
@@ -485,6 +489,7 @@ trenController = {
 
 
 			accordionSelector('#destino')
+			d.querySelector('#trenExplanation').style.display = 'none';
 		}
 
 
@@ -502,29 +507,35 @@ trenController = {
 		var formData = new FormData();
 		formData.append( 'action', 'lt_tren_end' );
 		formData.append( 'cont', "40DC CW" );
-		formData.append( 'origen_country', locationSelector.origen[0].capitalize() );
-		formData.append( 'origen_city', locationSelector.origen[1].capitalize() );
+		formData.append( 'origen_country' , locationSelector.origen[0] .capitalize() );
+		formData.append( 'origen_city'    , locationSelector.origen[1] .capitalize() );
 		formData.append( 'destino_country', locationSelector.destino[0].capitalize() );
-		formData.append( 'destino_city', locationSelector.destino[1].capitalize() );
+		formData.append( 'destino_city'   , locationSelector.destino[1].capitalize() );
 
 
 		ajax2(formData).then( data => {
 			// console.log(data)
-			// precio_origen_data = [data['precio_origen'], data['gastos']]
-			// precio_destino_data = [data['precio_destino'], data['gastos']]
-			data['precio_origen'].push(data['exchange'])
+
+			let cartItem = d.querySelector('.cartItem[data-code="40DC CW"]');
+			let itemQty = cartItem.querySelector('.cartItemQty').innerText;
+			let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+			let itemCurrency = cartItem.querySelector('.cartItemCurrency');
+			let currency = 'EUR';
+			
+			data['precio_origen'] .push(data['exchange'])
 			data['precio_destino'].push(data['exchange'])
 			let gastos = data['gastos'] ? parseInt(data['gastos'].profit) + parseInt(data['gastos'].deposit) + parseInt(data['gastos'].others) : 0;
 
-			precio_origen = processPrice(data['precio_origen'], false)
-			precio_destino = processPrice(data['precio_destino'], false)
+			let precio_origen = processPrice(data['precio_origen'], false)
+			let precio_destino = processPrice(data['precio_destino'], false)
+			let final_price = precio_origen - precio_destino + gastos
+			// console.log('final_price', final_price)
 
-			// console.log('precio_origen', precio_origen)
-			// console.log('precio_destino', precio_destino)
+			let total_price = final_price * itemQty;
 
-			final_price = precio_origen - precio_destino + gastos
-			console.log('final_price', final_price)
 
+			itemCurrency.innerText = currency
+			itemPrice.innerText = total_price;
 			// trenController.precio_en_origen = processPrice(data, false)[0]
 
 			// var formData = new FormData();
@@ -801,7 +812,14 @@ productSelector = {
 			})
 			d.querySelector('#currentSemiSelection').classList.add('cond');
 		}, 800);
-		productSelector.unselectAll();
+
+		cot_option = d.querySelector('[name="cotizadorOption"]:checked').value;
+		// console.log(cot_option)
+		console.log('option value: ', cot_option)
+		if (cot_option=='cont') {
+			productSelector.unselectAll();
+		}
+
 	},
 	unselectAll:()=>{
 		let nuls = [...dynamicCont.querySelectorAll('.selectBoxInput[value="0"]')];
@@ -1120,9 +1138,12 @@ cartController = {
 
 		
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
-		let endButton = d.querySelector('#cotizadorEndButton');
+		let endButtons = [...d.querySelectorAll('.CotizadorEndButton')];
 		let isTheCartEmpty = cartController.cart.length < 1;
-		endButton.disabled = isTheCartEmpty;
+		endButtons.forEach((endButton)=>{
+			// console.log('activate all buttons')
+			endButton.disabled = isTheCartEmpty;
+		})
 
 	},
 	remove:(code)=>{
@@ -1146,9 +1167,12 @@ cartController = {
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
 		
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
-		let endButton = d.querySelector('#cotizadorEndButton');
+		let endButtons = [...d.querySelectorAll('.CotizadorEndButton')];
 		let isTheCartEmpty = cartController.cart.length < 1;
-		endButton.disabled = isTheCartEmpty;
+		endButtons.forEach((endButton)=>{
+			// console.log('disactivate all buttons')
+			endButton.disabled = isTheCartEmpty;
+		})
 	},
 
 
@@ -1363,7 +1387,7 @@ const filterActivate = ()=>{
 		cosos1 = [...d.querySelectorAll('[name=question1]')];
 		cosos2 = [...d.querySelectorAll('[name=question2]')];
 
-		urlBase = 'https://silverseacontainers.com/buscar-contenedor/'
+		urlBase = 'https://silverseacontainers.com/buscar-contenedor-maritimo/'
 		// urlBase = 'http://localhost/silverSea/buscar-contenedor/'
 
 		console.log(link)
@@ -1395,9 +1419,10 @@ const filterActivate = ()=>{
 	}
 	if(d.querySelector('[name=cont_selector')){
 		d.querySelector('[name=cont_selector').onchange=(option)=>{
+			altClassFromSelector(option.target.value, '#queContainerINeed', 'sectionPadding')
 			let button = d.querySelector('.cotizarContainer'),
 			// urlBase = 'http://localhost/silverSea/buscar-contenedor/'
-			urlBase = 'https://silverseacontainers.com/buscar-contenedor/'
+			urlBase = 'https://silverseacontainers.com/buscar-contenedor-maritimo/'
 			console.log(option.target.value)
 			card = option.target.value
 			if(card == 'card67'){
