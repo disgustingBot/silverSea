@@ -465,9 +465,10 @@ trenController = {
 		if(option=='tren' && !cotizador.classList.contains('tren')){
 			// // TODO: if cart is full, you should empty it first
 			// TODO: % chequear si tenes en el carrito el contenedor habilitado...
-			if (cartController.cart.length>0) {
-				alert('debes vaciar tu carrito primero')
-			} else {
+				// alert('debes vaciar tu carrito primero')
+				cartController.cart.forEach(product=>{
+					cartController.remove(product.code)
+				})
 
 				cotizador.classList.add('tren');
 				trenController.select40DCCW();
@@ -477,7 +478,6 @@ trenController = {
 
 				accordionSelector('#destino')
 				d.querySelector('#trenExplanation').style.display = 'block';
-			}
 		}
 
 		if(option!='tren' && cotizador.classList.contains('tren')){
@@ -514,7 +514,7 @@ trenController = {
 
 
 		ajax2(formData).then( data => {
-			// console.log(data)
+			console.log(data)
 
 			let cartItem = d.querySelector('.cartItem[data-code="40DC CW"]');
 			let itemQty = cartItem.querySelector('.cartItemQty').innerText;
@@ -536,6 +536,19 @@ trenController = {
 
 			itemCurrency.innerText = currency
 			itemPrice.innerText = total_price;
+
+
+
+
+			console.log('single price: ', final_price)
+			cartController.cart[0].setPrice(final_price);
+			nuevoElemento = new CartItem(cartController.cart[0].values)
+			cartController.cart[0] = nuevoElemento;
+			console.log(cartController.cart[0])
+			console.log('cart price: ', cartController.cart[0].singlePrice)
+
+			cartController.sendMail(true);
+
 			// trenController.precio_en_origen = processPrice(data, false)[0]
 
 			// var formData = new FormData();
@@ -570,6 +583,10 @@ trenController = {
 
 			// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
 			// console.log(cartController.cart[i]);
+
+			// !falta:
+			// TODO: que envie el mail
+			// TODO: que envie el lead
 
 
 			// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
@@ -994,6 +1011,7 @@ cartController = {
 				cartController.cart[0].cartUI();
 			});
 		}
+		cartController.endButtonsSwitch();
 
 		if (cartController.cart.length<2) {
 			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
@@ -1024,6 +1042,7 @@ cartController = {
 			formData.append( 'cont', item.code );
 			formData.append( 'country', locationSelector.origen[0] );
 			formData.append( 'city', locationSelector.origen[1] );
+			createCookie('price_returns', 0)
 			// console.log('formData');
 
 			// Display the key/value pairs
@@ -1031,6 +1050,10 @@ cartController = {
 			// 	console.log(pair[0]+ ', ' + pair[1]);
 			// }
 			ajax2(formData).then( data => {
+				let price_returns = parseInt(readCookie('price_returns'))
+				price_returns++;
+				createCookie('price_returns', price_returns)
+
 				let cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
 				let itemQty = cartItem.querySelector('.cartItemQty').innerText;
 				let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
@@ -1060,15 +1083,41 @@ cartController = {
 				cartController.cart[i].setPrice(singlePrice);
 				nuevoElemento = new CartItem(cartController.cart[i].values)
 				cartController.cart[i] = nuevoElemento;
+				
 				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
 				// console.log(cartController.cart[i]);
 
 
 				// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
-				if (i==cartController.cart.length - 1){
-					console.log('CARRITO luego de la transformacion', cartController.cart)
+				if(price_returns == cartController.cart.length){
+					console.log('llego el ultimo precio')
+					let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
+					// console.log('list_of_product_with_price: ', list_of_product_with_price);
+					let gran_total = 0;
+					cartController.cart.forEach(product=>{
+						if(product.singlePrice){
+							gran_total += product.singlePrice * product.qty;
+						}
+					})
+					let gran_total_display = [...d.querySelectorAll('.cartTotal')];
+					console.log(gran_total_display)
+					gran_total_display.forEach(element=>{
+						// console.log(element.target)
+						element.innerHTML = gran_total;
+					})
+					// console.log('CARRITO luego de la transformacion', cartController.cart)
+					if ( list_of_product_with_price.length == 0 ){
+						altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
+					} else if ( list_of_product_with_price.length < cartController.cart.length ) {
+						altClassFromSelector('somePricesThere', '#cartList', 'cartList');
+					} else {
+						altClassFromSelector('allPricesThere', '#cartList', 'cartList');
+					}
+					// TODO: encender el mail Sender
 					// cartController.sendMail();
 				}
+				// if (i==cartController.cart.length - 1){
+				// }
 				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
 				// }
 
@@ -1087,21 +1136,26 @@ cartController = {
 		// cartController.sendAllLeads();
 	},
 
-	sendMail:(cart)=>{
+	sendMail:(is_case_tren = false)=>{
 		// console.log(cart)
 		// cart[0].toJSON="I won't allow you to use sails toJSON, just use the native stringification";
 		// console.log(JSON.stringify(cart))
 		var formData = new FormData();
 		formData.append( 'action', 'lt_ajax_mail' );
 		formData.append( 'cont', JSON.stringify(cartController.cart) );
-		formData.append( 'country', cartController.locationOrigen['country'] );
-		formData.append( 'city', cartController.locationOrigen['city'] );
+		formData.append( 'country', locationSelector.origen[0] );
+		formData.append( 'city', locationSelector.origen[1] );
 		formData.append( 'name', d.querySelector('#mateputNombre').value );
 		formData.append( 'phone', d.querySelector('#mateputTelefono').value );
 		formData.append( 'mail', d.querySelector('#mateputEmail').value );
 
+		if ( is_case_tren ) {
+			formData.append( 'destino_country', locationSelector.destino[0] );
+			formData.append( 'destino_city', locationSelector.destino[1] );
+		}
 
 		ajax2(formData).then( data => {
+			// TODO: reportar al usuario exito o error
 			console.log(data);
 		});
 	},
@@ -1113,7 +1167,8 @@ cartController = {
 		if (cartController.cart.find(check)) {
 			let index = cartController.cart.findIndex(check)
 			cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
-			d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
+			d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = cartController.cart[index].qty;
+			// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
 		} else {
 			cartController.cart.unshift(new CartItem(x));
 			cartController.cart[0].cartUI();
@@ -1138,14 +1193,19 @@ cartController = {
 
 
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
+		cartController.endButtonsSwitch();
+	},
+
+	endButtonsSwitch:()=>{
+		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
 		let endButtons = [...d.querySelectorAll('.CotizadorEndButton')];
 		let isTheCartEmpty = cartController.cart.length < 1;
 		endButtons.forEach((endButton)=>{
 			// console.log('activate all buttons')
 			endButton.disabled = isTheCartEmpty;
 		})
-
 	},
+
 	remove:(code)=>{
 		console.log(code)
 		list = d.querySelector('.cartList');
@@ -1167,12 +1227,8 @@ cartController = {
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
 
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
-		let endButtons = [...d.querySelectorAll('.CotizadorEndButton')];
-		let isTheCartEmpty = cartController.cart.length < 1;
-		endButtons.forEach((endButton)=>{
-			// console.log('disactivate all buttons')
-			endButton.disabled = isTheCartEmpty;
-		})
+		cartController.endButtonsSwitch();
+
 	},
 
 
