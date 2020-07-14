@@ -3289,6 +3289,12 @@ table.stockreport-table .border {
   display:grid;
   grid-gap:.5rem;
 }
+p.allPricesThere {display:none}
+p.somePricesThere {display:none}
+p.nonePricesThere {display:none}
+.allPricesThere .allPricesThere{display:block}
+.somePricesThere .somePricesThere{display:block}
+.nonePricesThere .nonePricesThere{display:block}
 
 .cartTotalTxt {
   font-size: 16px;

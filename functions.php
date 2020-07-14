@@ -596,8 +596,8 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	// $server = 'online';
-	$server = 'local';
+	$server = 'online';
+	// $server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$file = false;
@@ -645,7 +645,7 @@ function lt_upload_file () {
 			$respuesta['gate1'] = "Conection is ok";
 
 			$query1 = "truncate table $dbName.$fileName2;";
-			$query2 = "LOAD DATA INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
+			$query2 = "LOAD DATA LOCAL INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
 			$qry = "Select
 			salesforce_id as SKU,
 			CONCAT( size, ' PIES' ) as 'Name',
@@ -740,7 +740,8 @@ add_action( 'wp_ajax_lt_cart_end', 'lt_cart_end' );
 add_action( 'wp_ajax_nopriv_lt_cart_end', 'lt_cart_end' );
 
 function lt_cart_end () { global $wpdb;
-	$server = 'local';
+	$server = 'online';
+	// $server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$contenedor = $_POST['cont'];

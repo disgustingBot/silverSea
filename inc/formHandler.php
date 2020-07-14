@@ -65,11 +65,11 @@ function lt_ajax_mail() {
 
   // $link=$_POST['link'];
   $cont=json_decode(stripslashes($_POST['cont']));
-  $country=$_POST['country'];
-  $phone=$_POST['phone'];
-  $city=$_POST['city'];
-  $name=$_POST['name'];
-  $mail=$_POST['mail'];
+  $country = $_POST[ 'country' ];
+  $phone   = $_POST[ 'phone' ];
+  $city    = $_POST[ 'city' ];
+  $name    = $_POST[ 'name' ];
+  $mail    = $_POST[ 'mail' ];
 
 	// if($_POST['a00'] != ""){
     // $respuesta['gate0'] = 'ROBOT';
