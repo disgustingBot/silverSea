@@ -204,6 +204,9 @@ FIN DE MAPA DE CONTENIDOS */
   --queContainerINeedGTC: 1fr;
   --article2ContentWidth: 90%;
   --frontPageATFBgHeight: max-content;
+  --cotizadorOptionsMT: 2.2rem;
+  --btnUpload: 12px;
+  --countrySelectBoxLeft: 0;
 
 
   /* COUNTERS */
@@ -392,6 +395,10 @@ FIN DE MAPA DE CONTENIDOS */
     /* HOME ATF */
     --dynamicContSelector:1fr 1fr;
     --featuresMarginTop: auto;
+    --btnUpload: 16px;
+    --countrySelectBoxLeft: -100%;
+
+
 
     /* ?dynamicCont */
     /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
@@ -502,6 +509,8 @@ FIN DE MAPA DE CONTENIDOS */
     --article2ContentWidth: 45%;
     --frontPageATFBgHeight: calc(100vh + -80px);
     --selectBoxListLeft: 100%;
+    --cotizadorOptionsMT: unset;
+
 
 
 
@@ -2438,7 +2447,6 @@ table.stockreport-table .border {
   right: 1rem;
   transition:.2s;
   width: 2rem;
-  /* z-index:-1; */
 }
 
 .cartButtonSvg{
@@ -2517,6 +2525,12 @@ table.stockreport-table .border {
   /* color: var(--color1); */
 }
 
+
+.btnUpload {
+  display: block;
+  font-size: var(--btnUpload);
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.8) =titleBanner:
@@ -2540,6 +2554,10 @@ table.stockreport-table .border {
   object-fit: fill;
 }
 
+
+.uploadAnotherFileBtn {
+  margin: 1rem auto;
+}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2944,6 +2962,7 @@ table.stockreport-table .border {
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
   width: max-content;
+  margin-top: var(--cotizadorOptionsMT);
 }
 
 .cotizadorTitle,
@@ -3017,7 +3036,7 @@ table.stockreport-table .border {
 
 
 
-.coprAlquiLocation{
+.coprAlquiLocation {
   display: grid;
   grid-auto-flow:var(--coprAlquiLocationGAC);
   grid-auto-columns:1fr;
@@ -3025,13 +3044,13 @@ table.stockreport-table .border {
   transition:.3s;
   grid-column: var(--coprAlquiLocationGC);
 }
-.coprAlquiLocationTitle{
+.coprAlquiLocationTitle {
   margin:auto 0;
   text-align: var(--txtCenterRight);
 }
 
-.coprAlquiLocation .SelectBox.focus:last-child:focus .selectBoxList{
-  left:-100%;
+.coprAlquiLocation .SelectBox.focus:last-child:focus .selectBoxList {
+  left:var(--countrySelectBoxLeft);
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -3338,6 +3357,11 @@ table.stockreport-table .border {
   width: calc(100% - var(--lateral) * 2);
   z-index:122;
 }
+
+.finalizarConsultaTitle {
+  font-size: 1.3rem;
+}
+
 .finalizarConsulta.alt{
   opacity:1;
   pointer-events:auto;
@@ -3794,14 +3818,19 @@ padding-bottom:0;
                           6.65) =uploadForm:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+.uploadFileContainer {
+  padding: 1rem var(--lateral);
+}
+
 .updateController{
   display: grid;
-  margin: 4rem var(--lateral);
-  width:calc(100% - var(--lateral) * 2);
+  margin: auto;
   grid-gap: 1rem;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: var(--DP6);
   border-radius: 8px;
+  width: min-content;
 }
 
 .updateController:not(.inicial) .uploadForm{opacity:0;pointer-events:none}
@@ -3912,22 +3941,17 @@ padding-bottom:0;
   color: var(--grey0);
 }
 
-.formAcceptance {
+.finalizarConsultaCheckboxes {
   display: flex;
   align-items: center;
-  color: var(--grey0);
+  color: var(--grey99);
   font-size: 15px;
   grid-column: 1/-1;
 }
-.formAcceptance .contact_check {
-  margin-right: 5px;
-  width: 1rem;
-  height: 1rem;
-}
-.formAcceptance .temsAcceptance {
-  text-decoration: underline;
-}
 
+.finalizarConsultaCheckboxes input[type="checkbox"] {
+  margin-right: 10px;
+}
 
 .contacto > *{width: 80%; z-index: 1;}
 
