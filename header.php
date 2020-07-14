@@ -140,7 +140,7 @@
 
       <p class="cartTitle txtCenter txtUnderlined">Detalle de la consulta</p>
     </div>
-    <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
+    <button class="btn CotizadorEndButton" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
       FINALIZAR
     </button>
   </div>
