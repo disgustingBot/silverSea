@@ -182,8 +182,6 @@
     <?php } ?>
 
 
-
-
     <select name="cont_selector" class="btn contSelector" id="contSelector" >
       <?php $i=0;
       foreach($categories as $category) { ?>

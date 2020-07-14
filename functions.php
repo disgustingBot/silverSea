@@ -405,7 +405,7 @@ function selectBox($name, $slug = false, $options = array()){
 			</label>
 
 
-			<?php foreach ($options as $opt_slug => $opt_name) { 
+			<?php foreach ($options as $opt_slug => $opt_name) {
 				$opt_name = preg_replace('/\s+/', ' ', trim($opt_name)); ?>
 
 				<label for="<?php echo $slug; ?>_<?php echo $opt_slug; ?>" class="selectBoxOption">
@@ -860,11 +860,11 @@ function lt_cart_end () { global $wpdb;
 
 
 // $query = "DROP table conv_trenes;
-// CREATE table conv_trenes ( 
+// CREATE table conv_trenes (
 //     origen_city varchar(80),
-//     origen_country varchar(50), 
+//     origen_country varchar(50),
 //     destino_city varchar(80),
-//     destino_country varchar(50) 
+//     destino_country varchar(50)
 // );";
 
 
@@ -881,7 +881,6 @@ function lt_tren_end () {
 	$origen_city     = $_POST['origen_city'];
 	$destino_country = $_POST['destino_country'];
 	$destino_city    = $_POST['destino_city'];
-
 	
 	// on the server get the following info:
 	// is this convination posible?
@@ -919,7 +918,6 @@ function lt_tren_end () {
 			pais          = '$origen_country' AND
 			ciudad        = '$origen_city'
 		);";
-			
 		$precio_origen = $wpdb->get_results($precio_origen_query);
 		if(count($gastos_adicionales) > 0){
 			$respuesta['precio_origen'] = $precio_origen;
@@ -932,7 +930,6 @@ function lt_tren_end () {
 			pais          = '$destino_country' AND
 			ciudad        = '$destino_city'
 		);";
-			
 		$precio_destino = $wpdb->get_results($precio_destino_query);
 		if(count($gastos_adicionales) > 0){
 			$respuesta['precio_destino'] = $precio_destino;
