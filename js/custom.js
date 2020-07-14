@@ -399,7 +399,7 @@ async function ajax3(formData, url = lt_data.ajaxurl) {
 function string_to_slug (str) {
     str = str.replace(/^\s+|\s+$/g, ''); // trim
     str = str.toLowerCase();
-  
+
     // remove accents, swap ñ for n, etc
     var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
     var to   = "aaaaeeeeiiiioooouuuunc------";
@@ -471,7 +471,7 @@ trenController = {
 				trenController.setPointerEvents('none');
 
 				buttonFinish.onclick = trenController.finish
-	
+
 				accordionSelector('#destino')
 			}
 		}
@@ -556,7 +556,7 @@ trenController = {
 			// cartController.cart[i] = nuevoElemento;
 
 
-			
+
 			// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
 			// console.log(cartController.cart[i]);
 
@@ -653,7 +653,7 @@ locationSelector = {
 			};
 		})
 
-		
+
 		inputs = [...coprAlqui.querySelectorAll('#destino .selectBoxInput')]
 		inputs.forEach((input)=>{
 			input.onchange = ()=>{
@@ -675,7 +675,7 @@ locationSelector = {
 		})
 	},
 
-	
+
 	searchLocation:(option)=>{
 		let coprAlqui = d.querySelector('.coprAlqui');
 		let selected = [...coprAlqui.querySelectorAll('#'+option+' .selectBoxInput:checked')];
@@ -702,7 +702,7 @@ locationSelector = {
 		let uniqueLocationFound = locationSelector.currentSearch.length == 1;
 		// TODO: si hay solo un location encontrado habilitar boton de finalizar
 		// TODO: %si hay uno solo que complete el otro?...
-		// TODO: %que garde seleccion en cookie?... 
+		// TODO: %que garde seleccion en cookie?...
 		if( uniqueLocationFound ){
 			locationSelector[option] = [
 				coprAlqui.querySelector('#selectBox'+option.capitalize()+'Country .selectBoxInput:checked').value,
@@ -992,7 +992,7 @@ cartController = {
 	cart: [],
 	cartToLeads: [],
 	allProducts:{},
-	
+
 
 
 	finish:()=>{
@@ -1118,7 +1118,7 @@ cartController = {
 		console.log(cartController.cart);
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
 
-		
+
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
 		let endButton = d.querySelector('#cotizadorEndButton');
 		let isTheCartEmpty = cartController.cart.length < 1;
@@ -1144,7 +1144,7 @@ cartController = {
 			});
 		}
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
-		
+
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
 		let endButton = d.querySelector('#cotizadorEndButton');
 		let isTheCartEmpty = cartController.cart.length < 1;
