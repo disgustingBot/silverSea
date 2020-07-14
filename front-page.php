@@ -176,7 +176,7 @@
     <?php } ?>
 
 
-    <select name="cont_selector" class="btn contSelector" id="contSelector"  onchange="if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
+    <select name="cont_selector" class="btn contSelector" id="contSelector"  onchange="console.log(this.value) if (typeof(this.selectedIndex) != 'undefined') altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')">
       <?php $i=0;
       foreach($categories as $category) { ?>
         <?php $lt_meta_desc = get_term_meta($category->term_id, 'lt_meta_desc', true); ?>

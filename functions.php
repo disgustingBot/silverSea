@@ -405,7 +405,7 @@ function selectBox($name, $slug = false, $options = array()){
 			</label>
 
 
-			<?php foreach ($options as $opt_slug => $opt_name) { 
+			<?php foreach ($options as $opt_slug => $opt_name) {
 				$opt_name = preg_replace('/\s+/', ' ', trim($opt_name)); ?>
 
 				<label for="<?php echo $slug; ?>_<?php echo $opt_slug; ?>" class="selectBoxOption">
@@ -652,8 +652,8 @@ function lt_upload_file () {
 
 			// INSTALACION LOCAL
 			$dbHost = "localhost";
-			$dbUser = "Rafita";
-			$dbPass = "95RAaurdHTONszLp";
+			$dbUser = "root";
+			$dbPass = "";
 			// $dbUsername = "contraseñaDificil";
 			// $dbPassword = ";$6qha)2L*KU)6nq";
 			$dbName = "lattedev_silver";
@@ -915,11 +915,11 @@ function lt_cart_end () { global $wpdb;
 
 
 // $query = "DROP table conv_trenes;
-// CREATE table conv_trenes ( 
+// CREATE table conv_trenes (
 //     origen_city varchar(80),
-//     origen_country varchar(50), 
+//     origen_country varchar(50),
 //     destino_city varchar(80),
-//     destino_country varchar(50) 
+//     destino_country varchar(50)
 // );";
 
 
@@ -944,7 +944,7 @@ function lt_tren_end () { global $wpdb;
 	$destino_country = $_POST['destino_country'];
 	$destino_city    = $_POST['destino_city'];
 
-	
+
 	// ! on the server get the following info:
 	// ! is this convination posible?
 	// TODO: implementar tabla convinaciones_posibles!
@@ -956,7 +956,7 @@ function lt_tren_end () { global $wpdb;
 	// $respuesta['query'] = $query;
 	$possible_convination = $wpdb->get_results($query);
 	// $respuesta['cosa'] = $possible_convination;
-	
+
 	if(count($possible_convination) > 0){
 		$conv = array('conv' => true);
 		$respuesta['conv'] = true;
@@ -979,7 +979,7 @@ function lt_tren_end () { global $wpdb;
 			pais = '$origen_country' AND
 			ciudad = '$origen_city'
 		);";
-			
+
 		$precio_origen = $wpdb->get_results($precio_origen_query);
 		if(count($gastos_adicionales) > 0){
 			$respuesta['precio_origen'] = $precio_origen;
@@ -989,13 +989,13 @@ function lt_tren_end () { global $wpdb;
 
 
 
-		
+
 		$precio_destino_query = "SELECT * FROM stock WHERE (
 			id_contenedor = '$contenedor' AND
 			pais = '$destino_country' AND
 			ciudad = '$destino_city'
 		);";
-			
+
 		$precio_destino = $wpdb->get_results($precio_destino_query);
 		if(count($gastos_adicionales) > 0){
 			$respuesta['precio_destino'] = $precio_destino;
@@ -1015,11 +1015,11 @@ function lt_tren_end () { global $wpdb;
 		// $resp[] = json_decode($results);
 		// $respuesta['resp']=$resp;
 
-		
-		
-		
-		
-		
+
+
+
+
+
 		echo wp_json_encode($respuesta);
 	} else {
 		$respuesta['conv'] = true;
