@@ -64,7 +64,7 @@
     </div>
 
 
-    <button class="btn" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
+    <button class="btn CotizadorEndButton" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
       COTIZAR
     </button>
   </div>

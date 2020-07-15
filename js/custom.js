@@ -522,22 +522,41 @@ trenController = {
 			let itemCurrency = cartItem.querySelector('.cartItemCurrency');
 			let currency = 'EUR';
 			
-			data['precio_origen'] .push(data['exchange'])
-			data['precio_destino'].push(data['exchange'])
-			let gastos = data['gastos'] ? parseInt(data['gastos'].profit) + parseInt(data['gastos'].deposit) + parseInt(data['gastos'].others) : 0;
 
-			let precio_origen = processPrice(data['precio_origen'], false)
-			let precio_destino = processPrice(data['precio_destino'], false)
+
+
+			let gastos = data.gastos ? parseInt(data.gastos.profit) + parseInt(data.gastos.deposit) + parseInt(data.gastos.others) : 0;
+			let precio_origen  = price_data_pre_processor( data.precio_origen, data.exchange )
+			let precio_destino = price_data_pre_processor( data.precio_destino, data.exchange )
 			let final_price = precio_origen - precio_destino + gastos
 			// console.log('final_price', final_price)
+			let total_price = 0;
 
-			let total_price = final_price * itemQty;
+
+
+
+			
+			price_is_avaliable = ( !!precio_origen && !!precio_destino )
+			this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
+
+
+			if( price_is_avaliable ){
+				if ( this_is_not_the_correct_currency ){
+					currency = 'USD';
+					exchange_rate = parseFloat(data.exchange.rate)
+					final_price = final_price / exchange_rate;
+					// totalPrice  = totalPrice  / exchange_rate;
+				}
+				total_price = final_price * parseInt(itemQty);
+			} else {
+				totalPrice = 'Precio no disponible';
+				currency = '';
+			}
 
 
 			itemCurrency.innerText = currency
 			itemPrice.innerText = total_price;
-
-
+			// let total_price = final_price * itemQty;
 
 
 			console.log('single price: ', final_price)
@@ -547,45 +566,41 @@ trenController = {
 			console.log(cartController.cart[0])
 			console.log('cart price: ', cartController.cart[0].singlePrice)
 
-			cartController.sendMail(true);
-
-			// trenController.precio_en_origen = processPrice(data, false)[0]
-
-			// var formData = new FormData();
-			// formData.append( 'action', 'lt_cart_end' );
-			// formData.append( 'cont', "40DC CW" );
-			// formData.append( 'country', locationSelector.destino[0] );
-			// formData.append( 'city', locationSelector.destino[1] );
-
-
-			// ajax2(formData).then( data => {
-			// 	respuesta = processPrice(data, false)
-			// 	trenController.precio_en_destino = respuesta[0]
-			// 	trenController.gastos_adicionales = respuesta[1]
-			// 	// gastos = respuesta[1]
-			// 	if(!singlePrice){
-			// 		totalPrice = 'Precio no disponible';
-			// 		currency = '';
-			// 	} else {
-			// 		// totalPrice = singlePrice * parseInt(itemQty);
-			// 	}
-			// 	console.log('precio en destino: ', singlePrice)
-
-			// });
 
 
 
-			// cartController.cart[i].setPrice(singlePrice);
-			// nuevoElemento = new CartItem(cartController.cart[i].values)
-			// cartController.cart[i] = nuevoElemento;
+			
+			// let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
+			// console.log('list_of_product_with_price: ', list_of_product_with_price);
+			let gran_total = total_price;
+			let gran_total_display = [...d.querySelectorAll('.cartTotal')];
+			console.log(gran_total_display)
+			gran_total_display.forEach(element=>{
+				// console.log(element.target)
+				element.innerHTML = gran_total;
+			})
+			// console.log('CARRITO luego de la transformacion', cartController.cart)
+			if ( price_is_avaliable ){
+				altClassFromSelector('allPricesThere', '#cartList', 'cartList');
+			} else {
+				altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
+			}
 
 
 
-			// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
-			// console.log(cartController.cart[i]);
 
+
+
+
+
+
+
+
+
+			
 			// !falta:
-			// TODO: que envie el mail
+			// // TODO: que envie el mail
+			// cartController.sendMail(true);
 			// TODO: que envie el lead
 
 
@@ -700,6 +715,8 @@ locationSelector = {
 		ajax2(formData).then( data => {
 			locationSelector.allLocations   = data;
 			locationSelector.currentSearch  = data;
+
+			console.log(locationSelector.allLocations)
 		})
 	},
 
@@ -732,10 +749,17 @@ locationSelector = {
 		// TODO: %si hay uno solo que complete el otro?...
 		// TODO: %que garde seleccion en cookie?...
 		if( uniqueLocationFound ){
-			locationSelector[option] = [
-				coprAlqui.querySelector('#selectBox'+option.capitalize()+'Country .selectBoxInput:checked').value,
-				coprAlqui.querySelector('#selectBox'+option.capitalize()+'City .selectBoxInput:checked').value,
-			]
+			locationSelector[option] = locationSelector.currentSearch[0]
+			locationSelector[option][0] = locationSelector.currentSearch[0].country;
+			locationSelector[option][1] = locationSelector.currentSearch[0].city;
+			locationSelector[option][2] = locationSelector.currentSearch[0].final_currency;
+			// locationSelector[option] = [
+			// 	locationSelector.currentSearch[0].country,
+			// 	locationSelector.currentSearch[0].city,
+			// 	locationSelector.currentSearch[0].final_currency,
+			// 	// coprAlqui.querySelector('#selectBox'+option.capitalize()+'Country .selectBoxInput:checked').value,
+			// 	// coprAlqui.querySelector('#selectBox'+option.capitalize()+'City .selectBoxInput:checked').value,
+			// ]
 			// console.log(locationSelector[option])
 		} else {
 			locationSelector[option] = []
@@ -939,51 +963,52 @@ productSelector = {
 
 
 
-const processPrice = (data, gastos_adicionales = true)=>{
+const price_data_pre_processor = (data, exchange)=>{
 
-	console.log(data)
-	if (data[1]) {
-		let exchange = data.pop()
+	console.log('data in price_data_processor', data)
+	if ( data.length != 0 ) {
 		console.log(exchange)
 		data.forEach(element => {
 			if(element.currency.includes('USD')){
 				element.currency = 'EUR'
 				element.supplier_price = element.supplier_price * exchange.rate
-				element.fixed_price = element.fixed_price * exchange.rate
-				element.sale_price = element.sale_price * exchange.rate
+				element.fixed_price    = element.fixed_price    * exchange.rate
+				element.sale_price     = element.sale_price     * exchange.rate
 			}
 		});
 
-		if (data[0].fixed_price!=0) {
+		if ( data[0].fixed_price != 0 ) {
+
 			singlePrice = parseFloat(data[0].fixed_price)
-		}else if(data[0].sale_price!=0){
+			console.log('FIXED PRICE')
+
+		} else if ( data[0].sale_price != 0 ) {
+
 			singlePrice = parseFloat(data[0].sale_price - 300)
-		}else if(!data[1]){
+			console.log('SALE PRICE')
+
+		}else if( data.length == 1 ){
+
 			singlePrice = parseFloat(data[0].supplier_price)
+			console.log('UNICO SUPPLIER PRICE')
+
 		}else{
 			let prices = data.map( x => x.supplier_price );
 			let pricesSort = prices.sort((a, b) => a - b).slice(0, 2);
 			let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
 			singlePrice = average;
+			console.log('PROMEDIO DE LOS 2 SUPPLIER PRICE MAS TOBARA')
 		}
 		// totalPrice = singlePrice * parseInt(itemQty);
-		if(singlePrice == 0){
-			final_price = false;
-		} else{
-			if(data[0].profit && gastos_adicionales){
-				singlePrice += parseInt(data[0].profit) + parseInt(data[0].others) + parseInt(data[0].deposit)
-			}
-			final_price = singlePrice
-		}
+		if(singlePrice != 0){
 
-	} else {
-		final_price = false;
-	}
+			final_price = singlePrice
+
+		} else{ final_price = false; }
+	} else { final_price = false; }
 
 	return final_price
 }
-
-
 
 
 
@@ -1061,17 +1086,33 @@ cartController = {
 				let currency = 'EUR';
 
 
-				singlePrice = processPrice(data)
-				if(!singlePrice){
-					totalPrice = 'Precio no disponible';
-					currency = '';
-				} else {
-					totalPrice = singlePrice * parseInt(itemQty);
+				price_pre_processed = price_data_pre_processor( data.price_data, data.exchange );
+				// console.log('pre processed price: ', price_pre_processed)
+				// TODO: estaria bueno que ellos puedan elegir en el dashboard el 'gastos' por defecto
+				let gastos = 0
+				if ( data.gastos ) {
+					gastos = parseFloat(data.gastos.profit) + parseFloat(data.gastos.deposit) + parseFloat(data.gastos.others);
 				}
 
-				// console.log('mi nuevo calculador de precio dice: ', singlePrice)
+				singlePrice = price_pre_processed + gastos;
+
+				price_is_avaliable = !!singlePrice
+				this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
 
 
+				if( price_is_avaliable ){
+					// console.log('precio "valido" igual a: ', singlePrice)
+					
+					if ( this_is_not_the_correct_currency ){
+						currency = 'USD';
+						exchange_rate = parseFloat(data['exchange'].rate)
+						singlePrice = singlePrice / exchange_rate;
+					}
+					totalPrice = singlePrice * parseInt(itemQty);
+				} else {
+					totalPrice = 'Precio no disponible';
+					currency = '';
+				}
 
 
 				// const check = (element) => {
@@ -1088,8 +1129,8 @@ cartController = {
 				// console.log(cartController.cart[i]);
 
 
-				// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
-				if(price_returns == cartController.cart.length){
+				// // chequear que lleguen todas las respuestas, no que estemos en la ultima
+				if( price_returns == cartController.cart.length ){
 					console.log('llego el ultimo precio')
 					let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
 					// console.log('list_of_product_with_price: ', list_of_product_with_price);
@@ -1122,7 +1163,7 @@ cartController = {
 				// }
 
 
-				itemCurrency.innerText = currency
+				itemCurrency.innerText = currency;
 				itemPrice.innerText = totalPrice;
 			})
 		});
@@ -1135,6 +1176,7 @@ cartController = {
 		// createCookie('status','next')
 		// cartController.sendAllLeads();
 	},
+
 
 	sendMail:(is_case_tren = false)=>{
 		// console.log(cart)
