@@ -596,8 +596,8 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	$server = 'online';
-	// $server = 'local';
+	// $server = 'online';
+	$server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$file = false;
@@ -739,92 +739,48 @@ function lt_upload_file () {
 add_action( 'wp_ajax_lt_cart_end', 'lt_cart_end' );
 add_action( 'wp_ajax_nopriv_lt_cart_end', 'lt_cart_end' );
 
-function lt_cart_end () { global $wpdb;
-	$server = 'online';
-	// $server = 'local';
-	$debugMode = false;
+function lt_cart_end () {
+	global $wpdb;
 	$respuesta = array();
 	$contenedor = $_POST['cont'];
 	$country = $_POST['country'];
 	$city = $_POST['city'];
 
-	if ($server == 'online') {
-
-		// INSTALACION FINAL
-		$dbHost = "localhost";
-		$dbUser = "silversea_web";
-		$dbPass = "qXne2abld1";
-		$dbName = "silversea_web";
-	} else {
-
-		// INSTALACION LOCAL
-		$dbHost = "localhost";
-		$dbUser = "root";
-		$dbPass = "";
-		// $dbUsername = "contraseñaDificil";
-		// $dbPassword = ";$6qha)2L*KU)6nq";
-		$dbName = "lattedev_silver";
-	}
-
-	// $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-
-	$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
-
-
-	$queryTest = "SELECT * FROM gastos_adicionales WHERE (
+	// agrega data de gastos adicionales
+	$respuesta['gastos'] = false;
+	$query_gastos = "SELECT * FROM `gastos_adicionales` WHERE (
 		country = '$country' AND
-		city = '$city'
+		city    = '$city'
 	);";
-
-	$ressy = $conn->query($queryTest);
-	$respy = $ressy->fetch_all(MYSQLI_ASSOC);
-	if(count($respy) > 0){
-		$qry = "SELECT * FROM stock a, gastos_adicionales b WHERE (
-			a.id_contenedor = '$contenedor' AND
-			a.pais = '$country' AND
-			a.ciudad = '$city' AND
-			b.country = '$country' AND
-			b.city = '$city'
-		);";
-		$ress = $conn->query($qry);
-		$resp = $ress->fetch_all(MYSQLI_ASSOC);
-	} else {
-		$qry = "SELECT * FROM stock WHERE (
-			id_contenedor = '$contenedor' AND
-			pais = '$country' AND
-			ciudad = '$city'
-		);";
-		$ress = $conn->query($qry);
-		$resp = $ress->fetch_all(MYSQLI_ASSOC);
+	$gastos_adicionales = $wpdb->get_results($query_gastos);
+	if(count($gastos_adicionales) > 0){
+		$respuesta['gastos'] = $gastos_adicionales[0];
 	}
 
-
-	//TODO: agregar a $resp el currency exchange
-
-	$query = "SELECT * FROM `exchange` WHERE currency1 = 'USD' AND currency2 = 'EUR'";
-	$results = $wpdb->get_results( $query );
-	$respuesta['exchange']=$results;
-	array_push($resp, $results[0]);
-	$json_array = wp_json_encode( $resp );
-	// $resp[] = json_decode($results);
-	$respuesta['resp']=$resp;
-
-	if(!$debugMode){
-		echo $json_array;
+	// agrega data de precio en origen
+	$respuesta['price_data'] = false;
+	$price_data_query = "SELECT * FROM stock WHERE (
+		id_contenedor = '$contenedor'     AND
+		pais          = '$country' AND
+		ciudad        = '$city'
+	);";
+	$price_data = $wpdb->get_results($price_data_query);
+	if(count($price_data) > 0){
+		$respuesta['price_data'] = $price_data;
 	}
 
-	$respuesta['query']=$qry;
-	$respuesta['contenedor']=$contenedor;
-	$respuesta['country']=$country;
-	$respuesta['city']=$city;
+	// agregar a $respuesta el currency exchange
+	$exchange_query = "SELECT * FROM `exchange` WHERE (
+		currency1 = 'USD' AND
+		currency2 = 'EUR'
+	)";
+	$exchange = $wpdb->get_results( $exchange_query );
+	
+	$respuesta['exchange']=$exchange[0];
 
-	$respuesta['test'] = 'saludos desde aca en el server';
-
-	if($debugMode){echo wp_json_encode($respuesta);}
+	echo wp_json_encode($respuesta);
 	exit();
 }
-
-
 
 
 
@@ -920,7 +876,7 @@ function lt_tren_end () {
 			ciudad        = '$origen_city'
 		);";
 		$precio_origen = $wpdb->get_results($precio_origen_query);
-		if(count($gastos_adicionales) > 0){
+		if(count($precio_origen) > 0){
 			$respuesta['precio_origen'] = $precio_origen;
 		}
 
@@ -932,7 +888,7 @@ function lt_tren_end () {
 			ciudad        = '$destino_city'
 		);";
 		$precio_destino = $wpdb->get_results($precio_destino_query);
-		if(count($gastos_adicionales) > 0){
+		if(count($precio_destino) > 0){
 			$respuesta['precio_destino'] = $precio_destino;
 		}
 
