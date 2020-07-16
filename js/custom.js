@@ -604,7 +604,7 @@ trenController = {
 			
 			// !falta:
 			// // TODO: que envie el mail
-			// cartController.sendMail(true);
+			cartController.sendMail(true);
 			// TODO: que envie el lead
 
 
@@ -1167,7 +1167,7 @@ cartController = {
 						altClassFromSelector('allPricesThere', '#cartList', 'cartList');
 					}
 					// TODO: encender el mail Sender
-					// cartController.sendMail();
+					cartController.sendMail();
 					// TODO: encender el lead Sender
 					// cartController.cartToLeads = cartController.cart;
 					// createCookie('status','next')
@@ -1202,10 +1202,13 @@ cartController = {
 		formData.append( 'name', d.querySelector('#mateputNombre').value );
 		formData.append( 'phone', d.querySelector('#mateputTelefono').value );
 		formData.append( 'mail', d.querySelector('#mateputEmail').value );
-
+		
 		if ( is_case_tren ) {
+			formData.append( 'title', 'Servicio de tren' );
 			formData.append( 'destino_country', locationSelector.destino[0] );
 			formData.append( 'destino_city', locationSelector.destino[1] );
+		} else {
+			formData.append( 'title', 'Contenedor Maritimo' );
 		}
 
 		ajax2(formData).then( data => {
