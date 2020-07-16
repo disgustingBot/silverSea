@@ -25,9 +25,9 @@
     <input class="contact_input" type="email" id="email" name="email" placeholder="Email" required>
     <input class="contact_input" type="text" id="country" name="Pais" placeholder="Pais" required>
     <textarea class="contact_textarea" type="text" id="comment" name="Comentarios" placeholder="Comentarios"> </textarea>
-    <div class="formAcceptance">
-      <input class="contact_check" type="checkbox" required>
-      <p class="temsAcceptance">I accept Silversea's <a class="temsAcceptance" href="https://silverseacontainers.com/privacy-policy/" target="_blank"> privacy terms</a></p>
+    <div class="finalizarConsultaCheckboxes">
+      <input type="checkbox" required>
+      <p class="termsDescription">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;"> privacy terms</a></p>
     </div>
     <button class="btn contact_btn" type="submit" name="a06" class="btn" value="Submit">Enviar</button>
   </form>
