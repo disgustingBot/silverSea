@@ -85,7 +85,16 @@
         </svg>
       </div>
       <p class="cartButtonTxt">Ver pedido</p>
+      <div class="itemAddedToCart">
+        <p class="itemAddedTxt">Se ha añadido un elemento al carrito.</p>
+        <svg class="itemAddedIcon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm42-104c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42zm-81.37-211.401l6.8 136c.319 6.387 5.591 11.401 11.985 11.401h41.17c6.394 0 11.666-5.014 11.985-11.401l6.8-136c.343-6.854-5.122-12.599-11.985-12.599h-54.77c-6.863 0-12.328 5.745-11.985 12.599z"></path>
+        </svg>
+      </div>
     </div>
+
+    <!-- ESTA ES LA NOTIFICACIOB DE UN ITEM AÑADIDO AL CARRITO -->
+
 
 
     <div class="hamburgerMenu" onclick="altClassFromSelector('mobileNavMenu','#body')">
@@ -122,7 +131,14 @@
       <!--- PRECIO DISPONIBLE -->
 
       <p class="cartTotalTxt allPricesThere"><strong>Gracias por su consulta.</strong></p>
-      <p class="cartTotalTxt allPricesThere">El valor estimado de su consulta es de <span class="cartTotal brandColorTxt txtUnderlined">1234€</span>. Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle. </p>
+      <p class="cartTotalTxt allPricesThere">
+        El valor estimado de su consulta es de
+        <span class="cartTotal brandColorTxt txtUnderlined">1234€</span>
+
+        <!-- ESTE ES EL CAMPO PARA EL TIPO DE CURRENCIE -->
+        <span class="cartTotalCurrencie">€</span>.
+        Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle.
+      </p>
 
 
       <!-- ALGUNOS CONTENEDORES SELECCIONADOS NO TIENEN PRECIO RAPIDO  -->
@@ -147,9 +163,9 @@
 
   <div class="finalizarConsulta" id="finalizarConsulta">
     <p class="closeCross" onclick="altClassFromSelector('alt', '#finalizarConsulta'),altClassFromSelector('alt', '#cart')">&#10006;</p>
-    <h4 class="finalizarConsultaTitle txtCenter">Un paso más...</h4>
-    <p class="finalizarConsultaSubTitle txtCenter">Necesitamos algunos datos para poder darte una cotización rápida.</p>
-    <p class="finalizarConsultaSubTitle txtCenter">Además, te enviaremos un email con el detalle.</p>
+    <h4 class="finalizarConsultaTitle txtCenter"><?php echo get_post_meta('150', 'ZC-titulo-formulario-cotizador', true); ?></h4>
+    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZD-texto1-formulario-cotizador', true); ?></p>
+    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZC-texto2-formulario-cotizador', true); ?></p>
     <?php require_once 'coprAlqui.php'; ?>
 
 
@@ -176,15 +192,15 @@
 
     <div class="finalizarConsultaCheckboxes">
       <input type="checkbox" required>
-      <p class="termsDescription">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;"> privacy terms</a></p>
+      <p class="termsDescription">Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</p>
     </div>
     <div class="finalizarConsultaCheckboxes">
       <input type="checkbox">
-      <p class="termsDescription"><strong>Necesito entrega inmediata</strong> marca esta opción para obtener <strong style="color: red">50€ de descuento</strong></p>
+      <p class="termsDescription">Necesito entrega inmediata marca esta opción para obtener <strong style="color: red">50€ de descuento</strong></p>
     </div>
     <div class="finalizarConsultaCheckboxes">
       <input type="checkbox">
-      <p class="termsDescription"><strong>Necesito transporte</strong> marca esta opción para solicitar la cotización del transporte del pedido hasta ti.</p>
+      <p class="termsDescription">Necesito transporte marca esta opción para solicitar la cotización del transporte del pedido hasta ti.</p>
     </div>
     <button class="btn" id="buttonFinishCart" onclick="cartController.finish()">dame precio rapido</button>
 
