@@ -48,10 +48,9 @@
 
     <div class="cotizadorTxtContainer">
       <!-- SI EL INPUT DE TRENES ESTÁ CHECKEADO, VA ESTE TEXTO: -->
-      <p class="cotizadorTxt" id="trenExplanation" style="display:none">El servicio de trenes solo está disponible para contenedores secos estandar de 40 pies aptos para carga, entre Asia y Europa.</p>
-
+      <p class="cotizadorTxt" id="trenExplanation" style="display:none"><?php echo get_post_meta($post->ID, 'ZB-texto-trenes-cotizador', true); ?></p>
       <!-- ESTE TEXTO VA SIEMPRE: -->
-      <p class="cotizadorTxt">Tras completar el proceso de cotización, recibiás una cotización rápida inmediata</p>
+      <p class="cotizadorTxt"><?php echo get_post_meta($post->ID, 'ZC-texto-informativo-cotizador', true); ?></p>
     </div>
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
