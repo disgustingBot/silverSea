@@ -75,8 +75,10 @@ function lt_ajax_mail() {
   $destino_city    = $_POST[ 'destino_city' ];
 
   $destino = '';
+  $origen = " - En: <span class='ubicacion'>$country - $city</span>";
   if(isset($_POST['destino_country'])){
-    $destino = " - <span class='ubicacion'>$destino_country - $destino_city</span>";
+    $destino = "Hasta: <span class='ubicacion'>$destino_country - $destino_city</span>";
+    $origen = " - Desde: <span class='ubicacion'>$country - $city</span>";
   }
 
 	// if($_POST['a00'] != ""){
