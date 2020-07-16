@@ -184,8 +184,9 @@ FIN DE MAPA DE CONTENIDOS */
   --menuItemAFontSize: 14px;
   --cartButtonTxtDisplay: none;
 
-  --itemAddedToCartTop: 12px;
-  --itemAddedToCartRight: 12px;
+  --itemAddedToCartTop: 100px;
+  --itemAddedToCartTopAlt:-12px;
+  --itemAddedToCartRight: -10px;
 
   /* ATFS */
   /* FRONT PAGE ATF */
@@ -304,13 +305,11 @@ FIN DE MAPA DE CONTENIDOS */
   --archiveTopInteractionFD: column;
   --archiveTopInteractionH: auto;
   --byeByeBtnD: flex;
-  --byeByeBtnsM: 10px auto;
   --archive2TxtAlign: center;
   --searchResultsContGR:2;
   --archiveFilterW: 100%;
 
   --filterQuestionContWidth: 320px;
-  --filterQuestActivatorWidth: 100%;
 
 
   /* PAGE TEAM */
@@ -395,8 +394,7 @@ FIN DE MAPA DE CONTENIDOS */
   :root {
     /* ?HEADER */
 
-    --itemAddedToCartTop: 18px;
-    --itemAddedToCartRight: 18px;
+    --itemAddedToCartRight: -10px;
 
     /* ATFS */
     /* HOME ATF */
@@ -436,12 +434,10 @@ FIN DE MAPA DE CONTENIDOS */
     --archiveTopInteractionFD: row;
     --archiveTopInteractionH: 70px;
     --byeByeBtnD: grid;
-    --byeByeBtnsM: auto auto auto 20px;
     --searchResultsGTC: repeat(2,1fr);
 
 
     --filterQuestionContWidth: 500px;
-    --filterQuestActivatorWidth: 280px;
 
     /* 6.7) =formContact: */
 
@@ -502,12 +498,10 @@ FIN DE MAPA DE CONTENIDOS */
     --redDotTop: unset;
 
     /* ?HEADER */
-    --headerLogoHeight: 2rem;
     --menuItemAFontSize: 13px;
     --cartButtonTxtDisplay: block;
 
-    --itemAddedToCartTop: 25px;
-    --itemAddedToCartRight: 30px;
+    --itemAddedToCartRight: 0px;
 
 
 
@@ -651,7 +645,7 @@ FIN DE MAPA DE CONTENIDOS */
     --navBarWidth: 40%;
     --navBarGG: 1rem;
     --menuItemAFontSize: 14px;
-    --headerLogoHeight: 3rem;
+    --headerLogoHeight: 4rem;
 
 
 
@@ -989,7 +983,7 @@ section {
   position: sticky;
   top:0;
   z-index: 6;
-  height: 80px;
+  height: 120px;
 }
 .header .cartButton{
   top:calc(80px - 1rem);
@@ -997,7 +991,7 @@ section {
 
 .headerLogoLink {
   display: flex;
-  height: 80px;
+  height: 120px;
 }
 
 .logo {
@@ -1132,7 +1126,7 @@ section {
 
 .navBarMobileContainer {
   position: fixed;
-  top: 79px;
+  top: 119px;
   right: 0;
   height: calc(100vh - 139px);
   margin-right: -100%;
@@ -1760,6 +1754,11 @@ section {
 .valuesTitle {
   grid-column: 1/-1;
 }
+
+.valueItem.brandColorTxt {
+  color: black!important;
+}
+
 .valueItem:not(.brandColorTxt) {
   grid-column: 1/-1;
   text-align: left;
@@ -2262,11 +2261,10 @@ table.stockreport-table .border {
  display: var(--archiveTopInteractionDisplay);
  width: 100%;
  grid-gap: 5px;
- padding: .6rem var(--lateral);
+ padding: .6rem 1rem;
  z-index: 2;
  height:var(--archiveTopInteractionH);
  justify-content: flex-end;
- /* box-shadow: var(--DP4); */
  flex-direction: var(--archiveTopInteractionFD);
 }
 
@@ -2368,10 +2366,18 @@ table.stockreport-table .border {
   margin: auto 0 auto auto;
 }
 
+.byeByeBtn{
+  display: var(--byeByeBtnD);
+  grid-auto-flow: column;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-.byeByeBtn .btn {
-  margin: var(--byeByeBtnsM);
 
+.byeByeBtn .btn:nth-child(1) {
+  background: var(--primaryColor);
+  color: white;
 }
 
 
@@ -2513,18 +2519,43 @@ table.stockreport-table .border {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  z-index: 5;
+  z-index: 12;
   color: white;
   width: 200px;
   font-size: 15px;
   text-align: center;
-  transition: .5s;
+  transition: .5s ease-out;
   pointer-events: none;
+}
+
+.itemAddedTxt  {
+  transition: .5s;
+  opacity: 1;
+}
+
+.itemAddedToCart.cartItemAdded {
+  top: var(--itemAddedToCartTopAlt);
+  background: transparent;
+  box-shadow: none;
+}
+
+.itemAddedToCart.cartItemAdded .itemAddedTxt {
+  opacity: 0;
+}
+
+.itemAddedToCart.cartItemAdded .itemAddedIcon {
+  fill: var(--primaryColor);
+}
+
+.cosaQueTestea {
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
 }
 
 .itemAddedIcon {
   position: absolute;
-  color: var(--secondaryColor);
+  color: var(--primaryColor);
   top: 5px;
   right: 5px;
   width: 20px;
@@ -2592,6 +2623,20 @@ table.stockreport-table .border {
 .btnUpload {
   display: block;
   font-size: var(--btnUpload);
+}
+.rebajaBtn {position: relative;}
+
+.rebajaBtn::after {
+  content: 'SALE';
+  transform: rotate(-45deg);
+  font-size: 12px;
+  padding: 4px;
+  background: red;
+  position: absolute;
+  top: -6px;
+  left: -12px;
+  border-radius: 6px;
+  color: white;
 }
 
 /* ---------------------------------------------------------------------------
@@ -3676,7 +3721,7 @@ padding-bottom:0;
   margin-bottom:var(--archiveFiltersMarginBOTTOM);
   position: var(--archiveFilterPosition);
   transition: .5s ease-in-out;
-  top:80px;
+  top: 120px;
   width:var(--archiveFilterW);
   z-index:2;
 }
@@ -3748,19 +3793,11 @@ padding-bottom:0;
   margin: 10px 0;
 }
 
-.byeByeBtn{
-  display: var(--byeByeBtnD);
-  grid-auto-flow: column;
-  flex-direction: column;
-  align-items: center;
-}
-
 
 .filterQuestionsActivatorCont {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  position: fixed;
   bottom: 0;
   left: 0;
   font-size: 16px;
@@ -3768,10 +3805,9 @@ padding-bottom:0;
   justify-content: center;
   padding: 8px;
   background: var(--secondaryColor);
-  border-radius: 4px;
+  border-radius: 0 0 4px 4px;
   box-shadow: var(--DP24);
-  width: var(--filterQuestActivatorWidth);
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .filterQuestionActP {
@@ -3779,7 +3815,7 @@ padding-bottom:0;
   text-align: center;
 }
 
-.pointingHand {margin-right: 4px;}
+.pointingHand {margin-right: 4px; margin-left: -24px}
 
 .filterQuestionsActivator {
   font-weight: bold;
@@ -4272,6 +4308,9 @@ padding-bottom:0;
   font-size: 14px;
 }
 
+.modern #wp-live-chat-2 {
+  margin-left: 3em;
+}
 
 #wp-live-chat {
   bottom: 60px!important;

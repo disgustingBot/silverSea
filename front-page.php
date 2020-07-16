@@ -57,7 +57,7 @@
     </div>
     <div class="contizacionAvanzada">
       <p class="avanzadaTxt">¿Necesitas una cotización mas detallada?</p>
-      <a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?> " class="btnSimple">Ir a Cotización avanzada</a>
+      <a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?>" class="btnSimple">Ir a Cotización avanzada</a>
     </div>
 
     <button class="btn CotizadorEndButton" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>

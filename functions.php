@@ -388,7 +388,7 @@ function selectBox($name, $slug = false, $options = array()){
 			<p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $slug; ?>"></p>
 		</div>
 		<div class="selectBoxList focus">
-			<label for="nul<?php echo $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul">Todos
+			<label for="nul<?php echo $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul">Remover filtros
 				<input
 					class="selectBoxInput"
 					id="nul<?php echo $slug; ?>"
@@ -693,7 +693,7 @@ function lt_upload_file () {
 
 										$respuesta['query1']="$query1";
 										$respuesta['query2']="$query2";
-										
+
 										if($fileName2 == 'contenedores'){$respuesta['gate9']="Table contenedores";
 											// esta parte solo deberi ejecutar en el caso de "contenedores"
 											// $respuesta['last_query']="$qry";
@@ -786,7 +786,7 @@ function lt_cart_end () {
 		currency2 = 'EUR'
 	)";
 	$exchange = $wpdb->get_results( $exchange_query );
-	
+
 	$respuesta['exchange']=$exchange[0];
 
 	echo wp_json_encode($respuesta);
@@ -849,7 +849,7 @@ function lt_tren_end () {
 	$origen_city     = $_POST['origen_city'];
 	$destino_country = $_POST['destino_country'];
 	$destino_city    = $_POST['destino_city'];
-	
+
 	// on the server get the following info:
 	// is this convination posible?
 	// if yes: return price data for both locations (to analiza in JS)
@@ -862,7 +862,7 @@ function lt_tren_end () {
 		destino_city    LIKE '%$destino_city%'
 	);";
 	$possible_convination = $wpdb->get_results($possible_convination_query);
-	
+
 	// checkea si la convinacion es una conv posible
 	if(count($possible_convination) > 0){
 		$conv = array('conv' => true);
