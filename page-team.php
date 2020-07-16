@@ -3,9 +3,9 @@
 
 <section class="teamATF">
   <hgroup class="sectionSummary teamATFSummary sectionColor3">
-    <h1 class="tamATFTitle"><?php echo get_post_meta($post->ID, '1-equipo-titulo-negro', true); ?> <span class="brandColorTxt"><?php echo get_post_meta($post->ID, '2-equipo-titulo-azul', true); ?></span></h1>
-    <ul class="">
-      <p class="summaryTxt otroTxt txtCenter">Somos una empresa dinamica y flexible que apostamos a tener el mejor equipo de trabajo. ¿Qué hacemos juntos como empresa?</p>
+    <h1 class="tamATFTitle"><?php echo get_post_meta($post->ID, '1-equipo-titulo', true); ?> <span class="brandColorTxt"><?php echo get_post_meta($post->ID, '2-equipo-titulo-azul', true); ?></span></h1>
+    <ul class="">21-equipo-valor-1-titulo
+      <p class="summaryTxt otroTxt txtCenter"><?php echo get_post_meta($post->ID, '21-equipo-texto', true); ?></p>
       <li class="summaryTxt otroTxt"><span class="brandColorTxt">SATISFACER</span> las necesidades del cliente. Dar soluciones rápidas, flexibles, responsables y de calidad. Todo lo cual debe estar bajo la premisa de nuestros valores como compañía.</li>
       <li class="summaryTxt otroTxt"><span class="brandColorTxt">COMUNICAR</span> de modo transparente. Siempre buscando alinear expectativas, sabiendo interpretar lo que nuestros clientes buscan, porque de eso se trata. Debemos tener las expectativas claras; he ahí la base para poder superarlas. </li>
       <li class="summaryTxt otroTxt"><span class="brandColorTxt">AGREGAR VALOR</span> tomando como punto de partida escuchar al cliente. Luego -con nuestra expertise- valoramos la mejor solución adaptada a sus posibilidades y necesidades. Porque nuestros clientes deben saber a lo que se dedican, nosotros debemos encargarnos de volcar nuestro conocimiento en solucionar el problema y satisfacérselo</li>
