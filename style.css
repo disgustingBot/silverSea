@@ -1754,6 +1754,11 @@ section {
 .valuesTitle {
   grid-column: 1/-1;
 }
+
+.valueItem.brandColorTxt {
+  color: black!important;
+}
+
 .valueItem:not(.brandColorTxt) {
   grid-column: 1/-1;
   text-align: left;
