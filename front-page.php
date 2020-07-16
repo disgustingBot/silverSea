@@ -8,7 +8,7 @@
     <div class="cotizadorOptionsContainer">
 
       <div class="cotizadorOptions">
-        <h3 class="cotizadorTitle">ELIGE EL TIPO DE COTIZACIÓN:</h3>
+        <h3 class="cotizadorTitle"><?php echo get_post_meta($post->ID, 'ZA-cotizador-titulo', true); ?></h3>
 
         <div class="cotizadorOptionContainer">
           <input name="cotizadorOption" type="radio" value="cont" checked id="contOption" class="cotizadorCont unselectable" onclick="trenController.altTrainAndCont('cont')"></input>
@@ -48,9 +48,9 @@
 
     <div class="cotizadorTxtContainer">
       <!-- SI EL INPUT DE TRENES ESTÁ CHECKEADO, VA ESTE TEXTO: -->
-      <p class="cotizadorTxt" id="trenExplanation" style="display:none"><?php echo get_post_meta($post->ID, 'ZB-texto-trenes-cotizador', true); ?></p>
+      <p class="cotizadorTxt" id="trenExplanation" style="display:none"><?php echo get_post_meta($post->ID, 'ZB-cotizador-texto-trenes', true); ?></p>
       <!-- ESTE TEXTO VA SIEMPRE: -->
-      <p class="cotizadorTxt"><?php echo get_post_meta($post->ID, 'ZC-texto-informativo-cotizador', true); ?></p>
+      <p class="cotizadorTxt"><?php echo get_post_meta($post->ID, 'ZC-cotizador-texto-informativo', true); ?></p>
     </div>
     <div class="dynamicContList" id="dynamicContList">
       <?php include get_template_directory().'/dynamicCont.php' ?>
@@ -59,7 +59,6 @@
       <p class="avanzadaTxt">¿Necesitas una cotización mas detallada?</p>
       <a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?> " class="btnSimple">Ir a Cotización avanzada</a>
     </div>
-
 
     <button class="btn CotizadorEndButton" type="button" id="cotizadorEndButton" onclick="altClassFromSelector('alt', '#finalizarConsulta')" disabled>
       COTIZAR

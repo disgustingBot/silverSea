@@ -128,33 +128,33 @@
     </div>
 
     <div class="cartList" id="cartList">
-      <!--- PRECIO DISPONIBLE -->
 
-      <p class="cartTotalTxt allPricesThere"><strong>Gracias por su consulta.</strong></p>
+      <!--- PRECIO DISPONIBLE -->
+      <p class="cartTotalTxt allPricesThere"><strong><?php echo get_post_meta('150', 'ZH-cotizador-precio-disponible-titulo', true); ?></strong></p>
       <p class="cartTotalTxt allPricesThere">
-        El valor estimado de su consulta es de
+        <?php echo get_post_meta('150', 'ZI-cotizador-precio-disponible-texto1', true); ?>
         <span class="cartTotal brandColorTxt txtUnderlined">1234</span>
 
         <!-- ESTE ES EL CAMPO PARA EL TIPO DE CURRENCIE -->
         <span class="cartTotalCurrency brandColorTxt txtUnderlined">€</span>.
-        Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle.
+        <?php echo get_post_meta('150', 'ZJ-cotizador-precio-disponible-texto2', true); ?>
       </p>
 
 
       <!-- ALGUNOS CONTENEDORES SELECCIONADOS NO TIENEN PRECIO RAPIDO  -->
 
-      <p class="cartTotalTxt somePricesThere"><strong>Gracias por su consulta.</strong></p>
-      <p class="cartTotalTxt somePricesThere"><strong>No disponemos de un valor fijo para algunos de los contenedores que ha seleccionado</strong>. Sin embargo, un asesor se pondrá en contacto para proveerle el precio de estos contenedores.</p>
-      <p class="cartTotalTxt somePricesThere">El valor estimado de los contenedores que disponen de precio fijo es de <span class="cartTotal brandColorTxt txtUnderlined">1234</span><span class="cartTotalCurrency brandColorTxt txtUnderlined">€</span>. Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle.</p>
+      <p class="cartTotalTxt somePricesThere"><strong><?php echo get_post_meta('150', 'ZK-cotizador-algunos-precios-no-disponibles-titulo', true); ?> </strong></p>
+      <p class="cartTotalTxt somePricesThere"><?php echo get_post_meta('150', 'ZL-cotizador-algunos-precios-no-disponibles-texto1', true); ?></p>
+      <p class="cartTotalTxt somePricesThere"> <span class="cartTotal brandColorTxt txtUnderlined">1234</span><span class="cartTotalCurrency brandColorTxt txtUnderlined">€</span>. <?php echo get_post_meta('150', 'ZN-cotizador-algunos-precios-no-disponibles-texto3', true); ?></p>
 
 
       <!-- PRECIO NO DISPONIBLE -->
 
-      <p class="cartTotalTxt nonePricesThere"><strong>Gracias por su consulta.</strong></p>
-      <p class="cartTotalTxt nonePricesThere"><strong>No disponemos de un valor fijo los contenedores que ha seleccionado</strong>. Sin embargo, un asesor se pondrá en contacto para proveerle el precio de estos contenedores.</p>
+      <p class="cartTotalTxt nonePricesThere"><strong><?php echo get_post_meta('150', 'ZO-cotizador-precio-no-disponible-titulo', true); ?></strong></p>
+      <p class="cartTotalTxt nonePricesThere"><?php echo get_post_meta('150', 'ZP-cotizador-precio-no-disponible-texto', true); ?></p>
 
 
-      <p class="cartTitle txtCenter txtUnderlined">Detalle de la consulta</p>
+      <p class="cartTitle txtCenter txtUnderlined"><?php echo get_post_meta('150', 'ZQ-cotizador-detalle-consulta-titulo', true); ?></p>
     </div>
     <button class="btn" type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
       FINALIZAR
@@ -163,9 +163,9 @@
 
   <div class="finalizarConsulta" id="finalizarConsulta">
     <p class="closeCross" onclick="altClassFromSelector('alt', '#finalizarConsulta'),altClassFromSelector('alt', '#cart')">&#10006;</p>
-    <h4 class="finalizarConsultaTitle txtCenter"><?php echo get_post_meta('150', 'ZC-titulo-formulario-cotizador', true); ?></h4>
-    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZD-texto1-formulario-cotizador', true); ?></p>
-    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZC-texto2-formulario-cotizador', true); ?></p>
+    <h4 class="finalizarConsultaTitle txtCenter"><?php echo get_post_meta('150', 'ZC-cotizador-formulario-Titulo', true); ?></h4>
+    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZD-cotizador-formulario-texto1', true); ?></p>
+    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZE-cotizador-formulario-texto2', true); ?></p>
     <?php require_once 'coprAlqui.php'; ?>
 
 
@@ -196,13 +196,13 @@
     </div>
     <div class="finalizarConsultaCheckboxes">
       <input type="checkbox">
-      <p class="termsDescription">Necesito entrega inmediata marca esta opción para obtener <strong style="color: red">50€ de descuento</strong></p>
+      <p class="termsDescription"><?php echo get_post_meta('150', 'ZF-cotizador-formulario-checkbox2', true); ?></p>
     </div>
     <div class="finalizarConsultaCheckboxes">
       <input type="checkbox">
-      <p class="termsDescription">Necesito transporte marca esta opción para solicitar la cotización del transporte del pedido hasta ti.</p>
+      <p class="termsDescription"><?php echo get_post_meta('150', 'ZG-cotizador-formulario-checkbox3', true); ?></p>
     </div>
-    <button class="btn" id="buttonFinishCart" onclick="cartController.finish()">dame precio rapido</button>
+    <button class="btn" id="buttonFinishCart" onclick="cartController.finish()">Cotizar</button>
 
   </div>
 
