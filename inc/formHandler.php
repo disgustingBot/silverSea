@@ -65,17 +65,25 @@ function lt_ajax_mail() {
 
   // $link=$_POST['link'];
   $cont=json_decode(stripslashes($_POST['cont']));
-  $country = $_POST[ 'country' ];
-  $phone   = $_POST[ 'phone' ];
-  $city    = $_POST[ 'city' ];
-  $name    = $_POST[ 'name' ];
-  $mail    = $_POST[ 'mail' ];
+  $country         = $_POST[ 'country' ];
+  $phone           = $_POST[ 'phone' ];
+  $city            = $_POST[ 'city' ];
+  $name            = $_POST[ 'name' ];
+  $mail            = $_POST[ 'mail' ];
+  $title           = $_POST[ 'title' ];
+  $destino_country = $_POST[ 'destino_country' ];
+  $destino_city    = $_POST[ 'destino_city' ];
+
+  $destino = '';
+  if(isset($_POST['destino_country'])){
+    $destino = " - <span class='ubicacion'>$destino_country - $destino_city</span>";
+  }
 
 	// if($_POST['a00'] != ""){
     // $respuesta['gate0'] = 'ROBOT';
 		// $link = add_query_arg( array('status' => 'nope',), $link );
 	// } else {
-    $respuesta['gate0'] = 'no es robot';
+    // $respuesta['gate0'] = 'no es robot';
 
 
 
@@ -115,6 +123,7 @@ function lt_ajax_mail() {
     // $message='';
     // $message=$mail;
 
+    $respuesta['test'] = 'testeo de respuesta';
 
 
     // foreach ($_POST as $key => $value) {

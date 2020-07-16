@@ -224,7 +224,7 @@ $message = "
 
     <header class='wrapper bg-2 padding-bottom-0 DP2'>
       <img class='mailLogo' src='https://silverseacontainers.com/wp-content/uploads/2020/04/logo.png' alt='' />
-      <p class='px20 padding-bottom-16px'><strong>Cotización <span class='cliente'>$name</span> - <span class='pedido'>%titulo-pedido%</span> - <span class='ubicacion'>$country - $city</span></strong></p>
+      <p class='px20 padding-bottom-16px'><strong>Cotización <span class='cliente'>$name</span> - <span class='pedido'>$title</span> - <span class='ubicacion'>$country - $city</span>$destino</strong></p>
     </header>
 
     <div class='wrapper bg-1'>
