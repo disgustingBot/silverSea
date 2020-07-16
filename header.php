@@ -136,7 +136,7 @@
         <span class="cartTotal brandColorTxt txtUnderlined">1234</span>
 
         <!-- ESTE ES EL CAMPO PARA EL TIPO DE CURRENCIE -->
-        <span class="cartTotalCurrencie">€</span>.
+        <span class="cartTotalCurrency brandColorTxt txtUnderlined">€</span>.
         <?php echo get_post_meta('150', 'ZJ-cotizador-precio-disponible-texto2', true); ?>
       </p>
 
@@ -145,7 +145,8 @@
 
       <p class="cartTotalTxt somePricesThere"><strong><?php echo get_post_meta('150', 'ZK-cotizador-algunos-precios-no-disponibles-titulo', true); ?> </strong></p>
       <p class="cartTotalTxt somePricesThere"><?php echo get_post_meta('150', 'ZL-cotizador-algunos-precios-no-disponibles-texto1', true); ?></p>
-      <p class="cartTotalTxt somePricesThere"> <span class="cartTotal brandColorTxt txtUnderlined">1234€</span>. <?php echo get_post_meta('150', 'ZN-cotizador-algunos-precios-no-disponibles-texto3', true); ?></p>
+      <p class="cartTotalTxt somePricesThere"> <span class="cartTotal brandColorTxt txtUnderlined">1234</span><span class="cartTotalCurrency brandColorTxt txtUnderlined">€</span>. <?php echo get_post_meta('150', 'ZN-cotizador-algunos-precios-no-disponibles-texto3', true); ?></p>
+
 
       <!-- PRECIO NO DISPONIBLE -->
 

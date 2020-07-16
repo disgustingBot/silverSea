@@ -552,7 +552,10 @@ trenController = {
 				totalPrice = 'Precio no disponible';
 				currency = '';
 			}
+			let gran_total = total_price;
 
+			gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			total_price = total_price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 			itemCurrency.innerText = currency
 			itemPrice.innerText = total_price;
@@ -572,7 +575,8 @@ trenController = {
 			
 			// let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
 			// console.log('list_of_product_with_price: ', list_of_product_with_price);
-			let gran_total = total_price;
+			
+
 			let gran_total_display = [...d.querySelectorAll('.cartTotal')];
 			console.log(gran_total_display)
 			gran_total_display.forEach(element=>{
@@ -1101,8 +1105,6 @@ cartController = {
 
 
 				if( price_is_avaliable ){
-					// console.log('precio "valido" igual a: ', singlePrice)
-					
 					if ( this_is_not_the_correct_currency ){
 						currency = 'USD';
 						exchange_rate = parseFloat(data['exchange'].rate)
@@ -1140,12 +1142,22 @@ cartController = {
 							gran_total += product.singlePrice * product.qty;
 						}
 					})
+					gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 					let gran_total_display = [...d.querySelectorAll('.cartTotal')];
 					console.log(gran_total_display)
 					gran_total_display.forEach(element=>{
 						// console.log(element.target)
 						element.innerHTML = gran_total;
 					})
+					
+					let currency_display = [...d.querySelectorAll('.cartTotalCurrency')];
+					console.log(currency_display)
+					currency_display.forEach(element=>{
+						// console.log(element.target)
+						element.innerHTML = currency;
+					})
+					
 					// console.log('CARRITO luego de la transformacion', cartController.cart)
 					if ( list_of_product_with_price.length == 0 ){
 						altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
@@ -1156,6 +1168,10 @@ cartController = {
 					}
 					// TODO: encender el mail Sender
 					// cartController.sendMail();
+					// TODO: encender el lead Sender
+					// cartController.cartToLeads = cartController.cart;
+					// createCookie('status','next')
+					// cartController.sendAllLeads();
 				}
 				// if (i==cartController.cart.length - 1){
 				// }
@@ -1171,10 +1187,6 @@ cartController = {
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
 
-		// TODO: encender el lead Sender
-		// cartController.cartToLeads = cartController.cart;
-		// createCookie('status','next')
-		// cartController.sendAllLeads();
 	},
 
 
