@@ -55,13 +55,13 @@
             <?php } ?>
           >
           <!-- <span class="checkmark"></span> -->
-          <p class="colrOptP"></p>
+          <p class="colrOptP">Quitar filtro</p>
         </label>
         <?php foreach ($subcats as $sc) { ?>
-          <label for="<?php echo $sc->slug; ?>" class="selectBoxOption">
+          <label for="filter_<?php echo $sc->slug; ?>" class="selectBoxOption">
             <input
               class="selectBoxInput"
-              id="<?php echo $sc->slug; ?>"
+              id="filter_<?php echo $sc->slug; ?>"
               data-slug="<?php echo $sc->slug; ?>"
               data-parent="<?php echo $term->slug; ?>"
               type="radio"

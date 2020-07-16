@@ -465,19 +465,17 @@ trenController = {
 		if(option=='tren' && !cotizador.classList.contains('tren')){
 			// // TODO: if cart is full, you should empty it first
 			// TODO: % chequear si tenes en el carrito el contenedor habilitado...
-				// alert('debes vaciar tu carrito primero')
-				cartController.cart.forEach(product=>{
-					cartController.remove(product.code)
-				})
+			cartController.emptyCart()
+			cartController.endButtonsSwitch();
 
-				cotizador.classList.add('tren');
-				trenController.select40DCCW();
-				trenController.setPointerEvents('none');
+			cotizador.classList.add('tren');
+			trenController.selectUniqeOption();
+			trenController.setPointerEvents('none');
 
-				buttonFinish.onclick = trenController.finish
+			buttonFinish.onclick = trenController.finish
 
-				accordionSelector('#destino')
-				d.querySelector('#trenExplanation').style.display = 'block';
+			accordionSelector('#destino')
+			d.querySelector('#trenExplanation').style.display = 'block';
 		}
 
 		if(option!='tren' && cotizador.classList.contains('tren')){
@@ -642,15 +640,15 @@ trenController = {
 		d.querySelector('#selectBoxTipo_2').style.pointerEvents = value
 		d.querySelector('#selectBoxCondicion').style.pointerEvents = value
 	},
-	select40DCCW:()=>{
+	selectUniqeOption:()=>{
 		selectBoxControler('40 Pies', '#selectBoxSize', '#selectBoxCurrentSize')
 		d.querySelector('[value="40-pies"]').checked = true
 
 		selectBoxControler('Dry', '#selectBoxTipo_1', '#selectBoxCurrentTipo_1')
 		d.querySelector('[value="Dry"]').checked = true
 
-		selectBoxControler('Standard', '#selectBoxTipo_2', '#selectBoxCurrentTipo_2')
-		d.querySelector('[value="DC"]').checked = true
+		selectBoxControler('High Cube', '#selectBoxTipo_2', '#selectBoxCurrentTipo_2')
+		d.querySelector('[value="HC"]').checked = true
 
 		selectBoxControler('Cargo	', '#selectBoxCondicion', '#selectBoxCurrentCondicion')
 		d.querySelector('[value="CW"]').checked = true
@@ -696,6 +694,10 @@ locationSelector = {
 		inputs = [...coprAlqui.querySelectorAll('#origen .selectBoxInput')]
 		inputs.forEach((input)=>{
 			input.onchange = ()=>{
+				if ( input.id == 'nulOrigenCountry' ){
+					d.querySelector('#nulOrigenCity').checked = true
+					selectBoxControler('','#selectBoxOrigenCity','#selectBoxCurrentOrigenCity')
+				}
 				locationSelector.searchLocation('origen')
 			};
 		})
@@ -704,6 +706,10 @@ locationSelector = {
 		inputs = [...coprAlqui.querySelectorAll('#destino .selectBoxInput')]
 		inputs.forEach((input)=>{
 			input.onchange = ()=>{
+				if ( input.id == 'nulDestinoCountry' ){
+					d.querySelector('#nulDestinoCity').checked = true
+					selectBoxControler('','#selectBoxDestinoCity','#selectBoxCurrentDestinoCity')
+				}
 				locationSelector.searchLocation('destino')
 			};
 		})
@@ -728,6 +734,8 @@ locationSelector = {
 	searchLocation:(option)=>{
 		let coprAlqui = d.querySelector('.coprAlqui');
 		let selected = [...coprAlqui.querySelectorAll('#'+option+' .selectBoxInput:checked')];
+
+		console.log('previous search', locationSelector.currentSearch)
 
 		locationSelector.currentSearch = locationSelector.allLocations;
 		// console.log(locationSelector.currentSearch);
@@ -1058,6 +1066,18 @@ cartController = {
 	cartToLeads: [],
 	allProducts:{},
 
+	emptyCart:()=>{
+		// TODO: % chequear si tenes en el carrito el contenedor habilitado...
+		// alert('debes vaciar tu carrito primero')
+		console.log('cart: ', cartController.cart.length)
+		to_be_deleted = []
+		cartController.cart.forEach( product =>{
+			to_be_deleted.unshift(product.code);
+		})
+		to_be_deleted.forEach( code => {
+			cartController.remove(code)
+		})
+	},
 
 
 	finish:()=>{
@@ -1248,6 +1268,11 @@ cartController = {
 		console.log(cartController.cart);
 		createCookie('cart', JSON.stringify(cartController.cart).split(';').join(':'));
 
+		altClassFromSelector('cartItemAdded','.cardBtnContainer')
+		setTimeout(() => {
+			altClassFromSelector('cartItemAdded','.cardBtnContainer')
+		}, 1500);
+
 
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
 		cartController.endButtonsSwitch();
@@ -1261,6 +1286,11 @@ cartController = {
 			// console.log('activate all buttons')
 			endButton.disabled = isTheCartEmpty;
 		})
+		if ( isTheCartEmpty ) {
+			d.querySelector('.itemAddedIcon').style.color = 'transparent';
+		} else {
+			d.querySelector('.itemAddedIcon').style.color = 'var(--primaryColor)';
+		}
 	},
 
 	remove:(code)=>{
@@ -1549,4 +1579,16 @@ const filterActivate = ()=>{
 			}
 		}
 	}
+}
+
+
+
+
+const addBullshitToCart = ()=>{
+	example1 = '[{"values":{"size":"6","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"6HC CW","id":"7","categoria":"size > 6PIES: Condition > CW: general > Dry > HC","imagenes":"","ancho":"2.43","alto":"2.59","largo":"1.98","peso":"0","tara":null,"container_description":null,"qty":6,"code":"6HC CW"},"size":"6","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"6HC CW","id":"7","categoria":"size > 6PIES: Condition > CW: general > Dry > HC","imagenes":"","ancho":"2.43","alto":"2.59","largo":"1.98","peso":"0","tara":null,"container_description":null,"qty":6,"code":"6HC CW"},{"values":{"size":"40","tipo_1":"Special","tipo_1_description":"Special | Especiales","tipo_2":"OT","tipo_2_description":"Open Top","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40OT CW","id":"114","categoria":"size > 40PIES: Condition > CW: general > Special > OT","imagenes":"","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40OT CW"},"size":"40","tipo_1":"Special","tipo_1_description":"Special | Especiales","tipo_2":"OT","tipo_2_description":"Open Top","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40OT CW","id":"114","categoria":"size > 40PIES: Condition > CW: general > Special > OT","imagenes":"","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40OT CW"},{"values":{"size":"40","tipo_1":"Reefer","tipo_1_description":"Refrigerado | Reefer","tipo_2":"RF","tipo_2_description":"Reefer Standard","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40RF CW","id":"100","categoria":"size > 40PIES: Condition > CW: general > Reefer > RF","imagenes":"40HCRFCW_1","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40RF CW"},"size":"40","tipo_1":"Reefer","tipo_1_description":"Refrigerado | Reefer","tipo_2":"RF","tipo_2_description":"Reefer Standard","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40RF CW","id":"100","categoria":"size > 40PIES: Condition > CW: general > Reefer > RF","imagenes":"40HCRFCW_1","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40RF CW"},{"values":{"size":"40","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40HC CW","id":"88","categoria":"size > 40PIES: Condition > CW: general > Dry > HC","imagenes":"40HCCW_1, 40HCCW_2, 40HCCW_3, 40HCCW_4","ancho":"2.43","alto":"2.89","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":4,"code":"40HC CW"},"size":"40","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40HC CW","id":"88","categoria":"size > 40PIES: Condition > CW: general > Dry > HC","imagenes":"40HCCW_1, 40HCCW_2, 40HCCW_3, 40HCCW_4","ancho":"2.43","alto":"2.89","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":4,"code":"40HC CW"}]';
+	
+	JSON.parse(example1).forEach((item, i) => {
+		cartController.cart.unshift(new CartItem(item));
+		cartController.cart[0].cartUI();
+	});
 }
