@@ -1,10 +1,8 @@
 <?php get_header(); ?>
 
-
 <section class="ATF frontPageATF sectionWhite">
   <video loop autoplay muted class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" alt="">
   </video>
-
 
   <div class="cotizador cont" id="cotizador">
     <div class="cotizadorOptionsContainer">
@@ -60,7 +58,7 @@
     </div>
     <div class="contizacionAvanzada">
       <p class="avanzadaTxt">¿Necesitas una cotización mas detallada?</p>
-      <a href="#" class="btnSimple">Ir a Cotización avanzada</a>
+      <a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?> " class="btnSimple">Ir a Cotización avanzada</a>
     </div>
 
 
@@ -187,17 +185,16 @@
     <?php } ?>
 
 
+
+
+    <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
+
     <select name="cont_selector" class="btn contSelector" id="contSelector" >
       <?php $i=0;
       foreach($categories as $category) { ?>
           <option class="contOption" name="option" onclick="altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')" <?php if($i==0){echo 'checked';} ?> value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
       <?php $i++; } ?>
     </select>
-
-
-
-
-    <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
   <?php } ?>
 </section>
 

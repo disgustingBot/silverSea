@@ -199,14 +199,15 @@ FIN DE MAPA DE CONTENIDOS */
   --cotizacionAvanzadaFD: column;
   --btnSimpleM: 1rem auto;
   /* --dynamicContGTR: repeat(6, 1fr); */
-  --contSelectorMargin: 8px auto;
-  --cotizarContainerMargin: 8px auto;
+  /* --contSelectorMargin: 8px auto; */
+  /* --cotizarContainerMargin: 8px auto; */
   --queContainerINeedGTC: 1fr;
   --article2ContentWidth: 90%;
   --frontPageATFBgHeight: max-content;
   --cotizadorOptionsMT: 2.2rem;
   --btnUpload: 12px;
   --countrySelectBoxLeft: 0;
+  --containerNeededPosition: static;
 
 
   /* COUNTERS */
@@ -504,12 +505,14 @@ FIN DE MAPA DE CONTENIDOS */
     /* ATFS */
     /* HOME ATF */
     --featuresMarginTop: -50px;
-    --contSelectorMargin: 16px 0 auto 0;
-    --cotizarContainerMargin: 16px 0 auto auto;
+    /* --contSelectorMargin: 16px 0 auto 0; */
+    /* --cotizarContainerMargin: 16px 0 auto auto; */
     --article2ContentWidth: 45%;
     --frontPageATFBgHeight: calc(100vh + -80px);
     --selectBoxListLeft: 100%;
     --cotizadorOptionsMT: unset;
+    --containerNeededPosition: absolute;
+
 
 
 
@@ -1455,12 +1458,34 @@ section {
 
 
 .contSelector     {
-  margin: var(--contSelectorMargin)!important;
-  padding: 0!important;
-  height: 36px!important;
+  /* margin: var(--contSelectorMargin)!important; */
+  /* padding: 0!important; */
+  height: 40px!important;
+  position: var(--containerNeededPosition);
+  margin: 1rem auto!important;
+  bottom: .5rem;
+  left: var(--lateral);
 }
 
-.cotizarContainer {margin: var(--cotizarContainerMargin)!important}
+.contOption {
+  font-weight: bolder;
+  background: var(--primaryColor);
+  color: var(--grey0);
+}
+
+.contOption:nth-child(1) {
+  display: none;
+}
+
+.cotizarContainer {
+  /* margin: var(--cotizarContainerMargin)!important */
+  position: var(--containerNeededPosition);
+  bottom: .5rem;
+  height: 40px!important;
+  right: var(--lateral);
+  margin: 1rem auto!important;
+
+}
 
 /* FULL WIDTH MAP AND IT'S FIXES */
 
@@ -2745,6 +2770,7 @@ table.stockreport-table .border {
 .containerINeed {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .containerNeeded.contVisible {
@@ -2755,7 +2781,9 @@ table.stockreport-table .border {
   display: none;
   position: relative;
   width: 100%;
+  margin-top: 1rem;
 }
+
 
 .containerNeeded .sectionSummary {
   margin: auto 0;
@@ -3379,6 +3407,11 @@ padding-bottom:0;
 .finalizarConsulta .formAcceptance {
   color: black;
 }
+
+.contactForm .termsDescription {
+  color: white;
+}
+
 
 .finalizarConsultaSubTitle {margin-top: 16px;}
 /* ---------------------------------------------------------------------------
@@ -4210,3 +4243,7 @@ padding-bottom:0;
 
 .unauthenticatedUser {padding: 1rem var(--lateral)}
 .unauthenticatedTxt {margin-bottom: 1rem}
+
+#trp-floater-ls .trp-with-flags .trp-flag-image {
+  width: auto;
+}
