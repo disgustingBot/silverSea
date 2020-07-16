@@ -133,10 +133,10 @@
       <p class="cartTotalTxt allPricesThere"><strong>Gracias por su consulta.</strong></p>
       <p class="cartTotalTxt allPricesThere">
         El valor estimado de su consulta es de
-        <span class="cartTotal brandColorTxt txtUnderlined">1234€</span>
+        <span class="cartTotal brandColorTxt txtUnderlined">1234</span>
 
         <!-- ESTE ES EL CAMPO PARA EL TIPO DE CURRENCIE -->
-        <span class="cartTotalCurrencie">€</span>.
+        <span class="cartTotalCurrency brandColorTxt txtUnderlined">€</span>.
         Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle.
       </p>
 
@@ -145,7 +145,7 @@
 
       <p class="cartTotalTxt somePricesThere"><strong>Gracias por su consulta.</strong></p>
       <p class="cartTotalTxt somePricesThere"><strong>No disponemos de un valor fijo para algunos de los contenedores que ha seleccionado</strong>. Sin embargo, un asesor se pondrá en contacto para proveerle el precio de estos contenedores.</p>
-      <p class="cartTotalTxt somePricesThere">El valor estimado de los contenedores que disponen de precio fijo es de <span class="cartTotal brandColorTxt txtUnderlined">1234€</span>. Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle.</p>
+      <p class="cartTotalTxt somePricesThere">El valor estimado de los contenedores que disponen de precio fijo es de <span class="cartTotal brandColorTxt txtUnderlined">1234</span><span class="cartTotalCurrency brandColorTxt txtUnderlined">€</span>. Le hemos enviado un email con el detalle, y nos pondremos en contacto con usted para gestionar su pedido al detalle.</p>
 
 
       <!-- PRECIO NO DISPONIBLE -->

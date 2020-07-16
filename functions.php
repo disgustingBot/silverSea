@@ -680,6 +680,17 @@ function lt_upload_file () {
 							if(move_uploaded_file($fileTmpName,$fileDestination)){$respuesta['gate6']="File saved in the server correctly";
 								if($conn->query($query1)){$respuesta['gate7']="table correctly truncated";
 									if ($conn->query($query2)) {$respuesta['gate8']="Data loaded into table";
+
+
+
+										// If the user file in existing directory already exist, delete it
+										if (file_exists($fileDestination)) {
+											unlink($fileDestination);
+											$respuesta['deleted']=true;
+										}
+
+
+
 										$respuesta['query1']="$query1";
 										$respuesta['query2']="$query2";
 										
