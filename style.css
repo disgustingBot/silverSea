@@ -187,6 +187,7 @@ FIN DE MAPA DE CONTENIDOS */
   --itemAddedToCartTop: 100px;
   --itemAddedToCartTopAlt:-7px;
   --itemAddedToCartRight: -5px;
+  --headerHeight: 70px;
 
   /* ATFS */
   /* FRONT PAGE ATF */
@@ -502,6 +503,8 @@ FIN DE MAPA DE CONTENIDOS */
     --cartButtonTxtDisplay: block;
 
     --itemAddedToCartRight: 0px;
+    --headerHeight: 120px;
+
 
 
 
@@ -984,15 +987,16 @@ section {
   position: sticky;
   top:0;
   z-index: 6;
-  height: 120px;
+  height: var(--headerHeight);
 }
+
+
 .header .cartButton{
   top:calc(80px - 1rem);
 }
 
 .headerLogoLink {
   display: flex;
-  height: 120px;
 }
 
 .logo {
@@ -1127,9 +1131,9 @@ section {
 
 .navBarMobileContainer {
   position: fixed;
-  top: 119px;
+  top: 69px;
   right: 0;
-  height: calc(100vh - 139px);
+  height: calc(100vh - 129px);
   margin-right: -100%;
   transition: .25s;
   width: 60vw;
