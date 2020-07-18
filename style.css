@@ -185,8 +185,8 @@ FIN DE MAPA DE CONTENIDOS */
   --cartButtonTxtDisplay: none;
 
   --itemAddedToCartTop: 100px;
-  --itemAddedToCartTopAlt:-12px;
-  --itemAddedToCartRight: -10px;
+  --itemAddedToCartTopAlt:-7px;
+  --itemAddedToCartRight: -5px;
 
   /* ATFS */
   /* FRONT PAGE ATF */
@@ -394,7 +394,7 @@ FIN DE MAPA DE CONTENIDOS */
   :root {
     /* ?HEADER */
 
-    --itemAddedToCartRight: -10px;
+    --itemAddedToCartRight: 4px;
 
     /* ATFS */
     /* HOME ATF */
@@ -866,6 +866,7 @@ ul,ol{list-style:none}
 
 .main p {
   margin: 1em 0 1em 0;
+  font-size: 16px;
 }
 
 .main a {
@@ -1397,6 +1398,7 @@ section {
 .featureIcon{
   margin:auto;
   height: 80px;
+  width: auto;
 }
 
 .featureTxt {
@@ -1444,6 +1446,7 @@ section {
 
 .main ul li {
   margin: 32px 0;
+  font-size: 16px;
 }
 
 .main ul li::before {
@@ -2549,7 +2552,7 @@ table.stockreport-table .border {
   height: 20px;
   transition: .4s ease-out;
   top: var(--itemAddedToCartTopAlt);
-  right: 5px;
+  right: var(--itemAddedToCartRight);
   width: 20px;
   z-index:2;
 }
