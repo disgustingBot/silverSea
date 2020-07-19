@@ -157,12 +157,24 @@
 
       <p class="cartTitle txtCenter txtUnderlined"><?php echo get_post_meta('150', 'ZQ-cotizador-detalle-consulta-titulo', true); ?></p>
     </div>
-    <button class="btn CotizadorEndButton" disabled type="button" onclick="cartController.emptyCart()">
-      Vaciar Carrito
-    </button>
-    <button class="btn CotizadorEndButton" disabled type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
-      FINALIZAR
-    </button>
+    <div class="cartButtons">
+
+      <button class="btn CotizadorEndButton buttonsAtBegin" disabled type="button" onclick="cartController.emptyCart()">
+        Vaciar Carrito
+      </button>
+      <button class="btn CotizadorEndButton buttonsAtBegin" disabled type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
+        FINALIZAR
+      </button>
+
+      
+      <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('consultaFinalizada', '#cart', 'cart');cartController.emptyCart();">
+        REALIZAR OTRA CONSULTA
+      </button>
+      <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('alt', '#cart')">
+        CERRAR
+      </button>
+
+    </div>
   </div>
 
   <div class="finalizarConsulta" id="finalizarConsulta">

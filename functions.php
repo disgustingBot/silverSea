@@ -88,35 +88,136 @@ function lt_add_theme_support() {
 
 
 
-// REDIRECT WITH LANGUAGE
+
+function language_test() {
+	
+	$allowed_languages = ['en', 'es'];
+	$default_language  = 'es';
+	$user_language     = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$site_url_character_count = strlen(get_home_url()) - 3;
+	$current_language = substr($actual_link, $site_url_character_count, 2);
+
+	// c_log($actual_link);
+	echo $actual_link;
+	echo '<br>';
+	echo '<br>';
+	echo $user_language;
+	echo '<br>';
+	echo '<br>';
+	echo $current_language;
 
 
-//
-// function custom_lang_found(){
-//     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-//     // if( $lang == "en" ){
-// 		// $url = get_home_url()."/$lang/";
-//
-// 		$url = substr(get_home_url(), 0, -3);
-// 		$url = $url . "$lang/";
-// 				$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-//
-// if (strpos($actual_link, $lang) !== false) {
-//     // echo 'true';
-// 		// var_dump(get_home_url());
-// } else {
-// 	// wp_redirect( $url );
-//
-// }
-// 				if($url != $actual_link){
-// 					// wp_redirect( $url );
-// 					 // var_dump(get_home_url());
-// 				}
-//     // }
-// }
-// add_action( 'template_redirect', 'custom_lang_found' );
-//
-//
+	// if( $current_language != $user_language ) {
+
+	// 	if(!isset($_COOKIE['user_language'])){
+
+	// 		if( in_array ($user_language, $allowed_languages) ){
+	// 			$lang = $user_language;
+	// 			setcookie("user_language", $user_language, time()+86400);  /* expira en 1 hora */
+	// 			// echo 'idioma permitido, asignar su propio idioma';
+	// 			// echo '<br>';
+	// 			// echo '<br>';
+	// 		} else {
+	// 			$lang = $default_language;
+	// 			setcookie("user_language", $default_language, time()+86400);  /* expira en 1 hora */
+	// 			// echo 'idioma NO permitido, asignar idioma por defecto';
+	// 			// echo '<br>';
+	// 			// echo '<br>';
+	// 		}
+	// 		$url = substr(get_home_url(), 0, -3);
+	// 		$url = $url . "$lang/";
+	// 			// echo '<br>';
+	// 			// echo '<br>';
+	// 			// echo $_COOKIE["user_language"];
+	
+	// 		wp_redirect( $url );
+	// 	}
+
+	// }
+
+
+}
+add_action( 'init', 'language_test' );
+
+function custom_lang_found(){
+
+	//!SKETCH:
+	// leer config de idioma del usuario
+	// chequear si usuario ya se encuentra en ese idioma, en cuyo caso no hacer nada.
+
+	// si no esta en ese idioma pueden ser dos cosas:
+	// la primera: ya se le asigno un idioma al usuario y esta en su idioma asignado
+
+	// la segunda: no se le asigno un idioma al usuario -> asignar uno y redirigir
+	// si no comparar idioma del usuario con la lista de idiomas permitidos
+	// si no esta en la lista redirigir a idioma por defecto
+	// y si si, redirigir a idioma de usuario
+
+	$allowed_languages = ['en', 'es', 'de'];
+	$default_language  = 'es';
+	$user_language     = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$site_url_character_count = strlen(get_home_url()) - 3;
+	$current_language = substr($actual_link, $site_url_character_count, 2);
+
+
+
+	if( $current_language != $user_language ) {
+
+		// if(!isset($_COOKIE['user_language'])){
+
+		// 	if( in_array ($user_language, $allowed_languages) ){
+		// 		$lang = $user_language;
+		// 		setcookie("user_language", $user_language, time()+86400);  /* expira en 1 dia */
+		// 		// echo 'idioma permitido, asignar su propio idioma';
+		// 		// echo '<br>';
+		// 		// echo '<br>';
+		// 	} else {
+		// 		$lang = $default_language;
+		// 		setcookie("user_language", $default_language, time()+86400);  /* expira en 1 dia */
+		// 		// echo 'idioma NO permitido, asignar idioma por defecto';
+		// 		// echo '<br>';
+		// 		// echo '<br>';
+		// 	}
+		// 	$url = substr(get_home_url(), 0, -3);
+		// 	$url = $url . "$lang/";
+		// 		// echo '<br>';
+		// 		// echo '<br>';
+		// 		// echo $_COOKIE["user_language"];
+	
+		// 	wp_redirect( $url );
+		// }
+
+	}
+
+
+
+    // $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    // // if( $lang == "en" ){
+	// 	// $url = get_home_url()."/$lang/";
+
+	// 	$url = substr(get_home_url(), 0, -3);
+	// 	$url = $url . "$lang/";
+	// 	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+	// if (strpos($actual_link, $lang) !== false) {
+	// 	// echo 'true';
+	// 		// var_dump(get_home_url());
+	// } else {
+	// 	wp_redirect( $url );
+
+	// }
+
+	// if($url != $actual_link){
+	// 	// wp_redirect( $url );
+	// 		// var_dump(get_home_url());
+	// }
+    // }
+}
+add_action( 'template_redirect', 'custom_lang_found' );
+
+
 
 
 

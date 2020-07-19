@@ -504,7 +504,7 @@ trenController = {
 
 		var formData = new FormData();
 		formData.append( 'action', 'lt_tren_end' );
-		formData.append( 'cont', "40DC CW" );
+		formData.append( 'cont', "40HC CW" );
 		formData.append( 'origen_country' , locationSelector.origen[0] .capitalize() );
 		formData.append( 'origen_city'    , locationSelector.origen[1] .capitalize() );
 		formData.append( 'destino_country', locationSelector.destino[0].capitalize() );
@@ -514,7 +514,7 @@ trenController = {
 		ajax2(formData).then( data => {
 			console.log(data)
 
-			let cartItem = d.querySelector('.cartItem[data-code="40DC CW"]');
+			let cartItem = d.querySelector('.cartItem[data-code="40HC CW"]');
 			let itemQty = cartItem.querySelector('.cartItemQty').innerText;
 			let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
 			let itemCurrency = cartItem.querySelector('.cartItemCurrency');
@@ -527,7 +527,8 @@ trenController = {
 			let precio_origen  = price_data_pre_processor( data.precio_origen, data.exchange )
 			let precio_destino = price_data_pre_processor( data.precio_destino, data.exchange )
 			let final_price = precio_origen - precio_destino + gastos
-			// console.log('final_price', final_price)
+			console.log('precio_origen', precio_origen)
+			console.log('precio_destino', precio_destino)
 			let total_price = 0;
 
 
@@ -535,6 +536,7 @@ trenController = {
 
 			
 			price_is_avaliable = ( !!precio_origen && !!precio_destino )
+			console.log('price_is_avaliable', price_is_avaliable)
 			this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
 
 
@@ -547,13 +549,16 @@ trenController = {
 				}
 				total_price = final_price * parseInt(itemQty);
 			} else {
-				totalPrice = 'Precio no disponible';
+				final_price = 'Precio no disponible';
+				total_price = 'Precio no disponible';
 				currency = '';
 			}
 			let gran_total = total_price;
 
-			gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			total_price = total_price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			if ( typeof gran_total == 'number' ) {
+				gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				total_price = total_price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 
 			itemCurrency.innerText = currency
 			itemPrice.innerText = total_price;
@@ -726,7 +731,7 @@ locationSelector = {
 			locationSelector.allLocations   = data;
 			locationSelector.currentSearch  = data;
 
-			console.log(locationSelector.allLocations)
+			// console.log(locationSelector.allLocations)
 		})
 	},
 
@@ -735,7 +740,7 @@ locationSelector = {
 		let coprAlqui = d.querySelector('.coprAlqui');
 		let selected = [...coprAlqui.querySelectorAll('#'+option+' .selectBoxInput:checked')];
 
-		console.log('previous search', locationSelector.currentSearch)
+		// console.log('previous search', locationSelector.currentSearch)
 
 		locationSelector.currentSearch = locationSelector.allLocations;
 		// console.log(locationSelector.currentSearch);
@@ -868,7 +873,7 @@ productSelector = {
 
 		cot_option = d.querySelector('[name="cotizadorOption"]:checked').value;
 		// console.log(cot_option)
-		console.log('option value: ', cot_option)
+		// console.log('option value: ', cot_option)
 		if (cot_option=='cont') {
 			productSelector.unselectAll();
 		}
@@ -957,7 +962,7 @@ productSelector = {
 	iconPlay:()=>{
 		let selected = [...dynamicCont.querySelectorAll('.selectBoxInput:checked')];
 		selected.forEach((selector)=>{
-			d.querySelector('#currentSemiSelection'+selector.name).setAttribute('xlink:href', '#'+selector.value);
+			d.querySelector('#currentSemiSelection'+selector.name).setAttribute('xlink:href', '#'+selector.value.replace(/\s+/g, '-'));
 			// console.log(selector.name)
 			// console.log(selector.value)
 			// let input = selector.querySelector('[checked=true]')
@@ -977,9 +982,9 @@ productSelector = {
 
 const price_data_pre_processor = (data, exchange)=>{
 
-	console.log('data in price_data_processor', data)
-	if ( data.length != 0 ) {
-		console.log(exchange)
+	// console.log('data in price_data_processor', data)
+	if ( data ) {
+		// console.log(exchange)
 		data.forEach(element => {
 			if(element.currency.includes('USD')){
 				element.currency = 'EUR'
@@ -992,24 +997,24 @@ const price_data_pre_processor = (data, exchange)=>{
 		if ( data[0].fixed_price != 0 ) {
 
 			singlePrice = parseFloat(data[0].fixed_price)
-			console.log('FIXED PRICE')
+			// console.log('FIXED PRICE')
 
 		} else if ( data[0].sale_price != 0 ) {
 
 			singlePrice = parseFloat(data[0].sale_price - 300)
-			console.log('SALE PRICE')
+			// console.log('SALE PRICE')
 
 		}else if( data.length == 1 ){
 
 			singlePrice = parseFloat(data[0].supplier_price)
-			console.log('UNICO SUPPLIER PRICE')
+			// console.log('UNICO SUPPLIER PRICE')
 
 		}else{
 			let prices = data.map( x => x.supplier_price );
 			let pricesSort = prices.sort((a, b) => a - b).slice(0, 2);
 			let average = (parseInt(pricesSort[0]) + parseInt(pricesSort[1])) / 2;
 			singlePrice = average;
-			console.log('PROMEDIO DE LOS 2 SUPPLIER PRICE MAS TOBARA')
+			// console.log('PROMEDIO DE LOS 2 SUPPLIER PRICE MAS TOBARA')
 		}
 		// totalPrice = singlePrice * parseInt(itemQty);
 		if(singlePrice != 0){
@@ -1033,15 +1038,7 @@ const price_data_pre_processor = (data, exchange)=>{
 // CART CONTROLLER
 cartController = {
 	setup:()=>{
-		if (d.querySelector('#cotizador')) {
-			// cartController.ready(false);
-			// cartController.getCol('Size');
-		}
-		// cartController.getLocation();
-		// cartController.getLocation(false, 'Destino');
-
-		// cartController.cart = JSON.parse(readCookie('cart'));
-		// cartController.cart = JSON.parse(readCookie('cart'));
+		
 		if(readCookie('cart')){
 			JSON.parse(readCookie('cart')).forEach((item, i) => {
 				cartController.cart.unshift(new CartItem(item));
@@ -1060,7 +1057,7 @@ cartController = {
 			});
 		}
 	},
-	// currentSemiSelection: {code: false, qty: 1, size: false, tipo_1: false, tipo_2: false, condicion: false, singlePrice: 0},
+
 	containerToAdd:false,
 	cart: [],
 	cartToLeads: [],
@@ -1074,6 +1071,7 @@ cartController = {
 		cartController.cart.forEach( product =>{
 			to_be_deleted.unshift(product.code);
 		})
+
 		to_be_deleted.forEach( code => {
 			cartController.remove(code)
 		})
@@ -1081,7 +1079,7 @@ cartController = {
 
 
 	finish:()=>{
-		console.log('carrito antes de la transforrmacion', cartController.cart)
+		// console.log('carrito antes de la transforrmacion', cartController.cart)s	
 		cartController.cart.forEach((item, i) => {
 			// cartController.getPrice(item.code);
 			// console.log(item);
@@ -1111,20 +1109,22 @@ cartController = {
 
 
 				price_pre_processed = price_data_pre_processor( data.price_data, data.exchange );
-				// console.log('pre processed price: ', price_pre_processed)
+				// console.log('pre processed price of '+item.code+': ', price_pre_processed)
+				// console.log('item', item)
 				// TODO: estaria bueno que ellos puedan elegir en el dashboard el 'gastos' por defecto
 				let gastos = 0
 				if ( data.gastos ) {
 					gastos = parseFloat(data.gastos.profit) + parseFloat(data.gastos.deposit) + parseFloat(data.gastos.others);
 				}
+				
+				price_is_avaliable = !!price_pre_processed
+				// console.log('price_is_avaliable', price_is_avaliable)
 
-				singlePrice = price_pre_processed + gastos;
-
-				price_is_avaliable = !!singlePrice
 				this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
 
 
 				if( price_is_avaliable ){
+					singlePrice = price_pre_processed + gastos;
 					if ( this_is_not_the_correct_currency ){
 						currency = 'USD';
 						exchange_rate = parseFloat(data['exchange'].rate)
@@ -1132,6 +1132,7 @@ cartController = {
 					}
 					totalPrice = singlePrice * parseInt(itemQty);
 				} else {
+					singlePrice = 'Precio no disponible';
 					totalPrice = 'Precio no disponible';
 					currency = '';
 				}
@@ -1153,28 +1154,30 @@ cartController = {
 
 				// // chequear que lleguen todas las respuestas, no que estemos en la ultima
 				if( price_returns == cartController.cart.length ){
-					console.log('llego el ultimo precio')
-					let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
-					// console.log('list_of_product_with_price: ', list_of_product_with_price);
+					// console.log('llego el ultimo precio')
+					let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice != "Precio no disponible")
+					console.log('list_of_product_with_price: ', list_of_product_with_price);
 					let gran_total = 0;
 					cartController.cart.forEach(product=>{
-						if(product.singlePrice){
+						if( typeof product.singlePrice == 'number'){
 							gran_total += product.singlePrice * product.qty;
 						}
 					})
-					gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+					if ( typeof gran_total == 'number' ) {
+						// console.log()
+						gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					}
+
+
 					let gran_total_display = [...d.querySelectorAll('.cartTotal')];
-					console.log(gran_total_display)
 					gran_total_display.forEach(element=>{
-						// console.log(element.target)
 						element.innerHTML = gran_total;
 					})
 					
 					let currency_display = [...d.querySelectorAll('.cartTotalCurrency')];
-					console.log(currency_display)
 					currency_display.forEach(element=>{
-						// console.log(element.target)
 						element.innerHTML = currency;
 					})
 					
@@ -1186,8 +1189,9 @@ cartController = {
 					} else {
 						altClassFromSelector('allPricesThere', '#cartList', 'cartList');
 					}
+					altClassFromSelector('consultaFinalizada', '#cart')
 					// TODO: encender el mail Sender
-					cartController.sendMail();
+					// cartController.sendMail();
 					// TODO: encender el lead Sender
 					// cartController.cartToLeads = cartController.cart;
 					// createCookie('status','next')
@@ -1219,6 +1223,7 @@ cartController = {
 		formData.append( 'cont', JSON.stringify(cartController.cart) );
 		formData.append( 'country', locationSelector.origen[0] );
 		formData.append( 'city', locationSelector.origen[1] );
+		formData.append( 'currency', locationSelector.origen[2] );
 		formData.append( 'name', d.querySelector('#mateputNombre').value );
 		formData.append( 'phone', d.querySelector('#mateputTelefono').value );
 		formData.append( 'mail', d.querySelector('#mateputEmail').value );
