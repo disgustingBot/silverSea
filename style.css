@@ -185,8 +185,9 @@ FIN DE MAPA DE CONTENIDOS */
   --cartButtonTxtDisplay: none;
 
   --itemAddedToCartTop: 100px;
-  --itemAddedToCartTopAlt:-5px;
-  --itemAddedToCartRight: -10px;
+  --itemAddedToCartTopAlt:-7px;
+  --itemAddedToCartRight: -5px;
+  --headerHeight: 70px;
 
   /* ATFS */
   /* FRONT PAGE ATF */
@@ -394,7 +395,7 @@ FIN DE MAPA DE CONTENIDOS */
   :root {
     /* ?HEADER */
 
-    --itemAddedToCartRight: -10px;
+    --itemAddedToCartRight: 4px;
 
     /* ATFS */
     /* HOME ATF */
@@ -502,6 +503,8 @@ FIN DE MAPA DE CONTENIDOS */
     --cartButtonTxtDisplay: block;
 
     --itemAddedToCartRight: 0px;
+    --headerHeight: 120px;
+
 
 
 
@@ -866,6 +869,7 @@ ul,ol{list-style:none}
 
 .main p {
   margin: 1em 0 1em 0;
+  font-size: 16px;
 }
 
 .main a {
@@ -983,15 +987,16 @@ section {
   position: sticky;
   top:0;
   z-index: 6;
-  height: 120px;
+  height: var(--headerHeight);
 }
+
+
 .header .cartButton{
   top:calc(80px - 1rem);
 }
 
 .headerLogoLink {
   display: flex;
-  height: 120px;
 }
 
 .logo {
@@ -1126,9 +1131,9 @@ section {
 
 .navBarMobileContainer {
   position: fixed;
-  top: 119px;
+  top: 69px;
   right: 0;
-  height: calc(100vh - 139px);
+  height: calc(100vh - 129px);
   margin-right: -100%;
   transition: .25s;
   width: 60vw;
@@ -1397,6 +1402,7 @@ section {
 .featureIcon{
   margin:auto;
   height: 80px;
+  width: auto;
 }
 
 .featureTxt {
@@ -1444,6 +1450,7 @@ section {
 
 .main ul li {
   margin: 32px 0;
+  font-size: 16px;
 }
 
 .main ul li::before {
@@ -2549,7 +2556,7 @@ table.stockreport-table .border {
   height: 20px;
   transition: .4s ease-out;
   top: var(--itemAddedToCartTopAlt);
-  right: 5px;
+  right: var(--itemAddedToCartRight);
   width: 20px;
   z-index:2;
 }
