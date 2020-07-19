@@ -3401,10 +3401,9 @@ table.stockreport-table .border {
   margin:auto;
   padding:1rem;
   position: fixed;
-  top: -100px;
-  top:80px;
+  top:120px;
   left:var(--lateral);
-  transform:translateY(calc(-100% - 80px));
+  transform:translateY(calc(-100% - 120px));
   transition:.6s;
   width: calc(100% - var(--lateral) * 2);
   z-index: 4;
@@ -3429,9 +3428,9 @@ table.stockreport-table .border {
 p.allPricesThere {display:none}
 p.somePricesThere {display:none}
 p.nonePricesThere {display:none}
-.allPricesThere .allPricesThere{display:block}
-.somePricesThere .somePricesThere{display:block}
-.nonePricesThere .nonePricesThere{display:block}
+.consultaFinalizada .allPricesThere  .allPricesThere {display:block}
+.consultaFinalizada .somePricesThere .somePricesThere{display:block}
+.consultaFinalizada .nonePricesThere .nonePricesThere{display:block}
 
 .cartTotalTxt {
   font-size: 16px;
@@ -3458,6 +3457,14 @@ p.nonePricesThere {display:none}
   color:var(--primaryColor);
 }
 
+.cartButtons{
+  display:grid;
+  grid-auto-flow: column;
+  grid-gap:.5rem;
+}
+.buttonsAtEnd{display:none}
+.consultaFinalizada .buttonsAtEnd{display:block}
+.consultaFinalizada .buttonsAtBegin{display:none}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------

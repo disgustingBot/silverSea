@@ -27,7 +27,7 @@
   include 'RH.svg';
   include 'TK.svg';
   include 'SCRAP.svg';
-  include 'Special.svg';
+  include 'special.svg';
   include 'voyage1St.svg';
   include 'simpleTruck.svg';
   include 'doubleTruck.svg';
