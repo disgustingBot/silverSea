@@ -897,7 +897,7 @@ productSelector = {
 		ajax2(formData).then( data => {
 			productSelector.allProducts   = data;
 			productSelector.currentSearch = data;
-			// console.log(productSelector.allProducts)
+			console.log(productSelector.allProducts)
 		})
 	},
 
@@ -1165,9 +1165,9 @@ cartController = {
 					})
 
 					if ( typeof gran_total == 'number' ) {
-						// console.log()
+						// console.log(totalPrice)
 						gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-						totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						// totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 					}
 
 
@@ -1193,14 +1193,19 @@ cartController = {
 					// TODO: encender el mail Sender
 					// cartController.sendMail();
 					// TODO: encender el lead Sender
-					// cartController.cartToLeads = cartController.cart;
-					// createCookie('status','next')
-					// cartController.sendAllLeads();
+					cartController.cartToLeads = cartController.cart;
+					createCookie('status','next')
+					cartController.sendAllLeads();
 				}
 				// if (i==cartController.cart.length - 1){
 				// }
 				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
 				// }
+
+				if ( typeof totalPrice == 'number' ) {
+					// console.log(totalPrice)
+					totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				}
 
 
 				itemCurrency.innerText = currency;
