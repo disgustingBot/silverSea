@@ -1,5 +1,7 @@
 <div style="display:none">
   <?php
+  include 'es_flag.svg';
+  include 'en_flag.svg';
   include 'pies6.svg';
   include 'pies8.svg';
   include 'pies10.svg';
