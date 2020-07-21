@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ES" >
+<!-- <html> -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -158,7 +159,7 @@
       <p class="cartTitle txtCenter txtUnderlined"><?php echo get_post_meta('150', 'ZQ-cotizador-detalle-consulta-titulo', true); ?></p>
     </div>
     <button class="btn CotizadorEndButton" disabled type="button" onclick="cartController.emptyCart()">
-      Vaciar Carrito
+      Vaciar Pedido
     </button>
     <button class="btn CotizadorEndButton" disabled type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
       FINALIZAR
