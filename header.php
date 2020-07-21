@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" <?php language_attributes(); ?>>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,6 +60,17 @@
   <?php include 'assets/allIcons.php'; ?>
 
 	<view id="load" class="load"><div class="circle"></div></view>
+	<view id="languageScreen" class="languageScreen">
+    <h4 class="languageScreenTitle">Select your language</h4>
+    <div class="langOption" onclick="language_select('en')">
+      <img src="" alt="">
+      <p>English</p>
+    </div>
+    <div class="langOption" onclick="language_select('es')">
+      <img src="" alt="">
+      <p>Spanish</p>
+    </div>
+  </view>
 
   <header class="header" id="header">
 

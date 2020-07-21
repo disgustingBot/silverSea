@@ -62,10 +62,11 @@ $_SESSION["vars"] = $myvars;
 
 <?php
 
-$url = 'https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+// $url = 'https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+// $url = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+$url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
 // $myvars = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
-$myvars = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=on&00N0X00000CrQFZ=on&00N1x000003yrOa=25000";
-// $url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
+$myvars = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=1&00N0X00000CrQFZ=1&00N1x000003yrOa=25000";
 
 $ch = curl_init( $url );
 curl_setopt( $ch, CURLOPT_POST, 1);

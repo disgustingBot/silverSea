@@ -8,7 +8,51 @@ c.lof = (message, farbe = false)=>{
 };
 
 
+// const language_redirect = () =>{
+// 	let getUrl = window.location;
+
+// 	let url = getUrl .protocol + "//" + getUrl.host + "/",
+// 	allowed_laguages = [ 'es', 'en', 'de' ],
+// 	default_language = 'es',
+// 	current_language = getUrl.pathname.split('/')[1],
+// 	user_language = navigator.language || navigator.userLanguage;
+// 	user_language = user_language.substring(0, 2);
+
+// 	let redirect = false;
+// 	let vars = '';
+
+// 	if( current_language != default_language ){
+// 		redirect = true;
+// 		language = default_language;
+// 	}
+
+
+
+// 	if(redirect){ w.location.replace( url + language + vars ); }
+
+
+// 	console.log('current language: ', current_language);
+// 	console.log('allowed_laguages: ', allowed_laguages);
+// 	console.log('default_language: ', default_language);
+// 	console.log('user_language: ', user_language);
+
+// }
+
+
+const language_select = (language) => {
+	
+	createCookie('lt_lang', language, 1)
+	if (language == 'es') language = '';
+
+	w.location.replace( lt_data.homeurl + '/' + language );
+}
+
+
+
 w.onload=()=>{
+	if (readCookie('lt_lang')) d.querySelector('#languageScreen').classList.add('hide');
+	// language_redirect();
+
 	// LAZY LOAD FUNCTIONS MODULE
 	var lBs=[].slice.call(d.querySelectorAll(".lazy-background")),lIs=[].slice.call(d.querySelectorAll(".lazy")),opt={threshold:.01};
 	if("IntersectionObserver" in window){
@@ -32,10 +76,10 @@ w.onload=()=>{
 	filterActivate();
 
 
+	scrollAlter();
 	if (d.getElementById("load")) {
 		d.getElementById("load").style.top="-100vh";
 	}
-	scrollAlter();
 }
 // console.log(lt_data.ajaxurl)
 
@@ -592,6 +636,8 @@ trenController = {
 			} else {
 				altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
 			}
+			
+			altClassFromSelector('consultaFinalizada', '#cart')
 
 
 
@@ -1191,11 +1237,11 @@ cartController = {
 					}
 					altClassFromSelector('consultaFinalizada', '#cart')
 					// TODO: encender el mail Sender
-					// cartController.sendMail();
+					cartController.sendMail();
 					// TODO: encender el lead Sender
-					cartController.cartToLeads = cartController.cart;
-					createCookie('status','next')
-					cartController.sendAllLeads();
+					// cartController.cartToLeads = cartController.cart;
+					// createCookie('status','next')
+					// cartController.sendAllLeads();
 				}
 				// if (i==cartController.cart.length - 1){
 				// }
