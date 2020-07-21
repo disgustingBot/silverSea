@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
   <meta charset="UTF-8">
@@ -168,6 +169,7 @@
 
       <p class="cartTitle txtCenter txtUnderlined"><?php echo get_post_meta('150', 'ZQ-cotizador-detalle-consulta-titulo', true); ?></p>
     </div>
+
     <div class="cartButtons">
 
       <button class="btn CotizadorEndButton buttonsAtBegin" disabled type="button" onclick="cartController.emptyCart()">
@@ -186,6 +188,7 @@
       </button>
 
     </div>
+
   </div>
 
   <div class="finalizarConsulta" id="finalizarConsulta">
