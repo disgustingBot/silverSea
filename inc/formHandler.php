@@ -143,7 +143,7 @@ function lt_ajax_mail() {
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
 
-    if (wp_mail( $email , $subject , $message , $headers )) {
+    if (wp_mail( $mail , $subject , $message , $headers )) {
       // $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       $respuesta['gate1'] = 'mail enviado';
     } else {
