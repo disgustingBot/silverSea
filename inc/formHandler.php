@@ -65,14 +65,15 @@ function lt_ajax_mail() {
 
   // $link=$_POST['link'];
   $cont=json_decode(stripslashes($_POST['cont']));
+  $currency        = $_POST[ 'currency' ];
   $country         = $_POST[ 'country' ];
   $phone           = $_POST[ 'phone' ];
   $city            = $_POST[ 'city' ];
   $name            = $_POST[ 'name' ];
   $mail            = $_POST[ 'mail' ];
   $title           = $_POST[ 'title' ];
-  $destino_country = $_POST[ 'destino_country' ];
   $destino_city    = $_POST[ 'destino_city' ];
+  $destino_country = $_POST[ 'destino_country' ];
 
   $destino = '';
   $origen = " - En: <span class='ubicacion'>$country - $city</span>";
@@ -94,12 +95,15 @@ function lt_ajax_mail() {
     $tablaDePrecios = '';
     foreach ($cont as $key => $value) {
       $respuesta[$key] = $value;
-      if($value->singlePrice != 'NaN'){
+      if($value->singlePrice != 'Precio no disponible'){
         $finalPrice = $value->qty * $value->singlePrice;
+        $finalPrice = $finalPrice . ' ' . $currency;
+        $singlePrice = $value->singlePrice . ' ' . $currency;
+        $totalPrice = $totalPrice + $finalPrice;
       } else {
-        $finalPrice = 0;
+        $finalPrice = '-';
+        $singlePrice = $value->singlePrice;
       }
-      $totalPrice = $totalPrice + $finalPrice;
       $clase = '';
       if($key & 1){
         $clase = 'budget-row-colored';
@@ -110,11 +114,12 @@ function lt_ajax_mail() {
       <tr class='budget-row $clase'>
         <td>$value->code</td>
         <td>$value->qty</td>
-        <td>$value->singlePrice</td>
+        <td>$singlePrice</td>
         <td> - </td>
         <td>$finalPrice</td>
       </tr>";
     }
+    $totalPrice = $totalPrice . ' ' . $currency;
 
 
 
@@ -138,7 +143,7 @@ function lt_ajax_mail() {
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
 
-    if (wp_mail( $email , $subject , $message , $headers )) {
+    if (wp_mail( $mail , $subject , $message , $headers )) {
       // $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       $respuesta['gate1'] = 'mail enviado';
     } else {

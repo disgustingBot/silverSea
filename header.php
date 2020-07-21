@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ES" >
-<!-- <html> -->
+
+<html class="no-js" <?php language_attributes(); ?>>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,6 +61,17 @@
   <?php include 'assets/allIcons.php'; ?>
 
 	<view id="load" class="load"><div class="circle"></div></view>
+	<view id="languageScreen" class="languageScreen">
+    <h4 class="languageScreenTitle">Select your language</h4>
+    <div class="langOption" onclick="language_select('en')">
+      <img src="" alt="">
+      <p>English</p>
+    </div>
+    <div class="langOption" onclick="language_select('es')">
+      <img src="" alt="">
+      <p>Spanish</p>
+    </div>
+  </view>
 
   <header class="header" id="header">
 
@@ -158,12 +169,26 @@
 
       <p class="cartTitle txtCenter txtUnderlined"><?php echo get_post_meta('150', 'ZQ-cotizador-detalle-consulta-titulo', true); ?></p>
     </div>
-    <button class="btn CotizadorEndButton" disabled type="button" onclick="cartController.emptyCart()">
-      Vaciar Pedido
-    </button>
-    <button class="btn CotizadorEndButton" disabled type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
-      FINALIZAR
-    </button>
+
+    <div class="cartButtons">
+
+      <button class="btn CotizadorEndButton buttonsAtBegin" disabled type="button" onclick="cartController.emptyCart()">
+        Vaciar Carrito
+      </button>
+      <button class="btn CotizadorEndButton buttonsAtBegin" disabled type="button" onclick="altClassFromSelector('alt', '#finalizarConsulta')">
+        FINALIZAR
+      </button>
+
+      
+      <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('consultaFinalizada', '#cart', 'cart');cartController.emptyCart();">
+        REALIZAR OTRA CONSULTA
+      </button>
+      <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('alt', '#cart')">
+        CERRAR
+      </button>
+
+    </div>
+
   </div>
 
   <div class="finalizarConsulta" id="finalizarConsulta">

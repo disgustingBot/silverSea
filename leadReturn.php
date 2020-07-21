@@ -79,7 +79,7 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec( $ch ); ?>
 
 
-<div style="display:none" data-chupame="un huevo" data-salesfoce="te gane!">
+<div style="opacity:0">
 <?php var_dump($response); ?>
 </div>
 

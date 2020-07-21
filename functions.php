@@ -46,16 +46,12 @@ function lt_script_load(){
 	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery') );
 
 
-	//register pfah github library
-	wp_register_script( 'pfah', get_home_url() . '/pfah/pardot-form.js', array('jquery') );
-	wp_register_script( 'pfah-error', get_home_url() . '/pfah/pardot-form-callback-error.js', array('jquery') );
-	wp_register_script( 'pfah-succs', get_home_url() . '/pfah/pardot-form-callback-done.js', array('jquery') );
-
 	// now the most interesting part
 	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
 	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
 	wp_localize_script( 'main', 'lt_data', array(
 		'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
+		'homeurl' => site_url(),
 	) );
 
 	wp_enqueue_script( 'main' );
@@ -88,35 +84,6 @@ function lt_add_theme_support() {
 
 
 
-// REDIRECT WITH LANGUAGE
-
-
-//
-// function custom_lang_found(){
-//     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-//     // if( $lang == "en" ){
-// 		// $url = get_home_url()."/$lang/";
-//
-// 		$url = substr(get_home_url(), 0, -3);
-// 		$url = $url . "$lang/";
-// 				$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-//
-// if (strpos($actual_link, $lang) !== false) {
-//     // echo 'true';
-// 		// var_dump(get_home_url());
-// } else {
-// 	// wp_redirect( $url );
-//
-// }
-// 				if($url != $actual_link){
-// 					// wp_redirect( $url );
-// 					 // var_dump(get_home_url());
-// 				}
-//     // }
-// }
-// add_action( 'template_redirect', 'custom_lang_found' );
-//
-//
 
 
 
@@ -596,8 +563,8 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	$server = 'online';
-	// $server = 'local';
+	// $server = 'online';
+	$server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$file = false;
