@@ -48,15 +48,20 @@
   </style>
 </head>
 <body>
-<view id="load" class="load"><div class="circle"></div></view>
+<!-- <view id="load" class="load"><div class="circle"></div></view> -->
 
 
 <?php
 
 $url = 'https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
 // // $url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
+// $myvars = "oid=00D1x0000008bpY&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
 // $myvars1 = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
+
+
+// $myvars = "oid=00D1x0000008bpY&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Testeo&last_name=Final&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=1&00N0X00000CrQFZ=1&00N1x000003yrOa=25000";
 $myvars = $_SESSION["vars"];
+
 
 // echo '<br>';
 // echo '<br>';
@@ -79,7 +84,7 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec( $ch ); ?>
 
 
-<div style="opacity:0">
+<div style="">
 <?php var_dump($response); ?>
 </div>
 
@@ -107,8 +112,11 @@ $response = curl_exec( $ch ); ?>
 		let size       = info.size;
 		let quantity   = info.quantity;
 		let message    = info.message;
+		let inmediata  = info.inmediata;
+		let traslado   = info.traslado;
+		let precio     = info.precio;
 
-		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
+		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
 
 		let baseURL= 'https://silverseacontainers.com/testLead.php';
 		// let baseURL= 'http://localhost/silversea/wp-content/themes/silversea/cookiePractice.php';
