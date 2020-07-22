@@ -1237,11 +1237,11 @@ cartController = {
 					}
 					altClassFromSelector('consultaFinalizada', '#cart')
 					// TODO: encender el mail Sender
-					cartController.sendMail();
+					// cartController.sendMail();
 					// TODO: encender el lead Sender
-					// cartController.cartToLeads = cartController.cart;
-					// createCookie('status','next')
-					// cartController.sendAllLeads();
+					cartController.cartToLeads = cartController.cart;
+					createCookie('status','next')
+					cartController.sendAllLeads();
 				}
 				// if (i==cartController.cart.length - 1){
 				// }
@@ -1386,18 +1386,21 @@ cartController = {
 
 
 		let info = {
-			fname:    d.querySelector('#mateputNombre').value,
-			email:    d.querySelector('#mateputEmail').value,
-			phone:    d.querySelector('#mateputTelefono').value,
-			country:  d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value,
-			city:     d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value,
-			code:     product.code,
-			type:     product.tipo_2,
-			size:     product.size,
-			quantity: product.qty,
-			company:  '-',
-			lname:    '-',
-			message:  '-',
+			fname:     d.querySelector('#mateputNombre').value,
+			email:     d.querySelector('#mateputEmail').value,
+			phone:     d.querySelector('#mateputTelefono').value,
+			country:   d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value,
+			city:      d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value,
+			code:      product.code,
+			type:      product.tipo_2,
+			size:      product.size,
+			quantity:  product.qty,
+			company:   '-',
+			lname:     '-',
+			message:   '-',
+			inmediata: '0',
+			traslado:  '1',
+			precio:    '1234',
 		}
 
 		if(cartController.cartToLeads.length!=0){
@@ -1436,6 +1439,7 @@ cartController = {
 	},
 
 	newLead:(info)=>{
+		console.log(info);
 
 		// let oid = '00D1l0000000ia7';
 		// let retURL  = 'https://silverseacontainers.com/';
@@ -1453,8 +1457,12 @@ cartController = {
 		let size       = info.size;
 		let quantity   = info.quantity;
 		let message    = info.message;
+		let inmediata  = info.inmediata;
+		let traslado   = info.traslado;
+		let precio     = info.precio;
 
-		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
+		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
+		// let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
 
 		let baseURL= 'https://silverseacontainers.com/testLead.php';
 		// let baseURL= 'http://localhost/silversea/wp-content/themes/silversea/cookiePractice.php';
