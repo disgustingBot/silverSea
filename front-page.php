@@ -90,6 +90,7 @@
         <rect x="3.6875" y="14.75" width="44.2499" height="11.0625" fill="#0674BB"/>
       </svg>
 
+
       <figcaption class="featureTxt">
         <h3 class="featureTitle brandColorTxt"><?php echo get_post_meta($post->ID, 'D-titulo-beneficio-2', true); ?></h3>
         <p class="featureP"><?php echo get_post_meta($post->ID, 'E-texto-beneficio-2', true); ?></p>
