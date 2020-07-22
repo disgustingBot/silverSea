@@ -3482,7 +3482,7 @@ p.nonePricesThere {display:none}
                           6.21) =finalizarConsulta:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.finalizarConsulta{
+.finalizarConsulta {
   background:white;
   border-radius:8px;
   box-shadow:var(--DP24);
@@ -3498,7 +3498,11 @@ p.nonePricesThere {display:none}
   transition:.3s;
   width: calc(100% - var(--lateral) * 2);
   z-index:122;
+  max-height: 90vh;
+  overflow-y: scroll;
 }
+
+
 
 .finalizarConsultaTitle {
   font-size: 1.3rem;
@@ -4361,7 +4365,7 @@ padding-bottom:0;
 .languageScreen.hide{opacity:0;pointer-events:none;}
 .languageScreen{
   position:fixed;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0,0,0,0.8);
   top:0;
   display:grid;
   grid-template-columns: min-content min-content;
