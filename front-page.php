@@ -178,14 +178,19 @@
 
 
 
-    <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
+    <div class="queContainerINeedButtonBar">
 
-    <select name="cont_selector" class="btn contSelector" id="contSelector" >
-      <?php $i=0;
-      foreach($categories as $category) { ?>
-          <option class="contOption" name="option" onclick="altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')" <?php if($i==0){echo 'checked';} ?> value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
-      <?php $i++; } ?>
-    </select>
+
+      <select name="cont_selector" class="btn contSelector" id="contSelector" >
+        <?php $i=0;
+        foreach($categories as $category) { ?>
+            <option class="contOption" name="option" onclick="altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')" <?php if($i==0){echo 'checked';} ?> value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
+        <?php $i++; } ?>
+      </select>
+
+      <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
+    </div>
+
   <?php } ?>
 </section>
 

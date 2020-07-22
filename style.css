@@ -212,7 +212,9 @@ FIN DE MAPA DE CONTENIDOS */
   --cotizadorOptionsMT: 2.2rem;
   --btnUpload: 12px;
   --countrySelectBoxLeft: 0;
-  --containerNeededPosition: static;
+  /* --containerNeededPosition: static; */
+  --containerNeededButtonsMargin: 1rem auto;
+  --queContainerINeedButtonBarFlexDir: column;
 
 
   /* COUNTERS */
@@ -398,11 +400,13 @@ FIN DE MAPA DE CONTENIDOS */
     --itemAddedToCartRight: 4px;
 
     /* ATFS */
-    /* HOME ATF */
+    /* FRONT PAGE ATF */
     --dynamicContSelector:1fr 1fr;
     --featuresMarginTop: auto;
     --btnUpload: 16px;
     --countrySelectBoxLeft: -100%;
+    --containerNeededButtonsMargin: 0 auto;
+    --queContainerINeedButtonBarFlexDir: row;
 
 
 
@@ -517,7 +521,7 @@ FIN DE MAPA DE CONTENIDOS */
     --frontPageATFBgHeight: calc(100vh + -80px);
     --selectBoxListLeft: 100%;
     --cotizadorOptionsMT: unset;
-    --containerNeededPosition: absolute;
+    /* --containerNeededPosition: absolute; */
 
 
 
@@ -1040,6 +1044,7 @@ section {
   border-radius: 4px;
   line-height: 18px;
   margin: auto;
+  text-align: center;
 }
 
 .current-menu-item a{
@@ -1471,8 +1476,8 @@ section {
   /* margin: var(--contSelectorMargin)!important; */
   /* padding: 0!important; */
   height: 40px!important;
-  position: var(--containerNeededPosition);
-  margin: 1rem auto!important;
+  /* position: var(--containerNeededPosition); */
+  margin: var(--containerNeededButtonsMargin)!important;
   bottom: .5rem;
   left: var(--lateral);
 }
@@ -1489,12 +1494,17 @@ section {
 
 .cotizarContainer {
   /* margin: var(--cotizarContainerMargin)!important */
-  position: var(--containerNeededPosition);
+  /* position: var(--containerNeededPosition); */
   bottom: .5rem;
   height: 40px!important;
   right: var(--lateral);
-  margin: 1rem auto!important;
+  margin: var(--containerNeededButtonsMargin);
+}
 
+.queContainerINeedButtonBar {
+  width: 100%;
+  display: flex;
+  flex-direction: var(--queContainerINeedButtonBarFlexDir);
 }
 
 /* FULL WIDTH MAP AND IT'S FIXES */
@@ -2062,6 +2072,7 @@ table.stockreport-table .border {
   grid-template-rows:1fr 1fr;
   grid-column-gap:.5rem;
   padding:.5rem;
+  font-size: 18px;
 }
 .cardThumbnail{
   grid-row:1/3;
@@ -3712,6 +3723,7 @@ padding-bottom:0;
   position: relative;
   transition: .5s;
   padding:1rem 0;
+  background: var(--grey0);
 }
 
 
@@ -4349,7 +4361,7 @@ padding-bottom:0;
 .languageScreen.hide{opacity:0;pointer-events:none;}
 .languageScreen{
   position:fixed;
-  background:white;
+  background: rgba(0,0,0,0.95);
   top:0;
   display:grid;
   grid-template-columns: min-content min-content;
@@ -4362,19 +4374,24 @@ padding-bottom:0;
   transition:.3s;
   z-index:15;
   text-align: center;
+  color: white
 }
+
 .languageScreenTitle{
   margin-top:auto;
   grid-column: 1/-1;
 }
+
 .langOption{
-  padding:1rem;
-  box-shadow:var(--DP4);
-  cursor:pointer;
-  margin:auto;
-  margin-top:0;
-  transition:.3s;
+  padding: 1rem;
+  box-shadow: var(--DP4);
+  cursor: pointer;
+  margin: auto;
+  margin-top: 0;
+  transition: .3s;
   border-radius: 8px;
+  background: var(--grey0);
+  color: black;
 }
 .langOption:hover{
   box-shadow:var(--DP8);
