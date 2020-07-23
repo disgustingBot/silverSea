@@ -96,17 +96,6 @@ FIN DE MAPA DE CONTENIDOS */
   /* Al editar colores siempre usar HEX y nunca
   dejar espacio entre los dos puntos y el color */
 
-  /* --color1:#0674BB;
-  --color2:#ECC800;
-  --color3:#eceff1;
-  --color4:#babdbe;
-  --color5:#cfd8dc;
-  --color6:#9ea7aa;
-  --color7:#4f5b62;
-  --color8:#263238;
-  --color9:#000a12;
-  --colorWhite: white; */
-
   --primaryColor:#0674BB;
   --primaryColorDark:#00498a;
   --primaryColorLight:#59a2ee;
@@ -195,24 +184,19 @@ FIN DE MAPA DE CONTENIDOS */
   --featuresMarginTop: auto;
   --aboutUsATFImgH: 50vh;
   --archiveFiltersMargin:auto;
+
+
   /* ?dynamicCont */
-  /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
-  /* --dynamicContGAF:row; */
-  /* --dynamicContGTC: 2rem 1fr; */
   --dynamicContGTC: 1fr 1fr;
   --dynamicChildsContGC: 1/-1;
   --cotizacionAvanzadaFD: column;
   --btnSimpleM: 1rem auto;
-  /* --dynamicContGTR: repeat(6, 1fr); */
-  /* --contSelectorMargin: 8px auto; */
-  /* --cotizarContainerMargin: 8px auto; */
   --queContainerINeedGTC: 1fr;
   --article2ContentWidth: 90%;
   --frontPageATFBgHeight: max-content;
   --cotizadorOptionsMT: 2.2rem;
   --btnUpload: 12px;
   --countrySelectBoxLeft: 0;
-  /* --containerNeededPosition: static; */
   --containerNeededButtonsMargin: 1rem auto;
   --queContainerINeedButtonBarFlexDir: column;
 
@@ -358,6 +342,7 @@ FIN DE MAPA DE CONTENIDOS */
   /* CART */
   --cartGridGap: 2rem;
   --cartTop: 70px;
+  --unPasoMasButtonMarginBottom: 30px;
 
 
 
@@ -412,18 +397,11 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* ?dynamicCont */
-    /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
-    /* --dynamicContGAF:row; */
-    /* --dynamicContGTC: 2rem 1fr 1fr; */
-    /* --dynamicContGTR: 1fr 1fr 1fr; */
-    /* --dynamicContSelectBox4GC:2; */
 
 
     /* ?FOOTER */
 
 
-
-    /* SINGLE CONTAINER */
     /* SINGLE CONTAINER */
 
     /* ARCHIVE-PAGE */
@@ -464,6 +442,8 @@ FIN DE MAPA DE CONTENIDOS */
     --stock_header_row_GAF: column;
     --table_column_FS: 15px;
 
+    /* CART */
+    --unPasoMasButtonMarginBottom: auto;
 
 
   }
@@ -492,7 +472,6 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* BLUEBAR */
-    /* --blueBarTelM: auto 1rem auto auto; */
     --blueBarTelM: auto;
     --selectLangM: auto var(--lateral) auto 4rem;
     --headerBluebarDisplay: flex;
@@ -511,18 +490,16 @@ FIN DE MAPA DE CONTENIDOS */
     --headerHeight: 120px;
 
 
-
-
     /* ATFS */
+
+
+
     /* HOME ATF */
     --featuresMarginTop: -50px;
-    /* --contSelectorMargin: 16px 0 auto 0; */
-    /* --cotizarContainerMargin: 16px 0 auto auto; */
     --article2ContentWidth: 45%;
     --frontPageATFBgHeight: calc(100vh + -80px);
     --selectBoxListLeft: 100%;
     --cotizadorOptionsMT: unset;
-    /* --containerNeededPosition: absolute; */
     --cartTop: 120px;
 
 
@@ -563,15 +540,12 @@ FIN DE MAPA DE CONTENIDOS */
     /* FRONT PAGE ATF */
 
     /* ?dynamicCont */
-    /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
-    /* --dynamicContGAF:column; */
-    /* --dynamicContGTC: 2rem 1fr 1fr 4.5rem; */
+
     --dynamicContGTC: repeat(6, 1fr);
     --dynamicChildsContGC: unset;
     --cotizacionAvanzadaFD: row;
       --btnSimpleM: 0;
 
-    /* --dynamicContGTR: 1fr 1fr; */
 
 
     /* ?FOOTER */
@@ -660,16 +634,10 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* ATFS */
+
     /* FRONT PAGE ATF */
     --dynamicContSelector:1fr 1fr 1fr 1fr;
     --featuresMarginTop: -75px;
-
-    /* ?dynamicCont */
-    /* --dynamicContGTC: 2rem 1fr 1fr 1fr 1fr 4.5rem auto; */
-    /* --dynamicContGTR: 1fr; */
-    /* --dynamicContSelectBox4GC:4; */
-
-
 
 
     /* ?FOOTER */
@@ -749,10 +717,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?FOOTER */
 
     /* SINGLE CONTAINER */
-    /* --containerGTA: "productGallery productGallery containerAttribute1 containerAttribute2 containerAttribute3 containerAttribute4"
-                    "productGallery productGallery containerAttribute5 containerAttribute6 containerAttribute7 containerAttribute8"
-                    "productGallery productGallery singleBuy singleRent  . ."
-                    ; */
+
     /* ARCHIVE-PRODUCT */
     --searchResultsAltGTC: repeat(5,1fr);
   }
@@ -796,8 +761,6 @@ FIN DE MAPA DE CONTENIDOS */
   box-sizing:border-box;
   margin:0;
   padding:0;
-  /* font-family: 'Rambla', sans-serif; */
-  /* font-family: 'Lato', sans-serif; */
   font-family: 'Roboto', sans-serif;
 }
 *::-webkit-scrollbar-track{
@@ -831,8 +794,6 @@ a, button {
 ul,ol{list-style:none}
 
 .main {
-  /* display: flex; */
-  /* flex-direction: column; */
   padding: 1rem var(--lateral);
 }
 
@@ -952,7 +913,6 @@ section {
 
 
 
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                               6.0) =load:
@@ -970,6 +930,7 @@ section {
   transition:.5s;
   z-index: 10000;
 }
+
 .circle{
   width:  50px;
   height: 50px;
@@ -978,6 +939,7 @@ section {
   margin: auto;
   animation: wheel 1s infinite;
 }
+
 @keyframes wheel{to{transform:rotate(360deg)}}
 
 /* ---------------------------------------------------------------------------
@@ -1021,7 +983,6 @@ section {
 
 .header .menu-item:nth-child(1)  {
   box-shadow: var(--DP1);
-  /* background: var(--color2); */
   background: var(--primaryColorDark);
   color: var(--grey0);
   transition: .25s;
@@ -1032,7 +993,6 @@ section {
 }
 
 .header .menu-item:nth-child(1):hover {
-  /* background: var(--color1); */
   background: var(--primaryColor);
 }
 
@@ -1172,8 +1132,6 @@ section {
   margin: auto;
 }
 
-
-
 .navBarMobileContainer .socialMediaLink {
   height: 2rem;
   margin: auto;
@@ -1188,14 +1146,6 @@ section {
   filter: brightness(50%);
   transition: .25s;
 }
-
-
-
-
-
-
-
-
 
 
 .headerMob .logo {
@@ -1278,7 +1228,6 @@ section {
 
 
 .blueBar {
-  /* background-color: var(--grey0); */
   background: var(--primaryColorDark);
   display: flex;
   flex-direction: var(--selectLangFlexDir);
@@ -1290,7 +1239,6 @@ section {
 }
 
 .blueBar p {
-/* color: white; */
   color: var(--grey0);
 }
 
@@ -1301,8 +1249,6 @@ section {
 .load + .blueBar {
   display: var(--headerBluebarDisplay);
 }
-
-
 
 .blueBarTel{
   text-decoration: none;
@@ -1347,20 +1293,19 @@ section {
 }
 
 .ATFWording {
-  /* color: white; */
   color: var(--grey0);
   margin: auto;
   width: 50%;
   text-align: center;
 }
 
-/* .ATFWording * {color: var(--colorWhite);} */
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                             6.3.0) =Front Page ATF:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+
 
 .featuresSection {
   padding-bottom: 0 var(--lateral);
@@ -1372,7 +1317,11 @@ section {
   object-fit: cover;
   z-index: 1;
 }
+
+
+
 /* EDGE FIX */
+
 @supports (-ms-ime-align:auto) {
 
     .frontPageATFBg {
@@ -1420,17 +1369,14 @@ section {
   text-align: center;
 }
 
-
 .featureTitle {
   font-size: 16px;
   font-weight: 700;
 }
 
-
 .featureP {
   font-size: 18px;
 }
-
 
 .frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
   display: inline-block;
@@ -1463,7 +1409,6 @@ section {
 
 .main ul li::before {
   content: "\2022";
-  /* color: var(--color2); */
   font-weight: bold;
   display: inline-block;
   font-size: 32px;
@@ -1476,10 +1421,7 @@ section {
 
 
 .contSelector     {
-  /* margin: var(--contSelectorMargin)!important; */
-  /* padding: 0!important; */
   height: 40px!important;
-  /* position: var(--containerNeededPosition); */
   margin: var(--containerNeededButtonsMargin)!important;
   bottom: .5rem;
   left: var(--lateral);
@@ -1496,8 +1438,6 @@ section {
 }
 
 .cotizarContainer {
-  /* margin: var(--cotizarContainerMargin)!important */
-  /* position: var(--containerNeededPosition); */
   bottom: .5rem;
   height: 40px!important;
   right: var(--lateral);
@@ -1627,24 +1567,15 @@ section {
   height: 25px;
 }
 
-/*.star {
-  margin: .5rem 1rem;
- color: var(--color2);
-} */
-
-
-
 .testimonialsContainer {
   display: grid;
   position: relative;
   grid-template-columns: min-content 1fr min-content;
 }
 
-
 .testimonialCarusel {
   padding: var(--testimonialCaruselP);
 }
-
 
 .testimonialsContainer .arrowBtn {
   margin: auto;
@@ -1653,12 +1584,6 @@ section {
 
 .testimonialTxt {
   text-align: center;
-}
-
-.testimonialAuthor {
-}
-
-.testimonialQuote {
 }
 
 .seeItOnGoogle {
@@ -1729,7 +1654,6 @@ section {
   max-width: 90%;
 }
 
-
 .timeline h5 {
   font-size: 16px;
 }
@@ -1773,6 +1697,8 @@ section {
   content: "";
   top: 5px;
 }
+
+
 
 /* VALUES */
 
@@ -1889,9 +1815,6 @@ section {
   grid-column: 1/-1;
   padding: 1rem 0;
 }
-
-
-
 
 .areaSelectorCont {
   position: var(--areaSelectorContPosition);
@@ -2018,12 +1941,10 @@ table.stockreport-table .border {
   height: 100%;
   width: auto;
   transition: .25s;
-  /* color: white; */
   color: var(--grey1);
 }
 
 .socialMSVG:hover {
-  /* color: var(--color2); */
   color: var(--primaryColorLight);
 }
 
@@ -2057,7 +1978,6 @@ table.stockreport-table .border {
 .cardFeatures svg{width:2rem;height:2rem}
 
 .card {
-  /* background: white; */
   border-radius: 4px;
   box-shadow: var(--DP1);
   display: grid;
@@ -2080,7 +2000,6 @@ table.stockreport-table .border {
 .cardThumbnail{
   grid-row:1/3;
   grid-column:1;
-  /* background:#ddd; */
   border-radius:50%;
   width:2rem;
   margin:auto;
@@ -2152,14 +2071,10 @@ table.stockreport-table .border {
   display: grid;
   grid-auto-flow: column;
   grid-gap:.5rem;
-  /* grid-template-rows: var(--cardActionsGGGTR); */
-  /* grid-template-columns: var(--cardActionsGGGTC); */
   grid-template-columns: 1fr 1fr;
 }
 
 .cardActions .cuantos {
-  /* grid-column: var(--cardActinsCuantityGC); */
-  /* margin: var(--cardActinsCuantityM); */
   margin: auto;
 }
 
@@ -2198,8 +2113,6 @@ table.stockreport-table .border {
   grid-template-rows: max-content auto;
   margin-bottom: 1rem;
 }
-
-
 
 .teamCardImg {
   transition: .5s;
@@ -2305,19 +2218,10 @@ table.stockreport-table .border {
 
 
 .archiveTopInteractBtn{
- /* background: white; */
  border: none;
  cursor: pointer;
  transform: rotate(270deg);
 }
-
-
-
-
-
-
-
-
 
 .encuentraContenedorTitle {
   width: 100%;
@@ -2331,20 +2235,18 @@ table.stockreport-table .border {
   margin-left: 0;
 }
 
-
-
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.7) =BUTTONS:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.7.0) =btn:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+
 
 .btn {
   color: var(--primaryColorDarker);
@@ -2380,22 +2282,13 @@ table.stockreport-table .border {
   color:black;
 }
 
-
-
-
 .btn.blue{
-  /* background: var(--color1); */
-  /* color: white; */
   border: 1px solid var(--color1);
 }
 
 .btn.blue:hover{
-  /* color: var(--color1); */
-  /* background: white; */
   border: 1px solid var(--color1);
 }
-
-
 
 .articleCounter .btn {
   margin: auto 0 auto auto;
@@ -2447,23 +2340,19 @@ table.stockreport-table .border {
                           6.7.0.0) =btnSimple:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+
+
 .btnSimple{
   box-shadow: none;
   border: none;
   background:none;
   color:var(--primaryColorDark);
-  /* grid-row: 2; */
   cursor: pointer;
 }
 .btnSimple:hover{
   box-shadow: none;
-  /* color:var(--color8); */
 }
-
-
-
-
-
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -2471,10 +2360,11 @@ table.stockreport-table .border {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
+
+
 .close{
   position: relative;
   top:0;
-  /* right:.5rem; */
   height:1.5rem;
   width: 1.5rem;
   background: none;
@@ -2482,7 +2372,6 @@ table.stockreport-table .border {
   cursor:pointer;
 }
 .close:focus{outline:none}
-/* .close:focus .closeLine{background:var(--color2)} */
 
 .closeLine{
   position: absolute;
@@ -2603,7 +2492,6 @@ table.stockreport-table .border {
 .arrowSVG {
   height: 2rem;
   width: 2rem;
-  /* color: var(--color1); */
   color: var(--primaryColorDark);
   box-shadow: var(--DP4);
   border-radius: 50%;
@@ -2619,7 +2507,6 @@ table.stockreport-table .border {
   height: 2rem;
   cursor: pointer;
   width: 2rem;
-  /* background: var(--color1); */
   background: var(--primaryColorDark);
   border-radius: 50%;
   z-index: 3;
@@ -2637,7 +2524,6 @@ table.stockreport-table .border {
 
 .arrowButtonNext{margin-left:auto}
 .arrowButton:hover {
-  /* color: var(--color1); */
 }
 
 
@@ -2660,6 +2546,10 @@ table.stockreport-table .border {
   color: white;
 }
 
+.unPasoMasButton {
+  margin-bottom: var(--unPasoMasButtonMarginBottom);
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.8) =titleBanner:
@@ -2667,9 +2557,7 @@ table.stockreport-table .border {
 --------------------------------------------------------------------------- */
 
 .titleBaner{
-  /* height: 15rem; */
   height:10rem;
-  /* color: white; */
   position: relative;
 }
 .titleBanerImg{
@@ -2721,7 +2609,6 @@ table.stockreport-table .border {
 
 .countNumber {
   font-size: 2rem;
-  /* color: var(--color2); */
   font-weight: 700;
 }
 
@@ -2741,7 +2628,6 @@ table.stockreport-table .border {
 .valuesTitle {
   grid-column: 1/-1;
 }
-
 
 
 
@@ -2788,7 +2674,6 @@ table.stockreport-table .border {
 
 .sectionSummary::before{
   content: '';
-  /* background:var(--color1); */
   background:var(--primaryColorDark);
   height:0;
   left:0;
@@ -2810,17 +2695,15 @@ table.stockreport-table .border {
   justify-content: flex-start;
   align-items: center;
 }
+
 .summaryTitleContainer svg {
   height: 2rem;
   margin-left: 10px;
 }
-.summaryTitleContainer circle {
-  fill:var(--grey1)!important;
-}
 
-.summaryTitle{
-  font-size: 1.4rem;
-}
+.summaryTitleContainer circle {fill:var(--grey1)!important;}
+
+.summaryTitle{font-size: 1.4rem;}
 
 .summaryTxt {
   font-size: 16px;
@@ -2914,7 +2797,6 @@ table.stockreport-table .border {
 .singleContainerTitle {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   grid-column:1/-1;
 }
 .singleContainerTitle .pageSvg {
@@ -3004,7 +2886,6 @@ table.stockreport-table .border {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); */
   padding: 1rem var(--lateral);
   grid-gap: 1rem;
 }
@@ -3015,8 +2896,6 @@ table.stockreport-table .border {
   width: 100%;
   margin: 1rem;
 }
-
-
 
 .categoryCard {
   display: flex;
@@ -3064,7 +2943,6 @@ table.stockreport-table .border {
 }
 .cotizador.tren .cotizadorCont{color:var(--grey4)}
 .cotizadorCont{
-  /* color: var(--grey4); */
   color:var(--primaryColorDark);
   cursor:pointer;
   transition:.3s;
@@ -3132,7 +3010,6 @@ table.stockreport-table .border {
   font-weight: bold;
 }
 
-
 .avanzadaTxt {
   margin-right: 10px;
   text-align: center;
@@ -3144,14 +3021,11 @@ table.stockreport-table .border {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .coprAlqui{
-  /* margin:0 var(--lateral); */
   padding-bottom:1rem;
   display:grid;
   grid-gap:.5rem;
   grid-template-columns: var(--coprAlquiGTC);
-  /* max-width: 40rem; */
   width:100%;
-  /* grid-auto-rows:2rem; */
 }
 
 .coprAlqui .sladRadio{
@@ -3163,9 +3037,6 @@ table.stockreport-table .border {
   /* LO QUITO PORQUE NO TENEMOS EL CALCULO DE ALQUILER */
   display:none;
 }
-
-
-
 
 
 .coprAlquiLocation {
@@ -3191,8 +3062,6 @@ table.stockreport-table .border {
 --------------------------------------------------------------------------- */
 .sladRadio {
   align-items: center;
-  /* background: #ddd; */
-  /* border:1px solid #ddd; */
   display:grid;
   grid-auto-flow: column;
   height: 1.5rem;
@@ -3203,7 +3072,6 @@ table.stockreport-table .border {
   width:min-content;
 }
 
-/* .sladRadio:hover{background: rgba(236,200,0, 0.5)} */
 .sladRadioInput{
   position:absolute;
   left:-2000vw;
@@ -3222,7 +3090,6 @@ table.stockreport-table .border {
 }
 
 .sladRadioSignal{
-  /* background: var(--color2); */
   height:100%;
   left:0;
   top:0;
@@ -3236,11 +3103,13 @@ table.stockreport-table .border {
 .sladRadioInput:checked + .sladRadioSignal {
   left:50%;
 }
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.18) =selectBox:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
 .SelectBox{
   display: grid;
   align-items: center;
@@ -3251,7 +3120,6 @@ table.stockreport-table .border {
 
 
 .selectBoxButton{
-  /* background: white; */
   color:#333;
   cursor: pointer;
   display:grid;
@@ -3277,7 +3145,6 @@ table.stockreport-table .border {
 }
 
 .selectBoxCurrent{
-  /* border-bottom:2px solid var(--color2); */
   border-bottom: 2px solid var(--primaryColor);
   font-size: 14px!important;
   padding:16px 10px 2px 16px;
@@ -3301,7 +3168,6 @@ table.stockreport-table .border {
 }
 .SelectBox:focus .selectBoxCurrent::after,
 .SelectBox.alt .selectBoxCurrent::after{
-  /* background:var(--color1); */
   transform:scaleX(1);
 }
 .SelectBox:focus .selectBoxPlaceholder,
@@ -3364,6 +3230,7 @@ table.stockreport-table .border {
                           6.19) =dynamicCont:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
 .dynamicContList {
   display:grid;
   grid-gap:.5rem;
@@ -3374,13 +3241,8 @@ table.stockreport-table .border {
 .dynamicCont {
   align-items:center;
   display:grid;
-  /* grid-auto-flow:var(--dynamicContGAF); */
-  /* grid-auto-columns:auto; */
-  /* grid-template-columns:var(--dynamicContGTC); */
   grid-template-columns: var(--dynamicContGTC);
-  /* grid-template-rows:var(--dynamicContGTR); */
   grid-gap:1rem;
-  /* padding: 0 1rem; */
 }
 
 .dynamicCont >* {margin:auto;}
@@ -3425,7 +3287,6 @@ table.stockreport-table .border {
 
 .cartHead {
   display:grid;
-  /* grid-template-columns: 1fr 1fr; */
   grid-gap:inherit;
   align-items:center;
 }
@@ -3444,9 +3305,7 @@ p.nonePricesThere {display:none}
 .consultaFinalizada .somePricesThere .somePricesThere{display:block}
 .consultaFinalizada .nonePricesThere .nonePricesThere{display:block}
 
-.cartTotalTxt {
-  font-size: 16px;
-}
+.cartTotalTxt {font-size: 16px;}
 
 .cartTotal {
   font-weight: bold;
@@ -3462,9 +3321,11 @@ p.nonePricesThere {display:none}
   text-align: center;
   margin:auto
 }
+
 .cartItemSvg{
   height:1.5rem;
 }
+
 .cartItemPrice{
   color:var(--primaryColor);
 }
@@ -3483,6 +3344,7 @@ p.nonePricesThere {display:none}
                           6.21) =finalizarConsulta:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
 .finalizarConsulta {
   background:white;
   border-radius:8px;
@@ -3502,8 +3364,6 @@ p.nonePricesThere {display:none}
   max-height: 90vh;
   overflow-y: scroll;
 }
-
-
 
 .finalizarConsultaTitle {
   font-size: 1.3rem;
@@ -3525,16 +3385,14 @@ padding-bottom:0;
   color: white;
 }
 
-
 .finalizarConsultaSubTitle {margin-top: 16px;}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.22) =cuantos:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
 .cuantos{
-  /* margin: auto; */
-  /* border-bottom:2px solid var(--color2); */
   border-bottom:2px solid var(--primaryColor);
   position:relative;
   display: grid;
@@ -3559,13 +3417,13 @@ padding-bottom:0;
   cursor:pointer;
   border:none;
   font-size:18px;
-  /* color:black; */
   display: grid;
   justify-content: center;
   align-items: center;
   transition:.4s;
   min-width:1.5rem;
 }
+
 .cuantosBtn:hover{color:var(--color1)}
 .cuantosBtn:focus{
   outline:1px solid var(--color2);
@@ -3581,9 +3439,6 @@ padding-bottom:0;
   display:grid;
   grid-gap:.5rem;
   grid-auto-flow:column;
-  /* transition:.4s;
-  transition-delay:.2s;
-  transform:translateX(0); */
   padding-right:1.5rem;
   overflow:hidden;
 }
@@ -3610,11 +3465,11 @@ padding-bottom:0;
   width: 50%;
   position: relative;
   --mateputHeight:40px;
-  /* height: 50px; */
   height:var(--mateputHeight);
   overflow: hidden;
   width: var(--filterBarSearchWidth);
 }
+
 .filterBar .mateput{
   grid-column: 2;
   grid-row: 1;
@@ -3626,7 +3481,6 @@ padding-bottom:0;
   color:#000;
   font-size:16px!important;
   height: 100%;
-  /* padding-top:20px; */
   padding-top:calc(var(--mateputHeight) * 2 / 5);
   outline: none;
   width: 100%;
@@ -3698,7 +3552,6 @@ padding-bottom:0;
 .paginationCurrent{padding:.3rem .5rem}
 
 
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.42) =archive-product:
@@ -3733,7 +3586,6 @@ padding-bottom:0;
 
 
 .archiveMain.alt .archiveFilters{
-  /* transform:translateX(calc(15px - 100%)); */
   margin-left:calc(15px - 25%);
   border-right:solid var(--primaryColorDark) 15px;
 }
@@ -3790,7 +3642,6 @@ padding-bottom:0;
 
 .filterArrow {
   transform-origin: center;
-  /* transform: rotateY(0) translateX(0); */
   transform: rotateY(0);
   transition: .5s ease-in-out;
   position: relative;
@@ -3823,7 +3674,6 @@ padding-bottom:0;
   width: var(--archiveFilter2SelectBoxW);
   margin: 10px 0;
 }
-
 
 .filterQuestionsActivatorCont {
   display: flex;
@@ -3914,7 +3764,6 @@ padding-bottom:0;
 
 .loginTitle{
   padding-top: 1rem;
-  /* color: var(--color1); */
 }
 
 .loginForm{
@@ -3934,7 +3783,6 @@ padding-bottom:0;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: min-content;
-  /* width: min-content; */
   grid-gap: .5rem;
   justify-content: flex-end;
   align-items: center;
@@ -3948,7 +3796,6 @@ padding-bottom:0;
 .forgot{
   font-size: 16px;
   text-align: right;
-  /* color: var(--color2); */
 }
 .forgot:visited{color:var(--color2)}
 
@@ -4012,7 +3859,6 @@ padding-bottom:0;
 
 
 
-
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.69) =redDot:
@@ -4039,7 +3885,6 @@ padding-bottom:0;
 --------------------------------------------------------------------------- */
 .loadBar{
   position:relative;
-  /* background:var(--primaryColor); */
   width:100%;
   height: 1.5rem;
   border-radius:4px;
@@ -4149,7 +3994,6 @@ padding-bottom:0;
   padding: 1rem var(--lateral);
 }
 
-
 .stock_main{
   display: grid;
   grid-template-columns: var(--stock_main_GTC);
@@ -4234,7 +4078,6 @@ padding-bottom:0;
 
 .region_sellers{margin: 1rem 0}
 
-
 .seller_name {
   font-weight: bold;
   font-size: 17px;
@@ -4245,6 +4088,9 @@ padding-bottom:0;
   margin-right: 5px;
   font-size: 24px;
 }
+
+
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.99) =footer:
@@ -4319,12 +4165,12 @@ padding-bottom:0;
   transform: scale(1);
 }
 
-
-
 .footerNav a {
   font-size: 14px;
   font-style: italic;
 }
+
+
 
 /* FIXES */
 
@@ -4355,10 +4201,6 @@ padding-bottom:0;
 #trp-floater-ls .trp-with-flags .trp-flag-image {
   width: auto;
 }
-
-
-
-
 
 
 
@@ -4398,15 +4240,16 @@ padding-bottom:0;
   background: var(--grey0);
   color: black;
 }
+
 .langOption:hover{
   box-shadow:var(--DP8);
 }
+
 .langFlag{
-  /* width:100%;
-  height: auto; */
   width:100px;
   height: auto;
 }
+
 .langFlagUse{
   width:100px;
   height: auto;
@@ -4419,7 +4262,6 @@ padding-bottom:0;
 #mWOb7e4-1595449115333 {
   z-index: 5!important;
 }
-
 
 #trp-floater-ls .trp-floater-ls-disabled-language {
   font-size: 12px;

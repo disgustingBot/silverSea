@@ -14,14 +14,10 @@
 
   <?php wp_head(); ?>
 
-  <!-- <template id="cartItemTemplate"> -->
-    <?php //include get_template_directory().'/dynamicCont.php' ?>
-  <!-- </template> -->
 
   <template id="selectBoxOptionTemplate">
     <label for="" class="selectBoxOption" data-test="red">
       <input class="selectBoxInput" id="" type="" name="" value="">
-      <!-- <span class="checkmark"></span> -->
       <p class="selectBoxOptionLabel"></p>
     </label>
   </template>
@@ -183,7 +179,7 @@
         FINALIZAR
       </button>
 
-      
+
       <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('consultaFinalizada', '#cart', 'cart');cartController.emptyCart();">
         REALIZAR OTRA CONSULTA
       </button>
@@ -236,23 +232,6 @@
       <input id="trasporte" type="checkbox">
       <label for="trasporte" class="termsDescription"><?php echo get_post_meta('150', 'ZG-cotizador-formulario-checkbox3', true); ?></label>
     </div>
-    <!-- <button class="btn" id="buttonFinishCart" onclick="testCheckboxes()">Solicitar cotización</button> -->
-    <button class="btn" id="buttonFinishCart" onclick="cartController.finalButtonSwitch()">Solicitar cotización</button>
+    <button class="btn unPasoMasButton" id="buttonFinishCart" onclick="cartController.finalButtonSwitch()">Solicitar cotización</button>
 
   </div>
-
-
-
-  <!-- <div
-    id="redSquare"
-
-    style="
-      position:fixed;
-      bottom:235px;
-      left:25%;
-      height:400px;
-      width:400px;
-      background:red;
-      z-index:2000;
-    "
-  ></div> -->
