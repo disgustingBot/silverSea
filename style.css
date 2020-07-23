@@ -1144,7 +1144,7 @@ section {
   width: 60vw;
   filter: brightness(100%)!important;
   font-size: 1.5rem;
-  z-index: 6;
+  z-index: 9999999999;
 }
 
 .navBarMobileContainer .blueBarTel {
@@ -1683,7 +1683,7 @@ section {
 
 .timelineTextCont {
   position: sticky;
-  top: 100px;
+  top: 150px;
   height: max-content;
   padding: 0 1rem;
   line-height: 1.4em;
@@ -4409,4 +4409,17 @@ padding-bottom:0;
 .langFlagUse{
   width:100px;
   height: auto;
+}
+
+.cn-button.bootstrap {
+  background: var(--secondaryColor)!important;
+}
+
+#mWOb7e4-1595449115333 {
+  z-index: 5!important;
+}
+
+
+#trp-floater-ls .trp-floater-ls-disabled-language {
+  font-size: 12px;
 }
