@@ -10,7 +10,7 @@
         <path d="M6.30677 11.7871H5.75806V12.3358H6.30677V11.7871Z" fill="white"/>
         <path d="M6.30677 10.6899H5.75806V11.2387H6.30677V10.6899Z" fill="white"/>
       </svg>
-      <p class="footLoc">Barcelona, España</p>
+      <p class="footLoc">Rambla cataluña, 20, 3-1. Barcelona, España</p>
     </div>
     <div class="iconTextInline">
       <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="https://www.w3.org/2000/svg">
