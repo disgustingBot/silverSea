@@ -357,6 +357,7 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* CART */
   --cartGridGap: 2rem;
+  --cartTop: 70px;
 
 
 
@@ -522,6 +523,8 @@ FIN DE MAPA DE CONTENIDOS */
     --selectBoxListLeft: 100%;
     --cotizadorOptionsMT: unset;
     /* --containerNeededPosition: absolute; */
+    --cartTop: 120px;
+
 
 
 
@@ -3402,17 +3405,15 @@ table.stockreport-table .border {
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .cart{
-  /* background:white; */
   background:var(--grey2);
   border-radius: 0 0 8px 8px;
   box-shadow:var(--DP12);
   display:grid;
   grid-gap:var(--cartGridGap);
-  /* left:50%; */
   margin:auto;
   padding:1rem;
   position: fixed;
-  top:120px;
+  top:var(--cartTop);
   left:var(--lateral);
   transform:translateY(calc(-100% - 120px));
   transition:.6s;
@@ -3424,7 +3425,7 @@ table.stockreport-table .border {
 
 .cartHead {
   display:grid;
-  /* grid-template-columns:1fr 1fr; */
+  /* grid-template-columns: 1fr 1fr; */
   grid-gap:inherit;
   align-items:center;
 }
@@ -4068,7 +4069,7 @@ padding-bottom:0;
   align-self: center;
   align-items: center;
   text-align: center;
-  /* position: relative; */
+  position: relative;
   padding: 2rem 1rem;
 }
 
