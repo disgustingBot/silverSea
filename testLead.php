@@ -8,45 +8,47 @@ session_start();
 // $debugEmail = $_GET['debugEmail'];
 
 
-// $first_name = $_GET['first_name'];
-// $last_name  = $_GET['last_name'];
-// $email      = $_GET['email'];
-// $phone      = $_GET['phone'];
-// $company    = $_GET['company'];
-// $country    = $_GET['country'];
-// $city       = $_GET['city'];
-// $product    = $_GET['product'];
-// $type       = $_GET['type'];
-// $size       = $_GET['size'];
-// $quantity   = $_GET['quantity'];
-// $message    = $_GET['message'];
-// $inmediata  = $_GET['inmediata'];
-// $traslado   = $_GET['traslado'];
-// $precio     = $_GET['precio'];
+$first_name = $_GET['first_name'];
+$last_name  = $_GET['last_name'];
+$email      = $_GET['email'];
+$phone      = $_GET['phone'];
+$company    = $_GET['company'];
+$country    = $_GET['country'];
+$city       = $_GET['city'];
+$product    = $_GET['product'];
+$type       = $_GET['type'];
+$size       = $_GET['size'];
+$quantity   = $_GET['quantity'];
+$message    = $_GET['message'];
+$inmediata  = $_GET['inmediata'];
+$traslado   = $_GET['traslado'];
+$precio     = $_GET['precio'];
 
-
-
-$oid        = '00D1x0000008bpY';
+// OID PARA SITIO EN PRODUCCION
+$oid        = '00D0X000000uRGw';
+// nuevo test oid
+// $oid        = '00D1x0000008bpY';
+// primer test oid
 // $oid        = '00D1l0000000ia7';
 $retURL     = 'https%3A%2F%2Fsstc.com.es%2F';
 $debug      = '1';
 $debugEmail = 'testtter%40aaallll.com';
 
-$first_name = 'Si+llega+a';
-$last_name  = 'salesforce';
-$email      = 'mail%40test.tt';
-$phone      = '1234567890';
-$company    = 'Test inc.';
-$country    = 'Testland';
-$city       = 'Testpolis';
-$product    = '20FR+CW';
-$type       = 'container';
-$size       = 'big';
-$quantity   = '22';
-$message    = 'yet+another+test';
-$inmediata  = '1';
-$traslado   = '1';
-$precio     = '12500';
+// $first_name = 'Si+llega+a';
+// $last_name  = 'salesforce';
+// $email      = 'mail%40test.tt';
+// $phone      = '1234567890';
+// $company    = 'Test inc.';
+// $country    = 'Testland';
+// $city       = 'Testpolis';
+// $product    = '20FR+CW';
+// $type       = 'container';
+// $size       = 'big';
+// $quantity   = '22';
+// $message    = 'yet+another+test';
+// $inmediata  = '1';
+// $traslado   = '1';
+// $precio     = '12500';
 
 // inmediata: Id="00N1x000003yrzM" type="checkbox" 
 // Traslado: Id="00N0X00000CrQFZ" type="checkbox"
@@ -77,7 +79,12 @@ $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_nam
 
 // $url = 'https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
 // $url = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
-$url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
+
+
+// PARDOT URL PARA SITIO EN PRODUCCION
+$url = 'https://go.pardot.com/l/821023/2020-06-05/9g7r';
+// pardot para sandbox
+// $url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
 // $myvars = "oid=00D1x0000008bpY&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
 
 

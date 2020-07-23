@@ -53,7 +53,10 @@
 
 <?php
 
-$url = 'https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+// URL WEB-TO-LEAD PARA SITIO EN PRODUCCION
+$url = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+// url para sandbox
+// $url = 'https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
 // // $url = 'https://go.pardot.com/l/821023/2020-06-02/8qk1';
 // $myvars = "oid=00D1x0000008bpY&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
 // $myvars1 = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test";
