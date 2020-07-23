@@ -178,6 +178,10 @@ FIN DE MAPA DE CONTENIDOS */
   --itemAddedToCartRight: -5px;
   --headerHeight: 70px;
 
+  --trp-floater-lsTop: 70px;
+  --trp-floater-lsLeft: 0;
+
+
   /* ATFS */
   /* FRONT PAGE ATF */
   --dynamicContSelector:1fr;
@@ -315,7 +319,6 @@ FIN DE MAPA DE CONTENIDOS */
   --teamATFImgObjectFit: contain;
   --teamAtfContHeight: max-content;
   --teamValuesMargin: 16px auto;
-  --teamCardsContainerGridTC: 1fr;
   --areaSelectorContPosition: sticky;
   --areaSelectorContMaxHeight: 50vh;
 
@@ -435,7 +438,6 @@ FIN DE MAPA DE CONTENIDOS */
     --containerAttributeW: 12rem;
 
     /* PAGE TEAM */
-    --teamCardsContainerGridTC: 1fr 1fr;
     --teamValuesGTC: 1fr 1fr;
 
     /* STOCK */
@@ -488,6 +490,10 @@ FIN DE MAPA DE CONTENIDOS */
 
     --itemAddedToCartRight: 0px;
     --headerHeight: 120px;
+
+
+     --trp-floater-lsTop: 0;
+     --trp-floater-lsLeft: 80%;
 
 
     /* ATFS */
@@ -606,7 +612,6 @@ FIN DE MAPA DE CONTENIDOS */
     --areaSelectorContPosition: static;
     --areaSelectorContMaxHeight: unset;
     --teamValuesGTC: 1fr 1fr 1fr 1fr;
-    --teamCardsContainerGridTC: ;
 
     /* STOCK */
     --stock_main_GTC: 1fr 200px;
@@ -2093,7 +2098,6 @@ table.stockreport-table .border {
   padding: var(--teamCardsContainerPadding);
   overflow-x: var(--teamCardsContainerOverflow);
   position: relative;
-  grid-template-columns: var(--teamCardsContainerGridTC);
 }
 
 .teamCardsContGradient {
@@ -4122,7 +4126,7 @@ padding-bottom:0;
 .iconTextInline {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .iconTextInline p:nth-child(2), .iconTextInline a:nth-child(2) {
@@ -4265,4 +4269,11 @@ padding-bottom:0;
 
 #trp-floater-ls .trp-floater-ls-disabled-language {
   font-size: 12px;
+}
+
+
+
+#trp-floater-ls.trp-top-right {
+  top: var(--trp-floater-lsTop)!important;
+  left: var(--trp-floater-lsLeft)!important;
 }
