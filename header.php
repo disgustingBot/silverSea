@@ -183,7 +183,7 @@
         FINALIZAR
       </button>
 
-      
+
       <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('consultaFinalizada', '#cart', 'cart');cartController.emptyCart();">
         REALIZAR OTRA CONSULTA
       </button>
