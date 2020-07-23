@@ -225,18 +225,19 @@
     </div>
 
     <div class="finalizarConsultaCheckboxes">
-      <input type="checkbox" required>
-      <p class="termsDescription">Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</p>
+      <input id="privacidad" type="checkbox">
+      <label for="privacidad" class="termsDescription">Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</label>
     </div>
     <div class="finalizarConsultaCheckboxes">
-      <input type="checkbox">
-      <p class="termsDescription"><?php echo get_post_meta('150', 'ZF-cotizador-formulario-checkbox2', true); ?></p>
+      <input id="inmediata" type="checkbox">
+      <label for="inmediata" class="termsDescription"><?php echo get_post_meta('150', 'ZF-cotizador-formulario-checkbox2', true); ?></label>
     </div>
     <div class="finalizarConsultaCheckboxes">
-      <input type="checkbox">
-      <p class="termsDescription"><?php echo get_post_meta('150', 'ZG-cotizador-formulario-checkbox3', true); ?></p>
+      <input id="trasporte" type="checkbox">
+      <label for="trasporte" class="termsDescription"><?php echo get_post_meta('150', 'ZG-cotizador-formulario-checkbox3', true); ?></label>
     </div>
-    <button class="btn" id="buttonFinishCart" onclick="cartController.finish()">Solicitar cotización</button>
+    <!-- <button class="btn" id="buttonFinishCart" onclick="testCheckboxes()">Solicitar cotización</button> -->
+    <button class="btn" id="buttonFinishCart" onclick="cartController.finalButtonSwitch()">Solicitar cotización</button>
 
   </div>
 

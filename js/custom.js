@@ -516,7 +516,7 @@ trenController = {
 			trenController.selectUniqeOption();
 			trenController.setPointerEvents('none');
 
-			buttonFinish.onclick = trenController.finish
+			// buttonFinish.onclick = trenController.finish
 
 			accordionSelector('#destino')
 			d.querySelector('#trenExplanation').style.display = 'block';
@@ -527,7 +527,7 @@ trenController = {
 			productSelector.unselectAll();
 			trenController.setPointerEvents('auto');
 
-			buttonFinish.onclick = cartController.finish
+			// buttonFinish.onclick = cartController.finish
 
 
 			accordionSelector('#destino')
@@ -651,10 +651,12 @@ trenController = {
 
 
 			
-			// !falta:
-			// // TODO: que envie el mail
+			// TODO: que envie el mail
 			cartController.sendMail(true);
 			// TODO: que envie el lead
+			cartController.cartToLeads = cartController.cart;
+			createCookie('status','next')
+			cartController.sendAllLeads( tren = true );
 
 
 			// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
@@ -1237,7 +1239,7 @@ cartController = {
 					}
 					altClassFromSelector('consultaFinalizada', '#cart')
 					// TODO: encender el mail Sender
-					// cartController.sendMail();
+					cartController.sendMail();
 					// TODO: encender el lead Sender
 					cartController.cartToLeads = cartController.cart;
 					createCookie('status','next')
@@ -1334,6 +1336,50 @@ cartController = {
 		cartController.endButtonsSwitch();
 	},
 
+	finalButtonSwitch:()=>{
+		let finalButton = d.querySelector('#buttonFinishCart');
+
+		let privacidad = d.querySelector('#privacidad').checked;
+		let mateputEmail = d.querySelector('#mateputEmail').value;
+		let mateputTelefono = d.querySelector('#mateputTelefono').value;
+		let mateputNombre = d.querySelector('#mateputNombre').value;
+		let origenCountry = d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value == '0' ? false : true;
+		let origenCity = d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value == '0' ? false : true;
+		let trenDestination;
+
+		if ( d.querySelector('#trenOption').checked ) {
+			let destinoCountry = d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value == '0' ? false : true;
+			let destinoCity = d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value == '0' ? false : true;
+			if ( destinoCountry && destinoCity ) {
+				trenDestination = true;
+			} else {
+				trenDestination = false;
+			}
+		} else {
+			trenDestination = true;
+		}
+		
+		if( privacidad && !!mateputNombre ){
+			console.log('habilitarrrrrr')
+		}
+
+		if ( privacidad && !!mateputNombre && !!mateputTelefono && !!mateputEmail && origenCountry && origenCity && trenDestination ) {
+			// finalButton.disabled = false;
+			if(d.querySelector('#trenOption').checked){
+				// alert('Enviar tren lead')
+				trenController.finish()
+				
+			}else{
+				cartController.finish()
+				// alert('Enviar Lead')
+
+			}
+		} else {
+			alert('Todos los campos son requeridos')
+			// finalButton.disabled = true;
+		}
+	},
+
 	endButtonsSwitch:()=>{
 		// this part makes sure to only let you finish the consulta si tenes algo en el carrito
 		let endButtons = [...d.querySelectorAll('.CotizadorEndButton')];
@@ -1375,15 +1421,24 @@ cartController = {
 	},
 
 
-	sendAllLeads:()=>{
+	sendAllLeads:( tren = false )=>{
 		// if(readCookie('status')=='next'){
 		// eraseCookie('status')
 
 		// cartController.cartToLeads.forEach(product=>{
+		let mensaje = '-';
+		if ( tren ) {
+			mensaje = 'Servicio de tren hasta: ' + d.querySelector('#selectBoxDestinoCountry .selectBoxInput:checked').value + ', ' + d.querySelector('#selectBoxDestinoCity .selectBoxInput:checked').value;
+		}
 
 		let product = cartController.cartToLeads.shift();
 		console.log('send '+product.qty+' product: ', product.code)
-
+		let price;
+		if( typeof product.singlePrice == 'number' ){
+			price = product.singlePrice * product.qty;
+		} else {
+			price = product.singlePrice;
+		}
 
 		let info = {
 			fname:     d.querySelector('#mateputNombre').value,
@@ -1397,10 +1452,10 @@ cartController = {
 			quantity:  product.qty,
 			company:   '-',
 			lname:     '-',
-			message:   '-',
-			inmediata: '0',
-			traslado:  '1',
-			precio:    '1234',
+			message:   mensaje,
+			inmediata: d.querySelector('#inmediata').checked,
+			traslado:  d.querySelector('#trasporte').checked,
+			precio:    price,
 		}
 
 		if(cartController.cartToLeads.length!=0){
@@ -1486,7 +1541,13 @@ const checkForClose = ()=>{
 		// console.log('FOUNDDDD, close cycle')
 		let cant = parseInt(readCookie('leadsSent'))
 		console.log('cantidad de Leads enviados: ', cant)
-		eraseCookie('allLeads')
+		eraseCookie('allLeads');
+		eraseCookie('price_returns');
+		eraseCookie('cartToLeads');
+		eraseCookie('lastLead');
+		eraseCookie('info');
+		eraseCookie('status');
+		eraseCookie('leadsSent');
 		win2.close()
     } else {
 		console.log(readCookie('status'))
@@ -1655,4 +1716,16 @@ const addBullshitToCart = ()=>{
 		cartController.cart.unshift(new CartItem(item));
 		cartController.cart[0].cartUI();
 	});
+}
+
+
+
+
+
+function testCheckboxes (){
+	let trasporte = d.querySelector('#trasporte').checked;
+	let inmediata = d.querySelector('#inmediata').checked;
+	// let trasporte = d.querySelector('#trasporte').value
+	console.log(inmediata);
+	console.log(trasporte);
 }

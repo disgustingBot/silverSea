@@ -123,8 +123,8 @@ function lt_ajax_mail() {
 
 
 
-    $email='molinerozadkiel@gmail.com';
-    // $email='tomas.moralparra@gmail.com';
+    $mail1 = 'molinerozadkiel@gmail.com';
+    $mail2 = 'tomas.moralparra@gmail.com';
 
 		$subject="Cotizacion para $name";
     // $message='';
@@ -142,7 +142,8 @@ function lt_ajax_mail() {
     require_once 'mailv1.php';
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
-
+    wp_mail( $mail1 , $subject , $message , $headers );
+    wp_mail( $mail2 , $subject , $message , $headers );
     if (wp_mail( $mail , $subject , $message , $headers )) {
       // $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       $respuesta['gate1'] = 'mail enviado';
