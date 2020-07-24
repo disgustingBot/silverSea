@@ -83,7 +83,7 @@
 <div class="archiveTopInteraction">
   <div class="byeByeBtn">
     <button class="btn"><a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?>">Borrar filtros</a></button>
-    <button class="btn rebajaBtn">CONTENEDORES EN REBAJA</button>
+    <button class="btn rebajaBtn"><a href="<?php echo get_site_url() . '/sale/'; ?>">CONTENEDORES EN REBAJA</a></button>
     <button class="btn" onclick="altClassFromSelector('alt', '#finalizarConsulta')">Finalizar cotización</button>
   </div>
 </div>
@@ -141,6 +141,8 @@
       include get_template_directory() . '/inc/getAtributes.php';
 
       ?>
+
+      // TODO: hacer un archivo para las tarjetas
       <article
         class="card"
         contenedor="true"
