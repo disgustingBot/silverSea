@@ -161,6 +161,7 @@
     foreach($categories as $category) { ?>
 
         <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:grid; grid-template-columns: var(--queContainerINeedGTC);}</style>
+        <style>#queContainerINeed.card<?php echo $category->term_id .' #link'. $category->term_id; ?>{display:block;}</style>
         <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
           <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
             <div class="summaryTitleContainer">
@@ -187,8 +188,15 @@
             <option class="contOption" name="option" onclick="altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')" <?php if($i==0){echo 'checked';} ?> value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
         <?php $i++; } ?>
       </select>
-
-      <a href="" class="btn cotizarContainer">Cotizar contenedor</a>
+      
+      <style>
+        #queContainerINeed:not(.containerINeed) .notHideLinkHardCodeadaso{display:none}
+        .hideLinkHardCodeadaso{display:none}
+      </style>
+      <a href="<?php echo get_site_url(); ?>" class="btn cotizarContainer notHideLinkHardCodeadaso" id="">Cotizar contenedor</a>
+      <a href="<?php echo get_site_url() . '/?use=storage-new'; ?>" class="btn cotizarContainer hideLinkHardCodeadaso" id="link67">Cotizar contenedor</a>
+      <a href="<?php echo get_site_url() . '/?use=reefer'; ?>"      class="btn cotizarContainer hideLinkHardCodeadaso" id="link68">Cotizar contenedor</a>
+      <a href="<?php echo get_site_url() . '/?use=cargo-dry'; ?>"   class="btn cotizarContainer hideLinkHardCodeadaso" id="link69">Cotizar contenedor</a>
     </div>
 
   <?php } ?>
@@ -229,7 +237,7 @@
     </hgroup>
     <img class="article2Media" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
   </article>
-  <button class="btn valoresBtn"><a href="<?php echo get_post_meta($post->ID, 'V-link-btn-valores', true); ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
+  <button class="btn valoresBtn"><a href="<?php echo get_site_url() . '/acerca-nuestro/'; ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
 </section>
 
 <section class="sectionPadding sectionColor3">
