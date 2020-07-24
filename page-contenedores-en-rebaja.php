@@ -1,10 +1,8 @@
 <?php get_header(); ?>
 
-<div class="archiveTopInteraction">
-  <h2>Contenedores en rebaja</h2>
-  <div class="byeByeBtn">
-    <button class="btn"><a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?>">Todos los contenedores</a></button>
-  </div>
+<div class="saleTopInteraction">
+  <h2 class="saleTitle"><?php the_title(); ?></h2>
+  <button class="btn saleBtn"><a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?>">Todos los contenedores</a></button>
 </div>
 
 <!-- <div class="archiveMain"> -->
