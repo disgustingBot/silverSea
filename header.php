@@ -63,18 +63,18 @@
 	<view id="load" class="load"><div class="circle"></div></view>
 	<view id="languageScreen" class="languageScreen">
     <h4 class="languageScreenTitle">Select your language</h4>
-    <div class="langOption" onclick="language_select('en')">
+    <a href="<?php echo site_url('/en'); ?>" class="langOption" onclick="language_select('en')">
       <svg class="langFlag" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 100 73">
         <use xlink:href="#en_flag" class="langFlagUse"></use>
       </svg>
       <p>English</p>
-    </div>
-    <div class="langOption" onclick="language_select('es')">
+    </a>
+    <a href="<?php echo site_url(''); ?>" class="langOption" onclick="language_select('es')">
       <svg class="langFlag" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 100 73">
         <use xlink:href="#es_flag" class="langFlagUse"></use>
       </svg>
       <p>Spanish</p>
-    </div>
+    </a>
   </view>
 
   <header class="header" id="header">

@@ -359,6 +359,7 @@ FIN DE MAPA DE CONTENIDOS */
   --cartGridGap: 2rem;
 
 
+  --saleMainGTC:1fr 1fr;
 
 
 }
@@ -637,6 +638,9 @@ FIN DE MAPA DE CONTENIDOS */
 
       /* CART */
       --cartGridGap: 1rem;
+
+    --saleMainGTC:1fr 1fr 1fr 1fr;
+
   }
 }
 
@@ -4405,4 +4409,17 @@ padding-bottom:0;
 .langFlagUse{
   width:100px;
   height: auto;
+}
+
+
+
+
+
+
+/* SALE MAIN */
+.saleMain{
+  display:grid;
+  grid-template-columns:var(--saleMainGTC);
+  padding:2rem var(--lateral);
+  grid-gap:1rem;
 }

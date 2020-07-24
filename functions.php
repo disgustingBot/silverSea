@@ -563,8 +563,8 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	// $server = 'online';
-	$server = 'local';
+	$server = 'online';
+	// $server = 'local';
 	$debugMode = false;
 	$respuesta = array();
 	$file = false;

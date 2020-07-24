@@ -1115,7 +1115,7 @@ cartController = {
 		// TODO: % chequear si tenes en el carrito el contenedor habilitado...
 		// alert('debes vaciar tu carrito primero')
 		console.log('cart: ', cartController.cart.length)
-		to_be_deleted = []
+		let to_be_deleted = []
 		cartController.cart.forEach( product =>{
 			to_be_deleted.unshift(product.code);
 		})
@@ -1123,6 +1123,16 @@ cartController = {
 		to_be_deleted.forEach( code => {
 			cartController.remove(code)
 		})
+
+		
+		list = d.querySelector('.cartList');
+		let elementos_visuales = [...list.querySelectorAll('.cartItem')];
+		elementos_visuales.forEach(element=>{
+			list.removeChild(element);
+		})
+		
+
+
 	},
 
 
@@ -1695,12 +1705,15 @@ const filterActivate = ()=>{
 			card = option.target.value
 			if(card == 'card67'){
 				button.href = urlBase + '?use=storage-new';
+				console.log('storage-new');
 			}
 			if(card == 'card68'){
-				button.href = urlBase + '?use=cargo-dry';
+				button.href = urlBase + '?use=reefer';
+				console.log('reefer');
 			}
 			if(card == 'card69'){
-				button.href = urlBase + '?use=reefer';
+				button.href = urlBase + '?use=cargo-dry';
+				console.log('cargo-dry');
 			}
 		}
 	}
