@@ -348,6 +348,7 @@ FIN DE MAPA DE CONTENIDOS */
   --unPasoMasButtonMarginBottom: 30px;
 
 
+  --saleMainGTC:1fr 1fr;
 
 
 }
@@ -619,6 +620,9 @@ FIN DE MAPA DE CONTENIDOS */
 
       /* CART */
       --cartGridGap: 1rem;
+
+    --saleMainGTC:1fr 1fr 1fr 1fr;
+
   }
 }
 
@@ -4259,6 +4263,18 @@ padding-bottom:0;
   height: auto;
 }
 
+
+
+
+
+
+/* SALE MAIN */
+.saleMain{
+  display:grid;
+  grid-template-columns:var(--saleMainGTC);
+  padding:2rem var(--lateral);
+  grid-gap:1rem;
+}
 .cn-button.bootstrap {
   background: var(--secondaryColor)!important;
 }
