@@ -41,16 +41,16 @@ c.lof = (message, farbe = false)=>{
 
 const language_select = (language) => {
 	
-	createCookie('lt_lang', language, 1)
+	createCookie('trp_language', language, 1)
 	if (language == 'es') language = '';
 
-	w.location.replace( lt_data.homeurl + '/' + language );
+	// w.location.replace( lt_data.homeurl + '/' + language );
 }
 
 
 
 w.onload=()=>{
-	if (readCookie('lt_lang')) d.querySelector('#languageScreen').classList.add('hide');
+	if (readCookie('trp_language')) d.querySelector('#languageScreen').classList.add('hide');
 	// language_redirect();
 
 	// LAZY LOAD FUNCTIONS MODULE
