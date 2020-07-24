@@ -139,10 +139,10 @@
       global $product;
 
       include get_template_directory() . '/inc/getAtributes.php';
-
+      
+      // TODO: hacer un archivo para las tarjetas
       ?>
 
-      // TODO: hacer un archivo para las tarjetas
       <article
         class="card"
         contenedor="true"
