@@ -175,7 +175,6 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
 
 
 <div class="" id="display">
-   <!-- Records will be displayed here -->
 </div>
 
 <?php get_footer() ?>
