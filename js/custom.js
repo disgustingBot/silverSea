@@ -10,6 +10,7 @@ c.lof = (message, farbe = false)=>{
 
 // const language_redirect = () =>{
 // 	let getUrl = window.location;
+// 	current_language = getUrl.pathname.split('/')[1],
 
 // 	let url = getUrl .protocol + "//" + getUrl.host + "/",
 // 	allowed_laguages = [ 'es', 'en', 'de' ],
@@ -74,6 +75,8 @@ w.onload=()=>{
 	cardSetup();
 
 	filterActivate();
+
+
 
 
 	scrollAlter();
@@ -1695,26 +1698,29 @@ const filterActivate = ()=>{
 		})
 
 	}
-	if(d.querySelector('[name=cont_selector')){
-		d.querySelector('[name=cont_selector').onchange=(option)=>{
+	if(d.querySelector('[name=cont_selector]')){
+		d.querySelector('[name=cont_selector]').onchange=(option)=>{
 			altClassFromSelector(option.target.value, '#queContainerINeed', 'sectionPadding')
-			let button = d.querySelector('.cotizarContainer'),
-			// urlBase = 'http://localhost/silverSea/buscar-contenedor/'
-			urlBase = 'https://silverseacontainers.com/buscar-contenedor-maritimo/'
-			console.log(option.target.value)
-			card = option.target.value
-			if(card == 'card67'){
-				button.href = urlBase + '?use=storage-new';
-				console.log('storage-new');
-			}
-			if(card == 'card68'){
-				button.href = urlBase + '?use=reefer';
-				console.log('reefer');
-			}
-			if(card == 'card69'){
-				button.href = urlBase + '?use=cargo-dry';
-				console.log('cargo-dry');
-			}
+			// let button = d.querySelector('.cotizarContainer');
+			// // urlBase = 'http://localhost/silverSea/buscar-contenedor/'
+			// let homeUrl = lt_data.homeurl;
+			// console.log(homeUrl);
+			// urlBase = homeUrl + readCookie('trp_language') + '/buscar-contenedor-maritimo/';
+			// // urlBase = 'https://silverseacontainers.com/buscar-contenedor-maritimo/'
+			// console.log(option.target.value)
+			// card = option.target.value
+			// if(card == 'card67'){
+			// 	button.href = urlBase + '?use=storage-new';
+			// 	console.log('storage-new');
+			// }
+			// if(card == 'card68'){
+			// 	button.href = urlBase + '?use=reefer';
+			// 	console.log('reefer');
+			// }
+			// if(card == 'card69'){
+			// 	button.href = urlBase + '?use=cargo-dry';
+			// 	console.log('cargo-dry');
+			// }
 		}
 	}
 }
