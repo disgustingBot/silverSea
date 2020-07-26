@@ -57,7 +57,7 @@
   <?php include 'assets/allIcons.php'; ?>
 
 	<view id="load" class="load"><div class="circle"></div></view>
-	<view id="languageScreen" class="languageScreen">
+	<!-- <view id="languageScreen" class="languageScreen">
     <h4 class="languageScreenTitle">Select your language</h4>
     <a href="<?php echo site_url('/en'); ?>" class="langOption" onclick="language_select('en')">
       <svg class="langFlag" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 100 73">
@@ -71,7 +71,7 @@
       </svg>
       <p>Spanish</p>
     </a>
-  </view>
+  </view> -->
 
   <header class="header" id="header">
 

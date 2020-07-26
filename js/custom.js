@@ -38,19 +38,19 @@ c.lof = (message, farbe = false)=>{
 
 // }
 
+//
+// const language_select = (language) => {
+//
+// 	createCookie('trp_language', language, 1)
+// 	if (language == 'es') language = '';
+//
+// 	// w.location.replace( lt_data.homeurl + '/' + language );
+// }
 
-const language_select = (language) => {
-	
-	createCookie('trp_language', language, 1)
-	if (language == 'es') language = '';
 
-	// w.location.replace( lt_data.homeurl + '/' + language );
-}
-
-
-
+//
 w.onload=()=>{
-	if (readCookie('trp_language')) d.querySelector('#languageScreen').classList.add('hide');
+	// if (readCookie('trp_language')) d.querySelector('#languageScreen').classList.add('hide');
 	// language_redirect();
 
 	// LAZY LOAD FUNCTIONS MODULE
@@ -563,7 +563,7 @@ trenController = {
 			let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
 			let itemCurrency = cartItem.querySelector('.cartItemCurrency');
 			let currency = 'EUR';
-			
+
 
 
 
@@ -578,7 +578,7 @@ trenController = {
 
 
 
-			
+
 			price_is_avaliable = ( !!precio_origen && !!precio_destino )
 			console.log('price_is_avaliable', price_is_avaliable)
 			this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
@@ -619,10 +619,10 @@ trenController = {
 
 
 
-			
+
 			// let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
 			// console.log('list_of_product_with_price: ', list_of_product_with_price);
-			
+
 
 			let gran_total_display = [...d.querySelectorAll('.cartTotal')];
 			console.log(gran_total_display)
@@ -636,7 +636,7 @@ trenController = {
 			} else {
 				altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
 			}
-			
+
 			altClassFromSelector('consultaFinalizada', '#cart')
 
 
@@ -650,7 +650,7 @@ trenController = {
 
 
 
-			
+
 			// TODO: que envie el mail
 			cartController.sendMail(true);
 			// TODO: que envie el lead
@@ -1086,7 +1086,7 @@ const price_data_pre_processor = (data, exchange)=>{
 // CART CONTROLLER
 cartController = {
 	setup:()=>{
-		
+
 		if(readCookie('cart')){
 			JSON.parse(readCookie('cart')).forEach((item, i) => {
 				cartController.cart.unshift(new CartItem(item));
@@ -1124,20 +1124,20 @@ cartController = {
 			cartController.remove(code)
 		})
 
-		
+
 		list = d.querySelector('.cartList');
 		let elementos_visuales = [...list.querySelectorAll('.cartItem')];
 		elementos_visuales.forEach(element=>{
 			list.removeChild(element);
 		})
-		
+
 
 
 	},
 
 
 	finish:()=>{
-		// console.log('carrito antes de la transforrmacion', cartController.cart)s	
+		// console.log('carrito antes de la transforrmacion', cartController.cart)s
 		cartController.cart.forEach((item, i) => {
 			// cartController.getPrice(item.code);
 			// console.log(item);
@@ -1174,7 +1174,7 @@ cartController = {
 				if ( data.gastos ) {
 					gastos = parseFloat(data.gastos.profit) + parseFloat(data.gastos.deposit) + parseFloat(data.gastos.others);
 				}
-				
+
 				price_is_avaliable = !!price_pre_processed
 				// console.log('price_is_avaliable', price_is_avaliable)
 
@@ -1205,7 +1205,7 @@ cartController = {
 				cartController.cart[i].setPrice(singlePrice);
 				nuevoElemento = new CartItem(cartController.cart[i].values)
 				cartController.cart[i] = nuevoElemento;
-				
+
 				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
 				// console.log(cartController.cart[i]);
 
@@ -1233,12 +1233,12 @@ cartController = {
 					gran_total_display.forEach(element=>{
 						element.innerHTML = gran_total;
 					})
-					
+
 					let currency_display = [...d.querySelectorAll('.cartTotalCurrency')];
 					currency_display.forEach(element=>{
 						element.innerHTML = currency;
 					})
-					
+
 					// console.log('CARRITO luego de la transformacion', cartController.cart)
 					if ( list_of_product_with_price.length == 0 ){
 						altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
@@ -1290,7 +1290,7 @@ cartController = {
 		formData.append( 'name', d.querySelector('#mateputNombre').value );
 		formData.append( 'phone', d.querySelector('#mateputTelefono').value );
 		formData.append( 'mail', d.querySelector('#mateputEmail').value );
-		
+
 		if ( is_case_tren ) {
 			formData.append( 'title', 'Servicio de tren' );
 			formData.append( 'destino_country', locationSelector.destino[0] );
@@ -1368,7 +1368,7 @@ cartController = {
 		} else {
 			trenDestination = true;
 		}
-		
+
 		if( privacidad && !!mateputNombre ){
 			console.log('habilitarrrrrr')
 		}
@@ -1378,7 +1378,7 @@ cartController = {
 			if(d.querySelector('#trenOption').checked){
 				// alert('Enviar tren lead')
 				trenController.finish()
-				
+
 			}else{
 				cartController.finish()
 				// alert('Enviar Lead')
@@ -1724,7 +1724,7 @@ const filterActivate = ()=>{
 
 const addBullshitToCart = ()=>{
 	example1 = '[{"values":{"size":"6","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"6HC CW","id":"7","categoria":"size > 6PIES: Condition > CW: general > Dry > HC","imagenes":"","ancho":"2.43","alto":"2.59","largo":"1.98","peso":"0","tara":null,"container_description":null,"qty":6,"code":"6HC CW"},"size":"6","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"6HC CW","id":"7","categoria":"size > 6PIES: Condition > CW: general > Dry > HC","imagenes":"","ancho":"2.43","alto":"2.59","largo":"1.98","peso":"0","tara":null,"container_description":null,"qty":6,"code":"6HC CW"},{"values":{"size":"40","tipo_1":"Special","tipo_1_description":"Special | Especiales","tipo_2":"OT","tipo_2_description":"Open Top","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40OT CW","id":"114","categoria":"size > 40PIES: Condition > CW: general > Special > OT","imagenes":"","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40OT CW"},"size":"40","tipo_1":"Special","tipo_1_description":"Special | Especiales","tipo_2":"OT","tipo_2_description":"Open Top","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40OT CW","id":"114","categoria":"size > 40PIES: Condition > CW: general > Special > OT","imagenes":"","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40OT CW"},{"values":{"size":"40","tipo_1":"Reefer","tipo_1_description":"Refrigerado | Reefer","tipo_2":"RF","tipo_2_description":"Reefer Standard","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40RF CW","id":"100","categoria":"size > 40PIES: Condition > CW: general > Reefer > RF","imagenes":"40HCRFCW_1","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40RF CW"},"size":"40","tipo_1":"Reefer","tipo_1_description":"Refrigerado | Reefer","tipo_2":"RF","tipo_2_description":"Reefer Standard","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40RF CW","id":"100","categoria":"size > 40PIES: Condition > CW: general > Reefer > RF","imagenes":"40HCRFCW_1","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40RF CW"},{"values":{"size":"40","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40HC CW","id":"88","categoria":"size > 40PIES: Condition > CW: general > Dry > HC","imagenes":"40HCCW_1, 40HCCW_2, 40HCCW_3, 40HCCW_4","ancho":"2.43","alto":"2.89","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":4,"code":"40HC CW"},"size":"40","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40HC CW","id":"88","categoria":"size > 40PIES: Condition > CW: general > Dry > HC","imagenes":"40HCCW_1, 40HCCW_2, 40HCCW_3, 40HCCW_4","ancho":"2.43","alto":"2.89","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":4,"code":"40HC CW"}]';
-	
+
 	JSON.parse(example1).forEach((item, i) => {
 		cartController.cart.unshift(new CartItem(item));
 		cartController.cart[0].cartUI();

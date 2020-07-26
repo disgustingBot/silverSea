@@ -4223,7 +4223,7 @@ padding-bottom:0;
 
 
 /* LANGUAGE SCREEN */
-.languageScreen.hide{opacity:0;pointer-events:none;}
+/* .languageScreen.hide{opacity:0;pointer-events:none;}
 .languageScreen{
   position:fixed;
   background: rgba(0,0,0,0.8);
@@ -4271,7 +4271,7 @@ padding-bottom:0;
 .langFlagUse{
   width:100px;
   height: auto;
-}
+} */
 
 
 
@@ -4342,9 +4342,6 @@ padding-bottom:0;
   left: var(--trp-floater-lsLeft)!important;
 }
 
-#trp-floater-ls .trp-floater-ls-disabled-language {
-  font-size: 12px;
-}
 
 */
 
@@ -4354,4 +4351,8 @@ padding-bottom:0;
 
 #mWOb7e4-1595449115333 {
   z-index: 5!important;
+}
+
+#trp-floater-ls .trp-floater-ls-disabled-language {
+  font-size: 12px;
 }
