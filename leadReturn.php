@@ -48,7 +48,7 @@
   </style>
 </head>
 <body>
-<!-- <view id="load" class="load"><div class="circle"></div></view> -->
+<view id="load" class="load"><div class="circle"></div></view>
 
 
 <?php

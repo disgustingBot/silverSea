@@ -103,8 +103,8 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec( $ch );
 ?>
 
-<div style="">
-<!-- <div style="opacity:0"> -->
+<!-- <div style=""> -->
+<div style="opacity:0">
 <?php var_dump($response); ?>
 </div>
 
