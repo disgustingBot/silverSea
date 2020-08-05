@@ -1381,14 +1381,15 @@ cartController = {
 
 		if ( privacidad && !!mateputNombre && !!mateputTelefono && !!mateputEmail && origenCountry && origenCity && trenDestination ) {
 			// finalButton.disabled = false;
-			if(d.querySelector('#trenOption').checked){
-				// alert('Enviar tren lead')
-				trenController.finish()
-
+			if(!!d.querySelector('#trenOption')){
+				if(d.querySelector('#trenOption').checked){
+					trenController.finish()
+				}else{
+					cartController.finish()
+				}
 			}else{
 				cartController.finish()
 				// alert('Enviar Lead')
-
 			}
 		} else {
 			alert('Todos los campos son requeridos')
