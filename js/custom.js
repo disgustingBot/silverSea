@@ -1358,18 +1358,21 @@ cartController = {
 		let mateputNombre = d.querySelector('#mateputNombre').value;
 		let origenCountry = d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value == '0' ? false : true;
 		let origenCity = d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value == '0' ? false : true;
-		let trenDestination;
+		let trenDestination = true;
 
-		if ( d.querySelector('#trenOption').checked ) {
-			let destinoCountry = d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value == '0' ? false : true;
-			let destinoCity = d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value == '0' ? false : true;
-			if ( destinoCountry && destinoCity ) {
-				trenDestination = true;
+		if(!!d.querySelector('#trenOption')){
+
+			if ( d.querySelector('#trenOption').checked ) {
+				let destinoCountry = d.querySelector('#selectBoxOrigenCountry .selectBoxInput:checked').value == '0' ? false : true;
+				let destinoCity = d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value == '0' ? false : true;
+				if ( destinoCountry && destinoCity ) {
+					trenDestination = true;
+				} else {
+					trenDestination = false;
+				}
 			} else {
-				trenDestination = false;
+				trenDestination = true;
 			}
-		} else {
-			trenDestination = true;
 		}
 		
 		if( privacidad && !!mateputNombre ){

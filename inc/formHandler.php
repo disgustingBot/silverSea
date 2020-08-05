@@ -11,7 +11,7 @@ function lt_form_handler() {
   $link=$_POST['link'];
 
 	if($_POST['a00'] != ""){
-		$link = add_query_arg( array('status' => 'nope',), $link );
+		$link = add_query_arg( array('no' => 'go',), $link );
 	} else {
     $email='molinerozadkiel@gmail.com';
 
@@ -39,15 +39,16 @@ function lt_form_handler() {
     // } else {
 
 
-      if (wp_mail( $email , $subject , $message , $headers )) {
+      // if (wp_mail( $email , $subject , $message , $headers )) {
+      if (wp_mail( $_POST['email'] , $subject , $message , $headers )) {
         $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       } else {
         $link = add_query_arg( array( 'status' => 'error', ), $link );
       }
     // }
 	}
-	// wp_redirect($link);
-	if($debugMode){echo wp_json_encode($respuesta);}
+	wp_redirect($link);
+	// if($debugMode){echo wp_json_encode($respuesta);}
 	exit();
 }
 
@@ -97,9 +98,15 @@ function lt_ajax_mail() {
       $respuesta[$key] = $value;
       if($value->singlePrice != 'Precio no disponible'){
         $finalPrice = $value->qty * $value->singlePrice;
-        $finalPrice = $finalPrice . ' ' . $currency;
-        $singlePrice = $value->singlePrice . ' ' . $currency;
         $totalPrice = $totalPrice + $finalPrice;
+
+        // $finalPrice = $finalPrice . ' ' . $currency;
+        $finalPrice = number_format($finalPrice, 2, ',', ' ') . ' ' . $currency;
+        // $singlePrice = $value->singlePrice . ' ' . $currency;
+
+        
+        $singlePrice = number_format($value->singlePrice, 2, ',', ' ') . ' ' . $currency;
+
       } else {
         $finalPrice = '-';
         $singlePrice = $value->singlePrice;
@@ -108,6 +115,7 @@ function lt_ajax_mail() {
       if($key & 1){
         $clase = 'budget-row-colored';
       }
+      
     # code...
       // $tablaDePrecios = $tablaDePrecios . $key . " - " . $value . "<br>";
       $tablaDePrecios = $tablaDePrecios . "
@@ -119,7 +127,7 @@ function lt_ajax_mail() {
         <td>$finalPrice</td>
       </tr>";
     }
-    $totalPrice = $totalPrice . ' ' . $currency;
+    $totalPrice = number_format($totalPrice, 2, ',', ' ') . ' ' . $currency;
 
 
 
@@ -142,8 +150,8 @@ function lt_ajax_mail() {
     require_once 'mailv1.php';
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
-    wp_mail( $mail1 , $subject , $message , $headers );
-    wp_mail( $mail2 , $subject , $message , $headers );
+    // wp_mail( $mail1 , $subject , $message , $headers );
+    // wp_mail( $mail2 , $subject , $message , $headers );
     if (wp_mail( $mail , $subject , $message , $headers )) {
       // $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       $respuesta['gate1'] = 'mail enviado';

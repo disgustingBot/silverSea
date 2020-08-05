@@ -11,20 +11,18 @@
       En Silversea estamos abiertos a consultas, propuestas y nuevos desafíos.
     </h4>
   </hgroup>
-  <form class="contactForm" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" id="cmForm">
-    <input class="contact_input" type="hidden" id="first_name" maxlength="80" name="first_name">
-    <input class="contact_input" type="hidden" name="oid" value="00D0X000000uRGw">
-    <input class="contact_input" id="company" name="company" type="hidden" value="Silversea" required="">
-    <input class="contact_input" type="hidden" id="lead_source" name="lead_source" value="Web BOX ES">
-    <input class="contact_input" type="hidden" name="retURL" value="https://sstc.com.es/en/gracias/silverbox/">
+  <form class="contactForm" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="POST" id="cmForm">
+        <input type="hidden" name="action"   value="lt_form_handler">
+        <input type="hidden" name="link"     value="<?php echo home_url( $wp->request ); ?>">
+        <input type="text"   name="a00"      value="" placeholder="jeje" hidden>
 
     <input class="contact_input" type="hidden" name="action" value="lt_form_handler">
     <input class="contact_input" type="hidden" name="link" value="<?php echo home_url( $wp->request );?>">
-    <input class="contact_input" type="text" id="last_name" name="last_name" placeholder="Nombre" required>
+    <input class="contact_input" type="text" id="name" name="name" placeholder="Nombre" required>
     <input class="contact_input" type="tel" id="phone" name="phone" placeholder="Telefono" required>
     <input class="contact_input" type="email" id="email" name="email" placeholder="Email" required>
     <input class="contact_input" type="text" id="country" name="Pais" placeholder="Pais" required>
-    <textarea class="contact_textarea" type="text" id="comment" name="Comentarios" placeholder="Comentarios"> </textarea>
+    <textarea class="contact_textarea" type="text" id="comment" name="Comentarios" placeholder="Comentarios"></textarea>
     <div class="finalizarConsultaCheckboxes">
       <input type="checkbox" required>
       <p class="termsDescription">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;"> privacy terms</a></p>
