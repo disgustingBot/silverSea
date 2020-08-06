@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 while(have_posts()){the_post();
   global $woocommerce, $product, $post;
   include get_template_directory() . '/inc/getAtributes.php';
+
+
+  // ucfirst($tipo_1Slug)
   ?>
 
   <section
@@ -13,7 +16,7 @@ while(have_posts()){the_post();
     contenedor="true"
     data-code="<?php echo $code; ?>"
     data-size="<?php echo $sizeNumber; ?>"
-    data-tip1="<?php echo $tipo_1; ?>"
+    data-tip1="<?php echo ucfirst($tipo_1Slug); ?>"
     data-tip2="<?php echo strtoupper($tipo_2Slug); ?>"
     data-cond="<?php echo strtoupper($conditionSlug); ?>"
   >
@@ -97,7 +100,7 @@ while(have_posts()){the_post();
 
     <div class="categoryCard">
       <div class="categoryCardHeader">
-        <?php newSvg($tipo_1) ?>
+        <?php newSvg(ucfirst($tipo_1Slug)); ?>
         <h6 class="categoryCardTitle"><?php echo $tipo_1; ?></h6>
       </div>
       <p class="categoryCardCaption"><?php echo get_term_by('slug', $tipo_1, 'product_cat')->description; ?></p>
@@ -107,7 +110,7 @@ while(have_posts()){the_post();
 
     <div class="categoryCard">
       <div class="categoryCardHeader">
-        <?php newSvg(strtoupper($tipo_2Slug)) ?>
+        <?php newSvg(strtoupper($tipo_2Slug)); ?>
         <h6 class="categoryCardTitle"><?php echo $tipo_2; ?></h6>
       </div>
       <p class="categoryCardCaption"><?php echo get_term_by('slug', $tipo_2Slug, 'product_cat')->description; ?></p>
