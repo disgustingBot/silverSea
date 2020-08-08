@@ -610,7 +610,8 @@ function lt_upload_file () {
 
 		if ($conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName)) {
 			$respuesta['gate1'] = "Conection is ok";
-
+			// container_description as 'post_content',
+// container_description
 			$query1 = "truncate table $dbName.$fileName2;";
 			$query2 = "LOAD DATA LOCAL INFILE '" . $fileDestination . "' INTO TABLE $dbName.$fileName2 FIELDS TERMINATED BY '" . $saltoDeLinea . "' IGNORE 1 LINES;";
 			$qry = "Select
@@ -629,8 +630,6 @@ function lt_upload_file () {
 			ancho as 'ancho',
 			alto as 'alto',
 			largo as 'largo',
-			peso as 'peso',
-			tara as 'tara',
 			imagenes as 'imagenes',
 			tipo_2 as 'tipo_2',
 			condicion as 'condition',
@@ -656,10 +655,29 @@ function lt_upload_file () {
 											$respuesta['deleted']=true;
 										}
 
-
+// drop table contenedores;
+// create table contenedores
+// (
+// 	size int,
+// 	tipo_1 varchar(60),
+// 	tipo_1_description varchar(120),
+// 	tipo_2 varchar(60),
+// 	tipo_2_description varchar(120),
+// 	condicion varchar(60),
+// 	condicion_description varchar(120),
+// 	salesforce_id varchar(60),
+// 	id int, 
+// 	categoria varchar(200),
+// 	imagenes varchar(1000),
+// 	ancho  float,
+// 	alto float,
+// 	largo float,
+// 	container_description varchar(20000)
+// )
 
 										$respuesta['query1']="$query1";
 										$respuesta['query2']="$query2";
+										$respuesta['query3']="$qry";
 
 										if($fileName2 == 'contenedores'){$respuesta['gate9']="Table contenedores";
 											// esta parte solo deberi ejecutar en el caso de "contenedores"
@@ -671,6 +689,7 @@ function lt_upload_file () {
 												$resp = $ress->fetch_all(MYSQLI_ASSOC);
 												$json_array = wp_json_encode( $resp );
 												if (!$debugMode) {
+													// echo wp_json_encode($respuesta);
 													echo $json_array;
 													exit();
 												}

@@ -59,7 +59,15 @@ $debugEmail = 'testtter%40aaallll.com';
 // $testUrl = 'https://silverseacontainers.com/testLead.php';
 
 // $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message";
-$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrzM=$inmediata&00N0X00000DSh9n=$traslado&00N0X00000DSh9o=$precio";
+
+// this is the good one
+// $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrzM=$inmediata&00N0X00000DSh9n=$traslado&00N1x000003yrOa=$precio";
+
+
+$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado&00N1x000003yrOa=$precio";
+
+// $myvars = "oid=$oid           &retURL=$retURL                     &debug=$debug&debugEmail=$debugEmail                       &first_name=$first_name&last_name=$last_name&email=$email              &phone=$phone    &company=$company   &country=$country&city=$city       &00N0X00000CrHzi=$product&00N0X00000AlPaB=$type    &00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message        &00N1x000003yrzM=$inmediata&00N0X00000DSh9n=$traslado&00N0X00000DSh9o=$precio";
+// $myvars = "oid=00D0X000000uRGw&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1     &debugEmail=gportela%40silverseacontainers.com&first_name=Testeo     &last_name=Final     &email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here    &city=exactly+here&00N0X00000CrHzi=20FR+CW &00N0X00000AlPaB=container&00N0X00000AlPaA=big  &00N0X00000AlPaC=22       &00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=1         &00N0X00000CrQFZ=1        &00N1x000003yrOa=25000";
 // setcookie("vars", $myvars);
 ?>
 
@@ -76,6 +84,14 @@ $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_nam
 
 <?php
 
+// echo '<h1>Variables GET</h1>';
+// foreach ($_GET as $key => $value) {
+//       # code...
+//       echo '<br>';
+//       echo '<br>';
+//       echo $key . ' => ' . $value;
+// }
+
 // $url = 'https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
 // $url = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
 
@@ -88,6 +104,7 @@ $url = 'https://go.pardot.com/l/821023/2020-06-05/9g7r';
 
 
 // $myvars = "oid=00D1x0000008bpY&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Testeo&last_name=Final&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=1&00N0X00000CrQFZ=1&00N1x000003yrOa=25000";
+// $myvars = "oid=00D0X000000uRGw&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Testeo&last_name=Final&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=1&00N0X00000CrQFZ=1&00N1x000003yrOa=25000";
 
 
 // $myvars = "oid=00D1l0000000ia7&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1&debugEmail=gportela%40silverseacontainers.com&first_name=Cosme&last_name=Fulanito&email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here&city=exactly+here&00N0X00000CrHzi=20FR+CW&00N0X00000AlPaB=container&00N0X00000AlPaA=big&00N0X00000AlPaC=22&00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=1&00N0X00000CrQFZ=1&00N1x000003yrOa=25000";
@@ -103,8 +120,8 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec( $ch );
 ?>
 
-<!-- <div style=""> -->
-<div style="opacity:0">
+<div style="">
+<!-- <div style="opacity:0"> -->
 <?php var_dump($response); ?>
 </div>
 
