@@ -360,6 +360,25 @@ productSincrotron = {
 			console.log(productoZero[0].imagenes);
 			productSincrotron.temp.unshift(productoZero[0]);
 		}
+		
+// let test_product = {
+// 	Categoria: "size > 20PIES, Condition > NEW, general > Dry > DC",
+// 	Name: "20 PIES",
+// 	SKU: "20DC NEW",
+// 	Stock: "1",
+// 	alto: "2",
+// 	ancho: "2",
+// 	condition: "NEW",
+// 	description: "Contenedores en excelente estado, vinieron con carga desde donde los producimos en Asia y luego quedan vaciados en nuetros depositos. Son aptos para carga, modificarlos para casa u oficina o para almancenaje. A todo lo que te da un contenedor usado se le suma a estos la estetica como el punto mas alto.",
+// 	imagenes: (3) ["20DCNEW_1", "20DCNEW_2", "20DCNEW_3"],
+// 	largo: "6",
+// 	size: "20 pies",
+// 	tipo_2: "DC",
+// }
+// let formData = new FormData();
+// formData.append('products', JSON.stringify(productSincrotron.temp));
+// formData.append('action', 'lt_create_products');
+// ajax2(formData).then(data => {console.log(data)})
 
 		console.log('envio a fabricar:')
 		console.log(productSincrotron.temp);
