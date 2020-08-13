@@ -1,8 +1,10 @@
 <?php get_header(); ?>
 
 <section class="ATF frontPageATF sectionWhite">
-  <video loop autoplay muted class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" alt="">
+  <video loop muted playsinline autoplay="autoplay" class="frontPageATFBg rowcol1">
+    <source src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores">
   </video>
+
 
   <div class="cotizador cont" id="cotizador">
     <div class="cotizadorOptionsContainer">
@@ -188,7 +190,7 @@
             <option class="contOption" name="option" onclick="altClassFromSelector(this.value, '#queContainerINeed', 'sectionPadding')" <?php if($i==0){echo 'checked';} ?> value="card<?php echo $category->term_id; ?>"><?php echo  $category->name; ?></option>
         <?php $i++; } ?>
       </select>
-      
+
       <style>
         #queContainerINeed:not(.containerINeed) .notHideLinkHardCodeadaso{display:none}
         .hideLinkHardCodeadaso{display:none}

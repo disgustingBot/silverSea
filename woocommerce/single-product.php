@@ -70,7 +70,7 @@ while(have_posts()){the_post();
       foreach($metas as $key=>$value){if(get_post_meta(get_the_id(),$value,true)){ ?>
         <div class="containerAttribute">
           <p class="containerAttributeTitle"><?php echo ucwords($value); ?></p>
-          <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), $value, true ); ?></p>
+          <p class="containerAttributeTxt"><?php echo get_post_meta( get_the_id(), $value, true ); ?>m</p>
         </div>
       <?php } } ?>
 
