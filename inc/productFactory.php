@@ -6,7 +6,7 @@ function newProduct($product = array(), $product_cat = array(), $product_meta = 
 	$product_defaults = array(
 		'post_author'            => 1,
 		'post_title'             => 'Product Name',
-		'post_content'           => 'Product Description Lorem Ipsum Dolor',
+		'post_content'           => 'Producto sin descripcion',
 		'post_status'            => 'publish',
 		'post_type'              => 'product',
 		'product_type'           => 'simple',
@@ -52,9 +52,8 @@ function newProduct($product = array(), $product_cat = array(), $product_meta = 
 	) );
 	wp_set_object_terms( $post_id, $product['product_type'], 'product_type' );
 
-
 	foreach ($product_meta as $key => $value) {
-	update_post_meta( $post_id, $key, $value );
+		update_post_meta( $post_id, $key, $value );
 	}
 
 	// $term = get_term_by('slug', 'asis', 'product_cat');

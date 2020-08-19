@@ -544,7 +544,7 @@ FIN DE MAPA DE CONTENIDOS */
     --testimonialCaruselP: 0 20px;
 
     /* ARTICLES */
-    --A2sectionSummaryMB: 0;
+    --A2sectionSummaryMB: auto;
     --aboutUsSec2BtnM: 1rem auto auto 0;
 
 
