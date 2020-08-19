@@ -59,7 +59,11 @@ $debugEmail = 'testtter%40aaallll.com';
 // $testUrl = 'https://silverseacontainers.com/testLead.php';
 
 // $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message";
+
+//estaba este activo!!!
 $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrzM=$inmediata&00N0X00000DSh9n=$traslado&00N0X00000DSh9o=$precio";
+
+
 // setcookie("vars", $myvars);
 ?>
 
