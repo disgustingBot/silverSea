@@ -1159,6 +1159,20 @@ cartController = {
 
 
 	finish:()=>{
+		eraseCookie('allLeads');
+		eraseCookie('price_returns');
+		eraseCookie('cartToLeads');
+		eraseCookie('lastLead');
+		eraseCookie('info');
+		eraseCookie('status');
+		eraseCookie('leadsSent');
+		
+		// TODO: encender el lead Sender
+		cartController.cartToLeads = cartController.cart;
+		createCookie('status','next')
+		cartController.sendAllLeads();
+
+
 		// console.log('carrito antes de la transforrmacion', cartController.cart)s
 		cartController.cart.forEach((item, i) => {
 			// cartController.getPrice(item.code);
@@ -1272,10 +1286,6 @@ cartController = {
 					altClassFromSelector('consultaFinalizada', '#cart')
 					// TODO: encender el mail Sender
 					cartController.sendMail();
-					// TODO: encender el lead Sender
-					cartController.cartToLeads = cartController.cart;
-					createCookie('status','next')
-					cartController.sendAllLeads();
 				}
 				// if (i==cartController.cart.length - 1){
 				// }
@@ -1758,16 +1768,4 @@ const addBullshitToCart = ()=>{
 		cartController.cart.unshift(new CartItem(item));
 		cartController.cart[0].cartUI();
 	});
-}
-
-
-
-
-
-function testCheckboxes (){
-	let trasporte = d.querySelector('#trasporte').checked;
-	let inmediata = d.querySelector('#inmediata').checked;
-	// let trasporte = d.querySelector('#trasporte').value
-	console.log(inmediata);
-	console.log(trasporte);
 }

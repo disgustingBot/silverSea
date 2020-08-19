@@ -60,14 +60,13 @@ $debugEmail = 'testtter%40aaallll.com';
 
 // $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message";
 
-// this is the good one
-// $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrzM=$inmediata&00N0X00000DSh9n=$traslado&00N1x000003yrOa=$precio";
+//estaba este activo!!!
+$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrzM=$inmediata&00N0X00000DSh9n=$traslado&00N0X00000DSh9o=$precio";
 
-
-$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado&00N1x000003yrOa=$precio";
 
 // $myvars = "oid=$oid           &retURL=$retURL                     &debug=$debug&debugEmail=$debugEmail                       &first_name=$first_name&last_name=$last_name&email=$email              &phone=$phone    &company=$company   &country=$country&city=$city       &00N0X00000CrHzi=$product&00N0X00000AlPaB=$type    &00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message        &00N1x000003yrzM=$inmediata&00N0X00000DSh9n=$traslado&00N0X00000DSh9o=$precio";
 // $myvars = "oid=00D0X000000uRGw&retURL=https%3A%2F%2Fsstc.com.es%2F&debug=1     &debugEmail=gportela%40silverseacontainers.com&first_name=Testeo     &last_name=Final     &email=elmail%40nuevo.email&phone=1234567890&company=THE+company&country=here    &city=exactly+here&00N0X00000CrHzi=20FR+CW &00N0X00000AlPaB=container&00N0X00000AlPaA=big  &00N0X00000AlPaC=22       &00N0X00000AlPa9=yet+another+test&00N1x000003yrzM=1         &00N0X00000CrQFZ=1        &00N1x000003yrOa=25000";
+
 // setcookie("vars", $myvars);
 ?>
 
