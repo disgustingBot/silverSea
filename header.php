@@ -180,7 +180,8 @@
       </button>
 
 
-      <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('consultaFinalizada', '#cart', 'cart');cartController.emptyCart();">
+      <button class="btn buttonsAtEnd" type="button" onclick="cartController.emptyCart();window.location.replace('https://silverseacontainers.com/');">
+      <!-- <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('consultaFinalizada', '#cart', 'cart');cartController.emptyCart();"> -->
         REALIZAR OTRA CONSULTA
       </button>
       <button class="btn buttonsAtEnd" type="button" onclick="altClassFromSelector('alt', '#cart')">
