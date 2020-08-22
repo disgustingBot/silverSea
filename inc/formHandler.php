@@ -65,7 +65,7 @@ function lt_ajax_mail() {
 
 
   // $link=$_POST['link'];
-  $cont=json_decode(stripslashes($_POST['cont']));
+  $cont = json_decode(stripslashes($_POST['cont']));
   $currency        = $_POST[ 'currency' ];
   $country         = $_POST[ 'country' ];
   $phone           = $_POST[ 'phone' ];
@@ -79,8 +79,8 @@ function lt_ajax_mail() {
   $destino = '';
   $origen = " - En: <span class='ubicacion'>$country - $city</span>";
   if(isset($_POST['destino_country'])){
-    $destino = "Hasta: <span class='ubicacion'>$destino_country - $destino_city</span>";
     $origen = " - Desde: <span class='ubicacion'>$country - $city</span>";
+    $destino = "Hasta: <span class='ubicacion'>$destino_country - $destino_city</span>";
   }
 
 	// if($_POST['a00'] != ""){
@@ -115,16 +115,14 @@ function lt_ajax_mail() {
       if($key & 1){
         $clase = 'budget-row-colored';
       }
-      
-    # code...
-      // $tablaDePrecios = $tablaDePrecios . $key . " - " . $value . "<br>";
+
       $tablaDePrecios = $tablaDePrecios . "
-      <tr class='budget-row $clase'>
-        <td>$value->code</td>
-        <td>$value->qty</td>
-        <td>$singlePrice</td>
-        <td> - </td>
-        <td>$finalPrice</td>
+      <tr style='border-collapse:collapse;color:white;text-transform:uppercase'>
+        <td style='padding:10px;Margin:0;color:black;border-collapse:collapse;line-break:anywhere;font-size:14px'>$value->code</td>
+        <td style='padding:10px;Margin:0;color:black;border-collapse:collapse;line-break:anywhere;font-size:14px'>$value->qty</td>
+        <td style='padding:10px;Margin:0;color:black;border-collapse:collapse;line-break:anywhere;font-size:14px'>$singlePrice</td>
+        <td style='padding:10px;Margin:0;color:black;border-collapse:collapse;line-break:anywhere;font-size:14px'> - </td>
+        <td style='padding:10px;Margin:0;color:black;border-collapse:collapse;line-break:anywhere;font-size:14px'>$finalPrice</td>
       </tr>";
     }
     $totalPrice = number_format($totalPrice, 2, ',', ' ') . ' ' . $currency;
@@ -147,7 +145,7 @@ function lt_ajax_mail() {
     //   }
     // }
 
-    require_once 'mailv1.php';
+    require_once 'mailv2.php';
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
     // wp_mail( $mail1 , $subject , $message , $headers );

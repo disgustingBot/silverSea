@@ -555,11 +555,151 @@ trenController = {
 			accordionSelector('#destino')
 			d.querySelector('#trenExplanation').style.display = 'none';
 		}
+	},
 
+
+
+
+	get_prices:()=>{
+		var formData = new FormData();
+		formData.append( 'action', 'lt_tren_end' );
+		formData.append( 'cont', "40HC CW" );
+		formData.append( 'origen_country' , locationSelector.origen[0] .capitalize() );
+		formData.append( 'origen_city'    , locationSelector.origen[1] .capitalize() );
+		formData.append( 'destino_country', locationSelector.destino[0].capitalize() );
+		formData.append( 'destino_city'   , locationSelector.destino[1].capitalize() );
+
+		ajax2(formData).then( data => {
+
+			let gastos = data.gastos ? parseInt(data.gastos.profit) + parseInt(data.gastos.deposit) + parseInt(data.gastos.others) : 0;
+			let precio_origen  = price_data_pre_processor( data.precio_origen, data.exchange )
+			let precio_destino = price_data_pre_processor( data.precio_destino, data.exchange )
+			let final_price = 0;
+			// console.log('precio_origen', precio_origen)
+			// console.log('precio_destino', precio_destino)
+			// let total_price = 0;
+			
+			price_is_avaliable = ( !!precio_origen && !!precio_destino )
+			console.log('price_is_avaliable', price_is_avaliable)
+			this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
+			
+			
+			if( price_is_avaliable ){
+				final_price = precio_origen - precio_destino + gastos
+				if ( this_is_not_the_correct_currency ){
+					currency = 'USD';
+					exchange_rate = parseFloat(data.exchange.rate)
+					final_price = final_price / exchange_rate;
+				}
+			} else {
+				final_price = 'Precio no disponible';
+				currency = '';
+			}
+
+			// console.log('single price: ', final_price)
+			cartController.cart[0].setPrice(final_price);
+			nuevoElemento = new CartItem(cartController.cart[0].values)
+			cartController.cart[0] = nuevoElemento;
+
+			console.log(cartController.cart)
+		})
+	},
+
+
+
+
+
+	show_prices:()=>{
+
+		let cartItem = d.querySelector('.cartItem[data-code="40HC CW"]');
+		let itemQty = cartItem.querySelector('.cartItemQty').innerText;
+		let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+		let itemCurrency = cartItem.querySelector('.cartItemCurrency');
+		let currency = 'EUR';
+
+		let total_price = 0;
+		final_price = cartController.cart[0].singlePrice;
+		// price_is_avaliable = final_price != "Precio no disponible" ? true : false;
+		price_is_avaliable = isNaN(final_price) ? false : true;
+
+		// console.log('price_is_avaliable', price_is_avaliable)
+		this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
+
+		if( price_is_avaliable ){
+			if ( this_is_not_the_correct_currency ){
+				currency = 'USD';
+				// TODO: poner el exchange rate verdadero
+				exchange_rate = 0.85
+				final_price = final_price / exchange_rate;
+				// totalPrice  = totalPrice  / exchange_rate;
+			}
+			total_price = final_price * parseInt(itemQty);
+			total_price = total_price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		} else {
+			final_price = 'Precio no disponible';
+			total_price = 'Precio no disponible';
+			currency = '';
+		}
+		let gran_total = total_price;
+
+		itemCurrency.innerText = currency
+		itemPrice.innerText = total_price;
+		// let total_price = final_price * itemQty;
+
+
+		// console.log('single price: ', final_price)
+		cartController.cart[0].setPrice(final_price);
+		nuevoElemento = new CartItem(cartController.cart[0].values)
+		cartController.cart[0] = nuevoElemento;
+		// console.log(cartController.cart[0])
+		// console.log('cart price: ', cartController.cart[0].singlePrice)
+
+
+		// let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
+		// console.log('list_of_product_with_price: ', list_of_product_with_price);
+
+
+		let gran_total_display = [...d.querySelectorAll('.cartTotal')];
+		console.log(gran_total_display)
+		gran_total_display.forEach(element=>{
+			// console.log(element.target)
+			element.innerHTML = gran_total;
+		})
+		// console.log('CARRITO luego de la transformacion', cartController.cart)
+		if ( price_is_avaliable ){
+			altClassFromSelector('allPricesThere', '#cartList', 'cartList');
+		} else {
+			altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
+		}
+
+		altClassFromSelector('consultaFinalizada', '#cart')
+	},
+
+
+
+	finish:()=>{
+		// TODO: que se guarden las locaciones en cookies
+
+		trenController.show_prices();
+
+		altClassFromSelector('alt', '#finalizarConsulta')
+		d.querySelector('#cart').classList.add('alt')
+
+		// TODO: que envie el mail
+		cartController.sendMail(true);
+
+		// TODO: que envie el lead
+		// TODO: aqui poner el destino como mensaje como asi tambien que es una interaccion de tren...
+		cartController.cartToLeads = cartController.cart;
+		createCookie('status','next')
+		cartController.sendAllLeads( tren = true );
 
 	},
 
-	finish:()=>{
+
+
+	// TODO: eliminar finish_old
+	finish_old:()=>{
 		// console.log('ooooootre testeeeo')
 
 		// // TODO: que no te deje finalizar consulta si no seleccionas cantidad
@@ -665,14 +805,6 @@ trenController = {
 
 
 
-
-
-
-
-
-
-
-
 			// TODO: que envie el mail
 			cartController.sendMail(true);
 			// TODO: que envie el lead
@@ -693,19 +825,6 @@ trenController = {
 		// cartController.cartToLeads = cartController.cart;
 		// createCookie('status','next')
 		// cartController.sendAllLeads();
-
-
-
-
-
-
-
-
-
-
-
-
-
 	},
 
 
@@ -840,6 +959,31 @@ locationSelector = {
 			locationSelector[option][0] = locationSelector.currentSearch[0].country;
 			locationSelector[option][1] = locationSelector.currentSearch[0].city;
 			locationSelector[option][2] = locationSelector.currentSearch[0].final_currency;
+
+
+			// !NUEVO MODULO:
+			// activa la busqueda de precios en la seleccion de lugar
+			// aqui va:
+
+			// checkear si tenemos opcion de tren o de contenedor
+			let is_option_cont = d.querySelector('[name="cotizadorOption"]:checked').value == 'cont' ? true : false;
+			if ( is_option_cont ) {
+				console.log('option container')
+				cartController.get_prices();
+			} else {
+				console.log('option tren')
+				let both_locations_are_selected = ( !!locationSelector['origen'][0] && !!locationSelector['destino'][0] ) ? true : false;
+				console.log('are both options selected?: ', both_locations_are_selected)
+				if ( both_locations_are_selected ){
+					trenController.get_prices();
+				}
+			}
+			// console.log('opcion seleccionada: ', d.querySelector('[name="cotizadorOption"]:checked').value);
+
+
+
+
+
 			// locationSelector[option] = [
 			// 	locationSelector.currentSearch[0].country,
 			// 	locationSelector.currentSearch[0].city,
@@ -1117,15 +1261,16 @@ cartController = {
 		}
 		cartController.endButtonsSwitch();
 
-		if (cartController.cart.length<2) {
+		if ( cartController.cart.length < 2 ) {
 			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
 				item.setAttribute('xlink:href', '#simpleTruck');
 			});
-		}else{
+		} else {
 			d.querySelectorAll('.cartButtonUse').forEach((item, i) => {
 				item.setAttribute('xlink:href', '#doubleTruck');
 			});
 		}
+
 	},
 
 	containerToAdd:false,
@@ -1157,8 +1302,177 @@ cartController = {
 
 	},
 
+	get_prices:()=>{
+		createCookie('price_returns', 0)
+		cartController.cart.forEach((item, i) => {
+
+			var formData = new FormData();
+			formData.append( 'action', 'lt_cart_end' );
+			formData.append( 'cont', item.code );
+			formData.append( 'country', locationSelector.origen[0] );
+			formData.append( 'city', locationSelector.origen[1] );
+
+			ajax2(formData).then( data => {
+				let price_returns = parseInt(readCookie('price_returns'))
+				price_returns++;
+				createCookie('price_returns', price_returns)
+
+				price_pre_processed = price_data_pre_processor( data.price_data, data.exchange );
+				// TODO: estaria bueno que ellos puedan elegir en el dashboard el 'gastos' por defecto
+				let gastos = 0
+				if ( data.gastos ) {
+					gastos = parseFloat(data.gastos.profit) + parseFloat(data.gastos.deposit) + parseFloat(data.gastos.others);
+				}
+
+				price_is_avaliable = !!price_pre_processed
+
+				this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
+
+
+				if( price_is_avaliable ){
+					singlePrice = price_pre_processed + gastos;
+					if ( this_is_not_the_correct_currency ){
+						currency = 'USD';
+						exchange_rate = parseFloat(data['exchange'].rate)
+						singlePrice = singlePrice / exchange_rate;
+					}
+				} else {
+					singlePrice = 'Precio no disponible';
+					currency = '';
+				}
+
+				cartController.cart[i].setPrice(singlePrice);
+				nuevoElemento = new CartItem(cartController.cart[i].values)
+				cartController.cart[i] = nuevoElemento;
+
+
+				if( price_returns == cartController.cart.length ){
+					console.log('llego el ultimo precio')
+					console.log(cartController.cart[i]);
+					eraseCookie('price_returns');
+					createCookie('price_ready', true);
+				}
+			})
+		});
+	},
+
+
+
+	show_prices:()=>{
+		let currency = 'EUR';
+
+		cartController.cart.forEach((item, i) => {
+
+			let cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
+			let itemQty = cartItem.querySelector('.cartItemQty').innerText;
+			let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
+			let itemCurrency = cartItem.querySelector('.cartItemCurrency');
+
+			// price_is_avaliable = item.singlePrice != "Precio no disponible" ? true : false;
+			price_is_avaliable = isNaN(item.singlePrice) ? false : true;
+
+			this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
+
+			singlePrice = item.singlePrice;
+			if( price_is_avaliable ){
+				if ( this_is_not_the_correct_currency ){
+					currency = 'USD';
+					// TODO: traer el exchange rate
+					exchange_rate = 0.85;
+					singlePrice = singlePrice / exchange_rate;
+				}
+				totalPrice = singlePrice * parseInt(itemQty);
+				totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			} else {
+				totalPrice = 'Precio no disponible';
+				currency = '';
+			}
+
+			itemCurrency.innerText = currency;
+			itemPrice.innerText = totalPrice;
+		});
+
+		
+		// // chequear que lleguen todas las respuestas, no que estemos en la ultima
+		// console.log('llego el ultimo precio')
+		let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice != "Precio no disponible")
+		console.log('list_of_product_with_price: ', list_of_product_with_price);
+		let gran_total = 0;
+		cartController.cart.forEach(product=>{
+			if( typeof product.singlePrice == 'number'){
+				gran_total += product.singlePrice * product.qty;
+			}
+		})
+
+		if ( typeof gran_total == 'number' ) {
+			// console.log(totalPrice)
+			gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+
+		let gran_total_display = [...d.querySelectorAll('.cartTotal')];
+		gran_total_display.forEach(element=>{
+			element.innerHTML = gran_total;
+		})
+
+		let currency_display = [...d.querySelectorAll('.cartTotalCurrency')];
+		currency_display.forEach(element=>{
+			element.innerHTML = currency;
+		})
+
+		// console.log('CARRITO luego de la transformacion', cartController.cart)
+		if ( list_of_product_with_price.length == 0 ){
+			altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
+		} else if ( list_of_product_with_price.length < cartController.cart.length ) {
+			altClassFromSelector('somePricesThere', '#cartList', 'cartList');
+		} else {
+			altClassFromSelector('allPricesThere', '#cartList', 'cartList');
+		}
+		altClassFromSelector('consultaFinalizada', '#cart')
+
+	},
+
+
+
+
+
+
 
 	finish:()=>{
+		eraseCookie('allLeads');
+		eraseCookie('cartToLeads');
+		eraseCookie('lastLead');
+		eraseCookie('info');
+		eraseCookie('status');
+		eraseCookie('leadsSent');
+		
+		cartController.show_prices();
+
+		altClassFromSelector('alt', '#finalizarConsulta')
+		d.querySelector('#cart').classList.add('alt')
+
+		// TODO: encender el mail Sender
+		cartController.sendMail();
+		// TODO: encender el lead Sender
+		cartController.cartToLeads = cartController.cart;
+		createCookie('status','next');
+		cartController.sendAllLeads();
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	finish_old:()=>{
 		eraseCookie('allLeads');
 		eraseCookie('price_returns');
 		eraseCookie('cartToLeads');
@@ -1167,11 +1481,6 @@ cartController = {
 		eraseCookie('status');
 		eraseCookie('leadsSent');
 		
-		// TODO: encender el lead Sender
-		cartController.cartToLeads = cartController.cart;
-		createCookie('status','next')
-		cartController.sendAllLeads();
-
 
 		// console.log('carrito antes de la transforrmacion', cartController.cart)s
 		cartController.cart.forEach((item, i) => {
@@ -1284,8 +1593,13 @@ cartController = {
 						altClassFromSelector('allPricesThere', '#cartList', 'cartList');
 					}
 					altClassFromSelector('consultaFinalizada', '#cart')
+
 					// TODO: encender el mail Sender
 					cartController.sendMail();
+					// TODO: encender el lead Sender
+					cartController.cartToLeads = cartController.cart;
+					createCookie('status','next');
+					cartController.sendAllLeads();
 				}
 				// if (i==cartController.cart.length - 1){
 				// }
@@ -1307,6 +1621,23 @@ cartController = {
 		d.querySelector('#cart').classList.add('alt')
 
 	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	sendMail:(is_case_tren = false)=>{
@@ -1389,6 +1720,9 @@ cartController = {
 		let origenCity = d.querySelector('#selectBoxOrigenCity .selectBoxInput:checked').value == '0' ? false : true;
 		let trenDestination = true;
 
+		let price_ready = readCookie('price_ready') == 'true' ? true : false;
+
+
 		if(!!d.querySelector('#trenOption')){
 
 			if ( d.querySelector('#trenOption').checked ) {
@@ -1408,17 +1742,22 @@ cartController = {
 			console.log('habilitarrrrrr')
 		}
 
-		if ( privacidad && !!mateputNombre && !!mateputTelefono && !!mateputEmail && origenCountry && origenCity && trenDestination ) {
+		if ( price_ready && privacidad && !!mateputNombre && !!mateputTelefono && !!mateputEmail && origenCountry && origenCity && trenDestination ) {
 			// finalButton.disabled = false;
 			if(!!d.querySelector('#trenOption')){
 				if(d.querySelector('#trenOption').checked){
+					console.log(cartController.cart)
+					// console.log('trenController.finish()')
 					trenController.finish()
 				}else{
+					console.log(cartController.cart)
+					// console.log('cartController.finish()')
 					cartController.finish()
 				}
 			}else{
+				console.log(cartController.cart)
+				// console.log('cartController.finish()')
 				cartController.finish()
-				// alert('Enviar Lead')
 			}
 		} else {
 			alert('Todos los campos son requeridos')
@@ -1683,6 +2022,9 @@ function filterStock(){
 	}
 	if(pais!="*"&&container!="*"){
 		where = '?pais='+pais+'&id_contenedor='+container;
+	}
+	if(ciudad!="*"&&container!="*"){
+		where = '?ciudad='+ciudad+'&id_contenedor='+container;
 	}
 	if(pais!="*"&&ciudad!="*"&&container!="*"){
 		where = '?pais='+pais+'&ciudad='+ciudad+'&id_contenedor='+container;
