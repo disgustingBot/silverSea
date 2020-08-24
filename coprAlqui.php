@@ -20,7 +20,7 @@
 
 
   <div class="coprAlquiLocation" id="origen">
-    <h4 class="coprAlquiLocationTitle">Origen del Pedido</h4>
+    <h4 class="coprAlquiLocationTitle">*Origen del Pedido</h4>
 
     <?php selectBox('Country', 'OrigenCountry', $countries); ?>
     <?php selectBox('City', 'OrigenCity', $cities); ?>
@@ -28,7 +28,7 @@
 
 
   <div class="coprAlquiLocation Accordion" id="destino">
-    <h4 class="coprAlquiLocationTitle">Destino</h4>
+    <h4 class="coprAlquiLocationTitle">*Destino</h4>
 
     <?php selectBox('Country', 'DestinoCountry', $countries); ?>
     <?php selectBox('City', 'DestinoCity', $cities); ?>

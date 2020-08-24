@@ -203,27 +203,27 @@
     <div class="mateput">
       <input class="mateputInput" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
       <label for="mateputNombre" class="mateputLabel">
-        <span class="mateputName">Nombre</span>
+        <span class="mateputName">*Nombre</span>
       </label>
     </div>
 
     <div class="mateput">
       <input class="mateputInput" id="mateputTelefono" type="tel" name="telefono" autocomplete="off" required>
       <label for="mateputTelefono" class="mateputLabel">
-        <span class="mateputName">Telefono</span>
+        <span class="mateputName">*Telefono</span>
       </label>
     </div>
 
     <div class="mateput">
       <input class="mateputInput" id="mateputEmail" type="email" name="email" autocomplete="off" required>
       <label for="mateputEmail" class="mateputLabel">
-        <span class="mateputName">Email</span>
+        <span class="mateputName">*Email</span>
       </label>
     </div>
 
     <div class="finalizarConsultaCheckboxes">
       <input id="privacidad" type="checkbox">
-      <label for="privacidad" class="termsDescription">Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</label>
+      <label for="privacidad" class="termsDescription">*Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</label>
     </div>
     <div class="finalizarConsultaCheckboxes">
       <input id="inmediata" type="checkbox">
