@@ -244,7 +244,7 @@
 
 <section class="sectionPadding sectionColor3">
   <article class="article2 silverseaEnElMundo">
-    <iframe class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=1broJr2IgKbRAnu1cEuJfsXWjbzMt8Iuh"></iframe>
+    <iframe loading="lazy" class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=1broJr2IgKbRAnu1cEuJfsXWjbzMt8Iuh"></iframe>
     <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
       <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'X-titulo-SS-mundo', true); ?></span></h2>
