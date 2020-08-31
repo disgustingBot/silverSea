@@ -103,6 +103,10 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
         cuantosController.setup();
 
         cardSetup();
+        $('.paginationLink').click(function(){
+          page = this.dataset.pagination;
+          filterPagination(false, false, page);
+        });
 
       }
     });
