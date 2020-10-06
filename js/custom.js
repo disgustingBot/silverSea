@@ -602,6 +602,7 @@ trenController = {
 			cartController.cart[0] = nuevoElemento;
 
 			console.log(cartController.cart)
+			createCookie('price_ready', true);
 		})
 	},
 
@@ -948,7 +949,7 @@ locationSelector = {
 				locationSelector.currentSearch = helperArray;
 			}
 		})
-		// console.log(locationSelector.currentSearch);
+		console.log(locationSelector.currentSearch);
 
 		let uniqueLocationFound = locationSelector.currentSearch.length == 1;
 		// TODO: si hay solo un location encontrado habilitar boton de finalizar
@@ -1742,26 +1743,52 @@ cartController = {
 			console.log('habilitarrrrrr')
 		}
 
-		if ( price_ready && privacidad && !!mateputNombre && !!mateputTelefono && !!mateputEmail && origenCountry && origenCity && trenDestination ) {
-			// finalButton.disabled = false;
-			if(!!d.querySelector('#trenOption')){
-				if(d.querySelector('#trenOption').checked){
-					console.log(cartController.cart)
-					// console.log('trenController.finish()')
-					trenController.finish()
-				}else{
-					console.log(cartController.cart)
-					// console.log('cartController.finish()')
-					cartController.finish()
+
+
+
+		if ( price_ready ) {
+			if ( privacidad ) {
+				if ( !!mateputNombre ) {
+					if ( !!mateputTelefono ) {
+						if ( !!mateputEmail ) {
+							if ( origenCountry && origenCity && trenDestination ) {
+								// finalButton.disabled = false;
+								if(!!d.querySelector('#trenOption')){
+									if(d.querySelector('#trenOption').checked){
+										console.log(cartController.cart)
+										// console.log('trenController.finish()')
+										trenController.finish()
+										ereaseCookie('price_ready');
+									}else{
+										console.log(cartController.cart)
+										// console.log('cartController.finish()')
+										cartController.finish()
+										ereaseCookie('price_ready');
+									}
+								}else{
+									console.log(cartController.cart)
+									// console.log('cartController.finish()')
+									cartController.finish()
+										ereaseCookie('price_ready');
+								}
+							} else {
+								alert('Todos los campos son requeridos')
+								// finalButton.disabled = true;
+							}
+						} else {
+							alert('Email es un campo requerido')
+						}
+					} else {
+						alert('Telefono es un campo requerido')
+					}
+				} else {
+					alert('Nombre es un campo requerido')
 				}
-			}else{
-				console.log(cartController.cart)
-				// console.log('cartController.finish()')
-				cartController.finish()
+			} else {
+				alert('Debes aceptar la política de privacidad de Silversea')
 			}
 		} else {
-			alert('Todos los campos son requeridos')
-			// finalButton.disabled = true;
+			alert('Buscando precios, espere un momento por favor')
 		}
 	},
 

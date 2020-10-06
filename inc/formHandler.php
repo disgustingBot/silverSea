@@ -13,7 +13,8 @@ function lt_form_handler() {
 	if($_POST['a00'] != ""){
 		$link = add_query_arg( array('no' => 'go',), $link );
 	} else {
-    $email='molinerozadkiel@gmail.com';
+    $email='gportela@sstc.com.uy';
+    // $email='molinerozadkiel@gmail.com';
 
 		$subject='Form from '. $link;
 		$message='';
@@ -39,8 +40,8 @@ function lt_form_handler() {
     // } else {
 
 
-      // if (wp_mail( $email , $subject , $message , $headers )) {
-      if (wp_mail( $_POST['email'] , $subject , $message , $headers )) {
+      if (wp_mail( $email , $subject , $message , $headers )) {
+        wp_mail( $_POST['email'] , $subject , $message , $headers );
         $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       } else {
         $link = add_query_arg( array( 'status' => 'error', ), $link );
