@@ -28,16 +28,16 @@ function lt_form_handler() {
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
 
-    // $site = '6LcRuNAUAAAAADtamJW75fYf8YtNHceSngjKsf-B';
-    // $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
+		$site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6';
+		$scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
 
-    // $response = $_POST['g-recaptcha-response'];
-    // $payload = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$scrt.'&response='.$response);
+    $response = $_POST['g-recaptcha-response'];
+    $payload = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$scrt.'&response='.$response);
 
-    // $result = json_decode($payload,true);
-    // if ($result['success']!=1) {
-    // $link = add_query_arg( array( 'status' => 'bot' , ), $link );
-    // } else {
+    $result = json_decode($payload,true);
+    if ($result['success']!=1) {
+    $link = add_query_arg( array( 'status' => 'bot' , ), $link );
+    } else {
 
 
       if (wp_mail( $email , $subject , $message , $headers )) {
@@ -46,7 +46,7 @@ function lt_form_handler() {
       } else {
         $link = add_query_arg( array( 'status' => 'error', ), $link );
       }
-    // }
+    }
 	}
 	wp_redirect($link);
 	// if($debugMode){echo wp_json_encode($respuesta);}
@@ -105,7 +105,7 @@ function lt_ajax_mail() {
         $finalPrice = number_format($finalPrice, 2, ',', ' ') . ' ' . $currency;
         // $singlePrice = $value->singlePrice . ' ' . $currency;
 
-        
+
         $singlePrice = number_format($value->singlePrice, 2, ',', ' ') . ' ' . $currency;
 
       } else {
