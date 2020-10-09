@@ -18,15 +18,19 @@
 
     <input class="contact_input" type="hidden" name="action" value="lt_form_handler">
     <input class="contact_input" type="hidden" name="link" value="<?php echo home_url( $wp->request );?>">
-    <input class="contact_input" type="text" id="name" name="name" placeholder="Nombre" required>
-    <input class="contact_input" type="tel" id="phone" name="phone" placeholder="Telefono" required>
+    <input class="contact_input" type="text"  id="name" name="name" placeholder="Nombre" required>
+    <input class="contact_input" type="tel"   id="phone" name="phone" placeholder="Telefono" required>
     <input class="contact_input" type="email" id="email" name="email" placeholder="Email" required>
-    <input class="contact_input" type="text" id="country" name="Pais" placeholder="Pais" required>
+    <input class="contact_input" type="text"  id="country" name="Pais" placeholder="Pais" required>
     <textarea class="contact_textarea" type="text" id="comment" name="Comentarios" placeholder="Comentarios"></textarea>
     <div class="finalizarConsultaCheckboxes">
       <input type="checkbox" required>
       <p class="termsDescription">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;"> privacy terms</a></p>
     </div>
+
+    <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
+    <input class="recaptcha" type="text" hidden value="">
+
     <button class="btn contact_btn" type="submit" name="a06" class="btn" value="Submit">Enviar</button>
   </form>
 </section>

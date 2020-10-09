@@ -360,7 +360,7 @@ productSincrotron = {
 			console.log(productoZero[0].imagenes);
 			productSincrotron.temp.unshift(productoZero[0]);
 		}
-		
+
 // let test_product = {
 // 	Categoria: "size > 20PIES, Condition > NEW, general > Dry > DC",
 // 	Name: "20 PIES",
@@ -578,12 +578,12 @@ trenController = {
 			// console.log('precio_origen', precio_origen)
 			// console.log('precio_destino', precio_destino)
 			// let total_price = 0;
-			
+
 			price_is_avaliable = ( !!precio_origen && !!precio_destino )
 			console.log('price_is_avaliable', price_is_avaliable)
 			this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
-			
-			
+
+
 			if( price_is_avaliable ){
 				final_price = precio_origen - precio_destino + gastos
 				if ( this_is_not_the_correct_currency ){
@@ -967,7 +967,7 @@ locationSelector = {
 			// aqui va:
 
 			// checkear si tenemos opcion de tren o de contenedor
-			let is_option_cont = d.querySelector('[name="cotizadorOption"]:checked').value == 'cont' ? true : false;
+			let is_option_cont = (!d.querySelector('[name="cotizadorOption"]:checked') || d.querySelector('[name="cotizadorOption"]:checked').value == 'cont') ? true : false;
 			if ( is_option_cont ) {
 				console.log('option container')
 				cartController.get_prices();
@@ -1393,7 +1393,7 @@ cartController = {
 			itemPrice.innerText = totalPrice;
 		});
 
-		
+
 		// // chequear que lleguen todas las respuestas, no que estemos en la ultima
 		// console.log('llego el ultimo precio')
 		let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice != "Precio no disponible")
@@ -1446,7 +1446,7 @@ cartController = {
 		eraseCookie('info');
 		eraseCookie('status');
 		eraseCookie('leadsSent');
-		
+
 		cartController.show_prices();
 
 		altClassFromSelector('alt', '#finalizarConsulta')
@@ -1481,7 +1481,7 @@ cartController = {
 		eraseCookie('info');
 		eraseCookie('status');
 		eraseCookie('leadsSent');
-		
+
 
 		// console.log('carrito antes de la transforrmacion', cartController.cart)s
 		cartController.cart.forEach((item, i) => {

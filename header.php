@@ -1,5 +1,9 @@
-<!DOCTYPE html>
 
+<?php
+$site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6';
+$scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
+?>
+<!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
   <meta charset="UTF-8">
