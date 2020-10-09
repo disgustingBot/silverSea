@@ -28,6 +28,7 @@
       <p class="termsDescription">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;"> privacy terms</a></p>
     </div>
 
+    <?php $site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6'; ?>
     <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
     <input class="recaptcha" type="text" hidden value="">
 

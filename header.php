@@ -1,4 +1,3 @@
-
 <?php
 $site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6';
 $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';

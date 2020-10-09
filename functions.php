@@ -17,6 +17,7 @@ add_action('wp_enqueue_scripts', 'lt_script_load');
 function lt_script_load(){
 	wp_enqueue_style('style', get_stylesheet_uri(), NULL, microtime(), 'all');
 	wp_enqueue_script('modules', get_theme_file_uri('/js/modules.js'), NULL, microtime(), true);
+	wp_enqueue_script('ReCaptcha', 'https://www.google.com/recaptcha/api.js', NULL, microtime(), true);
 
   // TOOOODO ESTO ES PARA AJAX
 	global $wp_query;
@@ -666,7 +667,7 @@ function lt_upload_file () {
 // 	condicion varchar(60),
 // 	condicion_description varchar(120),
 // 	salesforce_id varchar(60),
-// 	id int, 
+// 	id int,
 // 	categoria varchar(200),
 // 	imagenes varchar(1000),
 // 	ancho  float,
