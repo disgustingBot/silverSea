@@ -41,7 +41,7 @@ function lt_form_handler() {
 
 
       if (wp_mail( $email , $subject , $message , $headers )) {
-        wp_mail( $_POST['email'] , $subject , $message , $headers );
+        // wp_mail( $_POST['email'] , $subject , $message , $headers );
         $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       } else {
         $link = add_query_arg( array( 'status' => 'error', ), $link );
