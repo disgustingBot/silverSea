@@ -119,6 +119,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
   <div class="contact_regions">
     <h3 class="txtCenter contact_regions_title"><strong>Datos de contacto de SILVERSEA según región:</strong></h3>
     <div class="region">
+      
       <h4 class="region_title">EUROPA</h4>
       <div class="region_sellers">
         <p class="seller_name">Federico Platero</p>
@@ -146,11 +147,6 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
         <p class="seller_name">Farhodjon Abdulazizov</p>
         <p class="seller_phone"><a href="tel:+998-949-23-11-33"><span class="stock_phone_email">&#128241;</span>(+998) 949 23 11 33</a></p>
         <p class="seller_email"><a href="mailto:fabdulazizov@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
-      </div>
-      <div class="region_sellers">
-        <p class="seller_name">Leon Lin</p>
-        <p class="seller_phone"><a href="tel:+86-189-30-902-821"><span class="stock_phone_email">&#128241;</span>(+86) 189 30 902 821</a></p>
-        <p class="seller_email"><a href="mailto:llin@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
 
       <h4 class="region_title">LATAM</h4>
