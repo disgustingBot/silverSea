@@ -4,36 +4,36 @@ session_start();
 // !ESTOS SON LOS NAME VALUES COMO LOS ENTREGÓ JONI el 21/08/2020
 // First Name        - name="first_name"      id="first_name"      maxlength="40" size="20" type="text"
 // Last Name         - name="last_name"       id="last_name"       maxlength="80" size="20" type="text"
-// Email             - name="email"           id="email"           maxlength="80" size="20" type="text" 
+// Email             - name="email"           id="email"           maxlength="80" size="20" type="text"
 // Phone             - name="phone"           id="phone"           maxlength="40" size="20" type="text"
 // Company           - name="company"         id="company"         maxlength="40" size="20" type="text"
-// Country           - name="country"         id="country"         maxlength="40" size="20" type="text" 
+// Country           - name="country"         id="country"         maxlength="40" size="20" type="text"
 // City              - name="city"            id="city"            maxlength="40" size="20" type="text"
 // Producto          - name="00N0X00000CrHzi" id="00N0X00000CrHzi" maxlength="100" size="20" type="text"
-// Precio cotizado   - name="00N0X00000DSh9o" id="00N0X00000DSh9o" maxlength="255" size="20" type="text" 
+// Precio cotizado   - name="00N0X00000DSh9o" id="00N0X00000DSh9o" maxlength="255" size="20" type="text"
 // Entrega inmediata - name="00N0X00000DSh9n" id="00N0X00000DSh9n" maxlength="255" size="20" type="text"
 // Traslado          - name="00N0X00000CrQFZ" id="00N0X00000CrQFZ" maxlength="255" size="20" type="text"
-// ProductSize       - name="00N0X00000AlPaA" id="00N0X00000AlPaA" maxlength="25" size="20" type="text" 
+// ProductSize       - name="00N0X00000AlPaA" id="00N0X00000AlPaA" maxlength="25" size="20" type="text"
 // ProductType       - name="00N0X00000AlPaB" id="00N0X00000AlPaB" maxlength="30" size="20" type="text"
-// Quantity          - name="00N0X00000AlPaC" id="00N0X00000AlPaC" size="20" type="text" 
-// Message           - name="00N0X00000AlPa9" id="00N0X00000AlPa9" type="text" 
+// Quantity          - name="00N0X00000AlPaC" id="00N0X00000AlPaC" size="20" type="text"
+// Message           - name="00N0X00000AlPa9" id="00N0X00000AlPa9" type="text"
 
 // !ESTOS SON LOS NAME VALUES DEL TESTEO QUE SI LLEGA el 21/08/2020
 // First Name        - name="first_name"      id="first_name"      maxlength="40" size="20" type="text"
 // Last Name         - name="last_name"       id="last_name"       maxlength="80" size="20" type="text"
-// Email             - name="email"           id="email"           maxlength="80" size="20" type="text" 
+// Email             - name="email"           id="email"           maxlength="80" size="20" type="text"
 // Phone             - name="phone"           id="phone"           maxlength="40" size="20" type="text"
 // Company           - name="company"         id="company"         maxlength="40" size="20" type="text"
-// Country           - name="country"         id="country"         maxlength="40" size="20" type="text" 
+// Country           - name="country"         id="country"         maxlength="40" size="20" type="text"
 // City              - name="city"            id="city"            maxlength="40" size="20" type="text"
 // Producto          - name="00N0X00000CrHzi" id="00N0X00000CrHzi" maxlength="100" size="20" type="text"
-// Precio cotizado   - name="00N1x000003yrOa" id="00N0X00000DSh9o" maxlength="255" size="20" type="text" 
+// Precio cotizado   - name="00N1x000003yrOa" id="00N0X00000DSh9o" maxlength="255" size="20" type="text"
 // Entrega inmediata - name="00N1x000003yrzM" id="00N0X00000DSh9n" maxlength="255" size="20" type="text"
 // Traslado          - name="00N0X00000CrQFZ" id="00N0X00000CrQFZ" maxlength="255" size="20" type="text"
-// ProductSize       - name="00N0X00000AlPaA" id="00N0X00000AlPaA" maxlength="25" size="20" type="text" 
+// ProductSize       - name="00N0X00000AlPaA" id="00N0X00000AlPaA" maxlength="25" size="20" type="text"
 // ProductType       - name="00N0X00000AlPaB" id="00N0X00000AlPaB" maxlength="30" size="20" type="text"
-// Quantity          - name="00N0X00000AlPaC" id="00N0X00000AlPaC" size="20" type="text" 
-// Message           - name="00N0X00000AlPa9" id="00N0X00000AlPa9" type="text" 
+// Quantity          - name="00N0X00000AlPaC" id="00N0X00000AlPaC" size="20" type="text"
+// Message           - name="00N0X00000AlPa9" id="00N0X00000AlPa9" type="text"
 
 // $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado";
 // $myvars = "
@@ -110,6 +110,21 @@ $inmediata  = $_GET['inmediata'];
 $traslado   = $_GET['traslado'];
 $precio     = $_GET['precio'];
 
+$source   = $_GET['source'];
+$medium   = $_GET['medium'];
+$campaign = $_GET['campaign'];
+$content  = $_GET['content'];
+$term     = $_GET['term'];
+// "&source=$source&medium=$medium&campaign=$campaign&content=$content&term=$term"
+// "&00N0X00000DCQ37=$source&00N0X00000DCQ36=$medium&00N0X00000DCQ34=$campaign&00N0X00000DCQ35=$content&00N0X00000DCQ38=$term"
+// codigos pasados por jimena
+// Google Analytics Campaign:<input  id="00N0X00000DCQ34"
+// Google Analytics Content:<input  id="00N0X00000DCQ35"
+// Google Analytics Medium:<input  id="00N0X00000DCQ36"
+// Google Analytics Source:<input  id="00N0X00000DCQ37"
+// Google Analytics Term:<input  id="00N0X00000DCQ38"
+
+
 // OID PARA SITIO EN PRODUCCION
 $oid        = '00D0X000000uRGw';
 // nuevo test oid
@@ -136,7 +151,7 @@ $debugEmail = 'testtter%40aaallll.com';
 // $traslado   = '1';
 // $precio     = '12500';
 
-// inmediata: Id="00N1x000003yrzM" type="checkbox" 
+// inmediata: Id="00N1x000003yrzM" type="checkbox"
 // Traslado: Id="00N0X00000CrQFZ" type="checkbox"
 
 // 00N1x000003yrzM=1&00N0X00000CrQFZ=1&00N1x000003yrOa=25000
@@ -148,8 +163,9 @@ $debugEmail = 'testtter%40aaallll.com';
 
 
 
-//estaba este activo!!!
-$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado";
+// esta este activo!!!
+$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado&00N0X00000DCQ37=$source&00N0X00000DCQ36=$medium&00N0X00000DCQ34=$campaign&00N0X00000DCQ35=$content&00N0X00000DCQ38=$term";
+// $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado";
 
 
 

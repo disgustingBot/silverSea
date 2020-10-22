@@ -1896,6 +1896,14 @@ cartController = {
 			inmediata: d.querySelector('#inmediata').checked,
 			traslado:  d.querySelector('#trasporte').checked,
 			precio:    price,
+
+
+			source: document.querySelector(".utm_source").value,
+			medium: document.querySelector(".utm_medium").value,
+			campaign: document.querySelector(".utm_campaign").value,
+
+			content: document.querySelector(".utm_content").value,
+			term: document.querySelector(".utm_term").value,
 		}
 
 		if(cartController.cartToLeads.length!=0){
@@ -1956,8 +1964,17 @@ cartController = {
 		let traslado   = info.traslado;
 		let precio     = info.precio;
 
-		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
-		// let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message;
+
+		let source   = info.source;
+		let medium   = info.medium;
+		let campaign = info.campaign;
+
+		let content  = info.content;
+		let term     = info.term;
+
+
+		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio+'&source='+source+'&medium='+medium+'&campaign='+campaign+'&content='+content+'&term='+term;
+		// let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
 
 		let baseURL= 'https://silverseacontainers.com/testLead.php';
 		// let baseURL= 'http://localhost/silversea/wp-content/themes/silversea/cookiePractice.php';

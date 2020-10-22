@@ -206,6 +206,13 @@ $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
   </div>
 
   <div class="finalizarConsulta" id="finalizarConsulta">
+
+    <input class="utm_source"   type="hidden">
+    <input class="utm_medium"   type="hidden">
+    <input class="utm_campaign" type="hidden">
+    <input class="utm_content"  type="hidden">
+    <input class="utm_term"     type="hidden">
+
     <p class="closeCross" onclick="altClassFromSelector('alt', '#finalizarConsulta'),altClassFromSelector('alt', '#cart')">&#10006;</p>
     <h4 class="finalizarConsultaTitle txtCenter"><?php echo get_post_meta('150', 'ZC-cotizador-formulario-Titulo', true); ?></h4>
     <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZD-cotizador-formulario-texto1', true); ?></p>

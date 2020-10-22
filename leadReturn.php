@@ -23,7 +23,7 @@
   </script>
 
   <style>
-  
+
 .load{
   background: var(--grey0);
   display: grid;
@@ -44,7 +44,7 @@
   animation: wheel 1s infinite;
 }
 @keyframes wheel{to{transform:rotate(360deg)}}
-  
+
   </style>
 </head>
 <body>
@@ -96,9 +96,9 @@ $response = curl_exec( $ch ); ?>
 
 
 
-    
+
   const newLead = (info)=>{
-		
+
 		// let oid = '00D1l0000000ia7';
 		// let retURL  = 'https://silverseacontainers.com/';
 		// let debug   = 1;
@@ -119,14 +119,24 @@ $response = curl_exec( $ch ); ?>
 		let traslado   = info.traslado;
 		let precio     = info.precio;
 
-		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
+
+		let source   = info.source;
+		let medium   = info.medium;
+		let campaign = info.campaign;
+
+		let content  = info.content;
+		let term     = info.term;
+
+    // let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
+    let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio+'&source='+source+'&medium='+medium+'&campaign='+campaign+'&content='+content+'&term='+term;
+		// let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
 
 		let baseURL= 'https://silverseacontainers.com/testLead.php';
 		// let baseURL= 'http://localhost/silversea/wp-content/themes/silversea/cookiePractice.php';
 
-		
+
     let url = baseURL + vars;
-    
+
     window.location.href = url;
 		// win2 = window.open(url,'_blank');
 		// win2.blur();
@@ -145,18 +155,18 @@ $response = curl_exec( $ch ); ?>
       cartToLeads = JSON.parse(readCookie('cartToLeads'))
       console.log(info)
       console.log(cartToLeads)
-      
-      
-      
+
+
+
       let product = cartToLeads.shift();
       // console.log('send '+product.qty+' product: ', product.code)
-      
-  
+
+
       info.code     = product.code;
       info.type     = product.tipo_2;
       info.size     = product.size;
       info.quantity = product.qty;
-      
+
       if(cartToLeads.length!=0){
         createCookie('cartToLeads', JSON.stringify(cartToLeads).split(';').join(':'));
         // createCookie('info', JSON.stringify(info));

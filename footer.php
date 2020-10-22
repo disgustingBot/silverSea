@@ -66,5 +66,33 @@ piHostname = 'pi.pardot.com';
   else { window.addEventListener('load', async_load, false); }
 })();
 </script>
+
+<script type="text/javascript">
+  // Parse the URL
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  // Give the URL parameters variable names
+  var source = getParameterByName('utm_source');
+  var medium = getParameterByName('utm_medium');
+  var campaign = getParameterByName('utm_campaign');
+
+  var content = getParameterByName('utm_content');
+  var term = getParameterByName('utm_term');
+
+
+  // Put the variable names into the hidden fields in the form. selector should be "p.YOURFIELDNAME input"
+  document.querySelector(".utm_source").value = source;
+  document.querySelector(".utm_medium").value = medium;
+  document.querySelector(".utm_campaign").value = campaign;
+
+  document.querySelector(".utm_content").value = content;
+  document.querySelector(".utm_term").value = term;
+</script>
+
+
 </body>
 </html>
