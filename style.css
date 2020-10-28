@@ -1000,7 +1000,7 @@ section {
   grid-gap: var(--navBarGG);
 }
 
-.header .menu-item:nth-child(1)  {
+/* .header .menu-item:nth-child(1)  {
   box-shadow: var(--DP1);
   background: var(--primaryColorDark);
   color: var(--grey0);
@@ -1018,7 +1018,7 @@ section {
 .header .menu-item:nth-child(1):hover::after {
   width: 0;
   height: 0;
-}
+} */
 
 .header .menu-item {
   padding: 8px;

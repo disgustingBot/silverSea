@@ -119,10 +119,10 @@ $term     = $_GET['term'];
 // "&00N0X00000DCQ37=$source&00N0X00000DCQ36=$medium&00N0X00000DCQ34=$campaign&00N0X00000DCQ35=$content&00N0X00000DCQ38=$term"
 // codigos pasados por jimena
 // Google Analytics Campaign:<input  id="00N0X00000DCQ34"
-// Google Analytics Content:<input  id="00N0X00000DCQ35"
-// Google Analytics Medium:<input  id="00N0X00000DCQ36"
-// Google Analytics Source:<input  id="00N0X00000DCQ37"
-// Google Analytics Term:<input  id="00N0X00000DCQ38"
+// Google Analytics Content: <input  id="00N0X00000DCQ35"
+// Google Analytics Medium:  <input  id="00N0X00000DCQ36"
+// Google Analytics Source:  <input  id="00N0X00000DCQ37"
+// Google Analytics Term:    <input  id="00N0X00000DCQ38"
 
 
 // OID PARA SITIO EN PRODUCCION
