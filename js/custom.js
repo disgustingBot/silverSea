@@ -1101,6 +1101,9 @@ productSelector = {
 		product.qty = parseInt(d.querySelector('.dynamicCont .cuantosQnt').value)
 		product.code = product.salesforce_id
 
+		// console.log(product);
+		fbq('track', 'AddToCart', { content_ids: product.code });
+
 		cartController.add(product)
 
 
@@ -1479,6 +1482,15 @@ cartController = {
 
 		altClassFromSelector('alt', '#finalizarConsulta')
 		d.querySelector('#cart').classList.add('alt')
+
+
+		let string_cart_ids = '[';
+		cartController.cart.forEach( element => {
+			string_cart_ids += element.code + ', ';
+		});
+		string_cart_ids += ']';
+		fbq('track', 'InitiateCheckout', { content_ids: string_cart_ids });
+
 
 		// TODO: encender el mail Sender
 		cartController.sendMail();

@@ -1,6 +1,8 @@
 <?php get_header(); ?>
 
-
+<script type="text/javascript">
+  fbq('track', 'ViewContent', { content_name: 'Busca tu contenedor' });
+</script>
 
   <?php function woocommerce_subcats_from_parentcat($category){
     if (is_numeric($category)) {$term = get_term(           $category, 'product_cat');}
@@ -139,7 +141,7 @@
       global $product;
 
       include get_template_directory() . '/inc/getAtributes.php';
-      
+
       // TODO: hacer un archivo para las tarjetas
       ?>
 
