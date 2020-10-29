@@ -495,7 +495,7 @@ FIN DE MAPA DE CONTENIDOS */
     --cartButtonTxtDisplay: block;
 
     --itemAddedToCartRight: 0px;
-    --headerHeight: 120px;
+    --headerHeight: 80px;
 
 
      --trp-floater-lsTop: 0;
@@ -646,7 +646,7 @@ FIN DE MAPA DE CONTENIDOS */
     --navBarWidth: 40%;
     --navBarGG: 1rem;
     --menuItemAFontSize: 14px;
-    --headerLogoHeight: 4rem;
+    --headerLogoHeight: 60px;
 
 
 
@@ -1000,25 +1000,6 @@ section {
   grid-gap: var(--navBarGG);
 }
 
-/* .header .menu-item:nth-child(1)  {
-  box-shadow: var(--DP1);
-  background: var(--primaryColorDark);
-  color: var(--grey0);
-  transition: .25s;
-}
-
-.header .menu-item.current-menu-item:nth-child(1) a {
-  color: var(--grey0)!important;
-}
-
-.header .menu-item:nth-child(1):hover {
-  background: var(--primaryColor);
-}
-
-.header .menu-item:nth-child(1):hover::after {
-  width: 0;
-  height: 0;
-} */
 
 .header .menu-item {
   padding: 8px;
@@ -1027,6 +1008,7 @@ section {
   line-height: 18px;
   margin: auto;
   text-align: center;
+  color: var(--grey9);
 }
 
 .current-menu-item a{
@@ -1063,7 +1045,7 @@ section {
 }
 .header .menu-item:hover {
   box-shadow: var(--DP2);
-  color: var(--grey0);
+  color: white;
 }
 
 .headerMob .menu-item {
@@ -1077,8 +1059,14 @@ section {
 
 .menu-item a{
   font-size: var(--menuItemAFontSize);
+  font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: inherit;
+  /* color: var(--grey9); */
 }
 
 
