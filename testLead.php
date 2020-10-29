@@ -117,6 +117,13 @@ $content  = $_GET['content'];
 $term     = $_GET['term'];
 // "&source=$source&medium=$medium&campaign=$campaign&content=$content&term=$term"
 // "&00N0X00000DCQ37=$source&00N0X00000DCQ36=$medium&00N0X00000DCQ34=$campaign&00N0X00000DCQ35=$content&00N0X00000DCQ38=$term"
+// codigos pasados por Jonatan
+// 00N6700000DpopN  Custom Field: UTM_Source
+// 00N6700000DpopS  Custom Field: GA_UTM_Campaign
+// 00N6700000DpopX  Custom Field: GA_UTM_Medium
+// 00N6700000Dpopc  Custom Field: GA_UTM_Content
+// 00N6700000Dpoph  Custom Field: GA_UTM_Term
+
 // codigos pasados por jimena
 // Google Analytics Campaign:<input  id="00N0X00000DCQ34"
 // Google Analytics Content: <input  id="00N0X00000DCQ35"
@@ -164,7 +171,8 @@ $debugEmail = 'testtter%40aaallll.com';
 
 
 // esta este activo!!!
-$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado&00N0X00000DCQ37=$source&00N0X00000DCQ36=$medium&00N0X00000DCQ34=$campaign&00N0X00000DCQ35=$content&00N0X00000DCQ38=$term";
+$myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado&00N6700000DpopN=$source&00N6700000DpopX=$medium&00N6700000DpopS=$campaign&00N6700000Dpopc=$content&00N6700000Dpoph=$term";
+// $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado&00N0X00000DCQ37=$source&00N0X00000DCQ36=$medium&00N0X00000DCQ34=$campaign&00N0X00000DCQ35=$content&00N0X00000DCQ38=$term";
 // $myvars = "oid=$oid&retURL=$retURL&debug=$debug&debugEmail=$debugEmail&first_name=$first_name&last_name=$last_name&email=$email&phone=$phone&company=$company&country=$country&city=$city&00N0X00000CrHzi=$product&00N0X00000AlPaB=$type&00N0X00000AlPaA=$size&00N0X00000AlPaC=$quantity&00N0X00000AlPa9=$message&00N1x000003yrOa=$precio&00N1x000003yrzM=$inmediata&00N0X00000CrQFZ=$traslado";
 
 
