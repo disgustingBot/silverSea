@@ -111,7 +111,7 @@ function excerpt($charNumber){
   if(strlen($excerpt)<=$charNumber){return $excerpt;}else{
     $excerpt = substr($excerpt, 0, $charNumber);
     $result  = substr($excerpt, 0, strrpos($excerpt, ' '));
-    // $result .= $result . '(...)';
+    $result .= '...';
     // return var_dump($excerpt);
     return $result;
   }
