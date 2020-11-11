@@ -53,6 +53,7 @@ function lt_script_load(){
 	wp_localize_script( 'main', 'lt_data', array(
 		'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
 		'homeurl' => site_url(),
+		'front_page' => is_front_page(),
 	) );
 
 	wp_enqueue_script( 'main' );
@@ -429,6 +430,19 @@ function load_admin_styles() {
 
 
 
+add_action( 'wp_ajax_lt_get_front_page_video', 'lt_get_front_page_video' );
+add_action( 'wp_ajax_nopriv_lt_get_front_page_video', 'lt_get_front_page_video' );
+function lt_get_front_page_video () {
+	$respuesta = array();
+	$respuesta['greet'] = 'Hi!';
+	$frontpage_id = get_option( 'page_on_front' );
+
+	$respuesta['video'] = get_post_meta($frontpage_id, 'A-video-portada', true);
+
+
+	echo wp_json_encode($respuesta);
+	exit();
+}
 
 
 

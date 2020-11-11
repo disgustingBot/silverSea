@@ -2,7 +2,8 @@
 
 <section class="ATF frontPageATF sectionWhite">
   <video loop muted playsinline autoplay="autoplay" class="frontPageATFBg rowcol1">
-    <source src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores">
+    <source class="front_page_vid_source" src="" type="video/mp4" alt="Video de barco llevando miles de contenedores">
+    <!-- <source class="front_page_vid_source_2" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores"> -->
   </video>
 
 

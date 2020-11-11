@@ -104,8 +104,12 @@ w.onload=()=>{
 
 	filterActivate();
 
-
-
+	if(lt_data.front_page == 1){
+		console.log("request vidio with ajax")
+		setTimeout(()=>{
+			get_front_page_video();
+		},500)
+	}
 
 	scrollAlter();
 	if (d.getElementById("load")) {
@@ -113,6 +117,22 @@ w.onload=()=>{
 	}
 }
 // console.log(lt_data.ajaxurl)
+
+const get_front_page_video = ()=>{
+	let formData = new FormData();
+  formData.append('action', 'lt_get_front_page_video');
+
+	ajax2(formData, lt_data.ajaxurl).then(response => {
+		source = document.querySelector('.front_page_vid_source')
+		video = document.querySelector('.frontPageATFBg')
+
+		source.src = response.video
+		video.load();
+
+		console.log('respuesta del servidor')
+		console.log(response)
+	})
+}
 
 
 // deprecated
