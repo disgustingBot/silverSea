@@ -4,7 +4,7 @@
 <section class="grid sectionPadding blogSection">
   <hgroup class="divided_textgroup">
     <h1 class="divided_textgroup_title">
-      <?php echo get_post_meta($blog_id, '1_titulo_blog', true); ?>
+      <?php echo get_post_meta($blog_id, '3_titulo_blog', true); ?>
       <div class="textgroup_divider"></div>
     </h1>
     <h2 class="divided_textgroup_subtitle"><?php echo get_post_meta($blog_id, '2_subtitulo_blog', true); ?></h2>
@@ -96,12 +96,12 @@
 </section>
 
 <banner class="newsletter_banner">
-  <h3 class="newsletter_banner_title"><?php echo get_post_meta($blog_id, '3_titulo_newsletter', true); ?></h3>
-  <h4 class="newsletter_banner_subtitle"><?php echo get_post_meta($blog_id, '4_subtitulo_newsletter', true); ?></h4>
+  <h3 class="newsletter_banner_title"><?php echo get_post_meta($blog_id, '4_titulo_newsletter', true); ?></h3>
+  <h4 class="newsletter_banner_subtitle"><?php echo get_post_meta($blog_id, '5_subtitulo_newsletter', true); ?></h4>
   <form class="newsletter_banner_form" action="sendStuff">
     <input class="newsletter_banner_input" type="text" placeholder="Escribe tu nombre aquí....">
     <input class="newsletter_banner_input" type="email" placeholder="Escribe tu email aquí....">
-    <button class=" icon_btn newsletter_banner_submit" type="submit" value=""><p>SUSCRIBIRME</p></button>
+    <button class="icon_btn newsletter_banner_submit" type="submit" value=""><p><?php echo get_post_meta($blog_id, '6_boton_newsletter', true); ?></p></button>
   </form>
 </banner>
 
