@@ -21,18 +21,24 @@
     </hgroup>
   </section>
 
-
   <main class="main">
     <?php echo the_content(); ?>
   </main>
 
   <section class="grid sectionPadding blogSection">
     <div class="divided_textgroup">
-      <h2 class="divided_textgroup_title divided_textgroup_title_2">Entradas recientes</h2>
+      <h2 class="divided_textgroup_title divided_textgroup_title_2">Entradas relacionadas</h2>
       <div class="textgroup_divider textgroup_divider_2"></div>
     </div>
     <div class="entry_card_container">
-      <?php while(have_posts()){the_post(); ?>
+      <?php
+      $args=array(
+        'post_type'=>'post',
+        'posts_per_page' => '3',
+      );
+      $atf=new WP_Query($args);
+      while($atf->have_posts()){
+        $atf->the_post(); ?>
         <a href="<?php the_permalink(); ?>" class="entry_card">
           <img src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Post featured image">
           <div class="entry_card_caption">
@@ -54,6 +60,8 @@
       <button class="icon_btn newsletter_banner_submit" type="submit" value=""><p><?php echo get_post_meta($blog_id, '6_boton_newsletter', true); ?></p></button>
     </form>
   </banner>
+
+
 
 
 <?php } wp_reset_query(); ?>

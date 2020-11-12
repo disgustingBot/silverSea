@@ -374,6 +374,9 @@ FIN DE MAPA DE CONTENIDOS */
   --newsletter_banner_form_GTR: auto;
   --newsletter_banner_submit_GC: unset;
 
+  /* captioned img: */
+
+  --caption_img_txt_width: 100%;
 
 }
 /* ---------------------------------------------------------------------------
@@ -685,6 +688,9 @@ FIN DE MAPA DE CONTENIDOS */
     /* entry_super_card */
     --entry_super_card_display: grid;
     --entry_super_card_content_childs: ;
+
+    /* captioned img: */
+    --caption_img_txt_width: 70%;
   }
 }
 
@@ -3765,7 +3771,7 @@ padding-bottom:0;
   flex-direction: column;
   background: var(--secondaryColor);
   padding: 30px 0;
-  margin: 120px 0;
+  margin: 60px 0;
 }
 .newsletter_banner >* {
   width: var(--newsletter_banner_childs_width);
@@ -3884,7 +3890,7 @@ padding-bottom:0;
   margin-bottom: 2px;
 }
 .blogATF .super_card_divided_textgroup {
-  width: 70%;
+  width: var(--caption_img_txt_width);
   margin: 1rem auto;
 }
 .blogATF .super_card_divided_textgroup_title {
