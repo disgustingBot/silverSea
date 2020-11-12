@@ -67,6 +67,7 @@ Version: 0.0
 6.24) =mateput:
 6.25) =pagination:
 6.30) =newsletter banner:
+6.40) =captioned img:
 6.42) =archive-product:
 6.62) =forms:login:
 6.65) =uploadForm:
@@ -373,6 +374,9 @@ FIN DE MAPA DE CONTENIDOS */
   --newsletter_banner_form_GTR: auto;
   --newsletter_banner_submit_GC: unset;
 
+  /* captioned img: */
+
+  --caption_img_txt_width: 100%;
 
 }
 /* ---------------------------------------------------------------------------
@@ -684,6 +688,9 @@ FIN DE MAPA DE CONTENIDOS */
     /* entry_super_card */
     --entry_super_card_display: grid;
     --entry_super_card_content_childs: ;
+
+    /* captioned img: */
+    --caption_img_txt_width: 70%;
   }
 }
 
@@ -913,6 +920,7 @@ ul,ol{list-style:none}
 .main p {
   margin: 1em 0 1em 0;
   font-size: 16px;
+  line-height: 20px;
 }
 
 .main a {
@@ -3763,7 +3771,7 @@ padding-bottom:0;
   flex-direction: column;
   background: var(--secondaryColor);
   padding: 30px 0;
-  margin: 120px 0;
+  margin: 60px 0;
 }
 .newsletter_banner >* {
   width: var(--newsletter_banner_childs_width);
@@ -3855,6 +3863,44 @@ padding-bottom:0;
 .newsletter_banner_submit:hover::before {
   transform: scaleX(1);
 }
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.40) =captioned img:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.captioned_img_container {
+  position: relative;
+}
+.captioned_img {
+  max-height: 400px;
+}
+.captioned_img_caption {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  padding: 16px 24px 16px 8px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 8px 0 0;
+}
+.captioned_img_caption i {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+.blogATF .super_card_divided_textgroup {
+  width: var(--caption_img_txt_width);
+  margin: 1rem auto;
+}
+.blogATF .super_card_divided_textgroup_title {
+  font-size: 32px;
+}
+.blogATF .super_card_divided_textgroup_subtitle {
+  font-size: 18px;
+  text-align: center;
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.42) =archive-product:

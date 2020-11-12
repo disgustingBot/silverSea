@@ -11,7 +11,7 @@
   </hgroup>
 
 
-  <article class="entry_super_card">
+  <a href="<?php the_permalink(); ?>" class="entry_super_card">
     <?php
     $args=array(
       'post_type'=>'post',
@@ -72,11 +72,11 @@
           </button>
         </div>
       </div>
-    </article>
-  </section>
+    </a>
 <?php } wp_reset_query(); ?>
+</section>
 
-<section class="grid sectionPadding blogSection" style="min-height: 400px">
+<section class="grid sectionPadding blogSection">
   <div class="divided_textgroup">
     <h2 class="divided_textgroup_title divided_textgroup_title_2">Entradas recientes</h2>
     <div class="textgroup_divider textgroup_divider_2"></div>
