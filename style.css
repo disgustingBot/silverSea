@@ -2252,6 +2252,9 @@ table.stockreport-table .border {
 .entry_card:hover {
   box-shadow: var(--DP12);
 }
+.entry_card_img {
+  border-radius: 4px 4px 0 0;
+}
 .entry_card_caption {
   padding: 14px;
 }
@@ -2292,7 +2295,7 @@ table.stockreport-table .border {
   border-radius: 4px 0 0 0;
 }
 .entry_super_card_img {
-  border-radius: 6px 0 0 0;
+  border-radius: 6px 0 0 6px;
   max-height: 400px;
   display: block;
 }
