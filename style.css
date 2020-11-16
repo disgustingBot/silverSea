@@ -36,6 +36,7 @@ Version: 0.0
 6.3.1) =About Us ATF:
 6.3.2) =Team ATF:
 6.3.3) =Stock ATF:
+6.3.4) =Clientes ATF:
 6.4) =socalMedia:
 6.5) =multiCards:
 6.5.0) =card:
@@ -69,6 +70,7 @@ Version: 0.0
 6.30) =newsletter banner:
 6.40) =captioned img:
 6.42) =archive-product:
+6.50) =squared_info:
 6.62) =forms:login:
 6.65) =uploadForm:
 6.69) =redDot:
@@ -115,6 +117,7 @@ FIN DE MAPA DE CONTENIDOS */
   --grey4:#818181;
   --grey9:#1b1b1b;
   --grey99:#000000;
+  --greyFA:#FAFAFA;
 
   /* SIZES */
   /* Al editar los tamaños, hacerlo siempre sin unidades
@@ -378,6 +381,9 @@ FIN DE MAPA DE CONTENIDOS */
 
   --caption_img_txt_width: 100%;
 
+/* squared info container GTR */
+  --col6_squared_info_container_GTC: repeat(2, 1fr);
+
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -486,6 +492,9 @@ FIN DE MAPA DE CONTENIDOS */
     --newsletter_banner_form_GTC: 1fr 1fr;
     --newsletter_banner_form_GTR: 1fr 1fr;
     --newsletter_banner_submit_GC: 2;
+
+    /* squared info container GTR */
+      --col6_squared_info_container_GTC: repeat(3, 1fr);
 
 
   }
@@ -673,6 +682,9 @@ FIN DE MAPA DE CONTENIDOS */
     /* Newsletter banner */
     --newsletter_banner_childs_width: 60%;
 
+    /* squared info container GTR */
+      --col6_squared_info_container_GTC: repeat(4, 1fr);
+
 
   }
 }
@@ -743,6 +755,9 @@ FIN DE MAPA DE CONTENIDOS */
    /* Newsletter banner */
    --newsletter_banner_childs_width: 50%;
 
+   /* squared info container GTR */
+     --col6_squared_info_container_GTC: repeat(5, 1fr);
+
   }
 }
 
@@ -775,6 +790,9 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* SALE  */
     --saleMainGTC:1fr 1fr 1fr 1fr;
+
+    /* squared info container GTR */
+      --col6_squared_info_container_GTC: repeat(6, 1fr);
   }
 }
 
@@ -1988,11 +2006,24 @@ table.stockreport-table .border {
   text-align: left;
   padding: 5px;
 }
-  /* ---------------------------------------------------------------------------
-  ------------------------------------------------------------------------------
-                                6.4) =socalMedia:
-  ------------------------------------------------------------------------------
-  --------------------------------------------------------------------------- */
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              6.3.4) =Clientes ATF:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.clientesATF {
+  background-color: var(--greyFA);
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                              6.4) =socalMedia:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
 
 
 .socialMediaLink {
@@ -4096,6 +4127,53 @@ padding-bottom:0;
   right: 10px;
   transform: rotate(45deg);
   font-size: 24px;
+}
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+              6.50) =squared_info:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.col6_squared_info_container {
+  display: grid;
+  grid-template-columns: var(--col6_squared_info_container_GTC);
+  grid-gap: 3rem;
+}
+.squared_info {
+  background: white;
+  display: grid;
+}
+.squared_info:hover {
+  border-radius: 4px;
+}
+.squared_info_caption {
+  display: flex;
+  flex-direction: column;
+  flex-direction: space-between;
+  background: rgba(255,255,255,0.5);
+  opacity: 0;
+  transition: .25s;
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--DP0);
+}
+.squared_info:hover .squared_info_caption {
+  opacity: 1;
+  box-shadow: var(--DP8);
+}
+.squared_info_picture {
+  width: 100%;
+}
+.squared_info_title {
+  font-size: 18px;
+  text-decoration: underline;
+
+}
+.squared_info_txt {
+  font-size: 14px;
 }
 
 /* ---------------------------------------------------------------------------
