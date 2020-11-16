@@ -112,6 +112,44 @@ function lattedev_custom_posts() {
 
 	// FIN TESTIMONIALS
 
+	// CLIENTES
+		/* Añado las etiquetas que aparecerán en el escritorio de WordPress */
+	$labels = array(
+		'name'               => _x( 'Clientes', 'post type general name', 'text-domain' ),
+		'singular_name'      => _x( 'Cliente', 'post type singular name', 'text-domain' ),
+		'menu_name'          => _x( 'Clientes', 'admin menu', 'text-domain' ),
+		'add_new'            => _x( 'Add new', 'cliente', 'text-domain' ),
+		'add_new_item'       => __( 'Add new cliente', 'text-domain' ),
+		'new_item'           => __( 'New cliente', 'text-domain' ),
+		'edit_item'          => __( 'Edit cliente', 'text-domain' ),
+		'view_item'          => __( 'See cliente', 'text-domain' ),
+		'all_items'          => __( 'All clientes', 'text-domain' ),
+		'search_items'       => __( 'Search clientes', 'text-domain' ),
+		'not_found'          => __( 'There are no clientes.', 'text-domain' ),
+		'not_found_in_trash' => __( 'No clientes in the bin.', 'text-domain' )
+	);
+	/* Configuro el comportamiento y funcionalidades del nuevo custom post type */
+	$args = array(
+		'labels'             => $labels,
+		'description'        => __( 'Desctription.', 'text-domain' ),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_nav_menus'  => true,
+		'show_in_menu'       => true,
+		'show_in_rest'       => true,
+		'query_var'          => true,
+		'rewrite'            => array( 'slug' => 'clientes' ),
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'taxonomies'         => array('loc'),
+		'menu_icon'          => 'dashicons-id-alt',
+		'menu_position'      => 5,
+		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
+	);
+	register_post_type( 'clientes', $args );
 
+	// FIN CLIENTES
 
 }
