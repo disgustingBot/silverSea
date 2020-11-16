@@ -99,7 +99,7 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
         $('#postCont').empty();
         $('#postCont').append(respuesta);
         carouselController.setup()
-        
+
         cuantosController.setup();
 
         cardSetup();
@@ -133,6 +133,74 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
 	});
 	// END OF PAGINATION CONTROLLER
 	// END OF FILTER BAR CONTROLLER
+
+
+
+
+
+// This part activates the pagination on click
+blog_paginators = [...document.querySelectorAll('.pagination_link')]
+console.log(blog_paginators)
+if (blog_paginators){
+  blog_paginators.forEach((item, i) => {
+    item.onclick = (self)=>{
+      paginate(self)
+    }
+  });
+}
+const paginate = (self)=>{
+  // console.log(self.path[0].dataset.pagination);
+  page = self.path[0].dataset.pagination;
+  button = self.path[0]
+  section = self.path[2]
+  var query = JSON.parse(misha_loadmore_params.posts);
+  console.log(query)
+
+
+  // URL HANDLING
+    urlVars = getUrlVars();
+    var filters = urlVars.map( x => x.split('=')[0]);
+    var values  = urlVars.map( x => x.split('=')[1]);
+    current = filters.includes("page") ? parseInt(values[filters.findIndex(x=>x=='page')]) : 1;
+    if ( page == 'next' ) { page = current + 1; }
+    if ( page == 'prev' ) { page = current - 1; }
+    // c.log(page)
+    if ( page && page != 1 ) { filterQueries = setUrlVar('page', page); }
+    else if ( page )         { filterQueries = setUrlVar('page'); }
+
+    // if (category != 0) { filterQueries = setUrlVar(parent, category); }
+    // else if ( parent ) { filterQueries = setUrlVar(parent); }
+  // END OF URL HANDLING
+
+  console.log(section.dataset.card);
+
+  var formData = new FormData();
+  formData.append( 'action', 'lt_pagination_2' );
+  formData.append( 'query', JSON.stringify(query) );
+  formData.append( 'page', page );
+  formData.append( 'card', section.dataset.card );
+  ajax3(formData).then( respuesta => {
+    // console.log(respuesta)
+    section.innerHTML = respuesta;
+    // console.log(section)
+
+
+
+
+    // This part activates the pagination on click
+    blog_paginators = [...document.querySelectorAll('.pagination_link')]
+    console.log(blog_paginators)
+    if (blog_paginators){
+      blog_paginators.forEach((item, i) => {
+        item.onclick = (self)=>{
+          paginate(self)
+        }
+      });
+    }
+  });
+}
+
+
 
 
 
@@ -172,7 +240,7 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
       success : respuesta => {
 				c.log(respuesta);
           d.querySelector('.cartButtonCant').innerText = respuesta/10;
-          
+
           // c.log('soy el nene');
           // d.querySelector('.cartButtonCant').innerText = respuesta/10;
       }
@@ -194,3 +262,33 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
   })
   // END OF ADD TO CART CONTROLLER
 });
+
+
+
+
+
+
+async function ajax2(formData, url = misha_loadmore_params.ajaxurl) {
+	try{
+		let response = await fetch(url, {
+			method: 'POST',
+			body: formData,
+			mode: 'no-cors',
+		});
+		return await response.json();
+	}catch(err){
+		console.error(err);
+	}
+}
+
+async function ajax3(formData, url = misha_loadmore_params.ajaxurl) {
+	try{
+		let response = await fetch(url, {
+			method: 'POST',
+			body: formData,
+		});
+		return await response.text();
+	}catch(err){
+		console.error(err);
+	}
+}

@@ -81,17 +81,14 @@
     <h2 class="divided_textgroup_title divided_textgroup_title_2">Entradas recientes</h2>
     <div class="textgroup_divider textgroup_divider_2"></div>
   </div>
-  <div class="entry_card_container">
-    <?php while(have_posts()){the_post(); ?>
-      <a href="<?php the_permalink(); ?>" class="entry_card">
-        <img class="entry_card_img" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Post featured image">
-        <div class="entry_card_caption">
-          <p class="entry_card_title"><?php the_title(); ?></p>
-          <div class="textgroup_divider"></div>
-          <p class="entry_card_excerpt"><?php echo excerpt(70); ?></p>
-        </div>
-      </a>
-    <?php } wp_reset_query(); ?>
+  <div class="entry_card_container" data-card="entry_card">
+    <?php
+    while(have_posts()){the_post();
+
+      entry_card();
+
+    } wp_reset_query();
+    echo ajax_paginator_2(get_pagenum_link()); ?>
   </div>
 </section>
 

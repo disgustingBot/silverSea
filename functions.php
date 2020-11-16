@@ -9,6 +9,13 @@ require_once 'inc/customPosts.php';
 require_once 'inc/productFactory.php';
 require_once 'inc/formHandler.php';
 require_once 'inc/ajax.php';
+require_once 'inc/new_ajax.php';
+
+
+if(!is_admin()){
+  require_once 'inc/multi_cards.php';
+}
+
 
 // require_once get_template_directory() . '/inc/productFactory.php';
 

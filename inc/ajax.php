@@ -279,4 +279,6 @@ function latte_pagination() {
 	exit();
 }
 
+
+
 ?>

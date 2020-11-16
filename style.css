@@ -3785,7 +3785,9 @@ padding-bottom:0;
   margin: auto;
 }
 .paginationLink:hover{box-shadow:var(--DP2)}
-.paginationLink{
+.pagination_link:hover{box-shadow:var(--DP2)}
+.paginationLink,
+.pagination_link{
   cursor: pointer;
   box-shadow:var(--DP1);
   transition:.3s;
