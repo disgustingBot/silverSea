@@ -54,7 +54,6 @@
         </svg>
         ';
         foreach ($tags as $tag) {
-          echo count($tags);
           echo '<span>' . $tag->name . '</span>,&nbsp;';
         }
         echo '</p>';

@@ -2363,6 +2363,7 @@ table.stockreport-table .border {
   font-size: 12px;
   display: flex;
   align-items: center;
+  text-transform: capitalize;
 }
 .entry_super_card_tags_svg {
   margin-right: 4px;
