@@ -54,7 +54,7 @@
         </svg>
         ';
         foreach ($tags as $tag) {
-          echo '<span>' . $tag->name . '</span>,&nbsp;';
+          echo '<span>' . $tag->name . '</span><span class="span_coma">,</span>&nbsp;';
         }
         echo '</p>';
         ?>
