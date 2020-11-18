@@ -30,25 +30,69 @@
       <h2 class="divided_textgroup_title divided_textgroup_title_2">Entradas relacionadas</h2>
       <div class="textgroup_divider textgroup_divider_2"></div>
     </div>
+
     <div class="entry_card_container">
       <?php
-      $args=array(
-        'post_type'=>'post',
-        'posts_per_page' => '3',
-      );
-      $atf=new WP_Query($args);
-      while($atf->have_posts()){
-        $atf->the_post(); ?>
-        <a href="<?php the_permalink(); ?>" class="entry_card">
-          <img src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Post featured image">
-          <div class="entry_card_caption">
-            <p class="entry_card_title"><?php the_title(); ?></p>
-            <div class="textgroup_divider"></div>
-            <p class="entry_card_excerpt"><?php echo excerpt(70); ?></p>
-          </div>
-        </a>
-      <?php } wp_reset_query(); ?>
+
+
+
+
+      $orig_post = $post;
+      global $post;
+      $tags = wp_get_post_tags($post->ID);
+      if ($tags) {
+
+        $tag_ids = array();
+        foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+        $args=array(
+          'tag__in' => $tag_ids,
+          'post__not_in' => array($post->ID),
+          // 'post_type'=>'post',
+          'ignore_sticky_posts'=>1,
+          'posts_per_page' => '3',
+        );
+        $related=new WP_Query($args);
+        while($related->have_posts()){ $related->the_post();
+
+          entry_card();
+
+        }
+        $post = $orig_post;
+        wp_reset_query();
+      }
+
+
+
+
+
+
+
+
+      $args = array(
+            'posts_per_page' => 1,
+            'tax_query'      => array(
+                array(
+                    'taxonomy'  => 'post_tag',
+                    'field'     => 'slug',
+                    'terms'     => 'destacada'
+                )
+            )
+        );
+
+        $featured_post = get_posts( $args )[0]->ID;
+        echo $featured_post;
+
+
+
+
+
+
+      ?>
     </div>
+
+
+
+
   </section>
 
   <banner class="newsletter_banner">

@@ -1244,3 +1244,68 @@ function lt_filtro_magico($query) {
 		remove_all_actions ( '__after_loop');
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// add_action('pre_get_posts','skip_featured_post', 15);
+//
+// function skip_featured_post($query) {
+// 	//gets the global query var object
+// 	global $wp_query;
+//
+// 	//gets the front page id set in options
+// 	// $featured_post = get_option('page_on_front');
+//   $old_query = $query;
+//   $args = array(
+//     'posts_per_page' => 1,
+//     'tax_query'      => array(
+//       array(
+//         'taxonomy'  => 'post_tag',
+//         'field'     => 'slug',
+//         'terms'     => 'destacada'
+//       )
+//     )
+//   );
+//   $related=new WP_Query($args);
+//   while($related->have_posts()){ $related->the_post();
+//     $featured_post = get_the_ID();
+//   }
+//   $query = $old_query;
+//
+//   // $featured_post = get_posts( $args )[0]->ID;
+//   // wp_reset_query();
+//
+//
+// 	// if ( 'page' != get_option('show_on_front') || $featured_post != $wp_query->query_vars['post_id'] )
+// 	// 	return;
+//
+// 	if ( !$query->is_main_query() )
+// 		return;
+//
+//     // 'post__not_in' => array($post->ID),
+//
+//
+// 	// $query-> set('post_type' ,'page');
+// 	$query-> set('post__not_in' ,array( 1 ));
+// 	// $query-> set('orderby' ,'post__in');
+// 	// $query-> set('p' , null);
+// 	// $query-> set( 'page_id' ,null);
+//
+// 	//we remove the actions hooked on the '__after_loop' (post navigation)
+// 	remove_all_actions ( '__after_loop');
+// }
