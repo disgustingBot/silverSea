@@ -59,13 +59,13 @@ if ( $loop->have_posts() ) {
           <?php $count++; }} ?>
 
           <?php if($attachment_ids){ ?>
-            <button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
+            <button class="arrowBtn arrowButtonNext rowcol1 NextButton">
               <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="https://www.w3.org/2000/svg">
                 <circle cx="53" cy="53" r="53" fill="currentColor"/>
                 <path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
               </svg>
             </button>
-            <button class="arrowBtn arrowButtonPrev rowcol1" id="prevButton">
+            <button class="arrowBtn arrowButtonPrev rowcol1 PrevButton">
               <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="https://www.w3.org/2000/svg">
                 <circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
                 <path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>

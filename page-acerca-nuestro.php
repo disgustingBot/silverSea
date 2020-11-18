@@ -91,7 +91,7 @@
   <h3 class="testimonialSecTitle brandColorTxt">CLIENTES SATISFECHOS</h3>
 
   <div class="testimonialsContainer Carousel">
-    <button class="arrowBtn" id="nextButton" >
+    <button class="arrowBtn NextButton">
       <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="https://www.w3.org/2000/svg">
         <circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
         <path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
@@ -110,7 +110,7 @@
         </div>
       </quote>
     <?php } ?>
-    <button class="arrowBtn" id="prevButton">
+    <button class="arrowBtn PrevButton">
       <svg class="arrowSVG" width="106" height="106" viewBox="0 0 106 106" fill="currentColor" xmlns="https://www.w3.org/2000/svg">
         <circle cx="53" cy="53" r="53" fill="currentColor"/>
         <path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
@@ -140,7 +140,7 @@
       Ver valoraciones en
       <span class="btnSimple">
         <a href="https://www.google.com/search?ei=52YQX7zEDsiHjLsPluuiIA&q=silversea%20containers%20barcelona&oq=silversea+containers+barcelona&gs_l=psy-ab.3...0.0.0.4096.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.SErFbg7SUrI&npsic=0&rflfq=1&rlha=0&rllag=41386178,2154086,1099&tbm=lcl&rldimm=2935391597464650041&lqi=Ch5zaWx2ZXJzZWEgY29udGFpbmVycyBiYXJjZWxvbmFaNgoUc2lsdmVyc2VhIGNvbnRhaW5lcnMiHnNpbHZlcnNlYSBjb250YWluZXJzIGJhcmNlbG9uYQ&ved=2ahUKEwiq8NazgNLqAhWIFxQKHWs2C54QvS4wAXoECAsQHg&rldoc=1&tbs=lrf:!1m4!1u2!2m2!2m1!1e1!2m1!1e2!3sIAE,lf:1,lf_ui:2&rlst=f#lrd=0x12a4987e5d190a37:0xead792625eff592c,1,,,&rlfi=hd:;si:16922155076066171180,l,Ch5zaWx2ZXJzZWEgY29udGFpbmVycyBiYXJjZWxvbmFaNgoUc2lsdmVyc2VhIGNvbnRhaW5lcnMiHnNpbHZlcnNlYSBjb250YWluZXJzIGJhcmNlbG9uYQ;mv:[[41.3893905,2.1682209],[41.3829661,2.1399523]]" target="_blank" class="reviewsLink">Google</a>
-      &#10148;</span> 
+      &#10148;</span>
     </p>
 
 
