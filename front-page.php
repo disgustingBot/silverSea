@@ -196,10 +196,10 @@
         #queContainerINeed:not(.containerINeed) .notHideLinkHardCodeadaso{display:none}
         .hideLinkHardCodeadaso{display:none}
       </style>
-      <a href="<?php echo get_site_url(); ?>" class="btn cotizarContainer notHideLinkHardCodeadaso" id="">Cotizar contenedor</a>
-      <a href="<?php echo get_site_url() . '/?use=storage-new'; ?>" class="btn cotizarContainer hideLinkHardCodeadaso" id="link67">Cotizar contenedor</a>
-      <a href="<?php echo get_site_url() . '/?use=reefer'; ?>"      class="btn cotizarContainer hideLinkHardCodeadaso" id="link68">Cotizar contenedor</a>
-      <a href="<?php echo get_site_url() . '/?use=cargo-dry'; ?>"   class="btn cotizarContainer hideLinkHardCodeadaso" id="link69">Cotizar contenedor</a>
+      <a href="<?php echo get_site_url(); ?>/buscar-contenedor-maritimo" class="btn cotizarContainer notHideLinkHardCodeadaso" id="">Cotizar contenedor</a>
+      <a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/?use=storage-new'; ?>" class="btn cotizarContainer hideLinkHardCodeadaso" id="link67">Cotizar contenedor</a>
+      <a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/?use=reefer'; ?>"      class="btn cotizarContainer hideLinkHardCodeadaso" id="link68">Cotizar contenedor</a>
+      <a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/?use=cargo-dry'; ?>"   class="btn cotizarContainer hideLinkHardCodeadaso" id="link69">Cotizar contenedor</a>
     </div>
 
   <?php } ?>
