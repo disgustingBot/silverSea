@@ -35,11 +35,13 @@
           </h4>
         </hgroup>
         <?php
-        $tags = get_tags(
-          array(
-            'hide_empty' => false
-          )
-        );
+        $tags = wp_get_post_tags($post->ID);
+
+        // $tags = get_tags(
+        //   array(
+        //     'hide_empty' => false
+        //   )
+        // );
         echo '
         <p class="entry_super_card_tags">
         <svg class="entry_super_card_tags_svg" width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,12 +84,32 @@
   </div>
   <div class="entry_card_container" data-card="entry_card">
     <?php
+
+
+          // Setup the custom meta-query args
+          $exclude_featured_args = array(
+            'tax_query'      => array(
+              array(
+                'taxonomy'  => 'post_tag',
+                'field'     => 'slug',
+                'terms'     => 'destacada',
+                'operator' => 'NOT IN',
+              )
+            )
+          );
+          // globalize $wp_query
+          global $wp_query;
+          // Merge custom query with $wp_query
+          $merged_args = array_merge( $wp_query->query, $exclude_featured_args );
+          // Query posts using the modified arguments
+          $test = query_posts( $merged_args );
     while(have_posts()){the_post();
 
       entry_card();
 
     } wp_reset_query();
-    echo ajax_paginator_2(get_pagenum_link()); ?>
+    echo ajax_paginator_2(get_pagenum_link());
+    ?>
   </div>
 </section>
 
