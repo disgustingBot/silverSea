@@ -55,8 +55,12 @@
     <h3 class="newsletter_banner_title"><?php echo get_post_meta($blog_id, '4_titulo_newsletter', true); ?></h3>
     <h4 class="newsletter_banner_subtitle"><?php echo get_post_meta($blog_id, '5_subtitulo_newsletter', true); ?></h4>
     <form class="newsletter_banner_form" action="sendStuff">
-      <input class="newsletter_banner_input" type="text" placeholder="Escribe tu nombre aquí....">
-      <input class="newsletter_banner_input" type="email" placeholder="Escribe tu email aquí....">
+      <input class="newsletter_banner_input" type="text" placeholder="Escribe tu nombre aquí...." required>
+      <input class="newsletter_banner_input" type="email" placeholder="Escribe tu email aquí...." required>
+      <div class="finalizarConsultaCheckboxes">
+        <input id="privacidad" type="checkbox" required>
+        <label for="privacidad" class="termsDescription">*Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</label>
+      </div>
       <button class="icon_btn newsletter_banner_submit" type="submit" value=""><p><?php echo get_post_meta($blog_id, '6_boton_newsletter', true); ?></p></button>
     </form>
   </banner>

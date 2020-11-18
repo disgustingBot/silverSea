@@ -3992,7 +3992,9 @@ padding-bottom:0;
 .newsletter_banner_submit:hover::before {
   transform: scaleX(1);
 }
-
+.newsletter_banner .finalizarConsultaCheckboxes {
+  grid-column: unset;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.40) =captioned img:

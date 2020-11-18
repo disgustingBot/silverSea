@@ -3,10 +3,12 @@
 <section class="sectionPadding blogSection clientesATF">
   <hgroup class="divided_textgroup">
     <h1 class="divided_textgroup_title">
-      Clientes de <span style="color: #0674BB;">SILVERSEA</span>
+      <?php echo get_post_meta('2535', '1_seccion_clientes_titulo', true); ?>
       <div class="textgroup_divider"></div>
     </h1>
-    <h2 class="divided_textgroup_subtitle">Estos son los clientes satisfechos y testimonios del éxito de SILVERSEA. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed varius magna, sit amet interdum erat.</h2>
+    <!-- <h2 class="divided_textgroup_subtitle"></h2> -->
+    <h2 class="divided_textgroup_subtitle"><?php echo get_post_meta('2535', '2_seccion_clientes_subtitulo', true); ?></h2>
+
   </hgroup>
 
   <div class="col6_squared_info_container" data-card="squared_info">
@@ -23,11 +25,11 @@
 
 <section class="clientes_testimonials sectionPadding blogSection">
   <hgroup class="divided_textgroup">
-    <h1 class="divided_textgroup_title">
-      Testimonials y casos de éxito
+    <h2 class="divided_textgroup_title">
+      <?php echo get_post_meta('2535', '3_seccion_testimonials_titulo', true); ?>
       <div class="textgroup_divider"></div>
-    </h1>
-    <h2 class="divided_textgroup_subtitle">Estos son los clientes satisfechos y testimonios del éxito de SILVERSEA. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed varius magna, sit amet interdum erat.</h2>
+    </h2>
+    <h3 class="divided_textgroup_subtitle"><?php echo get_post_meta('2535', '4_seccion_testimonials_subtitulo', true); ?></h3>
   </hgroup>
 
 
