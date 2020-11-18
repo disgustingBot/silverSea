@@ -367,6 +367,7 @@ FIN DE MAPA DE CONTENIDOS */
    /* entry_super_card */
   --entry_super_card_display: block;
   --entry_super_card_content_childs: 20px 0;
+  --entry_super_card_bottom_interaction_btn_ML: 0;
 
   /* divided_textgroup */
   --textgroup_divider_2_width: 80%;
@@ -388,6 +389,10 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* testimonials 2 */
   --testim_container_2_GTC: 1fr;
+  --tesim_container_2_margin: auto auto 100px auto;
+  --testim_2_btn_container_top: unset;
+  --testim_2_btn_container_bottom: -100px;
+  --tesim_container_2_width: 85%;
 
 }
 /* ---------------------------------------------------------------------------
@@ -503,6 +508,12 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* testimonials 2 */
     --testim_container_2_GTC: 1fr 1fr;
+    --tesim_container_2_margin: auto;
+    --testim_2_btn_container_top: 50%;
+    --testim_2_btn_container_bottom: unset;
+
+
+
 
     /* divided_textgroup */
     --divided_textgroup_title_width: max-content;
@@ -711,9 +722,14 @@ FIN DE MAPA DE CONTENIDOS */
     /* entry_super_card */
     --entry_super_card_display: grid;
     --entry_super_card_content_childs: ;
+      --entry_super_card_bottom_interaction_btn_ML: auto;
 
     /* captioned img: */
     --caption_img_txt_width: 70%;
+
+    --tesim_container_2_width: 90%;
+
+
   }
 }
 
@@ -1708,8 +1724,8 @@ section {
   display: grid;
   grid-template-columns: var(--testim_container_2_GTC);
   grid-gap: 1rem;
-  width: 90%;
-  margin: auto;
+  width: var(--tesim_container_2_width);
+  margin: var(--tesim_container_2_margin);
   position: relative;
 }
 .tesim_container_2.inactive {
@@ -1752,8 +1768,9 @@ section {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  top: 50%;
-  transform: translateY(-50%);
+  top: var(--testim_2_btn_container_top);
+  bottom: var(--testim_2_btn_container_bottom);
+  transform: translateY(-75%);
 }
 
 
@@ -2444,6 +2461,9 @@ table.stockreport-table .border {
 .entry_super_card_bottom_interaction {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.entry_super_card_bottom_interaction .icon_btn {
+  margin-right: var(--entry_super_card_bottom_interaction_btn_ML);
 }
 .entry_super_card_bottom_interaction_txt {
   font-size: 12px;
