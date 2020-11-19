@@ -14,7 +14,9 @@
   <div class="col6_squared_info_container" data-card="squared_info">
     <?php
     while(have_posts()){the_post();
+
       squared_info();
+
     } wp_reset_query();
     echo ajax_paginator_2(get_pagenum_link());  ?>
   </div>
