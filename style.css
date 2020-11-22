@@ -1,4 +1,4 @@
-  /*
+/*
 Theme Name: silverTheme
 Author: Lattedev
 Author URI: https://www.lattedev.com
@@ -4888,4 +4888,28 @@ padding-bottom:0;
 
 #trp-floater-ls .trp-floater-ls-disabled-language {
   font-size: 12px;
+}
+
+
+
+.faq_question{
+  box-shadow: var(--DP2);
+  border-radius:6px;
+  margin: 1rem;
+}
+.faq_question p:first-child{
+  padding:.5rem 1rem;
+  background: var(--greyD5);
+  margin:0;
+  cursor: pointer;
+}
+.faq_question p.active:last-child{
+  padding:0 1rem;
+}
+.faq_question p:last-child{
+  padding:.5rem 1rem;
+  margin:0;
+  max-height: 0;
+  overflow: hidden;
+  transition:.3s;
 }

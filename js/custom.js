@@ -7,24 +7,53 @@ c.lof = (message, farbe = false)=>{
 	else{c.log(message)}
 };
 
+const activate_questions = () => {
+	let faq_questions = [...d.querySelectorAll('.faq_question')]
+	c.log(faq_questions);
+	if(faq_questions){
+		faq_questions.forEach((question, i) => {
+			let pregunta  = question.querySelector('p:first-child')
+			// let respuesta = question.querySelector('p:last-child')
+			pregunta.onclick = (event) => {
+				let respuesta = event.path[1].querySelector('p:last-child')
+				console.log(respuesta)
+				respuesta.classList.toggle("active");
+				// var panel = this.nextElementSibling;
+				if (respuesta.style.maxHeight!=0) {
+					respuesta.style.maxHeight = null;
+					// respuesta.style.maxHeight = null;
+				} else {
+					respuesta.style.maxHeight = respuesta.scrollHeight + 20 + "px";
+				}
+			}
+		});
+	}
+}
 
 
 
-  var correctCaptcha = function(response) {
-    alert(response);
-    var url='https://www.google.com/recaptcha/api/siteverify';
-    var dataNames=['secret','response'];
-    var dataValues=['6LcRuNAUAAAAADtamJW75fYf8YtNHceSngjKsf-B',response];
-    postAjaxCall(url, dataNames, dataValues).then(v=>{
-      try{ c.log(v)
-        // d.getElementById(id).innerHTML=JSON.parse(v).length;
-        respuesta=JSON.parse(v);
-        c.log(respuesta);
-      }catch(err){
-        c.log(err);c.log(v)
-      }
-    })
-  };
+
+
+
+
+
+
+
+var correctCaptcha = function(response) {
+  alert(response);
+  var url='https://www.google.com/recaptcha/api/siteverify';
+  var dataNames=['secret','response'];
+  var dataValues=['6LcRuNAUAAAAADtamJW75fYf8YtNHceSngjKsf-B',response];
+  postAjaxCall(url, dataNames, dataValues).then(v=>{
+    try{ c.log(v)
+      // d.getElementById(id).innerHTML=JSON.parse(v).length;
+      respuesta=JSON.parse(v);
+      c.log(respuesta);
+    }catch(err){
+      c.log(err);c.log(v)
+    }
+  })
+};
 
   function captchaVerified(){
     var boton = d.querySelectorAll('.butttonSend');
@@ -99,6 +128,9 @@ w.onload=()=>{
 	obseController.setup()
 	cuantosController.setup();
 	selectBoxSpace.poblate();
+
+
+	activate_questions();
 	startMateput();
 	cardSetup();
 
