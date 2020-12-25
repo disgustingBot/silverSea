@@ -31,7 +31,7 @@ function lt_script_load(){
 	// In most cases it is already included on the page and this line can be removed
 	wp_enqueue_script('jquery');
 	// register our main script but do not enqueue it yet
-	wp_register_script( 'my_loadmore', get_stylesheet_directory_uri() . '/js/myloadmore.js', array('jquery') );
+	wp_register_script( 'my_loadmore', get_stylesheet_directory_uri() . '/js/myloadmore.js', array('jquery'), 1.0, true  );
 
 	// now the most interesting part
 	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
@@ -51,7 +51,7 @@ function lt_script_load(){
 	// In most cases it is already included on the page and this line can be removed
 	wp_enqueue_script('jquery');
 	// register our main script but do not enqueue it yet
-	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery') );
+	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery'), 1.0, true  );
 
 
 	// now the most interesting part

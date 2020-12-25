@@ -14,16 +14,20 @@ const activate_questions = () => {
 		faq_questions.forEach((question, i) => {
 			let pregunta  = question.querySelector('p:first-child')
 			// let respuesta = question.querySelector('p:last-child')
-			pregunta.onclick = (event) => {
-				let respuesta = event.path[1].querySelector('p:last-child')
-				console.log(respuesta)
-				respuesta.classList.toggle("active");
-				// var panel = this.nextElementSibling;
-				if (respuesta.style.maxHeight!=0) {
-					respuesta.style.maxHeight = null;
-					// respuesta.style.maxHeight = null;
-				} else {
-					respuesta.style.maxHeight = respuesta.scrollHeight + 20 + "px";
+			if(pregunta){
+				pregunta.onclick = (event) => {
+					console.log(event.target.parentElement)
+					let respuesta = event.target.parentElement.querySelector('p:last-child')
+					// let respuesta = event.path[1].querySelector('p:last-child')
+					console.log(respuesta)
+					respuesta.classList.toggle("active");
+					// var panel = this.nextElementSibling;
+					if (respuesta.style.maxHeight!=0) {
+						respuesta.style.maxHeight = null;
+						// respuesta.style.maxHeight = null;
+					} else {
+						respuesta.style.maxHeight = respuesta.scrollHeight + 20 + "px";
+					}
 				}
 			}
 		});
@@ -138,9 +142,10 @@ w.onload=()=>{
 
 	if(lt_data.front_page == 1){
 		console.log("request vidio with ajax")
-		setTimeout(()=>{
-			get_front_page_video();
-		},500)
+		get_front_page_video();
+		// setTimeout(()=>{
+		// 	get_front_page_video();
+		// },500)
 	}
 
 	scrollAlter();
