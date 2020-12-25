@@ -14,6 +14,7 @@
   <a href="<?php the_permalink(); ?>" class="entry_super_card">
     <?php
     $args=array(
+      'posts_per_page' => 1,
       'post_type'=>'post',
       'tag' => 'destacada',
     );
@@ -56,7 +57,9 @@
         </svg>
         ';
         foreach ($tags as $tag) {
-          echo '<span>' . $tag->name . '</span><span class="span_coma">,</span>&nbsp;';
+          if($tag->name != 'Destacada'){
+            echo '<span>' . $tag->name . '</span><span class="span_coma">,</span>&nbsp;';
+          }
         }
         echo '</p>';
         ?>
@@ -93,7 +96,7 @@
                 'taxonomy'  => 'post_tag',
                 'field'     => 'slug',
                 'terms'     => 'destacada',
-                'operator' => 'NOT IN',
+                'operator'  => 'NOT IN',
               )
             )
           );
