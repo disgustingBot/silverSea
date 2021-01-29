@@ -350,6 +350,9 @@ FIN DE MAPA DE CONTENIDOS */
   --stockGTR: 1fr 1fr;
 
 
+  --finalizarConsulta_GTC:1fr;
+
+
 
 
   /* CART */
@@ -687,6 +690,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* STOCK */
     --stock_main_GTC: 1fr 200px;
 
+    --finalizarConsulta_GTC:1fr 1fr;
 
       /* CART */
       --cartGridGap: 1rem;
@@ -3686,7 +3690,10 @@ p.nonePricesThere {display:none}
   border-radius:8px;
   box-shadow:var(--DP24);
   display:grid;
+  grid-auto-flow: dense;
   grid-gap:.5rem;
+  /* grid-template-columns: 1fr 1fr; */
+  grid-template-columns:var(--finalizarConsulta_GTC);
   left:50%;
   opacity:0;
   padding: 1rem;
@@ -3704,7 +3711,14 @@ p.nonePricesThere {display:none}
 .finalizarConsultaTitle {
   font-size: 1.3rem;
 }
+.finalizarConsulta .mateput:nth-of-type(4),
+.finalizarConsulta .unPasoMasButton,
+.finalizarConsultaTitle,
+.finalizarConsulta .coprAlqui,
+.finalizarConsultaSubTitle{
+  grid-column:1/-1;
 
+}
 .finalizarConsulta.alt{
   opacity:1;
   pointer-events:auto;
@@ -3716,12 +3730,32 @@ padding-bottom:0;
 .finalizarConsulta .formAcceptance {
   color: black;
 }
+/* .finalizarConsulta .mateput */
 
 .contactForm .termsDescription {
   color: white;
 }
 
 .finalizarConsultaSubTitle {margin-top: 16px;}
+
+
+.finalizarConsulta .g-recaptcha{
+  /* grid-column:2; */
+  grid-row: span 2;
+}
+/* .finalizarConsulta .finalizarConsultaCheckboxes:not(:nth-of-type(5)){
+  grid-column: 1;
+} */
+.finalizarConsultaCheckboxes {
+  display: flex;
+  align-items: center;
+  color: var(--grey99);
+  font-size: 15px;
+  grid-column: 1/-1;
+}
+.finalizarConsultaCheckboxes input[type="checkbox"] {
+  margin-right: 10px;
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.22) =cuantos:
@@ -4445,18 +4479,6 @@ padding-bottom:0;
   align-self: flex-start;
   margin-bottom: 1rem;
   color: var(--grey0);
-}
-
-.finalizarConsultaCheckboxes {
-  display: flex;
-  align-items: center;
-  color: var(--grey99);
-  font-size: 15px;
-  grid-column: 1/-1;
-}
-
-.finalizarConsultaCheckboxes input[type="checkbox"] {
-  margin-right: 10px;
 }
 
 .contacto > *{width: 80%; z-index: 1;}

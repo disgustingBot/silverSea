@@ -1,5 +1,6 @@
 <?php
-$site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6';
+$site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
+// $site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6';
 $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
 ?>
 <!DOCTYPE html>
@@ -93,6 +94,20 @@ $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
 
 
 
+<?php
+$site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
+?>
+
+ <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
+ <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $site; ?>"></script>
+ <script>
+ // grecaptcha.ready(function() {
+ //   grecaptcha.execute('6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6', {action: 'submit'}).then(function(token) {
+ //    console.log(token)
+ //       // Add your logic to submit to your backend server here.
+ //   });
+ // });
+ </script>
 
 
 </head>
@@ -251,8 +266,8 @@ $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
 
     <p class="closeCross" onclick="altClassFromSelector('alt', '#finalizarConsulta'),altClassFromSelector('alt', '#cart')">&#10006;</p>
     <h4 class="finalizarConsultaTitle txtCenter"><?php echo get_post_meta('150', 'ZC-cotizador-formulario-Titulo', true); ?></h4>
-    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZD-cotizador-formulario-texto1', true); ?></p>
-    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZE-cotizador-formulario-texto2', true); ?></p>
+    <p class="finalizarConsultaSubTitle txtCenter"><?php echo get_post_meta('150', 'ZD-cotizador-formulario-texto1', true); ?><br><?php echo get_post_meta('150', 'ZE-cotizador-formulario-texto2', true); ?></p>
+    <!-- <p class="finalizarConsultaSubTitle txtCenter"><?php // echo get_post_meta('150', 'ZE-cotizador-formulario-texto2', true); ?></p> -->
     <?php require_once 'coprAlqui.php'; ?>
 
 
@@ -278,10 +293,6 @@ $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
     </div>
 
     <div class="finalizarConsultaCheckboxes">
-      <input id="privacidad" type="checkbox">
-      <label for="privacidad" class="termsDescription">*Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</label>
-    </div>
-    <div class="finalizarConsultaCheckboxes">
       <input id="inmediata" type="checkbox">
       <label for="inmediata" class="termsDescription"><?php echo get_post_meta('150', 'ZF-cotizador-formulario-checkbox2', true); ?></label>
     </div>
@@ -289,6 +300,18 @@ $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
       <input id="trasporte" type="checkbox">
       <label for="trasporte" class="termsDescription"><?php echo get_post_meta('150', 'ZG-cotizador-formulario-checkbox3', true); ?></label>
     </div>
-    <button class="btn unPasoMasButton" id="buttonFinishCart" onclick="cartController.finalButtonSwitch()">Solicitar cotización</button>
+    <div class="finalizarConsultaCheckboxes">
+      <input id="privacidad" type="checkbox">
+      <label for="privacidad" class="termsDescription">*Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</label>
+    </div>
+
+    <!-- <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
+    <input class="recaptcha" type="text" hidden value=""> -->
+
+    <button
+      class="btn unPasoMasButton"
+      id="buttonFinishCart"
+      onclick="cartController.finalButtonSwitch()"
+    >Solicitar cotización</button>
 
   </div>

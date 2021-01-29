@@ -24,7 +24,7 @@ add_action('wp_enqueue_scripts', 'lt_script_load');
 function lt_script_load(){
 	wp_enqueue_style('style', get_stylesheet_uri(), NULL, microtime(), 'all');
 	wp_enqueue_script('modules', get_theme_file_uri('/js/modules.js'), NULL, microtime(), true);
-	wp_enqueue_script('ReCaptcha', 'https://www.google.com/recaptcha/api.js', NULL, microtime(), true);
+	// wp_enqueue_script('ReCaptcha', 'https://www.google.com/recaptcha/api.js', NULL, microtime(), true);
 
   // TOOOODO ESTO ES PARA AJAX
 	global $wp_query;

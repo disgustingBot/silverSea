@@ -1,5 +1,129 @@
 <?php
 session_start();
+$response = array();
+function report_error($response){
+  echo '
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+    </head>
+    <body>
+      <h1>'.$response['title'].'</h1>
+      <p>'.$response['message'].'</p>
+    </body>
+  </html>
+  ';
+}
+// you need at least one of the two keys
+if(!isset($_SESSION['super_secret_password']) and !isset($_GET['token'])){
+  // TODO: que elimine cookies?
+  $response['title']   = 'Error';
+  $response['message'] = 'you uou how did you?';
+  // echo json_encode($response);
+
+  report_error($response);
+  exit();
+}
+
+$my_pass = '!nGumcA0.lD(n~&r.nwQz1kAm-c.BoY8FGNR2sr@.AU6-iP5X3~>K[nvK-sig0TS';
+if(!isset($_SESSION['super_secret_password'])) {
+  // si no tiene pasword debe tener token porque sino no hubiera llegado hasta aqui
+  // chequear token
+
+  $token = $_GET['token'];
+  $scrt = '6LecRz0aAAAAAOVC010sTs7NewZVAiF7wSDFIOav';
+  $response = array();
+
+  // get validation from google
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+    'secret' => $scrt,
+    'response' => $token,
+    'remoteip' => $_SERVER['REMOTE_ADDR']
+  ));
+  // save response in a variable
+  $fuck_google = json_decode(curl_exec($ch));
+  curl_close($ch);
+  // end of get validation
+
+
+  // $result = json_decode($fuck_google, true);
+
+  if ($fuck_google->success) {
+    // no es un bot
+    $response['title']   = 'Success';
+    $response['message'] = 'Welcome';
+    $_SESSION['super_secret_password'] = $my_pass;
+
+  } else {
+    // es un bot
+    $response['title'] = 'bot';
+    $response['message'] = 'dodge this';
+    // echo json_encode($response);
+    report_error($response);
+    exit();
+  }
+}
+
+// si tiene super_secret_password pero es incorrecta hecharlos afuera
+if(isset($_SESSION['super_secret_password']) and $_SESSION['super_secret_password'] != $my_pass) {
+    // es un bot
+    $response['title'] = 'Bot?';
+    $response['message'] = 'how is this possible';
+    // echo json_encode($response);
+    report_error($response);
+    exit();
+}
+
+// chequear la cantidad de leads enviados, si fueron todos unset $_SESSION
+
+$cant_leads = $_GET['cant_leads'];
+
+// no se como se podria dar, pero por las dudas
+if(!isset($_GET['cant_leads']) and !isset($_SESSION['cant_leads'])) {
+    // es un bot
+    $response['title'] = 'Bot?';
+    $response['message'] = 'what are you even doing?';
+    // echo json_encode($response);
+    report_error($response);
+    exit();
+}
+
+
+// si ya mando todos los leads, quitar la variable session para evitar problemas
+if(!isset($_GET['cant_leads']) and isset($_SESSION['cant_leads'])){
+  $_SESSION['cant_leads'] = $_SESSION['cant_leads'] - 1;
+  if($_SESSION['cant_leads'] == 0){
+    unset($_SESSION['cant_leads']);
+  }
+}
+
+// si tiene super_secret_password pero es incorrecta hecharlos afuera
+if(isset($_GET['cant_leads']) and !isset($_SESSION['cant_leads'])){
+  $_SESSION['cant_leads'] = $_GET['cant_leads'] - 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // !ESTOS SON LOS NAME VALUES COMO LOS ENTREGÓ JONI el 21/08/2020
 // First Name        - name="first_name"      id="first_name"      maxlength="40" size="20" type="text"
@@ -115,6 +239,10 @@ $medium   = $_GET['medium'];
 $campaign = $_GET['campaign'];
 $content  = $_GET['content'];
 $term     = $_GET['term'];
+// $token    = $_GET['token'];
+
+
+
 // "&source=$source&medium=$medium&campaign=$campaign&content=$content&term=$term"
 // "&00N0X00000DCQ37=$source&00N0X00000DCQ36=$medium&00N0X00000DCQ34=$campaign&00N0X00000DCQ35=$content&00N0X00000DCQ38=$term"
 // codigos pasados por Jonatan
@@ -237,8 +365,8 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec( $ch );
 ?>
 
-<div style="">
-<!-- <div style="opacity:0"> -->
+<!-- <div style=""> -->
+<div style="opacity:0">
 <?php var_dump($response); ?>
 </div>
 

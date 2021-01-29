@@ -144,14 +144,20 @@ $response = curl_exec( $ch ); ?>
 	}
 
 
+// 1)_ verify token
+// 2.0)_ if false -> exit()
+// 2.1)_ if true -> generar super_secret_password, guardar en $_SESSION y continuar a ciclo de envio
+// 3)_ en cada iteracion, chequear super_secret_password y contador
+// 4)_ fianlmente eliminar super_secret_password de $_SESSION
+
+
 
 
 
     if(readCookie('lastLead') == 'sent'){
       createCookie('allLeads', 'success');
-
-    }else {
-      let info        = JSON.parse(readCookie('info'))
+    } else {
+      let info    = JSON.parse(readCookie('info'))
       cartToLeads = JSON.parse(readCookie('cartToLeads'))
       console.log(info)
       console.log(cartToLeads)

@@ -11,7 +11,7 @@ function lt_form_handler() {
   $link=$_POST['link'];
 
 	if($_POST['a00'] != ""){
-		$link = add_query_arg( array('no' => 'go',), $link );
+		$link = add_query_arg( array('status' => 'sneaky',), $link );
 	} else {
 		$email1='administracion-latam@silverseacontainers.com';
     $email2='administracion-eu@silverseacontainers.com';
@@ -21,7 +21,7 @@ function lt_form_handler() {
 		$message='';
 
     foreach ($_POST as $key => $value) {
-      if ( $key != 'a00' && $key != 'action' && $key != 'link' && $key != 'status' && $key != 'submit' && $key != 'g-recaptcha-response' ) {
+      if ( $key != 'a00' && $key != 'action' && $key != 'link' && $key != 'status' && $key != 'submit' && $key != 'token' ) {
         $message=$message.'<strong>'.$key.':</strong> '.$value.' - <br>';
       }
     }
@@ -29,31 +29,55 @@ function lt_form_handler() {
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
 
-		$site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6';
-		$scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
+		$site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
+		$scrt = '6LecRz0aAAAAAOVC010sTs7NewZVAiF7wSDFIOav';
 
-    $response = $_POST['g-recaptcha-response'];
-    $payload = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$scrt.'&response='.$response);
+    $token = $_POST['token'];
+		// $link = add_query_arg( array( 'token' => $token , ), $link );
 
-    $result = json_decode($payload,true);
-    if ($result['success']!=1) {
-    $link = add_query_arg( array( 'status' => 'bot' , ), $link );
-    } else {
+		// get validation from google
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+		  'secret' => $scrt,
+		  'response' => $token,
+		  'remoteip' => $_SERVER['REMOTE_ADDR']
+		));
+		// save response in a variable
+		$fuck_google = json_decode(curl_exec($ch));
+		curl_close($ch);
+		// end of get validation
 
 
-      if (wp_mail( $email1 , $subject , $message , $headers )) {
+    if ($fuck_google->success) {
+			if (wp_mail( $email1 , $subject , $message , $headers )) {
 				wp_mail( $email2 , $subject , $message , $headers );
-        // wp_mail( $_POST['email'] , $subject , $message , $headers );
-        $link = add_query_arg( array( 'status' => 'sent' , ), $link );
-      } else {
-        $link = add_query_arg( array( 'status' => 'error', ), $link );
-      }
+				// wp_mail( $_POST['email'] , $subject , $message , $headers );
+				$link = add_query_arg( array( 'status' => 'sent' , ), $link );
+			} else {
+				$link = add_query_arg( array( 'status' => 'error', ), $link );
+			}
+    } else {
+			$link = add_query_arg( array( 'status' => 'bot' , ), $link );
+			// foreach ($_POST as $key => $value) {
+			// 	$link = add_query_arg( array( $key => $value , ), $link );
+			// 	// code...
+			// }
     }
 	}
 	wp_redirect($link);
 	// if($debugMode){echo wp_json_encode($respuesta);}
 	exit();
 }
+
+
+
+
+
+
 
 
 
