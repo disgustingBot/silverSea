@@ -47,12 +47,12 @@ function lt_form_handler() {
 		  'remoteip' => $_SERVER['REMOTE_ADDR']
 		));
 		// save response in a variable
-		$fuck_google = json_decode(curl_exec($ch));
+		$boring_google_response = json_decode(curl_exec($ch));
 		curl_close($ch);
 		// end of get validation
 
 
-    if ($fuck_google->success) {
+    if ($boring_google_response->success) {
 			if (wp_mail( $email1 , $subject , $message , $headers )) {
 				wp_mail( $email2 , $subject , $message , $headers );
 				// wp_mail( $_POST['email'] , $subject , $message , $headers );

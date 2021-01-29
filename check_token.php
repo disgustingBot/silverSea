@@ -17,14 +17,14 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, array(
   'remoteip' => $_SERVER['REMOTE_ADDR']
 ));
 // save response in a variable
-$fuck_google = json_decode(curl_exec($ch));
+$boring_google_response = json_decode(curl_exec($ch));
 curl_close($ch);
 // end of get validation
 
 
-// $result = json_decode($fuck_google, true);
+// $result = json_decode($boring_google_response, true);
 
-if ($fuck_google->success) {
+if ($boring_google_response->success) {
   // no es un bot
   $response['title']   = 'Success';
   $response['message'] = 'Welcome';
