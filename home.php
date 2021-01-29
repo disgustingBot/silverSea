@@ -11,7 +11,6 @@
   </hgroup>
 
 
-  <a href="<?php the_permalink(); ?>" class="entry_super_card">
     <?php
     $args=array(
       'posts_per_page' => 1,
@@ -21,6 +20,7 @@
     $atf=new WP_Query($args);
     while($atf->have_posts()){
       $atf->the_post(); ?>
+      <a href="<?php the_permalink(); ?>" class="entry_super_card">
       <figure class="entry_super_card_figure">
         <figcaption class="entry_super_card_caption">Publicación destacada</figcaption>
         <img class="entry_super_card_img" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Featured post IMG">

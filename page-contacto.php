@@ -12,9 +12,9 @@
     </h4>
   </hgroup>
   <form class="contactForm" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="POST" id="cmForm">
-        <input type="hidden" name="action"   value="lt_form_handler">
-        <input type="hidden" name="link"     value="<?php echo home_url( $wp->request ); ?>">
-        <input type="text"   name="a00"      value="" placeholder="jeje" hidden>
+      <input type="hidden" name="action"   value="lt_form_handler">
+      <input type="hidden" name="link"     value="<?php echo home_url( $wp->request ); ?>">
+      <input type="text"   name="a00"      value="" placeholder="jeje" hidden>
 
     <input class="contact_input" type="hidden" name="action" value="lt_form_handler">
     <input class="contact_input" type="hidden" name="link" value="<?php echo home_url( $wp->request );?>">
@@ -28,11 +28,12 @@
       <p class="termsDescription">I accept Silversea's <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;"> privacy terms</a></p>
     </div>
 
-    <?php $site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6'; ?>
-    <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
-    <input class="recaptcha" type="text" hidden value="">
+    <?php // $site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6'; ?>
+    <!-- <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
+    <input class="recaptcha" type="text" hidden value=""> -->
+    <input class="token" type="hidden" name="token" value="">
 
-    <button class="btn contact_btn" type="submit" name="a06" class="btn" value="Submit">Enviar</button>
+    <div class="btn contact_btn" onclick="send_contact_mail()" value="Submit">Enviar</div>
   </form>
 </section>
 

@@ -42,7 +42,7 @@ const activate_questions = () => {
 
 
 
-
+// captcha functions deprecated
 var correctCaptcha = function(response) {
   alert(response);
   var url='https://www.google.com/recaptcha/api/siteverify';
@@ -59,58 +59,16 @@ var correctCaptcha = function(response) {
   })
 };
 
-  function captchaVerified(){
-    var boton = d.querySelectorAll('.butttonSend');
-    boton.forEach( x => {x.removeAttribute('disabled')});
+function captchaVerified(){
+  var boton = d.querySelectorAll('.butttonSend');
+  boton.forEach( x => {x.removeAttribute('disabled')});
 
-    // boton.removeAttribute('disabled');
-
-    // correctCaptcha('6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0');
-  }
-
-
-// const language_redirect = () =>{
-// 	let getUrl = window.location;
-// 	current_language = getUrl.pathname.split('/')[1],
-
-// 	let url = getUrl .protocol + "//" + getUrl.host + "/",
-// 	allowed_laguages = [ 'es', 'en', 'de' ],
-// 	default_language = 'es',
-// 	current_language = getUrl.pathname.split('/')[1],
-// 	user_language = navigator.language || navigator.userLanguage;
-// 	user_language = user_language.substring(0, 2);
-
-// 	let redirect = false;
-// 	let vars = '';
-
-// 	if( current_language != default_language ){
-// 		redirect = true;
-// 		language = default_language;
-// 	}
+}
 
 
 
-// 	if(redirect){ w.location.replace( url + language + vars ); }
 
 
-// 	console.log('current language: ', current_language);
-// 	console.log('allowed_laguages: ', allowed_laguages);
-// 	console.log('default_language: ', default_language);
-// 	console.log('user_language: ', user_language);
-
-// }
-
-//
-// const language_select = (language) => {
-//
-// 	createCookie('trp_language', language, 1)
-// 	if (language == 'es') language = '';
-//
-// 	// w.location.replace( lt_data.homeurl + '/' + language );
-// }
-
-
-//
 w.onload=()=>{
 	// if (readCookie('trp_language')) d.querySelector('#languageScreen').classList.add('hide');
 	// language_redirect();
@@ -141,7 +99,7 @@ w.onload=()=>{
 	filterActivate();
 
 	if(lt_data.front_page == 1){
-		console.log("request vidio with ajax")
+		// console.log("request vidio with ajax")
 		get_front_page_video();
 		// setTimeout(()=>{
 		// 	get_front_page_video();
@@ -166,8 +124,8 @@ const get_front_page_video = ()=>{
 		source.src = response.video
 		video.load();
 
-		console.log('respuesta del servidor')
-		console.log(response)
+		// console.log('respuesta del servidor')
+		// console.log(response)
 	})
 }
 
@@ -227,6 +185,14 @@ const altClassFromSelector = ( clase, selector, mainClass = false )=>{
 
 
 
+
+
+const send_contact_mail = async ()=>{
+	let token = await grecaptcha.execute('6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa', {action: 'submit'});
+	token_input = document.querySelector('.token');
+	token_input.setAttribute('value', token)
+	document.querySelector('.contactForm').submit();
+}
 
 
 
@@ -783,137 +749,6 @@ trenController = {
 	},
 
 
-
-	// TODO: eliminar finish_old
-	finish_old:()=>{
-		// console.log('ooooootre testeeeo')
-
-		// // TODO: que no te deje finalizar consulta si no seleccionas cantidad
-		// TODO: no dejar que la consulta termine si no seleccionan lugar
-		// TODO: que se guarden las locaciones en cookies
-
-
-
-		var formData = new FormData();
-		formData.append( 'action', 'lt_tren_end' );
-		formData.append( 'cont', "40HC CW" );
-		formData.append( 'origen_country' , locationSelector.origen[0] .capitalize() );
-		formData.append( 'origen_city'    , locationSelector.origen[1] .capitalize() );
-		formData.append( 'destino_country', locationSelector.destino[0].capitalize() );
-		formData.append( 'destino_city'   , locationSelector.destino[1].capitalize() );
-
-
-		ajax2(formData).then( data => {
-			console.log(data)
-
-			let cartItem = d.querySelector('.cartItem[data-code="40HC CW"]');
-			let itemQty = cartItem.querySelector('.cartItemQty').innerText;
-			let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
-			let itemCurrency = cartItem.querySelector('.cartItemCurrency');
-			let currency = 'EUR';
-
-
-
-
-			let gastos = data.gastos ? parseInt(data.gastos.profit) + parseInt(data.gastos.deposit) + parseInt(data.gastos.others) : 0;
-			let precio_origen  = price_data_pre_processor( data.precio_origen, data.exchange )
-			let precio_destino = price_data_pre_processor( data.precio_destino, data.exchange )
-			let final_price = precio_origen - precio_destino + gastos
-			console.log('precio_origen', precio_origen)
-			console.log('precio_destino', precio_destino)
-			let total_price = 0;
-
-
-
-
-
-			price_is_avaliable = ( !!precio_origen && !!precio_destino )
-			console.log('price_is_avaliable', price_is_avaliable)
-			this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
-
-
-			if( price_is_avaliable ){
-				if ( this_is_not_the_correct_currency ){
-					currency = 'USD';
-					exchange_rate = parseFloat(data.exchange.rate)
-					final_price = final_price / exchange_rate;
-					// totalPrice  = totalPrice  / exchange_rate;
-				}
-				total_price = final_price * parseInt(itemQty);
-			} else {
-				final_price = 'Precio no disponible';
-				total_price = 'Precio no disponible';
-				currency = '';
-			}
-			let gran_total = total_price;
-
-			if ( typeof gran_total == 'number' ) {
-				gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				total_price = total_price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
-
-			itemCurrency.innerText = currency
-			itemPrice.innerText = total_price;
-			// let total_price = final_price * itemQty;
-
-
-			console.log('single price: ', final_price)
-			cartController.cart[0].setPrice(final_price);
-			nuevoElemento = new CartItem(cartController.cart[0].values)
-			cartController.cart[0] = nuevoElemento;
-			console.log(cartController.cart[0])
-			console.log('cart price: ', cartController.cart[0].singlePrice)
-
-
-
-
-
-			// let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice)
-			// console.log('list_of_product_with_price: ', list_of_product_with_price);
-
-
-			let gran_total_display = [...d.querySelectorAll('.cartTotal')];
-			console.log(gran_total_display)
-			gran_total_display.forEach(element=>{
-				// console.log(element.target)
-				element.innerHTML = gran_total;
-			})
-			// console.log('CARRITO luego de la transformacion', cartController.cart)
-			if ( price_is_avaliable ){
-				altClassFromSelector('allPricesThere', '#cartList', 'cartList');
-			} else {
-				altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
-			}
-
-			altClassFromSelector('consultaFinalizada', '#cart')
-
-
-
-
-
-			// TODO: que envie el mail
-			cartController.sendMail(true);
-			// TODO: que envie el lead
-			cartController.cartToLeads = cartController.cart;
-			createCookie('status','next')
-			cartController.sendAllLeads( tren = true );
-
-
-			// TODO chequear que lleguen todas las respuestas, no que estemos en la ultima
-		})
-		// });
-
-		altClassFromSelector('alt', '#finalizarConsulta')
-		d.querySelector('#cart').classList.add('alt')
-
-		// TODO: encender el lead Sender
-		// TODO: aqui poner el destino como mensaje como asi tambien que es una interaccion de tren...
-		// cartController.cartToLeads = cartController.cart;
-		// createCookie('status','next')
-		// cartController.sendAllLeads();
-	},
-
-
 	setPointerEvents:(value)=>{
 		d.querySelector('#selectBoxSize').style.pointerEvents = value
 		d.querySelector('#selectBoxTipo_1').style.pointerEvents = value
@@ -1200,7 +1035,7 @@ productSelector = {
 		ajax2(formData).then( data => {
 			productSelector.allProducts   = data;
 			productSelector.currentSearch = data;
-			console.log(productSelector.allProducts)
+			// console.log(productSelector.allProducts)
 		})
 	},
 
@@ -1560,184 +1395,6 @@ cartController = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-	finish_old:()=>{
-		eraseCookie('allLeads');
-		eraseCookie('price_returns');
-		eraseCookie('cartToLeads');
-		eraseCookie('lastLead');
-		eraseCookie('info');
-		eraseCookie('status');
-		eraseCookie('leadsSent');
-
-
-		// console.log('carrito antes de la transforrmacion', cartController.cart)s
-		cartController.cart.forEach((item, i) => {
-			// cartController.getPrice(item.code);
-			// console.log(item);
-
-			var formData = new FormData();
-			formData.append( 'action', 'lt_cart_end' );
-			formData.append( 'cont', item.code );
-			formData.append( 'country', locationSelector.origen[0] );
-			formData.append( 'city', locationSelector.origen[1] );
-			createCookie('price_returns', 0)
-			// console.log('formData');
-
-			// Display the key/value pairs
-			// for (var pair of formData.entries()) {
-			// 	console.log(pair[0]+ ', ' + pair[1]);
-			// }
-			ajax2(formData).then( data => {
-				let price_returns = parseInt(readCookie('price_returns'))
-				price_returns++;
-				createCookie('price_returns', price_returns)
-
-				let cartItem = d.querySelector('.cartItem[data-code="'+item.code+'"]');
-				let itemQty = cartItem.querySelector('.cartItemQty').innerText;
-				let itemPrice = cartItem.querySelector('.cartItemPriceNumber');
-				let itemCurrency = cartItem.querySelector('.cartItemCurrency');
-				let currency = 'EUR';
-
-
-				price_pre_processed = price_data_pre_processor( data.price_data, data.exchange );
-				// console.log('pre processed price of '+item.code+': ', price_pre_processed)
-				// console.log('item', item)
-				// TODO: estaria bueno que ellos puedan elegir en el dashboard el 'gastos' por defecto
-				let gastos = 0
-				if ( data.gastos ) {
-					gastos = parseFloat(data.gastos.profit) + parseFloat(data.gastos.deposit) + parseFloat(data.gastos.others);
-				}
-
-				price_is_avaliable = !!price_pre_processed
-				// console.log('price_is_avaliable', price_is_avaliable)
-
-				this_is_not_the_correct_currency = !locationSelector.origen.final_currency.includes('EUR');
-
-
-				if( price_is_avaliable ){
-					singlePrice = price_pre_processed + gastos;
-					if ( this_is_not_the_correct_currency ){
-						currency = 'USD';
-						exchange_rate = parseFloat(data['exchange'].rate)
-						singlePrice = singlePrice / exchange_rate;
-					}
-					totalPrice = singlePrice * parseInt(itemQty);
-				} else {
-					singlePrice = 'Precio no disponible';
-					totalPrice = 'Precio no disponible';
-					currency = '';
-				}
-
-
-				// const check = (element) => {
-				// 	return element.code == x.code;
-				// }
-				// // if (cartController.cart.find(check)) {
-				// let index = cartController.cart.findIndex(check)
-				// cartController.cart[index].setQty(parseInt(cartController.cart[index].qty) + parseInt(x.qty));
-				cartController.cart[i].setPrice(singlePrice);
-				nuevoElemento = new CartItem(cartController.cart[i].values)
-				cartController.cart[i] = nuevoElemento;
-
-				// console.log('El NUEVO ELEMENTO!!!',new CartItem(cartController.cart[i].values))
-				// console.log(cartController.cart[i]);
-
-
-				// // chequear que lleguen todas las respuestas, no que estemos en la ultima
-				if( price_returns == cartController.cart.length ){
-					// console.log('llego el ultimo precio')
-					let list_of_product_with_price = cartController.cart.filter(product => product.singlePrice != "Precio no disponible")
-					console.log('list_of_product_with_price: ', list_of_product_with_price);
-					let gran_total = 0;
-					cartController.cart.forEach(product=>{
-						if( typeof product.singlePrice == 'number'){
-							gran_total += product.singlePrice * product.qty;
-						}
-					})
-
-					if ( typeof gran_total == 'number' ) {
-						// console.log(totalPrice)
-						gran_total = gran_total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-						// totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					}
-
-
-					let gran_total_display = [...d.querySelectorAll('.cartTotal')];
-					gran_total_display.forEach(element=>{
-						element.innerHTML = gran_total;
-					})
-
-					let currency_display = [...d.querySelectorAll('.cartTotalCurrency')];
-					currency_display.forEach(element=>{
-						element.innerHTML = currency;
-					})
-
-					// console.log('CARRITO luego de la transformacion', cartController.cart)
-					if ( list_of_product_with_price.length == 0 ){
-						altClassFromSelector('nonePricesThere', '#cartList', 'cartList');
-					} else if ( list_of_product_with_price.length < cartController.cart.length ) {
-						altClassFromSelector('somePricesThere', '#cartList', 'cartList');
-					} else {
-						altClassFromSelector('allPricesThere', '#cartList', 'cartList');
-					}
-					altClassFromSelector('consultaFinalizada', '#cart')
-
-					// TODO: encender el mail Sender
-					cartController.sendMail();
-					// TODO: encender el lead Sender
-					cartController.cartToLeads = cartController.cart;
-					createCookie('status','next');
-					cartController.sendAllLeads();
-				}
-				// if (i==cartController.cart.length - 1){
-				// }
-				// d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText = parseInt(d.querySelector('.cartItem[data-code="'+x.code+'"] .cartItemQty').innerText) + parseInt(x.qty);
-				// }
-
-				if ( typeof totalPrice == 'number' ) {
-					// console.log(totalPrice)
-					totalPrice = totalPrice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				}
-
-
-				itemCurrency.innerText = currency;
-				itemPrice.innerText = totalPrice;
-			})
-		});
-
-		altClassFromSelector('alt', '#finalizarConsulta')
-		d.querySelector('#cart').classList.add('alt')
-
-	},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	sendMail:(is_case_tren = false)=>{
 		// console.log(cart)
 		// cart[0].toJSON="I won't allow you to use sails toJSON, just use the native stringification";
@@ -1979,44 +1636,24 @@ cartController = {
 			createCookie('cartToLeads', JSON.stringify(cartController.cartToLeads).split(';').join(':'));
 			createCookie('info', JSON.stringify(info));
 			createCookie('lastLead', 'waiting');
+			info.cant_leads = cartController.cartToLeads.length;
 		} else {
+			info.cant_leads = 1;
 			createCookie('lastLead', 'sent');
 		}
 		console.log(info)
 		createCookie('leadsSent', '1');
+
+      // function onClick(e) {
+        // e.preventDefault();
+      // }
+
 		cartController.newLead(info);
-		// });
-
-
-		// }
-
-		// if(readCookie('status')=='success'){
-		// 	win2.close()
-		// 	eraseCookie('status')
-		// 	if(cartController.cartToLeads.length>0){
-		// 		createCookie('status','next')
-		// 		cartController.sendAllLeads();
-		// 	} else {
-		// 		console.log('todos los elementos del carrito fueron enviados con exitooo')
-		// 	}
-		// 	// console.log('FOUNDDDD, close cycle')
-		// 	// console.log('respuesta de salesforce: ' + readCookie('status'))
-		// } else {
-		// 	console.log(readCookie('status'))
-		// 	setTimeout(() => {
-		// 		cartController.sendAllLeads();
-		// 	}, 200);
-		// }
-		// }
 	},
 
-	newLead:(info)=>{
+	newLead: async info =>{
 		console.log(info);
 
-		// let oid = '00D1l0000000ia7';
-		// let retURL  = 'https://silverseacontainers.com/';
-		// let debug   = 1;
-		// let debugEmail = 'gportela@silverseacontainers.com';
 		let first_name = info.fname;
 		let last_name  = info.lname;
 		let email      = info.email;
@@ -2041,6 +1678,9 @@ cartController = {
 		let content  = info.content;
 		let term     = info.term;
 
+		let cant_leads = info.cant_leads;
+		let token = await grecaptcha.execute('6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa', {action: 'submit'});
+		// console.log(token)
 				// let source   = 'info.source';
 				// let medium   = 'info.medium';
 				// let campaign = 'info.campaign';
@@ -2048,7 +1688,7 @@ cartController = {
 				// let content  = 'info.content';
 				// let term     = 'info.term';
 
-		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio+'&source='+source+'&medium='+medium+'&campaign='+campaign+'&content='+content+'&term='+term;
+		let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio+'&source='+source+'&medium='+medium+'&campaign='+campaign+'&content='+content+'&term='+term+'&token='+token+'&cant_leads='+cant_leads;
 		// let vars = '?first_name='+first_name+'&last_name='+last_name+'&email='+email+'&phone='+phone+'&company='+company+'&country='+country+'&city='+city+'&product='+product+'&type='+type+'&size='+size+'&quantity='+quantity+'&message='+message+'&inmediata='+inmediata+'&traslado='+traslado+'&precio='+precio;
 
 		let baseURL= 'https://silverseacontainers.com/testLead.php';
@@ -2070,22 +1710,22 @@ cartController = {
 const checkForClose = ()=>{
 	console.log(readCookie('allLeads')=='success')
     if(readCookie('allLeads')=='success'){
-		// console.log('FOUNDDDD, close cycle')
-		let cant = parseInt(readCookie('leadsSent'))
-		console.log('cantidad de Leads enviados: ', cant)
-		eraseCookie('allLeads');
-		eraseCookie('price_returns');
-		eraseCookie('cartToLeads');
-		eraseCookie('lastLead');
-		eraseCookie('info');
-		eraseCookie('status');
-		eraseCookie('leadsSent');
-		win2.close()
+			// console.log('FOUNDDDD, close cycle')
+			let cant = parseInt(readCookie('leadsSent'))
+			console.log('cantidad de Leads enviados: ', cant)
+			eraseCookie('allLeads');
+			eraseCookie('price_returns');
+			eraseCookie('cartToLeads');
+			eraseCookie('lastLead');
+			eraseCookie('info');
+			eraseCookie('status');
+			eraseCookie('leadsSent');
+			win2.close()
     } else {
-		console.log(readCookie('status'))
-		setTimeout(() => {
-			checkForClose();
-		}, 200);
+			console.log(readCookie('status'))
+			setTimeout(() => {
+				checkForClose();
+			}, 200);
     }
 }
 
@@ -2250,6 +1890,17 @@ const filterActivate = ()=>{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 const addBullshitToCart = ()=>{
 	example1 = '[{"values":{"size":"6","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"6HC CW","id":"7","categoria":"size > 6PIES: Condition > CW: general > Dry > HC","imagenes":"","ancho":"2.43","alto":"2.59","largo":"1.98","peso":"0","tara":null,"container_description":null,"qty":6,"code":"6HC CW"},"size":"6","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"6HC CW","id":"7","categoria":"size > 6PIES: Condition > CW: general > Dry > HC","imagenes":"","ancho":"2.43","alto":"2.59","largo":"1.98","peso":"0","tara":null,"container_description":null,"qty":6,"code":"6HC CW"},{"values":{"size":"40","tipo_1":"Special","tipo_1_description":"Special | Especiales","tipo_2":"OT","tipo_2_description":"Open Top","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40OT CW","id":"114","categoria":"size > 40PIES: Condition > CW: general > Special > OT","imagenes":"","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40OT CW"},"size":"40","tipo_1":"Special","tipo_1_description":"Special | Especiales","tipo_2":"OT","tipo_2_description":"Open Top","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40OT CW","id":"114","categoria":"size > 40PIES: Condition > CW: general > Special > OT","imagenes":"","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40OT CW"},{"values":{"size":"40","tipo_1":"Reefer","tipo_1_description":"Refrigerado | Reefer","tipo_2":"RF","tipo_2_description":"Reefer Standard","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40RF CW","id":"100","categoria":"size > 40PIES: Condition > CW: general > Reefer > RF","imagenes":"40HCRFCW_1","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40RF CW"},"size":"40","tipo_1":"Reefer","tipo_1_description":"Refrigerado | Reefer","tipo_2":"RF","tipo_2_description":"Reefer Standard","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40RF CW","id":"100","categoria":"size > 40PIES: Condition > CW: general > Reefer > RF","imagenes":"40HCRFCW_1","ancho":"2.43","alto":"2.59","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":6,"code":"40RF CW"},{"values":{"size":"40","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40HC CW","id":"88","categoria":"size > 40PIES: Condition > CW: general > Dry > HC","imagenes":"40HCCW_1, 40HCCW_2, 40HCCW_3, 40HCCW_4","ancho":"2.43","alto":"2.89","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":4,"code":"40HC CW"},"size":"40","tipo_1":"Dry","tipo_1_description":"Seco | Dry","tipo_2":"HC","tipo_2_description":"High Cube","condicion":"CW","condicion_description":"Carga | Cargo Worthy","salesforce_id":"40HC CW","id":"88","categoria":"size > 40PIES: Condition > CW: general > Dry > HC","imagenes":"40HCCW_1, 40HCCW_2, 40HCCW_3, 40HCCW_4","ancho":"2.43","alto":"2.89","largo":"12.19","peso":"0","tara":null,"container_description":null,"qty":4,"code":"40HC CW"}]';
 
@@ -2258,3 +1909,20 @@ const addBullshitToCart = ()=>{
 		cartController.cart[0].cartUI();
 	});
 }
+
+
+
+
+// let formData = new FormData();
+// let token = await grecaptcha.execute('6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa', {action: 'submit'});
+// console.log(token);
+// let url = 'https://silverseacontainers.com/wp-content/themes/silverSea/check_token.php';
+// // let url = 'https://silverseacontainers.com/wp-admin/admin-ajax.php';
+// formData.append('action', 'check_token');
+// formData.append('token', token);
+// let response = await fetch(url, {
+// 	method: 'POST',
+// 	body: formData,
+// });
+// // console.log(response)
+// console.log(await response.json())

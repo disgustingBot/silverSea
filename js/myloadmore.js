@@ -140,7 +140,7 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
 
 // This part activates the pagination on click
 blog_paginators = [...document.querySelectorAll('.pagination_link')]
-console.log(blog_paginators)
+// console.log(blog_paginators)
 if (blog_paginators){
   blog_paginators.forEach((item, i) => {
     item.onclick = (self)=>{
@@ -154,7 +154,7 @@ const paginate = (self)=>{
   button = self.path[0]
   section = self.path[2]
   var query = JSON.parse(misha_loadmore_params.posts);
-  console.log(query)
+  // console.log(query)
 
 
   // URL HANDLING
@@ -172,7 +172,7 @@ const paginate = (self)=>{
     // else if ( parent ) { filterQueries = setUrlVar(parent); }
   // END OF URL HANDLING
 
-  console.log(section.dataset.card);
+  // console.log(section.dataset.card);
 
   var formData = new FormData();
   formData.append( 'action', 'lt_pagination_2' );
