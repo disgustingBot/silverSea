@@ -136,17 +136,18 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
         <p class="seller_phone"><a href="tel:+34-683-623-698"><span class="stock_phone_email">&#128241;</span>(+34) 683 623 698</a></p>
         <p class="seller_email"><a href="mailto:awevar@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
+      <div class="region_sellers">
+        <p class="seller_name">Francisco Portela</p>
+        <p class="seller_phone"><a href="tel:+34-683-623-698"><span class="stock_phone_email">&#128241;</span>(+34) 619 216 239</a></p>
+        <!-- <p class="seller_email"><a href="mailto:@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p> -->
+        <p class="seller_email"><a href="#"><span class="stock_phone_email">&#128231;</span></a></p>
+      </div>
 
       <h4 class="region_title">CIS & ASIA</h4>
       <div class="region_sellers">
         <p class="seller_name">Sinder Tamimi</p>
         <p class="seller_phone"><a href="tel:+34-646-504-571"><span class="stock_phone_email">&#128241;</span>(+34) 646 504 571</a></p>
         <p class="seller_email"><a href="mailto:stamimi@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
-      </div>
-      <div class="region_sellers">
-        <p class="seller_name">Farhodjon Abdulazizov</p>
-        <p class="seller_phone"><a href="tel:+998-949-23-11-33"><span class="stock_phone_email">&#128241;</span>(+998) 949 23 11 33</a></p>
-        <p class="seller_email"><a href="mailto:fabdulazizov@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Fancy Ding</p>
