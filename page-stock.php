@@ -139,8 +139,7 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
       <div class="region_sellers">
         <p class="seller_name">Francisco Portela</p>
         <p class="seller_phone"><a href="tel:+34-683-623-698"><span class="stock_phone_email">&#128241;</span>(+34) 619 216 239</a></p>
-        <!-- <p class="seller_email"><a href="mailto:@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p> -->
-        <p class="seller_email"><a href="#"><span class="stock_phone_email">&#128231;</span></a></p>
+        <p class="seller_email"><a href="mailto:fportela@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
 
       <h4 class="region_title">CIS & ASIA</h4>
