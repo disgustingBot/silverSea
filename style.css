@@ -1238,6 +1238,7 @@ section {
 .navBarMobileContainer .blueBar {
   padding: 10px;
   height: 60px;
+  width: 100vw;
 }
 
 .navBarMobileContainer .blueBar .socialMediaLink:first-child {
@@ -1261,6 +1262,7 @@ section {
 .body.mobileNavMenu .navBarMobileContainer {
   transition: .25s;
   margin-right: 0;
+  width: 100%;
 }
 
 .body.mobileNavMenu > *:not(header) {
