@@ -4684,7 +4684,8 @@ padding-bottom:0;
 
 .footLogo {
   margin: auto;
-  width: auto;
+  width: 200px;
+  height: auto;
 }
 
 .footerInfoCont {
