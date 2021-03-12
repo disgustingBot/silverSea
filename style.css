@@ -323,7 +323,7 @@ FIN DE MAPA DE CONTENIDOS */
   --areaSelectorTitlePadding: unset;
   --areaSelectorHeight: auto;
   --areaSelectorContPadding: 3px;
-  --teamCardsGradientDisplay: none;
+  /* --teamCardsGradientDisplay: none; */
   --teamATFImgPosition: static;
   --teamATFImgHeight: auto;
   --teamATFImgObjectFit: contain;
@@ -676,7 +676,7 @@ FIN DE MAPA DE CONTENIDOS */
     --teamCardsContainerGridAC: 15vw;
     --teamCardsContainerPadding: 16px 1rem;
     --teamCardsContainerOverflow: scroll;
-    --teamCardsGradientDisplay: block;
+    /* --teamCardsGradientDisplay: block; */
     --teamATFImgPosition: fixed;
     --teamATFImgHeight: 100vh;
     --teamATFImgObjectFit: cover;
@@ -2290,7 +2290,7 @@ table.stockreport-table .border {
   position: relative;
 }
 
-.teamCardsContGradient {
+/* .teamCardsContGradient {
   position: absolute;
   top: 0;
   right: var(--lateral);
@@ -2299,7 +2299,7 @@ table.stockreport-table .border {
   background-image: linear-gradient(to right, transparent, white);
   z-index: 2;
   display: var(--teamCardsGradientDisplay);
-}
+} */
 
 .teamCard {
   height: auto;

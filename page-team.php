@@ -42,7 +42,7 @@
   </div>
 
 
-  <div class="teamCardsContGradient"></div>
+  <!-- <div class="teamCardsContGradient"></div> -->
   <div id="teamCardsContainer" class="teamCardsContainer">
     <?php
     $args=array(
