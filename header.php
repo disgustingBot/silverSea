@@ -141,7 +141,7 @@ $site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
 
     <!-- NAVIGATION BAR -->
     <a class="headerLogoLink" href="<?php echo site_url('');  ?>" class="logoLink">
-      <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Silversea Logo">
+      <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/silversea_logo_color_encajado.png" alt="Silversea Logo">
     </a>
   	<?php
     	$args = array(
