@@ -13,8 +13,11 @@ function lt_form_handler() {
 	if($_POST['a00'] != ""){
 		$link = add_query_arg( array('status' => 'sneaky',), $link );
 	} else {
-		$email1='administracion-latam@silverseacontainers.com';
-    $email2='administracion-eu@silverseacontainers.com';
+
+		$email1='info@silverseacontainers.com';
+    // $email2='administracion-eu@silverseacontainers.com';
+
+
     // $email='molinerozadkiel@gmail.com';
 
 		$subject='Form from '. $link;
@@ -54,7 +57,7 @@ function lt_form_handler() {
 
     if ($boring_google_response->success) {
 			if (wp_mail( $email1 , $subject , $message , $headers )) {
-				wp_mail( $email2 , $subject , $message , $headers );
+				// wp_mail( $email2 , $subject , $message , $headers );
 				// wp_mail( $_POST['email'] , $subject , $message , $headers );
 				$link = add_query_arg( array( 'status' => 'sent' , ), $link );
 			} else {
@@ -176,8 +179,8 @@ function lt_ajax_mail() {
     $headers = array('Content-Type: text/html; charset=UTF-8');
 
     // wp_mail( $mail1 , $subject , $message , $headers );
-    // wp_mail( $mail2 , $subject , $message , $headers );
     if (wp_mail( $mail , $subject , $message , $headers )) {
+			// wp_mail( $mail2 , $subject , $message , $headers );
       // $link = add_query_arg( array( 'status' => 'sent' , ), $link );
       $respuesta['gate1'] = 'mail enviado';
     } else {

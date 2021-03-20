@@ -151,6 +151,14 @@ function excerpt($charNumber){
 
 
 
+
+
+
+
+
+
+
+
   //Product Cat Create page
   function lt_taxonomy_add_new_meta_field() {
       ?>
