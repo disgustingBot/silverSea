@@ -5,53 +5,63 @@
   <p class="stock_txt txtCenter">Conoce nuestro stock alrededor del mundo, actualizado semana a semana.</p>
 </div>
 
-<!-- Set DB Connection -->
+
 <?php
-
-$pais= $_GET['pais'];
-$ciudad= $_GET['ciudad'];
-$id_contenedor= $_GET['id_contenedor'];
-
-
-if($pais!="*" and $pais!=''){
-  $wherePais = "and pais = '$pais'";
+// prepare secure SQL parameters
+// "$condition" will be on the "WHERE" in the sql
+$condition = "(quantity > 0";
+$args = array();
+if(isset($_GET['pais'])){
+  $condition .= " and pais = %s";
+  $args[] = $_GET['pais'];
 }
-if($ciudad!="*" and $ciudad!=''){
-  $whereCiudad = "and ciudad = '$ciudad'";
+if(isset($_GET['ciudad'])){
+  $condition .= " and ciudad = %s";
+  $args[] = $_GET['ciudad'];
 }
-if($id_contenedor!="*" and $id_contenedor!=''){
-  $whereContainer = "and id_contenedor = '$id_contenedor'";
+if(isset($_GET['id_contenedor'])){
+  $condition .= " and id_contenedor = %s";
+  $args[] = $_GET['id_contenedor'];
 }
-
+$condition .= ")";
+// prepare the rest of the query
 $qry= "SELECT
        pais, ciudad, id_contenedor, sum(quantity) as quantity, truncate(avg(supplier_price),0) as supplier_price
        from stock
-       where quantity > 0 $wherePais  $whereCiudad $whereContainer
+       where $condition
        group by pais, ciudad, id_contenedor";
-
-$get = $wpdb->get_results($qry);
-
-$list_pais = $wpdb->get_results(" SELECT distinct pais from stock where quantity > 0 $whereContainer");
-$list_ciudad = $wpdb->get_results(" SELECT distinct ciudad from stock where quantity > 0 $wherePais $whereContainer");
-$list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock where quantity > 0 $wherePais $whereCiudad");
-
-
+// get results securely
+$sql = $wpdb->prepare($qry, $args);
+// echo "<h1>$sql</h1>";
+$get = $wpdb->get_results($sql);
+// get unique entries for "pais, ciudad, id_contenedor" for the filters
+$paises = array();
+$ciudad = array();
+$contnr = array();
+foreach ($get as $row) {
+  $paises[] = $row->pais;
+  $ciudad[] = $row->ciudad;
+  $contnr[] = $row->id_contenedor;
+}
+$list_pais      = array_unique($paises);
+$list_ciudad    = array_unique($ciudad);
+$list_container = array_unique($contnr);
 ?>
+
 <div class="stock_header_row">
   <div class="table_head">
     <select class="select_stock" name="select" id="getPais">
       <option value="*">PAIS</option>
-      <?php foreach ($list_pais as $row) {
-        $pais = $row->pais;?>
-        <option value="<?php echo $pais ?>" <?php if($_GET['pais']==$pais){echo "selected";} ?>><?php  echo $pais; ?></option>
+      <?php foreach ($list_pais as $row) { ?>
+        <option value="<?php echo $row ?>" <?php if($_GET['pais']==$row){echo "selected";} ?>><?php  echo $row; ?></option>
       <?php } ?>
     </select>
   </div>
   <div class="table_head">
     <select class="select_stock" name="select" id="getCiudad">
       <option value="*" >CIUDAD</option>
-      <?php foreach ($list_ciudad as $row) {
-        $ciudad = $row->ciudad;?>
+      <?php foreach ($list_ciudad as $ciudad) {
+        // $ciudad = $row->ciudad; ?>
         <option value="<?php echo $ciudad ?>" <?php if($_GET['ciudad']==$ciudad){echo "selected";} ?>><?php  echo $ciudad; ?></option>
       <?php } ?>
     </select>
@@ -59,8 +69,8 @@ $list_container = $wpdb->get_results(" SELECT distinct id_contenedor from stock 
   <div class="table_head">
     <select class="select_stock" name="select" id="getContainer">
       <option value="*" >CONTAINER</option>
-      <?php foreach ($list_container as $row) {
-        $container = $row->id_contenedor;?>
+      <?php foreach ($list_container as $container) {
+        // $container = $row->id_contenedor;?>
         <option value="<?php echo $container ?>" <?php if($_GET['id_contenedor']==$container){echo "selected";} ?>><?php  echo $container; ?></option>
       <?php } ?>
     </select>
