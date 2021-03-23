@@ -1,8 +1,3 @@
-<?php
-$site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
-// $site = '6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6';
-$scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
-?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
@@ -11,103 +6,11 @@ $scrt = '6LdNetUZAAAAAO3DeuGjfNWKgwQ1ZKtGdLZ8FRBL';
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <!-- GOOGLE FONTS -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Rambla:wght@400;700&display=swap" rel="stylesheet"> -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"> -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5FWBCN9');</script>
-  <!-- End Google Tag Manager -->
-
 
   <?php wp_head(); ?>
 
-
-  <template id="selectBoxOptionTemplate">
-    <label for="" class="selectBoxOption" data-test="red">
-      <input class="selectBoxInput" id="" type="" name="" value="">
-      <p class="selectBoxOptionLabel"></p>
-    </label>
-  </template>
-
-
-  <template id="svgTemplate">
-    <svg class="svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <use class="use" xlink:href=""></use>
-    </svg>
-  </template>
-
-
-  <template id="cartItemTemplate">
-    <div class="cartItem">
-      <p class="cartItemCode"></p>
-      <svg class="cartItemSvg cartItemSize" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <svg class="cartItemSvg cartItemTip1" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <svg class="cartItemSvg cartItemTip2" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <svg class="cartItemSvg cartItemCond" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35"><use class="use" xlink:href=""></use></svg>
-      <p class="cartItemQty">1</p>
-      <p class="cartItemPrice">
-        <span class="cartItemPriceNumber"></span>
-        <span class="cartItemCurrency"></span>
-      </p>
-      <button class="close" type="button" onclick="cartController.remove()">
-        <div class="closeLine"></div>
-        <div class="closeLine"></div>
-      </button>
-    </div>
-  </template>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176254206-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-176254206-1');
-  </script>
-
-
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '665402700989884');
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=665402700989884&ev=PageView&noscript=1"
-  />
-</noscript>
-  <!-- End Facebook Pixel Code -->
-
-
-
-<?php
-$site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
-?>
-
- <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
- <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $site; ?>"></script>
- <script>
- // grecaptcha.ready(function() {
- //   grecaptcha.execute('6LdNetUZAAAAAH6Dbs_VkWvyzdFkscoWpDxLWzI6', {action: 'submit'}).then(function(token) {
- //    console.log(token)
- //       // Add your logic to submit to your backend server here.
- //   });
- // });
- </script>
+  <?php include __DIR__ . '/header_templates.php'; ?>
+  <?php include __DIR__ . '/header_third_parties.php'; ?>
 
 
 </head>
@@ -118,40 +21,27 @@ $site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
   <!-- End Google Tag Manager (noscript) -->
 
 
-  <?php include 'assets/allIcons.php'; ?>
+  <?php
+  // TODO: ojo aca, esta llamando a TODOS los iconos, tambien a los que no se usan
+  include 'assets/allIcons.php';
+  ?>
 
 	<view id="load" class="load"><div class="circle"></div></view>
-	<!-- <view id="languageScreen" class="languageScreen">
-    <h4 class="languageScreenTitle">Select your language</h4>
-    <a href="<?php echo site_url('/en'); ?>" class="langOption" onclick="language_select('en')">
-      <svg class="langFlag" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 100 73">
-        <use xlink:href="#en_flag" class="langFlagUse"></use>
-      </svg>
-      <p>English</p>
-    </a>
-    <a href="<?php echo site_url(''); ?>" class="langOption" onclick="language_select('es')">
-      <svg class="langFlag" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 100 73">
-        <use xlink:href="#es_flag" class="langFlagUse"></use>
-      </svg>
-      <p>Spanish</p>
-    </a>
-  </view> -->
-
   <header class="header" id="header">
 
     <!-- NAVIGATION BAR -->
     <a class="headerLogoLink" href="<?php echo site_url('');  ?>" class="logoLink">
-      <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/silversea_logo_color_encajado.png" alt="Silversea Logo">
+      <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/silversea_logo_color_encajado.png" alt="SilverSea Logo">
     </a>
   	<?php
-    	$args = array(
-    	  'theme_location' => 'header',
-    	  'depth' => 0,
-    	  'container'	=> false,
-    	  'fallback_cb' => false,
-    	  'menu_class' => 'navBar',
-    	);
-    	wp_nav_menu($args);
+  	$args = array(
+  	  'theme_location' => 'header',
+  	  'depth' => 0,
+  	  'container'	=> false,
+  	  'fallback_cb' => false,
+  	  'menu_class' => 'navBar',
+  	);
+  	wp_nav_menu($args);
   	?>
 
     <div class="cardBtnContainer">
@@ -162,6 +52,7 @@ $site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
       </div>
       <p class="cartButtonTxt">Ver pedido</p>
 
+      <!-- add to cart notification -->
       <div class="itemAddedToCart">
         <p class="itemAddedTxt">Se ha añadido un elemento al pedido.</p>
       </div>
@@ -170,7 +61,6 @@ $site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
       </svg>
     </div>
 
-    <!-- ESTA ES LA NOTIFICACIOB DE UN ITEM AÑADIDO AL CARRITO -->
 
 
 
@@ -304,9 +194,6 @@ $site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa';
       <input id="privacidad" type="checkbox">
       <label for="privacidad" class="termsDescription">*Acepto la <a href="https://silverseacontainers.com/privacy-policy/" target="_blank" style="text-decoration: underline;">Política de privacidad</a> de Silversea</label>
     </div>
-
-    <!-- <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
-    <input class="recaptcha" type="text" hidden value=""> -->
 
     <button
       class="btn unPasoMasButton"

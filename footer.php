@@ -1,6 +1,6 @@
 
 <footer class="footer" id="footer">
-  <img class="footLogo" src="<?php echo get_template_directory_uri(); ?>/img/silversea_logo_blanco_encajado.png" alt="Silversea Logo">
+  <img class="footLogo" loading="lazy" src="<?php echo get_template_directory_uri(); ?>/img/silversea_logo_blanco_encajado.png" alt="Silversea Logo">
   <aside class="footerInfoCont">
     <div class="iconTextInline">
       <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="https://www.w3.org/2000/svg">

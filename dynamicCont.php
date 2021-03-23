@@ -7,7 +7,11 @@
   foreach ($ress as $key => $value) {
     $slug = $value->size . '-pies';
     $name = $value->size . ' Pies';
-    $sizes[$slug] = $name;
+    // $sizes[$slug] = $name;
+    $sizes[] = array(
+      'slug' => $slug,
+      'name' => $name,
+    );
   }
   // Get tipo_1's
   $ress = $wpdb->get_results("SELECT distinct tipo_1, tipo_1_description FROM contenedores");
@@ -15,7 +19,11 @@
   foreach ($ress as $key => $value) {
     $slug = $value->tipo_1;
     $name = $value->tipo_1_description;
-    $tipos_1[$slug] = $name;
+    // $tipos_1[$slug] = $name;
+    $tipos_1[] = array(
+      'slug' => $slug,
+      'name' => $name,
+    );
   }
   // Get tipo_2's
   $ress = $wpdb->get_results("SELECT distinct tipo_2, tipo_2_description FROM contenedores");
@@ -23,7 +31,11 @@
   foreach ($ress as $key => $value) {
     $slug = $value->tipo_2;
     $name = $value->tipo_2_description;
-    $tipos_2[$slug] = $name;
+    // $tipos_2[$slug] = $name;
+    $tipos_2[] = array(
+      'slug' => $slug,
+      'name' => $name,
+    );
   }
   // Get condicions
   $ress = $wpdb->get_results("SELECT distinct condicion, condicion_description FROM contenedores");
@@ -31,20 +43,17 @@
   foreach ($ress as $key => $value) {
     $slug = $value->condicion;
     $name = $value->condicion_description;
-    $condiciones[$slug] = $name;
+    // $condiciones[$slug] = $name;
+    $condiciones[] = array(
+      'slug' => $slug,
+      'name' => $name,
+    );
   }
   ?>
-  <?php selectBox('Tamaño', 'Size', $sizes); ?>
-  <?php selectBox('Tipo', 'Tipo_1', $tipos_1); ?>
-  <?php selectBox('Modelo', 'Tipo_2', $tipos_2); ?>
-  <?php selectBox('Condicion', 'Condicion', $condiciones); ?>
-
-  <?php // selectBox('Tamaño', 'Size'); ?>
-  <?php // selectBox('Tipo', 'Tipo_1'); ?>
-  <?php // selectBox('Modelo', 'Tipo_2'); ?>
-  <?php // selectBox('Condicion', 'Condicion'); ?>
-
-
+  <?php selectBox('Tamaño', $sizes, 'Vaciar', 'Size'); ?>
+  <?php selectBox('Tipo', $tipos_1, 'Vaiar', 'Tipo_1'); ?>
+  <?php selectBox('Modelo', $tipos_2, 'Vaciar', 'Tipo_2'); ?>
+  <?php selectBox('Condicion', $condiciones, 'Vaciar', 'Condicion'); ?>
 
 
   <div class="cuantos Cuantos">

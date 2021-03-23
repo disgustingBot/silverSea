@@ -152,129 +152,28 @@ add_action( 'wp_ajax_latte_pagination', 'latte_pagination' );
 // We allow non-logged in users to access our pagination
 add_action( 'wp_ajax_nopriv_latte_pagination', 'latte_pagination' );
 function latte_pagination() {
-	//gets the global query var object
-	global $wp_query;
+
+	include get_template_directory() . '/inc/multi_cards.php';
+	$args = json_decode( stripslashes( $_POST['query'] ), true );
+	unset($args->term);
+	$args['term'] = null;
+
+	// Sanitize the received page
+	if($_POST['type']=='story'){$story=true;}else{$story=false;}
+	$page = sanitize_text_field($_POST['page']);
+	$args['paged'] = $page;
+	$args['post_status'] = 'publish';
 
 
-  // if(isset($_POST['page'])){
-		$args = json_decode( stripslashes( $_POST['query'] ), true );
-		// var_dump($args);
-		// var_dump($args['term']);
-		unset($args->term);
-		$args['term'] = null;
-		// foreach ($args as $key => $value) {
-		// 	// code...
-		// 	echo $key;
-		// }
-		// echo 'tax_query solicitada';
-		// echo '<br><br>';
-		// var_dump($args['tax_query']);
-		$oldArgs = $args;
+	query_posts( $args );
 
-		// Sanitize the received page
-		if($_POST['type']=='story'){$story=true;}else{$story=false;}
-		$page = sanitize_text_field($_POST['page']);
-		$args['paged'] = $page;
-		$args['post_status'] = 'publish';
-
-
-		query_posts( $args );
-
-		if( have_posts() ) :
-
-			// run the loop
-			while( have_posts() ): the_post();
-				if(get_post_type()=='product'){
-					$_pf = new WC_Product_Factory();
-					$_product = $_pf->get_product(get_the_ID());
-				}
-				// FIND OUT WHICH CARACTERISTICS
-				include 'getAtributes.php';
-				?>
-
-
-
-				<article
-					class="card"
-					contenedor="true"
-					data-code="<?php echo $code; ?>"
-					data-size="<?php echo $sizeNumber; ?>"
-					data-tip1="<?php echo $tipo_1; ?>"
-					data-tip2="<?php echo strtoupper($tipo_2Slug); ?>"
-					data-cond="<?php echo strtoupper($conditionSlug); ?>"
-				>
-
-
-					<div class="cardHead">
-						<div class="cardThumbnail">
-							<?php newSvg(ucwords($tipo_1Slug)); ?>
-						</div>
-						<h4 class="cardTitle"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h4>
-						<p class="cardSubTitle"><?php echo $tipo_2 . ', ' . $condition ?></p>
-					</div>
-
-					<?php $attachment_ids = $_product->get_gallery_attachment_ids(); ?>
-
-					<div class="cardMedia<?php if($attachment_ids){ echo ' Carousel'; } ?>">
-
-						<a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
-							<img class="productGalleryImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
-						</a>
-
-						<?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
-							<a class="cardImgA Element" href="<?php echo get_permalink(); ?>">
-								<img class="productGalleryImg"  src="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
-							</a>
-						<?php $count++; }} ?>
-
-						<?php if($attachment_ids){ ?>
-							<button class="arrowBtn arrowButtonNext rowcol1" id="nextButton">
-								<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="53" cy="53" r="53" fill="currentColor"/>
-									<path d="M72.7972 50.8521C74.0047 52.0295 74.0047 53.9705 72.7972 55.1479L46.3444 80.9415C44.4438 82.7947 41.25 81.4481 41.25 78.7936L41.25 27.2064C41.25 24.5519 44.4438 23.2053 46.3444 25.0585L72.7972 50.8521Z" fill="white"/>
-								</svg>
-								</button>
-								<button class="arrowBtn arrowButtonPrev rowcol1" id="prevButton">
-								<svg class="arrowSVG" viewBox="0 0 106 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									<circle r="53" transform="matrix(-1 0 0 1 53 53)" fill="currentColor"/>
-									<path d="M33.2028 50.8521C31.9953 52.0295 31.9953 53.9705 33.2028 55.1479L59.6556 80.9415C61.5562 82.7947 64.75 81.4481 64.75 78.7936L64.75 27.2064C64.75 24.5519 61.5562 23.2053 59.6556 25.0585L33.2028 50.8521Z" fill="white"/>
-								</svg>
-							</button>
-						<?php } ?>
-					</div>
-
-
-					<div class="cardCaption">
-
-						<div class="cardFeatures">
-							<?php if ($categories) {
-								newSvg($sizeSlug);
-								newSvg(ucwords($tipo_1Slug));
-								newSvg(strtoupper($tipo_2Slug));
-								newSvg(strtoupper($conditionSlug));
-							} ?>
-						</div>
-
-						<div class="cardActions">
-
-							<div class="cuantos Cuantos">
-								<input class="cuantosQnt cuantosQantity" type="text" value="1" min="1">
-								<button class="cuantosBtn cuantosMins">-</button>
-								<button class="cuantosBtn cuantosPlus">+</button>
-							</div>
-							<button class="cardAdd btn btnSimple">AGREGAR</button>
-						</div>
-					</div>
-				</article>
-				<?php
-
-			endwhile;
-
-		endif;
-
+	if( have_posts() ) {
+		while( have_posts() ){ the_post();
+			simpla_card();
+		}
+	}
 	echo ajax_paginator(get_pagenum_link());
 
-	// }
 	// Always exit to avoid further execution
 	exit();
 }
