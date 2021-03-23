@@ -2,8 +2,8 @@
 
 <section class="ATF frontPageATF sectionWhite">
   <video loop muted playsinline autoplay="autoplay" class="frontPageATFBg rowcol1">
-    <source class="front_page_vid_source" src="" type="video/mp4" alt="Video de barco llevando miles de contenedores">
-    <!-- <source class="front_page_vid_source_2" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores"> -->
+    <!-- <source class="front_page_vid_source" src="" type="video/mp4" alt="Video de barco llevando miles de contenedores"> -->
+    <source class="front_page_vid_source" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores">
   </video>
 
 
@@ -173,7 +173,27 @@
             </div>
             <p class="summaryTxt"><?php echo $category->description; ?></p>
           </div>
-          <img class="article2Media" src="<?php echo wp_get_attachment_url( get_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
+          <?php
+          $id = get_term_meta( $category->term_id, 'thumbnail_id', true );
+          // create my own "sizes" attribute
+          $arg = array(
+            ['576' , '90'],
+            ['768' , '50'],
+          );
+          $sizes = array_map(function ($value){ return "(max-width: ".$value[0]."px) ".$value[1]."vw";}, $arg);
+          $sizes = implode(", ", $sizes) . ", 30vw";
+
+          $src = wp_get_attachment_image_src( $id, 'the_perfect_size' );
+          $srcset = wp_get_attachment_image_srcset( $id, 'the_perfect_size' );
+          $alt = get_post_meta( $id, '_wp_attachment_image_alt', true);
+          ?>
+
+           <img class="article2Media" loading="lazy"
+               src="<?= esc_attr( $src ) ?>"
+               srcset="<?= esc_attr( $srcset ) ?>"
+               sizes="<?= esc_attr( $sizes ) ?>"
+               alt="<?= esc_attr( $alt ) ?>" />
+          <!-- <img class="article2Media" src="<?php echo wp_get_attachment_url( get_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt=""> -->
           <div class="redDot" id="sectioNSummaryCardActivator"></div>
         </article>
 
@@ -238,7 +258,7 @@
       <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'S-texto-valores-3', true); ?></p>
       <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'T-texto-valores-4', true); ?></p>
     </hgroup>
-    <img class="article2Media" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
+    <img class="article2Media" loading="lazy" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
   </article>
   <button class="btn valoresBtn"><a href="<?php echo get_site_url() . '/acerca-nuestro/'; ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
 </section>

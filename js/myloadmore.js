@@ -1,6 +1,4 @@
 jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" error
-  // console.log('HOLAAAA!');
-
   // FILTER BAR CONTROLLER
   // Bloque inspirado en el post:
   // https://rudrastyh.com/wordpress/load-more-posts-ajax.html
@@ -59,25 +57,16 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
           }
         })
       });
-
-      // query.tax_query.tipo = 0;
     }
-    // c.log(query.tax_query)
-    // c.log(JSON.stringify(query), 'hello world')
+
 		// the value in 'action' is the key that will be identified by the 'wp_ajax_' hook
-    // c.log(query);
 		var data = {
 			'action'   : 'latte_pagination',
 			'query'    : JSON.stringify(query), // that's how we get params from wp_localize_script() function
 			'page'     : page,
 		};
-		// DATA READY
-        // c.log(query.tax_query.tipo);
-        // c.log(query.tax_query.motivo);
 
     regex = 'stories';
-    // c.log(urlVirg)
-    // c.log(!!urlVirg.includes(regex))
     var urlVirg = w.location.href.split('?')[0];
     if (!!urlVirg.includes(regex)) {
       data['type'] = "story";
@@ -92,9 +81,6 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
       data : data,
       type : 'POST',
       success : respuesta => {
-        // c.log(respuesta)
-        // c.log(JSON.parse(respuesta));
-        // d.querySelector('#postCont')
         // If successful Append the data into our html container
         $('#postCont').empty();
         $('#postCont').append(respuesta);

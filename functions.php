@@ -12,6 +12,9 @@ require_once 'inc/ajax.php';
 require_once 'inc/new_ajax.php';
 
 
+include __DIR__ . '/inc/select_box.php';
+
+
 if(!is_admin()){
   require_once 'inc/multi_cards.php';
 }
@@ -66,6 +69,10 @@ function lt_script_load(){
 	wp_enqueue_script( 'main' );
 	// FIN DE PARA AJAX
 
+  // load sincrotron ONLY in the correct page
+  if ( is_page( 'upload-file' ) ) {
+    wp_enqueue_script('sincrotron', get_theme_file_uri('/js/sincrotron.js'), NULL, microtime(), true);
+  }
 
 
 }
@@ -155,103 +162,15 @@ function excerpt($charNumber){
 
 
 
-
-
-
-
-  //Product Cat Create page
-  function lt_taxonomy_add_new_meta_field() {
-      ?>
-      <div class="form-field">
-          <label for="lt_meta_desc"><?php _e('Featured', 'lt'); ?></label>
-          <input type="checkbox" name="lt_meta_desc" id="lt_meta_desc">
-          <p class="description"><?php _e('Mostrar categoria en "Que Contenedor Necesito"', 'lt'); ?></p>
-      </div>
-      <?php
-  }
-
-  //Product Cat Edit page
-  function lt_taxonomy_edit_meta_field($term) {
-
-      //getting term ID
-      $term_id = $term->term_id;
-
-      // retrieve the existing value(s) for this meta field.
-      $lt_meta_desc = get_term_meta($term_id, 'lt_meta_desc', true);
-      ?>
-      <tr class="form-field">
-          <th scope="row" valign="top"><label for="lt_meta_desc"><?php _e('Featured', 'lt'); ?></label></th>
-          <td>
-            <input type="checkbox" name="lt_meta_desc" id="lt_meta_desc" <?php if(esc_attr($lt_meta_desc) == 'on'){echo 'checked';} ?>>
-              <p class="description"><?php _e('Mostrar categoria en "Que Contenedor Necesito"', 'lt'); ?></p>
-          </td>
-      </tr>
-      <?php
-  }
-
-  add_action('product_cat_add_form_fields', 'lt_taxonomy_add_new_meta_field', 10, 1);
-  add_action('product_cat_edit_form_fields', 'lt_taxonomy_edit_meta_field', 10, 1);
-
-  // Save extra taxonomy fields callback function.
-  function lt_save_taxonomy_custom_meta($term_id) {
-
-      $lt_meta_desc = filter_input(INPUT_POST, 'lt_meta_desc');
-
-      update_term_meta($term_id, 'lt_meta_desc', $lt_meta_desc);
-  }
-
-  add_action('edited_product_cat', 'lt_save_taxonomy_custom_meta', 10, 1);
-  add_action('create_product_cat', 'lt_save_taxonomy_custom_meta', 10, 1);
-
-
-
 // FUCTION FOR USER GENERATION
 // https://tommcfarlin.com/create-a-user-in-wordpress/
 add_action( 'admin_post_nopriv_lt_login', 'lt_login');
 add_action(        'admin_post_lt_login', 'lt_login');
 function lt_login(){
   $link=$_POST['link'];
-  // $name=$_POST['name'];
-  // $fono=$_POST['fono'];
   $mail=$_POST['mail'];
   $pass=$_POST['pass'];
 
-
-//   if( null == username_exists( $mail ) ) {
-//
-//     // Generate the password and create the user for security
-//     // $password = wp_generate_password( 12, false );
-//     // $user_id = wp_create_user( $mail, $password, $mail );
-//
-//     // user generated pass for local testing
-//     $user_id = wp_create_user( $mail, $pass, $mail );
-//     // Set the nickname and display_name
-//     wp_update_user(
-//       array(
-//         'ID'              =>    $user_id,
-//         'display_name'    =>    $name,
-//         'nickname'        =>    $name,
-//       )
-//     );
-//     update_user_meta( $user_id, 'phone', $fono );
-//
-//
-//     // Set the role
-//     $user = new WP_User( $user_id );
-//     $user->set_role( 'subscriber' );
-//
-//     // Email the user
-//     wp_mail( $mail, 'Welcome '.$name.'!', 'Your Password: ' . $pass );
-//   // end if
-//   $action='register';
-//   $creds = array(
-//       'user_login'    => $mail,
-//       'user_password' => $pass,
-//       'remember'      => true
-//   );
-//
-//   $status = wp_signon( $creds, false );
-// } else {
 
   $creds = array(
       'user_login'    => $mail,
@@ -290,131 +209,6 @@ function lt_login(){
 
 
 
-add_action( 'admin_post_nopriv_lt_new_pass', 'lt_new_pass');
-add_action(        'admin_post_lt_new_pass', 'lt_new_pass');
-function lt_new_pass(){
-  $link=$_POST['link'];
-  $oldp=$_POST['oldp'];
-  $newp=$_POST['newp'];
-  $cnfp=$_POST['cnfp'];
-
-
-
-  // if(isset($_POST['current_password'])){
-  if(isset($_POST['oldp'])){
-    $_POST = array_map('stripslashes_deep', $_POST);
-    $current_password = sanitize_text_field($_POST['oldp']);
-    $new_password = sanitize_text_field($_POST['newp']);
-    $confirm_new_password = sanitize_text_field($_POST['cnfp']);
-    $user_id = get_current_user_id();
-    $errors = array();
-    $current_user = get_user_by('id', $user_id);
-  }
-
-  $link = add_query_arg( array(
-    'action' => $action,
-  ), $link );
-  // Check for errors
-  if($current_user && wp_check_password($current_password, $current_user->data->user_pass, $current_user->ID)){
-  //match
-  } else {
-    $errors[] = 'Password is incorrect';
-
-    $link = add_query_arg( array(
-      'pass'  => 'incorrect',
-    ), $link );
-  }
-  if($new_password != $confirm_new_password){
-    $errors[] = 'Password does not match';
-
-    $link = add_query_arg( array(
-      'match'  => 'no',
-    ), $link );
-  }
-  if(empty($errors)){
-      wp_set_password( $new_password, $current_user->ID );
-      $link = add_query_arg( array(
-        'success'  => true,
-      ), $link );
-  }
-  // wp_redirect($link);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// data-slug="0"
-// data-parent="city"
-
-// This function generates a selectBox object
-function selectBox($name, $slug = false, $options = array()){
-	if(!$slug){ $slug = sanitize_title($name); }
-	?>
-	<div class="SelectBox" tabindex="1" id="selectBox<?php echo $slug; ?>">
-		<div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?php echo $slug; ?>')">
-			<p class="selectBoxPlaceholder"><?php echo $name; ?></p>
-			<p class="selectBoxCurrent" id="selectBoxCurrent<?php echo $slug; ?>"></p>
-		</div>
-		<div class="selectBoxList focus">
-			<label for="nul<?php echo $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul">Remover filtros
-				<input
-					class="selectBoxInput"
-					id="nul<?php echo $slug; ?>"
-					type="radio"
-					name="<?php echo $slug; ?>"
-					onclick="selectBoxControler('','#selectBox<?php echo $slug; ?>','#selectBoxCurrent<?php echo $slug; ?>')"
-					value="0"
-					<?php if(!isset($_GET[$slug])){ ?>
-						checked
-					<?php } ?>
-				>
-				<!-- <span class="checkmark"></span> -->
-				<p class="colrOptP"></p>
-			</label>
-
-
-			<?php foreach ($options as $opt_slug => $opt_name) {
-				$opt_name = preg_replace('/\s+/', ' ', trim($opt_name)); ?>
-
-				<label for="<?php echo $slug; ?>_<?php echo $opt_slug; ?>" class="selectBoxOption">
-					<input
-						class="selectBoxInput <?php echo $opt_slug; ?>"
-						type="radio"
-						id="<?php echo $slug; ?>_<?php echo $opt_slug; ?>"
-						name="<?php echo $slug; ?>"
-						onclick="selectBoxControler('<?php echo $opt_name; ?>', '#selectBox<?php echo $slug; ?>', '#selectBoxCurrent<?php echo $slug; ?>')"
-						value="<?php echo $opt_slug; ?>"
-						<?php if(isset($_GET[$slug]) && $_GET[$slug] == $opt_slug){ ?>
-							checked
-						<?php } ?>
-					>
-					<!-- <span class="checkmark"></span> -->
-					<p class="colrOptP"><?php echo $opt_name; ?></p>
-				</label>
-
-
-			<?php } ?>
-		</div>
-	</div>
-<?php }
-
-
 function newSvg($id){ ?>
 
 	<svg class="pageSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
@@ -443,21 +237,6 @@ function load_admin_styles() {
 	wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
 }
 
-
-
-add_action( 'wp_ajax_lt_get_front_page_video', 'lt_get_front_page_video' );
-add_action( 'wp_ajax_nopriv_lt_get_front_page_video', 'lt_get_front_page_video' );
-function lt_get_front_page_video () {
-	$respuesta = array();
-	$respuesta['greet'] = 'Hi!';
-	$frontpage_id = get_option( 'page_on_front' );
-
-	$respuesta['video'] = get_post_meta($frontpage_id, 'A-video-portada', true);
-
-
-	echo wp_json_encode($respuesta);
-	exit();
-}
 
 
 
@@ -685,26 +464,6 @@ function lt_upload_file () {
 											$respuesta['deleted']=true;
 										}
 
-// drop table contenedores;
-// create table contenedores
-// (
-// 	size int,
-// 	tipo_1 varchar(60),
-// 	tipo_1_description varchar(120),
-// 	tipo_2 varchar(60),
-// 	tipo_2_description varchar(120),
-// 	condicion varchar(60),
-// 	condicion_description varchar(120),
-// 	salesforce_id varchar(60),
-// 	id int,
-// 	categoria varchar(200),
-// 	imagenes varchar(1000),
-// 	ancho  float,
-// 	alto float,
-// 	largo float,
-// 	container_description varchar(20000)
-// )
-
 										$respuesta['query1']="$query1";
 										$respuesta['query2']="$query2";
 										$respuesta['query3']="$qry";
@@ -811,26 +570,6 @@ function lt_cart_end () {
 
 
 
-// SELECT
-// *
-// FROM
-// stock a, gastos_adicionales b
-// WHERE (
-// 	a.id_contenedor = '20DC CW' AND
-// 	a.pais = 'BELGIUM' AND
-// 	a.ciudad = 'ANTWERP' AND
-// 	b.country = 'BELGIUM' AND
-// 	b.city = 'ANTWERP'
-// );
-
-// SELECT
-// *
-// FROM
-// gastos_adicionales
-// WHERE (
-// 	country = 'BELGIUM' AND
-// 	city = 'ANTWERP'
-// );
 
 
 
@@ -839,20 +578,6 @@ function lt_cart_end () {
 
 
 
-
-
-
-
-// $query = "DROP table conv_trenes;
-// CREATE table conv_trenes (
-//     origen_city varchar(80),
-//     origen_country varchar(50),
-//     destino_city varchar(80),
-//     destino_country varchar(50)
-// );";
-
-
-// "SELECT * FROM `conv_trenes` WHERE ( origen_city = 'Dalian' and origen_country = 'China' and destino_city = 'Antwerp' );"
 
 add_action( 'wp_ajax_lt_tren_end', 'lt_tren_end' );
 add_action( 'wp_ajax_nopriv_lt_tren_end', 'lt_tren_end' );
@@ -975,11 +700,6 @@ function lt_get_all () {
 
 
 
-
-
-
-
-
 /**
  * Method to delete Woo Product
  *
@@ -1036,13 +756,6 @@ function wh_deleteProduct($id, $force = TRUE)
     }
     return true;
 }
-
-
-
-
-
-
-
 
 
 
@@ -1158,22 +871,6 @@ add_action( 'admin_post_save_my_custom_form', 'my_save_custom_form' );
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 add_action('pre_get_posts','lt_filtro_magico');
 
 function lt_filtro_magico($query) {
@@ -1181,14 +878,6 @@ function lt_filtro_magico($query) {
 
 		if ( !$query->is_main_query() ) return;
 
-		// $taxes = array( 'dry', 'new', 'cw');
-
-		// foreach ( $taxes as $tax ) {
-		// 	$terms = get_terms( $tax );
-
-		// 	foreach ( $terms as $term )
-		// 		$tax_map[$tax][$term->slug] = $term->term_taxonomy_id;
-		// }
 		// TODO: hacer que se pueda poner slug y se de cuenta el ID
 
 		$filtroMagico = 'use';
@@ -1252,68 +941,3 @@ function lt_filtro_magico($query) {
 		remove_all_actions ( '__after_loop');
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// add_action('pre_get_posts','skip_featured_post', 15);
-//
-// function skip_featured_post($query) {
-// 	//gets the global query var object
-// 	global $wp_query;
-//
-// 	//gets the front page id set in options
-// 	// $featured_post = get_option('page_on_front');
-//   $old_query = $query;
-//   $args = array(
-//     'posts_per_page' => 1,
-//     'tax_query'      => array(
-//       array(
-//         'taxonomy'  => 'post_tag',
-//         'field'     => 'slug',
-//         'terms'     => 'destacada'
-//       )
-//     )
-//   );
-//   $related=new WP_Query($args);
-//   while($related->have_posts()){ $related->the_post();
-//     $featured_post = get_the_ID();
-//   }
-//   $query = $old_query;
-//
-//   // $featured_post = get_posts( $args )[0]->ID;
-//   // wp_reset_query();
-//
-//
-// 	// if ( 'page' != get_option('show_on_front') || $featured_post != $wp_query->query_vars['post_id'] )
-// 	// 	return;
-//
-// 	if ( !$query->is_main_query() )
-// 		return;
-//
-//     // 'post__not_in' => array($post->ID),
-//
-//
-// 	// $query-> set('post_type' ,'page');
-// 	$query-> set('post__not_in' ,array( 1 ));
-// 	// $query-> set('orderby' ,'post__in');
-// 	// $query-> set('p' , null);
-// 	// $query-> set( 'page_id' ,null);
-//
-// 	//we remove the actions hooked on the '__after_loop' (post navigation)
-// 	remove_all_actions ( '__after_loop');
-// }
