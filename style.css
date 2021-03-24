@@ -1501,6 +1501,11 @@ section {
   font-size: 18px;
 }
 
+.cotizadorTitle {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
 .frontPageATF .cotizadorTitle, .frontPageATF .cotizadorTxt {
   display: inline-block;
   font-weight: bold;
@@ -2987,6 +2992,12 @@ table.stockreport-table .border {
 }
 
 .article2 .sectionSummary {padding-left: 1rem;}
+
+.containerNeededTitle{
+  grid-column: 1/-1;
+  text-align: center;
+  margin: 1rem auto 2rem auto!important;
+}
 
 .article2.containerNeeded  > * {
   width: 100%;
