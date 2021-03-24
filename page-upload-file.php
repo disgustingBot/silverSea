@@ -31,24 +31,12 @@
 
 
 
-  <?php if (isset($_GET[0])) { ?>
-    <!-- <div class="vars">
-      <h1>GET:</h1>
-      <?php foreach ($_GET as $key => $value) { ?>
-        <p><?php echo $key; ?></p>
-        <p><?php echo $value; ?></p>
-      <?php } ?>
-    </div> -->
-  <?php } ?>
 
   <a class="btn uploadAnotherFileBtn" href="<?php echo get_site_url(); ?>/upload-file/">Subir otro archivo</a>
 
 
 
-
-  <!-- <a href="https://silverseacontainers.com/upload-file/">reload</a> -->
-
-  <?php } else {?>
+  <?php } else { ?>
 
     <div class="unauthenticatedUser">
       <p class="unauthenticatedTxt txtCenter">No tienes permiso para acceder a esta página :(</p>

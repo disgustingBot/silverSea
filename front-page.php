@@ -4,8 +4,18 @@
   <!-- <video loop muted playsinline autoplay="autoplay" class="frontPageATFBg rowcol1">
     <source class="frontPageATFBg" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores">
   </video> -->
-  <img class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-imagen-portada', true); ?>" alt="">
-
+  <!-- <img class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-imagen-portada', true); ?>" alt=""> -->
+   <?php
+   $config = array(
+     'slug' => get_term_meta( $category->term_id, 'A-imagen-portada', true ),
+     'class' => 'frontPageATFBg rowcol1',
+     'sizes' => [['768', '100']],
+     'default_size' => '100',
+     'width' => 1200,
+     'height' => 800,
+   );
+   responsive_img($config);
+   ?>
 
   <div class="cotizador cont" id="cotizador">
     <div class="cotizadorOptionsContainer">
@@ -163,40 +173,28 @@
   if($categories) {
     foreach($categories as $category) { ?>
 
-        <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:grid; grid-template-columns: var(--queContainerINeedGTC);}</style>
-        <style>#queContainerINeed.card<?php echo $category->term_id .' #link'. $category->term_id; ?>{display:block;}</style>
-        <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
-          <h2 class="containerNeededTitle">¿Necesita comprar un contenedor marítimo?</h2>
-          <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
-            <div class="summaryTitleContainer">
-              <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
-              <?php newSvg(strtoupper($category->slug)); ?>
-            </div>
-            <p class="summaryTxt"><?php echo $category->description; ?></p>
+      <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:grid; grid-template-columns: var(--queContainerINeedGTC);}</style>
+      <style>#queContainerINeed.card<?php echo $category->term_id .' #link'. $category->term_id; ?>{display:block;}</style>
+      <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
+        <h2 class="containerNeededTitle">¿Necesita comprar un contenedor marítimo?</h2>
+        <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
+          <div class="summaryTitleContainer">
+            <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
+            <?php newSvg(strtoupper($category->slug)); ?>
           </div>
-          <?php
-          $id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-          // create my own "sizes" attribute
-          $arg = array(
-            ['576' , '90'],
-            ['768' , '50'],
-          );
-          $sizes = array_map(function ($value){ return "(max-width: ".$value[0]."px) ".$value[1]."vw";}, $arg);
-          $sizes = implode(", ", $sizes) . ", 30vw";
-
-          $src = wp_get_attachment_image_src( $id, 'the_perfect_size' );
-          $srcset = wp_get_attachment_image_srcset( $id, 'the_perfect_size' );
-          $alt = get_post_meta( $id, '_wp_attachment_image_alt', true);
-          ?>
-
-           <img class="article2Media" loading="lazy"
-               src="<?= esc_attr( $src ) ?>"
-               srcset="<?= esc_attr( $srcset ) ?>"
-               sizes="<?= esc_attr( $sizes ) ?>"
-               alt="<?= esc_attr( $alt ) ?>" />
-          <!-- <img class="article2Media" src="<?php echo wp_get_attachment_url( get_term_meta( $category->term_id, 'thumbnail_id', true ) ); ?>" alt=""> -->
-          <div class="redDot" id="sectioNSummaryCardActivator"></div>
-        </article>
+          <p class="summaryTxt"><?php echo $category->description; ?></p>
+        </div>
+         <?php
+         $config = array(
+           'id' => get_term_meta( $category->term_id, 'thumbnail_id', true ),
+           'class' => 'article2Media',
+           'sizes' => [['768', '90']],
+           'default_size' => '50',
+         );
+         responsive_img($config);
+         ?>
+        <div class="redDot" id="sectioNSummaryCardActivator"></div>
+      </article>
 
     <?php } ?>
 
@@ -259,7 +257,17 @@
       <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'S-texto-valores-3', true); ?></p>
       <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'T-texto-valores-4', true); ?></p>
     </hgroup>
-    <img class="article2Media" loading="lazy" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
+
+    <?php
+    $slug = get_post_meta( $post->ID, 'U-foto-valores', true );
+    $config = array(
+      'slug' => $slug,
+      'class' => 'article2Media',
+      'sizes' => [['768', '90']],
+      'default_size' => '50',
+    );
+    responsive_img($config);
+    ?>
   </article>
   <button class="btn valoresBtn"><a href="<?php echo get_site_url() . '/acerca-nuestro/'; ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
 </section>
@@ -267,7 +275,16 @@
 <section class="sectionPadding sectionColor3">
   <article class="article2 silverseaEnElMundo">
     <!-- <iframe loading="lazy" class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=1broJr2IgKbRAnu1cEuJfsXWjbzMt8Iuh"></iframe> -->
-    <img src="<?php echo get_post_meta($post->ID, 'AB-imagen-mapa-provisoria', true); ?>" alt="" class="fullWidthMap">
+    <?php
+    $slug = get_post_meta( $post->ID, 'AB-imagen-mapa-provisoria', true );
+    $config = array(
+      'slug' => $slug,
+      'class' => 'fullWidthMap',
+      'sizes' => [['768', '90']],
+      'default_size' => '50',
+    );
+    responsive_img($config);
+    ?>
     <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
       <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'X-titulo-SS-mundo', true); ?></span></h2>

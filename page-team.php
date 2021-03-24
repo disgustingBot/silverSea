@@ -49,27 +49,12 @@
       'post_type'=>'equipo',
       'posts_per_page'=> 100,
     );
-    $equipo=new WP_Query();
+    $equipo = new WP_Query();
     $equipo->query($args);
 
-    while($equipo->have_posts()){$equipo->the_post(); ?>
-      <?php
-      $terms = get_the_terms( get_the_id(), 'area' );
-      ?>
-
-      <article class="card teamCard <?php echo $terms[0]->slug; ?>">
-        <img class="teamCardImg teamCardImg2 rowcol1" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
-        <img class="teamCardImg teamCardImg1 rowcol1" src="<?php echo get_post_meta($post->ID, 'Imagen_secundaria', true); ?>" alt="">
-        <div class="teamCardTxt">
-          <p class="teamCardName teamCardBlock"><?php the_title(); ?></p>
-          <p class="teamCardPosition teamCardBlock"><?php echo get_post_meta($post->ID, 'Cargo', true); ?></p>
-          <a class="teamCardLinkedin teamCardNone brandColorTxt" href="<?php echo get_post_meta( get_the_id(), 'Linkedin' )[0]; ?>" >LinkedIn</a>
-          <!-- <p class="teamCardPhone teamCardNone"><?php  echo get_post_meta( get_the_id(), 'Telefono' )[0]; ?></p> -->
-          <!-- <p class="teamCardMail teamCardNone"><?php // echo get_post_meta( get_the_id(), 'Correo' )[0]; ?></p> -->
-        </div>
-      </article>
-
-    <?php } wp_reset_query(); ?>
+    while($equipo->have_posts()){$equipo->the_post();
+      team_card();
+     } wp_reset_query(); ?>
     <div style="width: 80px">
 
     </div>
@@ -84,7 +69,16 @@
     <p class="valueItem brandColorTxt Obse" data-observe="#valueVisibleActivator">TRANSFORMACIÓN</p>
     <div class="redDot" id="valueVisibleActivator"></div>
   </div>
-  <img class="teamATFImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+  <!-- <img class="teamATFImg" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt=""> -->
+  <?php
+  $config = array(
+    'id' => get_post_thumbnail_id(get_the_ID()),
+    'class' => 'teamATFImg',
+    'sizes' => [['768', '100']],
+    'default_size' => '100',
+  );
+  responsive_img($config);
+  ?>
 </section>
 
 
