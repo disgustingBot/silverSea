@@ -50,31 +50,52 @@
 
 
 
+
 <?php
+function team_card ($args = array()) {
+  if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
+  if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
+  if(!isset($args['image']  )){ $args['image']   = get_post_thumbnail_id(get_the_ID()); }
+  if(!isset($args['excerpt'])){ $args['excerpt'] = excerpt(70); }
+  $terms = get_the_terms( get_the_id(), 'area' );
+  ?>
 
-function responsive_img($id, $class, $size){
+  <article class="card teamCard <?php echo $terms[0]->slug; ?>">
+    <!-- <img class="teamCardImg teamCardImg2 rowcol1" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt=""> -->
+    <?php
+    $config = array(
+      'id' => $args['image'],
+      'class' => 'teamCardImg teamCardImg2 rowcol1',
+      'sizes' => [['768', '70']],
+      'default_size' => '19',
+    );
+    responsive_img($config);
+    ?>
+    <div class="teamCardTxt">
+      <p class="teamCardName teamCardBlock"><?= $args['title'] ?></p>
+      <p class="teamCardPosition teamCardBlock"><?php echo get_post_meta($post->ID, 'Cargo', true); ?></p>
+      <a class="teamCardLinkedin teamCardNone brandColorTxt" href="<?php echo get_post_meta( get_the_id(), 'Linkedin' )[0]; ?>" >LinkedIn</a>
+    </div>
+  </article>
 
-  // $id = get_post_thumbnail_id();
-  // create my own "sizes" attribute
-  // $size = array(
-  //   ['576' , '90'],
-  //   ['768' , '50'],
-  // );
-  $sizes = array_map(function ($value){ return "(max-width: ".$value[0]."px) ".$value[1]."vw";}, $size);
-  $sizes = implode(", ", $sizes) . ", 30vw";
-
-  $src = wp_get_attachment_image_src( $id, 'the_perfect_size' )[0];
-  $srcset = wp_get_attachment_image_srcset( $id, 'the_perfect_size' );
-  // $sizes = wp_get_attachment_image_sizes( $id, 'the_perfect_size' );
-  $alt = get_post_meta( $id, '_wp_attachment_image_alt', true);
-
-  return "<img class='$class' loading='lazy' width='400' height='300' src='".esc_attr( $src )."' srcset='".esc_attr( $srcset )."' sizes='".esc_attr( $sizes )."' alt='".esc_attr( $alt )."' />";
+<?php
 }
 
-?>
 
 
-<?php
+
+
+
+
+
+
+
+
+
+
+
+
+
 function simpla_card ($args = array()) {
   // global $product;
   if(get_post_type()=='product'){
@@ -113,19 +134,26 @@ function simpla_card ($args = array()) {
     <div class="cardMedia<?php if($attachment_ids){ echo ' Carousel'; } ?>">
 
       <a class="cardImgA Element" href="<?= $args['link']; ?>">
-          <?= responsive_img(get_post_thumbnail_id(get_the_ID()), 'productGalleryImg', [['576', '85'],['768','45'],['1200','34']]) ?>
-
-        <!-- <img class="productGalleryImg" loading="lazy" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery"> -->
+        <?php
+        $config = array(
+          'id' => get_post_thumbnail_id(get_the_ID()),
+          'class' => 'productGalleryImg',
+          'sizes' => [['576', '85'],['768','45'],['1200','34']],
+        );
+        responsive_img($config);
+        ?>
       </a>
 
       <?php if($attachment_ids){foreach( $attachment_ids as $attachment_id ) { ?>
         <a class="cardImgA Element" href="<?= $args['link']; ?>">
-          <?= responsive_img($attachment_id, 'productGalleryImg', [['576', '85'],['768','45'],['1200','34']]) ?>
           <?php
-          // var_dump($attachment_id);
-          // echo responsive_img($attachment_id, 'productGalleryImg', [['576', '85'],['768','45'],['1200','34']]);
+          $config = array(
+            'id' => $attachment_id,
+            'class' => 'productGalleryImg',
+            'sizes' => [['576', '85'],['768','45'],['1200','34']],
+          );
+          responsive_img($config);
           ?>
-          <!-- <img class="productGalleryImg" width="300" height="200" loading="lazy"  src="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery"> -->
         </a>
       <?php }} ?>
 

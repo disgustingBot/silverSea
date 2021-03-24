@@ -1,7 +1,16 @@
 <?php get_header(); ?>
 <?php while(have_posts()){the_post(); ?>
   <section class="ATF aboutUsATF">
-    <img class="aboutUsATFIMG lazy rowcol1" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+    <!-- <img class="aboutUsATFIMG lazy rowcol1" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt=""> -->
+    <?php
+    $config = array(
+      'id' => get_post_thumbnail_id(get_the_ID()),
+      'class' => 'aboutUsATFIMG rowcol1',
+      'sizes' => [['576', '100']],
+      'default_size' => '100',
+    );
+    responsive_img($config);
+    ?>
     <hgroup class="ATFWording rowcol1">
       <h1 class="AboutUsTitle"><?php echo get_post_meta($post->ID, 'A-about-titulo-portada', true); ?></h1>
       <h4 class="aboutUsSubtitle"><?php echo get_post_meta($post->ID, 'B-about-texto-portada', true); ?></h4>

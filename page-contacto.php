@@ -4,7 +4,16 @@
 
 
 <section class="contacto">
-  <img class="contact-background rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
+  <!-- <img class="contact-background rowcol1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt=""> -->
+  <?php
+  $config = array(
+    'id' => get_post_thumbnail_id(get_the_ID()),
+    'class' => 'contact-background rowcol1',
+    'sizes' => [['576', '100']],
+    'default_size' => '100',
+  );
+  responsive_img($config);
+  ?>
   <hgroup class="formTxt">
     <h1 class="formTitle">Contacta</h1>
     <h4 class="formSubtitle">
