@@ -1,17 +1,17 @@
 <?php get_header(); ?>
 
 <section class="ATF frontPageATF sectionWhite">
-  <video loop muted playsinline autoplay="autoplay" class="frontPageATFBg rowcol1">
-    <!-- <source class="front_page_vid_source" src="" type="video/mp4" alt="Video de barco llevando miles de contenedores"> -->
-    <source class="front_page_vid_source" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores">
-  </video>
+  <!-- <video loop muted playsinline autoplay="autoplay" class="frontPageATFBg rowcol1">
+    <source class="frontPageATFBg" src="<?php echo get_post_meta($post->ID, 'A-video-portada', true); ?>" type="video/mp4" alt="Video de barco llevando miles de contenedores">
+  </video> -->
+  <img class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-imagen-portada', true); ?>" alt="">
 
 
   <div class="cotizador cont" id="cotizador">
     <div class="cotizadorOptionsContainer">
 
       <div class="cotizadorOptions">
-        <h3 class="cotizadorTitle"><?php echo get_post_meta($post->ID, 'ZA-cotizador-titulo', true); ?></h3>
+        <h1 class="cotizadorTitle"><?php echo get_post_meta($post->ID, 'ZA-cotizador-titulo', true); ?></h1>
 
         <div class="cotizadorOptionContainer">
           <input name="cotizadorOption" type="radio" value="cont" checked id="contOption" class="cotizadorCont unselectable" onclick="trenController.altTrainAndCont('cont')"></input>
@@ -166,6 +166,7 @@
         <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:grid; grid-template-columns: var(--queContainerINeedGTC);}</style>
         <style>#queContainerINeed.card<?php echo $category->term_id .' #link'. $category->term_id; ?>{display:block;}</style>
         <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
+          <h2 class="containerNeededTitle">¿Necesita comprar un contenedor marítimo?</h2>
           <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
             <div class="summaryTitleContainer">
               <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
@@ -265,7 +266,8 @@
 
 <section class="sectionPadding sectionColor3">
   <article class="article2 silverseaEnElMundo">
-    <iframe loading="lazy" class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=1broJr2IgKbRAnu1cEuJfsXWjbzMt8Iuh"></iframe>
+    <!-- <iframe loading="lazy" class="fullWidthMap" src="https://www.google.com/maps/d/embed?mid=1broJr2IgKbRAnu1cEuJfsXWjbzMt8Iuh"></iframe> -->
+    <img src="<?php echo get_post_meta($post->ID, 'AB-imagen-mapa-provisoria', true); ?>" alt="" class="fullWidthMap">
     <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
       <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'X-titulo-SS-mundo', true); ?></span></h2>
