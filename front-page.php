@@ -166,10 +166,10 @@
         <style>#queContainerINeed.card<?php echo $category->term_id .' #card'. $category->term_id; ?>{display:grid; grid-template-columns: var(--queContainerINeedGTC);}</style>
         <style>#queContainerINeed.card<?php echo $category->term_id .' #link'. $category->term_id; ?>{display:block;}</style>
         <article class="article2 containerNeeded " id="card<?php echo $category->term_id; ?>">
-          <h2 class="containerNeededTitle">¿Necesita comprar un contenedor marítimo?</h2>
+          <h2 class="containerNeededTitle"><?php echo get_post_meta($post->ID, 'G-titulo-que-contenedor-necesito', true); ?></h2>
           <div class="sectionSummary Obse" data-observe="#sectioNSummaryCardActivator" data-unobserve="false">
             <div class="summaryTitleContainer">
-              <h2 class="summaryTitle"><?php echo  $category->name; ?></h2>
+              <h4 class="summaryTitle"><?php echo  $category->name; ?></h4>
               <?php newSvg(strtoupper($category->slug)); ?>
             </div>
             <p class="summaryTxt"><?php echo $category->description; ?></p>
@@ -253,13 +253,13 @@
   <article class="article2">
     <div class="redDot" id="sectioNSummaryAboutUsActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummaryAboutUsActivator" data-unobserve="false">
-      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'P-titulo-valores', true); ?></h2>
-      <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Q-texto-valores-1', true); ?></p>
-      <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'R-texto-valores-2', true); ?></p>
-      <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'S-texto-valores-3', true); ?></p>
-      <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'T-texto-valores-4', true); ?></p>
+      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'P-titulo-bloque-4', true); ?></h2>
+      <!-- <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Q-texto-valores-1', true); ?></p> -->
+      <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'R-texto-bloque-4', true); ?></p>
+      <!-- <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'S-texto-valores-3', true); ?></p> -->
+      <!-- <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'T-texto-valores-4', true); ?></p> -->
     </hgroup>
-    <img class="article2Media" loading="lazy" src="<?php echo get_post_meta($post->ID, 'U-foto-valores', true); ?>" alt="">
+    <img class="article2Media" loading="lazy" src="<?php echo get_post_meta($post->ID, 'U-foto-bloque-4', true); ?>" alt="">
   </article>
   <button class="btn valoresBtn"><a href="<?php echo get_site_url() . '/acerca-nuestro/'; ?>"><?php echo get_post_meta($post->ID, 'W-texto-btn-valores', true); ?></a></button>
 </section>
@@ -270,7 +270,7 @@
     <img src="<?php echo get_post_meta($post->ID, 'AB-imagen-mapa-provisoria', true); ?>" alt="" class="fullWidthMap">
     <div class="redDot" id="sectioNSummarySilverSeaMundoActivator"></div>
     <hgroup class="sectionSummary Obse" data-observe="#sectioNSummarySilverSeaMundoActivator" data-unobserve="false">
-      <h2 class="summaryTitle"><?php echo get_post_meta($post->ID, 'X-titulo-SS-mundo', true); ?></span></h2>
+      <h4 class="summaryTitle"><?php echo get_post_meta($post->ID, 'X-titulo-SS-mundo', true); ?></span></h4>
       <p class="summaryTxt brandColorTxt"><?php echo get_post_meta($post->ID, 'Y-texto-SS-mundo-1', true); ?></p>
       <p class="summaryTxt"><?php echo get_post_meta($post->ID, 'Z-texto-SS-mundo-2', true); ?></p>
     </hgroup>
