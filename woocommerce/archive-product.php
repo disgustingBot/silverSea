@@ -47,7 +47,7 @@
 <div class="archiveTopInteraction">
   <div class="byeByeBtn">
     <button class="btn"><a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?>">Borrar filtros</a></button>
-    <button class="btn rebajaBtn"><a href="<?php echo get_site_url() . '/sale/'; ?>">CONTENEDORES EN REBAJA</a></button>
+    <!-- <button class="btn rebajaBtn"><a href="<?php // echo get_site_url() . '/sale/'; ?>">CONTENEDORES EN REBAJA</a></button> -->
     <button class="btn" onclick="altClassFromSelector('alt', '#finalizarConsulta')">Finalizar cotización</button>
   </div>
 </div>

@@ -2633,7 +2633,9 @@ table.stockreport-table .border {
 .byeByeBtn .btn:nth-child(1) {
   background: var(--primaryColor);
   color: white;
+  margin-left: 0;
 }
+.byeByeBtn .btn:nth-child(2) {margin-right: 0;}
 
 
 .valoresBtn {
@@ -2879,7 +2881,7 @@ table.stockreport-table .border {
   display: block;
   font-size: var(--btnUpload);
 }
-.rebajaBtn {position: relative;}
+/* .rebajaBtn {position: relative;}
 
 .rebajaBtn::after {
   content: 'SALE';
@@ -2892,7 +2894,7 @@ table.stockreport-table .border {
   left: -12px;
   border-radius: 6px;
   color: white;
-}
+} */
 
 .unPasoMasButton {
   margin-bottom: var(--unPasoMasButtonMarginBottom);
@@ -3060,7 +3062,7 @@ table.stockreport-table .border {
 .summaryTitle{font-size: 1.4rem;}
 
 .summaryTxt {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 
