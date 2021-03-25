@@ -1010,3 +1010,4 @@ function lt_filtro_magico($query) {
 		remove_all_actions ( '__after_loop');
 	}
 }
+?>
