@@ -6,8 +6,9 @@
   </video> -->
   <!-- <img class="frontPageATFBg rowcol1" src="<?php echo get_post_meta($post->ID, 'A-imagen-portada', true); ?>" alt=""> -->
    <?php
+   // var_dump(get_post_meta( $post->ID, 'A-imagen-portada', true ));
    $config = array(
-     'slug' => get_term_meta( $category->term_id, 'A-imagen-portada', true ),
+     'slug' => get_post_meta( $post->ID, 'A-imagen-portada', true ),
      'class' => 'frontPageATFBg rowcol1',
      'sizes' => [['768', '100']],
      'default_size' => '100',
