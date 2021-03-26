@@ -41,10 +41,19 @@
     return $options;
   }
 ?>
+<hgroup class="divided_textgroup sectionPadding grid">
+    <h1 class="divided_textgroup_title">
+      <?php $id = get_option( 'woocommerce_shop_page_id' ) ?>
+      <?php  post_meta($post->ID, 'A_encabezado_página', $id); ?>
+
+      <div class="textgroup_divider"></div>
+    </h1>
+    <h2 class="divided_textgroup_subtitle">Noticias de la industria, un poco de nuestro conocimiento y novedades de SILVERSEA Containers. </h2>
+  </hgroup>
 
 
 
-<div class="archiveTopInteraction">
+<div class="archiveTopInteraction sectionPadding">
   <div class="byeByeBtn">
     <button class="btn"><a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?>">Borrar filtros</a></button>
     <!-- <button class="btn rebajaBtn"><a href="<?php // echo get_site_url() . '/sale/'; ?>">CONTENEDORES EN REBAJA</a></button> -->
