@@ -191,7 +191,3 @@ function lt_ajax_mail() {
 	if($debugMode){echo wp_json_encode($respuesta);}
 	exit();
 }
-
-
-
-?>

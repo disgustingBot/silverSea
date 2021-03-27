@@ -154,5 +154,3 @@ function lt_pagination_2() {
 	// echo json_encode($respuesta);
 	exit();
 }
-
-?>

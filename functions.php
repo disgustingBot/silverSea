@@ -104,6 +104,8 @@ function lt_add_theme_support() {
 
 
 
+
+
 function get_img_url_by_slug($slug){
   return wp_get_attachment_url( get_img_id_by_slug($slug));
 }
@@ -120,12 +122,14 @@ function get_img_id_by_slug( $slug ) {
   return $header ? $header->ID : '';
 }
 
+
+
  // function responsive_img($id, $class, $size){
 function get_responsive_img($args){
   if(!isset($args['id']) and !isset($args['slug'])) return '';
   if(!isset($args['id'])){ $args['id'] = get_img_id_by_slug($args['slug']); }
   $id = $args['id'];
-  // var_dump($id);
+  // var_dump(get_img_id_by_slug($args['slug']));
   $defaults = array(
     'class' => 'responsive_img',
     'sizes' => array(
@@ -279,11 +283,9 @@ function lt_login(){
 
 
 function newSvg($id){ ?>
-
 	<svg class="pageSvg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
 		<use xlink:href="#<?php echo $id; ?>"></use>
 	</svg>
-
 <?php }
 
 
@@ -862,8 +864,6 @@ add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
  */
 function my_custom_menu_page(){ global $wp; ?>
 	<h3>Currency exchange rates:</h3>
-
-
 	<form class="currencies" name="myform" action="<?php echo esc_attr( admin_url('admin-post.php') ); ?>" method="POST">
 	<?php
 	global $wpdb;
@@ -881,8 +881,6 @@ function my_custom_menu_page(){ global $wp; ?>
 				<input id="curr<?php echo $author->id; ?>" name="<?php echo $author->currency1 . $author->currency2; ?>" type="text" value="<?php echo $author->rate; ?>">
 			</label>
 		<?php endforeach; ?>
-
-
 		<input type="submit" value="submit" />
 	</form>
 <?php }
@@ -1010,4 +1008,3 @@ function lt_filtro_magico($query) {
 		remove_all_actions ( '__after_loop');
 	}
 }
-?>

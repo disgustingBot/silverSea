@@ -177,7 +177,3 @@ function latte_pagination() {
 	// Always exit to avoid further execution
 	exit();
 }
-
-
-
-?>

@@ -118,6 +118,3 @@ function get_attachment_id_by_slug( $slug ) {
 	// return $header ? wp_get_attachment_url($header->ID) : '';
 	return $header->ID;
 }
-
-
-?>

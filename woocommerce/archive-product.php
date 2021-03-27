@@ -44,6 +44,20 @@
 
 
 
+<div class="divided_textgroup sectionPadding grid">
+  <h1 class="divided_textgroup_title">
+      <?php echo get_post_meta(get_option( 'woocommerce_shop_page_id' ), 'A_titulo_encabezado', true); ?>
+      <!-- COTIZA TU CONTENEDOR MARÍTIMO ONLINE -->
+      <div class="textgroup_divider"></div>
+  </h1>
+  <h2 class="divided_textgroup_subtitle">
+      <?php echo get_post_meta(get_option( 'woocommerce_shop_page_id' ), 'A_texto_encabezado', true); ?>
+      <!-- Elige el contenedor marítimo que quieras comprar y luego pulsa en "Finalizar cotización" para recibir una cotización online. -->
+  </h2>
+</div>
+
+
+
 <div class="archiveTopInteraction">
   <div class="byeByeBtn">
     <button class="btn"><a href="<?php echo get_site_url() . '/buscar-contenedor-maritimo/'; ?>">Borrar filtros</a></button>
