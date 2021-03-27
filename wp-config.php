@@ -33,13 +33,13 @@
 
 
 /** The name of the database for WordPress Wave Host FINAL!!! */
-define( 'DB_NAME', 'silversea_web' );
+define( 'DB_NAME', 'silversea_test' );
 
 /** MySQL database username */
-define( 'DB_USER', 'silversea_web' );
+define( 'DB_USER', 'silversea_test' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'qXne2abld1' );
+define( 'DB_PASSWORD', 'I8z3KOGnmmNqPQNO' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );

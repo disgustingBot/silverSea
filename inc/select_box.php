@@ -38,7 +38,7 @@ function selectBox($name, $options = array(), $empty_label = 'Vaciar', $slug = f
 	<div class="SelectBox <?php if ($selected['selected']) {echo 'alt';} ?> selectBox<?= $slug; ?>" tabindex="1" id="selectBox<?= $slug; ?>">
 		<div class="selectBoxButton" onclick="altClassFromSelector('focus', '#selectBox<?= $slug; ?>')">
 			<p class="selectBoxPlaceholder"><?= $name; ?></p>
-			<p class="selectBoxCurrent" id="selectBoxCurrent<?= $slug; ?>"><?= $selected['name']; ?></p>
+			<p class="selectBoxCurrent" id="selectBoxCurrent<?= $slug; ?>"><?php if(isset($selected['name'])) echo $selected['name']; ?></p>
 		</div>
 		<div class="selectBoxList focus">
 			<label for="nul<?= $slug; ?>" class="selectBoxOption" id="selectBoxOptionNul"><?= $empty_label; ?>
@@ -56,8 +56,6 @@ function selectBox($name, $options = array(), $empty_label = 'Vaciar', $slug = f
 				<!-- <span class="checkmark"></span> -->
 				<p class="colrOptP"></p>
 			</label>
-
-
 			<?php foreach ($options as $option) {
 				$option['name'] = preg_replace('/\s+/', ' ', trim($option['name'])); ?>
 
@@ -83,8 +81,6 @@ function selectBox($name, $options = array(), $empty_label = 'Vaciar', $slug = f
 					<!-- <span class="checkmark"></span> -->
 					<p class="colrOptP"><?= $option['name']; ?></p>
 				</label>
-
-
 			<?php } ?>
 		</div>
 	</div>

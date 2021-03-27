@@ -26,7 +26,7 @@ if(isset($_GET['id_contenedor'])){
 $condition .= ")";
 // prepare the rest of the query
 $qry= "SELECT
-       pais, ciudad, id_contenedor, sum(quantity) as quantity, truncate(avg(supplier_price),0) as supplier_price
+       pais, ciudad, id_contenedor, sum(quantity) as quantity, truncate(avg(supplier_price),0) as supplier_price, truncate(avg(fixed_price),0) as fixed_price
        from stock
        where $condition
        group by pais, ciudad, id_contenedor";
@@ -119,7 +119,8 @@ $list_container = array_unique($contnr);
 
         <!-- CHECHEO SI EL USER ESTA LOGUEADO -->
         <?php if ( is_user_logged_in() ) {?>
-          <div class="table_column"><?php echo $supplier_price; ?></div>
+          <!-- <div class="table_column"><?php var_dump($row) ; ?></div> -->
+          <div class="table_column"><?php echo $fixed_price; ?></div>
         <?php }  ?>
       </div>
     <?php  } ?>

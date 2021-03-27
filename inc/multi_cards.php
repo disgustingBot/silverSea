@@ -1,4 +1,3 @@
-
 <?php function entry_card ($args = array()) {
     if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
     if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
@@ -15,15 +14,11 @@
       </div>
     </a>
 
-<?php } ?>
+<?php }
 
 
 
-
-
-
-
-<?php function squared_info ($args = array()) {
+function squared_info ($args = array()) {
     if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
     if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
     if(!isset($args['image']  )){ $args['image']   = get_the_post_thumbnail_url(); }
@@ -38,7 +33,7 @@
       </figcaption>
     </figure>
 
-<?php } ?>
+<?php }
 
 
 
@@ -50,8 +45,6 @@
 
 
 
-
-<?php
 function team_card ($args = array()) {
   if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
   if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
@@ -198,4 +191,4 @@ function simpla_card ($args = array()) {
 
   </article>
 
-<?php } ?>
+<?php }
