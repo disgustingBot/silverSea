@@ -41,15 +41,17 @@
     return $options;
   }
 ?>
-<hgroup class="divided_textgroup sectionPadding grid">
+  <div class="divided_textgroup sectionPadding grid">
     <h1 class="divided_textgroup_title">
-      <?php $id = get_option( 'woocommerce_shop_page_id' ) ?>
-      <?php  post_meta($post->ID, 'A_encabezado_página', $id); ?>
-
-      <div class="textgroup_divider"></div>
+        <?php echo get_post_meta(get_option( 'woocommerce_shop_page_id' ), 'A_titulo_encabezado', true); ?>
+        <!-- COTIZA TU CONTENEDOR MARÍTIMO ONLINE -->
+        <div class="textgroup_divider"></div>
     </h1>
-    <h2 class="divided_textgroup_subtitle">Noticias de la industria, un poco de nuestro conocimiento y novedades de SILVERSEA Containers. </h2>
-  </hgroup>
+    <h2 class="divided_textgroup_subtitle">
+        <?php echo get_post_meta(get_option( 'woocommerce_shop_page_id' ), 'A_texto_encabezado', true); ?>
+        <!-- Elige el contenedor marítimo que quieras comprar y luego pulsa en "Finalizar cotización" para recibir una cotización online. -->
+    </h2>
+  </div>
 
 
 
@@ -93,7 +95,7 @@
 
       </div>
       <div class="filterQuestionsActivatorCont">
-        <p class="filterQuestionActP">¿No sabes que contenedor necesitas?</p>
+        <h3 class="filterQuestionActP">¿No sabes que contenedor necesitas?</h3>
         <svg class="pointingHand" width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="https://www.w3.org/2000/svg">
           <path d="M22.3529 5.64029C22.665 5.64029 22.9642 5.76156 23.1848 5.97743C23.4055 6.1933 23.5294 6.48608 23.5294 6.79137C23.5294 7.09665 23.4055 7.38943 23.1848 7.6053C22.9642 7.82117 22.665 7.94245 22.3529 7.94245H17.0941L16.9412 9.33525L14.3529 15.0216C14.1176 15.5971 13.4941 16 12.7765 16H7.64706C6.70588 16 5.88235 15.1597 5.88235 14.2734V6.79137C5.88235 6.34245 6.07059 5.93957 6.38823 5.64029L11.3294 0L12.2353 0.851799C12.4706 1.0705 12.6118 1.36978 12.6118 1.7036L12.5765 1.95683L10.5882 5.64029H22.3529ZM0 16V6.79137H3.52941V16H0Z" fill="white"/>
         </svg>
