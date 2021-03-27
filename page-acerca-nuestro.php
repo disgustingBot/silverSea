@@ -13,7 +13,7 @@
     ?>
     <hgroup class="ATFWording rowcol1">
       <h1 class="AboutUsTitle"><?php echo get_post_meta($post->ID, 'A-about-titulo-portada', true); ?></h1>
-      <h4 class="aboutUsSubtitle"><?php echo get_post_meta($post->ID, 'B-about-texto-portada', true); ?></h4>
+      <h2 class="aboutUsSubtitle"><?php echo get_post_meta($post->ID, 'B-about-texto-portada', true); ?></h2>
     </hgroup>
   <?php } wp_reset_query(); ?>
 </section>
