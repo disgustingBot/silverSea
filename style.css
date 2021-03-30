@@ -207,7 +207,7 @@ FIN DE MAPA DE CONTENIDOS */
   --btnSimpleM: 1rem auto;
   --queContainerINeedGTC: 1fr;
   --article2ContentWidth: 90%;
-  --frontPageATFBgHeight: max-content;
+  --frontPageATFBgHeight: 100vh;
   --cotizadorOptionsMT: 2.2rem;
   --btnUpload: 12px;
   --countrySelectBoxLeft: 0;
@@ -2643,7 +2643,7 @@ table.stockreport-table .border {
 
 
 .valoresBtn {
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 
