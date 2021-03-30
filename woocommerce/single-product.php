@@ -22,10 +22,14 @@ while(have_posts()){the_post();
 
 
 
-    <div class="singleContainerTitle">
-      <?php newSvg($tipo_1) ?>
-      <h2 class="galleryTitle rowcol1"><?php echo the_title() . ', '  . $tipo_1 ;?> </h2>
-    </div>
+    <hgroup class="divided_textgroup singleContainerTitle">
+      <h1 class="divided_textgroup_title">
+        <?php newSvg($tipo_1) ?>
+        Contenedor marítimo de <?php echo the_title() . ', '  . $tipo_1 ;?>
+        <div class="textgroup_divider"></div>
+      </h1>
+      <h2 class="divided_textgroup_subtitle"><?php the_content(); ?></h2>
+    </hgroup>
     <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
     <div class="productGallery<?php if($attachment_ids){ echo " Carousel";} ?>" >
 
@@ -91,8 +95,6 @@ while(have_posts()){the_post();
 
   <section class="singleCategoryDescription">
     <h5 class="singleCategoryTitle">Características del contenedor</h5>
-
-    <section class="main"><?php the_content(); ?></section>
 
     <div class="categoryCard">
       <div class="categoryCardHeader">

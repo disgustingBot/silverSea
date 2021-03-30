@@ -207,7 +207,7 @@ FIN DE MAPA DE CONTENIDOS */
   --btnSimpleM: 1rem auto;
   --queContainerINeedGTC: 1fr;
   --article2ContentWidth: 90%;
-  --frontPageATFBgHeight: max-content;
+  --frontPageATFBgHeight: 100vh;
   --cotizadorOptionsMT: 2.2rem;
   --btnUpload: 12px;
   --countrySelectBoxLeft: 0;
@@ -1022,7 +1022,7 @@ section {
 
 .sectionPadding {padding: 2rem var(--lateral)!important;position:relative}
 
-.sectionPadding.blogSection {padding: 10px var(--lateral);}
+.sectionPadding.blogSection {padding: 0 var(--lateral)!important;}
 
 .Accordion{max-height:0;overflow:hidden;}
 .Accordion.active{overflow:unset;}
@@ -2073,6 +2073,10 @@ section {
   z-index: 2;
   margin: auto;
 }
+.stockATF .stock_txt {
+  font-size: 1rem;
+  font-weight: normal;
+}
 
 .stockReport {
   width: 100%;
@@ -2639,7 +2643,7 @@ table.stockreport-table .border {
 
 
 .valoresBtn {
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 
@@ -3152,8 +3156,6 @@ table.stockreport-table .border {
 
 
 .singleContainerTitle {
-  display: flex;
-  align-items: center;
   grid-column:1/-1;
 }
 .singleContainerTitle .pageSvg {
@@ -4547,9 +4549,7 @@ padding-bottom:0;
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-.stockATF {
-  padding: 1rem var(--lateral);
-}
+
 
 .stock_main{
   display: grid;
@@ -4656,7 +4656,11 @@ padding-bottom:0;
 --------------------------------------------------------------------------- */
 
 .divided_textgroup {
-  padding: 60px 0;
+  padding: 60px var(--lateral)!important;
+}
+.divided_textgroup >*{
+  text-align: center!important;
+  margin: auto;
 }
 .divided_textgroup_title {
   font-size: 36px;
