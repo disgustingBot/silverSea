@@ -1,8 +1,15 @@
 <?php get_header() ?>
 
-<div class="stockATF">
-  <h2 class="stock_title txtCenter brandColorTxt">SILVERSEA Stocks</h2>
-  <p class="stock_txt txtCenter">Conoce nuestro stock alrededor del mundo, actualizado semana a semana.</p>
+<div class="divided_textgroup sectionPadding stockATF grid">
+  <h1 class="divided_textgroup_title">
+      <?php echo get_post_meta($post->ID, 'A_titulo', true); ?>
+      <!-- COTIZA TU CONTENEDOR MARÍTIMO ONLINE -->
+      <div class="textgroup_divider"></div>
+  </h1>
+  <h2 class="divided_textgroup_subtitle">
+      <?php echo get_post_meta($post->ID, 'A_subtitulo', true); ?>
+      <!-- Elige el contenedor marítimo que quieras comprar y luego pulsa en "Finalizar cotización" para recibir una cotización online. -->
+  </h2>
 </div>
 
 
