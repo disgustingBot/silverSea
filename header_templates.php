@@ -1,4 +1,3 @@
-
   <template id="selectBoxOptionTemplate">
     <label for="" class="selectBoxOption" data-test="red">
       <input class="selectBoxInput" id="" type="" name="" value="">

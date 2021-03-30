@@ -2448,7 +2448,7 @@ table.stockreport-table .border {
   text-align: center;
 }
 .super_card_divided_textgroup_subtitle {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: normal;
 }
 .super_card_textgroup_divider {
@@ -2993,6 +2993,7 @@ table.stockreport-table .border {
   justify-content: space-between;
   position: relative;
 }
+.article2 img{height:auto}
 
 .article2 .sectionSummary {padding-left: 1rem;}
 
@@ -3173,6 +3174,7 @@ table.stockreport-table .border {
 .productGalleryImg{
   opacity:1;
   transition:.4s;
+  height:auto;
 }
 
 .productGalleryImg.inactive{opacity:0;}
