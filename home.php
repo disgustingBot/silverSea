@@ -23,7 +23,20 @@
       <a href="<?php the_permalink(); ?>" class="entry_super_card">
       <figure class="entry_super_card_figure">
         <figcaption class="entry_super_card_caption">Publicación destacada</figcaption>
-        <img class="entry_super_card_img" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Featured post IMG">
+        <!-- <img class="entry_super_card_img" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="Featured post IMG"> -->
+
+        <?php
+        $config = array(
+          'id' => get_post_thumbnail_id(get_the_ID()),
+          'class' => 'entry_super_card_img',
+          'height' => 400,
+          'width' => 650,
+          'sizes' => [['992', '95']],
+          'default_size' => '62',
+        );
+        responsive_img($config);
+        ?>
+
       </figure>
       <div class="entry_super_card_content">
         <hgroup class="super_card_divided_textgroup">
@@ -31,9 +44,9 @@
             <?php the_title(); ?>
           </h3>
           <div class="super_card_textgroup_divider"></div>
-          <h4 class="super_card_divided_textgroup_subtitle">
+          <div class="super_card_divided_textgroup_subtitle">
             <?php the_excerpt(); ?>
-          </h4>
+          </div>
         </hgroup>
         <?php
         $tags = wp_get_post_tags($post->ID);
@@ -89,23 +102,23 @@
     <?php
 
 
-          // Setup the custom meta-query args
-          $exclude_featured_args = array(
-            'tax_query'      => array(
-              array(
-                'taxonomy'  => 'post_tag',
-                'field'     => 'slug',
-                'terms'     => 'destacada',
-                'operator'  => 'NOT IN',
-              )
-            )
-          );
-          // globalize $wp_query
-          global $wp_query;
-          // Merge custom query with $wp_query
-          $merged_args = array_merge( $wp_query->query, $exclude_featured_args );
-          // Query posts using the modified arguments
-          $test = query_posts( $merged_args );
+    // Setup the custom meta-query args
+    $exclude_featured_args = array(
+      'tax_query'      => array(
+        array(
+          'taxonomy'  => 'post_tag',
+          'field'     => 'slug',
+          'terms'     => 'destacada',
+          'operator'  => 'NOT IN',
+        )
+      )
+    );
+    // globalize $wp_query
+    global $wp_query;
+    // Merge custom query with $wp_query
+    $merged_args = array_merge( $wp_query->query, $exclude_featured_args );
+    // Query posts using the modified arguments
+    $test = query_posts( $merged_args );
     while(have_posts()){the_post();
 
       entry_card();

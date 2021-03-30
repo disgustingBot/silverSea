@@ -18,6 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('js', new Date());
   gtag('config', 'UA-176254206-1');
 </script>
+<!--End of Google Analytics -->
 
 
 <!-- Facebook Pixel Code -->
@@ -38,7 +39,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   src="https://www.facebook.com/tr?id=665402700989884&ev=PageView&noscript=1"
   />
 </noscript>
-  <!-- End Facebook Pixel Code -->
+<!-- End Facebook Pixel Code -->
 
+<!-- Google ReCaptcha -->
 <?php $site = '6LecRz0aAAAAAKUrJIYGOD7oNzplt6aPwhdJj_Pa'; ?>
 <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $site; ?>"></script>

@@ -1,12 +1,24 @@
 <?php function entry_card ($args = array()) {
     if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
     if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
-    if(!isset($args['image']  )){ $args['image']   = get_the_post_thumbnail_url(); }
+    // if(!isset($args['image']  )){ $args['image']   = get_the_post_thumbnail_url(); }
+    if(!isset($args['image']  )){ $args['image']   = get_post_thumbnail_id(get_the_ID()); }
     if(!isset($args['excerpt'])){ $args['excerpt'] = excerpt(70); }
     ?>
 
     <a href="<?php echo $args['link']; ?>" class="entry_card">
-      <img class="entry_card_img" src="<?php echo $args['image']; ?>" alt="Post featured image">
+      <!-- <img class="entry_card_img" src="<?php echo $args['image']; ?>" alt="Post featured image"> -->
+      <?php
+      $config = array(
+        'id' => $args['image'],
+        'class' => 'entry_card_img',
+        'height' => 275,
+        'width' => 373,
+        'sizes' => [['576', '96'], ['768', '48']],
+        'default_size' => '32',
+      );
+      responsive_img($config);
+      ?>
       <div class="entry_card_caption">
         <p class="entry_card_title"><?php echo $args['title']; ?></p>
         <div class="textgroup_divider"></div>

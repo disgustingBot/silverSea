@@ -7,8 +7,6 @@ while(have_posts()){the_post();
   global $woocommerce, $product, $post;
   include get_template_directory() . '/inc/getAtributes.php';
 
-
-  // ucfirst($tipo_1Slug)
   ?>
 
   <section
@@ -24,15 +22,6 @@ while(have_posts()){the_post();
 
 
 
-
-  <?php if ( has_post_thumbnail()) : ?>
-    <!-- <a href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
-        <?php // the_post_thumbnail(); ?>
-    </a> -->
-  <?php endif; ?>
-
-
-
     <hgroup class="divided_textgroup singleContainerTitle">
       <h1 class="divided_textgroup_title">
         <?php newSvg($tipo_1) ?>
@@ -44,11 +33,30 @@ while(have_posts()){the_post();
     <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
     <div class="productGallery<?php if($attachment_ids){ echo " Carousel";} ?>" >
 
-      <img class="Element productGalleryImg row2col1 lazy" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="product gallery">
-      <?php if($attachment_ids){$count=0; foreach( $attachment_ids as $attachment_id ) { ?>
-      <img class="Element productGalleryImg row2col1 lazy"  data-url="<?php echo $image_link = wp_get_attachment_url( $attachment_id ); ?>" alt="product gallery">
+      <?php
+      $config = array(
+        'id' => get_post_thumbnail_id(get_the_ID()),
+        'class' => 'Element productGalleryImg row2col1',
+        'height' => 400,
+        'width' => 600,
+        'sizes' => [['768', '98']],
+        'default_size' => '65',
+      );
+      responsive_img($config);
 
-      <?php $count++; }} ?>
+      if($attachment_ids){foreach( $attachment_ids as $attachment_id ) {
+
+        $config = array(
+          'id' => $attachment_id,
+          'class' => 'Element productGalleryImg row2col1',
+          'height' => 400,
+          'width' => 600,
+          'sizes' => [['768', '98']],
+          'default_size' => '65',
+        );
+        responsive_img($config);
+       }} ?>
+
       <?php if($attachment_ids){ ?>
         <div class="arrowBtnContainer">
           <button class="arrowBtn NextButton" id="nextButton" >
