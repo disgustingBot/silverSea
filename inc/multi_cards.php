@@ -61,6 +61,7 @@ function team_card ($args = array()) {
   if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
   if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
   if(!isset($args['image']  )){ $args['image']   = get_post_thumbnail_id(get_the_ID()); }
+  if(!isset($args['cargo']  )){ $args['cargo']   = get_post_meta(get_the_ID(), 'Cargo', true); }
   if(!isset($args['excerpt'])){ $args['excerpt'] = excerpt(70); }
   $terms = get_the_terms( get_the_id(), 'area' );
   ?>
@@ -78,7 +79,7 @@ function team_card ($args = array()) {
     ?>
     <div class="teamCardTxt">
       <p class="teamCardName teamCardBlock"><?= $args['title'] ?></p>
-      <p class="teamCardPosition teamCardBlock"><?php echo get_post_meta($post->ID, 'Cargo', true); ?></p>
+      <p class="teamCardPosition teamCardBlock"><?= $args['cargo']?></p>
       <a class="teamCardLinkedin teamCardNone brandColorTxt" href="<?php echo get_post_meta( get_the_id(), 'Linkedin' )[0]; ?>" >LinkedIn</a>
     </div>
   </article>
