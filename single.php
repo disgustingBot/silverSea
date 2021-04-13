@@ -63,30 +63,6 @@
 
 
 
-
-
-
-
-
-      $args = array(
-            'posts_per_page' => 1,
-            'tax_query'      => array(
-                array(
-                    'taxonomy'  => 'post_tag',
-                    'field'     => 'slug',
-                    'terms'     => 'destacada'
-                )
-            )
-        );
-
-        $featured_post = get_posts( $args )[0]->ID;
-        echo $featured_post;
-
-
-
-
-
-
       ?>
     </div>
 
