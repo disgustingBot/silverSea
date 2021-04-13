@@ -4678,7 +4678,7 @@ padding-bottom:0;
 }
 .textgroup_divider_2 {
   width: var(--textgroup_divider_2_width);
-  margin: 15px 0;
+  margin: 15px auto;
 }
 .divided_textgroup_subtitle {
   font-size: 20px;
