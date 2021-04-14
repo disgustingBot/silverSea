@@ -692,7 +692,7 @@ locationSelector = {
 		let uniqueLocationFound = locationSelector.currentSearch.length == 1;
 		// TODO: si hay solo un location encontrado habilitar boton de finalizar
 		// TODO: %si hay uno solo que complete el otro?...
-		// TODO: %que garde seleccion en cookie?...
+		// TODO: %que guarde seleccion en cookie?...
 		if( uniqueLocationFound ){
 			locationSelector[option] = locationSelector.currentSearch[0]
 			locationSelector[option][0] = locationSelector.currentSearch[0].country;
@@ -725,7 +725,21 @@ locationSelector = {
 	},
 
 
-	hideUnwantedOptions:(origenDestino)=>{ console.log('asi??')
+  // TODO: poner esto en silversea para ahorrar 10 lineas de JS
+	// __hide_unwanted_options(){
+	// 	let options = [...this.container.querySelectorAll('.selectBoxOption')];
+	// 	options.map( option =>{
+	// 		let input = option.querySelector('.selectBoxInput');
+	// 		if (input.value != 0){
+  //       let key   = input.dataset.key;
+  //       let value = input.value;
+  //
+  //       let found = this.current_search.reduce((a, c) => a || c.attributes[key] == value, false)
+  //       option.style.display = found ? 'block' : 'none';
+	// 		}
+	// 	})
+	// }
+	hideUnwantedOptions:(origenDestino)=>{// console.log('asi??')
 		// esconde todos los option que no coincidan con elementos de la busqueda actual
 		let options = [...coprAlqui.querySelectorAll('#'+origenDestino+' .selectBoxOption')];
 		options.forEach(option=>{
