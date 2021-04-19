@@ -174,9 +174,9 @@ $list_container = array_unique($contnr);
 
       <h4 class="region_title">LATAM</h4>
       <div class="region_sellers">
-        <p class="seller_name">Mathias Sosa</p>
+        <p class="seller_name">Sarah Yodice</p>
         <p class="seller_phone"><a href="tel:+598-99-101-199"><span class="stock_phone_email">&#128241;</span>(+598) 99 101 199</a></p>
-        <p class="seller_email"><a href="mailto:msosa@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
+        <p class="seller_email"><a href="mailto:syodice@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Nicolás Lingordo</p>
