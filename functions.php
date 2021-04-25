@@ -346,7 +346,9 @@ function lt_create_products () {
 				'alto'  => $value->alto,
 				'ancho' => $value->ancho,
 				'largo' => $value->largo,
-				'_sku'  => $value->SKU,
+        '_sku'  => $value->SKU,
+        '_yoast_wpseo_title'    => $value->SEO_title,
+				'_yoast_wpseo_metadesc' => $value->SEO_description,
 			);
 
 			// $respuesta['data'] = $basic_data;
@@ -443,7 +445,7 @@ add_action( 'wp_ajax_nopriv_lt_upload_file', 'lt_upload_file' );
 
 function lt_upload_file () {
 
-	$server = 'online';
+  $server = 'online';
 	// $server = 'local';
 	$debugMode = false;
 	$respuesta = array();
@@ -509,7 +511,9 @@ function lt_upload_file () {
 			REPLACE(categoria,';',',') 'Categoria',
 			ancho as 'ancho',
 			alto as 'alto',
-			largo as 'largo',
+      largo as 'largo',
+      SEO_title as 'SEO_title',
+			SEO_description as 'SEO_description',
 			imagenes as 'imagenes',
 			tipo_2 as 'tipo_2',
 			condicion as 'condition',

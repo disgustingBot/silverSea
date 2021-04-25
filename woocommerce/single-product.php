@@ -111,7 +111,7 @@ while(have_posts()){the_post();
         <?php newSvg(ucfirst($tipo_1Slug)); ?>
         <h6 class="categoryCardTitle"><?php echo $tipo_1; ?></h6>
       </div>
-      <p class="categoryCardCaption"><?php echo get_term_by('slug', $tipo_1, 'product_cat')->description; ?></p>
+      <p class="categoryCardCaption"><?php echo get_term_by('slug', $tipo_1Slug, 'product_cat')->description; ?></p>
     </div>
 
     <div class="containerClassSeparator"></div>
