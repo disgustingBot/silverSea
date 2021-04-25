@@ -49,7 +49,7 @@ productSincrotron = {
 			productSincrotron.temp.unshift(productoZero[0]);
 		}
 		console.log('envio a fabricar:')
-		console.log(productSincrotron.temp);
+		console.log(productSincrotron.temp[0]);
 		let formData = new FormData();
 		formData.append('products', JSON.stringify(productSincrotron.temp));
 		formData.append('action', 'lt_create_products');
