@@ -171,6 +171,11 @@ $list_container = array_unique($contnr);
         <p class="seller_phone"><a href="tel:+86-158-53-215-547"><span class="stock_phone_email">&#128241;</span>(+86) 158 5321 5547</a></p>
         <p class="seller_email"><a href="mailto:fding@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
+      <div class="region_sellers">
+        <p class="seller_name">Xu Yuhuang</p>
+        <p class="seller_phone"><a href="tel:+86-173-17-107-447"><span class="stock_phone_email">&#128241;</span>(+86) 173 1710 7447</a></p>
+        <p class="seller_email"><a href="mailto:fxyuhuang@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
+      </div>
 
       <h4 class="region_title">LATAM</h4>
       <div class="region_sellers">
