@@ -51,7 +51,7 @@
   }
   ?>
   <?php selectBox('Tamaño', $sizes, 'Vaciar', 'Size'); ?>
-  <?php selectBox('Tipo', $tipos_1, 'Vaiar', 'Tipo_1'); ?>
+  <?php selectBox('Tipo', $tipos_1, 'Vaciar', 'Tipo_1'); ?>
   <?php selectBox('Modelo', $tipos_2, 'Vaciar', 'Tipo_2'); ?>
   <?php selectBox('Condicion', $condiciones, 'Vaciar', 'Condicion'); ?>
 
