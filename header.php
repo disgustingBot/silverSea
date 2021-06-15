@@ -26,7 +26,7 @@
   include 'assets/allIcons.php';
   ?>
 
-	<view id="load" class="load"><div class="circle"></div></view>
+	<!-- <view id="load" class="load"><div class="circle"></div></view> -->
   <header class="header" id="header">
 
     <!-- NAVIGATION BAR -->
