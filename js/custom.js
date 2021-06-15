@@ -77,9 +77,9 @@ w.onload=()=>{
 	// }
 
 	scrollAlter();
-	if (d.getElementById("load")) {
-		d.getElementById("load").style.top="-100vh";
-	}
+	// if (d.getElementById("load")) {
+	// 	d.getElementById("load").style.top="-100vh";
+	// }
 }
 // console.log(lt_data.ajaxurl)
 
