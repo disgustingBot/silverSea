@@ -93,6 +93,7 @@ function lt_add_theme_support() {
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 	add_theme_support( 'post-thumbnails' );
+  add_post_type_support( 'page', 'excerpt' );
 }
 
 
