@@ -77,7 +77,7 @@
     </div>
   </div>
 </section>
-<section class="sectionPadding">
+<section class="sectionPadding media_perk_container">
   <div class="media_perk">
     <div class="media_perk_paragraph">
       <h4 class="media_perk_title"><?php echo get_post_meta($post->ID, 'B_bloque_1_titulo_1', true); ?></h4>
@@ -98,15 +98,11 @@
       <div class="media_perkg_deco"></div>
     </div>
   </div>
-  <div class="media_perk">
-    <div class="media_perk_paragraph">
-      <h4 class="media_perk_title"><?php echo get_post_meta($post->ID, 'B_bloque_1_titulo_2', true); ?></h4>
-      <p class="media_perk_text"><?php echo get_post_meta($post->ID, 'B_bloque_1_texto_2', true); ?></p>
-    </div>
+  <div class="media_perk reverse">
     <?php
     $config = array(
       'slug' => get_post_meta( $post->ID, 'B_bloque_1_imagen_2', true ),
-      'class' => 'media_perk_img',
+      'class' => 'media_perk_img alt',
       'sizes' => [['768', '100']],
       'default_size' => '200',
       'width' => 720,
@@ -114,23 +110,30 @@
     );
     responsive_img($config);
     ?>
+    <div class="media_perk_paragraph">
+      <h4 class="media_perk_title"><?php echo get_post_meta($post->ID, 'B_bloque_1_titulo_2', true); ?></h4>
+      <p class="media_perk_text"><?php echo get_post_meta($post->ID, 'B_bloque_1_texto_2', true); ?></p>
+    </div>
   </div>
   <div class="media_perk">
     <div class="media_perk_paragraph">
       <h4 class="media_perk_title"><?php echo get_post_meta($post->ID, 'B_bloque_1_titulo_3', true); ?></h4>
       <p class="media_perk_text"><?php echo get_post_meta($post->ID, 'B_bloque_1_texto_3', true); ?></p>
     </div>
-    <?php
-    $config = array(
-      'slug' => get_post_meta( $post->ID, 'B_bloque_1_imagen_3', true ),
-      'class' => 'media_perk_img',
-      'sizes' => [['768', '100']],
-      'default_size' => '200',
-      'width' => 720,
-      'height' => 856,
-    );
-    responsive_img($config);
-    ?>
+    <div class="media_perk_img_container">
+      <?php
+      $config = array(
+        'slug' => get_post_meta( $post->ID, 'B_bloque_1_imagen_3', true ),
+        'class' => 'media_perk_img',
+        'sizes' => [['768', '100']],
+        'default_size' => '200',
+        'width' => 720,
+        'height' => 856,
+      );
+      responsive_img($config);
+      ?>
+      <div class="media_perkg_deco"></div>
+    </div>
   </div>
 </section>
 
