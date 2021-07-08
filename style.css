@@ -427,6 +427,9 @@ FIN DE MAPA DE CONTENIDOS */
 
   /* media_perk */
   --pedia_perk_FS: 18px;
+  --media_perk_text_FS: 14px;
+  --media_perk_padding: 0;
+  --media_perk_text_PR: 0;
 
 }
 /* ---------------------------------------------------------------------------
@@ -762,6 +765,8 @@ FIN DE MAPA DE CONTENIDOS */
 
 
 
+
+
   }
 }
 
@@ -850,6 +855,13 @@ FIN DE MAPA DE CONTENIDOS */
      --col6_squared_info_container_GTC: repeat(5, 1fr);
 
 
+    /* media_perk */
+    --media_perk_padding: 1rem 10rem;
+    --media_perk_text_PR: 50px;
+    --media_perk_img_width: 250px;
+    --media_perk_container_deco1_width: 220px;
+
+
 
   }
 }
@@ -911,6 +923,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* media_perk */
     --pedia_perk_FS: 24px;
+
   }
 }
 /* ---------------------------------------------------------------------------
@@ -940,6 +953,12 @@ FIN DE MAPA DE CONTENIDOS */
     /* hero */
     --hero_title_font_size: 2.2rem;
 
+    /* media_perk */
+    --media_perk_text_FS: 16px;
+    --media_perk_padding: 34px 48px;
+    --media_perk_img_width: 300px;
+    --media_perk_text_PR: 120px;
+
   }
 }
 
@@ -965,6 +984,8 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* media_perk */
     --media_perk_FS: 30px;
+    --media_perk_img_width: 350px;
+    --media_perk_container_deco1_width: 280px;
 
   }
 }
@@ -4895,11 +4916,30 @@ padding-bottom:0;
 .media_perk_container{
   display: grid;
   grid-row-gap: 2rem;
+  position: relative;
+}
+.media_perk_container_deco{
+  position: absolute;
+  object-fit: contain;
+  height: auto;
+}
+.media_perk_container_deco.deco_1{
+  width: var(--media_perk_container_deco1_width);
+  top: 5rem;
+  left: 0;
+}
+.media_perk_container_deco.deco_2{
+  width: 280px;
+  top: 30rem;
+  right: 0;
+}
+.media_perk_container_deco.deco_3{
+  display: none;
 }
 .media_perk{
   display: grid;
   grid-auto-flow: column;
-  padding: 34px 48px;
+  padding: var(--media_perk_padding);
   grid-template-columns: 2fr 1fr;
   grid-gap: 2rem;
 }
@@ -4907,7 +4947,6 @@ padding-bottom:0;
   grid-template-columns: 1fr 2fr;
   grid-gap: 6rem;
 }
-.media_perk.reverse .media_perk_text{padding-right: 0;}
 .media_perk_title{
   color: var(--primaryColor);
   font-size: var(--pedia_perk_FS);
@@ -4917,17 +4956,19 @@ padding-bottom:0;
 }
 .media_perk_text{
   font-family: 'Roboto Regular', sans-serif;
-  font-size: 16px;
+  font-size: var(--media_perk_text_FS);
   line-height: 24px;
   letter-spacing: 1px;
   color: var(--greyBlack);
-  padding-right: 120px;
+  padding-right: var(--media_perk_text_PR);
 }
+.media_perk.reverse .media_perk_text{padding-right: 0;}
 .media_perk_img_container{
   position: relative;
+  height: min-content;
 }
 .media_perk_img{
-  width: 350px;
+  width: var(--media_perk_img_width);
   height: auto;
   border-radius: 24% 0;
   position: relative;
@@ -4938,7 +4979,7 @@ padding-bottom:0;
   box-shadow: 27px 31px 60px 15px rgb(6 116 187 / 30%);
 }
 .media_perkg_deco{
-  width: 350px;
+  width: var(--media_perk_img_width);
   height: 100%;
   background: var(--primaryColor);
   position: absolute;

@@ -78,12 +78,16 @@
   </div>
 </section>
 <section class="sectionPadding media_perk_container">
+  <img class="media_perk_container_deco deco_1 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_1.png" alt="Imágen cartográfica decorativa">
+  <img class="media_perk_container_deco deco_2 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_2.png" alt="Imágen cartográfica decorativa">
+  <img class="media_perk_container_deco deco_3 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_3.png" alt="Imágen cartográfica decorativa">
   <div class="media_perk">
     <div class="media_perk_paragraph">
       <h4 class="media_perk_title"><?php echo get_post_meta($post->ID, 'B_bloque_1_titulo_1', true); ?></h4>
       <p class="media_perk_text"><?php echo get_post_meta($post->ID, 'B_bloque_1_texto_1', true); ?></p>
     </div>
     <div class="media_perk_img_container">
+
       <?php
       $config = array(
         'slug' => get_post_meta( $post->ID, 'B_bloque_1_imagen_1', true ),
