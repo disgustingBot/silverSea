@@ -425,6 +425,9 @@ FIN DE MAPA DE CONTENIDOS */
   --blurb_container_margin: 1rem auto;
   --blurb_container_GG: 3rem;
 
+  /* media_perk */
+  --pedia_perk_FS: 18px;
+
 }
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -757,6 +760,8 @@ FIN DE MAPA DE CONTENIDOS */
     --blurb_container_GG: 2rem;
 
 
+
+
   }
 }
 
@@ -903,6 +908,9 @@ FIN DE MAPA DE CONTENIDOS */
     --blurb_img_height: 3rem;
     --blurb_title_FS: .6rem;
     --blurb_container_GG: 3rem;
+
+    /* media_perk */
+    --pedia_perk_FS: 24px;
   }
 }
 /* ---------------------------------------------------------------------------
@@ -954,6 +962,9 @@ FIN DE MAPA DE CONTENIDOS */
     --blurb_container_padding: 2rem 15rem;
     --blurb_img_height: 4rem;
     --blurb_title_FS: 20px;
+
+    /* media_perk */
+    --media_perk_FS: 30px;
 
   }
 }
@@ -4899,7 +4910,7 @@ padding-bottom:0;
 .media_perk.reverse .media_perk_text{padding-right: 0;}
 .media_perk_title{
   color: var(--primaryColor);
-  font-size: 30px;
+  font-size: var(--pedia_perk_FS);
   letter-spacing: 1.5px;
   font-family: 'Roboto Slab', serif;
   margin:48px 0;
