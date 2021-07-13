@@ -416,6 +416,7 @@ FIN DE MAPA DE CONTENIDOS */
   --hero_text_padding: 0 1rem;
   --hero_content_GRG: 1rem;
   --hero_content_margin: 3rem var(--lateral);
+  --hero_bg_height: 100%;
 
   /* blurb */
   --blurb_container_padding: unset;
@@ -433,8 +434,12 @@ FIN DE MAPA DE CONTENIDOS */
   --media_perk_GTC: unset;
   --media_perk_reverse_GTC: unset;
   --media_perk_GAF: row;
-  --media_perk_img_width: 100px;
+  --media_perk_img_width: 220px;
   --media_perk_reverse_GG: 2rem;
+  --media_perk_title_margin: 48px 0 20px 0;
+  --media_perk_img_margin: auto;
+  --media_perk_reverse_img_GR: 2;
+  --media_perk_img_transform: translateX(-8%);
 
 }
 /* ---------------------------------------------------------------------------
@@ -565,7 +570,7 @@ FIN DE MAPA DE CONTENIDOS */
     --hero_text_padding: 0 2rem;
 
     /* blurb */
-    --blurb_container_GAF: column;
+
     --blurb_container_margin: auto;
 
     /* media_perk */
@@ -761,13 +766,15 @@ FIN DE MAPA DE CONTENIDOS */
       --col6_squared_info_container_GTC: repeat(4, 1fr);
 
     /* hero */
-      --hero_content_margin: auto;
+    --hero_content_margin: auto;
     --hero_title_letter_sp: 3px;
+    --hero_text_padding: 0 6rem;
 
     /* blurb */
-    --blurb_container_padding: 1rem 3rem;
+    --blurb_container_padding: 1rem 6rem;
     --blurb_img_height: 2rem;
     --blurb_container_GG: 2rem;
+    --blurb_container_GAF: column;
 
     /* media_perk */
     --media_perk_padding: 1rem 2.5rem;
@@ -775,6 +782,12 @@ FIN DE MAPA DE CONTENIDOS */
     --media_perk_reverse_GTC: 1fr 2fr;
     --media_perk_GAF: column;
     --media_perk_img_width: 250px;
+    --media_perk_deco_2_top: 22rem;
+    --media_perk_deco_2_width: 300px;
+    --media_perk_title_margin: 48px 0;
+    --media_perk_img_margin: unset;
+    --media_perk_reverse_img_GR: unset;
+    --media_perk_img_transform: unset;
 
 
 
@@ -810,7 +823,7 @@ FIN DE MAPA DE CONTENIDOS */
     --hero_title_font_size: 1.5rem;
 
     /* blurb */
-    --blurb_container_padding: 3rem 1rem;
+
 
 
   }
@@ -917,7 +930,6 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* hero */
     --hero_title_font_size: 1.6rem;
-    --hero_text_padding: 0 4rem;
 
   }
 }
@@ -939,6 +951,7 @@ FIN DE MAPA DE CONTENIDOS */
     /* media_perk */
     --pedia_perk_FS: 24px;
     --media_perk_padding: 1rem 10rem;
+    --media_perk_deco_2_top: 28rem;
 
   }
 }
@@ -974,6 +987,7 @@ FIN DE MAPA DE CONTENIDOS */
     --media_perk_padding: 34px 48px;
     --media_perk_img_width: 300px;
     --media_perk_text_PR: 120px;
+    --media_perk_deco_2_top: 32rem;
 
   }
 }
@@ -1002,6 +1016,8 @@ FIN DE MAPA DE CONTENIDOS */
     --media_perk_FS: 30px;
     --media_perk_img_width: 350px;
     --media_perk_container_deco1_width: 280px;
+    --media_perk_deco_2_top: 37rem;
+    --media_perk_deco_2_width: 400px;
 
   }
 }
@@ -4846,7 +4862,7 @@ padding-bottom:0;
 }
 .hero_bg{
   width: 100%;
-  height: min-content;
+  height: var(--hero_bg_height);
 }
 .hero_content{
   display: grid;
@@ -4945,8 +4961,8 @@ padding-bottom:0;
   left: 0;
 }
 .media_perk_container_deco.deco_2{
-  width: 300px;
-  top: 28rem;
+  width: var(--media_perk_deco_2_width);
+  top: var(--media_perk_deco_2_top);
   right: 0;
   z-index: 1;
 }
@@ -4964,12 +4980,15 @@ padding-bottom:0;
   grid-template-columns: var(--media_perk_reverse_GTC);
   grid-gap: var(--media_perk_reverse_GG);
 }
+.media_perk.reverse .media_perk_img{
+  grid-row: var(--media_perk_reverse_img_GR);
+}
 .media_perk_title{
   color: var(--primaryColor);
   font-size: var(--pedia_perk_FS);
   letter-spacing: 1.5px;
   font-family: 'Roboto Slab', serif;
-  margin:48px 0;
+  margin: var(--media_perk_title_margin);
 }
 .media_perk_text{
   font-family: 'Roboto Regular', sans-serif;
@@ -4984,6 +5003,8 @@ padding-bottom:0;
   position: relative;
   height: min-content;
   width: min-content;
+  margin: var(--media_perk_img_margin);
+  transform: var(--media_perk_img_transform);
 }
 .media_perk_img{
   width: var(--media_perk_img_width);
@@ -4991,6 +5012,7 @@ padding-bottom:0;
   border-radius: 24% 0;
   position: relative;
   z-index: 2;
+  margin: var(--media_perk_img_margin);
 }
 .media_perk_img.alt{
   border-radius: 24% 24% 0 24%;
