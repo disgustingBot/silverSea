@@ -430,6 +430,11 @@ FIN DE MAPA DE CONTENIDOS */
   --media_perk_text_FS: 14px;
   --media_perk_padding: 0;
   --media_perk_text_PR: 0;
+  --media_perk_GTC: unset;
+  --media_perk_reverse_GTC: unset;
+  --media_perk_GAF: row;
+  --media_perk_img_width: 100px;
+  --media_perk_reverse_GG: 2rem;
 
 }
 /* ---------------------------------------------------------------------------
@@ -563,6 +568,8 @@ FIN DE MAPA DE CONTENIDOS */
     --blurb_container_GAF: column;
     --blurb_container_margin: auto;
 
+    /* media_perk */
+    --media_perk_img_width: 150px;
 
   }
 }
@@ -762,6 +769,13 @@ FIN DE MAPA DE CONTENIDOS */
     --blurb_img_height: 2rem;
     --blurb_container_GG: 2rem;
 
+    /* media_perk */
+    --media_perk_padding: 1rem 2.5rem;
+    --media_perk_GTC: 2fr 1fr;
+    --media_perk_reverse_GTC: 1fr 2fr;
+    --media_perk_GAF: column;
+    --media_perk_img_width: 250px;
+
 
 
 
@@ -856,10 +870,11 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* media_perk */
-    --media_perk_padding: 1rem 10rem;
+    --media_perk_padding: 1rem 5rem;
     --media_perk_text_PR: 50px;
     --media_perk_img_width: 250px;
     --media_perk_container_deco1_width: 220px;
+    --media_perk_reverse_GG: 6rem;
 
 
 
@@ -923,6 +938,7 @@ FIN DE MAPA DE CONTENIDOS */
 
     /* media_perk */
     --pedia_perk_FS: 24px;
+    --media_perk_padding: 1rem 10rem;
 
   }
 }
@@ -4939,14 +4955,14 @@ padding-bottom:0;
 }
 .media_perk{
   display: grid;
-  grid-auto-flow: column;
+  grid-auto-flow: var(--media_perk_GAF);
   padding: var(--media_perk_padding);
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: var(--media_perk_GTC);
   grid-gap: 2rem;
 }
 .media_perk.reverse{
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 6rem;
+  grid-template-columns: var(--media_perk_reverse_GTC);
+  grid-gap: var(--media_perk_reverse_GG);
 }
 .media_perk_title{
   color: var(--primaryColor);
@@ -4967,6 +4983,7 @@ padding-bottom:0;
 .media_perk_img_container{
   position: relative;
   height: min-content;
+  width: min-content;
 }
 .media_perk_img{
   width: var(--media_perk_img_width);
