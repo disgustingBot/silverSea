@@ -43,43 +43,39 @@
         <h3 class="blurb_title"><?php echo get_post_meta($post->ID, 'A_portada_texto_1', true); ?></h3>
       </div>
       <div class="blurb">
-        <div class="media_perk_img_container">
-          <?php
-          $config = array(
-            'slug' => get_post_meta( $post->ID, 'A_portada_icono_2', true ),
-            'class' => 'blurb_img',
-            'sizes' => [['768', '100']],
-            'default_size' => '200',
-            'width' => 300,
-            'height' => 300,
-          );
-          responsive_img($config);
-          ?>
-        </div>
+        <?php
+        $config = array(
+          'slug' => get_post_meta( $post->ID, 'A_portada_icono_2', true ),
+          'class' => 'blurb_img',
+          'sizes' => [['768', '100']],
+          'default_size' => '200',
+          'width' => 300,
+          'height' => 300,
+        );
+        responsive_img($config);
+        ?>
         <h3 class="blurb_title"><?php echo get_post_meta($post->ID, 'A_portada_texto_2', true); ?></h3>
       </div>
       <div class="blurb">
-        <div class="media_perk_img_container">
-          <?php
-          $config = array(
-            'slug' => get_post_meta( $post->ID, 'A_portada_icono_3', true ),
-            'class' => 'blurb_img',
-            'sizes' => [['768', '100']],
-            'default_size' => '200',
-            'width' => 300,
-            'height' => 300,
-          );
-          responsive_img($config);
-          ?>
-        </div>
+        <?php
+        $config = array(
+          'slug' => get_post_meta( $post->ID, 'A_portada_icono_3', true ),
+          'class' => 'blurb_img',
+          'sizes' => [['768', '100']],
+          'default_size' => '200',
+          'width' => 300,
+          'height' => 300,
+        );
+        responsive_img($config);
+        ?>
         <h3 class="blurb_title"><?php echo get_post_meta($post->ID, 'A_portada_texto_3', true); ?></h3>
       </div>
     </div>
   </div>
 </section>
+<img class="media_perk_container_deco deco_2 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_2.png" alt="Imágen cartográfica decorativa">
 <section class="sectionPadding media_perk_container">
   <img class="media_perk_container_deco deco_1 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_1.png" alt="Imágen cartográfica decorativa">
-  <img class="media_perk_container_deco deco_2 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_2.png" alt="Imágen cartográfica decorativa">
   <img class="media_perk_container_deco deco_3 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_3.png" alt="Imágen cartográfica decorativa">
   <div class="media_perk">
     <div class="media_perk_paragraph">
