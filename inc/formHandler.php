@@ -103,8 +103,9 @@ function lt_ajax_mail() {
   $name            = $_POST[ 'name' ];
   $mail            = $_POST[ 'mail' ];
   $title           = $_POST[ 'title' ];
-  $destino_city    = $_POST[ 'destino_city' ];
-  $destino_country = $_POST[ 'destino_country' ];
+	$destino_city    = (isset($_POST[ 'destino_city' ])) ? $_POST[ 'destino_city' ] : '';
+  $destino_country = (isset($_POST[ 'destino_country' ])) ? $_POST[ 'destino_country' ] : '';
+  // $destino_country = $_POST[ 'destino_country' ];
 
   $destino = '';
   $origen = " - En: <span class='ubicacion'>$country - $city</span>";
