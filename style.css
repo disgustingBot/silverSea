@@ -410,19 +410,20 @@ FIN DE MAPA DE CONTENIDOS */
   --tesim_container_2_width: 85%;
 
   /* hero */
-  --hero_title_font_size: 1.3rem;
+  --hero_title_font_size: 1.7rem;
   --hero_title_letter_sp: 1px;
-  --hero_text_font_size: 14px;
+  --hero_text_font_size: 18px;
   --hero_text_padding: 0 1rem;
   --hero_content_GRG: 1rem;
   --hero_content_margin: 3rem var(--lateral);
-  --hero_bg_height: 100%;
+
 
   /* blurb */
   --blurb_container_padding: unset;
   --blurb_img_height: 5rem;
   --blurb_title_FS: 14px;
-  --blurb_container_GAF: row;
+  /* --blurb_container_GAF: row; */
+  --blurb_container_FD: column;
   --blurb_container_margin: 1rem auto;
   --blurb_container_GG: 3rem;
 
@@ -566,7 +567,6 @@ FIN DE MAPA DE CONTENIDOS */
     --divided_textgroup_title_width: max-content;
 
     /* hero */
-    --hero_title_font_size: 1.2rem;
     --hero_text_padding: 0 2rem;
 
     /* blurb */
@@ -774,7 +774,8 @@ FIN DE MAPA DE CONTENIDOS */
     --blurb_container_padding: 1rem 6rem;
     --blurb_img_height: 2rem;
     --blurb_container_GG: 2rem;
-    --blurb_container_GAF: column;
+    /* --blurb_container_GAF: column; */
+    --blurb_container_FD: row;
 
     /* media_perk */
     --media_perk_padding: 1rem 2.5rem;
@@ -820,7 +821,6 @@ FIN DE MAPA DE CONTENIDOS */
     --tesim_container_2_width: 90%;
 
     /* hero */
-    --hero_title_font_size: 1.5rem;
 
     /* blurb */
 
@@ -929,7 +929,6 @@ FIN DE MAPA DE CONTENIDOS */
 
 
     /* hero */
-    --hero_title_font_size: 1.6rem;
 
   }
 }
@@ -938,7 +937,7 @@ FIN DE MAPA DE CONTENIDOS */
   :root {
     /* hero */
     --hero_title_font_size: 38px;
-    --hero_text_font_size: .6rem;
+    --hero_text_font_size: 16px;
     --hero_text_padding: 0 16rem;
     --hero_content_GRG: 1.5rem;
 
@@ -4862,7 +4861,7 @@ padding-bottom:0;
 }
 .hero_bg{
   width: 100%;
-  height: var(--hero_bg_height);
+  height: auto;
 }
 .hero_content{
   display: grid;
@@ -4897,9 +4896,10 @@ padding-bottom:0;
 --------------------------------------------------------------------------- */
 
 .blurb_container{
-  display: grid;
-  grid-auto-flow: var(--blurb_container_GAF);
-  grid-gap: var(--blurb_container_GG);
+  display: flex;
+  flex-direction: var(--blurb_container_FD);
+  /* grid-auto-flow: var(--blurb_container_GAF); */
+  /* grid-gap: var(--blurb_container_GG); */
   margin: var(--blurb_container_margin);
   grid-auto-rows: min-content;
   padding: var(--blurb_container_padding);

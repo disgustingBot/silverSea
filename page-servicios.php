@@ -26,7 +26,8 @@
   ?>
   <div class="hero_content rowcol1">
     <h1 class="hero_title"><?php echo get_the_title() ?></h1>
-    <p class="hero_text"><?php echo get_the_excerpt() ?></p>
+    <p class="hero_text onlyDesktopG"><?php echo get_the_excerpt() ?></p>
+    <p class="hero_text onlyMobileG"><?php echo get_post_meta($post->ID, 'A_extracto_movil', true); ?></p>
     <div class="blurb_container">
       <div class="blurb">
         <?php
