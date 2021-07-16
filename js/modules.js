@@ -190,6 +190,7 @@ obseController = {
 		}
 	}
 }
+
 class Obse {
 	constructor(element){
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
@@ -198,8 +199,7 @@ class Obse {
 		this.observe = d.querySelector(element.dataset.observe);
 		this.unobserve = element.dataset.unobserve;
 		// console.log(this.observe);
-		// console.log(this.unobserve);
-
+		console.log(this.unobserve);
 		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
 		this.observer = new IntersectionObserver(function(entries, observer){
 			entries.forEach(entry => {
@@ -210,7 +210,7 @@ class Obse {
 					// } else {
 						// x.classList.remove('observed')
 						// }
-					if(this.unobserve=='true'){observer.unobserve(entry.target)}
+					if(this.unobserve=='true'){observer.unobserve(entry.target);console.log('HOLUUUUOSS')}
 				} else {
 				// if(!reverse){
 					element.classList.remove('observed')
