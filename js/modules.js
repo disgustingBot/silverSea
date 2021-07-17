@@ -199,7 +199,7 @@ class Obse {
 		this.observe = d.querySelector(element.dataset.observe);
 		this.unobserve = element.dataset.unobserve;
 		// console.log(this.observe);
-		console.log(this.unobserve);
+		// console.log(this.unobserve);
 		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
 		this.observer = new IntersectionObserver(function(entries, observer){
 			entries.forEach(entry => {
