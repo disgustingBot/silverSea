@@ -48,6 +48,11 @@
     <input class="footLogInput" type="password" name="pass" placeholder="Password">
     <button class="footLogSubmit btn" type="submit" value="Submit">LOGIN</button>
   </form>
+  <?php if (is_user_logged_in()) { ?>
+
+<?php }else { ?>
+  <div style="width: 100%; height: 36px; z-index: 1; position: absolute; background: #000032; bottom: -35px; left: 0;"></div>
+<?php } ?>
 </footer>
 <?php wp_footer(); ?>
 

@@ -77,7 +77,6 @@
 <img class="media_perk_container_deco deco_2 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_2.png" alt="Imágen cartográfica decorativa">
 <section class="sectionPadding media_perk_container">
   <img class="media_perk_container_deco deco_1 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_1.png" alt="Imágen cartográfica decorativa">
-  <img class="media_perk_container_deco deco_3 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_3.png" alt="Imágen cartográfica decorativa">
   <div class="media_perk Obse" data-observe="#media_perk_redDot1" data-unobserve="true">
     <div class="media_perk_paragraph">
       <h4 class="media_perk_title"><?php echo get_post_meta($post->ID, 'B_bloque_1_titulo_1', true); ?></h4>
@@ -98,7 +97,7 @@
       ?>
       <div class="media_perk_deco"></div>
     </div>
-    <div class="redDot test" id="media_perk_redDot1"></div>
+    <div class="redDot" id="media_perk_redDot1"></div>
   </div>
   <div class="media_perk reverse Obse" data-observe="#media_perk_redDot2" data-unobserve="true">
     <?php
@@ -116,7 +115,7 @@
       <h4 class="media_perk_title"><?php echo get_post_meta($post->ID, 'B_bloque_1_titulo_2', true); ?></h4>
       <p class="media_perk_text"><?php echo get_post_meta($post->ID, 'B_bloque_1_texto_2', true); ?></p>
     </div>
-    <div class="redDot test" id="media_perk_redDot2"></div>
+    <div class="redDot" id="media_perk_redDot2"></div>
   </div>
   <div class="media_perk Obse" data-observe="#media_perk_redDot3" data-unobserve="true">
     <div class="media_perk_paragraph">
@@ -137,7 +136,7 @@
       ?>
       <div class="media_perk_deco"></div>
     </div>
-    <div class="redDot test" id="media_perk_redDot3"></div>
+    <div class="redDot" id="media_perk_redDot3"></div>
   </div>
 </section>
 <section class="hero alt hero_padding">
@@ -228,5 +227,7 @@
   </a>
 </section>
 
+<div class="white_space"></div>
+<img class="media_perk_container_deco deco_3 onlyDesktopF" src="<?php echo get_template_directory_uri(); ?>/assets/service_deco_3.png" alt="Imágen cartográfica decorativa">
 
 <?php get_footer(); ?>
