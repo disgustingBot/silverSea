@@ -5008,7 +5008,7 @@ padding-bottom:0;
   letter-spacing: .5px;
   font-family: 'Roboto', sans-serif;
   position: relative;
-  width: max-content;
+  /* width: max-content; */
   margin: auto;
 }
 .blurb_container.alt .blurb_title{

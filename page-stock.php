@@ -145,11 +145,6 @@ $list_container = array_unique($contnr);
         <p class="seller_email"><a href="mailto:sricci@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
-        <p class="seller_name">Francisco Mulet</p>
-        <p class="seller_phone"><a href="tel:+34-689-666-142"><span class="stock_phone_email">&#128241;</span>(+34) 689 666 142</a></p>
-        <p class="seller_email"><a href="mailto:fmulet@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
-      </div>
-      <div class="region_sellers">
         <p class="seller_name">Alain Wevar</p>
         <p class="seller_phone"><a href="tel:+34-683-623-698"><span class="stock_phone_email">&#128241;</span>(+34) 683 623 698</a></p>
         <p class="seller_email"><a href="mailto:awevar@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
@@ -178,11 +173,6 @@ $list_container = array_unique($contnr);
       </div>
 
       <h4 class="region_title">LATAM</h4>
-      <div class="region_sellers">
-        <p class="seller_name">Sarah Yodice</p>
-        <p class="seller_phone"><a href="tel:+598-99-101-199"><span class="stock_phone_email">&#128241;</span>(+598) 99 101 199</a></p>
-        <p class="seller_email"><a href="mailto:syodice@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
-      </div>
       <div class="region_sellers">
         <p class="seller_name">Nicolás Lingordo</p>
         <p class="seller_phone"><a href="tel:+598-99-101-057"><span class="stock_phone_email">&#128241;</span>(+598) 99 101 057</a></p>
