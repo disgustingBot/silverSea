@@ -51,7 +51,7 @@
   <?php if (is_user_logged_in()) { ?>
 
 <?php }else { ?>
-  <div style="width: 100%; height: 36px; z-index: 1; position: absolute; background: #000032; bottom: -35px; left: 0;"></div>
+  <div style="width: 100%; height: calc(36px + 1.3rem); z-index: 1; position: absolute; background: #000032; bottom: calc(-35px + -1.3rem); left: 0;"></div>
 <?php } ?>
 </footer>
 <?php wp_footer(); ?>
