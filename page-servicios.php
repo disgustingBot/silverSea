@@ -11,8 +11,7 @@
     'height' => 800,
   );
   responsive_img($config);
-  ?>
-  <?php
+
 
   $config = array(
     'id' => get_post_thumbnail_id(get_the_ID()),
