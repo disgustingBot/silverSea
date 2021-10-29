@@ -140,14 +140,9 @@ $list_container = array_unique($contnr);
 
       <h4 class="region_title">EUROPA</h4>
       <div class="region_sellers">
-        <p class="seller_name">Stefano Ricci</p>
-        <p class="seller_phone"><a href="tel:+34-696-98-82-43"><span class="stock_phone_email">&#128241;</span>(+34) 696 98 82 43</a></p>
+        <p class="seller_name">Thanwart Huteserani</p>
+        <p class="seller_phone"><a href="tel:+34-696-98-82-43"><span class="stock_phone_email">&#128241;</span>+(34) 696 988 243</a></p>
         <p class="seller_email"><a href="mailto:sricci@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
-      </div>
-      <div class="region_sellers">
-        <p class="seller_name">Alain Wevar</p>
-        <p class="seller_phone"><a href="tel:+34-683-623-698"><span class="stock_phone_email">&#128241;</span>(+34) 683 623 698</a></p>
-        <p class="seller_email"><a href="mailto:awevar@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
         <p class="seller_name">Francisco Portela</p>
@@ -162,20 +157,20 @@ $list_container = array_unique($contnr);
         <p class="seller_email"><a href="mailto:stamimi@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
       <div class="region_sellers">
-        <p class="seller_name">Fancy Ding</p>
-        <p class="seller_phone"><a href="tel:+86-158-53-215-547"><span class="stock_phone_email">&#128241;</span>(+86) 158 5321 5547</a></p>
-        <p class="seller_email"><a href="mailto:fding@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
-      </div>
-      <div class="region_sellers">
         <p class="seller_name">Xu Yuhuang</p>
         <p class="seller_phone"><a href="tel:+86-173-17-107-447"><span class="stock_phone_email">&#128241;</span>(+86) 173 1710 7447</a></p>
         <p class="seller_email"><a href="mailto:fxyuhuang@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
 
-      <h4 class="region_title">LATAM</h4>
+      <h4 class="region_title">LATAM & EE.UU</h4>
       <div class="region_sellers">
         <p class="seller_name">Nicolás Lingordo</p>
         <p class="seller_phone"><a href="tel:+598-99-101-057"><span class="stock_phone_email">&#128241;</span>(+598) 99 101 057</a></p>
+        <p class="seller_email"><a href="mailto:nlingordo@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
+      </div>
+      <div class="region_sellers">
+        <p class="seller_name">Felipe Peña</p>
+        <p class="seller_phone"><a href="tel:+649-01-48-11"><span class="stock_phone_email">&#128241;</span>(+34) 649 01 48 11</a></p>
         <p class="seller_email"><a href="mailto:nlingordo@silverseacontainers.com"><span class="stock_phone_email">&#128231;</span></a></p>
       </div>
     </div>
