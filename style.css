@@ -29,7 +29,7 @@ Version: 0.0
 
 6) =COMPONENTES:
 6.0) =load:
-6.1) =header:
+6.1) =header:stock_row_title
 6.2) =blueBar:
 6.3) =ATFS:
 6.3.0) =Front Page ATF:
@@ -4826,7 +4826,7 @@ padding-bottom:0;
   background: white;
   padding: 1rem 0;
   position: sticky;
-  top: 80px;
+  top: 0;
 }
 
 .stock_row_title_txt {
